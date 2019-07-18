@@ -1,0 +1,610 @@
+# Copyright (C) 2015 Capability Manager Enhanced
+# This file is distributed under the same license as the Capability Manager Enhanced package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Capability Manager Enhanced 1.5.3\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/capability-manager-"
+"enhanced\n"
+"POT-Creation-Date: 2015-06-04 10:53:10+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2015-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: capsman-enhanced.php:40
+msgid ""
+"<strong>Error:</strong> Capability Manager Extended cannot function because "
+"another copy of Capability Manager is active."
+msgstr ""
+
+#: capsman-enhanced.php:58
+msgid "Warning:"
+msgstr ""
+
+#: capsman-enhanced.php:59
+msgid "The active plugin %s is not compatible with your PHP version."
+msgstr ""
+
+#: capsman-enhanced.php:61
+msgid "%s is required for this plugin."
+msgstr ""
+
+#: capsman-enhanced.php:115 includes/manager.php:177 includes/manager.php:186
+msgid "Capabilities"
+msgstr ""
+
+#: capsman-enhanced.php:116 capsman-enhanced.php:120 capsman-enhanced.php:125
+#: includes/manager.php:177 includes/manager.php:181 includes/manager.php:187
+msgid "Capability Manager"
+msgstr ""
+
+#: capsman-enhanced.php:125
+msgid "Role Capabilities"
+msgstr ""
+
+#: framework/classes/abstract/plugin.php:224
+msgid "Explicity negate this capability by storing as disabled"
+msgstr ""
+
+#: framework/classes/abstract/plugin.php:225
+msgid "Explicitly negate these capabilities by storing as disabled"
+msgstr ""
+
+#: framework/classes/abstract/plugin.php:226
+msgid "Post type registration does not define this capability distinctly"
+msgstr ""
+
+#: framework/classes/abstract/plugin.php:227
+msgid "This capability is explicitly negated. Click to add/remove normally."
+msgstr ""
+
+#: framework/classes/abstract/plugin.php:228
+msgid "Add or remove this capability from the WordPress role"
+msgstr ""
+
+#: framework/classes/abstract/plugin.php:229
+msgid "Add or remove capability from the role normally"
+msgstr ""
+
+#: framework/lib/formating.php:40
+msgid "Settings saved."
+msgstr ""
+
+#: framework/lib/themes-agapetry.php:9
+msgid "Plugin Homepage"
+msgstr ""
+
+#: framework/lib/themes-agapetry.php:10
+msgid "Documentation"
+msgstr ""
+
+#: framework/lib/themes-agapetry.php:11
+msgid "Support Forum"
+msgstr ""
+
+#: framework/lib/themes-agapetry.php:12
+msgid "Author Homepage"
+msgstr ""
+
+#: framework/lib/themes-agapetry.php:13
+msgid "Help donating"
+msgstr ""
+
+#: framework/lib/themes-agapetry.php:23
+msgid "Capability Manager Enhanced %s"
+msgstr ""
+
+#: framework/lib/themes-agapetry.php:24
+msgid "Copyright 2010 Jordi Canals"
+msgstr ""
+
+#: framework/lib/themes-agapetry.php:27
+msgid "Modifications &copy; Copyright %1$s %2$s"
+msgstr ""
+
+#: includes/admin.php:50
+msgid "Roles and Capabilities"
+msgstr ""
+
+#: includes/admin.php:59
+msgid "Capabilities for %s"
+msgstr ""
+
+#: includes/admin.php:62
+msgid ""
+"View and modify capabilities WordPress associates with each role. Changes "
+"<strong>remain in the database</strong> even if you deactivate this plugin."
+msgstr ""
+
+#: includes/admin.php:74
+msgid ""
+"To further customize editing or viewing access, consider stepping up to <a "
+"href='#pp-more'>Press Permit</a>."
+msgstr ""
+
+#: includes/admin.php:105
+msgid ""
+"Automatically define type-specific capabilities for your custom post types "
+"and taxonomies"
+msgstr ""
+
+#: includes/admin.php:109
+msgid "Assign standard WP roles supplementally for a specific post type"
+msgstr ""
+
+#: includes/admin.php:113
+msgid ""
+"Assign custom WP roles supplementally for a specific post type <em>(Pro)</em>"
+msgstr ""
+
+#: includes/admin.php:117
+msgid "Customize reading permissions per-category or per-post"
+msgstr ""
+
+#: includes/admin.php:121
+msgid "Customize editing permissions per-category or per-post <em>(Pro)</em>"
+msgstr ""
+
+#: includes/admin.php:125
+msgid ""
+"Custom Post Visibility statuses, fully implemented throughout wp-admin <em>"
+"(Pro)</em>"
+msgstr ""
+
+#: includes/admin.php:129
+msgid ""
+"Custom Moderation statuses for access-controlled, multi-step publishing "
+"workflow <em>(Pro)</em>"
+msgstr ""
+
+#: includes/admin.php:133
+msgid "Regulate permissions for Edit Flow post statuses <em>(Pro)</em>"
+msgstr ""
+
+#: includes/admin.php:137
+msgid ""
+"Customize the moderated editing of published content with Revisionary or "
+"Post Forking <em>(Pro)</em>"
+msgstr ""
+
+#: includes/admin.php:141
+msgid ""
+"Grant Spectator, Participant or Moderator access to specific bbPress forums "
+"<em>(Pro)</em>"
+msgstr ""
+
+#: includes/admin.php:145
+msgid ""
+"Grant supplemental content permissions to a BuddyPress group <em>(Pro)</em>"
+msgstr ""
+
+#: includes/admin.php:149
+msgid "WPML integration to mirror permissions to translations <em>(Pro)</em>"
+msgstr ""
+
+#: includes/admin.php:153
+msgid "Member support forum"
+msgstr ""
+
+#: includes/admin.php:159
+msgid "%1$sgrab%2$s %3$s"
+msgstr ""
+
+#: includes/admin.php:159
+msgid "%s (free install)"
+msgstr ""
+
+#: includes/admin.php:161
+msgid "%1$sbuy%2$s %3$s"
+msgstr ""
+
+#: includes/admin.php:161
+msgid "%s info/purchase"
+msgstr ""
+
+#: includes/admin.php:243
+msgid "&nbsp;"
+msgstr ""
+
+#: includes/admin.php:244
+msgid "Reading"
+msgstr ""
+
+#: includes/admin.php:245
+msgid "Editing Capabilities"
+msgstr ""
+
+#: includes/admin.php:246
+msgid "Deletion Capabilities"
+msgstr ""
+
+#: includes/admin.php:254
+msgid "can read posts which are currently published with private visibility"
+msgstr ""
+
+#: includes/admin.php:255
+msgid ""
+"has basic editing capability (but may need other capabilities based on post "
+"status and ownership)"
+msgstr ""
+
+#: includes/admin.php:256
+msgid "can edit posts which were created by other users"
+msgstr ""
+
+#: includes/admin.php:257
+msgid "can edit posts which are currently published"
+msgstr ""
+
+#: includes/admin.php:258
+msgid "can edit posts which are currently published with private visibility"
+msgstr ""
+
+#: includes/admin.php:259
+msgid "can make a post publicly visible"
+msgstr ""
+
+#: includes/admin.php:260
+msgid ""
+"has basic deletion capability (but may need other capabilities based on post "
+"status and ownership)"
+msgstr ""
+
+#: includes/admin.php:261
+msgid "can delete posts which were created by other users"
+msgstr ""
+
+#: includes/admin.php:262
+msgid "can delete posts which are currently published"
+msgstr ""
+
+#: includes/admin.php:263
+msgid "can delete posts which are currently published with private visibility"
+msgstr ""
+
+#: includes/admin.php:362 includes/admin.php:454 includes/admin.php:543
+msgid "%s: assigned by Permission Group"
+msgstr ""
+
+#: includes/admin.php:431
+msgid "Other WordPress Core Capabilities"
+msgstr ""
+
+#: includes/admin.php:492 includes/admin.php:608
+msgid "check/uncheck all"
+msgstr ""
+
+#: includes/admin.php:492 includes/admin.php:608
+msgid "negate all (storing as disabled capabilities)"
+msgstr ""
+
+#: includes/admin.php:492 includes/admin.php:608
+msgid "negate none (add/remove all capabilities normally)"
+msgstr ""
+
+#: includes/admin.php:499
+msgid "Additional Capabilities"
+msgstr ""
+
+#: includes/admin.php:599
+msgid "Level:"
+msgstr ""
+
+#: includes/admin.php:617
+msgid ""
+"Note: Underscores replace spaces in stored capability name (\"edit users\" "
+"=> \"edit_users\")."
+msgstr ""
+
+#: includes/admin.php:633
+msgid "Save Changes"
+msgstr ""
+
+#: includes/admin.php:636
+msgid "Delete this role"
+msgstr ""
+
+#: includes/admin.php:636
+msgid ""
+"You are about to delete the %s role.\n"
+" 'Cancel' to stop, 'OK' to delete."
+msgstr ""
+
+#: includes/admin.php:636
+msgid "Delete Role"
+msgstr ""
+
+#: includes/admin.php:649
+msgid "Select New Role"
+msgstr ""
+
+#: includes/admin.php:657
+msgid "Change"
+msgstr ""
+
+#: includes/admin.php:662
+msgid "Create New Role"
+msgstr ""
+
+#: includes/admin.php:665
+msgid "Name of new role"
+msgstr ""
+
+#: includes/admin.php:668 includes/admin.php:684 includes/pp-ui.php:86
+msgid ""
+"Make role available for supplemental assignment to Permission Groups only"
+msgstr ""
+
+#: includes/admin.php:668 includes/admin.php:684
+msgid "hidden"
+msgstr ""
+
+#: includes/admin.php:672
+msgid "Create"
+msgstr ""
+
+#: includes/admin.php:678
+msgid "Copy this role to"
+msgstr ""
+
+#: includes/admin.php:681
+msgid "Name of copied role"
+msgstr ""
+
+#: includes/admin.php:688
+msgid "Copy"
+msgstr ""
+
+#: includes/admin.php:694
+msgid "Add Capability"
+msgstr ""
+
+#: includes/admin.php:696
+msgid "capability name"
+msgstr ""
+
+#: includes/admin.php:697
+msgid "Add to role"
+msgstr ""
+
+#: includes/admin.php:725
+msgid "Create this role definition in new (future) sites"
+msgstr ""
+
+#: includes/admin.php:725
+msgid "include in new sites"
+msgstr ""
+
+#: includes/admin.php:728
+msgid "Copy / update this role definition to all sites now"
+msgstr ""
+
+#: includes/admin.php:728
+msgid "sync role to all sites now"
+msgstr ""
+
+#: includes/backup-handler.php:9
+msgid "You do not have permission to restore roles."
+msgstr ""
+
+#: includes/backup-handler.php:32
+msgid "New backup saved."
+msgstr ""
+
+#: includes/backup-handler.php:38
+msgid "Roles and Capabilities restored from last backup."
+msgstr ""
+
+#: includes/backup-handler.php:40
+msgid "Restore failed. No backup found."
+msgstr ""
+
+#: includes/backup-handler.php:59
+msgid "Needed function to create default roles not found!"
+msgstr ""
+
+#: includes/backup-handler.php:72
+msgid "Roles and Capabilities reset to WordPress defaults"
+msgstr ""
+
+#: includes/backup.php:33
+msgid "Backup Tool for Capability Manager"
+msgstr ""
+
+#: includes/backup.php:42
+msgid "Backup and Restore"
+msgstr ""
+
+#: includes/backup.php:46
+msgid "Select action:"
+msgstr ""
+
+#: includes/backup.php:49
+msgid "Backup roles and capabilities"
+msgstr ""
+
+#: includes/backup.php:50
+msgid "Restore last saved backup"
+msgstr ""
+
+#: includes/backup.php:52
+msgid "Do Action"
+msgstr ""
+
+#: includes/backup.php:60
+msgid "Reset WordPress Defaults"
+msgstr ""
+
+#: includes/backup.php:62
+msgid "WARNING:"
+msgstr ""
+
+#: includes/backup.php:62
+msgid ""
+"Reseting default Roles and Capabilities will set them to the WordPress "
+"install defaults."
+msgstr ""
+
+#: includes/backup.php:65
+msgid ""
+"If you have installed any plugin that adds new roles or capabilities, these "
+"will be lost."
+msgstr ""
+
+#: includes/backup.php:66
+msgid "It is recommended to use this only as a last resource!"
+msgstr ""
+
+#: includes/backup.php:67
+msgid "Reset Roles and Capabilities to WordPress defaults"
+msgstr ""
+
+#: includes/backup.php:67
+msgid ""
+"You are about to reset Roles and Capabilities to WordPress defaults.\n"
+" 'Cancel' to stop, 'OK' to reset."
+msgstr ""
+
+#: includes/backup.php:67
+msgid "Reset to WordPress defaults"
+msgstr ""
+
+#: includes/handler.php:16 includes/handler.php:29
+msgid "New role created."
+msgstr ""
+
+#: includes/handler.php:22 includes/handler.php:35
+msgid "Error: Failed creating the new role."
+msgstr ""
+
+#: includes/handler.php:74
+msgid "New capability added to role."
+msgstr ""
+
+#: includes/handler.php:88
+msgid "Incorrect capability name."
+msgstr ""
+
+#: includes/handler.php:93
+msgid "Capability settings saved."
+msgstr ""
+
+#: includes/handler.php:95
+msgid "Error saving capability settings."
+msgstr ""
+
+#: includes/handler.php:99
+msgid "Bad form received."
+msgstr ""
+
+#: includes/handler.php:211
+msgid "You cannot remove Manage Capabilities from Administrators"
+msgstr ""
+
+#: includes/handler.php:313
+msgid ""
+"Cannot delete default role. You <a href=\"%s\">have to change it first</a>."
+msgstr ""
+
+#: includes/handler.php:358
+msgid "Role has been deleted. %1$d users moved to default role %2$s."
+msgstr ""
+
+#: includes/manager.php:263 includes/manager.php:282 includes/manager.php:438
+msgid "What do you think you're doing?!?"
+msgstr ""
+
+#: includes/manager.php:321
+msgid "Bad form Received"
+msgstr ""
+
+#: includes/pp-ui.php:44
+msgid "see %1$sRole Usage%2$s: \"Pattern Roles\""
+msgstr ""
+
+#: includes/pp-ui.php:46
+msgid "activate %1$sAdvanced settings%2$s, see Role Usage"
+msgstr ""
+
+#: includes/pp-ui.php:51
+msgid ""
+"\"Posts\" capabilities selected here also define type-specific role "
+"assignment for Permission Groups%s."
+msgstr ""
+
+#: includes/pp-ui.php:53
+msgid ""
+"\"Posts\" capabilities selected here also define type-specific role "
+"assignment for Permit Groups%s."
+msgstr ""
+
+#: includes/pp-ui.php:61
+msgid ""
+"Capabilities for custom statuses can be manually added here (see Post "
+"Statuses > Status > Capability Mapping for applicable names). However, it is "
+"usually more convenient to use Permission Groups to assign a supplemental "
+"status-specific role."
+msgstr ""
+
+#: includes/pp-ui.php:63
+msgid ""
+"Capabilities for custom statuses can be manually added here. Or activate the "
+"PP Custom Post Statuses extension to assign status-specific supplemental "
+"roles."
+msgstr ""
+
+#: includes/pp-ui.php:66
+msgid ""
+"Capabilities for custom statuses can be manually added to a role here (see "
+"Conditions > Status > Capability Mapping for applicable names). However, it "
+"is usually more convenient to use Permit Groups to assign a supplemental "
+"status-specific role."
+msgstr ""
+
+#: includes/pp-ui.php:86
+msgid "hidden role"
+msgstr ""
+
+#: includes/pp-ui.php:96
+msgid "Force Type-Specific Capabilities"
+msgstr ""
+
+#: includes/pp-ui.php:99
+msgid "Force unique capability names for:"
+msgstr ""
+
+#: includes/pp-ui.php:104
+msgid "(PP Filtered Post Types, Taxonomies)"
+msgstr ""
+
+#: includes/pp-ui.php:159
+msgid "Use create_posts capability"
+msgstr ""
+
+#: includes/pp-ui.php:164
+msgid "Update"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "Capability Manager Enhanced"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "http://presspermit.com/capability-manager"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"Manage WordPress role definitions, per-site or network-wide. Organizes post "
+"capabilities by post type and operation."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Jordi Canals, Kevin Behrens"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://agapetry.net"
+msgstr ""
