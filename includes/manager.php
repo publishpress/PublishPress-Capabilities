@@ -149,6 +149,8 @@ class CapabilityManager
 		if ( empty( $_REQUEST['page'] ) || ! in_array( $_REQUEST['page'], array( 'capsman', 'capsman-tool' ) ) )
 			return;
 		
+		wp_enqueue_style('revisionary-admin-common', $this->mod_url . '/common/css/pressshack-admin.css', [], CAPSMAN_ENH_VERSION);
+
 		wp_register_style( $this->ID . 'framework_admin', $this->mod_url . '/framework/styles/admin.css', false, CAPSMAN_ENH_VERSION);
    		wp_enqueue_style( $this->ID . 'framework_admin');
 		
