@@ -107,7 +107,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 
 				<?php /* play.png icon by Pavel: http://kde-look.org/usermanager/search.php?username=InFeRnODeMoN */ ?>
 				
-				<br /><div id="pp_features"><div class="pp-logo"><a href="http://presspermit.com"><img src="<?php echo $img_url;?>pp-logo.png" alt="<?php _e('Press Permit Pro', 'capsman-enhanced');?>" /></a></div><div class="features-wrap"><ul class="pp-features">
+				<br /><div id="pp_features" style="display:none"><div class="pp-logo"><a href="https://publishpress.com/presspermit/"><img src="<?php echo $img_url;?>pp-logo.png" alt="<?php _e('PressPermit Pro', 'capsman-enhanced');?>" /></a></div><div class="features-wrap"><ul class="pp-features">
 				<li>
 				<?php _e( "Automatically define type-specific capabilities for your custom post types and taxonomies", 'capsman-enhanced' );?>
 				<a href="https://presspermit.com/tutorial/regulate-post-type-access" target="_blank"><img class="cme-play" alt="*" src="<?php echo $img_url;?>play.png" /></a></li>
