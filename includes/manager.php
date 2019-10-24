@@ -288,6 +288,11 @@ class CapabilityManager
 			global $pp_admin;
 			$menu_caption = ( defined('WPLANG') && WPLANG && ( 'en_EN' != WPLANG ) ) ? __('Capabilities', 'capsman-enhanced') : 'Role Capabilities';
 			add_submenu_page( $pp_admin->get_menu('options'), __('Capability Manager', 'capsman-enhanced'),  $menu_caption, 'manage_capabilities', $this->ID, array($this, 'generalManager') );
+		
+		} elseif(did_action('presspermit_admin_menu') && function_exists('presspermit')) {
+			$menu_caption = ( defined('WPLANG') && WPLANG && ( 'en_EN' != WPLANG ) ) ? __('Capabilities', 'capsman-enhanced') : 'Role Capabilities';
+			add_submenu_page( presspermit()->admin()->getMenuParams('options'), __('Capability Manager', 'capsman-enhanced'),  $menu_caption, 'manage_capabilities', $this->ID, array($this, 'generalManager') );
+		
 		} else {
 			add_users_page( __('Capability Manager', 'capsman-enhanced'),  __('Capabilities', 'capsman-enhanced'), 'manage_capabilities', $this->ID, array($this, 'generalManager'));
 		}	
