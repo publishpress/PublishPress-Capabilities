@@ -134,7 +134,6 @@ class CapabilityManager
 
 		if ( isset($_REQUEST['page']) && ( 'capsman' == $_REQUEST['page'] ) ) {
 			add_action('admin_enqueue_scripts', array($this, 'adminScriptsPP'));
-			add_action('admin_print_styles', array($this, 'adminPrintStylesPP'));
 		}
 	}
 
@@ -173,20 +172,6 @@ class CapabilityManager
 		wp_enqueue_style( 'plugin-install' );
 		wp_enqueue_script( 'plugin-install' );
 		add_thickbox();
-	}
-
-	function adminPrintStylesPP() {
-	?>
-	<style type="text/css">
-	#pp_features {display:none;border:1px solid #eee;padding:5px;text-align:center;min-width:600px}
-	div.pp-logo { text-align: center }
-	div.features-wrap { margin-left: auto; margin-right: auto; text-align: center; width: 600px; }
-	ul.pp-features { list-style: none; padding-top:10px; text-align:left; margin-left: auto }
-	ul.pp-features li:before { content: "\2713\0020"; }
-	ul.pp-features li { padding-bottom: 5px }
-	img.cme-play { margin-bottom: -3px; margin-left: 5px;}
-	</style>
-	<?php
 	}
 
 	/**
