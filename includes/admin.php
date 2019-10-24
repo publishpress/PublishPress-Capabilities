@@ -164,9 +164,9 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 
 				<?php
 				echo '<div>';
-				printf( __('%1$sgrab%2$s %3$s', 'capsman-enhanced'), '<strong>', '</strong>', '<span class="plugins update-message"><a href="' . cme_plugin_info_url('press-permit-core') . '" class="thickbox" title="' . sprintf( __('%s (free install)', 'capsman-enhanced'), 'Press Permit Core' ) . '">Press&nbsp;Permit&nbsp;Core</a></span>' );
+				printf( __('%1$sgrab%2$s %3$s', 'capsman-enhanced'), '<strong>', '</strong>', '<span class="plugins update-message"><a href="' . cme_plugin_info_url('press-permit-core') . '" class="thickbox" title="' . sprintf( __('%s (free install)', 'capsman-enhanced'), 'PressPermit' ) . '">PressPermit</a></span>' );
 				echo '&nbsp;&nbsp;&bull;&nbsp;&nbsp;';
-				printf( __('%1$sbuy%2$s %3$s', 'capsman-enhanced'), '<strong>', '</strong>',  '<a href="http://presspermit.com" target="_blank" title="' . sprintf( __('%s info/purchase', 'capsman-enhanced'), 'Press Permit Pro' ) . '">Press&nbsp;Permit&nbsp;Pro</a>' );
+				printf( __('%1$sbuy%2$s %3$s', 'capsman-enhanced'), '<strong>', '</strong>',  '<a href="https://publishpress.com/presspermit/" target="_blank" title="' . sprintf( __('%s info/purchase', 'capsman-enhanced'), 'PressPermit Pro' ) . '">PressPermit&nbsp;Pro</a>' );
 				echo '&nbsp;&nbsp;&bull;&nbsp;&nbsp;';
 				echo '<a href="#pp-hide">hide</a>';
 				echo '</div></div>';
