@@ -1,9 +1,9 @@
 === Capability Manager Enhanced===
 Contributors: publishpress, kevinB, stevejburge, andergmartins
-Tags: role, capabilities, post types, taxonomies, editor, network, multisite
+Tags: role, capabilities, post types, taxonomies, editor, network, woocommerce
 Requires at least: 4.1
-Tested up to: 5.2
-Stable tag: 1.7.5
+Tested up to: 5.2.4
+Stable tag: 1.8
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -47,8 +47,10 @@ Role management can also be delegated:
 4. Role operations
 5. Permissions Menu (Press Permit integration)
 6. Shading of Capabilities granted by supplemental Type-Specific Roles
-7. Enforce Type-Specific Capabilities (Press Permit no longer required)
-8. Backup / Restore tool
+7. Enforce Type-Specific Capabilities
+8. Enforce Taxonomy-Specific Capabilities
+9. Detailed Taxonomy Capabilities
+10. Backup / Restore tool
 
 == Frequently Asked Questions ==
 
@@ -66,15 +68,23 @@ Keep in mind that this plugin's main purpose is to expose switches (defined capa
 
 = Where can I find more information about this plugin, usage and support ? =
 
-* Feel free to <a href="https://publishpress.com/contact/">submit a help ticket</a> if you can't find an answer in the documentation or forum here. 
+* Feel free to <a href="https://publishpress.com/contact/">submit a help ticket</a> if you can't find an answer in the <a href="https://publishpress.com/knowledge-base/how-to-use-capability-manager/">documentation</a>. 
 
 == Changelog ==
 
-= 1.7.6 =
+= 1.8 - 24 Oct 2019 =
+  * Feature : WooCommerce, PublishPress, PressPermit capabilities grouped in sections on role editor screen
+  * Feature : Plugin API - plugins can hook into "cme_plugin_capabilities" filter to register their capabilities 
+  * Feature : Work around WordPress issue preventing users with edit_published_posts (but not publish_posts) capability from updating published posts (https://core.trac.wordpress.org/ticket/47443)
+  * Feature : Work around WordPress issue allowing users with edit_published_posts (but not publish_posts) to unpublish published posts
   * Fixed : If a unique edit/delete capability is already defined, don't change the definition
+  * Fixed : Removed add_users from the Core WordPress Capabilities section because it is was replaced by promote_users
   * Fixed : PHP Notices on Role Capabilities screen for undefined index, under some configurations 
   * Fixed : HTML validation errors on Manage Capabilities screen
   * Fixed : PHP 5.x : Notice for undefined constant PHP_INT_MIN on wp-admin Posts / Pages listing
+  * Change : Move Role Capabilities menu item to Permissions menu if PressPermit plugin is active (restoring previous behavior with Press Permit Core)
+  * Change : Edit Roles link in CME row of Plugins list
+  * Change : PublishPress icon, footer on Roles and Capabilities screen
 
 = 1.7.5 - 24 May 2019 =
   * Fixed : Users' inclusion or non-inclusion in Authors dropdown was not updated based on role edit
