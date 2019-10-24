@@ -188,9 +188,21 @@ td.cm-has-via-pp {
 background-color: #7f7;
 }
 
+div.pressshack-admin-wrapper footer {
+padding-right: 270px;
+}
+
 #akmin div.publishpress-headline {line-height:25px}
 #akmin span.publishpress-thanks{margin-left:5px;color:#655997;white-space:nowrap}
 #akmin span.publishpress-thanks,#akmin span.publishpress-thanks a,#akmin span.publishpress-thanks a:visited {color:#655997;font-weight:bold;}
 
 table#akmin td.sidebar li.publishpress-contact{text-align:center}
 table#akmin td.sidebar li.publishpress-contact a{padding:5px 0 5px 0;}
+
+#pp_features {display:none;border:1px solid #eee;padding:5px;text-align:center;min-width:600px}
+#pp_features div.pp-logo { text-align: center }
+#pp_features div.features-wrap { margin-left: auto; margin-right: auto; text-align: center; width: 600px; }
+#pp_features ul.pp-features { list-style: none; padding-top:10px; text-align:left; margin-left: auto }
+#pp_features ul.pp-features li:before { content: "\2713\0020"; }
+#pp_features ul.pp-features li { padding-bottom: 5px }
+#pp_features img.cme-play { margin-bottom: -3px; margin-left: 5px;}
