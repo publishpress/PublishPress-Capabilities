@@ -34,6 +34,8 @@ if ( is_admin() ) {
 	}
 }
 
+add_filter('plugin_action_links_' . plugin_basename(CME_FILE), '_cme_fltPluginActionLinks', 10, 2);
+
 // allow edit_terms, delete_terms, assign_terms capabilities to function separately from manage_terms
 function _cme_remap_term_meta_cap ( $caps, $cap, $user_id, $args ) {
 	global $current_user, $cme_cap_helper;
@@ -165,4 +167,15 @@ function _cme_get_plural( $slug, $type_obj = false ) {
 		require_once ( dirname(__FILE__) . '/inflect-cme.php' );
 		return sanitize_key( CME_Inflect::pluralize( $slug ) );	
 	}
+}
+
+function _cme_fltPluginActionLinks($links, $file)
+{
+	if ($file == plugin_basename(CME_FILE)) {
+		if (!is_network_admin()) {
+			$links[] = "<a href='" . admin_url("admin.php?page=capsman") . "'>" . __('Edit Roles', 'capsman-enhanced') . "</a>";
+		}
+	}
+
+	return $links;
 }
