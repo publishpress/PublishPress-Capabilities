@@ -266,6 +266,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 									   'manage_categories'
 									   );
 				$type_caps = array();
+				$type_metacaps = array();
 				
 				// Role Scoper and PP1 adjust attachment access based only on user's capabilities for the parent post
 				if ( defined('OLD_PRESSPERMIT_ACTIVE') ) {
@@ -298,10 +299,6 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 							if ( ! $any_term_deletion_caps )
 								continue;
 						}
-						
-						//if ( ! $cap_type ) {
-
-						//} else {}
 						
 							if ( ! count( $cap_properties[$cap_type][$item_type] ) )
 								continue;
@@ -401,7 +398,6 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 													$disabled = '';
 													$checked = checked(1, ! empty($rcaps[$cap_name]), false );
 													
-													//$checkbox = '<input id="caps[' . $cap_name . ']" type="checkbox" title="' . $title_text . '" name="caps[' . $cap_name . ']" value="1" ' . $checked . $disabled . ' />';
 													$checkbox = '<input type="checkbox" title="' . $title_text . '" name="caps[' . $cap_name . ']" value="1" ' . $checked . $disabled . ' />';
 													
 													$type_caps [$cap_name] = true;
@@ -428,6 +424,15 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 
 										$row .= "</td>";
 									}
+
+								if ('type' == $item_type) {
+									$type_metacaps[$type_obj->cap->read_post] = true;
+									$type_metacaps[$type_obj->cap->edit_post] = true;
+									$type_metacaps[$type_obj->cap->delete_post] = true;
+								} elseif ('taxonomy' == $item_type && !empty($type_obj->cap->edit_term) && !empty($type_obj->cap->delete_term)) {
+									$type_metacaps[$type_obj->cap->edit_term] = true;
+									$type_metacaps[$type_obj->cap->delete_term] = true;
+								}
 								}
 
 								if ( $display_row ) {
@@ -438,8 +443,6 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 
 							echo '</table>';
 
-						//} // endif this iteration is for type caps checkbox display
-					
 					} // end foreach item type
 					
 					echo '</div>';
@@ -554,18 +557,244 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 				</td></tr>
 				
 				</table>
-				
 				<?php
-				echo '<p>&nbsp;</p><h3>' . __( 'Additional Capabilities', 'capsman-enhanced' ) . '</h3>';
+				$all_capabilities = apply_filters( 'capsman_get_capabilities', array_keys( $this->capabilities ), $this->ID );
+				$all_capabilities = apply_filters( 'members_get_capabilities', $all_capabilities );
+
+				$publishpress_status_change_caps = array();
+				foreach( $all_capabilities as $cap_name ) {
+					if (0 === strpos($cap_name, 'status_change_')) {
+						$publishpress_status_change_caps []= $cap_name;
+					}
+				}
+
+				$plugin_caps = apply_filters('cme_plugin_capabilities',
+					array(
+					'PressPermit' => apply_filters('cme_presspermit_capabilities',
+						array(
+						'edit_own_attachments',
+						'list_others_unattached_files',
+						'pp_administer_content',
+						'pp_assign_roles',
+						'pp_associate_any_page',
+						'pp_create_groups',
+						'pp_create_network_groups',
+						'pp_define_moderation',
+						'pp_define_post_status',
+						'pp_define_privacy',
+						'pp_delete_groups',
+						'pp_edit_groups',
+						'pp_exempt_edit_circle',	
+						'pp_exempt_read_circle',
+						'pp_force_quick_edit',
+						'pp_list_all_files',	
+						'pp_manage_capabilities',	
+						'pp_manage_members',
+						'pp_manage_network_members',	
+						'pp_manage_roles',
+						'pp_manage_settings',	
+						'pp_moderate_any',	
+						'pp_set_associate_exceptions',	
+						'pp_set_edit_exceptions',	
+						'pp_set_notification_channel',
+						'pp_set_read_exceptions',
+						'pp_set_revise_exceptions',	
+						'pp_set_term_assign_exceptions',	
+						'pp_set_term_associate_exceptions',	
+						'pp_set_term_manage_exceptions',
+						'pp_unfiltered',
+						'set_posts_status',
+						)
+					),
+					'PublishPress' => apply_filters('cme_publishpress_capabilities',
+						array_merge(
+							array(
+							'edit_post_subscriptions',
+							'ppma_edit_orphan_post',
+							'pp_manage_roles',
+							'pp_set_notification_channel',
+							'pp_view_calendar',
+							'pp_view_content_overview',
+							'status_change',
+							),
+							$publishpress_status_change_caps
+						)
+					),
+					'WooCommerce' => apply_filters('cme_woocommerce_capabilities', 
+						array(
+						'assign_product_terms',
+						'assign_shop_coupon_terms',
+						'assign_shop_discount_terms',
+						'assign_shop_order_terms',
+						'assign_shop_payment_terms',
+						'create_shop_orders',
+						'delete_others_products',
+						'delete_others_shop_coupons',
+						'delete_others_shop_discounts',
+						'delete_others_shop_orders',
+						'delete_others_shop_payments',
+						'delete_private_products',
+						'delete_private_shop_coupons',
+						'delete_private_shop_orders',
+						'delete_private_shop_discounts',
+						'delete_private_shop_payments',
+						'delete_product_terms',
+						'delete_products',
+						'delete_published_products',
+						'delete_published_shop_coupons',
+						'delete_published_shop_discounts',
+						'delete_published_shop_orders',
+						'delete_published_shop_payments',
+						'delete_shop_coupons',
+						'delete_shop_coupon_terms',
+						'delete_shop_discount_terms',
+						'delete_shop_discounts',
+						'delete_shop_order_terms',
+						'delete_shop_orders',
+						'delete_shop_payments',
+						'delete_shop_payment_terms',
+						'edit_others_products',
+						'edit_others_shop_coupons',
+						'edit_others_shop_discounts',
+						'edit_others_shop_orders',
+						'edit_others_shop_payments',
+						'edit_private_products',
+						'edit_private_shop_coupons',
+						'edit_private_shop_discounts',
+						'edit_private_shop_orders',
+						'edit_private_shop_payments',
+						'edit_product_terms',
+						'edit_products',
+						'edit_published_products',
+						'edit_published_shop_coupons',
+						'edit_published_shop_discounts',
+						'edit_published_shop_orders',
+						'edit_published_shop_payments',
+						'edit_shop_coupon_terms',
+						'edit_shop_coupons',
+						'edit_shop_discounts',
+						'edit_shop_discount_terms',
+						'edit_shop_order_terms',
+						'edit_shop_orders',
+						'edit_shop_payments',
+						'edit_shop_payment_terms',
+						'export_shop_payments',
+						'export_shop_reports',
+						'import_shop_discounts',
+						'import_shop_payments',
+						'manage_product_terms',
+						'manage_shop_coupon_terms',
+						'manage_shop_discounts',
+						'manage_shop_discount_terms',
+						'manage_shop_payment_terms',
+						'manage_shop_order_terms',
+						'manage_shop_settings',
+						'manage_woocommerce',
+						'publish_products',
+						'publish_shop_coupons',
+						'publish_shop_discounts',
+						'publish_shop_orders',
+						'publish_shop_payments',
+						'read_private_products',
+						'read_private_shop_coupons',
+						'read_private_shop_discounts',
+						'read_private_shop_payments',
+						'read_private_shop_orders',
+						'view_admin_dashboard',
+						'view_shop_discount_stats',
+						'view_shop_payment_stats',
+						'view_shop_reports',
+						'view_shop_sensitive_data',
+						'view_woocommerce_reports',
+						)
+					),
+				));
+
+				foreach($plugin_caps as $plugin => $__plugin_caps) {
+					if (!$_plugin_caps = array_fill_keys( array_intersect($__plugin_caps, $all_capabilities), true )) {
+						continue;
+					}
+
+					echo '<h3 class="cme-cap-section">' . sprintf(__( '%s Capabilities', 'capsman-enhanced' ), str_replace('_', ' ', $plugin )) . '</h3>';
+					echo '<table class="form-table cme-checklist"><tr>';
+					
+					$checks_per_row = get_option( 'cme_form-rows', 5 );
+					$i = 0; $first_row = true;
+
+					foreach( array_keys($_plugin_caps) as $cap_name ) {
+						if ( isset( $type_caps[$cap_name] ) || isset($core_caps[$cap_name]) || isset($type_metacaps[$cap_name]) ) {
+							continue;
+						}
+
+						if ( ! $is_administrator && ! current_user_can($cap_name) )
+							continue;
+				
+						if ( $i == $checks_per_row ) {
+							echo '</tr><tr>';
+							$i = 0;
+						}
+
+						if ( ! isset( $rcaps[$cap_name] ) )
+							$class = 'cap-no';
+						else
+							$class = ( $rcaps[$cap_name] ) ? 'cap-yes' : 'cap-neg';
+						
+						if ( ! empty($pp_metagroup_caps[$cap_name]) ) {
+							$class .= ' cap-metagroup';
+							$title_text = sprintf( __( '%s: assigned by Permission Group', 'capsman-enhanced' ), $cap_name );
+						} else {
+							$title_text = $cap_name;
+						}
+						
+						$disabled = '';
+						$checked = checked(1, ! empty($rcaps[$cap_name]), false );
+						$title = $title_text;
+						?>
+						<td class="<?php echo $class; ?>"><span class="cap-x">X</span><label title="<?php echo $title;?>"><input type="checkbox" name="caps[<?php echo $cap_name; ?>]" value="1" <?php echo $checked . $disabled;?> />
+						<span>
+						<?php
+						echo str_replace( '_', ' ', $cap_name );
+						?>
+						</span></label><a href="#" class="neg-cap">&nbsp;x&nbsp;</a>
+						<?php if ( false !== strpos( $class, 'cap-neg' ) ) :?>
+							<input type="hidden" class="cme-negation-input" name="caps[<?php echo $cap_name; ?>]" value="" />
+						<?php endif; ?>
+						</td>
+					
+						<?php
+						++$i;
+					}
+					
+					if ( $i == $checks_per_row ) {
+						echo '</tr>';
+						$i = 0;
+					} elseif ( ! $first_row ) {
+						// Now close a wellformed table
+						for ( $i; $i < $checks_per_row; $i++ ){
+							echo '<td>&nbsp;</td>';
+						}
+						echo '</tr>';
+					}
+					?>
+					
+					<tr class="cme-bulk-select">
+					<td colspan="<?php echo $checks_per_row;?>">
+					<span style="float:right">
+					<input type="checkbox" class="cme-check-all" title="<?php _e('check/uncheck all', 'capsman-enhanced');?>">&nbsp;&nbsp;<a class="cme-neg-all" href="#" title="<?php _e('negate all (storing as disabled capabilities)', 'capsman-enhanced');?>">X</a> <a class="cme-switch-all" href="#" title="<?php _e('negate none (add/remove all capabilities normally)', 'capsman-enhanced');?>">X</a>
+					</span>
+					</td></tr>
+					
+					</table>
+				<?php
+				}
+
+				echo '<p>&nbsp;</p><h3 class="cme-cap-section">' . __( 'Additional Capabilities', 'capsman-enhanced' ) . '</h3>';
 	
 				?>
 				<table class="form-table cme-checklist">
 				<tr>
 				<?php
 				$i = 0; $first_row = true;
-				
-				$all_capabilities = apply_filters( 'capsman_get_capabilities', array_keys( $this->capabilities ), $this->ID );
-				$all_capabilities = apply_filters( 'members_get_capabilities', $all_capabilities );
 				
 				foreach( $all_capabilities as $cap_name ) {
 					if ( ! isset($this->capabilities[$cap_name]) ) 
@@ -575,14 +804,18 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 				uasort( $this->capabilities, 'strnatcasecmp' );  // sort by array values, but maintain keys );
 				
 				foreach ( $this->capabilities as $cap_name => $cap ) :
-					if ( isset( $type_caps[$cap_name] ) || isset($core_caps[$cap_name]) )
+					if ( isset( $type_caps[$cap_name] ) || isset($core_caps[$cap_name]) || isset($type_metacaps[$cap_name]) )
 						continue;
 					
+					foreach(array_keys($plugin_caps) as $plugin) {
+						if ( in_array( $cap_name, $plugin_caps[$plugin]) ) {
+							continue 2;
+						}
+					}
+
 					if ( ! $is_administrator && empty( $current_user->allcaps[$cap_name] ) ) {
 						continue;
 					}
-				
-					// ============ End Kevin B mod ===============
 				
 					// Levels are not shown.
 					if ( preg_match( '/^level_(10|[0-9])$/i', $cap_name ) ) {
@@ -653,18 +886,6 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 				
 				<tr class="cme-bulk-select">
 				<td colspan="<?php echo $checks_per_row;?>">
-				<span>
-				<?php
-				$level = ak_caps2level($rcaps);
-				?>
-				<?php _e('Level:', 'capsman-enhanced') ;?><select name="level">
-				<?php for ( $l = $this->max_level; $l >= 0; $l-- ) {?>
-						<option value="<?php echo $l; ?>" style="text-align:right;"<?php selected($level, $l); ?>>&nbsp;<?php echo $l; ?>&nbsp;</option>
-					<?php }
-					?>
-				</select>
-				</span>
-				
 				<span style="float:right">
 				<input type="checkbox" class="cme-check-all" title="<?php _e('check/uncheck all', 'capsman-enhanced');?>">&nbsp;&nbsp;<a class="cme-neg-all" href="#" title="<?php _e('negate all (storing as disabled capabilities)', 'capsman-enhanced');?>">X</a> <a class="cme-switch-all" href="#" title="<?php _e('negate none (add/remove all capabilities normally)', 'capsman-enhanced');?>">X</a>
 				</span>
@@ -672,12 +893,115 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 				
 				</table>
 				
-				<br />
+				<?php
+				if (array_intersect(array_keys($type_metacaps), $all_capabilities)) {
+
+				$_title = esc_attr(__('Meta capabilities are used in code as placeholders for other capabilities. Assiging to a role has no effect.'));
+				echo '<p>&nbsp;</p><h3 class="cme-cap-section" title="' . $_title . '">' . __( 'Invalid Capabilities', 'capsman-enhanced' ) . '</h3>';
+				?>
+				<table class="form-table cme-checklist">
+				<tr>
+				<?php
+				$i = 0; $first_row = true;
+
+				foreach( $all_capabilities as $cap_name ) {
+					if ( ! isset($this->capabilities[$cap_name]) ) 
+						$this->capabilities[$cap_name] = str_replace( '_', ' ', $cap_name );
+				}
+
+				uasort( $this->capabilities, 'strnatcasecmp' );  // sort by array values, but maintain keys );
+
+				foreach ( $this->capabilities as $cap_name => $cap ) :
+					if ( ! isset( $type_metacaps[$cap_name] ) )
+						continue;
+
+					if ( ! $is_administrator && empty( $current_user->allcaps[$cap_name] ) ) {
+						continue;
+					}
+				
+					if ( $i == $checks_per_row ) {
+						echo '</tr><tr>';
+						$i = 0; $first_row = false;
+					}
+					
+					if ( ! isset( $rcaps[$cap_name] ) )
+						$class = 'cap-no';
+					else
+						$class = ( $rcaps[$cap_name] ) ? 'cap-yes' : 'cap-neg';
+					
+					if ( ! empty($pp_metagroup_caps[$cap_name]) ) {
+						$class .= ' cap-metagroup';
+						$title_text = sprintf( __( '%s: assigned by Permission Group', 'capsman-enhanced' ), $cap_name );
+					} else {
+						$title_text = $cap_name;
+					}
+					
+					$disabled = '';
+					$checked = checked(1, ! empty($rcaps[$cap_name]), false );
+				?>
+					<td class="<?php echo $class; ?>"><span class="cap-x">X</span><label title="<?php echo $title_text;?>"><input type="checkbox" name="caps[<?php echo $cap_name; ?>]" value="1" <?php echo $checked . $disabled;?> />
+				<span>
+				<?php
+					echo str_replace( '_', ' ', $cap );
+				?>
+					</span></label><a href="#" class="neg-cap">&nbsp;x&nbsp;</a>
+					<?php if ( false !== strpos( $class, 'cap-neg' ) ) :?>
+						<input type="hidden" class="cme-negation-input" name="caps[<?php echo $cap_name; ?>]" value="" />
+					<?php endif; ?>
+					</td>
+				<?php
+					$i++;
+				endforeach;
+
+				if ( ! empty($lock_manage_caps_capability) ) {
+					echo '<input type="hidden" name="caps[manage_capabilities]" value="1" />';
+				}
+				
+				if ( $i == $checks_per_row ) {
+					echo '</tr><tr>';
+					$i = 0;
+				} else {
+					if ( ! $first_row ) {
+						// Now close a wellformed table
+						for ( $i; $i < $checks_per_row; $i++ ){
+							echo '<td>&nbsp;</td>';
+						}
+						echo '</tr>';
+					}
+				}
+					?>
+				
+				<tr class="cme-bulk-select">
+				<td colspan="<?php echo $checks_per_row;?>">
+				<span style="float:right">
+				<input type="checkbox" class="cme-check-all" title="<?php _e('check/uncheck all', 'capsman-enhanced');?>">&nbsp;&nbsp;<a class="cme-neg-all" href="#" title="<?php _e('negate all (storing as disabled capabilities)', 'capsman-enhanced');?>">X</a> <a class="cme-switch-all" href="#" title="<?php _e('negate none (add/remove all capabilities normally)', 'capsman-enhanced');?>">X</a>
+				</span>
+				</td></tr>
+				
+				</table>
+				<?php
+				} // endif any invalid caps
+				?>
+
+				<div>
+				<?php
+				$level = ak_caps2level($rcaps);
+				?>
+				<span title="<?php _e('Role level is mostly deprecated. However, it still determines eligibility for Post Author assignment and limits the application of user editing capabilities.', 'capsman-enhanced');?>"> 
+				<?php _e('Role Level:', 'capsman-enhanced');?> <select name="level">
+				<?php for ( $l = $this->max_level; $l >= 0; $l-- ) {?>
+						<option value="<?php echo $l; ?>" style="text-align:right;"<?php selected($level, $l); ?>>&nbsp;<?php echo $l; ?>&nbsp;</option>
+					<?php }
+					?>
+				</select>
+				</span>
+				
 				<?php if ( ! defined('PRESSPERMIT_ACTIVE') || capsman_get_pp_option('display_hints') ) :?>
-				<div class="cme-subtext">
+				<span class="cme-subtext" style="float:right">
 					<?php _e( 'Note: Underscores replace spaces in stored capability name ("edit users" => "edit_users").', 'capsman-enhanced' ); ?>
-				</div>
+				</span>
 				<?php endif;?>
+				</div>
 				
 			</dd>
 		</dl>
