@@ -84,6 +84,10 @@ table.cme-typecaps span.cap-x {
 display: none;
 }
 
+h3.cme-cap-section {
+margin-top:0;
+}
+
 a.neg-cap, a.cap-on, a.type-on, a.neg-type-caps, a.cme-neg-all {
 text-decoration: none;
 }
