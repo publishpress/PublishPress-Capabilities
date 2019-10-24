@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Capability Manager Enhanced\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-28 17:59-0500\n"
-"PO-Revision-Date: 2019-03-28 17:59-0500\n"
+"POT-Creation-Date: 2019-10-24 16:55-0500\n"
+"PO-Revision-Date: 2019-10-24 16:55-0500\n"
 "Last-Translator: Kevin Behrens <kevin@publishpress.com>\n"
 "Language-Team: PublishPress <help@publishpress.com>\n"
 "MIME-Version: 1.0\n"
@@ -35,19 +35,23 @@ msgstr ""
 msgid "%s is required for this plugin."
 msgstr ""
 
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/capsman-enhanced.php:153
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/capsman-enhanced.php:158
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/capsman-enhanced.php:160
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/manager.php:255
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/manager.php:260
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/manager.php:262
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/capsman-enhanced.php:143
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/capsman-enhanced.php:148
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/capsman-enhanced.php:152
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/capsman-enhanced.php:155
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/manager.php:272
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/manager.php:277
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/manager.php:281
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/manager.php:284
 msgid "Capability Manager"
 msgstr ""
 
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/capsman-enhanced.php:157
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/capsman-enhanced.php:160
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/manager.php:259
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/manager.php:262
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/capsman-enhanced.php:147
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/capsman-enhanced.php:151
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/capsman-enhanced.php:155
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/manager.php:276
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/manager.php:280
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/manager.php:284
 msgid "Capabilities"
 msgstr ""
 
@@ -56,389 +60,375 @@ msgid "Settings saved."
 msgstr ""
 
 #: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:36
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/admin.php:36
 #, php-format
 msgid "Warning: This role cannot access the dashboard without the read capability. %1$sClick here to fix this now%2$s."
 msgstr ""
 
 #: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:61
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/admin.php:61
 msgid "Roles and Capabilities"
 msgstr ""
 
 #: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:70
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/admin.php:70
 #, php-format
 msgid "Capabilities for %s"
 msgstr ""
 
 #: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:73
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:687
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/admin.php:73
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/admin.php:687
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:1017
 msgid "Save Changes"
 msgstr ""
 
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:77
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/admin.php:77
-msgid "View and modify capabilities WordPress associates with each role. Changes <strong>remain in the database</strong> even if you deactivate this plugin."
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:82
+msgid "<strong>Note:</strong> Capability changes <strong>remain in the database</strong> after plugin deactivation."
 msgstr ""
 
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:89
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/admin.php:89
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:84
 #, php-format
 msgid "Thanks for using the %1$sPublishPress%2$s family of professional publishing tools."
 msgstr ""
 
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:120
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/admin.php:120
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:110
+msgid "PressPermit Pro"
+msgstr ""
+
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:112
 msgid "Automatically define type-specific capabilities for your custom post types and taxonomies"
 msgstr ""
 
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:124
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/admin.php:124
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:116
 msgid "Assign standard WP roles supplementally for a specific post type"
 msgstr ""
 
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:128
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/admin.php:128
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:120
 msgid "Assign custom WP roles supplementally for a specific post type <em>(Pro)</em>"
 msgstr ""
 
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:132
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/admin.php:132
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:124
 msgid "Customize reading permissions per-category or per-post"
 msgstr ""
 
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:136
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/admin.php:136
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:128
 msgid "Customize editing permissions per-category or per-post <em>(Pro)</em>"
 msgstr ""
 
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:140
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/admin.php:140
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:132
 msgid "Custom Post Visibility statuses, fully implemented throughout wp-admin <em>(Pro)</em>"
 msgstr ""
 
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:144
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/admin.php:144
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:136
 msgid "Custom Moderation statuses for access-controlled, multi-step publishing workflow <em>(Pro)</em>"
 msgstr ""
 
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:148
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/admin.php:148
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:140
 msgid "Regulate permissions for Edit Flow post statuses <em>(Pro)</em>"
 msgstr ""
 
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:152
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/admin.php:152
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:144
 msgid "Customize the moderated editing of published content with Revisionary or Post Forking <em>(Pro)</em>"
 msgstr ""
 
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:156
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/admin.php:156
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:148
 msgid "Grant Spectator, Participant or Moderator access to specific bbPress forums <em>(Pro)</em>"
 msgstr ""
 
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:160
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/admin.php:160
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:152
 msgid "Grant supplemental content permissions to a BuddyPress group <em>(Pro)</em>"
 msgstr ""
 
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:164
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/admin.php:164
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:156
 msgid "WPML integration to mirror permissions to translations <em>(Pro)</em>"
 msgstr ""
 
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:168
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/admin.php:168
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:160
 msgid "Member support forum"
 msgstr ""
 
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:174
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/admin.php:174
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:167
 #, php-format
 msgid "%1$sgrab%2$s %3$s"
 msgstr ""
 
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:174
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/admin.php:174
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:167
 #, php-format
 msgid "%s (free install)"
 msgstr ""
 
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:176
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/admin.php:176
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:169
 #, php-format
 msgid "%1$sbuy%2$s %3$s"
 msgstr ""
 
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:176
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/admin.php:176
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:169
 #, php-format
 msgid "%s info/purchase"
 msgstr ""
 
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:252
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/admin.php:252
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:245
 msgid "&nbsp;"
 msgstr ""
 
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:253
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/admin.php:253
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:246
 msgid "Reading"
 msgstr ""
 
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:254
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/admin.php:254
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:247
 msgid "Editing Capabilities"
 msgstr ""
 
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:255
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/admin.php:255
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:248
 msgid "Deletion Capabilities"
 msgstr ""
 
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:259
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/admin.php:259
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:252
 msgid "can read posts which are currently published with private visibility"
 msgstr ""
 
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:260
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/admin.php:260
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:253
 msgid "has basic editing capability (but may need other capabilities based on post status and ownership)"
 msgstr ""
 
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:261
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/admin.php:261
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:254
 msgid "can edit posts which were created by other users"
 msgstr ""
 
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:262
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/admin.php:262
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:255
 msgid "can edit posts which are currently published"
 msgstr ""
 
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:263
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/admin.php:263
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:256
 msgid "can edit posts which are currently published with private visibility"
 msgstr ""
 
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:264
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/admin.php:264
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:257
 msgid "can make a post publicly visible"
 msgstr ""
 
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:265
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/admin.php:265
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:258
 msgid "has basic deletion capability (but may need other capabilities based on post status and ownership)"
 msgstr ""
 
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:266
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/admin.php:266
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:259
 msgid "can delete posts which were created by other users"
 msgstr ""
 
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:267
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/admin.php:267
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:260
 msgid "can delete posts which are currently published"
 msgstr ""
 
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:268
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/admin.php:268
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:261
 msgid "can delete posts which are currently published with private visibility"
 msgstr ""
 
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:395
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:484
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:597
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/admin.php:395
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/admin.php:484
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/admin.php:597
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:393
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:493
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:744
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:837
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:934
 #, php-format
 msgid "%s: assigned by Permission Group"
 msgstr ""
 
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:409
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/admin.php:409
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:408
 #, php-format
 msgid "shared capability: %s"
 msgstr ""
 
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:461
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/admin.php:461
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:470
 msgid "Other WordPress Core Capabilities"
 msgstr ""
 
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:503
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/admin.php:503
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:512
 msgid "Lockout Prevention: To remove read capability, first remove WordPress admin / editing capabilities, or add \"dashboard_lockout_ok\" capability"
 msgstr ""
 
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:546
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:662
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/admin.php:546
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/admin.php:662
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:555
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:783
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:890
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:977
 msgid "check/uncheck all"
 msgstr ""
 
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:546
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:662
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/admin.php:546
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/admin.php:662
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:555
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:783
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:890
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:977
 msgid "negate all (storing as disabled capabilities)"
 msgstr ""
 
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:546
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:662
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/admin.php:546
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/admin.php:662
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:555
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:783
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:890
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:977
 msgid "negate none (add/remove all capabilities normally)"
 msgstr ""
 
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:553
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/admin.php:553
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:718
+#, php-format
+msgid "%s Capabilities"
+msgstr ""
+
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:791
 msgid "Additional Capabilities"
 msgstr ""
 
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:653
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/admin.php:653
-msgid "Level:"
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:899
+msgid "Meta capabilities are used in code as placeholders for other capabilities. Assiging to a role has no effect."
 msgstr ""
 
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:671
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/admin.php:671
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:900
+msgid "Invalid Capabilities"
+msgstr ""
+
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:990
+msgid "Role level is mostly deprecated. However, it still determines eligibility for Post Author assignment and limits the application of user editing capabilities."
+msgstr ""
+
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:991
+msgid "Role Level:"
+msgstr ""
+
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:1001
 msgid "Note: Underscores replace spaces in stored capability name (\"edit users\" => \"edit_users\")."
 msgstr ""
 
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:690
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/admin.php:690
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:1020
 msgid "Delete this role"
 msgstr ""
 
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:690
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/admin.php:690
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:1020
 #, php-format
 msgid ""
 "You are about to delete the %s role.\n"
+"\n"
 " 'Cancel' to stop, 'OK' to delete."
 msgstr ""
 
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:690
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/admin.php:690
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:1020
 msgid "Delete Role"
 msgstr ""
 
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:697
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/admin.php:697
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:1027
 msgid "Select New Role"
 msgstr ""
 
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:705
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/admin.php:705
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:1035
 msgid "Change"
 msgstr ""
 
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:718
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/admin.php:718
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:1048
 msgid "Create New Role"
 msgstr ""
 
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:721
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:737
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/admin.php:721
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/admin.php:737
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:1051
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:1067
 msgid "Role Name"
 msgstr ""
 
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:724
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:740
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/pp-ui.php:86
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/admin.php:724
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/admin.php:740
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:1054
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:1070
 msgid "Make role available for supplemental assignment to Permission Groups only"
 msgstr ""
 
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:724
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:740
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/admin.php:724
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/admin.php:740
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:1054
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:1070
 msgid "hidden"
 msgstr ""
 
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:728
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/admin.php:728
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:1058
 msgid "Create"
 msgstr ""
 
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:734
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/admin.php:734
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:1064
 msgid "Copy this role to"
 msgstr ""
 
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:744
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/admin.php:744
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:1074
 msgid "Copy"
 msgstr ""
 
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:750
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/admin.php:750
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:1080
 msgid "Add Capability"
 msgstr ""
 
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:753
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/admin.php:753
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:1083
 msgid "Add to role"
 msgstr ""
 
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:758
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/admin.php:758
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:1088
 msgid "Backup Tool"
 msgstr ""
 
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:760
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/admin.php:760
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:1090
 msgid "Backup / Restore Roles"
 msgstr ""
 
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:765
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/admin.php:765
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:1095
 msgid "Related Permissions Plugins"
 msgstr ""
 
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:770
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/admin.php:770
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:1098
+msgid "Multiple Authors"
+msgstr ""
+
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:1101
+msgid "PressPermit"
+msgstr ""
+
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:1107
 msgid "PublishPress"
 msgstr ""
 
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:772
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/admin.php:772
-msgid "Press Permit"
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:1112
+msgid "PublishPress Revisions"
 msgstr ""
 
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:778
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/admin.php:778
-msgid "Revisionary"
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:1114
+msgid "Help / Contact Form"
 msgstr ""
 
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:807
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/admin.php:807
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:1147
 msgid "Create this role definition in new (future) sites"
 msgstr ""
 
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:807
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/admin.php:807
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:1147
 msgid "include in new sites"
 msgstr ""
 
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:810
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/admin.php:810
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:1150
 msgid "Copy / update this role definition to all sites now"
 msgstr ""
 
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:810
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/admin.php:810
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:1150
 msgid "sync role to all sites now"
+msgstr ""
+
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:1169
+#, php-format
+msgid "If you like %s, please leave us a %s rating. Thank you!"
+msgstr ""
+
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:1180
+msgid "About Capability Manager Enhanced"
+msgstr ""
+
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:1180
+msgid "About"
+msgstr ""
+
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:1182
+msgid "Capability Manager Enhanced Documentation"
+msgstr ""
+
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:1182
+msgid "Documentation"
+msgstr ""
+
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:1184
+msgid "Contact the PublishPress team"
+msgstr ""
+
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/admin.php:1184
+msgid "Contact"
 msgstr ""
 
 #: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/backup-handler.php:9
@@ -578,6 +568,10 @@ msgstr ""
 msgid "Add New"
 msgstr ""
 
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/filters.php:179
+msgid "Edit Roles"
+msgstr ""
+
 #: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/handler.php:16
 #: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/handler.php:29
 msgid "New role created."
@@ -604,126 +598,145 @@ msgstr ""
 msgid "Bad form received."
 msgstr ""
 
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/handler.php:209
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/handler.php:210
 msgid "You cannot remove Manage Capabilities from Administrators"
 msgstr ""
 
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/handler.php:317
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/handler.php:320
 #, php-format
 msgid "Cannot delete default role. You <a href=\"%s\">have to change it first</a>."
 msgstr ""
 
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/handler.php:364
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/handler.php:367
 #, php-format
 msgid "Role has been deleted. %1$d users moved to default role %2$s."
 msgstr ""
 
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/manager.php:158
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/manager.php:164
 msgid "Explicity negate this capability by storing as disabled"
 msgstr ""
 
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/manager.php:159
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/manager.php:165
 msgid "Explicitly negate these capabilities by storing as disabled"
 msgstr ""
 
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/manager.php:160
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/manager.php:166
 msgid "Post type registration does not define this capability distinctly"
 msgstr ""
 
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/manager.php:161
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/manager.php:167
 msgid "This capability is explicitly negated. Click to add/remove normally."
 msgstr ""
 
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/manager.php:162
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/manager.php:168
 msgid "Add or remove this capability from the WordPress role"
 msgstr ""
 
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/manager.php:163
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/manager.php:169
 msgid "Add or remove capability from the role normally"
 msgstr ""
 
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/manager.php:359
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/manager.php:378
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/manager.php:537
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/manager.php:379
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/manager.php:420
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/manager.php:583
 msgid "What do you think you're doing?!?"
 msgstr ""
 
-#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/manager.php:417
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/manager.php:463
 msgid "Bad form Received"
 msgstr ""
 
 #: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/pp-ui.php:44
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/pp-ui.php:44
 #, php-format
 msgid "see %1$sRole Usage%2$s: \"Pattern Roles\""
 msgstr ""
 
 #: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/pp-ui.php:46
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/pp-ui.php:46
 #, php-format
 msgid "activate %1$sAdvanced settings%2$s, see Role Usage"
 msgstr ""
 
 #: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/pp-ui.php:51
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/pp-ui.php:51
 #, php-format
 msgid "\"Posts\" capabilities selected here also define type-specific role assignment for Permission Groups%s."
 msgstr ""
 
 #: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/pp-ui.php:53
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/pp-ui.php:53
 #, php-format
 msgid "\"Posts\" capabilities selected here also define type-specific role assignment for Permit Groups%s."
 msgstr ""
 
 #: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/pp-ui.php:61
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/pp-ui.php:61
 #, php-format
 msgid "Capabilities for custom statuses can be manually added here. (See %sPermissions > Post Statuses%s for applicable names). %sSupplemental status-specific roles%s are usually more convenient, though."
 msgstr ""
 
 #: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/pp-ui.php:63
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/pp-ui.php:63
 msgid "Capabilities for custom statuses can be manually added here. Or activate the PP Custom Post Statuses extension to assign status-specific supplemental roles."
 msgstr ""
 
 #: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/pp-ui.php:66
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/pp-ui.php:66
 msgid "Capabilities for custom statuses can be manually added to a role here (see Conditions > Status > Capability Mapping for applicable names). However, it is usually more convenient to use Permit Groups to assign a supplemental status-specific role."
 msgstr ""
 
 #: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/pp-ui.php:86
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/pp-ui.php:86
 msgid "hidden role"
 msgstr ""
 
 #: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/pp-ui.php:97
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/pp-ui.php:97
 msgid "Type-Specific Capabilities"
 msgstr ""
 
 #: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/pp-ui.php:100
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/pp-ui.php:100
 msgid "Ensure permissions can be controlled separately from other post types."
 msgstr ""
 
 #: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/pp-ui.php:155
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/pp-ui.php:155
 msgid "Make selected post types require a different capability to add new posts."
 msgstr ""
 
 #: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/pp-ui.php:155
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/pp-ui.php:155
 msgid "Use create_posts capability"
 msgstr ""
 
 #: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/pp-ui.php:160
 #: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/pp-ui.php:221
 #: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/pp-ui.php:277
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/pp-ui.php:160
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/pp-ui.php:221
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/pp-ui.php:277
 msgid "Update"
 msgstr ""
 
 #: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/pp-ui.php:170
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/pp-ui.php:170
 msgid "Taxonomy-Specific Capabilities"
 msgstr ""
 
 #: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/pp-ui.php:173
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/pp-ui.php:173
 msgid "Ensure permissions can be controlled separately from other taxonomies."
 msgstr ""
 
 #: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/pp-ui.php:226
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/pp-ui.php:226
 msgid "Detailed Taxonomy Capabilities"
 msgstr ""
 
 #: F:\www\wp50\wp-content\plugins\capability-manager-enhanced/includes/pp-ui.php:229
+#: F:\www\wp50\wp-content\plugins\capability-manager-enhanced\includes/pp-ui.php:229
 msgid "Enforce Edit, Delete and Assign capabilities separately from Management capability."
 msgstr ""
 
