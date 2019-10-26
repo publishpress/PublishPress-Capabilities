@@ -68,6 +68,9 @@ Yes. Users with the 'manage_capabilities' capability can edit roles. This Capabi
 
 == Changelog ==
 
+= 1.8.2-beta =
+  * Change : Reinstate WordPress edit_published_posts workaround with correct status filtering behavior
+
 = 1.8.1 - 25 Oct 2019 =
   * Fixed : Autodraft publication, incorrect WooCommerce status storage (since 1.8)
 
