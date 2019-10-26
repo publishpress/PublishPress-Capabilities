@@ -69,7 +69,7 @@ Yes. Users with the 'manage_capabilities' capability can edit roles. This Capabi
 == Changelog ==
 
 = 1.8.1 - 25 Oct 2019 =
-  * Fixed : Autodraft publication, incorrect WooCommerce status storage (since 1.8)
+  * Fixed : Automatic publication of blank auto-drafts, WooCommerce posts save with incorrect post status (since 1.8)
 
 = 1.8 - 24 Oct 2019 =
   * Feature : WooCommerce, PublishPress, PressPermit capabilities grouped in sections on role editor screen
