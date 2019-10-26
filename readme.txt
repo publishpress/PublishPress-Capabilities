@@ -3,7 +3,7 @@ Contributors: publishpress, kevinB, stevejburge, andergmartins
 Tags: role, capabilities, post types, taxonomies, editor, network, woocommerce
 Requires at least: 4.1
 Tested up to: 5.2.4
-Stable tag: 1.8
+Stable tag: 1.8.1
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -15,37 +15,29 @@ Control permissions requirements for your post types, and assign those capabilit
 
 = Features: =
 
-* Create Roles
+* Create or Copy Roles
 * Manage Role Capabilities
-* Cause type-specific Capabilities to be required and applied for any Post Type
-* Cause distinct edit, delete and assign Capabilities to be required and applied for any Taxonomy
+* Enable type-specific capability requirements and assignments for any Post Type
+* Enable distinct edit, delete and assign capabilities for any Taxonomy
 * Some specialized support for WooCommerce Post Types
-* Supports negation: set any Capability to granted, not granted, or blocked
-* Integration with Press Permit and PublishPress for comprehensive publishing solutions
-* Copy any Role to all network sites
-* Mark any Role for auto-copy to future network sites
-* Backup and restore Roles and Capabilities to revert your last changes.
-* Revert Roles and Capabilities to WordPress defaults.
+* Negation: any capability can be granted, not granted, or blocked
+* Integration with PressPermit and PublishPress for comprehensive publishing solutions
+* Network: Copy any role to all sites, or auto-copy to future sites
+* Backup (automatic / manual) and restore roles and capabilities to revert your changes
 
 Capability Manager Enhanced is professionally developed and supported by the experienced <a href="https://publishpress.com">PublishPress</a> team.
 
 It has been a reliable tool since 2012, when PublishPress team member Kevin Behrens forked it from Jordi Canals' abandoned Capability Manager plugin.
 
-For additional versatility and convenience, enjoy <a href="https://wordpress.org/plugins/press-permit-core">Press Permit</a> plugin integration. Capability Manager Enhanced will show which capabilities have been added indirectly (as a pre-defined subset) by supplemental Type-Specific Roles (Page Contributor, Media Author, Product Editor, etc.)
-
-Role management can also be delegated:
-
-* Only Users with 'manage_capabilities' can manage them. This Capability is created at install time and assigned to Administrators.
-* Administrator Role cannot be deleted.
-* Non-administrators can only manager Roles or Users with same or lower capabilities.
+For additional versatility and convenience, try <a href="https://wordpress.org/plugins/press-permit-core">PressPermit</a> plugin integration. Capabilities added indirectly by supplemental type-specific roles (Page Contributor, Product Editor, etc.) will be highlighted in the CME role editor.
 
 == Screenshots ==
 
-1. Users Menu
-2. View or modify Capabilities for any Role
+1. View or modify Capabilities for any Role
+2. Users Menu
 3. Network: copy Role to existing or future Sites
 4. Role operations
-5. Permissions Menu (Press Permit integration)
+5. Permissions Menu (PressPermit integration)
 6. Shading of Capabilities granted by supplemental Type-Specific Roles
 7. Enforce Type-Specific Capabilities
 8. Enforce Taxonomy-Specific Capabilities
@@ -54,7 +46,7 @@ Role management can also be delegated:
 
 == Frequently Asked Questions ==
 
-= How can I grant capabilities for a custom post type =
+= How can I grant capabilities for a custom post type? =
 
 The custom post type must be defined to impose type-specific capability requirements.  This is normally done by setting the "capability type" property equal to the post type name.
 
@@ -62,9 +54,13 @@ The custom post type must be defined to impose type-specific capability requirem
 
 You may need to adjust your custom post type definition by enabling the map_meta_cap property. If you are calling register_post_type manually, just add this property to the options array.
 
-= Even after I added capabilities, WordPress is not working the way I want =
+= Even after I added capabilities, WordPress is not working the way I want. =
 
 Keep in mind that this plugin's main purpose is to expose switches (defined capabilities). The wiring of those switches is up to the WordPress core or other plugins. If granting or removing a capability does not cause the expected results, your issue is probably with the other package.  With that context in mind, you are still welcome to <a href="https://publishpress.com/contact/">contact us</a> about it.
+
+= Can role management be delegated? =
+
+Yes. Users with the 'manage_capabilities' capability can edit roles. This Capability is created at install time and assigned to Administrators. You can add it to any role, but non-administrators cannot manage roles or users that have a higher role level than their own.
 
 = Where can I find more information about this plugin, usage and support ? =
 

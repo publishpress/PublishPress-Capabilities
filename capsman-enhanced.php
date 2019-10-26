@@ -142,7 +142,7 @@ function cme_submenus() {
 	$cap_name = ( is_super_admin() ) ? 'manage_capabilities' : 'restore_roles';
 	add_management_page(__('Capability Manager', 'capsman-enhanced'),  __('Capability Manager', 'capsman-enhanced'), $cap_name, 'capsman' . '-tool', 'cme_fakefunc');
 	
-	if ( did_action( 'pp_admin_menu' ) ) {	// Put Capabilities link on Permissions menu if Press Permit is active and user has access to it
+	if (did_action('pp_admin_menu')) {	// Put Capabilities link on Permissions menu if Press Permit is active and user has access to it
 		global $pp_admin;
 		$menu_caption = ( defined('WPLANG') && WPLANG && ( 'en_EN' != WPLANG ) ) ? __('Capabilities', 'capsman-enhanced') : 'Role Capabilities';
 		add_submenu_page( $pp_admin->get_menu('options'), __('Capability Manager', 'capsman-enhanced'),  $menu_caption, 'manage_capabilities', 'capsman', 'cme_fakefunc' );

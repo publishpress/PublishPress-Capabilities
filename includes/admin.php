@@ -267,7 +267,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 									   );
 				$type_caps = array();
 				$type_metacaps = array();
-				
+
 				// Role Scoper and PP1 adjust attachment access based only on user's capabilities for the parent post
 				if ( defined('OLD_PRESSPERMIT_ACTIVE') ) {
 					unset( $defined['type']['attachment'] );
@@ -299,131 +299,131 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 							if ( ! $any_term_deletion_caps )
 								continue;
 						}
-						
-							if ( ! count( $cap_properties[$cap_type][$item_type] ) )
-								continue;
-						
-							echo '<table class="cme-typecaps">';
+					
+						if ( ! count( $cap_properties[$cap_type][$item_type] ) )
+							continue;
+					
+						echo '<table class="cme-typecaps">';
 
-							echo '<tr><th></th>';
+						echo '<tr><th></th>';
+						
+						// label cap properties
+						foreach( $cap_properties[$cap_type][$item_type] as $prop ) {
+							$prop = str_replace( '_posts', '', $prop );
+							$prop = str_replace( '_pages', '', $prop );
+							$prop = str_replace( '_terms', '', $prop );
+							$tip = ( isset( $cap_tips[$prop] ) ) ? "title='{$cap_tips[$prop]}'" : '';
+							$prop = str_replace( '_', '<br />', $prop );
+							$th_class = ( 'taxonomy' == $item_type ) ? ' class="term-cap"' : ' class="post-cap"';
+							echo "<th $tip{$th_class}>";
 							
-							// label cap properties
-							foreach( $cap_properties[$cap_type][$item_type] as $prop ) {
-								$prop = str_replace( '_posts', '', $prop );
-								$prop = str_replace( '_pages', '', $prop );
-								$prop = str_replace( '_terms', '', $prop );
-								$tip = ( isset( $cap_tips[$prop] ) ) ? "title='{$cap_tips[$prop]}'" : '';
-								$prop = str_replace( '_', '<br />', $prop );
-								$th_class = ( 'taxonomy' == $item_type ) ? ' class="term-cap"' : ' class="post-cap"';
-								echo "<th $tip{$th_class}>";
-								
-								if ( ( 'delete' != $prop ) || ( 'taxonomy' != $item_type ) || cme_get_detailed_taxonomies() ) {
-									echo ucwords($prop);
-								}
-								
-								echo '</th>';
+							if ( ( 'delete' != $prop ) || ( 'taxonomy' != $item_type ) || cme_get_detailed_taxonomies() ) {
+								echo ucwords($prop);
 							}
+							
+							echo '</th>';
+						}
 
-							echo '</tr>';
+						echo '</tr>';
 
-							foreach( $defined[$item_type] as $key => $type_obj ) {
-								if ( in_array( $key, $unfiltered[$item_type] ) )
+						foreach( $defined[$item_type] as $key => $type_obj ) {
+							if ( in_array( $key, $unfiltered[$item_type] ) )
+								continue;
+
+							$row = "<tr class='cme_type_{$key}'>";
+							
+							if ( $cap_type ) {
+								if ( empty($force_distinct_ui) && empty( $cap_properties[$cap_type][$item_type] ) )
 									continue;
+							
+								$row .= "<td><a class='cap_type' href='#toggle_type_caps'>" . $type_obj->labels->name . '</a>';
+								$row .= '<a href="#" class="neg-type-caps">&nbsp;x&nbsp;</a>';
+								$row .= '</td>';
+								
+								$display_row = ! empty($force_distinct_ui);
 
-								$row = "<tr class='cme_type_{$key}'>";
-								
-								if ( $cap_type ) {
-									if ( empty($force_distinct_ui) && empty( $cap_properties[$cap_type][$item_type] ) )
-										continue;
-								
-									$row .= "<td><a class='cap_type' href='#toggle_type_caps'>" . $type_obj->labels->name . '</a>';
-									$row .= '<a href="#" class="neg-type-caps">&nbsp;x&nbsp;</a>';
-									$row .= '</td>';
+								foreach( $cap_properties[$cap_type][$item_type] as $prop ) {
+									$td_classes = array();
+									$checkbox = '';
+									$title = '';
 									
-									$display_row = ! empty($force_distinct_ui);
-
-									foreach( $cap_properties[$cap_type][$item_type] as $prop ) {
-										$td_classes = array();
-										$checkbox = '';
-										$title = '';
+									if ( ! empty($type_obj->cap->$prop) && ( in_array( $type_obj->name, array( 'post', 'page' ) ) 
+									|| ! in_array( $type_obj->cap->$prop, $default_caps ) 
+									|| ( ( 'manage_categories' == $type_obj->cap->$prop ) && ( 'manage_terms' == $prop ) && ( 'category' == $type_obj->name ) ) ) ) {
+		
+										// if edit_published or edit_private cap is same as edit_posts cap, don't display a checkbox for it
+										if ( ( ! in_array( $prop, array( 'edit_published_posts', 'edit_private_posts', 'create_posts' ) ) || ( $type_obj->cap->$prop != $type_obj->cap->edit_posts ) ) 
+										&& ( ! in_array( $prop, array( 'delete_published_posts', 'delete_private_posts' ) ) || ( $type_obj->cap->$prop != $type_obj->cap->delete_posts ) )
+										&& ( ! in_array( $prop, array( 'edit_terms', 'delete_terms' ) ) || ( $type_obj->cap->$prop != $type_obj->cap->manage_terms ) )
 										
-										if ( ! empty($type_obj->cap->$prop) && ( in_array( $type_obj->name, array( 'post', 'page' ) ) 
-										|| ! in_array( $type_obj->cap->$prop, $default_caps ) 
-										|| ( ( 'manage_categories' == $type_obj->cap->$prop ) && ( 'manage_terms' == $prop ) && ( 'category' == $type_obj->name ) ) ) ) {
-			
-											// if edit_published or edit_private cap is same as edit_posts cap, don't display a checkbox for it
-											if ( ( ! in_array( $prop, array( 'edit_published_posts', 'edit_private_posts', 'create_posts' ) ) || ( $type_obj->cap->$prop != $type_obj->cap->edit_posts ) ) 
-											&& ( ! in_array( $prop, array( 'delete_published_posts', 'delete_private_posts' ) ) || ( $type_obj->cap->$prop != $type_obj->cap->delete_posts ) )
-											&& ( ! in_array( $prop, array( 'edit_terms', 'delete_terms' ) ) || ( $type_obj->cap->$prop != $type_obj->cap->manage_terms ) )
+										&& ( ! in_array( $prop, array( 'manage_terms', 'edit_terms', 'delete_terms', 'assign_terms' ) ) 
+											|| empty($cme_cap_helper->all_taxonomy_caps[$type_obj->cap->$prop])
+											|| ( $cme_cap_helper->all_taxonomy_caps[ $type_obj->cap->$prop ] <= 1 ) 
+											|| $type_obj->cap->$prop == str_replace( '_terms', "_{$type_obj->name}s", $prop ) 
+											|| $type_obj->cap->$prop == str_replace( '_terms', "_" . _cme_get_plural($type_obj->name, $type_obj), $prop ) 
+											)
+										
+										&& ( in_array( $prop, array( 'manage_terms', 'edit_terms', 'delete_terms', 'assign_terms' ) ) 
+											|| empty($cme_cap_helper->all_type_caps[$type_obj->cap->$prop])
+											|| ( $cme_cap_helper->all_type_caps[ $type_obj->cap->$prop ] <= 1 ) 
+											|| $type_obj->cap->$prop == 'upload_files' && 'create_posts' == $prop && 'attachment' == $type_obj->name
+											|| $type_obj->cap->$prop == str_replace( '_posts', "_{$type_obj->name}s", $prop ) 
+											|| $type_obj->cap->$prop == str_replace( '_pages', "_{$type_obj->name}s", $prop ) 
+											|| $type_obj->cap->$prop == str_replace( '_posts', "_" . _cme_get_plural($type_obj->name, $type_obj), $prop ) 
+											|| $type_obj->cap->$prop == str_replace( '_pages', "_" . _cme_get_plural($type_obj->name, $type_obj), $prop ) 
+											)
+										) {
+											// only present these term caps up top if we are ensuring that they get enforced separately from manage_terms
+											if ( in_array( $prop, array( 'edit_terms', 'delete_terms', 'assign_terms' ) ) && ( ! in_array( $type_obj->name, cme_get_detailed_taxonomies() ) || defined( 'OLD_PRESSPERMIT_ACTIVE' ) ) ) {
+												continue;
+											}
 											
-											&& ( ! in_array( $prop, array( 'manage_terms', 'edit_terms', 'delete_terms', 'assign_terms' ) ) 
-												|| empty($cme_cap_helper->all_taxonomy_caps[$type_obj->cap->$prop])
-												|| ( $cme_cap_helper->all_taxonomy_caps[ $type_obj->cap->$prop ] <= 1 ) 
-												|| $type_obj->cap->$prop == str_replace( '_terms', "_{$type_obj->name}s", $prop ) 
-												|| $type_obj->cap->$prop == str_replace( '_terms', "_" . _cme_get_plural($type_obj->name, $type_obj), $prop ) 
-												)
+											$cap_name = $type_obj->cap->$prop;
 											
-											&& ( in_array( $prop, array( 'manage_terms', 'edit_terms', 'delete_terms', 'assign_terms' ) ) 
-												|| empty($cme_cap_helper->all_type_caps[$type_obj->cap->$prop])
-												|| ( $cme_cap_helper->all_type_caps[ $type_obj->cap->$prop ] <= 1 ) 
-												|| $type_obj->cap->$prop == 'upload_files' && 'create_posts' == $prop && 'attachment' == $type_obj->name
-												|| $type_obj->cap->$prop == str_replace( '_posts', "_{$type_obj->name}s", $prop ) 
-												|| $type_obj->cap->$prop == str_replace( '_pages', "_{$type_obj->name}s", $prop ) 
-												|| $type_obj->cap->$prop == str_replace( '_posts', "_" . _cme_get_plural($type_obj->name, $type_obj), $prop ) 
-												|| $type_obj->cap->$prop == str_replace( '_pages', "_" . _cme_get_plural($type_obj->name, $type_obj), $prop ) 
-												)
-											) {
-												// only present these term caps up top if we are ensuring that they get enforced separately from manage_terms
-												if ( in_array( $prop, array( 'edit_terms', 'delete_terms', 'assign_terms' ) ) && ( ! in_array( $type_obj->name, cme_get_detailed_taxonomies() ) || defined( 'OLD_PRESSPERMIT_ACTIVE' ) ) ) {
-													continue;
+											if ( 'taxonomy' == $item_type )
+												$td_classes []= "term-cap";
+											else
+												$td_classes []= "post-cap";
+											
+											if ( ! empty($pp_metagroup_caps[$cap_name]) )
+												$td_classes []='cm-has-via-pp';	
+										
+											if ( $is_administrator || current_user_can($cap_name) ) {
+												if ( ! empty($pp_metagroup_caps[$cap_name]) ) {
+													$title_text = sprintf( __( '%s: assigned by Permission Group', 'capsman-enhanced' ), $cap_name );
+												} else {
+													$title_text = $cap_name;
 												}
 												
-												$cap_name = $type_obj->cap->$prop;
+												$disabled = '';
+												$checked = checked(1, ! empty($rcaps[$cap_name]), false );
 												
-												if ( 'taxonomy' == $item_type )
-													$td_classes []= "term-cap";
-												else
-													$td_classes []= "post-cap";
+												$checkbox = '<input type="checkbox" title="' . $title_text . '" name="caps[' . $cap_name . ']" value="1" ' . $checked . $disabled . ' />';
 												
-												if ( ! empty($pp_metagroup_caps[$cap_name]) )
-													$td_classes []='cm-has-via-pp';	
-											
-												if ( $is_administrator || current_user_can($cap_name) ) {
-													if ( ! empty($pp_metagroup_caps[$cap_name]) ) {
-														$title_text = sprintf( __( '%s: assigned by Permission Group', 'capsman-enhanced' ), $cap_name );
-													} else {
-														$title_text = $cap_name;
-													}
-													
-													$disabled = '';
-													$checked = checked(1, ! empty($rcaps[$cap_name]), false );
-													
-													$checkbox = '<input type="checkbox" title="' . $title_text . '" name="caps[' . $cap_name . ']" value="1" ' . $checked . $disabled . ' />';
-													
-													$type_caps [$cap_name] = true;
-													$display_row = true;
-												} 
-											} else {
-												//$td_classes []= "cap-unreg";
-												$title = 'title="' . sprintf( __( 'shared capability: %s', 'capsman-enhanced' ), esc_attr( $type_obj->cap->$prop ) ) . '"';
-											}
-											
-											if ( isset($rcaps[$cap_name]) && empty($rcaps[$cap_name]) ) {
-												$td_classes []= "cap-neg";
-											}
+												$type_caps [$cap_name] = true;
+												$display_row = true;
+											} 
 										} else {
-											$td_classes []= "cap-unreg";
+											//$td_classes []= "cap-unreg";
+											$title = 'title="' . sprintf( __( 'shared capability: %s', 'capsman-enhanced' ), esc_attr( $type_obj->cap->$prop ) ) . '"';
 										}
 										
-										$td_class = ( $td_classes ) ? 'class="' . implode(' ', $td_classes) . '"' : '';
-										
-										$row .= "<td $td_class $title><span class='cap-x'>X</span>$checkbox";
-										
-										if ( false !== strpos( $td_class, 'cap-neg' ) )
-											$row .= '<input type="hidden" class="cme-negation-input" name="caps[' . $cap_name . ']" value="" />';
-
-										$row .= "</td>";
+										if ( isset($rcaps[$cap_name]) && empty($rcaps[$cap_name]) ) {
+											$td_classes []= "cap-neg";
+										}
+									} else {
+										$td_classes []= "cap-unreg";
 									}
+									
+									$td_class = ( $td_classes ) ? 'class="' . implode(' ', $td_classes) . '"' : '';
+									
+									$row .= "<td $td_class $title><span class='cap-x'>X</span>$checkbox";
+									
+									if ( false !== strpos( $td_class, 'cap-neg' ) )
+										$row .= '<input type="hidden" class="cme-negation-input" name="caps[' . $cap_name . ']" value="" />';
+
+									$row .= "</td>";
+								}
 
 								if ('type' == $item_type) {
 									$type_metacaps[$type_obj->cap->read_post] = true;
@@ -433,15 +433,15 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 									$type_metacaps[$type_obj->cap->edit_term] = true;
 									$type_metacaps[$type_obj->cap->delete_term] = true;
 								}
-								}
-
-								if ( $display_row ) {
-									$row .= '</tr>';
-									echo $row;
-								}
 							}
 
-							echo '</table>';
+							if ( $display_row ) {
+								$row .= '</tr>';
+								echo $row;
+							}
+						}
+
+						echo '</table>';
 
 					} // end foreach item type
 					
@@ -728,7 +728,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 
 						if ( ! $is_administrator && ! current_user_can($cap_name) )
 							continue;
-				
+					
 						if ( $i == $checks_per_row ) {
 							echo '</tr><tr>';
 							$i = 0;
@@ -802,11 +802,11 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 				}
 
 				uasort( $this->capabilities, 'strnatcasecmp' );  // sort by array values, but maintain keys );
-				
+
 				foreach ( $this->capabilities as $cap_name => $cap ) :
 					if ( isset( $type_caps[$cap_name] ) || isset($core_caps[$cap_name]) || isset($type_metacaps[$cap_name]) )
 						continue;
-					
+
 					foreach(array_keys($plugin_caps) as $plugin) {
 						if ( in_array( $cap_name, $plugin_caps[$plugin]) ) {
 							continue 2;
@@ -940,10 +940,10 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 					$checked = checked(1, ! empty($rcaps[$cap_name]), false );
 				?>
 					<td class="<?php echo $class; ?>"><span class="cap-x">X</span><label title="<?php echo $title_text;?>"><input type="checkbox" name="caps[<?php echo $cap_name; ?>]" value="1" <?php echo $checked . $disabled;?> />
-				<span>
-				<?php
+					<span>
+					<?php
 					echo str_replace( '_', ' ', $cap );
-				?>
+					?>
 					</span></label><a href="#" class="neg-cap">&nbsp;x&nbsp;</a>
 					<?php if ( false !== strpos( $class, 'cap-neg' ) ) :?>
 						<input type="hidden" class="cme-negation-input" name="caps[<?php echo $cap_name; ?>]" value="" />
@@ -969,15 +969,15 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 						echo '</tr>';
 					}
 				}
-					?>
-				
+				?>
+
 				<tr class="cme-bulk-select">
 				<td colspan="<?php echo $checks_per_row;?>">
 				<span style="float:right">
 				<input type="checkbox" class="cme-check-all" title="<?php _e('check/uncheck all', 'capsman-enhanced');?>">&nbsp;&nbsp;<a class="cme-neg-all" href="#" title="<?php _e('negate all (storing as disabled capabilities)', 'capsman-enhanced');?>">X</a> <a class="cme-switch-all" href="#" title="<?php _e('negate none (add/remove all capabilities normally)', 'capsman-enhanced');?>">X</a>
 				</span>
 				</td></tr>
-				
+
 				</table>
 				<?php
 				} // endif any invalid caps
@@ -995,7 +995,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 					?>
 				</select>
 				</span>
-				
+
 				<?php if ( ! defined('PRESSPERMIT_ACTIVE') || capsman_get_pp_option('display_hints') ) :?>
 				<span class="cme-subtext" style="float:right">
 					<?php _e( 'Note: Underscores replace spaces in stored capability name ("edit users" => "edit_users").', 'capsman-enhanced' ); ?>
@@ -1112,6 +1112,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 					<li><a class="thickbox" href="<?php echo $url;?>"><?php _e('PublishPress Revisions', 'capsman-enhanced');?></a></li>
 
 					<li class="publishpress-contact"><a href="https://publishpress.com/contact" target="_blank"><?php _e('Help / Contact Form', 'capsman-enhanced');?></a></li>
+
 				</ul>
 				</dd>
 			</dl>
