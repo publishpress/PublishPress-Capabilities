@@ -26,11 +26,6 @@ if ( defined( 'WC_PLUGIN_FILE' ) ) {
 	$cme_extensions->add( new CME_WooCommerce() );
 }
 
-if (!defined('CME_DISABLE_WP_EDIT_PUBLISHED_WORKAROUND')) {
-	require_once (dirname(__FILE__) . '/filters-wp_rest_workarounds.php');
-	new PublishPress\Capabilities\WP_REST_Workarounds();
-}
-
 if ( is_admin() ) {
 	global $pagenow;
 	if ( 'edit.php' == $pagenow ) {

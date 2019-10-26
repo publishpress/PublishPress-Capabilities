@@ -72,6 +72,9 @@ Keep in mind that this plugin's main purpose is to expose switches (defined capa
 
 == Changelog ==
 
+= 1.8.1 - 25 Oct 2019 =
+  * Fixed : Autodraft publication, incorrect WooCommerce status storage (since 1.8)
+
 = 1.8 - 24 Oct 2019 =
   * Feature : WooCommerce, PublishPress, PressPermit capabilities grouped in sections on role editor screen
   * Feature : Plugin API - plugins can hook into "cme_plugin_capabilities" filter to register their capabilities 
