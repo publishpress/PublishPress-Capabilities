@@ -17,7 +17,7 @@ class WP_REST_Workarounds
 	private $params = [];
 	private $skip_filtering = false;
 
-	function __construct() {
+	public function __construct() {
 		add_filter('rest_pre_dispatch', [$this, 'fltRestPreDispatch'], 10, 3);
 		add_filter('user_has_cap', [$this, 'fltPublishCapReplacement'], 5, 3);
 
@@ -52,7 +52,7 @@ class WP_REST_Workarounds
 		}
 
 		if ($reqd_cap = reset($reqd_caps)) {
-			// slight compromise for perf: apply this workaround only when publish_posts capability for post type follows typical pattern (publish_*)
+			// slight compromise for perf: apply this workaround only when cap->publish_posts property for post type follows typical pattern (publish_*)
 			if (0 === strpos($reqd_cap, 'publish_')) { 
 				if (!empty($wp_sitecaps[$reqd_cap])) {
 					return $wp_sitecaps;
