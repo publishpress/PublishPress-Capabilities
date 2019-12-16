@@ -11,15 +11,19 @@ namespace PublishPress\Capabilities;
  */
 class WP_REST_Workarounds
 {
-	var $post_id = 0;
-	var $is_posts_request = false;
+	private $post_id = 0;
+	private $is_posts_request = false;
+	private $is_view_method = false;
+	private $params = [];
 	private $skip_filtering = false;
 
 	function __construct() {
 		add_filter('rest_pre_dispatch', [$this, 'fltRestPreDispatch'], 10, 3);
 		add_filter('user_has_cap', [$this, 'fltPublishCapReplacement'], 5, 3);
 
+		add_filter('wp_insert_post_data', [$this, 'fltInsertPostData'], 10, 2);
 		add_filter('edit_post_status', [$this, 'fltPostStatus'], 10, 2);
+		add_filter('user_has_cap', [$this, 'fltRegulateUnpublish'], 5, 3);
 	}
 
     /**
@@ -114,23 +118,50 @@ class WP_REST_Workarounds
 		return $post_status;
 	}
 
-	private function getPostID()
-    {
-        global $post;
+	/**
+	* Regulate post unpublishing on Classic Editor and Quick Edit updates
+	*
+	* Filter hook: 'wp_insert_post_data'
+	*
+    * @param  array  $data     Parsed array of Post data being set
+    * @param  array  $postarr  ARray of current post data
+	*/
+	public function fltInsertPostData($data, $postarr) {
+		if (!empty($data['post_status']) && !empty($postarr['post_ID'])) {
+			$data['post_status'] = $this->fltPostStatus($data['post_status'], $postarr['post_ID']);
+		}
 
-        if (defined('REST_REQUEST') && REST_REQUEST && $this->is_posts_request) {
-            return $this->post_id;
-        }
+		return $data;
+	}
 
-        if (!empty($post) && is_object($post)) {
-            return ('auto-draft' == $post->post_status) ? 0 : $post->ID;
-		} elseif (isset($_REQUEST['post'])) {
-            return (int)$_REQUEST['post'];
-        } elseif (isset($_REQUEST['post_ID'])) {
-            return (int)$_REQUEST['post_ID'];
-        } elseif (isset($_REQUEST['post_id'])) {
-            return (int)$_REQUEST['post_id'];
-        }
+	/**
+	* Regulate post unpublishing on Gutenberg "Switch to Draft"
+	*
+	* Filter hook: user_has_cap
+	*
+	* @param  array  $wp_sitecaps  Array of user capabilities acknowledged for this request.
+    * @param  array  $reqd_caps    Capability requirements
+    * @param  array  $args         Additional arguments passed into user_has_cap filter
+	*/
+	public function fltRegulateUnpublish($wp_sitecaps, $reqd_caps, $args)
+	{
+		if (!defined('REST_REQUEST') || !REST_REQUEST || !$this->is_posts_request || !$this->post_id || $this->skip_filtering) {
+			return $wp_sitecaps;
+		}
+		
+		if ($reqd_cap = reset($reqd_caps)) {
+			// slight compromise for perf: apply this workaround only when cap->edit_published_posts property for post type follows typical pattern (edit_published_*)
+			if (0 === strpos($reqd_cap, 'edit_published_')) { 
+				if ($this->params && !empty($this->params['status'])) {
+					$set_status = $this->fltPostStatus($this->params['status'], $this->post_id);
+					if ($set_status != $this->params['status']) {
+						unset($wp_sitecaps[$reqd_cap]);
+					}
+				}
+			}
+		}
+
+		return $wp_sitecaps;
 	}
 		
 	/**
@@ -164,6 +195,9 @@ class WP_REST_Workarounds
 					}
 
 					$this->is_posts_request = true;
+					$this->is_view_method = in_array($method, [\WP_REST_Server::READABLE, 'GET']);
+               		$this->params = $request->get_params();
+
 					break 2;
 				}
 			}
@@ -171,4 +205,26 @@ class WP_REST_Workarounds
 
 		return $rest_response;
 	} 
+
+	/**
+	* Determine the Post ID, if any, which this query pertains to
+	*/
+	private function getPostID()
+    {
+        global $post;
+
+        if (defined('REST_REQUEST') && REST_REQUEST && $this->is_posts_request) {
+            return $this->post_id;
+        }
+
+        if (!empty($post) && is_object($post)) {
+            return ('auto-draft' == $post->post_status) ? 0 : $post->ID;
+		} elseif (isset($_REQUEST['post'])) {
+            return (int)$_REQUEST['post'];
+        } elseif (isset($_REQUEST['post_ID'])) {
+            return (int)$_REQUEST['post_ID'];
+        } elseif (isset($_REQUEST['post_id'])) {
+            return (int)$_REQUEST['post_id'];
+        }
+	}
 }
