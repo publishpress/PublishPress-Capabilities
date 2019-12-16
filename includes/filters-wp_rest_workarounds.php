@@ -24,6 +24,8 @@ class WP_REST_Workarounds
 		add_filter('wp_insert_post_data', [$this, 'fltInsertPostData'], 10, 2);
 		add_filter('edit_post_status', [$this, 'fltPostStatus'], 10, 2);
 		add_filter('user_has_cap', [$this, 'fltRegulateUnpublish'], 5, 3);
+
+		add_action('admin_print_styles-post.php', [$this, 'actAdminPrintScripts']);
 	}
 
     /**
@@ -164,6 +166,34 @@ class WP_REST_Workarounds
 		return $wp_sitecaps;
 	}
 		
+	/**
+	* If we are blocking Gutenberg "Switch to Draft" by capability filtering, also hide the button
+	*
+	* Action hook: 'admin_print_styles-post.php'
+	*/
+	public function actAdminPrintScripts() {
+		global $current_user, $post;
+
+		if (empty($post) || !did_action('enqueue_block_editor_assets')) {
+			return;
+		}
+
+		$status_obj = get_post_status_object($post->post_status);
+
+		if (!$status_obj || (empty($status_obj->public) && empty($status_obj->private))) {
+			return;
+		}
+
+		$type_obj = get_post_type_object($post->post_type);
+		$this->skip_filtering = true;
+
+		if ($type_obj && !current_user_can($type_obj->cap->publish_posts) && current_user_can($type_obj->cap->edit_published_posts)): ?>
+			<style type="text/css">button.editor-post-switch-to-draft {display:none;}</style>
+		<?php endif;
+
+		$this->skip_filtering = false;
+	}
+	
 	/**
 	* Log REST query parameters for possible use by subsequent filters
 	*
