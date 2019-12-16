@@ -29,6 +29,8 @@ class WP_REST_Workarounds
 	*	- The post type and its capabilities are defined and match the current publish capability requirement
 	*	- The post is already published with a public status, or scheduled
     *
+	* Filter hook: 'user_has_cap'
+	*
 	* @author Kevin Behrens
 	* @link   https://core.trac.wordpress.org/ticket/47443
 	* @link   https://github.com/WordPress/gutenberg/issues/13342
@@ -68,11 +70,16 @@ class WP_REST_Workarounds
 	}
 
 	/**
-	* If the post is already published, prevent the workaround from allowing status to be changed via "Switch to Draft" (or by any other means).
+	* Work around WordPress allowing user who can "edit_published_posts" but not "publish_posts" to unpublish a post.
 	*
-	* This will also prevent users with edit_published capability but not publish capability from unpublishing via Quick Edit.
+	* This is hooked to the edit_post_status filter and also called internally from REST update_item capability check (for Gutenberg)
+	* and wp_insert_post_data (for Classic Editor and Quick Edit) 
+	*
+	* Filter hook: 'edit_post_status'
     *
-    * @param  string  $post_status	New post status about to be saved
+	* @author Kevin Behrens
+    * @param  int  $post_status  Post status being set
+    * @param  int  $post_id    	 ID of post being modified
     */
 	function fltPostStatus($post_status) {
 		global $current_user;
@@ -110,6 +117,11 @@ class WP_REST_Workarounds
         }
 	}
 		
+	/**
+	* Log REST query parameters for possible use by subsequent filters
+	*
+	* Action hook: 'rest_pre_dispatch'
+	*/
 	public function fltRestPreDispatch($rest_response, $rest_server, $request)
 	{
 		$method = $request->get_method();
