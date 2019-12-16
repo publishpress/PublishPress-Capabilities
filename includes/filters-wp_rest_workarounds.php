@@ -13,6 +13,7 @@ class WP_REST_Workarounds
 {
 	var $post_id = 0;
 	var $is_posts_request = false;
+	private $skip_filtering = false;
 
 	function __construct() {
 		add_filter('rest_pre_dispatch', [$this, 'fltRestPreDispatch'], 10, 3);
@@ -40,6 +41,10 @@ class WP_REST_Workarounds
     */
 	public function fltPublishCapReplacement($wp_sitecaps, $reqd_caps, $args)
 	{
+		if ($this->skip_filtering) {
+			return $wp_sitecaps;
+		}
+
 		if ($reqd_cap = reset($reqd_caps)) {
 			// slight compromise for perf: apply this workaround only when publish_posts capability for post type follows typical pattern (publish_*)
 			if (0 === strpos($reqd_cap, 'publish_')) { 
@@ -89,9 +94,12 @@ class WP_REST_Workarounds
 			$status_obj = get_post_status_object($_post->post_status);
 
 			if ($type_obj && $status_obj && (!empty($status_obj->public) || !empty($status_obj->private) || 'future' == $_post->post_status)) {
+				$this->skip_filtering = true;				
+
 				if (empty($current_user->allcaps[$type_obj->cap->publish_posts])) {
 					$post_status = $_post->post_status;
 				}
+				$this->skip_filtering = false;
 			}
 		}
 
