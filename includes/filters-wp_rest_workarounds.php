@@ -19,7 +19,7 @@ class WP_REST_Workarounds
 		add_filter('rest_pre_dispatch', [$this, 'fltRestPreDispatch'], 10, 3);
 		add_filter('user_has_cap', [$this, 'fltPublishCapReplacement'], 5, 3);
 
-		add_filter('pre_post_status', [$this, 'fltPostStatus'], 10, 1);
+		add_filter('edit_post_status', [$this, 'fltPostStatus'], 10, 2);
 	}
 
     /**
@@ -86,21 +86,29 @@ class WP_REST_Workarounds
     * @param  int  $post_status  Post status being set
     * @param  int  $post_id    	 ID of post being modified
     */
-	function fltPostStatus($post_status) {
+	public function fltPostStatus($post_status, $post_id) {
 		global $current_user;
 		
-		if ($_post = get_post($this->getPostID())) {
-			$type_obj = get_post_type_object($_post->post_type);
-			$status_obj = get_post_status_object($_post->post_status);
+		$new_status_obj = get_post_status_object($post_status);
+		if (!$new_status_obj || !empty($new_status_obj->internal)) {
+			return $post_status;
+		}
 
-			if ($type_obj && $status_obj && (!empty($status_obj->public) || !empty($status_obj->private) || 'future' == $_post->post_status)) {
-				$this->skip_filtering = true;				
+		if (!$_post = get_post($post_id)) {
+			return $post_status;
+		}
 
-				if (empty($current_user->allcaps[$type_obj->cap->publish_posts])) {
-					$post_status = $_post->post_status;
-				}
-				$this->skip_filtering = false;
+		$type_obj = get_post_type_object($_post->post_type);
+		$status_obj = get_post_status_object($_post->post_status);
+
+		if ($type_obj && $status_obj && (!empty($status_obj->public) || !empty($status_obj->private) || 'future' == $_post->post_status)) {
+			$this->skip_filtering = true;				
+
+			//if (empty($current_user->allcaps[$type_obj->cap->publish_posts])) {
+			if (!current_user_can($type_obj->cap->publish_posts)) {
+				$post_status = $_post->post_status;
 			}
+			$this->skip_filtering = false;
 		}
 
 		return $post_status;
