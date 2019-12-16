@@ -68,6 +68,10 @@ Yes. Users with the 'manage_capabilities' capability can edit roles. This Capabi
 
 == Changelog ==
 
+= 1.8.2-beta2 =
+  * Fixed : Role name captions on Role Capabilities and Backup Tool screens could not be translated
+  * Fixed : Checkbox bulk selection on Role Capabilities screen was incorrect under some conditions
+
 = 1.8.2-beta =
   * Change : Reinstate WordPress edit_published_posts workaround with correct status filtering behavior
 
