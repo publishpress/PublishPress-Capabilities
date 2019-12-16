@@ -123,7 +123,8 @@ class WP_REST_Workarounds
 	}
 
 	/**
-	* Regulate post unpublishing on Classic Editor and Quick Edit updates
+	* Regulate post unpublishing on Classic Editor and Quick Edit updates: 
+	* If a user can't publish a post, don't let them unpublish it either.
 	*
 	* Filter hook: 'wp_insert_post_data'
 	*
@@ -140,6 +141,7 @@ class WP_REST_Workarounds
 
 	/**
 	* Regulate post unpublishing on Gutenberg "Switch to Draft"
+	* If a user can't publish a post, don't let them unpublish it either.
 	*
 	* Filter hook: user_has_cap
 	*
