@@ -427,8 +427,9 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 
 								if ('type' == $item_type) {
 									$type_metacaps[$type_obj->cap->read_post] = true;
-									$type_metacaps[$type_obj->cap->edit_post] = true;
-									$type_metacaps[$type_obj->cap->delete_post] = true;
+									$type_metacaps[$type_obj->cap->edit_post] = isset($type_obj->cap->edit_posts) && ($type_obj->cap->edit_post != $type_obj->cap->edit_posts);
+									$type_metacaps[$type_obj->cap->delete_post] = isset($type_obj->cap->delete_posts) && ($type_obj->cap->delete_post != $type_obj->cap->delete_posts);
+
 								} elseif ('taxonomy' == $item_type && !empty($type_obj->cap->edit_term) && !empty($type_obj->cap->delete_term)) {
 									$type_metacaps[$type_obj->cap->edit_term] = true;
 									$type_metacaps[$type_obj->cap->delete_term] = true;
@@ -894,7 +895,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 				</table>
 				
 				<?php
-				if (array_intersect(array_keys($type_metacaps), $all_capabilities)) {
+				if (array_intersect(array_keys(array_filter($type_metacaps)), $all_capabilities)) {
 
 				$_title = esc_attr(__('Meta capabilities are used in code as placeholders for other capabilities. Assiging to a role has no effect.'));
 				echo '<p>&nbsp;</p><h3 class="cme-cap-section" title="' . $_title . '">' . __( 'Invalid Capabilities', 'capsman-enhanced' ) . '</h3>';
