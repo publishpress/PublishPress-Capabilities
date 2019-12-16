@@ -67,7 +67,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 	<tr>
 		<td class="content">
 		<dl>
-			<dt><?php printf(__('Capabilities for %s', 'capsman-enhanced'), $roles[$default]); ?></dt>
+			<dt><?php printf(__('Capabilities for %s', 'capsman-enhanced'), translate_user_role($roles[$default])); ?></dt>
 			<dd>
 				<div style="float:right">
 				<input type="submit" name="SaveRole" value="<?php _e('Save Changes', 'capsman-enhanced') ?>" class="button-primary" /> &nbsp;
@@ -1030,6 +1030,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 					<p><select name="role">
 					<?php
 					foreach ( $roles as $role => $name ) {
+						$name = translate_user_role($name);
 						echo '<option value="' . $role .'"'; selected($default, $role); echo '> ' . $name . ' &nbsp;</option>';
 					}
 					?>
@@ -1062,7 +1063,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 			</dl>
 
 			<dl>
-				<dt><?php defined('WPLANG') && WPLANG ? _e('Copy this role to', 'capsman-enhanced') : printf( 'Copy %s Role', $roles[$default] ); ?></dt>
+				<dt><?php defined('WPLANG') && WPLANG ? _e('Copy this role to', 'capsman-enhanced') : printf('Copy %s Role', translate_user_role($roles[$default])); ?></dt>
 				<dd style="text-align:center;">
 					<?php $class = ( $support_pp_only_roles ) ? 'tight-text' : 'regular-text'; ?>
 					<p><input type="text" name="copy-name"  class="<?php echo $class;?>" placeholder="<?php _e('Role Name', 'capsman-enhanced') ?>" />
