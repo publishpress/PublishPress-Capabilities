@@ -108,13 +108,15 @@ class WP_REST_Workarounds
 		$status_obj = get_post_status_object($_post->post_status);
 
 		if ($type_obj && $status_obj && (!empty($status_obj->public) || !empty($status_obj->private) || 'future' == $_post->post_status)) {
+			// Apply this workaround only if current user has $type_obj->cap->edit_published_posts
+			if (isset($type_obj->cap->edit_published_posts) && !empty($current_user->allcaps[$type_obj->cap->edit_published_posts])) {
 			$this->skip_filtering = true;				
 
-			//if (empty($current_user->allcaps[$type_obj->cap->publish_posts])) {
 			if (!current_user_can($type_obj->cap->publish_posts)) {
 				$post_status = $_post->post_status;
 			}
 			$this->skip_filtering = false;
+		}
 		}
 
 		return $post_status;
