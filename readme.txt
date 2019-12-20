@@ -68,9 +68,13 @@ Yes. Users with the 'manage_capabilities' capability can edit roles. This Capabi
 
 == Changelog ==
 
+= 1.8.2-beta3 =
+  * Fixed : Multisite - On sub-sites, Role Capabilities screen did not display PublishPress Capabilities section to Super Administrators who don't have a role on the site
+
 = 1.8.2-beta2 =
   * Fixed : Role name captions on Role Capabilities and Backup Tool screens could not be translated
   * Fixed : Checkbox bulk selection on Role Capabilities screen was incorrect under some conditions
+  * Change : Apply workaround filters for WordPress edit_published_posts / publish_posts handling only for users who have edit_published_posts capability for current post type
 
 = 1.8.2-beta =
   * Change : Reinstate WordPress edit_published_posts workaround with correct status filtering behavior
