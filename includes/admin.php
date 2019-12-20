@@ -716,6 +716,8 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 						if (!$_plugin_caps = array_fill_keys( array_intersect($__plugin_caps, $all_capabilities), true )) {
 							continue;
 						}
+					} else {
+						$_plugin_caps = array_fill_keys($__plugin_caps, true);
 					}
 
 					echo '<h3 class="cme-cap-section">' . sprintf(__( '%s Capabilities', 'capsman-enhanced' ), str_replace('_', ' ', $plugin )) . '</h3>';
