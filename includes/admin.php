@@ -188,7 +188,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 				
 				$rcaps = $current->capabilities;
 
-				$is_administrator = current_user_can( 'administrator' );
+				$is_administrator = current_user_can( 'administrator' ) || (is_multisite() && is_super_admin());
 				
 				$custom_types = get_post_types( array( '_builtin' => false ), 'names' );
 				$custom_tax = get_taxonomies( array( '_builtin' => false ), 'names' );
