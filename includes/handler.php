@@ -99,9 +99,11 @@ class CapsmanHandler
 
 		if ( ! empty($newrole) && defined('PRESSPERMIT_ACTIVE') ) {
 			if ( ( ! empty($post['CreateRole']) && ! empty( $_REQUEST['new_role_pp_only'] ) ) || ( ! empty($post['CopyRole']) && ! empty( $_REQUEST['copy_role_pp_only'] ) ) ) {
-				$pp_only = (array) capsman_get_pp_option( 'supplemental_role_defs' );
+				$pp_only = (array) pp_capabilities_get_permissions_option( 'supplemental_role_defs' );
 				$pp_only[]= $newrole;
-				pp_update_option( 'supplemental_role_defs', $pp_only );
+
+				pp_capabilities_update_permissions_option('supplemental_role_defs', $pp_only);
+				
 				_cme_pp_default_pattern_role( $newrole );
 				pp_refresh_options();
 			}

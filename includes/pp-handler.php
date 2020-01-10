@@ -64,14 +64,15 @@ function _cme_update_pp_usage() {
 	if ( defined( 'PRESSPERMIT_ACTIVE' ) ) {
 		if ( ! empty( $_REQUEST['SaveRole']) ) {
 			if ( ! empty( $_REQUEST['role'] ) ) {
-				$pp_only = (array) capsman_get_pp_option( 'supplemental_role_defs' );
+				$pp_only = (array) pp_capabilities_get_permissions_option( 'supplemental_role_defs' );
 				
 				if ( empty($_REQUEST['pp_only_role']) )
 					$pp_only = array_diff( $pp_only, array($_REQUEST['role']) );
 				else
 					$pp_only[]= $_REQUEST['role'];
 
-				pp_update_option( 'supplemental_role_defs', array_unique($pp_only) );
+				pp_capabilities_update_permissions_option('supplemental_role_defs', array_unique($pp_only));
+
 				_cme_pp_default_pattern_role( $_REQUEST['role'] );
 			}
 		}
