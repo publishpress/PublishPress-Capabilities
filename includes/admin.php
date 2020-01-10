@@ -62,7 +62,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 	
 	<h1 <?php echo $style;?>><?php _e('Role Capabilities', 'capsman-enhanced') ?></h1>
 	
-	<form method="post" action="admin.php?page=<?php echo $this->ID ?>">
+	<form id="publishpress_caps_form" method="post" action="admin.php?page=<?php echo $this->ID ?>">
 	<?php wp_nonce_field('capsman-general-manager'); ?>
 	<fieldset>
 	<table id="akmin">
