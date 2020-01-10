@@ -452,6 +452,12 @@ class CapabilityManager
 		}
 		
 		if ( ! isset($this->current) ) { // By default, we manage the default role
+			if (empty($_POST) && !empty($_REQUEST['role'])) {
+				$this->current = $_REQUEST['role'];
+			}
+		}
+
+		if (!isset($this->current) || !get_role($this->current)) {
 			$this->current = get_option('default_role');
 		}
 		

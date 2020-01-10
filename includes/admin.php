@@ -1052,6 +1052,10 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 			/* <![CDATA[ */
 			jQuery(document).ready( function($) {
 				$('select[name="role"]').val('<?php echo $default;?>');
+
+				$('input.button[name="LoadRole"]').click(function(){
+					$('#publishpress_caps_form').attr('action', 'admin.php?page=capsman&role=' + $('select[name="role"]').val());
+				});
 			});
 			/* ]]> */
 			</script>
