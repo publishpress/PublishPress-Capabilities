@@ -5,12 +5,12 @@
  * Description: Manage WordPress role definitions, per-site or network-wide. Organizes post capabilities by post type and operation.
  * Version: 1.8.2-beta3.3
  * Author: PublishPress
- * Author URI: https://publishpress.com
+ * Author URI: https://publishpress.com/
  * Text Domain: capsman-enhanced
  * Domain Path: /lang/
  * License: GPLv3
  *
- * Copyright (c) 2019 PublishPress
+ * Copyright (c) 2020 PublishPress
  *
  * ------------------------------------------------------------------------------
  * Based on Capability Manager
@@ -20,9 +20,9 @@
  *
  * @package 	capability-manager-enhanced
  * @author		PublishPress
- * @copyright   Copyright (C) 2009, 2010 Jordi Canals; modifications Copyright (C) 2019 PublishPress
+ * @copyright   Copyright (C) 2009, 2010 Jordi Canals; modifications Copyright (C) 2020 PublishPress
  * @license		GNU General Public License version 3
- * @link		https://publishpress.com
+ * @link		https://publishpress.com/
  * @version 	1.8.2-beta3.3
  */
 

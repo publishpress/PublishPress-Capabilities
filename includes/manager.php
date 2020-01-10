@@ -4,13 +4,14 @@
  * Plugin to create and manage roles and capabilities.
  *
  * @author		Jordi Canals, Kevin Behrens
- * @copyright   Copyright (C) 2009, 2010 Jordi Canals, (C) 2019 PublishPress
+ * @copyright   Copyright (C) 2009, 2010 Jordi Canals, (C) 2020 PublishPress
  * @license		GNU General Public License version 2
- * @link		https://publishpress.com
+ * @link		https://publishpress.com/
  *
  *
  *	Copyright 2009, 2010 Jordi Canals <devel@jcanals.cat>
- *	Modifications Copyright 2019, PublishPress <help@publishpress.com>
+ *
+ *	Modifications Copyright 2020, PublishPress <help@publishpress.com>
  *
  *	This program is free software; you can redistribute it and/or
  *	modify it under the terms of the GNU General Public License
@@ -79,7 +80,7 @@ function _cme_is_read_removal_blocked( $role_name ) {
  * Sets the main environment for all Capability Manager components.
  *
  * @author		Jordi Canals, Kevin Behrens
- * @link		https://publishpress.com
+ * @link		https://publishpress.com/
  */
 class CapabilityManager
 {

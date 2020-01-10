@@ -4,13 +4,13 @@
  * Provides admin pages to create and manage roles and capabilities.
  *
  * @author		Jordi Canals, Kevin Behrens
- * @copyright   Copyright (C) 2009, 2010 Jordi Canals, (C) 2019 PublishPress
+ * @copyright   Copyright (C) 2009, 2010 Jordi Canals, (C) 2020 PublishPress
  * @license		GNU General Public License version 2
  * @link		https://publishpress.com
  *
  *
  *	Copyright 2009, 2010 Jordi Canals <devel@jcanals.cat>
- *	Modifications Copyright 2019, PublishPress <help@publishpress.com>
+ *	Modifications Copyright 2020, PublishPress <help@publishpress.com>
  *	
  *	This program is free software; you can redistribute it and/or
  *	modify it under the terms of the GNU General Public License
