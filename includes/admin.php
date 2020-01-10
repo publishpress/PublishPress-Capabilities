@@ -69,7 +69,16 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 	<tr>
 		<td class="content">
 		<dl>
-			<dt><?php printf(__('Capabilities for %s', 'capsman-enhanced'), translate_user_role($roles[$default])); ?></dt>
+			<dt>
+			<?php 
+			$role_caption = (defined('PUBLISHPRESS_VERSION')) 
+			? '<a href="' . admin_url("admin.php?page=pp-manage-roles&action=edit-role&role-id={$this->current}") . '">' . translate_user_role($roles[$default]) . '</a>'
+			: translate_user_role($roles[$default]);
+
+			printf(__('Capabilities for %s', 'capsman-enhanced'), $role_caption);
+			?>
+			</dt>
+			
 			<dd>
 				<div style="float:right">
 				<input type="submit" name="SaveRole" value="<?php _e('Save Changes', 'capsman-enhanced') ?>" class="button-primary" /> &nbsp;
