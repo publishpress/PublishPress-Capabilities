@@ -404,15 +404,15 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 										
 											if ( $is_administrator || current_user_can($cap_name) ) {
 												if ( ! empty($pp_metagroup_caps[$cap_name]) ) {
-													$title_text = sprintf( __( '%s: assigned by Permission Group', 'capsman-enhanced' ), $cap_name );
+													$title = ' title="' . sprintf( __( '%s: assigned by Permission Group', 'capsman-enhanced' ), $cap_name ) . '"';
 												} else {
-													$title_text = $cap_name;
+													$title = ' title="' . $cap_name . '"';
 												}
 												
 												$disabled = '';
 												$checked = checked(1, ! empty($rcaps[$cap_name]), false );
 												
-												$checkbox = '<input type="checkbox" title="' . $title_text . '" name="caps[' . $cap_name . ']" value="1" ' . $checked . $disabled . ' />';
+												$checkbox = '<input type="checkbox"' . $title . ' name="caps[' . $cap_name . ']" value="1" ' . $checked . $disabled . ' />';
 												
 												$type_caps [$cap_name] = true;
 												$display_row = true;
