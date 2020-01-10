@@ -35,7 +35,7 @@
 	<div id="icon-capsman-admin" class="icon32"></div>
 	<h2><?php printf( __('Backup Tool for %1$sPublishPress Capabilities%2$s', 'capsman-enhanced'), '<a href="admin.php?page=capsman">', '</a>' );?></h2>
 
-	<form method="post" action="tools.php?page=<?php echo $this->ID ?>-tool">
+	<form method="post" action="admin.php?page=<?php echo $this->ID ?>-tool">
 	<?php wp_nonce_field('capsman-backup-tool'); ?>
 	<fieldset>
 	<table id="akmin">
@@ -144,7 +144,7 @@
 					<?php 
 					_e('If you have installed any plugin that adds new roles or capabilities, these will be lost.', 'capsman-enhanced')?><br />
 					<strong><?php if ( defined('WPLANG') && WPLANG && ( 'en_EN' != WPLANG ) ) _e('It is recommended to use this only as a last resource!'); else echo('It is recommended to use this only as a last resort!');?></strong></p>
-				<p style="text-align:center;"><a class="ak-delete" title="<?php echo esc_attr(__('Reset Roles and Capabilities to WordPress defaults', 'capsman-enhanced')) ?>" href="<?php echo wp_nonce_url("tools.php?page={$this->ID}-tool&amp;action=reset-defaults", 'capsman-reset-defaults'); ?>" onclick="if ( confirm('<?php echo esc_js(__("You are about to reset Roles and Capabilities to WordPress defaults.\n 'Cancel' to stop, 'OK' to reset.", 'capsman-enhanced')); ?>') ) { return true;}return false;"><?php _e('Reset to WordPress defaults', 'capsman-enhanced')?></a>
+				<p style="text-align:center;"><a class="ak-delete" title="<?php echo esc_attr(__('Reset Roles and Capabilities to WordPress defaults', 'capsman-enhanced')) ?>" href="<?php echo wp_nonce_url("admin.php?page={$this->ID}-tool&amp;action=reset-defaults", 'capsman-reset-defaults'); ?>" onclick="if ( confirm('<?php echo esc_js(__("You are about to reset Roles and Capabilities to WordPress defaults.\n 'Cancel' to stop, 'OK' to reset.", 'capsman-enhanced')); ?>') ) { return true;}return false;"><?php _e('Reset to WordPress defaults', 'capsman-enhanced')?></a>
 
 			</dd>
 		</dl>

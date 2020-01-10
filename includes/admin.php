@@ -1092,12 +1092,12 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 				</dd>
 			</dl>
 			
-			<dl class="cme-backup-tool">
+			<!-- <dl class="cme-backup-tool">
 				<dt><?php _e('Backup Tool', 'capsman-enhanced'); ?></dt>
 				<dd style="text-align:center;">
-					<p><a href="tools.php?page=capsman-tool"><?php _e('Backup / Restore Roles', 'capsman-enhanced');?></a></p>
+					<p><a href="admin.php?page=capsman-tool"><?php _e('Backup / Restore Roles', 'capsman-enhanced');?></a></p>
 				</dd>
-			</dl>
+			</dl> -->
 			
 			<dl>
 				<dt><?php _e('Related Permissions Plugins', 'capsman-enhanced'); ?></dt>
