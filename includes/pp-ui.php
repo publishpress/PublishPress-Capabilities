@@ -33,7 +33,7 @@ class Capsman_PP_UI {
 		if ( pp_capabilities_get_permissions_option('display_hints') ) {
 			$cme_id = 'capsman';
 		
-			echo '<ul class="ul-disc" style="margin-top:10px">';
+			echo '<ul class="ul-disc publishpress-caps-extra-hints" style="margin-top:10px;display:none">';
 			
 			$pp_prefix = ( defined( 'PRESSPERMIT_VERSION') ) ? 'presspermit' : 'pp';
 

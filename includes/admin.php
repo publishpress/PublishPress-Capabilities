@@ -58,7 +58,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 	<div id="icon-capsman-admin" class="icon32"></div>
 	<?php endif; ?>
 	
-	<h1 <?php echo $style;?>><?php _e('Roles and Capabilities', 'capsman-enhanced') ?></h1>
+	<h1 <?php echo $style;?>><?php _e('Role Capabilities', 'capsman-enhanced') ?></h1>
 	
 	<form method="post" action="admin.php?page=<?php echo $this->ID ?>">
 	<?php wp_nonce_field('capsman-general-manager'); ?>
@@ -79,9 +79,21 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 				?>
 				<div class="publishpress-headline">
 				<span class="cme-subtext">
-				<?php _e( '<strong>Note:</strong> Capability changes <strong>remain in the database</strong> after plugin deactivation.', 'capsman-enhanced' ); ?>
+				<?php 
+				$msg = __( '<strong>Note:</strong> Capability changes <strong>remain in the database</strong> after plugin deactivation.', 'capsman-enhanced' ); 
+
+				if (defined('PRESSPERMIT_ACTIVE') && function_exists('presspermit')) {
+					if ($group = presspermit()->groups()->getMetagroup('wp_role', $this->current)) {
+						$msg = sprintf(
+							__('<strong>Note:</strong> Capability changes <strong>remain in the database</strong> after plugin deactivation. You can also configure this role as a %sPermission Group%s.', 'capsman-enhanced'),
+							'<a href="' . admin_url("admin.php?page=presspermit-edit-permissions&action=edit&agent_id={$group->ID}") . '">',
+							'</a>'
+						);
+					}
+				}
+				echo $msg;
+				?>
 				</span>
-				<span class="publishpress-thanks"> <?php printf( __( 'Thanks for using the %1$sPublishPress%2$s family of professional publishing tools.', 'capsman-enhanced'), '<a href="https://publishpress.com/" target="_blank">', '</a>' );?></span>
 				</div>
 				
 				<?php
