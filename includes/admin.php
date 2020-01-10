@@ -1,16 +1,16 @@
 <?php
 /**
- * General Admin for Capability Manager.
+ * General Admin for Role Capabilities.
  * Provides admin pages to create and manage roles and capabilities.
  *
  * @author		Jordi Canals, Kevin Behrens
- * @copyright   Copyright (C) 2009, 2010 Jordi Canals, (C) 2019 PublishPress
+ * @copyright   Copyright (C) 2009, 2010 Jordi Canals, (C) 2020 PublishPress
  * @license		GNU General Public License version 2
  * @link		https://publishpress.com
  *
  *
  *	Copyright 2009, 2010 Jordi Canals <devel@jcanals.cat>
- *	Modifications Copyright 2019, PublishPress <help@publishpress.com>
+ *	Modifications Copyright 2020, PublishPress <help@publishpress.com>
  *	
  *	This program is free software; you can redistribute it and/or
  *	modify it under the terms of the GNU General Public License
@@ -26,6 +26,8 @@
  **/
 
 global $capsman, $cme_cap_helper, $current_user;
+
+do_action('publishpress-caps_manager-load');
 
 $roles = $this->roles;
 $default = $this->current;
@@ -47,7 +49,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 	$pp_metagroup_caps = array();
 }
 ?>
-<div class="wrap pressshack-admin-wrapper">
+<div class="wrap publishpress-caps-manage pressshack-admin-wrapper">
 	<?php if( defined('PRESSPERMIT_ACTIVE') ) :
 		pp_icon();
 		$style = 'style="height:60px;"';
@@ -58,16 +60,25 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 	<div id="icon-capsman-admin" class="icon32"></div>
 	<?php endif; ?>
 	
-	<h1 <?php echo $style;?>><?php _e('Roles and Capabilities', 'capsman-enhanced') ?></h1>
+	<h1 <?php echo $style;?>><?php _e('Role Capabilities', 'capsman-enhanced') ?></h1>
 	
-	<form method="post" action="admin.php?page=<?php echo $this->ID ?>">
+	<form id="publishpress_caps_form" method="post" action="admin.php?page=<?php echo $this->ID ?>">
 	<?php wp_nonce_field('capsman-general-manager'); ?>
 	<fieldset>
 	<table id="akmin">
 	<tr>
 		<td class="content">
 		<dl>
-			<dt><?php printf(__('Capabilities for %s', 'capsman-enhanced'), translate_user_role($roles[$default])); ?></dt>
+			<dt>
+			<?php 
+			$role_caption = (defined('PUBLISHPRESS_VERSION')) 
+			? '<a href="' . admin_url("admin.php?page=pp-manage-roles&action=edit-role&role-id={$this->current}") . '">' . translate_user_role($roles[$default]) . '</a>'
+			: translate_user_role($roles[$default]);
+
+			printf(__('Capabilities for %s', 'capsman-enhanced'), $role_caption);
+			?>
+			</dt>
+			
 			<dd>
 				<div style="float:right">
 				<input type="submit" name="SaveRole" value="<?php _e('Save Changes', 'capsman-enhanced') ?>" class="button-primary" /> &nbsp;
@@ -79,9 +90,21 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 				?>
 				<div class="publishpress-headline">
 				<span class="cme-subtext">
-				<?php _e( '<strong>Note:</strong> Capability changes <strong>remain in the database</strong> after plugin deactivation.', 'capsman-enhanced' ); ?>
+				<?php 
+				$msg = __( '<strong>Note:</strong> Capability changes <strong>remain in the database</strong> after plugin deactivation.', 'capsman-enhanced' ); 
+
+				if (defined('PRESSPERMIT_ACTIVE') && function_exists('presspermit')) {
+					if ($group = presspermit()->groups()->getMetagroup('wp_role', $this->current)) {
+						$msg = sprintf(
+							__('<strong>Note:</strong> Capability changes <strong>remain in the database</strong> after plugin deactivation. You can also configure this role as a %sPermission Group%s.', 'capsman-enhanced'),
+							'<a href="' . admin_url("admin.php?page=presspermit-edit-permissions&action=edit&agent_id={$group->ID}") . '">',
+							'</a>'
+						);
+					}
+				}
+				echo $msg;
+				?>
 				</span>
-				<span class="publishpress-thanks"> <?php printf( __( 'Thanks for using the %1$sPublishPress%2$s family of professional publishing tools.', 'capsman-enhanced'), '<a href="https://publishpress.com/" target="_blank">', '</a>' );?></span>
 				</div>
 				
 				<?php
@@ -107,7 +130,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 
 				<?php /* play.png icon by Pavel: http://kde-look.org/usermanager/search.php?username=InFeRnODeMoN */ ?>
 				
-				<br /><div id="pp_features" style="display:none"><div class="pp-logo"><a href="https://publishpress.com/presspermit/"><img src="<?php echo $img_url;?>pp-logo.png" alt="<?php _e('PressPermit Pro', 'capsman-enhanced');?>" /></a></div><div class="features-wrap"><ul class="pp-features">
+				<br /><div id="pp_features" style="display:none"><div class="pp-logo"><a href="https://publishpress.com/presspermit/"><img src="<?php echo $img_url;?>pp-logo.png" alt="<?php _e('PublishPress Permissions', 'capsman-enhanced');?>" /></a></div><div class="features-wrap"><ul class="pp-features">
 				<li>
 				<?php _e( "Automatically define type-specific capabilities for your custom post types and taxonomies", 'capsman-enhanced' );?>
 				<a href="https://presspermit.com/tutorial/regulate-post-type-access" target="_blank"><img class="cme-play" alt="*" src="<?php echo $img_url;?>play.png" /></a></li>
@@ -118,7 +141,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 				
 				<li>
 				<?php _e( "Assign custom WP roles supplementally for a specific post type <em>(Pro)</em>", 'capsman-enhanced' );?>
-				<a href="https://presspermit.com/tutorial/custom-role-usage" target="_blank"><img class="cme-play" alt="*" src="<?php echo $img_url;?>play.png" /></a></li>
+				</li>
 				
 				<li>
 				<?php _e( "Customize reading permissions per-category or per-post", 'capsman-enhanced' );?>
@@ -146,7 +169,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 				
 				<li>
 				<?php _e( "Grant Spectator, Participant or Moderator access to specific bbPress forums <em>(Pro)</em>", 'capsman-enhanced' );?>
-				<a href="https://presspermit.com/tutorial/bbpress-exceptions" target="_blank"><img class="cme-play" alt="*" src="<?php echo $img_url;?>play.png" /></a></li>
+				</li>
 				
 				<li>
 				<?php _e( "Grant supplemental content permissions to a BuddyPress group <em>(Pro)</em>", 'capsman-enhanced' );?>
@@ -164,9 +187,9 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 
 				<?php
 				echo '<div>';
-				printf( __('%1$sgrab%2$s %3$s', 'capsman-enhanced'), '<strong>', '</strong>', '<span class="plugins update-message"><a href="' . cme_plugin_info_url('press-permit-core') . '" class="thickbox" title="' . sprintf( __('%s (free install)', 'capsman-enhanced'), 'PressPermit' ) . '">PressPermit</a></span>' );
+				printf( __('%1$sgrab%2$s %3$s', 'capsman-enhanced'), '<strong>', '</strong>', '<span class="plugins update-message"><a href="' . cme_plugin_info_url('press-permit-core') . '" class="thickbox" title="' . sprintf( __('%s (free install)', 'capsman-enhanced'), 'Permissions Pro' ) . '">Permissions Pro</a></span>' );
 				echo '&nbsp;&nbsp;&bull;&nbsp;&nbsp;';
-				printf( __('%1$sbuy%2$s %3$s', 'capsman-enhanced'), '<strong>', '</strong>',  '<a href="https://publishpress.com/presspermit/" target="_blank" title="' . sprintf( __('%s info/purchase', 'capsman-enhanced'), 'PressPermit Pro' ) . '">PressPermit&nbsp;Pro</a>' );
+				printf( __('%1$sbuy%2$s %3$s', 'capsman-enhanced'), '<strong>', '</strong>',  '<a href="https://publishpress.com/presspermit/" target="_blank" title="' . sprintf( __('%s info/purchase', 'capsman-enhanced'), 'Permissions Pro' ) . '">Permissions&nbsp;Pro</a>' );
 				echo '&nbsp;&nbsp;&bull;&nbsp;&nbsp;';
 				echo '<a href="#pp-hide">hide</a>';
 				echo '</div></div>';
@@ -280,7 +303,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 					echo '<li>';
 					echo '<h3>' . $cap_type_names[$cap_type] . '</h3>';
 					
-					echo '<div class="cme-cap-type-tables">';
+					echo "<div class='cme-cap-type-tables cme-cap-type-tables-$cap_type'>";
 
 					foreach( array_keys($defined) as $item_type ) {
 						if ( ( 'delete' == $cap_type ) && ( 'taxonomy' == $item_type ) ) {
@@ -303,7 +326,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 						if ( ! count( $cap_properties[$cap_type][$item_type] ) )
 							continue;
 					
-						echo '<table class="cme-typecaps">';
+						echo "<table class='cme-typecaps cme-typecaps-$cap_type'>";
 
 						echo '<tr><th></th>';
 						
@@ -390,15 +413,15 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 										
 											if ( $is_administrator || current_user_can($cap_name) ) {
 												if ( ! empty($pp_metagroup_caps[$cap_name]) ) {
-													$title_text = sprintf( __( '%s: assigned by Permission Group', 'capsman-enhanced' ), $cap_name );
+													$title = ' title="' . sprintf( __( '%s: assigned by Permission Group', 'capsman-enhanced' ), $cap_name ) . '"';
 												} else {
-													$title_text = $cap_name;
+													$title = ' title="' . $cap_name . '"';
 												}
 												
 												$disabled = '';
 												$checked = checked(1, ! empty($rcaps[$cap_name]), false );
 												
-												$checkbox = '<input type="checkbox" title="' . $title_text . '" name="caps[' . $cap_name . ']" value="1" ' . $checked . $disabled . ' />';
+												$checkbox = '<input type="checkbox"' . $title . ' name="caps[' . $cap_name . ']" value="1" ' . $checked . $disabled . ' />';
 												
 												$type_caps [$cap_name] = true;
 												$display_row = true;
@@ -450,6 +473,11 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 					
 					echo '</li>';
 				}
+
+
+				do_action('publishpress-caps_manager_postcaps_section', compact('current', 'rcaps', 'pp_metagroup_caps', 'is_administrator', 'default_caps', 'custom_types', 'defined', 'unfiltered', 'pp_metagroup_caps'));
+
+				$type_caps = apply_filters('publishpress_caps_manager_typecaps', $type_caps);
 
 				echo '</ul>';
 				
@@ -562,16 +590,31 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 				$all_capabilities = apply_filters( 'capsman_get_capabilities', array_keys( $this->capabilities ), $this->ID );
 				$all_capabilities = apply_filters( 'members_get_capabilities', $all_capabilities );
 
+				/*
 				$publishpress_status_change_caps = array();
 				foreach( $all_capabilities as $cap_name ) {
 					if (0 === strpos($cap_name, 'status_change_')) {
 						$publishpress_status_change_caps []= $cap_name;
 					}
 				}
+				*/
 
 				$plugin_caps = apply_filters('cme_plugin_capabilities',
+					[
+					'PublishPress' => apply_filters('cme_publishpress_capabilities',
 					array(
-					'PressPermit' => apply_filters('cme_presspermit_capabilities',
+						'edit_metadata',
+						'edit_post_subscriptions',
+						'ppma_edit_orphan_post',
+						'pp_manage_roles',
+						'pp_set_notification_channel',
+						'pp_view_calendar',
+						'pp_view_content_overview',
+						'status_change',
+						)
+					),
+
+					'PublishPress Permissions' => apply_filters('cme_presspermit_capabilities',
 						array(
 						'edit_own_attachments',
 						'list_others_unattached_files',
@@ -607,20 +650,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 						'set_posts_status',
 						)
 					),
-					'PublishPress' => apply_filters('cme_publishpress_capabilities',
-						array_merge(
-							array(
-							'edit_post_subscriptions',
-							'ppma_edit_orphan_post',
-							'pp_manage_roles',
-							'pp_set_notification_channel',
-							'pp_view_calendar',
-							'pp_view_content_overview',
-							'status_change',
-							),
-							$publishpress_status_change_caps
-						)
-					),
+
 					'WooCommerce' => apply_filters('cme_woocommerce_capabilities', 
 						array(
 						'assign_product_terms',
@@ -709,7 +739,8 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 						'view_woocommerce_reports',
 						)
 					),
-				));
+					]
+				);
 
 				foreach($plugin_caps as $plugin => $__plugin_caps) {
 					if (!is_multisite() || !is_super_admin()) {
@@ -808,7 +839,9 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 
 				uasort( $this->capabilities, 'strnatcasecmp' );  // sort by array values, but maintain keys );
 
-				foreach ( $this->capabilities as $cap_name => $cap ) :
+				$additional_caps = apply_filters('publishpress_caps_manage_additional_caps', $this->capabilities);
+
+				foreach ($additional_caps as $cap_name => $cap) :
 					if ( isset( $type_caps[$cap_name] ) || isset($core_caps[$cap_name]) || isset($type_metacaps[$cap_name]) )
 						continue;
 
@@ -1001,13 +1034,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 				</select>
 				</span>
 
-				<?php if ( ! defined('PRESSPERMIT_ACTIVE') || capsman_get_pp_option('display_hints') ) :?>
-				<span class="cme-subtext" style="float:right">
-					<?php _e( 'Note: Underscores replace spaces in stored capability name ("edit users" => "edit_users").', 'capsman-enhanced' ); ?>
-				</span>
-				<?php endif;?>
 				</div>
-				
 			</dd>
 		</dl>
 
@@ -1046,10 +1073,16 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 			/* <![CDATA[ */
 			jQuery(document).ready( function($) {
 				$('select[name="role"]').val('<?php echo $default;?>');
+
+				$('input.button[name="LoadRole"]').click(function(){
+					$('#publishpress_caps_form').attr('action', 'admin.php?page=capsman&role=' + $('select[name="role"]').val());
+				});
 			});
 			/* ]]> */
 			</script>
 			
+			<?php do_action('publishpress-caps_sidebar_top');?>
+
 			<dl>
 				<dt><?php _e('Create New Role', 'capsman-enhanced'); ?></dt>
 				<dd style="text-align:center;">
@@ -1090,12 +1123,12 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 				</dd>
 			</dl>
 			
-			<dl class="cme-backup-tool">
+			<!-- <dl class="cme-backup-tool">
 				<dt><?php _e('Backup Tool', 'capsman-enhanced'); ?></dt>
 				<dd style="text-align:center;">
-					<p><a href="tools.php?page=capsman-tool"><?php _e('Backup / Restore Roles', 'capsman-enhanced');?></a></p>
+					<p><a href="admin.php?page=capsman-tool"><?php _e('Backup / Restore Roles', 'capsman-enhanced');?></a></p>
 				</dd>
-			</dl>
+			</dl> -->
 			
 			<dl>
 				<dt><?php _e('Related Permissions Plugins', 'capsman-enhanced'); ?></dt>
@@ -1104,7 +1137,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 					<li><a href="https://publishpress.com/ma/" target="_blank"><?php _e('Multiple Authors', 'capsman-enhanced');?></a></li>
 					</li>
 
-					<li><a href="#pp-more"><?php _e('PressPermit', 'capsman-enhanced');?></a>
+					<li><a href="#pp-more"><?php _e('PublishPress Permissions', 'capsman-enhanced');?></a>
 					</li>
 
 					<?php $_url = "plugin-install.php?tab=plugin-information&plugin=publishpress&TB_iframe=true&width=640&height=678";
@@ -1126,6 +1159,8 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 			<?php 
 				$pp_ui->pp_types_ui( $defined['type'] );
 				$pp_ui->pp_taxonomies_ui( $defined['taxonomy'] );
+
+				do_action('publishpress-caps_sidebar_bottom');
 			?>
 		</td>
 	</tr>
@@ -1133,7 +1168,10 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 	</fieldset>
 	</form>
 
-	<?php cme_publishpressFooter(); ?>
+	<?php if (!defined('PUBLISHPRESS_CAPS_PRO_VERSION') || get_option('cme_display_branding')) {
+		cme_publishpressFooter();
+	} 
+	?>
 </div>
 
 <?php
@@ -1163,46 +1201,4 @@ function cme_network_role_ui( $default ) {
 function cme_plugin_info_url( $plugin_slug ) {
 	$_url = "plugin-install.php?tab=plugin-information&plugin=$plugin_slug&TB_iframe=true&width=640&height=678";
 	return ( is_multisite() ) ? network_admin_url($_url) : admin_url($_url);
-}
-
-function cme_publishpressFooter() {
-	?>
-	<footer>
-
-	<div class="pp-rating">
-	<a href="https://wordpress.org/support/plugin/capability-manager-enhanced/reviews/#new-post" target="_blank" rel="noopener noreferrer">
-	<?php printf( 
-		__('If you like %s, please leave us a %s rating. Thank you!', 'capsman-enhanced'),
-		'<strong>Capability Manager Enhanced</strong>',
-		'<span class="dashicons dashicons-star-filled"></span><span class="dashicons dashicons-star-filled"></span><span class="dashicons dashicons-star-filled"></span><span class="dashicons dashicons-star-filled"></span><span class="dashicons dashicons-star-filled"></span>'
-		);
-	?>
-	</a>
-	</div>
-
-	<hr>
-	<nav>
-	<ul>
-	<li><a href="https://publishpress.com/capability-manager/" target="_blank" rel="noopener noreferrer" title="<?php _e('About Capability Manager Enhanced', 'capsman-enhanced');?>"><?php _e('About', 'capsman-enhanced');?>
-	</a></li>
-	<li><a href="https://publishpress.com/knowledge-base/how-to-use-capability-manager/" target="_blank" rel="noopener noreferrer" title="<?php _e('Capability Manager Enhanced Documentation', 'capsman-enhanced');?>"><?php _e('Documentation', 'capsman-enhanced');?>
-	</a></li>
-	<li><a href="https://publishpress.com/contact" target="_blank" rel="noopener noreferrer" title="<?php _e('Contact the PublishPress team', 'capsman-enhanced');?>"><?php _e('Contact', 'capsman-enhanced');?>
-	</a></li>
-	<li><a href="https://twitter.com/publishpresscom" target="_blank" rel="noopener noreferrer"><span class="dashicons dashicons-twitter"></span>
-	</a></li>
-	<li><a href="https://facebook.com/publishpress" target="_blank" rel="noopener noreferrer"><span class="dashicons dashicons-facebook"></span>
-	</a></li>
-	</ul>
-	</nav>
-
-	<div class="pp-pressshack-logo">
-	<a href="https://publishpress.com" target="_blank" rel="noopener noreferrer">
-
-	<img src="<?php echo plugins_url('', CME_FILE) . '/common/img/publishpress-logo.png';?>" />
-	</a>
-	</div>
-
-	</footer>
-	<?php
 }

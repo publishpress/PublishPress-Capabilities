@@ -1,9 +1,10 @@
-=== Capability Manager Enhanced===
+=== PublishPress Capabilities ===
 Contributors: publishpress, kevinB, stevejburge, andergmartins
 Tags: role, capabilities, post types, taxonomies, editor, network, woocommerce
-Requires at least: 4.1
-Tested up to: 5.2.4
-Stable tag: 1.8.1
+Requires at least: 4.9.7
+Tested up to: 5.3.2
+Requires PHP: 5.4
+Stable tag: 1.9
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -21,15 +22,17 @@ Control permissions requirements for your post types, and assign those capabilit
 * Enable distinct edit, delete and assign capabilities for any Taxonomy
 * Some specialized support for WooCommerce Post Types
 * Negation: any capability can be granted, not granted, or blocked
-* Integration with PressPermit and PublishPress for comprehensive publishing solutions
+* Integration with other PublishPress plugins for advanced permissions and comprehensive publishing solutions
 * Network: Copy any role to all sites, or auto-copy to future sites
 * Backup (automatic / manual) and restore roles and capabilities to revert your changes
 
-Capability Manager Enhanced is professionally developed and supported by the experienced <a href="https://publishpress.com">PublishPress</a> team.
+PublishPress Capabilities is professionally developed and supported by the experienced <a href="https://publishpress.com">PublishPress</a> team.
 
 It has been a reliable tool since 2012, when PublishPress team member Kevin Behrens forked it from Jordi Canals' abandoned Capability Manager plugin.
 
-For additional versatility and convenience, try <a href="https://wordpress.org/plugins/press-permit-core">PressPermit</a> plugin integration. Capabilities added indirectly by supplemental type-specific roles (Page Contributor, Product Editor, etc.) will be highlighted in the CME role editor.
+To control assignment of PublishPress custom statuses, upgrade to <a href="https://publishpress.com/capability-manager/">Capabilities Pro</a>.
+
+Pro membership also provides additional versatility and convenience through <a href="https://wordpress.org/plugins/press-permit-core">PublishPress Permissions Pro</a> integration. Capabilities added indirectly by supplemental type-specific roles (Page Contributor, Product Editor, etc.) will be highlighted in the Role Capabilities editor.
 
 == Screenshots ==
 
@@ -37,7 +40,7 @@ For additional versatility and convenience, try <a href="https://wordpress.org/p
 2. Users Menu
 3. Network: copy Role to existing or future Sites
 4. Role operations
-5. Permissions Menu (PressPermit integration)
+5. Permissions Menu (PublishPress Permissions integration)
 6. Shading of Capabilities granted by supplemental Type-Specific Roles
 7. Enforce Type-Specific Capabilities
 8. Enforce Taxonomy-Specific Capabilities
@@ -68,17 +71,17 @@ Yes. Users with the 'manage_capabilities' capability can edit roles. This Capabi
 
 == Changelog ==
 
-= 1.8.2-beta3 =
+= 1.9 - 9 Jan 2020 =
+  * Change : Renamed to PublishPress Capabilities
+  * Feature : Capabilities link on PublishPress > Roles row opens Role Capabilities screen
   * Fixed : Multisite - On sub-sites, Role Capabilities screen did not display PublishPress Capabilities section to Super Administrators who don't have a role on the site
+  * Fixed : Reloading caused Role Capabilities screen to display default role 
+  * Fixed : Add Capability sidebar added custom capability to role immediately, but capability checkbox did not display as checked until reload   
   * Fixed : Category Assign or Delete capabilities were not effective due to WordPress core forcing default capability requirement
   * Fixed : Term Assign or Delete capabilities were not effective due to WordPress core forcing default capability requirement
-
-= 1.8.2-beta2 =
   * Fixed : Role name captions on Role Capabilities and Backup Tool screens could not be translated
   * Fixed : Checkbox bulk selection on Role Capabilities screen was incorrect under some conditions
   * Change : Apply workaround filters for WordPress edit_published_posts / publish_posts handling only for users who have edit_published_posts capability for current post type
-
-= 1.8.2-beta =
   * Change : Reinstate WordPress edit_published_posts workaround with correct status filtering behavior
 
 = 1.8.1 - 25 Oct 2019 =

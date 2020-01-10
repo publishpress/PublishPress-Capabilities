@@ -10,6 +10,8 @@ class CapsmanHandler
 	function processAdminGeneral( $post ) {
 		global $wp_roles;
 		
+		do_action('publishpress-caps_process_update');
+
 		// Create a new role.
 		if ( ! empty($post['CreateRole']) ) {
 			if ( $newrole = $this->createRole($post['create-name']) ) {
@@ -69,7 +71,6 @@ class CapsmanHandler
 
 			if ( $newname = $this->createNewName($post['capability-name']) ) {
 				$role->add_cap($newname['name']);
-				$this->cm->message = __('New capability added to role.');
 
 				// for bbPress < 2.2, need to log customization of roles following bbPress activation
 				$plugins = ( function_exists( 'bbp_get_version' ) && version_compare( bbp_get_version(), '2.2', '<' ) ) ? array( 'bbpress.php' ) : array();	// back compat
@@ -82,8 +83,12 @@ class CapsmanHandler
 				
 				global $wpdb;
 				$wpdb->query( "UPDATE $wpdb->options SET autoload = 'no' WHERE option_name = 'pp_customized_roles'" );
+
+				$url = admin_url('admin.php?page=capsman&role=' . $post['role'] . '&added=1');
+				wp_redirect($url);
+				exit;
 			} else {
-				$this->cm->message = __('Incorrect capability name.');
+				ak_admin_notify(__('Incorrect capability name.'));
 			}
 			
 		} elseif ( ! empty($post['update_filtered_types']) || ! empty($post['update_filtered_taxonomies']) || ! empty($post['update_detailed_taxonomies']) ) {
@@ -93,15 +98,18 @@ class CapsmanHandler
 			//	ak_admin_error(__('Error saving capability settings.', 'capsman-enhanced'));
 			//}
 		} else {
-		    // TODO: Implement exceptions. This must be a fatal error.
+			if (!apply_filters('publishpress-caps_submission_ok', false)) {
 		    ak_admin_error(__('Bad form received.', 'capsman-enhanced'));
+			}
 		}
 
 		if ( ! empty($newrole) && defined('PRESSPERMIT_ACTIVE') ) {
 			if ( ( ! empty($post['CreateRole']) && ! empty( $_REQUEST['new_role_pp_only'] ) ) || ( ! empty($post['CopyRole']) && ! empty( $_REQUEST['copy_role_pp_only'] ) ) ) {
-				$pp_only = (array) capsman_get_pp_option( 'supplemental_role_defs' );
+				$pp_only = (array) pp_capabilities_get_permissions_option( 'supplemental_role_defs' );
 				$pp_only[]= $newrole;
-				pp_update_option( 'supplemental_role_defs', $pp_only );
+
+				pp_capabilities_update_permissions_option('supplemental_role_defs', $pp_only);
+				
 				_cme_pp_default_pattern_role( $newrole );
 				pp_refresh_options();
 			}

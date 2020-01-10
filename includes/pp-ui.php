@@ -30,17 +30,17 @@ class Capsman_PP_UI {
 	}
 	
 	function show_capability_hints( $default ) {					
-		if ( capsman_get_pp_option('display_hints') ) {
+		if ( pp_capabilities_get_permissions_option('display_hints') ) {
 			$cme_id = 'capsman';
 		
-			echo '<ul class="ul-disc" style="margin-top:10px">';
+			echo '<ul class="ul-disc publishpress-caps-extra-hints" style="margin-top:10px;display:none">';
 			
 			$pp_prefix = ( defined( 'PRESSPERMIT_VERSION') ) ? 'presspermit' : 'pp';
 
 			if ( defined( 'PPCE_VERSION' ) || ! defined( 'PRESSPERMIT_ACTIVE' ) || in_array( $default, array( 'subscriber', 'contributor', 'author', 'editor' ) ) ) {
 				echo '<li>';
 				if ( defined( 'PPCE_VERSION' ) || ! defined( 'PRESSPERMIT_ACTIVE' ) ) {
-					if ( capsman_get_pp_option( 'advanced_options' ) )
+					if ( pp_capabilities_get_permissions_option( 'advanced_options' ) )
 						$parenthetical = ' (' . sprintf( __( 'see %1$sRole Usage%2$s: "Pattern Roles"', 'capsman-enhanced' ), "<a href='" . admin_url("admin.php?page={$pp_prefix}-role-usage") . "'>", '</a>' ) . ')';
 					else
 						$parenthetical = ' (' . sprintf( __( 'activate %1$sAdvanced settings%2$s, see Role Usage', 'capsman-enhanced' ), "<a href='" . admin_url("admin.php?page={$pp_prefix}-settings&pp_tab=advanced") . "'>", '</a>' ). ')';
@@ -59,7 +59,7 @@ class Capsman_PP_UI {
 			if ( defined( 'PRESSPERMIT_ACTIVE' ) )
 				if ( defined( 'PPS_VERSION' ) )
 					$status_hint = sprintf( __( 'Capabilities for custom statuses can be manually added here. (See %sPermissions > Post Statuses%s for applicable names). %sSupplemental status-specific roles%s are usually more convenient, though.', $cme_id ), "<a href='" . admin_url("admin.php?page={$pp_prefix}-statuses&show_caps=1") . "'>", '</a>', "<a href='" . admin_url("admin.php?page={$pp_prefix}-groups") . "'>", '</a>' ) ;
-				elseif ( capsman_get_pp_option( 'display_extension_hints' ) )
+				elseif ( pp_capabilities_get_permissions_option( 'display_extension_hints' ) )
 					$status_hint = sprintf( __( 'Capabilities for custom statuses can be manually added here. Or activate the PP Custom Post Statuses extension to assign status-specific supplemental roles.', $cme_id ), "<a href='" . admin_url("admin.php?page={$pp_prefix}-role-usage") . "'>", '</a>' ) ;
 			
 			elseif ( defined( 'PP_VERSION' ) )
@@ -80,7 +80,7 @@ class Capsman_PP_UI {
 		<div style="float:right">
 			<?php
 			pp_refresh_options();
-			$pp_only = (array) capsman_get_pp_option( 'supplemental_role_defs' );
+			$pp_only = (array) pp_capabilities_get_permissions_option( 'supplemental_role_defs' );
 			$checked = ( in_array( $default, $pp_only ) ) ? 'checked="checked"': '';
 			?>
 			<label for="pp_only_role" title="<?php _e('Make role available for supplemental assignment to Permission Groups only', 'capsman-enhanced');?>"><input type="checkbox" name="pp_only_role" id="pp_only_role" value="1" <?php echo $checked;?>> <?php _e('hidden role', 'capsman-enhanced'); ?> </label>
@@ -100,7 +100,7 @@ class Capsman_PP_UI {
 				$caption = __( 'Ensure permissions can be controlled separately from other post types.', 'capsman-enhanced' );
 				echo "<p class='cme-hint'>$caption</p>";
 				
-				if ( defined( 'PRESSPERMIT_ACTIVE' ) && capsman_get_pp_option( 'display_hints' ) ) :?>
+				if ( defined( 'PRESSPERMIT_ACTIVE' ) && pp_capabilities_get_permissions_option( 'display_hints' ) ) :?>
 				<div class="cme-subtext" style="margin-top:0">
 				<?php /*_e( '(PP Filtered Post Types, Taxonomies)', 'capsman-enhanced' ); */?>
 				</div>
