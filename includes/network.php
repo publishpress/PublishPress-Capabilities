@@ -16,7 +16,7 @@ function _cme_new_blog( $new_blog_id ) {
 		$main_admin_caps = $admin_role->capabilities;
 		
 		if ( defined('PRESSPERMIT_ACTIVE') )
-			$main_pp_only = (array) capsman_get_pp_option( 'supplemental_role_defs' );
+			$main_pp_only = (array) pp_capabilities_get_permissions_option( 'supplemental_role_defs' );
 			//$pp_only[]= $newrole;
 	
 		foreach( $autocreate_roles as $role_name ) {
@@ -31,7 +31,7 @@ function _cme_new_blog( $new_blog_id ) {
 		
 		if ( defined('PRESSPERMIT_ACTIVE') ) {
 			pp_refresh_options();
-			$blog_pp_only = (array) capsman_get_pp_option( 'supplemental_role_defs' );
+			$blog_pp_only = (array) pp_capabilities_get_permissions_option( 'supplemental_role_defs' );
 		}
 			
 		foreach( $main_site_caps as $role_name => $caps ) {
@@ -62,8 +62,9 @@ function _cme_new_blog( $new_blog_id ) {
 			}
 		}
 		
-		if ( defined('PRESSPERMIT_ACTIVE') )
-			pp_update_option( 'supplemental_role_defs', $blog_pp_only );
+		if ( defined('PRESSPERMIT_ACTIVE') ) {
+			pp_capabilities_update_permissions_option('supplemental_role_defs', $blog_pp_only);
+		}
 		
 		restore_current_blog();
 		( method_exists( $wp_roles, 'for_site' ) ) ? $wp_roles->for_site() : $wp_roles->reinit();
