@@ -113,7 +113,7 @@
 						<?php 
 						$role_caption = $props['name'];
 						if ( empty( $wp_roles->role_objects[$role] ) ) $role_caption = "<span class='cme-plus' style='color:green;font-weight:800'>$role_caption</span>";?>
-						<h4><?php printf( __( '%s (level %s)', 'capsman-enhanced' ), $role_caption, $level );?></h4>
+						<h4><?php printf( __( '%s (level %s)', 'capsman-enhanced' ), translate_user_role($role_caption), $level );?></h4>
 						<ul style="list-style:disc;padding-left:30px">
 						
 						<?php

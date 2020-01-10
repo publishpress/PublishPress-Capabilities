@@ -67,7 +67,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 	<tr>
 		<td class="content">
 		<dl>
-			<dt><?php printf(__('Capabilities for %s', 'capsman-enhanced'), $roles[$default]); ?></dt>
+			<dt><?php printf(__('Capabilities for %s', 'capsman-enhanced'), translate_user_role($roles[$default])); ?></dt>
 			<dd>
 				<div style="float:right">
 				<input type="submit" name="SaveRole" value="<?php _e('Save Changes', 'capsman-enhanced') ?>" class="button-primary" /> &nbsp;
@@ -188,7 +188,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 				
 				$rcaps = $current->capabilities;
 
-				$is_administrator = current_user_can( 'administrator' );
+				$is_administrator = current_user_can( 'administrator' ) || (is_multisite() && is_super_admin());
 				
 				$custom_types = get_post_types( array( '_builtin' => false ), 'names' );
 				$custom_tax = get_taxonomies( array( '_builtin' => false ), 'names' );
@@ -427,8 +427,9 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 
 								if ('type' == $item_type) {
 									$type_metacaps[$type_obj->cap->read_post] = true;
-									$type_metacaps[$type_obj->cap->edit_post] = true;
-									$type_metacaps[$type_obj->cap->delete_post] = true;
+									$type_metacaps[$type_obj->cap->edit_post] = isset($type_obj->cap->edit_posts) && ($type_obj->cap->edit_post != $type_obj->cap->edit_posts);
+									$type_metacaps[$type_obj->cap->delete_post] = isset($type_obj->cap->delete_posts) && ($type_obj->cap->delete_post != $type_obj->cap->delete_posts);
+
 								} elseif ('taxonomy' == $item_type && !empty($type_obj->cap->edit_term) && !empty($type_obj->cap->delete_term)) {
 									$type_metacaps[$type_obj->cap->edit_term] = true;
 									$type_metacaps[$type_obj->cap->delete_term] = true;
@@ -711,8 +712,12 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 				));
 
 				foreach($plugin_caps as $plugin => $__plugin_caps) {
-					if (!$_plugin_caps = array_fill_keys( array_intersect($__plugin_caps, $all_capabilities), true )) {
-						continue;
+					if (!is_multisite() || !is_super_admin()) {
+						if (!$_plugin_caps = array_fill_keys( array_intersect($__plugin_caps, $all_capabilities), true )) {
+							continue;
+						}
+					} else {
+						$_plugin_caps = array_fill_keys($__plugin_caps, true);
 					}
 
 					echo '<h3 class="cme-cap-section">' . sprintf(__( '%s Capabilities', 'capsman-enhanced' ), str_replace('_', ' ', $plugin )) . '</h3>';
@@ -894,7 +899,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 				</table>
 				
 				<?php
-				if (array_intersect(array_keys($type_metacaps), $all_capabilities)) {
+				if (array_intersect(array_keys(array_filter($type_metacaps)), $all_capabilities)) {
 
 				$_title = esc_attr(__('Meta capabilities are used in code as placeholders for other capabilities. Assiging to a role has no effect.'));
 				echo '<p>&nbsp;</p><h3 class="cme-cap-section" title="' . $_title . '">' . __( 'Invalid Capabilities', 'capsman-enhanced' ) . '</h3>';
@@ -1029,6 +1034,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 					<p><select name="role">
 					<?php
 					foreach ( $roles as $role => $name ) {
+						$name = translate_user_role($name);
 						echo '<option value="' . $role .'"'; selected($default, $role); echo '> ' . $name . ' &nbsp;</option>';
 					}
 					?>
@@ -1061,7 +1067,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 			</dl>
 
 			<dl>
-				<dt><?php defined('WPLANG') && WPLANG ? _e('Copy this role to', 'capsman-enhanced') : printf( 'Copy %s Role', $roles[$default] ); ?></dt>
+				<dt><?php defined('WPLANG') && WPLANG ? _e('Copy this role to', 'capsman-enhanced') : printf('Copy %s Role', translate_user_role($roles[$default])); ?></dt>
 				<dd style="text-align:center;">
 					<?php $class = ( $support_pp_only_roles ) ? 'tight-text' : 'regular-text'; ?>
 					<p><input type="text" name="copy-name"  class="<?php echo $class;?>" placeholder="<?php _e('Role Name', 'capsman-enhanced') ?>" />

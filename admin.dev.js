@@ -39,10 +39,10 @@ jQuery(document).ready( function($) {
 	});
 	
 	$('table.cme-typecaps a.neg-type-caps').click( function(e) {
-		$(this).closest('tr').find('td[class!="cap-neg"]').filter('td[class!="cap-unreg"]').each( function(e) {
+		$(this).closest('tr').find('td[class!="cap-neg"]').filter('td[class!="cap-unreg"]').each( function() {
 			$(this).addClass('cap-neg');
 
-			var cap_name_attr = $(this).parent().find('input[type="checkbox"]').attr('name');
+			var cap_name_attr = $(this).find('input[type="checkbox"]').attr('name');
 			$(this).append('<input type="hidden" class="cme-negation-input" name="'+cap_name_attr+'" value="" />');
 		});
 		

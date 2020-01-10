@@ -27,7 +27,7 @@ class WP_REST_Workarounds
 
 		add_action('admin_print_styles-post.php', [$this, 'actAdminPrintScripts']);
 	}
-
+	
     /**
     * Work around Gutenberg editor enforcing publish_posts capability instead of edit_published_posts.
     * 
@@ -35,7 +35,7 @@ class WP_REST_Workarounds
 	*   - The query pertains to a specific post
 	*	- The post type and its capabilities are defined and match the current publish capability requirement
 	*	- The post is already published with a public status, or scheduled
-    *
+	*
 	* Filter hook: 'user_has_cap'
 	*
 	* @author Kevin Behrens
@@ -87,7 +87,7 @@ class WP_REST_Workarounds
 	*
 	* This is hooked to the edit_post_status filter and also called internally from REST update_item capability check (for Gutenberg)
 	* and wp_insert_post_data (for Classic Editor and Quick Edit) 
-    *
+	*
 	* Filter hook: 'edit_post_status'
 	*
 	* @author Kevin Behrens
@@ -96,7 +96,7 @@ class WP_REST_Workarounds
     */
 	public function fltPostStatus($post_status, $post_id) {
 		global $current_user;
-		
+
 		$new_status_obj = get_post_status_object($post_status);
 		if (!$new_status_obj || !empty($new_status_obj->internal)) {
 			return $post_status;
@@ -106,10 +106,10 @@ class WP_REST_Workarounds
 			return $post_status;
 		}
 
-			$type_obj = get_post_type_object($_post->post_type);
-			$status_obj = get_post_status_object($_post->post_status);
+		$type_obj = get_post_type_object($_post->post_type);
+		$status_obj = get_post_status_object($_post->post_status);
 
-			if ($type_obj && $status_obj && (!empty($status_obj->public) || !empty($status_obj->private) || 'future' == $_post->post_status)) {
+		if ($type_obj && $status_obj && (!empty($status_obj->public) || !empty($status_obj->private) || 'future' == $_post->post_status)) {
 			// Apply this workaround only if current user has $type_obj->cap->edit_published_posts
 			if (isset($type_obj->cap->edit_published_posts) && !empty($current_user->allcaps[$type_obj->cap->edit_published_posts])) {
 				$this->skip_filtering = true;
@@ -153,7 +153,7 @@ class WP_REST_Workarounds
     * @param  array  $args         Additional arguments passed into user_has_cap filter
 	*/
 	public function fltRegulateUnpublish($wp_sitecaps, $reqd_caps, $args)
-    {
+	{
 		if (!defined('REST_REQUEST') || !REST_REQUEST || !$this->is_posts_request || !$this->post_id || $this->skip_filtering) {
 			return $wp_sitecaps;
 		}
@@ -183,13 +183,13 @@ class WP_REST_Workarounds
 
 		if (empty($post) || !did_action('enqueue_block_editor_assets')) {
 			return;
-        }
+		}
 
 		$status_obj = get_post_status_object($post->post_status);
 
 		if (!$status_obj || (empty($status_obj->public) && empty($status_obj->private))) {
 			return;
-        }
+		}
 
 		$type_obj = get_post_type_object($post->post_type);
 		$this->skip_filtering = true;
@@ -200,7 +200,7 @@ class WP_REST_Workarounds
 
 		$this->skip_filtering = false;
 	}
-		
+	
 	/**
 	* Log REST query parameters for possible use by subsequent filters
 	*
