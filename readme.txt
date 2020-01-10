@@ -1,9 +1,10 @@
 === PublishPress Capabilities ===
 Contributors: publishpress, kevinB, stevejburge, andergmartins
 Tags: role, capabilities, post types, taxonomies, editor, network, woocommerce
-Requires at least: 4.1
-Tested up to: 5.2.4
-Stable tag: 1.8.1
+Requires at least: 4.9.7
+Tested up to: 5.3.2
+Requires PHP: 5.4
+Stable tag: 1.9
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -70,17 +71,17 @@ Yes. Users with the 'manage_capabilities' capability can edit roles. This Capabi
 
 == Changelog ==
 
-= 1.8.2-beta3 =
+= 1.9 - 9 Jan 2020 =
+  * Change : Renamed to PublishPress Capabilities
+  * Feature : Capabilities link on PublishPress > Roles row opens Role Capabilities screen
   * Fixed : Multisite - On sub-sites, Role Capabilities screen did not display PublishPress Capabilities section to Super Administrators who don't have a role on the site
+  * Fixed : Reloading caused Role Capabilities screen to display default role 
+  * Fixed : Add Capability sidebar added custom capability to role immediately, but capability checkbox did not display as checked until reload   
   * Fixed : Category Assign or Delete capabilities were not effective due to WordPress core forcing default capability requirement
   * Fixed : Term Assign or Delete capabilities were not effective due to WordPress core forcing default capability requirement
-
-= 1.8.2-beta2 =
   * Fixed : Role name captions on Role Capabilities and Backup Tool screens could not be translated
   * Fixed : Checkbox bulk selection on Role Capabilities screen was incorrect under some conditions
   * Change : Apply workaround filters for WordPress edit_published_posts / publish_posts handling only for users who have edit_published_posts capability for current post type
-
-= 1.8.2-beta =
   * Change : Reinstate WordPress edit_published_posts workaround with correct status filtering behavior
 
 = 1.8.1 - 25 Oct 2019 =
