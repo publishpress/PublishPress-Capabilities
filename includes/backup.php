@@ -30,7 +30,8 @@
  */
 
 ?>
-<div class="wrap">
+
+<div class="wrap publishpress-caps-manage pressshack-admin-wrapper">
 	<div id="icon-capsman-admin" class="icon32"></div>
 	<h2><?php printf( __('Backup Tool for %1$sPublishPress Capabilities%2$s', 'capsman-enhanced'), '<a href="admin.php?page=capsman">', '</a>' );?></h2>
 
@@ -153,4 +154,9 @@
 	</table>
 	</fieldset>
 	</form>
+
+	<?php if (!defined('PUBLISHPRESS_CAPS_PRO_VERSION') || get_option('cme_display_branding')) {
+		cme_publishpressFooter();
+	} 
+	?>
 </div>

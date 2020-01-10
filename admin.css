@@ -196,6 +196,10 @@ div.pressshack-admin-wrapper footer {
 padding-right: 270px;
 }
 
+body.capabilities_page_capsman-tool div.pressshack-admin-wrapper footer {
+padding-right: 5px;
+}
+
 #akmin div.publishpress-headline {line-height:25px}
 #akmin span.publishpress-thanks{margin-left:5px;color:#655997;white-space:nowrap}
 #akmin span.publishpress-thanks,#akmin span.publishpress-thanks a,#akmin span.publishpress-thanks a:visited {color:#655997;font-weight:bold;}

@@ -47,7 +47,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 	$pp_metagroup_caps = array();
 }
 ?>
-<div class="wrap pressshack-admin-wrapper">
+<div class="wrap publishpress-caps-manage pressshack-admin-wrapper">
 	<?php if( defined('PRESSPERMIT_ACTIVE') ) :
 		pp_icon();
 		$style = 'style="height:60px;"';
@@ -1050,6 +1050,8 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 			/* ]]> */
 			</script>
 			
+			<?php do_action('publishpress-caps_sidebar_top');?>
+
 			<dl>
 				<dt><?php _e('Create New Role', 'capsman-enhanced'); ?></dt>
 				<dd style="text-align:center;">
@@ -1133,7 +1135,10 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 	</fieldset>
 	</form>
 
-	<?php cme_publishpressFooter(); ?>
+	<?php if (!defined('PUBLISHPRESS_CAPS_PRO_VERSION') || get_option('cme_display_branding')) {
+		cme_publishpressFooter();
+	} 
+	?>
 </div>
 
 <?php

@@ -609,3 +609,45 @@ class CapabilityManager
 		include ( dirname(CME_FILE) . '/includes/backup.php' );
 	}
 }
+
+function cme_publishpressFooter() {
+	?>
+	<footer>
+
+	<div class="pp-rating">
+	<a href="https://wordpress.org/support/plugin/capability-manager-enhanced/reviews/#new-post" target="_blank" rel="noopener noreferrer">
+	<?php printf( 
+		__('If you like %s, please leave us a %s rating. Thank you!', 'capsman-enhanced'),
+		'<strong>PublishPress Capabilities</strong>',
+		'<span class="dashicons dashicons-star-filled"></span><span class="dashicons dashicons-star-filled"></span><span class="dashicons dashicons-star-filled"></span><span class="dashicons dashicons-star-filled"></span><span class="dashicons dashicons-star-filled"></span>'
+		);
+	?>
+	</a>
+	</div>
+
+	<hr>
+	<nav>
+	<ul>
+	<li><a href="https://publishpress.com/capability-manager/" target="_blank" rel="noopener noreferrer" title="<?php _e('About PublishPress Capabilities', 'capsman-enhanced');?>"><?php _e('About', 'capsman-enhanced');?>
+	</a></li>
+	<li><a href="https://publishpress.com/knowledge-base/how-to-use-capability-manager/" target="_blank" rel="noopener noreferrer" title="<?php _e('Capabilites Documentation', 'capsman-enhanced');?>"><?php _e('Documentation', 'capsman-enhanced');?>
+	</a></li>
+	<li><a href="https://publishpress.com/contact" target="_blank" rel="noopener noreferrer" title="<?php _e('Contact the PublishPress team', 'capsman-enhanced');?>"><?php _e('Contact', 'capsman-enhanced');?>
+	</a></li>
+	<li><a href="https://twitter.com/publishpresscom" target="_blank" rel="noopener noreferrer"><span class="dashicons dashicons-twitter"></span>
+	</a></li>
+	<li><a href="https://facebook.com/publishpress" target="_blank" rel="noopener noreferrer"><span class="dashicons dashicons-facebook"></span>
+	</a></li>
+	</ul>
+	</nav>
+
+	<div class="pp-pressshack-logo">
+	<a href="https://publishpress.com" target="_blank" rel="noopener noreferrer">
+
+	<img src="<?php echo plugins_url('', CME_FILE) . '/common/img/publishpress-logo.png';?>" />
+	</a>
+	</div>
+
+	</footer>
+	<?php
+}
