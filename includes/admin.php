@@ -303,7 +303,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 					echo '<li>';
 					echo '<h3>' . $cap_type_names[$cap_type] . '</h3>';
 					
-					echo '<div class="cme-cap-type-tables">';
+					echo "<div class='cme-cap-type-tables cme-cap-type-tables-$cap_type'>";
 
 					foreach( array_keys($defined) as $item_type ) {
 						if ( ( 'delete' == $cap_type ) && ( 'taxonomy' == $item_type ) ) {
@@ -326,7 +326,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 						if ( ! count( $cap_properties[$cap_type][$item_type] ) )
 							continue;
 					
-						echo '<table class="cme-typecaps">';
+						echo "<table class='cme-typecaps cme-typecaps-$cap_type'>";
 
 						echo '<tr><th></th>';
 						
@@ -474,6 +474,11 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 					echo '</li>';
 				}
 
+
+				do_action('publishpress-caps_manager_postcaps_section', compact('current', 'rcaps', 'pp_metagroup_caps', 'is_administrator', 'default_caps', 'custom_types', 'defined', 'unfiltered', 'pp_metagroup_caps'));
+
+				$type_caps = apply_filters('publishpress_caps_manager_typecaps', $type_caps);
+
 				echo '</ul>';
 				
 				// clicking on post type name toggles corresponding checkbox selections
@@ -585,16 +590,31 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 				$all_capabilities = apply_filters( 'capsman_get_capabilities', array_keys( $this->capabilities ), $this->ID );
 				$all_capabilities = apply_filters( 'members_get_capabilities', $all_capabilities );
 
+				/*
 				$publishpress_status_change_caps = array();
 				foreach( $all_capabilities as $cap_name ) {
 					if (0 === strpos($cap_name, 'status_change_')) {
 						$publishpress_status_change_caps []= $cap_name;
 					}
 				}
+				*/
 
 				$plugin_caps = apply_filters('cme_plugin_capabilities',
+					[
+					'PublishPress' => apply_filters('cme_publishpress_capabilities',
 					array(
-					'PressPermit' => apply_filters('cme_presspermit_capabilities',
+						'edit_metadata',
+						'edit_post_subscriptions',
+						'ppma_edit_orphan_post',
+						'pp_manage_roles',
+						'pp_set_notification_channel',
+						'pp_view_calendar',
+						'pp_view_content_overview',
+						'status_change',
+						)
+					),
+
+					'PublishPress Permissions' => apply_filters('cme_presspermit_capabilities',
 						array(
 						'edit_own_attachments',
 						'list_others_unattached_files',
@@ -630,20 +650,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 						'set_posts_status',
 						)
 					),
-					'PublishPress' => apply_filters('cme_publishpress_capabilities',
-						array_merge(
-							array(
-							'edit_post_subscriptions',
-							'ppma_edit_orphan_post',
-							'pp_manage_roles',
-							'pp_set_notification_channel',
-							'pp_view_calendar',
-							'pp_view_content_overview',
-							'status_change',
-							),
-							$publishpress_status_change_caps
-						)
-					),
+
 					'WooCommerce' => apply_filters('cme_woocommerce_capabilities', 
 						array(
 						'assign_product_terms',
@@ -732,7 +739,8 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 						'view_woocommerce_reports',
 						)
 					),
-				));
+					]
+				);
 
 				foreach($plugin_caps as $plugin => $__plugin_caps) {
 					if (!is_multisite() || !is_super_admin()) {
@@ -831,7 +839,9 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 
 				uasort( $this->capabilities, 'strnatcasecmp' );  // sort by array values, but maintain keys );
 
-				foreach ( $this->capabilities as $cap_name => $cap ) :
+				$additional_caps = apply_filters('publishpress_caps_manage_additional_caps', $this->capabilities);
+
+				foreach ($additional_caps as $cap_name => $cap) :
 					if ( isset( $type_caps[$cap_name] ) || isset($core_caps[$cap_name]) || isset($type_metacaps[$cap_name]) )
 						continue;
 
