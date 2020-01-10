@@ -27,8 +27,9 @@
  */
 
 if ( ! defined( 'CAPSMAN_VERSION' ) ) {
-	define( 'CAPSMAN_VERSION', '1.8.2-beta3.3' );
-	define( 'CAPSMAN_ENH_VERSION', '1.8.2-beta3.3' );
+	define('CAPSMAN_VERSION', 			'1.9');
+	define('CAPSMAN_ENH_VERSION', 		'1.9');
+	define('PUBLISHPRESS_CAPS_VERSION', '1.9');
 }
 
 if ( cme_is_plugin_active( 'capsman.php' ) ) {

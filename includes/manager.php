@@ -150,17 +150,17 @@ class CapabilityManager
 		if ( empty( $_REQUEST['page'] ) || ! in_array( $_REQUEST['page'], array( 'capsman', 'capsman-tool' ) ) )
 			return;
 		
-		wp_enqueue_style('revisionary-admin-common', $this->mod_url . '/common/css/pressshack-admin.css', [], CAPSMAN_ENH_VERSION);
+		wp_enqueue_style('cme-admin-common', $this->mod_url . '/common/css/pressshack-admin.css', [], PUBLISHPRESS_CAPS_VERSION);
 
-		wp_register_style( $this->ID . 'framework_admin', $this->mod_url . '/framework/styles/admin.css', false, CAPSMAN_ENH_VERSION);
+		wp_register_style( $this->ID . 'framework_admin', $this->mod_url . '/framework/styles/admin.css', false, PUBLISHPRESS_CAPS_VERSION);
    		wp_enqueue_style( $this->ID . 'framework_admin');
 		
-   		wp_register_style( $this->ID . '_admin', $this->mod_url . '/admin.css', false, CAPSMAN_ENH_VERSION);
+   		wp_register_style( $this->ID . '_admin', $this->mod_url . '/admin.css', false, PUBLISHPRESS_CAPS_VERSION);
    		wp_enqueue_style( $this->ID . '_admin');
 		
 		$suffix = defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ? '.dev' : '';
 		$url = $this->mod_url . "/admin{$suffix}.js";
-		wp_enqueue_script( 'cme_admin', $url, array('jquery'), CAPSMAN_VERSION, true );
+		wp_enqueue_script( 'cme_admin', $url, array('jquery'), PUBLISHPRESS_CAPS_VERSION, true );
 		wp_localize_script( 'cme_admin', 'cmeAdmin', array( 
 			'negationCaption' => __( 'Explicity negate this capability by storing as disabled', 'capsman-enhanced' ),
 			'typeCapsNegationCaption' => __( 'Explicitly negate these capabilities by storing as disabled', 'capsman-enhanced' ),
@@ -185,8 +185,8 @@ class CapabilityManager
     protected function moduleLoad ()
     {
 		$old_version = get_option($this->ID . '_version');
-		if ( version_compare( $old_version, CAPSMAN_ENH_VERSION, 'ne') ) {
-			update_option($this->ID . '_version', CAPSMAN_ENH_VERSION);
+		if ( version_compare( $old_version, PUBLISHPRESS_CAPS_VERSION, 'ne') ) {
+			update_option($this->ID . '_version', PUBLISHPRESS_CAPS_VERSION);
 			$this->pluginUpdate();
 		}
 		
