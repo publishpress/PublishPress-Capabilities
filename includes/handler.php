@@ -69,7 +69,6 @@ class CapsmanHandler
 
 			if ( $newname = $this->createNewName($post['capability-name']) ) {
 				$role->add_cap($newname['name']);
-				$this->cm->message = __('New capability added to role.');
 
 				// for bbPress < 2.2, need to log customization of roles following bbPress activation
 				$plugins = ( function_exists( 'bbp_get_version' ) && version_compare( bbp_get_version(), '2.2', '<' ) ) ? array( 'bbpress.php' ) : array();	// back compat
@@ -82,6 +81,10 @@ class CapsmanHandler
 				
 				global $wpdb;
 				$wpdb->query( "UPDATE $wpdb->options SET autoload = 'no' WHERE option_name = 'pp_customized_roles'" );
+
+				$url = admin_url('admin.php?page=capsman&role=' . $post['role'] . '&added=1');
+				wp_redirect($url);
+				exit;
 			} else {
 				$this->cm->message = __('Incorrect capability name.');
 			}

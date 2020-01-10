@@ -440,6 +440,10 @@ class CapabilityManager
 			} elseif ( ! empty($_REQUEST['AddCap']) ) {
 				ak_admin_notify( $this->message );
 			}
+		} else {
+			if (!empty($_REQUEST['added'])) {
+				ak_admin_notify(__('New capability added to role.'));
+			}
 		}
 
 		$this->generateNames();
