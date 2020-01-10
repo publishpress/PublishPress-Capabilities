@@ -26,6 +26,11 @@ if ( defined( 'WC_PLUGIN_FILE' ) ) {
 	$cme_extensions->add( new CME_WooCommerce() );
 }
 
+if (!defined('CME_DISABLE_WP_EDIT_PUBLISHED_WORKAROUND')) {
+	require_once (dirname(__FILE__) . '/filters-wp_rest_workarounds.php');
+	new PublishPress\Capabilities\WP_REST_Workarounds();
+}
+
 if ( is_admin() ) {
 	global $pagenow;
 	if ( 'edit.php' == $pagenow ) {
@@ -59,6 +64,31 @@ function _cme_remap_term_meta_cap ( $caps, $cap, $user_id, $args ) {
 	
 	// meta caps
 	switch ( $cap ) {
+		// If detailed taxonomy capabilities are enabled for categories or tags, don't also require default capability for term assignment / deletion
+		case 'assign_categories':
+			if (in_array('category', $enabled_taxonomies)) {
+				$caps = array_diff($caps, ['edit_posts']);
+			}
+			break;
+
+		case 'assign_post_tags':
+			if (in_array('post_tag', $enabled_taxonomies)) {
+				$caps = array_diff($caps, ['edit_posts']);
+			}
+			break;
+
+		case 'delete_categories':
+			if (in_array('category', $enabled_taxonomies)) {
+				$caps = array_diff($caps, ['manage_categories']);
+			}
+			break;
+
+		case 'delete_post_tags':
+			if (in_array('post_tag', $enabled_taxonomies)) {
+				$caps = array_diff($caps, ['manage_categories']);
+			}
+			break;
+
 		case 'edit_term':
 		case 'delete_term':
 		case 'assign_term':
