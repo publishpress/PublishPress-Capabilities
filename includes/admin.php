@@ -130,7 +130,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 				
 				<li>
 				<?php _e( "Assign custom WP roles supplementally for a specific post type <em>(Pro)</em>", 'capsman-enhanced' );?>
-				<a href="https://presspermit.com/tutorial/custom-role-usage" target="_blank"><img class="cme-play" alt="*" src="<?php echo $img_url;?>play.png" /></a></li>
+				</li>
 				
 				<li>
 				<?php _e( "Customize reading permissions per-category or per-post", 'capsman-enhanced' );?>
@@ -158,7 +158,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 				
 				<li>
 				<?php _e( "Grant Spectator, Participant or Moderator access to specific bbPress forums <em>(Pro)</em>", 'capsman-enhanced' );?>
-				<a href="https://presspermit.com/tutorial/bbpress-exceptions" target="_blank"><img class="cme-play" alt="*" src="<?php echo $img_url;?>play.png" /></a></li>
+				</li>
 				
 				<li>
 				<?php _e( "Grant supplemental content permissions to a BuddyPress group <em>(Pro)</em>", 'capsman-enhanced' );?>
@@ -1013,13 +1013,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 				</select>
 				</span>
 
-				<?php if ( ! defined('PRESSPERMIT_ACTIVE') || capsman_get_pp_option('display_hints') ) :?>
-				<span class="cme-subtext" style="float:right">
-					<?php _e( 'Note: Underscores replace spaces in stored capability name ("edit users" => "edit_users").', 'capsman-enhanced' ); ?>
-				</span>
-				<?php endif;?>
 				</div>
-				
 			</dd>
 		</dl>
 
