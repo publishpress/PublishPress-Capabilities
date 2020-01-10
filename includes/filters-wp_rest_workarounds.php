@@ -5,8 +5,8 @@ namespace PublishPress\Capabilities;
  * PublishPress\Capabilities\WP_REST_Workarounds class
  *
  * @author Kevin Behrens
- * @copyright Copyright (c) 2019, PublishPress
- * @link https://publishpress.com
+ * @copyright Copyright (c) 2020, PublishPress
+ * @link https://publishpress.com/
  *
  */
 class WP_REST_Workarounds
@@ -27,7 +27,7 @@ class WP_REST_Workarounds
 
 		add_action('admin_print_styles-post.php', [$this, 'actAdminPrintScripts']);
 	}
-
+	
     /**
     * Work around Gutenberg editor enforcing publish_posts capability instead of edit_published_posts.
     * 
@@ -35,7 +35,7 @@ class WP_REST_Workarounds
 	*   - The query pertains to a specific post
 	*	- The post type and its capabilities are defined and match the current publish capability requirement
 	*	- The post is already published with a public status, or scheduled
-    *
+	*
 	* Filter hook: 'user_has_cap'
 	*
 	* @author Kevin Behrens
@@ -50,6 +50,8 @@ class WP_REST_Workarounds
 		if ($this->skip_filtering) {
 			return $wp_sitecaps;
 		}
+
+		$reqd_caps = (array) $reqd_caps;
 
 		if ($reqd_cap = reset($reqd_caps)) {
 			// slight compromise for perf: apply this workaround only when cap->publish_posts property for post type follows typical pattern (publish_*)
@@ -87,14 +89,14 @@ class WP_REST_Workarounds
 	* and wp_insert_post_data (for Classic Editor and Quick Edit) 
 	*
 	* Filter hook: 'edit_post_status'
-    *
+	*
 	* @author Kevin Behrens
     * @param  int  $post_status  Post status being set
     * @param  int  $post_id    	 ID of post being modified
     */
 	public function fltPostStatus($post_status, $post_id) {
 		global $current_user;
-		
+
 		$new_status_obj = get_post_status_object($post_status);
 		if (!$new_status_obj || !empty($new_status_obj->internal)) {
 			return $post_status;
@@ -110,13 +112,14 @@ class WP_REST_Workarounds
 		if ($type_obj && $status_obj && (!empty($status_obj->public) || !empty($status_obj->private) || 'future' == $_post->post_status)) {
 			// Apply this workaround only if current user has $type_obj->cap->edit_published_posts
 			if (isset($type_obj->cap->edit_published_posts) && !empty($current_user->allcaps[$type_obj->cap->edit_published_posts])) {
-			$this->skip_filtering = true;				
+				$this->skip_filtering = true;
 
-			if (!current_user_can($type_obj->cap->publish_posts)) {
-				$post_status = $_post->post_status;
+				if (!current_user_can($type_obj->cap->publish_posts)) {
+					$post_status = $_post->post_status;
+				}
+
+				$this->skip_filtering = false;
 			}
-			$this->skip_filtering = false;
-		}
 		}
 
 		return $post_status;
@@ -169,7 +172,7 @@ class WP_REST_Workarounds
 
 		return $wp_sitecaps;
 	}
-		
+
 	/**
 	* If we are blocking Gutenberg "Switch to Draft" by capability filtering, also hide the button
 	*

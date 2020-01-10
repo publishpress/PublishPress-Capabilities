@@ -21,14 +21,19 @@ $cme_extensions = new CME_Extensions();
 
 add_filter( 'map_meta_cap', '_cme_remap_term_meta_cap', 5, 4 );
 
+add_action( 'admin_head', '_cme_publishpress_roles_js');
+
 if ( defined( 'WC_PLUGIN_FILE' ) ) {
 	require_once ( dirname(__FILE__) . '/filters-woocommerce.php' );
 	$cme_extensions->add( new CME_WooCommerce() );
 }
 
 if (!defined('CME_DISABLE_WP_EDIT_PUBLISHED_WORKAROUND')) {
-	require_once (dirname(__FILE__) . '/filters-wp_rest_workarounds.php');
-	new PublishPress\Capabilities\WP_REST_Workarounds();
+	global $wp_version;
+	if (version_compare($wp_version, '4.9.7', '>=')) { // avoid any issues with old REST API implementations
+		require_once (dirname(__FILE__) . '/filters-wp_rest_workarounds.php');
+		new PublishPress\Capabilities\WP_REST_Workarounds();
+	}
 }
 
 if ( is_admin() ) {
@@ -40,6 +45,70 @@ if ( is_admin() ) {
 }
 
 add_filter('plugin_action_links_' . plugin_basename(CME_FILE), '_cme_fltPluginActionLinks', 10, 2);
+
+
+add_filter('pp_custom_status_list', 'cme_filter_custom_status_list', 10, 2);
+
+function _cme_publishpress_roles_js() {
+	if (defined('PUBLISHPRESS_VERSION') && ((strpos($_SERVER['REQUEST_URI'], 'page=pp-manage-roles')))) {
+		require_once(dirname(__FILE__) . '/publishpress-roles.php');
+		CME_PublishPressRoles::scripts();  // @todo: .js
+	}
+}
+
+/**
+ * Filters the list of custom statuses
+ *
+ * @param array   $custom_statuses
+ * @param WP_Post $post
+ *
+ * @return  array
+ */
+function cme_filter_custom_status_list($custom_statuses, $post)
+{
+	if (!get_option('cme_custom_status_control')) {
+		return $custom_statuses;
+	}
+
+	if (class_exists('publishpress') && method_exists('publishpress', 'instance')) {
+		$publishpress = publishpress::instance();
+	} else {
+		global $publishpress;
+	}
+
+	if (empty($publishpress)) {
+		return $custom_statuses;
+	}
+
+	$filtered       = [];
+	$option_group   = 'global';
+	
+	$default_status = $publishpress->custom_status->module->options->default_status;
+
+	if ( ! is_null($post)) {
+		// Adding a new post? Set the correct default status
+		if ('auto-draft' === $post->post_status) {
+			$post->post_status = $default_status;
+		}
+	}
+
+	foreach ($custom_statuses as &$status) {
+		$slug = str_replace('-', '_', $status->slug);
+
+		// Check if the user, or any of his user groups are capable to use the status. If not, but it is the
+		// current status, we still display it.
+		if (
+			current_user_can('status_change_' . $slug)
+			|| (is_null($post) ? false : $status->slug === $post->post_status)
+			|| $status->slug === $default_status
+		) {
+			$filtered[] = $status;
+		}
+	}
+
+	return $filtered;
+}
+
 
 // allow edit_terms, delete_terms, assign_terms capabilities to function separately from manage_terms
 function _cme_remap_term_meta_cap ( $caps, $cap, $user_id, $args ) {
