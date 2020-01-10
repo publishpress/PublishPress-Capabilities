@@ -84,6 +84,10 @@ define ('PUBLISHPRESS_CAPS_ABSPATH', __DIR__);
 
 require_once (dirname(__FILE__) . '/includes/functions.php');
 
+if (is_admin()) {
+	require_once (dirname(__FILE__) . '/includes/functions-admin.php');
+}
+
 // ============================================ START PROCEDURE ==========
 
 // Check required PHP version.

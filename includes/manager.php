@@ -265,25 +265,35 @@ class CapabilityManager
 			$this->setAdminCapability();
 		}
 
-		add_action( 'admin_menu', array( &$this, 'cme_menu' ), 20 );
+		add_action( 'admin_menu', array( &$this, 'cme_menu' ), 18 );
 	}
 
 	public function cme_menu() {
 		$cap_name = ( is_super_admin() ) ? 'manage_capabilities' : 'restore_roles';
-		add_management_page(__('Capability Manager', 'capsman-enhanced'),  __('Capability Manager', 'capsman-enhanced'), $cap_name, $this->ID . '-tool', array($this, 'backupTool'));
 		
-		if ( did_action( 'pp_admin_menu' ) ) { // Put Capabilities link on Permissions menu if Press Permit is active and user has access to it
-			global $pp_admin;
-			$menu_caption = ( defined('WPLANG') && WPLANG && ( 'en_EN' != WPLANG ) ) ? __('Capabilities', 'capsman-enhanced') : 'Role Capabilities';
-			add_submenu_page( $pp_admin->get_menu('options'), __('Capability Manager', 'capsman-enhanced'),  $menu_caption, 'manage_capabilities', $this->ID, array($this, 'generalManager') );
+		$permissions_title = __('Capabilities', 'capsman-enhanced');
 		
-		} elseif(did_action('presspermit_admin_menu') && function_exists('presspermit')) {
-			$menu_caption = ( defined('WPLANG') && WPLANG && ( 'en_EN' != WPLANG ) ) ? __('Capabilities', 'capsman-enhanced') : 'Role Capabilities';
-			add_submenu_page( presspermit()->admin()->getMenuParams('options'), __('Capability Manager', 'capsman-enhanced'),  $menu_caption, 'manage_capabilities', $this->ID, array($this, 'generalManager') );
-		
-		} else {
-			add_users_page( __('Capability Manager', 'capsman-enhanced'),  __('Capabilities', 'capsman-enhanced'), 'manage_capabilities', $this->ID, array($this, 'generalManager'));
+		$menu_order = 72;
+
+		if (defined('PUBLISHPRESS_PERMISSIONS_MENU_GROUPING')) {
+			foreach (get_option('active_plugins') as $plugin_file) {
+				if ( false !== strpos($plugin_file, 'publishpress.php') ) {
+					$menu_order = 27;
+				}
 		}	
+	}
+	
+		add_menu_page(
+			$permissions_title,
+			$permissions_title,
+			$cap_name,
+			'capsman',
+			array($this, 'generalManager'),
+			'dashicons-admin-network',
+			$menu_order
+		);
+
+		add_submenu_page('capsman',  __('Backup', 'capsman-enhanced'), __('Backup', 'capsman-enhanced'), $cap_name, $this->ID . '-tool', array($this, 'backupTool'));
 	}
 	
 	/**
