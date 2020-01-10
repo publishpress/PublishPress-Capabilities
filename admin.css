@@ -214,3 +214,6 @@ table#akmin td.sidebar li.publishpress-contact a{padding:5px 0 5px 0;}
 #pp_features ul.pp-features li:before { content: "\2713\0020"; }
 #pp_features ul.pp-features li { padding-bottom: 5px }
 #pp_features img.cme-play { margin-bottom: -3px; margin-left: 5px;}
+div.publishpress-caps-manage span.manage-members {margin-left:5px; font-weight:normal; color: #777}
+div.publishpress-caps-manage span.manage-members a {color: #777}
+div.publishpress-caps-manage span.manage-members a:hover {text-decoration: underline; color:#655997 }
