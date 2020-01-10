@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: Capability Manager Enhanced
+ * Plugin Name: PublishPress Capabilities
  * Plugin URI: https://publishpress.com
  * Description: Manage WordPress role definitions, per-site or network-wide. Organizes post capabilities by post type and operation.
  * Version: 1.8.2-beta3.3

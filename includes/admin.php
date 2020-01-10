@@ -1,6 +1,6 @@
 <?php
 /**
- * General Admin for Capability Manager.
+ * General Admin for Role Capabilities.
  * Provides admin pages to create and manage roles and capabilities.
  *
  * @author		Jordi Canals, Kevin Behrens
@@ -107,7 +107,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 
 				<?php /* play.png icon by Pavel: http://kde-look.org/usermanager/search.php?username=InFeRnODeMoN */ ?>
 				
-				<br /><div id="pp_features" style="display:none"><div class="pp-logo"><a href="https://publishpress.com/presspermit/"><img src="<?php echo $img_url;?>pp-logo.png" alt="<?php _e('PressPermit Pro', 'capsman-enhanced');?>" /></a></div><div class="features-wrap"><ul class="pp-features">
+				<br /><div id="pp_features" style="display:none"><div class="pp-logo"><a href="https://publishpress.com/presspermit/"><img src="<?php echo $img_url;?>pp-logo.png" alt="<?php _e('PublishPress Permissions', 'capsman-enhanced');?>" /></a></div><div class="features-wrap"><ul class="pp-features">
 				<li>
 				<?php _e( "Automatically define type-specific capabilities for your custom post types and taxonomies", 'capsman-enhanced' );?>
 				<a href="https://presspermit.com/tutorial/regulate-post-type-access" target="_blank"><img class="cme-play" alt="*" src="<?php echo $img_url;?>play.png" /></a></li>
@@ -164,9 +164,9 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 
 				<?php
 				echo '<div>';
-				printf( __('%1$sgrab%2$s %3$s', 'capsman-enhanced'), '<strong>', '</strong>', '<span class="plugins update-message"><a href="' . cme_plugin_info_url('press-permit-core') . '" class="thickbox" title="' . sprintf( __('%s (free install)', 'capsman-enhanced'), 'PressPermit' ) . '">PressPermit</a></span>' );
+				printf( __('%1$sgrab%2$s %3$s', 'capsman-enhanced'), '<strong>', '</strong>', '<span class="plugins update-message"><a href="' . cme_plugin_info_url('press-permit-core') . '" class="thickbox" title="' . sprintf( __('%s (free install)', 'capsman-enhanced'), 'Permissions Pro' ) . '">Permissions Pro</a></span>' );
 				echo '&nbsp;&nbsp;&bull;&nbsp;&nbsp;';
-				printf( __('%1$sbuy%2$s %3$s', 'capsman-enhanced'), '<strong>', '</strong>',  '<a href="https://publishpress.com/presspermit/" target="_blank" title="' . sprintf( __('%s info/purchase', 'capsman-enhanced'), 'PressPermit Pro' ) . '">PressPermit&nbsp;Pro</a>' );
+				printf( __('%1$sbuy%2$s %3$s', 'capsman-enhanced'), '<strong>', '</strong>',  '<a href="https://publishpress.com/presspermit/" target="_blank" title="' . sprintf( __('%s info/purchase', 'capsman-enhanced'), 'Permissions Pro' ) . '">Permissions&nbsp;Pro</a>' );
 				echo '&nbsp;&nbsp;&bull;&nbsp;&nbsp;';
 				echo '<a href="#pp-hide">hide</a>';
 				echo '</div></div>';
@@ -1104,7 +1104,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 					<li><a href="https://publishpress.com/ma/" target="_blank"><?php _e('Multiple Authors', 'capsman-enhanced');?></a></li>
 					</li>
 
-					<li><a href="#pp-more"><?php _e('PressPermit', 'capsman-enhanced');?></a>
+					<li><a href="#pp-more"><?php _e('PublishPress Permissions', 'capsman-enhanced');?></a>
 					</li>
 
 					<?php $_url = "plugin-install.php?tab=plugin-information&plugin=publishpress&TB_iframe=true&width=640&height=678";

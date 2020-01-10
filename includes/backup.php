@@ -32,7 +32,7 @@
 ?>
 <div class="wrap">
 	<div id="icon-capsman-admin" class="icon32"></div>
-	<h2><?php printf( __('Backup Tool for %1$sCapability Manager%2$s', 'capsman-enhanced'), '<a href="admin.php?page=capsman">', '</a>' );?></h2>
+	<h2><?php printf( __('Backup Tool for %1$sPublishPress Capabilities%2$s', 'capsman-enhanced'), '<a href="admin.php?page=capsman">', '</a>' );?></h2>
 
 	<form method="post" action="tools.php?page=<?php echo $this->ID ?>-tool">
 	<?php wp_nonce_field('capsman-backup-tool'); ?>
