@@ -10,6 +10,8 @@ class CapsmanHandler
 	function processAdminGeneral( $post ) {
 		global $wp_roles;
 		
+		do_action('publishpress-caps_process_update');
+
 		// Create a new role.
 		if ( ! empty($post['CreateRole']) ) {
 			if ( $newrole = $this->createRole($post['create-name']) ) {
@@ -86,7 +88,7 @@ class CapsmanHandler
 				wp_redirect($url);
 				exit;
 			} else {
-				$this->cm->message = __('Incorrect capability name.');
+				ak_admin_notify(__('Incorrect capability name.'));
 			}
 			
 		} elseif ( ! empty($post['update_filtered_types']) || ! empty($post['update_filtered_taxonomies']) || ! empty($post['update_detailed_taxonomies']) ) {
@@ -96,8 +98,9 @@ class CapsmanHandler
 			//	ak_admin_error(__('Error saving capability settings.', 'capsman-enhanced'));
 			//}
 		} else {
-		    // TODO: Implement exceptions. This must be a fatal error.
+			if (!apply_filters('publishpress-caps_submission_ok', false)) {
 		    ak_admin_error(__('Bad form received.', 'capsman-enhanced'));
+			}
 		}
 
 		if ( ! empty($newrole) && defined('PRESSPERMIT_ACTIVE') ) {

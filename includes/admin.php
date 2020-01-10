@@ -27,6 +27,8 @@
 
 global $capsman, $cme_cap_helper, $current_user;
 
+do_action('publishpress-caps_manager-load');
+
 $roles = $this->roles;
 $default = $this->current;
 
@@ -1138,6 +1140,8 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 			<?php 
 				$pp_ui->pp_types_ui( $defined['type'] );
 				$pp_ui->pp_taxonomies_ui( $defined['taxonomy'] );
+
+				do_action('publishpress-caps_sidebar_bottom');
 			?>
 		</td>
 	</tr>
