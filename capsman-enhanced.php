@@ -47,7 +47,7 @@ foreach (get_option('active_plugins') as $plugin_file) {
 $pro_active = false;
 
 foreach ((array)get_option('active_plugins') as $plugin_file) {
-    if (false !== strpos($plugin_file, 'capabilities-pro-by-publishpress.php')) {
+    if (false !== strpos($plugin_file, 'capabilities-pro.php')) {
         $pro_active = true;
         break;
     }
@@ -55,7 +55,7 @@ foreach ((array)get_option('active_plugins') as $plugin_file) {
 
 if (!$pro_active && is_multisite()) {
     foreach (array_keys((array)get_site_option('active_sitewide_plugins')) as $plugin_file) {
-        if (false !== strpos($plugin_file, 'capabilities-pro-by-publishpress.php')) {
+        if (false !== strpos($plugin_file, 'capabilities-pro.php')) {
             $pro_active = true;
             break;
         }
