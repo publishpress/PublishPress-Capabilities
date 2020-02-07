@@ -3,8 +3,8 @@ Contributors: publishpress, kevinB, stevejburge, andergmartins
 Tags: role, capabilities, post types, taxonomies, editor, network, woocommerce
 Requires at least: 4.9.7
 Tested up to: 5.3.2
-Requires PHP: 5.4
-Stable tag: 1.9
+Requires PHP: 5.6.20
+Stable tag: 1.9.1
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -71,18 +71,26 @@ Yes. Users with the 'manage_capabilities' capability can edit roles. This Capabi
 
 == Changelog ==
 
+= 1.9.2-beta =
+  * Change : Third Party Plugin Capabilities - always display checkboxes even if capabilities not present in Administrator role
+  * Fixed : Plugin capability sections - pp_set_notification_channel and pp_manage_roles were included in both PublishPress and PublishPress Permissions sections
+
+= 1.9.1 - 16 Jan 2020 =
+  * Fixed : Create Role, Copy Role, and Add Capability sidebar functions did not work with ENTER keypress (caused screen reload without applying operation)
+
 = 1.9 - 9 Jan 2020 =
   * Change : Renamed to PublishPress Capabilities
   * Feature : Capabilities link on PublishPress > Roles row opens Role Capabilities screen
-  * Fixed : Multisite - On sub-sites, Role Capabilities screen did not display PublishPress Capabilities section to Super Administrators who don't have a role on the site
-  * Fixed : Reloading caused Role Capabilities screen to display default role 
+  * Feature : Role Capabilities screen links to PublishPress > Roles for member management
+  * Fixed : Browser reload caused Role Capabilities screen to display default role 
   * Fixed : Add Capability sidebar added custom capability to role immediately, but capability checkbox did not display as checked until reload   
   * Fixed : Category Assign or Delete capabilities were not effective due to WordPress core forcing default capability requirement
   * Fixed : Term Assign or Delete capabilities were not effective due to WordPress core forcing default capability requirement
+  * Fixed : Multisite - On sub-sites, Role Capabilities screen did not display PublishPress Capabilities section to Super Administrators who don't have a role on the site
   * Fixed : Role name captions on Role Capabilities and Backup Tool screens could not be translated
   * Fixed : Checkbox bulk selection on Role Capabilities screen was incorrect under some conditions
-  * Change : Apply workaround filters for WordPress edit_published_posts / publish_posts handling only for users who have edit_published_posts capability for current post type
   * Change : Reinstate WordPress edit_published_posts workaround with correct status filtering behavior
+  * Change : Apply workaround filters for WordPress edit_published_posts / publish_posts handling only for users who have edit_published_posts capability for current post type
 
 = 1.8.1 - 25 Oct 2019 =
   * Fixed : Automatic publication of blank auto-drafts, WooCommerce posts save with incorrect post status (since 1.8)
