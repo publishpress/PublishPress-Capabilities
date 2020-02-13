@@ -618,7 +618,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 
 				if (defined('PUBLISHPRESS_MULTIPLE_AUTHORS_VERSION')) {
 					if ($_caps = apply_filters('cme_multiple_authors_capabilities', array())) {
-						$plugin_caps['PublishPress Multiple Authors'] = $_caps;
+						$plugin_caps['PublishPress Authors'] = $_caps;
 					}
 				}
 
