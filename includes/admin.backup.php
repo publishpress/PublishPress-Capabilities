@@ -64,74 +64,26 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 	
 	<form id="publishpress_caps_form" method="post" action="admin.php?page=<?php echo $this->ID ?>">
 	<?php wp_nonce_field('capsman-general-manager'); ?>
-
-    <div id="poststuff">
-        <div id="post-body" class="metabox-holder columns-2">
-            <div id="post-body-content">
-
-                <div id="titlediv">
-
-                    <div id="titlewrap">
-
-                        <select name="role" id="title">
-                            <?php
-                            foreach ( $roles as $role => $name ) {
-                                $name = translate_user_role($name);
-                                echo '<option value="' . $role .'"'; selected($default, $role); echo '> ' . $name . ' &nbsp;</option>';
-                            }
-                            ?>
-                        </select>
-
-                        <script type="text/javascript">
-                            /* <![CDATA[ */
-                            jQuery(document).ready( function($) {
-                                $('select[name="role"]').change(function(){
-                                    window.location = 'admin.php?page=capsman&role=' + $(this).val();
-                                });
-                            });
-                            /* ]]> */
-                        </script>
-
-                        <input type="submit" name="SaveRole" value="<?php _e('Save Changes', 'capsman-enhanced') ?>" class="button-primary" />
-                    </div>
-
-                    <div class="inside">
-                        <div id="edit-slug-box">
-                            <?php
-                            $role_caption = (defined('PUBLISHPRESS_VERSION'))
-                                ? '<a href="' . admin_url("admin.php?page=pp-manage-roles&action=edit-role&role-id={$this->current}") . '">' . translate_user_role($roles[$default]) . '</a>'
-                                : translate_user_role($roles[$default]);
-
-                            printf(__('Capabilities for %s', 'capsman-enhanced'), $role_caption);
-                            ?>
-                        </div>
-                    </div>
-
-                </div>
-                <!-- #titlediv -->
-
-            </div>
-            <!-- #post-body-content -->
-
-            <div id="postbox-container-1" class="postbox-container side">
-                Right
-            </div>
-        </div>
-        <!-- #post-body -->
-
-    </div>
-    <!-- #poststuff -->
-
 	<fieldset>
 	<table id="akmin">
 	<tr>
 		<td class="content">
 		<dl>
 			<dt>
+			<?php 
+			$role_caption = (defined('PUBLISHPRESS_VERSION')) 
+			? '<a href="' . admin_url("admin.php?page=pp-manage-roles&action=edit-role&role-id={$this->current}") . '">' . translate_user_role($roles[$default]) . '</a>'
+			: translate_user_role($roles[$default]);
 
+			printf(__('Capabilities for %s', 'capsman-enhanced'), $role_caption);
+			?>
 			</dt>
 			
 			<dd>
+				<div style="float:right">
+				<input type="submit" name="SaveRole" value="<?php _e('Save Changes', 'capsman-enhanced') ?>" class="button-primary" /> &nbsp;
+				</div>
+
 				<?php
 				global $capsman;
 				$img_url = $capsman->mod_url . '/images/';
@@ -1107,6 +1059,31 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 		
 		</td>
 		<td class="sidebar">
+			<dl>
+				<dt><?php if ( defined('WPLANG') && WPLANG ) _e('Select New Role', 'capsman-enhanced'); else echo('Select Role to View / Edit'); ?></dt>
+				<dd style="text-align:center;">
+					<p><select name="role">
+					<?php
+					foreach ( $roles as $role => $name ) {
+						$name = translate_user_role($name);
+						echo '<option value="' . $role .'"'; selected($default, $role); echo '> ' . $name . ' &nbsp;</option>';
+					}
+					?>
+					</select><span style="margin-left:20px"><input type="submit" name="LoadRole" value="<?php if ( defined('WPLANG') && WPLANG ) _e('Change', 'capsman-enhanced'); else echo('Load'); ?>" class="button" /></span></p>
+				</dd>
+			</dl>
+			
+			<script type="text/javascript">
+			/* <![CDATA[ */
+			jQuery(document).ready( function($) {
+				$('select[name="role"]').val('<?php echo $default;?>');
+
+				$('input.button[name="LoadRole"]').click(function(){
+					$('#publishpress_caps_form').attr('action', 'admin.php?page=capsman&role=' + $('select[name="role"]').val());
+				});
+			});
+			/* ]]> */
+			</script>
 			
 			<?php do_action('publishpress-caps_sidebar_top');?>
 
