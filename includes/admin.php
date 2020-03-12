@@ -70,7 +70,6 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
             <div id="post-body-content">
 
                 <div id="titlediv">
-
                     <div id="titlewrap">
 
                         <select name="role" id="title">
@@ -106,9 +105,78 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
                             ?>
                         </div>
                     </div>
-
                 </div>
                 <!-- #titlediv -->
+
+                <div class="postbox" id="roleslist">
+                    <div class="pp-cap-horizontal-tabs">
+                        <div class="pp-cap-horizontal-tabs__tabs">
+                            <ul>
+                                <li class="pp-cap-tab__active">Lorem ipsum dolor site amet consecteur</li>
+                                <li>Lorem ipsum dolor site amet consecteur</li>
+                                <li>Lorem ipsum dolor site amet consecteur</li>
+                                <li>Lorem ipsum dolor site amet consecteur</li>
+                                <li>Lorem ipsum dolor site amet consecteur</li>
+                                <li>Lorem ipsum dolor site amet consecteur</li>
+                                <li>Lorem ipsum dolor site amet consecteur</li>
+                                <li>Lorem ipsum dolor site amet consecteur</li>
+                            </ul>
+                        </div>
+
+                        <div class="pp-cap-horizontal-tabs__contents">
+                            <div style="display: block">
+                                <h3>Lorem ipsum dolor site amet consecteur</h3>
+                                <p>Nunc ullamcorper, nulla vel tincidunt posuere, lacus lorem efficitur leo, non tristique nunc sem sit amet est. Fusce quis accumsan ligula. Morbi nec orci malesuada, scelerisque magna sit amet, mattis diam. </p>
+                                <p>Nunc ullamcorper, nulla vel tincidunt posuere, lacus lorem efficitur leo, non tristique nunc sem sit amet est. Fusce quis accumsan ligula. Morbi nec orci malesuada, scelerisque magna sit amet, mattis diam. </p>
+                                <p>Nunc ullamcorper, nulla vel tincidunt posuere, lacus lorem efficitur leo, non tristique nunc sem sit amet est. Fusce quis accumsan ligula. Morbi nec orci malesuada, scelerisque magna sit amet, mattis diam. </p>
+                                <p>Nunc ullamcorper, nulla vel tincidunt posuere, lacus lorem efficitur leo, non tristique nunc sem sit amet est. Fusce quis accumsan ligula. Morbi nec orci malesuada, scelerisque magna sit amet, mattis diam. </p>
+                                <p>Nunc ullamcorper, nulla vel tincidunt posuere, lacus lorem efficitur leo, non tristique nunc sem sit amet est. Fusce quis accumsan ligula. Morbi nec orci malesuada, scelerisque magna sit amet, mattis diam. </p>
+                                <p>Nunc ullamcorper, nulla vel tincidunt posuere, lacus lorem efficitur leo, non tristique nunc sem sit amet est. Fusce quis accumsan ligula. Morbi nec orci malesuada, scelerisque magna sit amet, mattis diam. </p>
+                                <p>Nunc ullamcorper, nulla vel tincidunt posuere, lacus lorem efficitur leo, non tristique nunc sem sit amet est. Fusce quis accumsan ligula. Morbi nec orci malesuada, scelerisque magna sit amet, mattis diam. </p>
+                                <p>Nunc ullamcorper, nulla vel tincidunt posuere, lacus lorem efficitur leo, non tristique nunc sem sit amet est. Fusce quis accumsan ligula. Morbi nec orci malesuada, scelerisque magna sit amet, mattis diam. </p>
+                                <p>Nunc ullamcorper, nulla vel tincidunt posuere, lacus lorem efficitur leo, non tristique nunc sem sit amet est. Fusce quis accumsan ligula. Morbi nec orci malesuada, scelerisque magna sit amet, mattis diam. </p>
+                                <p>Nunc ullamcorper, nulla vel tincidunt posuere, lacus lorem efficitur leo, non tristique nunc sem sit amet est. Fusce quis accumsan ligula. Morbi nec orci malesuada, scelerisque magna sit amet, mattis diam. </p>
+                                <p>Nunc ullamcorper, nulla vel tincidunt posuere, lacus lorem efficitur leo, non tristique nunc sem sit amet est. Fusce quis accumsan ligula. Morbi nec orci malesuada, scelerisque magna sit amet, mattis diam. </p>
+                                <p>Nunc ullamcorper, nulla vel tincidunt posuere, lacus lorem efficitur leo, non tristique nunc sem sit amet est. Fusce quis accumsan ligula. Morbi nec orci malesuada, scelerisque magna sit amet, mattis diam. </p>
+                                <p>Nunc ullamcorper, nulla vel tincidunt posuere, lacus lorem efficitur leo, non tristique nunc sem sit amet est. Fusce quis accumsan ligula. Morbi nec orci malesuada, scelerisque magna sit amet, mattis diam. </p>
+                                <p>Nunc ullamcorper, nulla vel tincidunt posuere, lacus lorem efficitur leo, non tristique nunc sem sit amet est. Fusce quis accumsan ligula. Morbi nec orci malesuada, scelerisque magna sit amet, mattis diam. </p>
+                                <p>Nunc ullamcorper, nulla vel tincidunt posuere, lacus lorem efficitur leo, non tristique nunc sem sit amet est. Fusce quis accumsan ligula. Morbi nec orci malesuada, scelerisque magna sit amet, mattis diam. </p>
+                                <p>Nunc ullamcorper, nulla vel tincidunt posuere, lacus lorem efficitur leo, non tristique nunc sem sit amet est. Fusce quis accumsan ligula. Morbi nec orci malesuada, scelerisque magna sit amet, mattis diam. </p>
+                                <p>Nunc ullamcorper, nulla vel tincidunt posuere, lacus lorem efficitur leo, non tristique nunc sem sit amet est. Fusce quis accumsan ligula. Morbi nec orci malesuada, scelerisque magna sit amet, mattis diam. </p>
+                                <p>Nunc ullamcorper, nulla vel tincidunt posuere, lacus lorem efficitur leo, non tristique nunc sem sit amet est. Fusce quis accumsan ligula. Morbi nec orci malesuada, scelerisque magna sit amet, mattis diam. </p>
+                                <p>Nunc ullamcorper, nulla vel tincidunt posuere, lacus lorem efficitur leo, non tristique nunc sem sit amet est. Fusce quis accumsan ligula. Morbi nec orci malesuada, scelerisque magna sit amet, mattis diam. </p>
+                                <p>Nunc ullamcorper, nulla vel tincidunt posuere, lacus lorem efficitur leo, non tristique nunc sem sit amet est. Fusce quis accumsan ligula. Morbi nec orci malesuada, scelerisque magna sit amet, mattis diam. </p>
+                                <p>Nunc ullamcorper, nulla vel tincidunt posuere, lacus lorem efficitur leo, non tristique nunc sem sit amet est. Fusce quis accumsan ligula. Morbi nec orci malesuada, scelerisque magna sit amet, mattis diam. </p>
+                                <p>Nunc ullamcorper, nulla vel tincidunt posuere, lacus lorem efficitur leo, non tristique nunc sem sit amet est. Fusce quis accumsan ligula. Morbi nec orci malesuada, scelerisque magna sit amet, mattis diam. </p>
+                            </div>
+                            <div>
+                                <h3>Lorem ipsum dolor site amet consecteur</h3>
+                                <p>Nunc ullamcorper, nulla vel tincidunt posuere, lacus lorem efficitur leo, non tristique nunc sem sit amet est. Fusce quis accumsan ligula. Morbi nec orci malesuada, scelerisque magna sit amet, mattis diam. </p>
+                                <p>Nunc ullamcorper, nulla vel tincidunt posuere, lacus lorem efficitur leo, non tristique nunc sem sit amet est. Fusce quis accumsan ligula. Morbi nec orci malesuada, scelerisque magna sit amet, mattis diam. </p>
+                                <p>Nunc ullamcorper, nulla vel tincidunt posuere, lacus lorem efficitur leo, non tristique nunc sem sit amet est. Fusce quis accumsan ligula. Morbi nec orci malesuada, scelerisque magna sit amet, mattis diam. </p>
+                            </div>
+                            <div>
+                                <h3>Lorem ipsum dolor site amet consecteur</h3>
+                                <p>Nunc ullamcorper, nulla vel tincidunt posuere, lacus lorem efficitur leo, non tristique nunc sem sit amet est. Fusce quis accumsan ligula. Morbi nec orci malesuada, scelerisque magna sit amet, mattis diam. </p>
+                                <p>Nunc ullamcorper, nulla vel tincidunt posuere, lacus lorem efficitur leo, non tristique nunc sem sit amet est. Fusce quis accumsan ligula. Morbi nec orci malesuada, scelerisque magna sit amet, mattis diam. </p>
+                                <p>Nunc ullamcorper, nulla vel tincidunt posuere, lacus lorem efficitur leo, non tristique nunc sem sit amet est. Fusce quis accumsan ligula. Morbi nec orci malesuada, scelerisque magna sit amet, mattis diam. </p>
+                            </div>
+                            <div>
+                                <h3>Lorem ipsum dolor site amet consecteur</h3>
+                                <p>Nunc ullamcorper, nulla vel tincidunt posuere, lacus lorem efficitur leo, non tristique nunc sem sit amet est. Fusce quis accumsan ligula. Morbi nec orci malesuada, scelerisque magna sit amet, mattis diam. </p>
+                                <p>Nunc ullamcorper, nulla vel tincidunt posuere, lacus lorem efficitur leo, non tristique nunc sem sit amet est. Fusce quis accumsan ligula. Morbi nec orci malesuada, scelerisque magna sit amet, mattis diam. </p>
+                                <p>Nunc ullamcorper, nulla vel tincidunt posuere, lacus lorem efficitur leo, non tristique nunc sem sit amet est. Fusce quis accumsan ligula. Morbi nec orci malesuada, scelerisque magna sit amet, mattis diam. </p>
+                            </div>
+                            <div>
+                                <h3>Lorem ipsum dolor site amet consecteur</h3>
+                                <p>Nunc ullamcorper, nulla vel tincidunt posuere, lacus lorem efficitur leo, non tristique nunc sem sit amet est. Fusce quis accumsan ligula. Morbi nec orci malesuada, scelerisque magna sit amet, mattis diam. </p>
+                                <p>Nunc ullamcorper, nulla vel tincidunt posuere, lacus lorem efficitur leo, non tristique nunc sem sit amet est. Fusce quis accumsan ligula. Morbi nec orci malesuada, scelerisque magna sit amet, mattis diam. </p>
+                                <p>Nunc ullamcorper, nulla vel tincidunt posuere, lacus lorem efficitur leo, non tristique nunc sem sit amet est. Fusce quis accumsan ligula. Morbi nec orci malesuada, scelerisque magna sit amet, mattis diam. </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- .postbox -->
 
             </div>
             <!-- #post-body-content -->
@@ -138,8 +206,8 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 				?>
 				<div class="publishpress-headline">
 				<span class="cme-subtext">
-				<?php 
-				$msg = __( '<strong>Note:</strong> Capability changes <strong>remain in the database</strong> after plugin deactivation.', 'capsman-enhanced' ); 
+				<?php
+				$msg = __( '<strong>Note:</strong> Capability changes <strong>remain in the database</strong> after plugin deactivation.', 'capsman-enhanced' );
 
 				if (defined('PRESSPERMIT_ACTIVE') && function_exists('presspermit')) {
 					if ($group = presspermit()->groups()->getMetagroup('wp_role', $this->current)) {
@@ -154,12 +222,12 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 				?>
 				</span>
 				</div>
-				
+
 				<?php
 				if ( defined( 'PRESSPERMIT_ACTIVE' ) ) {
 					$pp_ui->show_capability_hints( $default );
 				}
-				?> 
+				?>
 
 				<script type="text/javascript">
 				/* <![CDATA[ */
@@ -177,60 +245,60 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 				</script>
 
 				<?php /* play.png icon by Pavel: http://kde-look.org/usermanager/search.php?username=InFeRnODeMoN */ ?>
-				
+
 				<br /><div id="pp_features" style="display:none"><div class="pp-logo"><a href="https://publishpress.com/presspermit/"><img src="<?php echo $img_url;?>pp-logo.png" alt="<?php _e('PublishPress Permissions', 'capsman-enhanced');?>" /></a></div><div class="features-wrap"><ul class="pp-features">
 				<li>
 				<?php _e( "Automatically define type-specific capabilities for your custom post types and taxonomies", 'capsman-enhanced' );?>
 				<a href="https://presspermit.com/tutorial/regulate-post-type-access" target="_blank"><img class="cme-play" alt="*" src="<?php echo $img_url;?>play.png" /></a></li>
-				
+
 				<li>
 				<?php _e( "Assign standard WP roles supplementally for a specific post type", 'capsman-enhanced' );?>
 				<a href="https://presspermit.com/tutorial/regulate-post-type-access" target="_blank"><img class="cme-play" alt="*" src="<?php echo $img_url;?>play.png" /></a></li>
-				
+
 				<li>
 				<?php _e( "Assign custom WP roles supplementally for a specific post type <em>(Pro)</em>", 'capsman-enhanced' );?>
 				</li>
-				
+
 				<li>
 				<?php _e( "Customize reading permissions per-category or per-post", 'capsman-enhanced' );?>
 				<a href="https://presspermit.com/tutorial/category-exceptions" target="_blank"><img class="cme-play" alt="*" src="<?php echo $img_url;?>play.png" /></a></li>
-				
+
 				<li>
 				<?php _e( "Customize editing permissions per-category or per-post <em>(Pro)</em>", 'capsman-enhanced' );?>
 				<a href="https://presspermit.com/tutorial/page-editing-exceptions" target="_blank"><img class="cme-play" alt="*" src="<?php echo $img_url;?>play.png" /></a></li>
-				
+
 				<li>
 				<?php _e( "Custom Post Visibility statuses, fully implemented throughout wp-admin <em>(Pro)</em>", 'capsman-enhanced' );?>
 				<a href="https://presspermit.com/tutorial/custom-post-visibility" target="_blank"><img class="cme-play" alt="*" src="<?php echo $img_url;?>play.png" /></a></li>
-				
+
 				<li>
 				<?php _e( "Custom Moderation statuses for access-controlled, multi-step publishing workflow <em>(Pro)</em>", 'capsman-enhanced' );?>
 				<a href="https://presspermit.com/tutorial/multi-step-moderation" target="_blank"><img class="cme-play" alt="*" src="<?php echo $img_url;?>play.png" /></a></li>
-				
+
 				<li>
 				<?php _e( "Regulate permissions for Edit Flow post statuses <em>(Pro)</em>", 'capsman-enhanced' );?>
 				<a href="https://presspermit.com/tutorial/edit-flow-integration" target="_blank"><img class="cme-play" alt="*" src="<?php echo $img_url;?>play.png" /></a></li>
-				
+
 				<li>
 				<?php _e( "Customize the moderated editing of published content with Revisionary or Post Forking <em>(Pro)</em>", 'capsman-enhanced' );?>
 				<a href="https://presspermit.com/tutorial/published-content-revision" target="_blank"><img class="cme-play" alt="*" src="<?php echo $img_url;?>play.png" /></a></li>
-				
+
 				<li>
 				<?php _e( "Grant Spectator, Participant or Moderator access to specific bbPress forums <em>(Pro)</em>", 'capsman-enhanced' );?>
 				</li>
-				
+
 				<li>
 				<?php _e( "Grant supplemental content permissions to a BuddyPress group <em>(Pro)</em>", 'capsman-enhanced' );?>
 				<a href="https://presspermit.com/tutorial/buddypress-content-permissions" target="_blank"><img class="cme-play" alt="*" src="<?php echo $img_url;?>play.png" /></a></li>
-				
+
 				<li>
 				<?php _e( "WPML integration to mirror permissions to translations <em>(Pro)</em>", 'capsman-enhanced' );?>
 				</li>
-				
+
 				<li>
 				<?php _e( "Member support forum", 'capsman-enhanced' );?>
 				</li>
-				
+
 				</ul></div>
 
 				<?php
@@ -241,47 +309,47 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 				echo '&nbsp;&nbsp;&bull;&nbsp;&nbsp;';
 				echo '<a href="#pp-hide">hide</a>';
 				echo '</div></div>';
-				
+
 				if ( MULTISITE ) {
 					global $wp_roles;
 					global $wpdb;
-						
+
 					if ( ! empty($_REQUEST['cme_net_sync_role'] ) ) {
 						switch_to_blog(1);
 						wp_cache_delete( $wpdb->prefix . 'user_roles', 'options' );
 					}
-						
+
 					( method_exists( $wp_roles, 'for_site' ) ) ? $wp_roles->for_site() : $wp_roles->reinit();
 				}
 				$capsman->reinstate_db_roles();
-				
+
 				$current = get_role($default);
-				
+
 				$rcaps = $current->capabilities;
 
 				$is_administrator = current_user_can( 'administrator' ) || (is_multisite() && is_super_admin());
-				
+
 				$custom_types = get_post_types( array( '_builtin' => false ), 'names' );
 				$custom_tax = get_taxonomies( array( '_builtin' => false ), 'names' );
-				
+
 				$defined = array();
 				$defined['type'] = get_post_types( array( 'public' => true, 'show_ui' => true ), 'object', 'or' );
 				$defined['taxonomy'] = get_taxonomies( array( 'public' => true ), 'object' );
-				
+
 				$unfiltered['type'] = apply_filters( 'pp_unfiltered_post_types', array( 'forum','topic','reply','wp_block' ) );  // bbPress' dynamic role def requires additional code to enforce stored caps
 				$unfiltered['taxonomy'] = apply_filters( 'pp_unfiltered_taxonomies', array( 'post_status', 'topic-tag' ) );  // avoid confusion with Edit Flow administrative taxonomy
-				
+
 				$enabled_taxonomies = cme_get_assisted_taxonomies();
-				
+
 				/*
 				if ( ( count($custom_types) || count($custom_tax) ) && ( $is_administrator || current_user_can( 'manage_pp_settings' ) ) ) {
 					$cap_properties[''] = array();
 					$force_distinct_ui = true;
 				}
 				*/
-				
+
 				$cap_properties['edit']['type'] = array( 'edit_posts' );
-				
+
 				foreach( $defined['type'] as $type_obj ) {
 					if ( 'attachment' != $type_obj->name ) {
 						if ( isset( $type_obj->cap->create_posts ) && ( $type_obj->cap->create_posts != $type_obj->cap->edit_posts ) ) {
@@ -290,36 +358,36 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 						}
 					}
 				}
-				
+
 				$cap_properties['edit']['type'][]= 'edit_others_posts';
 				$cap_properties['edit']['type'] = array_merge( $cap_properties['edit']['type'], array( 'publish_posts', 'edit_published_posts', 'edit_private_posts' ) );
-				
+
 				$cap_properties['edit']['taxonomy'] = array( 'manage_terms' );
-				
+
 				if ( ! defined( 'OLD_PRESSPERMIT_ACTIVE' ) )
 					$cap_properties['edit']['taxonomy'] = array_merge( $cap_properties['edit']['taxonomy'], array( 'edit_terms', 'assign_terms' ) );
-	
+
 				$cap_properties['delete']['type'] = array( 'delete_posts', 'delete_others_posts' );
 				$cap_properties['delete']['type'] = array_merge( $cap_properties['delete']['type'], array( 'delete_published_posts', 'delete_private_posts' ) );
-				
+
 				if ( ! defined( 'OLD_PRESSPERMIT_ACTIVE' ) )
 					$cap_properties['delete']['taxonomy'] = array( 'delete_terms' );
 				else
 					$cap_properties['delete']['taxonomy'] = array();
-	
+
 				$cap_properties['read']['type'] = array( 'read_private_posts' );
 				$cap_properties['read']['taxonomy'] = array();
-	
+
 				$stati = get_post_stati( array( 'internal' => false ) );
-	
+
 				$cap_type_names = array(
 					'' => __( '&nbsp;', 'capsman-enhanced' ),
 					'read' => __( 'Reading', 'capsman-enhanced' ),
 					'edit' => __( 'Editing Capabilities', 'capsman-enhanced' ),
 					'delete' => __( 'Deletion Capabilities', 'capsman-enhanced' )
 				);
-	
-				$cap_tips = array( 
+
+				$cap_tips = array(
 					'read_private' => __( 'can read posts which are currently published with private visibility', 'capsman-enhanced' ),
 					'edit' => __( 'has basic editing capability (but may need other capabilities based on post status and ownership)', 'capsman-enhanced' ),
 					'edit_others' => __( 'can edit posts which were created by other users', 'capsman-enhanced' ),
@@ -331,7 +399,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 					'delete_published' => __( 'can delete posts which are currently published', 'capsman-enhanced' ),
 					'delete_private' => __( 'can delete posts which are currently published with private visibility', 'capsman-enhanced' ),
 				);
-	
+
 				$default_caps = array( 'read_private_posts', 'edit_posts', 'edit_others_posts', 'edit_published_posts', 'edit_private_posts', 'publish_posts', 'delete_posts', 'delete_others_posts', 'delete_published_posts', 'delete_private_posts',
 									   'read_private_pages', 'edit_pages', 'edit_others_pages', 'edit_published_pages', 'edit_private_pages', 'publish_pages', 'delete_pages', 'delete_others_pages', 'delete_published_pages', 'delete_private_pages',
 									   'manage_categories'

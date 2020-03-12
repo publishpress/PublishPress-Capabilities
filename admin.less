@@ -223,6 +223,7 @@ div.publishpress-headline .cme-subtext a:hover {text-decoration: underline}
 
 .pressshack-admin-wrapper {
 
+  /* Roles filter */
   input[name="SaveRole"] {
     line-height: 36px;
     padding-left: 15px;
@@ -230,13 +231,104 @@ div.publishpress-headline .cme-subtext a:hover {text-decoration: underline}
     font-size: 1.2em;
   }
 
+  /* Horizontal tabs */
+  #roleslist {
+    margin-top: 10px;
+  }
+
+  .pp-cap-horizontal-tabs {
+    display: table;
+
+    &__tabs {
+      color: inherit;
+
+      > ul {
+        margin: 0;
+
+        > li {
+          cursor: pointer;
+          padding: 14px 10px;
+          margin: 0;
+          border-right: 1px solid #ccd0d4;
+
+          &:hover {
+            background: #fbfbfb;
+          }
+
+          &.pp-cap-tab__active {
+            border-right-color: transparent;
+            font-weight: bold;
+          }
+
+          &:not(:last-of-type) {
+            border-bottom: 1px solid #ccd0d4;
+          }
+        }
+      }
+    }
+
+    &__contents {
+      padding: 0 14px;
+      box-sizing: border-box;
+
+      > div {
+        display: none;
+
+        > h3 {
+          font-size: 1.2em;
+        }
+      }
+    }
+  }
+
   @media (min-width: 851px) {
+
+    /* Roles filter */
     input[name="SaveRole"] {
       float: right;
+    }
+
+    /* Horizontal tabs */
+    .pp-cap-horizontal-tabs {
+
+      &__tabs,
+      &__contents {
+        float: left;
+      }
+
+      &__tabs {
+        width: 30%;
+
+        > ul {
+
+          > li {
+
+          }
+        }
+      }
+
+      &__contents {
+        width: 70%;
+
+        > div {
+
+          > h3 {
+            display: none;
+          }
+        }
+      }
     }
   }
 
   @media (max-width: 850px) {
+
+    /* Horizontal tabs */
+    .pp-cap-horizontal-tabs {
+
+      &__tabs {
+        display: none;
+      }
+    }
 
   }
 }
