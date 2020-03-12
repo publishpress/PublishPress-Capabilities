@@ -69,6 +69,25 @@ function capsman_get_pp_option( $option_basename ) {
 	return pp_capabilities_get_permissions_option($option_basename);
 }
 
+function pp_capabilities_autobackup() {
+	global $wpdb;
+
+	$roles = get_option($wpdb->prefix . 'user_roles');
+	update_option('cme_backup_auto_' . current_time('Y-m-d_g-i-s_a'), $roles, false);
+
+	$max_auto_backups = (defined('CME_AUTOBACKUPS')) ? CME_AUTOBACKUPS : 20;
+
+	$keep_ids = $wpdb->get_col("SELECT option_id FROM $wpdb->options WHERE option_name LIKE 'cme_backup_auto_%' ORDER BY option_id DESC LIMIT $max_auto_backups");
+
+	if (count($keep_ids) == $max_auto_backups) {
+		$id_csv = implode("','", $keep_ids);
+
+		$wpdb->query(
+			"DELETE FROM $wpdb->options WHERE option_name LIKE 'cme_backup_auto_%' AND option_id NOT IN ('$id_csv')"
+		);
+	}
+}
+
 function pp_capabilities_get_permissions_option($option_basename) {
 	return (function_exists('presspermit')) ? presspermit()->getOption($option_basename) : pp_get_option($option_basename);
 }

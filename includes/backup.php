@@ -29,6 +29,9 @@
  *  along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
+global $wpdb;
+
+$auto_backups = $wpdb->get_results("SELECT option_name, option_value FROM $wpdb->options WHERE option_name LIKE 'cme_backup_auto_%' ORDER BY option_id DESC");
 ?>
 
 <div class="wrap publishpress-caps-manage pressshack-admin-wrapper">
@@ -48,7 +51,7 @@
 				<tr>
 					<th scope="row"><?php _e('Select action:', 'capsman-enhanced'); ?></th>
 					<td>
-						<select name="action">
+						<select id="cme_select_backup" name="action">
 							<option value="backup"> <?php _e('Backup roles and capabilities', 'capsman-enhanced'); ?> </option>
 
 							<?php
@@ -56,31 +59,46 @@
 								<option value="restore_initial"> <?php _e('Restore initial backup', 'capsman-enhanced'); ?> </option>
 							<?php endif;?>
 
-							<option value="restore"> <?php _e('Restore last saved backup', 'capsman-enhanced'); ?> </option>
+							<option value="restore"> <?php _e('Restore last manually saved backup', 'capsman-enhanced'); ?> </option>
+
+							<?php foreach($auto_backups as $row):
+								$arr = explode('_', str_replace('cme_backup_auto_', '', $row->option_name));
+								$arr[1] = str_replace('-', ':', $arr[1]);
+								$date_caption = implode(' ', $arr);
+							?>
+								<option value="<?php echo $row->option_name;?>"><?php printf(__('Restore auto-backup (%s)', 'capsman-enhanced'), $date_caption);?></option>
+							<?php endforeach;?>
 						</select> &nbsp;
 						<input type="submit" name="Perform" value="<?php _e('Do Action', 'capsman-enhanced') ?>" class="button-primary" />
+
+						<p>&nbsp;<span class="cme-subtext">
+						<?php
+						_e('To view the contents of a backup, select it in the dropdown above.', 'press-permit-core');
+						?>
+						</span></p>
 					</td>
 				</tr>
 				</table>
 			</dd>
 
-		<p>&nbsp;
-		<?php if( ! empty( $initial ) ):?>
-		<a id="cme_show_initial" href="javascript:void(0)"><?php _e('Show initial backup', 'capsman-enhanced');?></a> &nbsp;&bull;&nbsp;
-		<?php endif;?>
-		<a id="cme_show_last" href="javascript:void(0)"><?php _e('Show last backup', 'capsman-enhanced');?></a>
-		</p>
-
 		<script type="text/javascript">
 		/* <![CDATA[ */
 		jQuery(document).ready( function($) {
-			$( '#cme_show_initial').click( function() {
+			$('#cme_select_backup').click(function() {
+				$('div.cme-show-backup').hide();
+
+				var selected_val = $(this).val();
+
+				switch(selected_val) {
+					case 'restore_initial':
 				$('#cme_display_capsman_backup_initial').show();
-				$('#cme_display_capsman_backup').hide();
-			});
-			$( '#cme_show_last').click( function() {
-				$('#cme_display_capsman_backup_initial').hide();
+						break;
+					case 'restore':
 				$('#cme_display_capsman_backup').show();
+						break;
+					default:
+						$('#cme_display_' + selected_val).show();
+				}
 			});
 		});
 		/* ]]> */
@@ -90,16 +108,22 @@
 			global $wp_roles;
 
 			$initial_caption = ( $backup_datestamp = get_option( 'capsman_backup_initial_datestamp' ) ) ? sprintf( __('Initial Backup - %s', 'capsman-enhanced'), date( 'j M Y, g:i a', $backup_datestamp ) ) : __('Initial Backup', 'capsman-enhanced');
-			$last_caption = ( $backup_datestamp = get_option( 'capsman_backup_datestamp' ) ) ? sprintf( __('Last Backup - %s', 'capsman-enhanced'), date( 'j M Y, g:i a', $backup_datestamp ) ) : __('Last Backup', 'capsman-enhanced');
+			$last_caption = ( $backup_datestamp = get_option( 'capsman_backup_datestamp' ) ) ? sprintf( __('Last Manual Backup - %s', 'capsman-enhanced'), date( 'j M Y, g:i a', $backup_datestamp ) ) : __('Last Backup', 'capsman-enhanced');
 			
 			$backups = array( 
 				'capsman_backup_initial' => $initial_caption, 
 				'capsman_backup' =>			$last_caption,
 			);
 			
+			foreach($auto_backups as $row) {
+				$arr = explode('_', str_replace('cme_backup_auto_', '', $row->option_name));
+				$arr[1] = str_replace('-', ':', $arr[1]);
+				$backups[$row->option_name] = "Auto-backup from " . implode(' ', $arr);
+			}
+
 			foreach( $backups as $name => $caption ) {
 				if ( $backup_data = get_option( $name ) ) :?>
-					<div id="cme_display_<?php echo $name;?>" style="display:none;padding-left:20px;">
+					<div id="cme_display_<?php echo $name;?>" style="display:none;padding-left:20px;" class="cme-show-backup">
 					<h3><?php printf( __( "%s (%s roles)", 'capsman-enhanded' ), $caption, count($backup_data) ); ?></h3>
 					
 					<?php foreach( $backup_data as $role => $props ) :?>
