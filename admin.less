@@ -251,7 +251,7 @@ div.publishpress-headline .cme-subtext a:hover {text-decoration: underline}
           margin: 0;
           border-right: 1px solid #ccd0d4;
 
-          &:hover {
+          &:hover:not(.pp-cap-tab__active) {
             background: #fbfbfb;
           }
 
@@ -303,6 +303,9 @@ div.publishpress-headline .cme-subtext a:hover {text-decoration: underline}
 
           > li {
 
+            &.pp-cap-tab__active {
+
+            }
           }
         }
       }
@@ -311,6 +314,11 @@ div.publishpress-headline .cme-subtext a:hover {text-decoration: underline}
         width: 70%;
 
         > div {
+          display: none;
+
+          &.pp-cap-content__active {
+            display: block;
+          }
 
           > h3 {
             display: none;

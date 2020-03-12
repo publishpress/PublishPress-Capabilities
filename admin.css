@@ -268,7 +268,7 @@ div.publishpress-headline .cme-subtext a:hover {
   margin: 0;
   border-right: 1px solid #ccd0d4;
 }
-.pressshack-admin-wrapper .pp-cap-horizontal-tabs__tabs > ul > li:hover {
+.pressshack-admin-wrapper .pp-cap-horizontal-tabs__tabs > ul > li:hover:not(.pp-cap-tab__active) {
   background: #fbfbfb;
 }
 .pressshack-admin-wrapper .pp-cap-horizontal-tabs__tabs > ul > li.pp-cap-tab__active {
@@ -305,6 +305,12 @@ div.publishpress-headline .cme-subtext a:hover {
   }
   .pressshack-admin-wrapper .pp-cap-horizontal-tabs__contents {
     width: 70%;
+  }
+  .pressshack-admin-wrapper .pp-cap-horizontal-tabs__contents > div {
+    display: none;
+  }
+  .pressshack-admin-wrapper .pp-cap-horizontal-tabs__contents > div.pp-cap-content__active {
+    display: block;
   }
   .pressshack-admin-wrapper .pp-cap-horizontal-tabs__contents > div > h3 {
     display: none;
