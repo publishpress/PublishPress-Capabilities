@@ -282,9 +282,6 @@ div.publishpress-headline .cme-subtext a:hover {
   padding: 0 14px;
   box-sizing: border-box;
 }
-.pressshack-admin-wrapper .pp-cap-horizontal-tabs__contents > div {
-  display: none;
-}
 .pressshack-admin-wrapper .pp-cap-horizontal-tabs__contents > div > h3 {
   font-size: 1.2em;
 }
