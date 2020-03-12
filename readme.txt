@@ -71,9 +71,11 @@ Yes. Users with the 'manage_capabilities' capability can edit roles. This Capabi
 
 == Changelog ==
 
-= 1.9.2-beta =
+= 1.9.2 =
+  * Feature : Auto-backup role and capabilities on each update (and on update to this version)
   * Change : Third Party Plugin Capabilities - always display checkboxes even if capabilities not present in Administrator role
   * Fixed : Plugin capability sections - pp_set_notification_channel and pp_manage_roles were included in both PublishPress and PublishPress Permissions sections
+  * Fixed : Capability Negation (Denial) bulk unselect link was ambiguous due to missing strikethrough
 
 = 1.9.1 - 16 Jan 2020 =
   * Fixed : Create Role, Copy Role, and Add Capability sidebar functions did not work with ENTER keypress (caused screen reload without applying operation)
