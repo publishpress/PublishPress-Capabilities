@@ -156,11 +156,11 @@ a.cme-neg-all {
 #akmin input.tight-text {
   width: 125px;
 }
-.cme-subtext {
-  color: #686868;
-  font-style: italic;
-  margin-top: 5px;
-}
+/*.cme-subtext {
+color: #686868;
+font-style: italic;
+margin-top:5px;
+}*/
 td.cm-has-via-pp {
   background-color: #84fb84;
 }
@@ -169,9 +169,6 @@ div.pressshack-admin-wrapper footer {
 }
 body.capabilities_page_capsman-tool div.pressshack-admin-wrapper footer {
   padding-right: 5px;
-}
-#akmin div.publishpress-headline {
-  line-height: 25px;
 }
 #akmin span.publishpress-thanks {
   margin-left: 5px;
@@ -233,12 +230,6 @@ div.publishpress-caps-manage span.manage-members a {
 div.publishpress-caps-manage span.manage-members a:hover {
   text-decoration: underline;
   color: #655997;
-}
-div.publishpress-headline .cme-subtext a {
-  font-weight: bold;
-}
-div.publishpress-headline .cme-subtext a:hover {
-  text-decoration: underline;
 }
 .pressshack-admin-wrapper {
   /* Roles filter */

@@ -117,6 +117,11 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
                 </div>
                 <!-- #titlediv -->
 
+                <?php
+                global $capsman;
+                $img_url = $capsman->mod_url . '/images/';
+                ?>
+
                 <div class="postbox" id="roleslist">
                     <div class="pp-cap-horizontal-tabs">
                         <div class="pp-cap-horizontal-tabs__tabs">
@@ -165,6 +170,23 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
                 </div>
                 <!-- .postbox -->
 
+                <p>
+                    <?php
+                    $msg = __( '<strong>Note:</strong> Capability changes <strong>remain in the database</strong> after plugin deactivation.', 'capsman-enhanced' );
+
+                    if (defined('PRESSPERMIT_ACTIVE') && function_exists('presspermit')) {
+                        if ($group = presspermit()->groups()->getMetagroup('wp_role', $this->current)) {
+                            $msg = sprintf(
+                                __('<strong>Note:</strong> Capability changes <strong>remain in the database</strong> after plugin deactivation. You can also configure this role as a %sPermission Group%s.', 'capsman-enhanced'),
+                                '<a href="' . admin_url("admin.php?page=presspermit-edit-permissions&action=edit&agent_id={$group->ID}") . '">',
+                                '</a>'
+                            );
+                        }
+                    }
+                    echo $msg;
+                    ?>
+                </p>
+
             </div>
             <!-- #post-body-content -->
 
@@ -187,28 +209,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 			</dt>
 			
 			<dd>
-				<?php
-				global $capsman;
-				$img_url = $capsman->mod_url . '/images/';
-				?>
-				<div class="publishpress-headline">
-				<span class="cme-subtext">
-				<?php
-				$msg = __( '<strong>Note:</strong> Capability changes <strong>remain in the database</strong> after plugin deactivation.', 'capsman-enhanced' );
 
-				if (defined('PRESSPERMIT_ACTIVE') && function_exists('presspermit')) {
-					if ($group = presspermit()->groups()->getMetagroup('wp_role', $this->current)) {
-						$msg = sprintf(
-							__('<strong>Note:</strong> Capability changes <strong>remain in the database</strong> after plugin deactivation. You can also configure this role as a %sPermission Group%s.', 'capsman-enhanced'),
-							'<a href="' . admin_url("admin.php?page=presspermit-edit-permissions&action=edit&agent_id={$group->ID}") . '">',
-							'</a>'
-						);
-					}
-				}
-				echo $msg;
-				?>
-				</span>
-				</div>
 
 				<?php
 				if ( defined( 'PRESSPERMIT_ACTIVE' ) ) {
