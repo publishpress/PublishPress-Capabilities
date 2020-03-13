@@ -495,7 +495,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
                 $pp_cap_contents .= '<tr class="cme-bulk-select">
                     <td colspan="' . $checks_per_row . '">
 				<span style="float:right">
-				<input type="checkbox" class="cme-check-all" title="' . _e('check/uncheck all', 'capsman-enhanced') . '">&nbsp;&nbsp;<a class="cme-neg-all" href="#" title="' . _e('negate all (storing as disabled capabilities)', 'capsman-enhanced') . '">X</a> <a class="cme-switch-all" href="#" title="' . _e('negate none (add/remove all capabilities normally)', 'capsman-enhanced') . '">X</a>
+				<input type="checkbox" class="cme-check-all" title="' . __('check/uncheck all', 'capsman-enhanced') . '">&nbsp;&nbsp;<a class="cme-neg-all" href="#" title="' . __('negate all (storing as disabled capabilities)', 'capsman-enhanced') . '">X</a> <a class="cme-switch-all" href="#" title="' . __('negate none (add/remove all capabilities normally)', 'capsman-enhanced') . '">X</a>
 				</span>
                     </td></tr>
                 </table>';
@@ -735,7 +735,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
                     $pp_cap_contents .= '<tr class="cme-bulk-select">
 					<td colspan="' . $checks_per_row . '">
 					<span style="float:right">
-					<input type="checkbox" class="cme-check-all" title="' . _e('check/uncheck all', 'capsman-enhanced') . '">&nbsp;&nbsp;<a class="cme-neg-all" href="#" title="' . _e('negate all (storing as disabled capabilities)', 'capsman-enhanced') . '">X</a> <a class="cme-switch-all" href="#" title="' . _e('negate none (add/remove all capabilities normally)', 'capsman-enhanced') .'">X</a>
+					<input type="checkbox" class="cme-check-all" title="' . __('check/uncheck all', 'capsman-enhanced') . '">&nbsp;&nbsp;<a class="cme-neg-all" href="#" title="' . __('negate all (storing as disabled capabilities)', 'capsman-enhanced') . '">X</a> <a class="cme-switch-all" href="#" title="' . __('negate none (add/remove all capabilities normally)', 'capsman-enhanced') .'">X</a>
 					</span>
 					</td></tr>
 					</table>
@@ -844,7 +844,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
                     $pp_cap_contents .= '<tr class="cme-bulk-select">
                         <td colspan="' . $checks_per_row . '">
 				<span style="float:right">
-				<input type="checkbox" class="cme-check-all" title="' . _e('check/uncheck all', 'capsman-enhanced') . '">&nbsp;&nbsp;<a class="cme-neg-all" href="#" title="' . _e('negate all (storing as disabled capabilities)', 'capsman-enhanced') . '">X</a> <a class="cme-switch-all" href="#" title="' . _e('negate none (add/remove all capabilities normally)', 'capsman-enhanced') . '">X</a>
+				<input type="checkbox" class="cme-check-all" title="' . __('check/uncheck all', 'capsman-enhanced') . '">&nbsp;&nbsp;<a class="cme-neg-all" href="#" title="' . __('negate all (storing as disabled capabilities)', 'capsman-enhanced') . '">X</a> <a class="cme-switch-all" href="#" title="' . __('negate none (add/remove all capabilities normally)', 'capsman-enhanced') . '">X</a>
 				</span>
                         </td></tr>
                 </table></div>';
@@ -931,7 +931,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
                     $pp_cap_contents .= '<tr class="cme-bulk-select">
                             <td colspan="' . $checks_per_row . '">
 				<span style="float:right">
-				<input type="checkbox" class="cme-check-all" title="' . _e('check/uncheck all', 'capsman-enhanced') . '">&nbsp;&nbsp;<a class="cme-neg-all" href="#" title="' . _e('negate all (storing as disabled capabilities)', 'capsman-enhanced') . '">X</a> <a class="cme-switch-all" href="#" title="' . _e('negate none (add/remove all capabilities normally)', 'capsman-enhanced') . '">X</a>
+				<input type="checkbox" class="cme-check-all" title="' . __('check/uncheck all', 'capsman-enhanced') . '">&nbsp;&nbsp;<a class="cme-neg-all" href="#" title="' . __('negate all (storing as disabled capabilities)', 'capsman-enhanced') . '">X</a> <a class="cme-switch-all" href="#" title="' . __('negate none (add/remove all capabilities normally)', 'capsman-enhanced') . '">X</a>
 				</span>
                             </td></tr>
 
@@ -944,10 +944,10 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 
                     $level = ak_caps2level($rcaps);
 
-                $pp_cap_contents .= '<span title="' . _e('Role level is mostly deprecated. However, it still determines eligibility for Post Author assignment and limits the application of user editing capabilities.', 'capsman-enhanced') . '">';
+                $pp_cap_contents .= '<span title="' . __('Role level is mostly deprecated. However, it still determines eligibility for Post Author assignment and limits the application of user editing capabilities.', 'capsman-enhanced') . '">';
                 $pp_cap_contents .= __('Role Level:', 'capsman-enhanced') . '<select name="level">';
                             for ( $l = $this->max_level; $l >= 0; $l-- ) {
-                                $pp_cap_contents .= '<option value="' . $l . '" style="text-align:right;"' . selected($level, $l) . '>>&nbsp;' . $l . '&nbsp;</option>';
+                                $pp_cap_contents .= '<option value="' . $l . '" style="text-align:right;"' . selected($level, $l, false) . '>&nbsp;' . $l . '&nbsp;</option>';
                             }
                         $pp_cap_contents .= '</select>
 				</span>
