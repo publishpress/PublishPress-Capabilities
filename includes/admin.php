@@ -972,46 +972,11 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
                         <div class="pp-cap-horizontal-tabs__tabs">
                             <ul>
                                 <?php echo $pp_cap_tabs ?>
-                                <li data-tab="1">Lorem ipsum dolor site amet consecteur</li>
-                                <li data-tab="2">Lorem ipsum dolor site amet consecteur</li>
-                                <li data-tab="3">Lorem ipsum dolor site amet consecteur</li>
-                                <li data-tab="4">Lorem ipsum dolor site amet consecteur</li>
-                                <li data-tab="5">Lorem ipsum dolor site amet consecteur</li>
                             </ul>
                         </div>
 
                         <div class="pp-cap-horizontal-tabs__contents">
                             <?php echo $pp_cap_contents; ?>
-                            <div data-content="1">
-                                <h3>Lorem ipsum dolor site amet consecteur</h3>
-                                <p>1. Nunc ullamcorper, nulla vel tincidunt posuere, lacus lorem efficitur leo, non tristique nunc sem sit amet est. Fusce quis accumsan ligula. Morbi nec orci malesuada, scelerisque magna sit amet, mattis diam. </p>
-                                <p>Nunc ullamcorper, nulla vel tincidunt posuere, lacus lorem efficitur leo, non tristique nunc sem sit amet est. Fusce quis accumsan ligula. Morbi nec orci malesuada, scelerisque magna sit amet, mattis diam. </p>
-                                <p>Nunc ullamcorper, nulla vel tincidunt posuere, lacus lorem efficitur leo, non tristique nunc sem sit amet est. Fusce quis accumsan ligula. Morbi nec orci malesuada, scelerisque magna sit amet, mattis diam. </p>
-                            </div>
-                            <div data-content="2">
-                                <h3>Lorem ipsum dolor site amet consecteur</h3>
-                                <p>2. Nunc ullamcorper, nulla vel tincidunt posuere, lacus lorem efficitur leo, non tristique nunc sem sit amet est. Fusce quis accumsan ligula. Morbi nec orci malesuada, scelerisque magna sit amet, mattis diam. </p>
-                                <p>Nunc ullamcorper, nulla vel tincidunt posuere, lacus lorem efficitur leo, non tristique nunc sem sit amet est. Fusce quis accumsan ligula. Morbi nec orci malesuada, scelerisque magna sit amet, mattis diam. </p>
-                                <p>Nunc ullamcorper, nulla vel tincidunt posuere, lacus lorem efficitur leo, non tristique nunc sem sit amet est. Fusce quis accumsan ligula. Morbi nec orci malesuada, scelerisque magna sit amet, mattis diam. </p>
-                            </div>
-                            <div data-content="3">
-                                <h3>Lorem ipsum dolor site amet consecteur</h3>
-                                <p>3. Nunc ullamcorper, nulla vel tincidunt posuere, lacus lorem efficitur leo, non tristique nunc sem sit amet est. Fusce quis accumsan ligula. Morbi nec orci malesuada, scelerisque magna sit amet, mattis diam. </p>
-                                <p>Nunc ullamcorper, nulla vel tincidunt posuere, lacus lorem efficitur leo, non tristique nunc sem sit amet est. Fusce quis accumsan ligula. Morbi nec orci malesuada, scelerisque magna sit amet, mattis diam. </p>
-                                <p>Nunc ullamcorper, nulla vel tincidunt posuere, lacus lorem efficitur leo, non tristique nunc sem sit amet est. Fusce quis accumsan ligula. Morbi nec orci malesuada, scelerisque magna sit amet, mattis diam. </p>
-                            </div>
-                            <div data-content="4">
-                                <h3>Lorem ipsum dolor site amet consecteur</h3>
-                                <p>4. Nunc ullamcorper, nulla vel tincidunt posuere, lacus lorem efficitur leo, non tristique nunc sem sit amet est. Fusce quis accumsan ligula. Morbi nec orci malesuada, scelerisque magna sit amet, mattis diam. </p>
-                                <p>Nunc ullamcorper, nulla vel tincidunt posuere, lacus lorem efficitur leo, non tristique nunc sem sit amet est. Fusce quis accumsan ligula. Morbi nec orci malesuada, scelerisque magna sit amet, mattis diam. </p>
-                                <p>Nunc ullamcorper, nulla vel tincidunt posuere, lacus lorem efficitur leo, non tristique nunc sem sit amet est. Fusce quis accumsan ligula. Morbi nec orci malesuada, scelerisque magna sit amet, mattis diam. </p>
-                            </div>
-                            <div data-content="5">
-                                <h3>Lorem ipsum dolor site amet consecteur</h3>
-                                <p>5. Nunc ullamcorper, nulla vel tincidunt posuere, lacus lorem efficitur leo, non tristique nunc sem sit amet est. Fusce quis accumsan ligula. Morbi nec orci malesuada, scelerisque magna sit amet, mattis diam. </p>
-                                <p>Nunc ullamcorper, nulla vel tincidunt posuere, lacus lorem efficitur leo, non tristique nunc sem sit amet est. Fusce quis accumsan ligula. Morbi nec orci malesuada, scelerisque magna sit amet, mattis diam. </p>
-                                <p>Nunc ullamcorper, nulla vel tincidunt posuere, lacus lorem efficitur leo, non tristique nunc sem sit amet est. Fusce quis accumsan ligula. Morbi nec orci malesuada, scelerisque magna sit amet, mattis diam. </p>
-                            </div>
                         </div>
                     </div>
                 </div>
