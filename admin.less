@@ -246,22 +246,21 @@ div.publishpress-caps-manage span.manage-members a:hover {text-decoration: under
         margin: 0;
 
         > li {
+          background: #f2f2f2;
           cursor: pointer;
           padding: 14px 10px;
           margin: 0;
           border-right: 1px solid #ccd0d4;
+          border-bottom: 1px solid #ccd0d4;
           transition: background .2s linear;
 
+          &.pp-cap-tab__active,
           &:hover:not(.pp-cap-tab__active) {
-            background: #f2f2f2;
+            background: #fff;
           }
 
           &.pp-cap-tab__active {
             border-right-color: transparent;
-          }
-
-          &:not(:last-of-type) {
-            border-bottom: 1px solid #ccd0d4;
           }
         }
       }

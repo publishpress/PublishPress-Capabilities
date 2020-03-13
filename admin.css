@@ -254,20 +254,20 @@ div.publishpress-caps-manage span.manage-members a:hover {
   margin: 0;
 }
 .pressshack-admin-wrapper .pp-cap-horizontal-tabs__tabs > ul > li {
+  background: #f2f2f2;
   cursor: pointer;
   padding: 14px 10px;
   margin: 0;
   border-right: 1px solid #ccd0d4;
+  border-bottom: 1px solid #ccd0d4;
   transition: background .2s linear;
 }
+.pressshack-admin-wrapper .pp-cap-horizontal-tabs__tabs > ul > li.pp-cap-tab__active,
 .pressshack-admin-wrapper .pp-cap-horizontal-tabs__tabs > ul > li:hover:not(.pp-cap-tab__active) {
-  background: #f2f2f2;
+  background: #fff;
 }
 .pressshack-admin-wrapper .pp-cap-horizontal-tabs__tabs > ul > li.pp-cap-tab__active {
   border-right-color: transparent;
-}
-.pressshack-admin-wrapper .pp-cap-horizontal-tabs__tabs > ul > li:not(:last-of-type) {
-  border-bottom: 1px solid #ccd0d4;
 }
 .pressshack-admin-wrapper .pp-cap-horizontal-tabs__contents {
   padding: 0 14px;
