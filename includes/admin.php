@@ -89,6 +89,11 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
                                     window.location = 'admin.php?page=capsman&role=' + $(this).val();
                                 });
 
+                                // Active first tab with its contents
+                                $('.pp-cap-horizontal-tabs__tabs > ul > li:first-child').addClass('pp-cap-tab__active');
+                                $('.pp-cap-horizontal-tabs__contents > div:first-child').addClass('pp-cap-content__active');
+
+                                // Tab behavior
                                 $('.pp-cap-horizontal-tabs__tabs ul li').click(function(){
                                     $('.pp-cap-horizontal-tabs__tabs').find('.pp-cap-tab__active').removeClass('pp-cap-tab__active');
                                     $('.pp-cap-horizontal-tabs__contents').find('.pp-cap-content__active').removeClass('pp-cap-content__active');
@@ -120,13 +125,317 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
                 <?php
                 global $capsman;
                 $img_url = $capsman->mod_url . '/images/';
+
+                if ( MULTISITE ) {
+                    global $wp_roles;
+                    global $wpdb;
+
+                    if ( ! empty($_REQUEST['cme_net_sync_role'] ) ) {
+                        switch_to_blog(1);
+                        wp_cache_delete( $wpdb->prefix . 'user_roles', 'options' );
+                    }
+
+                    ( method_exists( $wp_roles, 'for_site' ) ) ? $wp_roles->for_site() : $wp_roles->reinit();
+                }
+                $capsman->reinstate_db_roles();
+
+                $current = get_role($default);
+
+                $rcaps = $current->capabilities;
+
+                $is_administrator = current_user_can( 'administrator' ) || (is_multisite() && is_super_admin());
+
+                $custom_types = get_post_types( array( '_builtin' => false ), 'names' );
+                $custom_tax = get_taxonomies( array( '_builtin' => false ), 'names' );
+
+                $defined = array();
+                $defined['type'] = get_post_types( array( 'public' => true, 'show_ui' => true ), 'object', 'or' );
+                $defined['taxonomy'] = get_taxonomies( array( 'public' => true ), 'object' );
+
+                $unfiltered['type'] = apply_filters( 'pp_unfiltered_post_types', array( 'forum','topic','reply','wp_block' ) );  // bbPress' dynamic role def requires additional code to enforce stored caps
+                $unfiltered['taxonomy'] = apply_filters( 'pp_unfiltered_taxonomies', array( 'post_status', 'topic-tag' ) );  // avoid confusion with Edit Flow administrative taxonomy
+
+                $enabled_taxonomies = cme_get_assisted_taxonomies();
+
+                /*
+                if ( ( count($custom_types) || count($custom_tax) ) && ( $is_administrator || current_user_can( 'manage_pp_settings' ) ) ) {
+                    $cap_properties[''] = array();
+                    $force_distinct_ui = true;
+                }
+                */
+
+                $cap_properties['edit']['type'] = array( 'edit_posts' );
+
+                foreach( $defined['type'] as $type_obj ) {
+                    if ( 'attachment' != $type_obj->name ) {
+                        if ( isset( $type_obj->cap->create_posts ) && ( $type_obj->cap->create_posts != $type_obj->cap->edit_posts ) ) {
+                            $cap_properties['edit']['type'][]= 'create_posts';
+                            break;
+                        }
+                    }
+                }
+
+                $cap_properties['edit']['type'][]= 'edit_others_posts';
+                $cap_properties['edit']['type'] = array_merge( $cap_properties['edit']['type'], array( 'publish_posts', 'edit_published_posts', 'edit_private_posts' ) );
+
+                $cap_properties['edit']['taxonomy'] = array( 'manage_terms' );
+
+                if ( ! defined( 'OLD_PRESSPERMIT_ACTIVE' ) )
+                    $cap_properties['edit']['taxonomy'] = array_merge( $cap_properties['edit']['taxonomy'], array( 'edit_terms', 'assign_terms' ) );
+
+                $cap_properties['delete']['type'] = array( 'delete_posts', 'delete_others_posts' );
+                $cap_properties['delete']['type'] = array_merge( $cap_properties['delete']['type'], array( 'delete_published_posts', 'delete_private_posts' ) );
+
+                if ( ! defined( 'OLD_PRESSPERMIT_ACTIVE' ) )
+                    $cap_properties['delete']['taxonomy'] = array( 'delete_terms' );
+                else
+                    $cap_properties['delete']['taxonomy'] = array();
+
+                $cap_properties['read']['type'] = array( 'read_private_posts' );
+                $cap_properties['read']['taxonomy'] = array();
+
+                $stati = get_post_stati( array( 'internal' => false ) );
+
+                $cap_type_names = array(
+                    '' => __( '&nbsp;', 'capsman-enhanced' ),
+                    'read' => __( 'Reading', 'capsman-enhanced' ),
+                    'edit' => __( 'Editing Capabilities', 'capsman-enhanced' ),
+                    'delete' => __( 'Deletion Capabilities', 'capsman-enhanced' )
+                );
+
+                $cap_tips = array(
+                    'read_private' => __( 'can read posts which are currently published with private visibility', 'capsman-enhanced' ),
+                    'edit' => __( 'has basic editing capability (but may need other capabilities based on post status and ownership)', 'capsman-enhanced' ),
+                    'edit_others' => __( 'can edit posts which were created by other users', 'capsman-enhanced' ),
+                    'edit_published' => __( 'can edit posts which are currently published', 'capsman-enhanced' ),
+                    'edit_private' => __( 'can edit posts which are currently published with private visibility', 'capsman-enhanced' ),
+                    'publish' => __( 'can make a post publicly visible', 'capsman-enhanced' ),
+                    'delete' => __( 'has basic deletion capability (but may need other capabilities based on post status and ownership)', 'capsman-enhanced' ),
+                    'delete_others' => __( 'can delete posts which were created by other users', 'capsman-enhanced' ),
+                    'delete_published' => __( 'can delete posts which are currently published', 'capsman-enhanced' ),
+                    'delete_private' => __( 'can delete posts which are currently published with private visibility', 'capsman-enhanced' ),
+                );
+
+                $default_caps = array( 'read_private_posts', 'edit_posts', 'edit_others_posts', 'edit_published_posts', 'edit_private_posts', 'publish_posts', 'delete_posts', 'delete_others_posts', 'delete_published_posts', 'delete_private_posts',
+                    'read_private_pages', 'edit_pages', 'edit_others_pages', 'edit_published_pages', 'edit_private_pages', 'publish_pages', 'delete_pages', 'delete_others_pages', 'delete_published_pages', 'delete_private_pages',
+                    'manage_categories'
+                );
+                $type_caps = array();
+                $type_metacaps = array();
+
+                // Role Scoper and PP1 adjust attachment access based only on user's capabilities for the parent post
+                if ( defined('OLD_PRESSPERMIT_ACTIVE') ) {
+                    unset( $defined['type']['attachment'] );
+                }
+
+                // Storage HTML for tabs and contents
+                $pp_cap_tabs        = '';
+                $pp_cap_contents    = '';
+
+                // cap_types: read, edit, deletion
+                foreach( array_keys($cap_properties) as $cap_type ) {
+
+                    $pp_cap_tabs .= '<li data-tab="' . $cap_type . '">' . $cap_type_names[$cap_type] . '</li>';
+
+                    foreach( array_keys($defined) as $item_type ) {
+
+                        if ( ( 'delete' == $cap_type ) && ( 'taxonomy' == $item_type ) ) {
+                            if ( defined('OLD_PRESSPERMIT_ACTIVE') ) {
+                                continue;
+                            }
+
+                            $any_term_deletion_caps = false;
+                            foreach( array_keys($defined['taxonomy']) as $_tax ) {
+                                if ( isset( $defined['taxonomy'][$_tax]->cap->delete_terms ) && ( 'manage_categories' != $defined['taxonomy'][$_tax]->cap->delete_terms ) && ! in_array( $_tax, $unfiltered['taxonomy'] ) ) {
+                                    $any_term_deletion_caps = true;
+                                    break;
+                                }
+                            }
+
+                            if ( ! $any_term_deletion_caps )
+                                continue;
+                        }
+
+                        if ( ! count( $cap_properties[$cap_type][$item_type] ) )
+                            continue;
+
+                        $pp_cap_contents .= '<div data-content="' . $cap_type . '">';
+                        $pp_cap_contents .= '<h3>' . $cap_type_names[$cap_type] . '</h3>';
+
+                        $pp_cap_contents .= "<table class='cme-typecaps cme-typecaps-$cap_type'>";
+
+                        $pp_cap_contents .= '<tr><th></th>';
+
+                        // label cap properties
+                        foreach( $cap_properties[$cap_type][$item_type] as $prop ) {
+                            $prop = str_replace( '_posts', '', $prop );
+                            $prop = str_replace( '_pages', '', $prop );
+                            $prop = str_replace( '_terms', '', $prop );
+                            $tip = ( isset( $cap_tips[$prop] ) ) ? "title='{$cap_tips[$prop]}'" : '';
+                            $prop = str_replace( '_', '<br />', $prop );
+                            $th_class = ( 'taxonomy' == $item_type ) ? ' class="term-cap"' : ' class="post-cap"';
+                            $pp_cap_contents .= "<th $tip{$th_class}>";
+
+                            if ( ( 'delete' != $prop ) || ( 'taxonomy' != $item_type ) || cme_get_detailed_taxonomies() ) {
+                                $pp_cap_contents .= ucwords($prop);
+                            }
+
+                            $pp_cap_contents .= '</th>';
+                        }
+
+                        $pp_cap_contents .= '</tr>';
+
+                        foreach( $defined[$item_type] as $key => $type_obj ) {
+                            if ( in_array( $key, $unfiltered[$item_type] ) )
+                                continue;
+
+                            $row = "<tr class='cme_type_{$key}'>";
+
+                            if ( $cap_type ) {
+                                if ( empty($force_distinct_ui) && empty( $cap_properties[$cap_type][$item_type] ) )
+                                    continue;
+
+                                $row .= "<td><a class='cap_type' href='#toggle_type_caps'>" . $type_obj->labels->name . '</a>';
+                                $row .= '<a href="#" class="neg-type-caps">&nbsp;x&nbsp;</a>';
+                                $row .= '</td>';
+
+                                $display_row = ! empty($force_distinct_ui);
+
+                                foreach( $cap_properties[$cap_type][$item_type] as $prop ) {
+                                    $td_classes = array();
+                                    $checkbox = '';
+                                    $title = '';
+
+                                    if ( ! empty($type_obj->cap->$prop) && ( in_array( $type_obj->name, array( 'post', 'page' ) )
+                                            || ! in_array( $type_obj->cap->$prop, $default_caps )
+                                            || ( ( 'manage_categories' == $type_obj->cap->$prop ) && ( 'manage_terms' == $prop ) && ( 'category' == $type_obj->name ) ) ) ) {
+
+                                        // if edit_published or edit_private cap is same as edit_posts cap, don't display a checkbox for it
+                                        if ( ( ! in_array( $prop, array( 'edit_published_posts', 'edit_private_posts', 'create_posts' ) ) || ( $type_obj->cap->$prop != $type_obj->cap->edit_posts ) )
+                                            && ( ! in_array( $prop, array( 'delete_published_posts', 'delete_private_posts' ) ) || ( $type_obj->cap->$prop != $type_obj->cap->delete_posts ) )
+                                            && ( ! in_array( $prop, array( 'edit_terms', 'delete_terms' ) ) || ( $type_obj->cap->$prop != $type_obj->cap->manage_terms ) )
+
+                                            && ( ! in_array( $prop, array( 'manage_terms', 'edit_terms', 'delete_terms', 'assign_terms' ) )
+                                                || empty($cme_cap_helper->all_taxonomy_caps[$type_obj->cap->$prop])
+                                                || ( $cme_cap_helper->all_taxonomy_caps[ $type_obj->cap->$prop ] <= 1 )
+                                                || $type_obj->cap->$prop == str_replace( '_terms', "_{$type_obj->name}s", $prop )
+                                                || $type_obj->cap->$prop == str_replace( '_terms', "_" . _cme_get_plural($type_obj->name, $type_obj), $prop )
+                                            )
+
+                                            && ( in_array( $prop, array( 'manage_terms', 'edit_terms', 'delete_terms', 'assign_terms' ) )
+                                                || empty($cme_cap_helper->all_type_caps[$type_obj->cap->$prop])
+                                                || ( $cme_cap_helper->all_type_caps[ $type_obj->cap->$prop ] <= 1 )
+                                                || $type_obj->cap->$prop == 'upload_files' && 'create_posts' == $prop && 'attachment' == $type_obj->name
+                                                || $type_obj->cap->$prop == str_replace( '_posts', "_{$type_obj->name}s", $prop )
+                                                || $type_obj->cap->$prop == str_replace( '_pages', "_{$type_obj->name}s", $prop )
+                                                || $type_obj->cap->$prop == str_replace( '_posts', "_" . _cme_get_plural($type_obj->name, $type_obj), $prop )
+                                                || $type_obj->cap->$prop == str_replace( '_pages', "_" . _cme_get_plural($type_obj->name, $type_obj), $prop )
+                                            )
+                                        ) {
+                                            // only present these term caps up top if we are ensuring that they get enforced separately from manage_terms
+                                            if ( in_array( $prop, array( 'edit_terms', 'delete_terms', 'assign_terms' ) ) && ( ! in_array( $type_obj->name, cme_get_detailed_taxonomies() ) || defined( 'OLD_PRESSPERMIT_ACTIVE' ) ) ) {
+                                                continue;
+                                            }
+
+                                            $cap_name = $type_obj->cap->$prop;
+
+                                            if ( 'taxonomy' == $item_type )
+                                                $td_classes []= "term-cap";
+                                            else
+                                                $td_classes []= "post-cap";
+
+                                            if ( ! empty($pp_metagroup_caps[$cap_name]) )
+                                                $td_classes []='cm-has-via-pp';
+
+                                            if ( $is_administrator || current_user_can($cap_name) ) {
+                                                if ( ! empty($pp_metagroup_caps[$cap_name]) ) {
+                                                    $title = ' title="' . sprintf( __( '%s: assigned by Permission Group', 'capsman-enhanced' ), $cap_name ) . '"';
+                                                } else {
+                                                    $title = ' title="' . $cap_name . '"';
+                                                }
+
+                                                $disabled = '';
+                                                $checked = checked(1, ! empty($rcaps[$cap_name]), false );
+
+                                                $checkbox = '<input type="checkbox"' . $title . ' name="caps[' . $cap_name . ']" value="1" ' . $checked . $disabled . ' />';
+
+                                                $type_caps [$cap_name] = true;
+                                                $display_row = true;
+                                            }
+                                        } else {
+                                            //$td_classes []= "cap-unreg";
+                                            $title = 'title="' . sprintf( __( 'shared capability: %s', 'capsman-enhanced' ), esc_attr( $type_obj->cap->$prop ) ) . '"';
+                                        }
+
+                                        if ( isset($rcaps[$cap_name]) && empty($rcaps[$cap_name]) ) {
+                                            $td_classes []= "cap-neg";
+                                        }
+                                    } else {
+                                        $td_classes []= "cap-unreg";
+                                    }
+
+                                    $td_class = ( $td_classes ) ? 'class="' . implode(' ', $td_classes) . '"' : '';
+
+                                    $row .= "<td $td_class $title><span class='cap-x'>X</span>$checkbox";
+
+                                    if ( false !== strpos( $td_class, 'cap-neg' ) )
+                                        $row .= '<input type="hidden" class="cme-negation-input" name="caps[' . $cap_name . ']" value="" />';
+
+                                    $row .= "</td>";
+                                }
+
+                                if ('type' == $item_type) {
+                                    $type_metacaps[$type_obj->cap->read_post] = true;
+                                    $type_metacaps[$type_obj->cap->edit_post] = isset($type_obj->cap->edit_posts) && ($type_obj->cap->edit_post != $type_obj->cap->edit_posts);
+                                    $type_metacaps[$type_obj->cap->delete_post] = isset($type_obj->cap->delete_posts) && ($type_obj->cap->delete_post != $type_obj->cap->delete_posts);
+
+                                } elseif ('taxonomy' == $item_type && !empty($type_obj->cap->edit_term) && !empty($type_obj->cap->delete_term)) {
+                                    $type_metacaps[$type_obj->cap->edit_term] = true;
+                                    $type_metacaps[$type_obj->cap->delete_term] = true;
+                                }
+                            }
+
+                            if ( $display_row ) {
+                                $row .= '</tr>';
+                                $pp_cap_contents .= $row;
+                            }
+                        }
+
+                        $pp_cap_contents .= '</table>';
+                        $pp_cap_contents .= '</div><!-- div[data-content] -->';
+
+                    } // end foreach item type
+
+                    //echo '</div>';
+
+                    //echo '</li>';
+                }
+
+
+                do_action('publishpress-caps_manager_postcaps_section', compact('current', 'rcaps', 'pp_metagroup_caps', 'is_administrator', 'default_caps', 'custom_types', 'defined', 'unfiltered', 'pp_metagroup_caps'));
+
+                $type_caps = apply_filters('publishpress_caps_manager_typecaps', $type_caps);
+
+                // clicking on post type name toggles corresponding checkbox selections
                 ?>
+                <script type="text/javascript">
+                    /* <![CDATA[ */
+                    jQuery(document).ready( function($) {
+                        $('a[href="#toggle_type_caps"]').click( function() {
+                            var chks = $(this).closest('tr').find('input');
+                            $(chks).prop( 'checked', ! $(chks).first().is(':checked') );
+                            return false;
+                        });
+                    });
+                    /* ]]> */
+                </script>
 
                 <div class="postbox" id="roleslist">
                     <div class="pp-cap-horizontal-tabs">
                         <div class="pp-cap-horizontal-tabs__tabs">
                             <ul>
-                                <li class="pp-cap-tab__active" data-tab="1">Lorem ipsum dolor site amet consecteur</li>
+                                <?php echo $pp_cap_tabs ?>
+                                <li data-tab="1">Lorem ipsum dolor site amet consecteur</li>
                                 <li data-tab="2">Lorem ipsum dolor site amet consecteur</li>
                                 <li data-tab="3">Lorem ipsum dolor site amet consecteur</li>
                                 <li data-tab="4">Lorem ipsum dolor site amet consecteur</li>
@@ -135,7 +444,8 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
                         </div>
 
                         <div class="pp-cap-horizontal-tabs__contents">
-                            <div class="pp-cap-content__active" data-content="1">
+                            <?php echo $pp_cap_contents; ?>
+                            <div data-content="1">
                                 <h3>Lorem ipsum dolor site amet consecteur</h3>
                                 <p>1. Nunc ullamcorper, nulla vel tincidunt posuere, lacus lorem efficitur leo, non tristique nunc sem sit amet est. Fusce quis accumsan ligula. Morbi nec orci malesuada, scelerisque magna sit amet, mattis diam. </p>
                                 <p>Nunc ullamcorper, nulla vel tincidunt posuere, lacus lorem efficitur leo, non tristique nunc sem sit amet est. Fusce quis accumsan ligula. Morbi nec orci malesuada, scelerisque magna sit amet, mattis diam. </p>
@@ -298,307 +608,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 				echo '<a href="#pp-hide">hide</a>';
 				echo '</div></div>';
 
-				if ( MULTISITE ) {
-					global $wp_roles;
-					global $wpdb;
-
-					if ( ! empty($_REQUEST['cme_net_sync_role'] ) ) {
-						switch_to_blog(1);
-						wp_cache_delete( $wpdb->prefix . 'user_roles', 'options' );
-					}
-
-					( method_exists( $wp_roles, 'for_site' ) ) ? $wp_roles->for_site() : $wp_roles->reinit();
-				}
-				$capsman->reinstate_db_roles();
-
-				$current = get_role($default);
-
-				$rcaps = $current->capabilities;
-
-				$is_administrator = current_user_can( 'administrator' ) || (is_multisite() && is_super_admin());
-
-				$custom_types = get_post_types( array( '_builtin' => false ), 'names' );
-				$custom_tax = get_taxonomies( array( '_builtin' => false ), 'names' );
-
-				$defined = array();
-				$defined['type'] = get_post_types( array( 'public' => true, 'show_ui' => true ), 'object', 'or' );
-				$defined['taxonomy'] = get_taxonomies( array( 'public' => true ), 'object' );
-
-				$unfiltered['type'] = apply_filters( 'pp_unfiltered_post_types', array( 'forum','topic','reply','wp_block' ) );  // bbPress' dynamic role def requires additional code to enforce stored caps
-				$unfiltered['taxonomy'] = apply_filters( 'pp_unfiltered_taxonomies', array( 'post_status', 'topic-tag' ) );  // avoid confusion with Edit Flow administrative taxonomy
-
-				$enabled_taxonomies = cme_get_assisted_taxonomies();
-
-				/*
-				if ( ( count($custom_types) || count($custom_tax) ) && ( $is_administrator || current_user_can( 'manage_pp_settings' ) ) ) {
-					$cap_properties[''] = array();
-					$force_distinct_ui = true;
-				}
-				*/
-
-				$cap_properties['edit']['type'] = array( 'edit_posts' );
-
-				foreach( $defined['type'] as $type_obj ) {
-					if ( 'attachment' != $type_obj->name ) {
-						if ( isset( $type_obj->cap->create_posts ) && ( $type_obj->cap->create_posts != $type_obj->cap->edit_posts ) ) {
-							$cap_properties['edit']['type'][]= 'create_posts';
-							break;
-						}
-					}
-				}
-
-				$cap_properties['edit']['type'][]= 'edit_others_posts';
-				$cap_properties['edit']['type'] = array_merge( $cap_properties['edit']['type'], array( 'publish_posts', 'edit_published_posts', 'edit_private_posts' ) );
-
-				$cap_properties['edit']['taxonomy'] = array( 'manage_terms' );
-
-				if ( ! defined( 'OLD_PRESSPERMIT_ACTIVE' ) )
-					$cap_properties['edit']['taxonomy'] = array_merge( $cap_properties['edit']['taxonomy'], array( 'edit_terms', 'assign_terms' ) );
-
-				$cap_properties['delete']['type'] = array( 'delete_posts', 'delete_others_posts' );
-				$cap_properties['delete']['type'] = array_merge( $cap_properties['delete']['type'], array( 'delete_published_posts', 'delete_private_posts' ) );
-
-				if ( ! defined( 'OLD_PRESSPERMIT_ACTIVE' ) )
-					$cap_properties['delete']['taxonomy'] = array( 'delete_terms' );
-				else
-					$cap_properties['delete']['taxonomy'] = array();
-
-				$cap_properties['read']['type'] = array( 'read_private_posts' );
-				$cap_properties['read']['taxonomy'] = array();
-
-				$stati = get_post_stati( array( 'internal' => false ) );
-
-				$cap_type_names = array(
-					'' => __( '&nbsp;', 'capsman-enhanced' ),
-					'read' => __( 'Reading', 'capsman-enhanced' ),
-					'edit' => __( 'Editing Capabilities', 'capsman-enhanced' ),
-					'delete' => __( 'Deletion Capabilities', 'capsman-enhanced' )
-				);
-
-				$cap_tips = array(
-					'read_private' => __( 'can read posts which are currently published with private visibility', 'capsman-enhanced' ),
-					'edit' => __( 'has basic editing capability (but may need other capabilities based on post status and ownership)', 'capsman-enhanced' ),
-					'edit_others' => __( 'can edit posts which were created by other users', 'capsman-enhanced' ),
-					'edit_published' => __( 'can edit posts which are currently published', 'capsman-enhanced' ),
-					'edit_private' => __( 'can edit posts which are currently published with private visibility', 'capsman-enhanced' ),
-					'publish' => __( 'can make a post publicly visible', 'capsman-enhanced' ),
-					'delete' => __( 'has basic deletion capability (but may need other capabilities based on post status and ownership)', 'capsman-enhanced' ),
-					'delete_others' => __( 'can delete posts which were created by other users', 'capsman-enhanced' ),
-					'delete_published' => __( 'can delete posts which are currently published', 'capsman-enhanced' ),
-					'delete_private' => __( 'can delete posts which are currently published with private visibility', 'capsman-enhanced' ),
-				);
-
-				$default_caps = array( 'read_private_posts', 'edit_posts', 'edit_others_posts', 'edit_published_posts', 'edit_private_posts', 'publish_posts', 'delete_posts', 'delete_others_posts', 'delete_published_posts', 'delete_private_posts',
-									   'read_private_pages', 'edit_pages', 'edit_others_pages', 'edit_published_pages', 'edit_private_pages', 'publish_pages', 'delete_pages', 'delete_others_pages', 'delete_published_pages', 'delete_private_pages',
-									   'manage_categories'
-									   );
-				$type_caps = array();
-				$type_metacaps = array();
-
-				// Role Scoper and PP1 adjust attachment access based only on user's capabilities for the parent post
-				if ( defined('OLD_PRESSPERMIT_ACTIVE') ) {
-					unset( $defined['type']['attachment'] );
-				}
-					
-				echo '<ul class="cme-listhoriz">';
-				
-				// cap_types: read, edit, deletion
-				foreach( array_keys($cap_properties) as $cap_type ) {
-					echo '<li>';
-					echo '<h3>' . $cap_type_names[$cap_type] . '</h3>';
-					
-					echo "<div class='cme-cap-type-tables cme-cap-type-tables-$cap_type'>";
-
-					foreach( array_keys($defined) as $item_type ) {
-						if ( ( 'delete' == $cap_type ) && ( 'taxonomy' == $item_type ) ) {
-							if ( defined('OLD_PRESSPERMIT_ACTIVE') ) {
-								continue;
-							}
-								
-							$any_term_deletion_caps = false;
-							foreach( array_keys($defined['taxonomy']) as $_tax ) {
-								if ( isset( $defined['taxonomy'][$_tax]->cap->delete_terms ) && ( 'manage_categories' != $defined['taxonomy'][$_tax]->cap->delete_terms ) && ! in_array( $_tax, $unfiltered['taxonomy'] ) ) {
-									$any_term_deletion_caps = true;
-									break;
-								}
-							}
-							
-							if ( ! $any_term_deletion_caps )
-								continue;
-						}
-					
-						if ( ! count( $cap_properties[$cap_type][$item_type] ) )
-							continue;
-					
-						echo "<table class='cme-typecaps cme-typecaps-$cap_type'>";
-
-						echo '<tr><th></th>';
-						
-						// label cap properties
-						foreach( $cap_properties[$cap_type][$item_type] as $prop ) {
-							$prop = str_replace( '_posts', '', $prop );
-							$prop = str_replace( '_pages', '', $prop );
-							$prop = str_replace( '_terms', '', $prop );
-							$tip = ( isset( $cap_tips[$prop] ) ) ? "title='{$cap_tips[$prop]}'" : '';
-							$prop = str_replace( '_', '<br />', $prop );
-							$th_class = ( 'taxonomy' == $item_type ) ? ' class="term-cap"' : ' class="post-cap"';
-							echo "<th $tip{$th_class}>";
-							
-							if ( ( 'delete' != $prop ) || ( 'taxonomy' != $item_type ) || cme_get_detailed_taxonomies() ) {
-								echo ucwords($prop);
-							}
-							
-							echo '</th>';
-						}
-
-						echo '</tr>';
-
-						foreach( $defined[$item_type] as $key => $type_obj ) {
-							if ( in_array( $key, $unfiltered[$item_type] ) )
-								continue;
-
-							$row = "<tr class='cme_type_{$key}'>";
-							
-							if ( $cap_type ) {
-								if ( empty($force_distinct_ui) && empty( $cap_properties[$cap_type][$item_type] ) )
-									continue;
-							
-								$row .= "<td><a class='cap_type' href='#toggle_type_caps'>" . $type_obj->labels->name . '</a>';
-								$row .= '<a href="#" class="neg-type-caps">&nbsp;x&nbsp;</a>';
-								$row .= '</td>';
-								
-								$display_row = ! empty($force_distinct_ui);
-
-								foreach( $cap_properties[$cap_type][$item_type] as $prop ) {
-									$td_classes = array();
-									$checkbox = '';
-									$title = '';
-									
-									if ( ! empty($type_obj->cap->$prop) && ( in_array( $type_obj->name, array( 'post', 'page' ) ) 
-									|| ! in_array( $type_obj->cap->$prop, $default_caps ) 
-									|| ( ( 'manage_categories' == $type_obj->cap->$prop ) && ( 'manage_terms' == $prop ) && ( 'category' == $type_obj->name ) ) ) ) {
-		
-										// if edit_published or edit_private cap is same as edit_posts cap, don't display a checkbox for it
-										if ( ( ! in_array( $prop, array( 'edit_published_posts', 'edit_private_posts', 'create_posts' ) ) || ( $type_obj->cap->$prop != $type_obj->cap->edit_posts ) ) 
-										&& ( ! in_array( $prop, array( 'delete_published_posts', 'delete_private_posts' ) ) || ( $type_obj->cap->$prop != $type_obj->cap->delete_posts ) )
-										&& ( ! in_array( $prop, array( 'edit_terms', 'delete_terms' ) ) || ( $type_obj->cap->$prop != $type_obj->cap->manage_terms ) )
-										
-										&& ( ! in_array( $prop, array( 'manage_terms', 'edit_terms', 'delete_terms', 'assign_terms' ) ) 
-											|| empty($cme_cap_helper->all_taxonomy_caps[$type_obj->cap->$prop])
-											|| ( $cme_cap_helper->all_taxonomy_caps[ $type_obj->cap->$prop ] <= 1 ) 
-											|| $type_obj->cap->$prop == str_replace( '_terms', "_{$type_obj->name}s", $prop ) 
-											|| $type_obj->cap->$prop == str_replace( '_terms', "_" . _cme_get_plural($type_obj->name, $type_obj), $prop ) 
-											)
-										
-										&& ( in_array( $prop, array( 'manage_terms', 'edit_terms', 'delete_terms', 'assign_terms' ) ) 
-											|| empty($cme_cap_helper->all_type_caps[$type_obj->cap->$prop])
-											|| ( $cme_cap_helper->all_type_caps[ $type_obj->cap->$prop ] <= 1 ) 
-											|| $type_obj->cap->$prop == 'upload_files' && 'create_posts' == $prop && 'attachment' == $type_obj->name
-											|| $type_obj->cap->$prop == str_replace( '_posts', "_{$type_obj->name}s", $prop ) 
-											|| $type_obj->cap->$prop == str_replace( '_pages', "_{$type_obj->name}s", $prop ) 
-											|| $type_obj->cap->$prop == str_replace( '_posts', "_" . _cme_get_plural($type_obj->name, $type_obj), $prop ) 
-											|| $type_obj->cap->$prop == str_replace( '_pages', "_" . _cme_get_plural($type_obj->name, $type_obj), $prop ) 
-											)
-										) {
-											// only present these term caps up top if we are ensuring that they get enforced separately from manage_terms
-											if ( in_array( $prop, array( 'edit_terms', 'delete_terms', 'assign_terms' ) ) && ( ! in_array( $type_obj->name, cme_get_detailed_taxonomies() ) || defined( 'OLD_PRESSPERMIT_ACTIVE' ) ) ) {
-												continue;
-											}
-											
-											$cap_name = $type_obj->cap->$prop;
-											
-											if ( 'taxonomy' == $item_type )
-												$td_classes []= "term-cap";
-											else
-												$td_classes []= "post-cap";
-											
-											if ( ! empty($pp_metagroup_caps[$cap_name]) )
-												$td_classes []='cm-has-via-pp';	
-										
-											if ( $is_administrator || current_user_can($cap_name) ) {
-												if ( ! empty($pp_metagroup_caps[$cap_name]) ) {
-													$title = ' title="' . sprintf( __( '%s: assigned by Permission Group', 'capsman-enhanced' ), $cap_name ) . '"';
-												} else {
-													$title = ' title="' . $cap_name . '"';
-												}
-												
-												$disabled = '';
-												$checked = checked(1, ! empty($rcaps[$cap_name]), false );
-												
-												$checkbox = '<input type="checkbox"' . $title . ' name="caps[' . $cap_name . ']" value="1" ' . $checked . $disabled . ' />';
-												
-												$type_caps [$cap_name] = true;
-												$display_row = true;
-											} 
-										} else {
-											//$td_classes []= "cap-unreg";
-											$title = 'title="' . sprintf( __( 'shared capability: %s', 'capsman-enhanced' ), esc_attr( $type_obj->cap->$prop ) ) . '"';
-										}
-										
-										if ( isset($rcaps[$cap_name]) && empty($rcaps[$cap_name]) ) {
-											$td_classes []= "cap-neg";
-										}
-									} else {
-										$td_classes []= "cap-unreg";
-									}
-									
-									$td_class = ( $td_classes ) ? 'class="' . implode(' ', $td_classes) . '"' : '';
-									
-									$row .= "<td $td_class $title><span class='cap-x'>X</span>$checkbox";
-									
-									if ( false !== strpos( $td_class, 'cap-neg' ) )
-										$row .= '<input type="hidden" class="cme-negation-input" name="caps[' . $cap_name . ']" value="" />';
-
-									$row .= "</td>";
-								}
-
-								if ('type' == $item_type) {
-									$type_metacaps[$type_obj->cap->read_post] = true;
-									$type_metacaps[$type_obj->cap->edit_post] = isset($type_obj->cap->edit_posts) && ($type_obj->cap->edit_post != $type_obj->cap->edit_posts);
-									$type_metacaps[$type_obj->cap->delete_post] = isset($type_obj->cap->delete_posts) && ($type_obj->cap->delete_post != $type_obj->cap->delete_posts);
-
-								} elseif ('taxonomy' == $item_type && !empty($type_obj->cap->edit_term) && !empty($type_obj->cap->delete_term)) {
-									$type_metacaps[$type_obj->cap->edit_term] = true;
-									$type_metacaps[$type_obj->cap->delete_term] = true;
-								}
-							}
-
-							if ( $display_row ) {
-								$row .= '</tr>';
-								echo $row;
-							}
-						}
-
-						echo '</table>';
-
-					} // end foreach item type
-					
-					echo '</div>';
-					
-					echo '</li>';
-				}
-
-
-				do_action('publishpress-caps_manager_postcaps_section', compact('current', 'rcaps', 'pp_metagroup_caps', 'is_administrator', 'default_caps', 'custom_types', 'defined', 'unfiltered', 'pp_metagroup_caps'));
-
-				$type_caps = apply_filters('publishpress_caps_manager_typecaps', $type_caps);
-
-				echo '</ul>';
-				
-				// clicking on post type name toggles corresponding checkbox selections
-				?>
-				<script type="text/javascript">
-				/* <![CDATA[ */
-				jQuery(document).ready( function($) {
-					$('a[href="#toggle_type_caps"]').click( function() {
-						var chks = $(this).closest('tr').find('input');
-						$(chks).prop( 'checked', ! $(chks).first().is(':checked') );
-						return false;
-					});
-				});
-				/* ]]> */
-				</script>
-				<?php
+                //
 				
 				echo '<p>&nbsp;</p><h3>' . __( 'Other WordPress Core Capabilities', 'capsman-enhanced' ) . '</h3>';
 				echo '<table class="form-table cme-checklist"><tr>';
