@@ -241,12 +241,18 @@ class CapabilityManager
 	 */
 	protected function pluginUpdate ()
 	{
+		global $wpdb;
+
 		$backup = get_option($this->ID . '_backup');
 		if ( false === $backup ) {		// No previous backup found. Save it!
 			global $wpdb;
 			$roles = get_option($wpdb->prefix . 'user_roles');
 			update_option( $this->ID . '_backup', $roles, false );
 			update_option( $this->ID . '_backup_datestamp', current_time( 'timestamp' ), false );
+		}
+
+		if (!$wpdb->get_var("SELECT COUNT(option_id) FROM $wpdb->options WHERE option_name LIKE 'cme_backup_auto_%'")) {
+			pp_capabilities_autobackup();
 		}
 	}
 
