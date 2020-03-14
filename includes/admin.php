@@ -1121,12 +1121,12 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 		$support_pp_only_roles = ( defined('PRESSPERMIT_ACTIVE') ) ? $pp_ui->pp_only_roles_ui( $default ) : false;
 		cme_network_role_ui( $default );
 		?>
-		
+
 		<p class="submit">
 			<input type="hidden" name="action" value="update" />
 			<input type="hidden" name="current" value="<?php echo $default; ?>" />
 			<input type="submit" name="SaveRole" value="<?php _e('Save Changes', 'capsman-enhanced') ?>" class="button-primary" /> &nbsp;
-			
+
 			<?php if ( current_user_can('administrator') && 'administrator' != $default ) : ?>
 				<a class="ak-delete" title="<?php echo esc_attr(__('Delete this role', 'capsman-enhanced')) ?>" href="<?php echo wp_nonce_url("admin.php?page={$this->ID}&amp;action=delete&amp;role={$default}", 'delete-role_' . $default); ?>" onclick="if ( confirm('<?php echo esc_js(sprintf(__("You are about to delete the %s role.\n\n 'Cancel' to stop, 'OK' to delete.", 'capsman-enhanced'), $roles[$default])); ?>') ) { return true;}return false;"><?php _e('Delete Role', 'capsman-enhanced')?></a>
 			<?php endif; ?>
@@ -1142,11 +1142,11 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 				<dd style="text-align:center;">
 					<?php $class = ( $support_pp_only_roles ) ? 'tight-text' : 'regular-text'; ?>
 					<p><input type="text" name="create-name" class="<?php echo $class;?>" placeholder="<?php _e('Role Name', 'capsman-enhanced') ?>" />
-					
+
 					<?php if( $support_pp_only_roles ) : ?>
 					<label for="new_role_pp_only" title="<?php _e('Make role available for supplemental assignment to Permission Groups only', 'capsman-enhanced');?>"> <input type="checkbox" name="new_role_pp_only" id="new_role_pp_only" value="1"> <?php _e('hidden', 'capsman-enhanced'); ?> </label>
 					<?php endif; ?>
-					
+
 					<br />
 					<input type="submit" name="CreateRole" value="<?php _e('Create', 'capsman-enhanced') ?>" class="button" />
 					</p>
@@ -1158,11 +1158,11 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 				<dd style="text-align:center;">
 					<?php $class = ( $support_pp_only_roles ) ? 'tight-text' : 'regular-text'; ?>
 					<p><input type="text" name="copy-name"  class="<?php echo $class;?>" placeholder="<?php _e('Role Name', 'capsman-enhanced') ?>" />
-					
+
 					<?php if( $support_pp_only_roles ) : ?>
 					<label for="copy_role_pp_only" title="<?php _e('Make role available for supplemental assignment to Permission Groups only', 'capsman-enhanced');?>"> <input type="checkbox" name="copy_role_pp_only" id="copy_role_pp_only" value="1"> <?php _e('hidden', 'capsman-enhanced'); ?> </label>
 					<?php endif; ?>
-					
+
 					<br />
 					<input type="submit" name="CopyRole" value="<?php _e('Copy', 'capsman-enhanced') ?>" class="button" />
 					</p>
@@ -1176,14 +1176,14 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 					<input type="submit" name="AddCap" value="<?php _e('Add to role', 'capsman-enhanced') ?>" class="button" /></p>
 				</dd>
 			</dl>
-			
+
 			<!-- <dl class="cme-backup-tool">
 				<dt><?php _e('Backup Tool', 'capsman-enhanced'); ?></dt>
 				<dd style="text-align:center;">
 					<p><a href="admin.php?page=capsman-tool"><?php _e('Backup / Restore Roles', 'capsman-enhanced');?></a></p>
 				</dd>
 			</dl> -->
-			
+
 			<dl>
 				<dt><?php _e('Related Permissions Plugins', 'capsman-enhanced'); ?></dt>
 				<dd>
@@ -1198,7 +1198,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 					$url = ( is_multisite() ) ? network_admin_url($_url) : admin_url($_url);
 					?>
 					<li><a class="thickbox" href="<?php echo $url;?>"><?php _e('PublishPress', 'capsman-enhanced');?></a></li>
-					
+
 					<?php $_url = "plugin-install.php?tab=plugin-information&plugin=revisionary&TB_iframe=true&width=640&height=678";
 					$url = ( is_multisite() ) ? network_admin_url($_url) : admin_url($_url);
 					?>
@@ -1209,8 +1209,8 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 				</ul>
 				</dd>
 			</dl>
-			
-			<?php 
+
+			<?php
 				$pp_ui->pp_types_ui( $defined['type'] );
 				$pp_ui->pp_taxonomies_ui( $defined['taxonomy'] );
 
