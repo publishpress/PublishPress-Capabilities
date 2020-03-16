@@ -87,11 +87,11 @@ a.cme-neg-all {
   vertical-align: middle;
 }
 a.cme-switch-all {
-  color: black;
-  font-size: 1.5em;
-  padding-right: 1px;
-  vertical-align: middle;
-  text-decoration: line-through;
+color: black;
+font-size: 1.5em;
+padding-right: 1px;
+vertical-align: middle;
+text-decoration: line-through !important;
 }
 td.cap-yes span {
   color: green;

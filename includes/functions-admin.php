@@ -2,7 +2,13 @@
 
 // perf enhancement: display submenu links without loading framework and plugin code
 function cme_submenus() {
-	$cap_name = ( is_super_admin() ) ? 'manage_capabilities' : 'restore_roles';
+    // First we check if user is administrator and can 'manage_capabilities'.
+    if (current_user_can('administrator') && ! current_user_can('manage_capabilities')) {
+        $admin = get_role('administrator');
+        $admin->add_cap('manage_capabilities');
+    }
+
+	$cap_name = (is_super_admin()) ? 'read' : 'manage_capabilities';
 
     $permissions_title = __('Capabilities', 'capsman-enhanced');
 
@@ -27,4 +33,16 @@ function cme_submenus() {
     );
 
     add_submenu_page('capsman',  __('Backup', 'capsman-enhanced'), __('Backup', 'capsman-enhanced'), $cap_name, 'capsman' . '-tool', 'cme_fakefunc');
+
+    add_submenu_page(
+        'capsman', 
+        __('Upgrade to Pro', 'capsman-enhanced'), 
+        __('Upgrade to Pro', 'capsman-enhanced'), 
+        'read', 
+        'capsman',
+        'cme_fakefunc'
+    );
+}
+
+function cme_fakefunc() {
 }
