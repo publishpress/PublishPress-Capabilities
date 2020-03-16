@@ -4,7 +4,7 @@ Tags: role, capabilities, post types, taxonomies, editor, network, woocommerce
 Requires at least: 4.9.7
 Tested up to: 5.3.2
 Requires PHP: 5.6.20
-Stable tag: 1.9.1
+Stable tag: 1.9.2
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -71,7 +71,7 @@ Yes. Users with the 'manage_capabilities' capability can edit roles. This Capabi
 
 == Changelog ==
 
-= 1.9.2 =
+= 1.9.2 - 16 Mar 2020 =
   * Feature : Auto-backup role and capabilities on each update (and on update to this version)
   * Fixed : First-time installation: Capabilities menu item not displayed until after Plugins or Users menu clicked 
   * Change : Third Party Plugin Capabilities - always display checkboxes even if capabilities not present in Administrator role
