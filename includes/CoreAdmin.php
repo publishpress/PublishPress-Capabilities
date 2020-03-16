@@ -4,6 +4,30 @@ namespace PublishPress\Capabilities;
 class CoreAdmin {
     function __construct() {
         add_action('admin_print_scripts', [$this, 'setUpgradeMenuLink'], 50);
+
+        if (is_admin()) {
+            $autoloadPath = PUBLISHPRESS_CAPS_ABSPATH . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
+			if (file_exists($autoloadPath)) {
+				require_once $autoloadPath;
+			}
+
+            require_once PUBLISHPRESS_CAPS_ABSPATH . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'publishpress' . DIRECTORY_SEPARATOR
+                         . 'wordpress-version-notices' . DIRECTORY_SEPARATOR . 'includes.php';
+    
+            add_filter(\PPVersionNotices\Module\TopNotice\Module::SETTINGS_FILTER, function ($settings) {
+                $settings['capabilities'] = [
+                    'message' => 'You\'re using PublishPress Capabilities Free. The Pro version has more features and support. %sUpgrade to Pro%s',
+                    'link'    => 'https://publishpress.com/links/capabilities-banner',
+                    'screens' => [
+                        ['base' => 'toplevel_page_capsman'],
+                        ['base' => 'capabilities_page_capsman-tool'],
+                        ['base' => 'capabilities_page_capability-settings'],
+                    ]
+                ];
+    
+                return $settings;
+            });
+        }
     }
 
     function setUpgradeMenuLink() {

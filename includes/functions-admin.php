@@ -39,7 +39,7 @@ function cme_submenus() {
         __('Upgrade to Pro', 'capsman-enhanced'), 
         __('Upgrade to Pro', 'capsman-enhanced'), 
         'read', 
-        'capsman',
+        'capabilities-pro',
         'cme_fakefunc'
     );
 }

@@ -278,7 +278,7 @@ class CapabilityManager
 		$cap_name = ( is_super_admin() ) ? 'manage_capabilities' : 'restore_roles';
 		
 		$permissions_title = __('Capabilities', 'capsman-enhanced');
-		
+
 		$menu_order = 72;
 
 		if (defined('PUBLISHPRESS_PERMISSIONS_MENU_GROUPING')) {
@@ -286,9 +286,9 @@ class CapabilityManager
 				if ( false !== strpos($plugin_file, 'publishpress.php') ) {
 					$menu_order = 27;
 				}
-		}	
-	}
-	
+			}
+		}
+
 		add_menu_page(
 			$permissions_title,
 			$permissions_title,
@@ -306,11 +306,11 @@ class CapabilityManager
             __('Upgrade to Pro', 'capsman-enhanced'), 
             __('Upgrade to Pro', 'capsman-enhanced'), 
             'read', 
-            'capsman', 
+            'capabilities-pro', 
             array($this, 'generalManager')
         );
 	}
-	
+
 	/**
 	 * Sets the 'manage_capabilities' cap to the administrator role.
 	 *
@@ -477,7 +477,7 @@ class CapabilityManager
 		}
 
 		if (!isset($this->current) || !get_role($this->current)) {
-			$this->current = get_option('default_role');
+				$this->current = get_option('default_role');
 		}
 		
 		if ( ! in_array($this->current, $roles) ) {    // Current role has been deleted.
