@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Capability Manager Enhanced\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-12 23:04-0500\n"
-"PO-Revision-Date: 2020-03-12 23:04-0500\n"
+"POT-Creation-Date: 2020-03-16 19:50-0500\n"
+"PO-Revision-Date: 2020-03-16 19:50-0500\n"
 "Last-Translator: Kevin Behrens <kevin@publishpress.com>\n"
 "Language-Team: PublishPress <help@publishpress.com>\n"
 "MIME-Version: 1.0\n"
@@ -526,14 +526,17 @@ msgstr ""
 msgid "Edit Roles"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/functions-admin.php:7
-#: F:\snapshot\capability-manager-enhanced/includes/manager.php:274
+#: F:\snapshot\capability-manager-enhanced/includes/functions-admin.php:13
 msgid "Capabilities"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/functions-admin.php:29
-#: F:\snapshot\capability-manager-enhanced/includes/manager.php:296
+#: F:\snapshot\capability-manager-enhanced/includes/functions-admin.php:35
 msgid "Backup"
+msgstr ""
+
+#: F:\snapshot\capability-manager-enhanced/includes/functions-admin.php:39
+#: F:\snapshot\capability-manager-enhanced/includes/functions-admin.php:40
+msgid "Upgrade to Pro"
 msgstr ""
 
 #: F:\snapshot\capability-manager-enhanced/includes/handler.php:18
@@ -596,46 +599,46 @@ msgstr ""
 msgid "Add or remove capability from the role normally"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/manager.php:390
-#: F:\snapshot\capability-manager-enhanced/includes/manager.php:431
-#: F:\snapshot\capability-manager-enhanced/includes/manager.php:604
+#: F:\snapshot\capability-manager-enhanced/includes/manager.php:405
+#: F:\snapshot\capability-manager-enhanced/includes/manager.php:446
+#: F:\snapshot\capability-manager-enhanced/includes/manager.php:619
 msgid "What do you think you're doing?!?"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/manager.php:445
+#: F:\snapshot\capability-manager-enhanced/includes/manager.php:460
 msgid "New capability added to role."
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/manager.php:484
+#: F:\snapshot\capability-manager-enhanced/includes/manager.php:499
 msgid "Bad form Received"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/manager.php:630
+#: F:\snapshot\capability-manager-enhanced/includes/manager.php:645
 #, php-format
 msgid "If you like %s, please leave us a %s rating. Thank you!"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/manager.php:641
+#: F:\snapshot\capability-manager-enhanced/includes/manager.php:656
 msgid "About PublishPress Capabilities"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/manager.php:641
+#: F:\snapshot\capability-manager-enhanced/includes/manager.php:656
 msgid "About"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/manager.php:643
+#: F:\snapshot\capability-manager-enhanced/includes/manager.php:658
 msgid "Capabilites Documentation"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/manager.php:643
+#: F:\snapshot\capability-manager-enhanced/includes/manager.php:658
 msgid "Documentation"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/manager.php:645
+#: F:\snapshot\capability-manager-enhanced/includes/manager.php:660
 msgid "Contact the PublishPress team"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/manager.php:645
+#: F:\snapshot\capability-manager-enhanced/includes/manager.php:660
 msgid "Contact"
 msgstr ""
 
