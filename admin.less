@@ -1,0 +1,340 @@
+/**
+ * Settings for admin dashboard.
+ * Based on the styles for Maintenance Mode plugin by Michael Wöhrer
+ *
+ * @version		$Rev: 198515 $
+ * @author		Jordi Canals
+ * @copyright   Copyright (C) 2009, 2010 Jordi Canals
+ * @license		GNU General Public License version 2
+ * @link		http://alkivia.org
+ * @package		Alkivia
+ * @subpackage	CapsMan
+ *
+
+	Copyright 2009, 2010 Jordi Canals <devel@jcanals.cat>
+
+	This program is free software; you can redistribute it and/or
+	modify it under the terms of the GNU General Public License
+	version 2 as published by the Free Software Foundation.
+
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+
+/* ====================================================== SIDEBAR ICONS */
+
+a.cap_type {
+	text-decoration: none;
+}
+
+a.cap_type:hover {
+	text-decoration: underline;
+}
+	
+ul.cme-listhoriz li {
+text-align: center;
+padding-right: 1em;
+}
+
+ul.cme-listhoriz li table{
+text-align: center;
+}
+
+
+ul.cme-listhoriz {
+width: 100%;
+clear: both;
+float: left;
+margin: 0;
+padding: 0;
+}
+
+ul.cme-listhoriz li {
+list-style: none;
+float: left;
+margin: 0;
+}
+
+	
+div.cme-listhoriz h3 {
+margin: 0.2em;
+}
+
+div.cme-cap-type-tables {
+border: 1px solid black;
+}
+
+table .cme-typecaps td {
+text-align: center;
+height: 2em;
+}
+
+table .cme-typecaps th {
+padding-left: 0.3em;
+padding-right: 0.3em;
+}
+
+table.cme-typecaps span.cap-x {
+display: none;
+}
+
+h3.cme-cap-section {
+margin-top:0;
+}
+
+a.neg-cap, a.cap-on, a.type-on, a.neg-type-caps, a.cme-neg-all {
+text-decoration: none;
+}
+
+span.cap-x, a.cme-neg-all {
+color: red;
+font-size: 1.5em;
+padding-left: 1px;
+padding-right: 1px;
+vertical-align: middle;
+}
+
+a.cme-switch-all {
+color: black;
+font-size: 1.5em;
+padding-right: 1px;
+padding-right: 1px;
+vertical-align: middle;
+text-decoration: line-through;
+}
+
+td.cap-yes span {
+color:green;font-weight:bold;
+}
+
+td.cap-no {
+color:#777;
+}
+
+td.cap-neg label span {
+color: red;
+}
+
+td.cap-neg input {
+display:none;
+}
+
+td.cap-no span.cap-x, td.cap-yes span.cap-x {
+display:none;
+}
+
+td.cap-neg span.cap-x {
+display:inline;
+}
+
+td.cap-neg  a.neg-cap {
+display:none;
+}
+
+td.cap-metagroup label span {
+color: #080 !important;
+}
+
+td.cap-locked a.neg-cap {
+display: none !important;
+}
+
+a.type-off, a.neg-cap, a.cme-neg-all, a.neg-type-caps {
+color: #800;
+}
+
+a.type-on, a.cap-on, a.cme-switch-all {
+color: black;
+}
+
+input.cme-check-all, a.cme-neg-all {
+margin-right: 10px;
+padding-right: 10px;
+}
+
+#akmin input.button {
+margin-top: 5px;
+}
+
+#akmin input.button-primary {
+margin: 5px;
+}
+
+#akmin td.sidebar {
+width: 300px;
+}
+
+#akmin .cme-backup-tool a {
+padding-left:0;
+}
+
+#akmin input.regular-text {
+width: 200px;
+}
+
+#akmin input.tight-text {
+width: 125px;
+}
+
+/*.cme-subtext {
+color: #686868;
+font-style: italic;
+margin-top:5px;
+}*/
+
+td.cm-has-via-pp {
+background-color: #84fb84;
+}
+
+div.pressshack-admin-wrapper footer {
+padding-right: 270px;
+}
+
+body.capabilities_page_capsman-tool div.pressshack-admin-wrapper footer {
+padding-right: 5px;
+}
+
+//#akmin div.publishpress-headline {line-height:25px}
+#akmin span.publishpress-thanks{margin-left:5px;color:#655997;white-space:nowrap}
+#akmin span.publishpress-thanks,#akmin span.publishpress-thanks a,#akmin span.publishpress-thanks a:visited {color:#655997;font-weight:bold;}
+
+table#akmin td.sidebar li.publishpress-contact{text-align:center}
+table#akmin td.sidebar li.publishpress-contact a{padding:5px 0 5px 0;}
+
+#pp_features {display:none;border:1px solid #eee;padding:5px;text-align:center;min-width:600px}
+#pp_features div.pp-logo { text-align: center }
+#pp_features div.features-wrap { margin-left: auto; margin-right: auto; text-align: center; width: 600px; }
+#pp_features ul.pp-features { list-style: none; padding-top:10px; text-align:left; margin-left: auto }
+#pp_features ul.pp-features li:before { content: "\2713\0020"; }
+#pp_features ul.pp-features li { padding-bottom: 5px }
+#pp_features img.cme-play { margin-bottom: -3px; margin-left: 5px;}
+div.publishpress-caps-manage span.manage-members {margin-left:5px; font-weight:normal; color: #777}
+div.publishpress-caps-manage span.manage-members a {color: #777}
+div.publishpress-caps-manage span.manage-members a:hover {text-decoration: underline; color:#655997 }
+
+//div.publishpress-headline .cme-subtext a {font-weight: bold}
+//div.publishpress-headline .cme-subtext a:hover {text-decoration: underline}
+
+.pressshack-admin-wrapper {
+
+  /* Roles filter */
+  input[name="SaveRole"] {
+    line-height: 36px;
+    padding-left: 15px;
+    padding-right: 15px;
+    font-size: 1.2em;
+  }
+
+  /* Horizontal tabs */
+  #roleslist {
+    margin-top: 10px;
+  }
+
+  .pp-cap-horizontal-tabs {
+    display: table;
+
+    &__tabs {
+      color: inherit;
+
+      > ul {
+        margin: 0;
+
+        > li {
+          background: #f2f2f2;
+          cursor: pointer;
+          padding: 14px 10px;
+          margin: 0;
+          border-right: 1px solid #ccd0d4;
+          border-bottom: 1px solid #ccd0d4;
+          transition: background .2s linear;
+
+          &.pp-cap-tab__active,
+          &:hover:not(.pp-cap-tab__active) {
+            background: #fff;
+          }
+
+          &.pp-cap-tab__active {
+            border-right-color: transparent;
+          }
+        }
+      }
+    }
+
+    &__contents {
+      padding: 0 14px;
+      box-sizing: border-box;
+
+      > div {
+
+        > h3 {
+          font-size: 1.2em;
+        }
+      }
+    }
+  }
+
+  @media (min-width: 851px) {
+
+    /* Roles filter */
+    input[name="SaveRole"] {
+      float: right;
+    }
+
+    /* Horizontal tabs */
+    .pp-cap-horizontal-tabs {
+
+      &__tabs,
+      &__contents {
+        float: left;
+      }
+
+      &__tabs {
+        width: 30%;
+
+        > ul {
+
+          > li {
+
+            &.pp-cap-tab__active {
+
+            }
+          }
+        }
+      }
+
+      &__contents {
+        width: 70%;
+
+        > div {
+          display: none;
+
+          &.pp-cap-content__active {
+            display: block;
+          }
+
+          > h3 {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 850px) {
+
+    /* Horizontal tabs */
+    .pp-cap-horizontal-tabs {
+
+      &__tabs {
+        display: none;
+      }
+    }
+
+  }
+}
