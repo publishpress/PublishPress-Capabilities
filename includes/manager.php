@@ -300,6 +300,15 @@ class CapabilityManager
 		);
 
 		add_submenu_page('capsman',  __('Backup', 'capsman-enhanced'), __('Backup', 'capsman-enhanced'), $cap_name, $this->ID . '-tool', array($this, 'backupTool'));
+
+		add_submenu_page(
+            'capsman', 
+            __('Upgrade to Pro', 'capsman-enhanced'), 
+            __('Upgrade to Pro', 'capsman-enhanced'), 
+            'read', 
+            'capsman', 
+            array($this, 'generalManager')
+        );
 	}
 	
 	/**

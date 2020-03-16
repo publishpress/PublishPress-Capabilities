@@ -126,6 +126,11 @@ if ( version_compare(PHP_VERSION, '5.4.0', '<') ) {
 		load_plugin_textdomain('capsman-enhanced', false, basename(dirname(__FILE__)) .'/lang');
 		add_action( 'admin_menu', 'cme_submenus', 20 );
 	}
+
+	if (is_admin() && !defined('PUBLISHPRESS_CAPS_PRO_VERSION')) {
+		require_once(__DIR__ . '/includes/CoreAdmin.php');
+		new \PublishPress\Capabilities\CoreAdmin();
+	}
 }
 
 add_action( 'init', '_cme_init' );
