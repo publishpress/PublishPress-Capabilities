@@ -275,7 +275,7 @@ class CapabilityManager
 	}
 
 	public function cme_menu() {
-		$cap_name = ( is_super_admin() ) ? 'manage_capabilities' : 'read';
+		$cap_name = ( is_super_admin() ) ? 'manage_capabilities' : 'restore_roles';
 		
 		$permissions_title = __('Capabilities', 'capsman-enhanced');
 
