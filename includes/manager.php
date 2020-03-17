@@ -275,7 +275,7 @@ class CapabilityManager
 	}
 
 	public function cme_menu() {
-		$cap_name = ( is_super_admin() ) ? 'manage_capabilities' : 'restore_roles';
+		$cap_name = (is_multisite() && is_super_admin()) ? 'read' : 'manage_capabilities';
 		
 		$permissions_title = __('Capabilities', 'capsman-enhanced');
 
