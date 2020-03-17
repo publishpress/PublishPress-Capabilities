@@ -4,7 +4,7 @@ Tags: role, capabilities, post types, taxonomies, editor, network, woocommerce
 Requires at least: 4.9.7
 Tested up to: 5.3.2
 Requires PHP: 5.6.20
-Stable tag: 1.9.2
+Stable tag: 1.9.3
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -70,6 +70,11 @@ Yes. Users with the 'manage_capabilities' capability can edit roles. This Capabi
 * Feel free to <a href="https://publishpress.com/contact/">submit a help ticket</a> if you can't find an answer in the <a href="https://publishpress.com/knowledge-base/how-to-use-capability-manager/">documentation</a>. 
 
 == Changelog ==
+
+= 1.9.3 - 17 Mar 2020 =
+  * Fixed : Capabilities screen was not accessible to non-Administrators who have "manage_capabilities" capability
+  * Fixed : Some functions were not accessible to network Super Administrators without a role on the site
+  * Change : Clarify some messages for plugin access denial
 
 = 1.9.2 - 16 Mar 2020 =
   * Feature : Auto-backup role and capabilities on each update (and on update to this version)
