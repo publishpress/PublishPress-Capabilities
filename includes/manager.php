@@ -404,7 +404,7 @@ class CapabilityManager
 		if ( 'POST' == $_SERVER['REQUEST_METHOD'] && ( ! empty($_REQUEST['SaveRole']) || ! empty($_REQUEST['AddCap']) ) ) {
 			if ((!is_multisite() || !is_super_admin()) && !current_user_can('administrator') && !current_user_can('manage_capabilities')) {
 				// TODO: Implement exceptions.
-				wp_die('<strong>' .__('What do you think you\'re doing?!?', 'capsman-enhanced') . '</strong>');
+				wp_die('<strong>' .__('You do not have permission to manage capabilities.', 'capsman-enhanced') . '</strong>');
 			}
 
 			if ( ! empty($_REQUEST['current']) ) { // don't process role update unless form variable is received
@@ -445,7 +445,7 @@ class CapabilityManager
 	function generalManager () {
 		if ((!is_multisite() || !is_super_admin()) && !current_user_can('administrator') && !current_user_can('manage_capabilities')) {
             // TODO: Implement exceptions.
-		    wp_die('<strong>' .__('What do you think you\'re doing?!?', 'capsman-enhanced') . '</strong>');
+		    wp_die('<strong>' .__('You do not have permission to manage capabilities.', 'capsman-enhanced') . '</strong>');
 		}
 
 		if ( 'POST' == $_SERVER['REQUEST_METHOD'] ) {
@@ -618,7 +618,7 @@ class CapabilityManager
 	{
 		if ((!is_multisite() || !is_super_admin()) && !current_user_can('administrator') && !current_user_can('restore_roles')) {
 		    // TODO: Implement exceptions.
-			wp_die('<strong>' .__('What do you think you\'re doing?!?', 'capsman-enhanced') . '</strong>');
+			wp_die('<strong>' .__('You do not have permission to restore roles.', 'capsman-enhanced') . '</strong>');
 		}
 
 		if ( 'POST' == $_SERVER['REQUEST_METHOD'] ) {
