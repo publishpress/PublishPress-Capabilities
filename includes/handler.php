@@ -304,6 +304,8 @@ class CapsmanHandler
 				( method_exists( $wp_roles, 'for_site' ) ) ? $wp_roles->for_site() : $wp_roles->reinit();
 			}
 		} // endif multisite installation with super admin editing a main site role
+
+		pp_capabilities_autobackup();
 	}
 	
 

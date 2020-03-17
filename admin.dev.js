@@ -24,6 +24,13 @@ jQuery(document).ready( function($) {
 		return false;
 	});
 	
+	$("#publishpress_caps_form").bind("keypress", function(e) {
+		if (e.keyCode == 13) {
+		   $(document.activeElement).parent().find('input[type="submit"]').first().click();
+		   return false;
+		}
+	});
+
 	$('input.cme-check-all').click( function(e) {
 		$(this).closest('table').find('input[type="checkbox"][disabled!="disabled"]:visible').prop('checked', $(this).is(":checked") );
 	});

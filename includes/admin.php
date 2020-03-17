@@ -599,9 +599,10 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 				}
 				*/
 
-				$plugin_caps = apply_filters('cme_plugin_capabilities',
-					[
-					'PublishPress' => apply_filters('cme_publishpress_capabilities',
+				$plugin_caps = [];
+
+				if (defined('PUBLISHPRESS_VERSION')) {
+					$plugin_caps['PublishPress'] = apply_filters('cme_publishpress_capabilities',
 					array(
 						'edit_metadata',
 						'edit_post_subscriptions',
@@ -612,9 +613,17 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 						'pp_view_content_overview',
 						'status_change',
 						)
-					),
+					);
+				}
 
-					'PublishPress Permissions' => apply_filters('cme_presspermit_capabilities',
+				if (defined('PUBLISHPRESS_MULTIPLE_AUTHORS_VERSION')) {
+					if ($_caps = apply_filters('cme_multiple_authors_capabilities', array())) {
+						$plugin_caps['PublishPress Authors'] = $_caps;
+					}
+				}
+
+				if (defined('PRESSPERMIT_VERSION')) {
+					$plugin_caps['PublishPress Permissions'] = apply_filters('cme_presspermit_capabilities',
 						array(
 						'edit_own_attachments',
 						'list_others_unattached_files',
@@ -635,12 +644,10 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 						'pp_manage_capabilities',	
 						'pp_manage_members',
 						'pp_manage_network_members',	
-						'pp_manage_roles',
 						'pp_manage_settings',	
 						'pp_moderate_any',	
 						'pp_set_associate_exceptions',	
 						'pp_set_edit_exceptions',	
-						'pp_set_notification_channel',
 						'pp_set_read_exceptions',
 						'pp_set_revise_exceptions',	
 						'pp_set_term_assign_exceptions',	
@@ -649,9 +656,11 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 						'pp_unfiltered',
 						'set_posts_status',
 						)
-					),
+					);
+				}
 
-					'WooCommerce' => apply_filters('cme_woocommerce_capabilities', 
+				if (defined('WC_PLUGIN_FILE')) {
+					$plugin_caps['WooCommerce'] = apply_filters('cme_woocommerce_capabilities', 
 						array(
 						'assign_product_terms',
 						'assign_shop_coupon_terms',
@@ -738,18 +747,13 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 						'view_shop_sensitive_data',
 						'view_woocommerce_reports',
 						)
-					),
-					]
 				);
+				}
+
+				$plugin_caps = apply_filters('cme_plugin_capabilities', $plugin_caps);
 
 				foreach($plugin_caps as $plugin => $__plugin_caps) {
-					if (!is_multisite() || !is_super_admin()) {
-						if (!$_plugin_caps = array_fill_keys( array_intersect($__plugin_caps, $all_capabilities), true )) {
-							continue;
-						}
-					} else {
-						$_plugin_caps = array_fill_keys($__plugin_caps, true);
-					}
+					$_plugin_caps = array_fill_keys($__plugin_caps, true);
 
 					echo '<h3 class="cme-cap-section">' . sprintf(__( '%s Capabilities', 'capsman-enhanced' ), str_replace('_', ' ', $plugin )) . '</h3>';
 					echo '<table class="form-table cme-checklist"><tr>';

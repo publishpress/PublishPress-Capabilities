@@ -3,7 +3,7 @@
  * Plugin Name: PublishPress Capabilities
  * Plugin URI: https://publishpress.com/capability-manager/
  * Description: Manage WordPress role definitions, per-site or network-wide. Organizes post capabilities by post type and operation.
- * Version: 1.9
+ * Version: 1.9.2
  * Author: PublishPress
  * Author URI: https://publishpress.com/
  * Text Domain: capsman-enhanced
@@ -25,13 +25,13 @@
  * @copyright   Copyright (C) 2009, 2010 Jordi Canals; modifications Copyright (C) 2020 PublishPress
  * @license		GNU General Public License version 3
  * @link		https://publishpress.com/
- * @version 	1.9
+ * @version 	1.9.2
  */
 
-if ( ! defined( 'CAPSMAN_VERSION' ) ) {
-	define('CAPSMAN_VERSION', 			'1.9');
-	define('CAPSMAN_ENH_VERSION', 		'1.9');
-	define('PUBLISHPRESS_CAPS_VERSION', '1.9');
+if (!defined('CAPSMAN_VERSION')) {
+	define('CAPSMAN_VERSION', 			'1.9.2');
+	define('CAPSMAN_ENH_VERSION', 		'1.9.2');
+	define('PUBLISHPRESS_CAPS_VERSION', '1.9.2');
 }
 
 foreach (get_option('active_plugins') as $plugin_file) {
@@ -47,7 +47,7 @@ foreach (get_option('active_plugins') as $plugin_file) {
 $pro_active = false;
 
 foreach ((array)get_option('active_plugins') as $plugin_file) {
-    if (false !== strpos($plugin_file, 'capabilities-pro-by-publishpress.php')) {
+    if (false !== strpos($plugin_file, 'capabilities-pro.php')) {
         $pro_active = true;
         break;
     }
@@ -55,7 +55,7 @@ foreach ((array)get_option('active_plugins') as $plugin_file) {
 
 if (!$pro_active && is_multisite()) {
     foreach (array_keys((array)get_site_option('active_sitewide_plugins')) as $plugin_file) {
-        if (false !== strpos($plugin_file, 'capabilities-pro-by-publishpress.php')) {
+        if (false !== strpos($plugin_file, 'capabilities-pro.php')) {
             $pro_active = true;
             break;
         }
@@ -115,7 +115,7 @@ if ( version_compare(PHP_VERSION, '5.4.0', '<') ) {
 	|| in_array( $pagenow, array( 'users.php', 'user-edit.php', 'profile.php', 'user-new.php' ) )
 	) ) {
 		global $capsman;
-		
+
 		// Run the plugin
 		require_once ( dirname(__FILE__) . '/framework/lib/formating.php' );
 		require_once ( dirname(__FILE__) . '/framework/lib/users.php' );
@@ -125,6 +125,11 @@ if ( version_compare(PHP_VERSION, '5.4.0', '<') ) {
 	} else {
 		load_plugin_textdomain('capsman-enhanced', false, basename(dirname(__FILE__)) .'/lang');
 		add_action( 'admin_menu', 'cme_submenus', 20 );
+	}
+
+	if (is_admin() && !defined('PUBLISHPRESS_CAPS_PRO_VERSION')) {
+		require_once(__DIR__ . '/includes/CoreAdmin.php');
+		new \PublishPress\Capabilities\CoreAdmin();
 	}
 }
 

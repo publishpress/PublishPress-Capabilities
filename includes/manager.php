@@ -241,12 +241,18 @@ class CapabilityManager
 	 */
 	protected function pluginUpdate ()
 	{
+		global $wpdb;
+
 		$backup = get_option($this->ID . '_backup');
 		if ( false === $backup ) {		// No previous backup found. Save it!
 			global $wpdb;
 			$roles = get_option($wpdb->prefix . 'user_roles');
 			update_option( $this->ID . '_backup', $roles, false );
 			update_option( $this->ID . '_backup_datestamp', current_time( 'timestamp' ), false );
+		}
+
+		if (!$wpdb->get_var("SELECT COUNT(option_id) FROM $wpdb->options WHERE option_name LIKE 'cme_backup_auto_%'")) {
+			pp_capabilities_autobackup();
 		}
 	}
 
@@ -272,7 +278,7 @@ class CapabilityManager
 		$cap_name = ( is_super_admin() ) ? 'manage_capabilities' : 'restore_roles';
 		
 		$permissions_title = __('Capabilities', 'capsman-enhanced');
-		
+
 		$menu_order = 72;
 
 		if (defined('PUBLISHPRESS_PERMISSIONS_MENU_GROUPING')) {
@@ -280,9 +286,9 @@ class CapabilityManager
 				if ( false !== strpos($plugin_file, 'publishpress.php') ) {
 					$menu_order = 27;
 				}
-		}	
-	}
-	
+			}
+		}
+
 		add_menu_page(
 			$permissions_title,
 			$permissions_title,
@@ -294,8 +300,17 @@ class CapabilityManager
 		);
 
 		add_submenu_page('capsman',  __('Backup', 'capsman-enhanced'), __('Backup', 'capsman-enhanced'), $cap_name, $this->ID . '-tool', array($this, 'backupTool'));
+
+		add_submenu_page(
+            'capsman', 
+            __('Upgrade to Pro', 'capsman-enhanced'), 
+            __('Upgrade to Pro', 'capsman-enhanced'), 
+            'read', 
+            'capabilities-pro', 
+            array($this, 'generalManager')
+        );
 	}
-	
+
 	/**
 	 * Sets the 'manage_capabilities' cap to the administrator role.
 	 *
@@ -462,7 +477,7 @@ class CapabilityManager
 		}
 
 		if (!isset($this->current) || !get_role($this->current)) {
-			$this->current = get_option('default_role');
+				$this->current = get_option('default_role');
 		}
 		
 		if ( ! in_array($this->current, $roles) ) {    // Current role has been deleted.

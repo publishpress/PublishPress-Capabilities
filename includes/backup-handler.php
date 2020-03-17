@@ -45,8 +45,7 @@ class Capsman_BackupHandler
 					break;
 				
 				case 'restore_initial':
-					$roles = get_option($cm_roles_initial);
-					if ( $roles ) {
+					if ($roles = get_option($cm_roles_initial)) {
 						update_option($wp_roles, $roles);
 						ak_admin_notify(__('Roles and Capabilities restored from initial backup.', 'capsman-enhanced'));
 					} else {
@@ -55,14 +54,21 @@ class Capsman_BackupHandler
 					break;
 
 				case 'restore':
-					$roles = get_option($cm_roles);
-					if ( $roles ) {
+					if ($roles = get_option($cm_roles)) {
 						update_option($wp_roles, $roles);
 						ak_admin_notify(__('Roles and Capabilities restored from last backup.', 'capsman-enhanced'));
 					} else {
 						ak_admin_error(__('Restore failed. No backup found.', 'capsman-enhanced'));
 					}
 					break;
+
+				default:
+					if ($roles = get_option($_POST['action'])) {
+						update_option($wp_roles, $roles);
+						ak_admin_notify(__('Roles and Capabilities restored from selected auto-backup.', 'capsman-enhanced'));
+					} else {
+						ak_admin_error(__('Restore failed. No backup found.', 'capsman-enhanced'));
+					}
 			}
 		}
 	}
