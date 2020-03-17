@@ -197,7 +197,7 @@ class CME_Cap_Helper {
 		// need this for casting to other types even if "post" type is not enabled for PP filtering
 		$wp_post_types['post']->cap->set_posts_status = 'set_posts_status';
 		
-		if ( current_user_can( 'administrator' ) || current_user_can( 'pp_administer_content' ) ) {  // @ todo: support restricted administrator
+		if ((is_multisite() && is_super_admin()) || current_user_can('administrator') || current_user_can('pp_administer_content')) {  // @ todo: support restricted administrator
 			global $current_user;
 			$current_user->allcaps = array_merge( $current_user->allcaps, array_fill_keys( array_keys( $this->all_type_caps ), true ) );
 			
@@ -360,7 +360,7 @@ class CME_Cap_Helper {
 		
 		$this->all_taxonomy_caps = array_merge( $this->all_taxonomy_caps, array( 'assign_term' => true ) );
 		
-		if ( current_user_can( 'administrator' ) || current_user_can( 'pp_administer_content' ) ) {  // @ todo: support restricted administrator
+		if ((is_multisite() && is_super_admin()) || current_user_can('administrator') || current_user_can('pp_administer_content')) {  // @ todo: support restricted administrator
 			global $current_user;
 			$current_user->allcaps = array_merge( $current_user->allcaps, array_fill_keys( array_keys( $this->all_taxonomy_caps ), true ) );
 			

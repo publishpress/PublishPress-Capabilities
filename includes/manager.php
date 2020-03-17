@@ -402,7 +402,7 @@ class CapabilityManager
 
 	function processRoleUpdate() {
 		if ( 'POST' == $_SERVER['REQUEST_METHOD'] && ( ! empty($_REQUEST['SaveRole']) || ! empty($_REQUEST['AddCap']) ) ) {
-			if ( ! current_user_can('manage_capabilities') && ! current_user_can('administrator') ) {
+			if ((!is_multisite() || !is_super_admin()) && !current_user_can('administrator') && !current_user_can('manage_capabilities')) {
 				// TODO: Implement exceptions.
 				wp_die('<strong>' .__('What do you think you\'re doing?!?', 'capsman-enhanced') . '</strong>');
 			}
@@ -443,7 +443,7 @@ class CapabilityManager
 	 * @return void
 	 */
 	function generalManager () {
-		if ( ! current_user_can('manage_capabilities') && ! current_user_can('administrator') ) {
+		if ((!is_multisite() || !is_super_admin()) && !current_user_can('administrator') && !current_user_can('manage_capabilities')) {
             // TODO: Implement exceptions.
 		    wp_die('<strong>' .__('What do you think you\'re doing?!?', 'capsman-enhanced') . '</strong>');
 		}
@@ -616,7 +616,7 @@ class CapabilityManager
 	 */
 	function backupTool ()
 	{
-		if ( ! current_user_can('restore_roles') && ! is_super_admin() ) {
+		if ((!is_multisite() || !is_super_admin()) && !current_user_can('administrator') && !current_user_can('restore_roles')) {
 		    // TODO: Implement exceptions.
 			wp_die('<strong>' .__('What do you think you\'re doing?!?', 'capsman-enhanced') . '</strong>');
 		}
