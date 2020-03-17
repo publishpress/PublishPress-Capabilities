@@ -34,14 +34,16 @@ function cme_submenus() {
 
     add_submenu_page('capsman',  __('Backup', 'capsman-enhanced'), __('Backup', 'capsman-enhanced'), $cap_name, 'capsman' . '-tool', 'cme_fakefunc');
 
-    add_submenu_page(
-        'capsman', 
-        __('Upgrade to Pro', 'capsman-enhanced'), 
-        __('Upgrade to Pro', 'capsman-enhanced'), 
-        'read', 
-        'capabilities-pro',
-        'cme_fakefunc'
-    );
+	if (!defined('PUBLISHPRESS_CAPS_PRO_VERSION')) {
+	    add_submenu_page(
+	        'capsman', 
+	        __('Upgrade to Pro', 'capsman-enhanced'), 
+	        __('Upgrade to Pro', 'capsman-enhanced'), 
+	        'read', 
+	        'capabilities-pro',
+	        'cme_fakefunc'
+	    );
+	}
 }
 
 function cme_fakefunc() {
