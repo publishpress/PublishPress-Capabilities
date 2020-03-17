@@ -885,7 +885,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 					$checked = checked(1, ! empty($rcaps[$cap_name]), false );
 					
 					if ( 'manage_capabilities' == $cap_name ) {
-						if ( ! current_user_can('administrator') ) {
+						if (!current_user_can('administrator') && (!is_multisite() || !is_super_admin())) {
 							continue;
 						} elseif ( 'administrator' == $default ) {
 							$class .= ' cap-locked';
