@@ -7,7 +7,7 @@ Tags: user roles, capabilities, permissions, authors, editors, post types, taxon
 Requires at least: 4.9.7
 Tested up to: 5.4
 Requires PHP: 5.6.20
-Stable tag: 1.9.3
+Stable tag: 1.9.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -47,7 +47,7 @@ The PublishPress Capabilities plugin allows you to add extra permissions to the 
 
 PublishPress Capabilities offers you the ability to back up and restore your permissions. This feature is very helpful if you want to test out changes on your site, or if you've installed a new plugin that has changed your site's permissions.
 
-Every time you change your permissions, the PublishPress Capabilities plugin will now automatically create a backup. If you make a mistake, go to the ìBackupî menu link and you'll be able to roll back to a previous version.
+Every time you change your permissions, the PublishPress Capabilities plugin will now automatically create a backup. If you make a mistake, go to the ‚ÄúBackup‚Äù menu link and you'll be able to roll back to a previous version.
 [Click here to see how to backup permissions](https://publishpress.com/knowledge-base/backup-restore-permissions/).
 
 = Create or Copy User Roles = 
@@ -83,7 +83,7 @@ Join PublishPress and you'll get access to these 6 Pro plugins:
 * [PublishPress Pro](https://publishpress.com/publishpress) is the plugin for managing and scheduling WordPress content.
 * [PublishPress Revisions Pro](https://publishpress.com/revisions) allows you to update your published pages with teamwork and precision.
 
-Together, these plugins are a suite of powerful publishing tools for WordPress. If you need to create a professional workflow in WordPress, with moderation, revisions, permissions and more Ö then you should try PublishPress.
+Together, these plugins are a suite of powerful publishing tools for WordPress. If you need to create a professional workflow in WordPress, with moderation, revisions, permissions and more ‚Ä¶ then you should try PublishPress.
 
 =  Bug Reports =
 
@@ -114,7 +114,7 @@ Fixed : Non-administrators with user editing capabilities could add new Administ
 
 == Changelog ==
 
-= 1.9.4 =
+= 1.9.4 - 2 Apr 2020 =
   * Fatal error loading Capabilities screen on some installations
   * Fixed : Capabilities menu was displayed to non-Administrators with no items except "Upgrade to Pro"
 
