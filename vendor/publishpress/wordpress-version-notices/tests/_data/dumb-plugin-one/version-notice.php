@@ -25,8 +25,7 @@
 
 // @todo: Load only in the admin
 if (!defined('PP_VERSION_NOTICES_LOADED')) {
-    require_once __DIR__ . '/' . 'vendor' . '/' . 'publishpress' . '/'
-        . 'wordpress-version-notices' . '/' . 'includes.php';
+    require_once __DIR__ . '/vendor/publishpress/wordpress-version-notices/includes.php';
 }
 
 add_filter(\PPVersionNotices\Module\TopNotice\Module::SETTINGS_FILTER, function ($settings) {
