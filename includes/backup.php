@@ -91,10 +91,10 @@ $auto_backups = $wpdb->get_results("SELECT option_name, option_value FROM $wpdb-
 
 				switch(selected_val) {
 					case 'restore_initial':
-				$('#cme_display_capsman_backup_initial').show();
+						$('#cme_display_capsman_backup_initial').show();
 						break;
 					case 'restore':
-				$('#cme_display_capsman_backup').show();
+						$('#cme_display_capsman_backup').show();
 						break;
 					default:
 						$('#cme_display_' + selected_val).show();

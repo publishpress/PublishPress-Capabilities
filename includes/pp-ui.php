@@ -48,7 +48,7 @@ class Capsman_PP_UI {
 					$parenthetical = '';
 
 				if ( defined( 'PRESSPERMIT_ACTIVE' ) )
-					printf( __( '"Posts" capabilities selected here also define type-specific role assignment for Permission Groups%s.', $cme_id ), $parenthetical ) ;
+					printf( __( '"Posts" capabilities selected here also define type-specific role assignment for Permission Groups%s.', $cme_id ), $parenthetical );
 				else
 					printf( __( '"Posts" capabilities selected here also define type-specific role assignment for Permit Groups%s.', $cme_id ), $parenthetical ) ;
 

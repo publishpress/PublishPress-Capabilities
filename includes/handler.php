@@ -99,7 +99,7 @@ class CapsmanHandler
 			//}
 		} else {
 			if (!apply_filters('publishpress-caps_submission_ok', false)) {
-		    ak_admin_error(__('Bad form received.', 'capsman-enhanced'));
+				ak_admin_error(__('Bad form received.', 'capsman-enhanced'));
 			}
 		}
 
@@ -185,7 +185,7 @@ class CapsmanHandler
 	private function saveRoleCapabilities( $role_name, $caps, $level ) {
 		$this->cm->generateNames();
 		$role = get_role($role_name);
-		
+
 		// workaround to ensure db storage of customizations to bbp dynamic roles
 		$role->name = $role_name;
 		

@@ -479,7 +479,7 @@ class CapabilityManager
 		}
 
 		if (!isset($this->current) || !get_role($this->current)) {
-				$this->current = get_option('default_role');
+			$this->current = get_option('default_role');
 		}
 		
 		if ( ! in_array($this->current, $roles) ) {    // Current role has been deleted.
