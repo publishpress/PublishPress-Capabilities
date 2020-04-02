@@ -603,15 +603,15 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 
 				if (defined('PUBLISHPRESS_VERSION')) {
 					$plugin_caps['PublishPress'] = apply_filters('cme_publishpress_capabilities',
-					array(
-						'edit_metadata',
-						'edit_post_subscriptions',
-						'ppma_edit_orphan_post',
-						'pp_manage_roles',
-						'pp_set_notification_channel',
-						'pp_view_calendar',
-						'pp_view_content_overview',
-						'status_change',
+						array(
+							'edit_metadata',
+							'edit_post_subscriptions',
+							'ppma_edit_orphan_post',
+							'pp_manage_roles',
+							'pp_set_notification_channel',
+							'pp_view_calendar',
+							'pp_view_content_overview',
+							'status_change',
 						)
 					);
 				}
@@ -747,7 +747,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 						'view_shop_sensitive_data',
 						'view_woocommerce_reports',
 						)
-				);
+					);
 				}
 
 				$plugin_caps = apply_filters('cme_plugin_capabilities', $plugin_caps);
