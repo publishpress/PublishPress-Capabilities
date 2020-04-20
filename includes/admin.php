@@ -1120,6 +1120,17 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 			</dl>
 
 			<dl>
+				<dt><?php _e('Rename Role', 'capsman-enhanced'); ?></dt>
+				<dd style="text-align:center;">
+					<p><input type="text" name="rename-name" class="regular-text" placeholder="<?php _e('New Role Name', 'capsman-enhanced') ?>" />
+					
+					<br />
+					<input type="submit" name="RenameRole" value="<?php _e('Rename', 'capsman-enhanced') ?>" class="button" />
+					</p>
+				</dd>
+			</dl>
+
+			<dl>
 				<dt><?php _e('Add Capability', 'capsman-enhanced'); ?></dt>
 				<dd style="text-align:center;">
 					<p><input type="text" name="capability-name" class="regular-text" placeholder="<?php echo 'capability_name';?>" /><br />

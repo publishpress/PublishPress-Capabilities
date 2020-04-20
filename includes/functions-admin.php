@@ -4,8 +4,9 @@
 function cme_submenus() {
     // First we check if user is administrator and can 'manage_capabilities'.
     if (current_user_can('administrator') && ! current_user_can('manage_capabilities')) {
-        $admin = get_role('administrator');
-        $admin->add_cap('manage_capabilities');
+        if ($admin = get_role('administrator')) {
+        	$admin->add_cap('manage_capabilities');
+        }
     }
 
 	$cap_name = (is_multisite() && is_super_admin()) ? 'read' : 'manage_capabilities';
