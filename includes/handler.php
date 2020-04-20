@@ -135,14 +135,21 @@ class CapsmanHandler
 		if ( preg_match($pattern, $name) ) {
 			$roles = ak_get_roles();
 
-			$name = strtolower($name);
 			$name = str_replace(' ', '_', $name);
 			if ( in_array($name, $roles) || array_key_exists($name, $this->cm->capabilities) ) {
 				return false;	// Already a role or capability with this name.
 			}
 
 			$display = explode('_', $name);
-			$display = array_map('ucfirst', $display);
+			$name = strtolower($name);
+
+			// Apply ucfirst proper caps unless capitalization already provided
+			foreach($display as $i => $word) {
+				if ($word === strtolower($word)) {
+					$display[$i] = ucfirst($word);
+				}
+			}
+
 			$display = implode(' ', $display);
 
 			return compact('name', 'display');
