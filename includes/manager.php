@@ -320,8 +320,9 @@ class CapabilityManager
 	 */
 	public function setAdminCapability ()
 	{
-		$admin = get_role('administrator');
-		$admin->add_cap('manage_capabilities');
+		if ($admin = get_role('administrator')) {
+			$admin->add_cap('manage_capabilities');
+		}
 	}
 
 	/**
