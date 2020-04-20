@@ -6,13 +6,12 @@ class CoreAdmin {
         add_action('admin_print_scripts', [$this, 'setUpgradeMenuLink'], 50);
 
         if (is_admin()) {
-            $autoloadPath = PUBLISHPRESS_CAPS_ABSPATH . '/' . 'vendor' . '/' . 'autoload.php';
+            $autoloadPath = PUBLISHPRESS_CAPS_ABSPATH . '/vendor/autoload.php';
 			if (file_exists($autoloadPath)) {
 				require_once $autoloadPath;
 			}
 
-            require_once PUBLISHPRESS_CAPS_ABSPATH . '/' . 'vendor' . '/' . 'publishpress' . '/'
-                         . 'wordpress-version-notices' . '/' . 'includes.php';
+            require_once PUBLISHPRESS_CAPS_ABSPATH . '/vendor/publishpress/wordpress-version-notices/includes.php';
     
             add_filter(\PPVersionNotices\Module\TopNotice\Module::SETTINGS_FILTER, function ($settings) {
                 $settings['capabilities'] = [
