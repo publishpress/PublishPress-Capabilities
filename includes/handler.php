@@ -24,6 +24,19 @@ class CapsmanHandler
 					ak_admin_error(__('Error: Failed creating the new role.', 'capsman-enhanced'));
 			}
 
+		// rename role
+		} elseif (!empty($post['RenameRole']) && !empty($post['rename-name'])) {
+			$current = get_role($post['current']);
+			$new_title = sanitize_text_field($post['rename-name']);
+
+			if ($current && isset($wp_roles->roles[$current->name]) && $new_title) {
+				$old_title = $wp_roles->roles[$current->name]['name'];
+				$wp_roles->roles[$current->name]['name'] = $new_title;
+				update_option($wp_roles->role_key, $wp_roles->roles);
+
+				ak_admin_notify(sprintf(__('Role "%s" (id %s) renamed to "%s"', 'capsman-enhanced'), $old_title, strtolower($current->name), $new_title));
+				$this->cm->current = $current->name;
+			}
 		// Copy current role to a new one.
 		} elseif ( ! empty($post['CopyRole']) ) {
 			$current = get_role($post['current']);
