@@ -48,7 +48,7 @@ function _cme_update_pp_usage() {
 			
 			update_option( $option_name, $value );
 			
-			if ( 'pp_enabled_post_types' == $option_name ) {
+			if (in_array($option_name, ['presspermit_enabled_post_types', 'pp_enabled_post_types'])) {
 				// ensure smooth transition if Press Permit Core is deactivated
 				update_option( 'cme_enabled_post_types', $value );
 			}

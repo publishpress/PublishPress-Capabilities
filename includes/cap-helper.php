@@ -26,7 +26,7 @@ class CME_Cap_Helper {
 		$this->force_distinct_taxonomy_caps();
 	}
 
-	function force_distinct_post_caps() {  // for selected post types (as stored in option array pp_enabled_post_types)
+	function force_distinct_post_caps() {  // for selected post types (as stored in option array presspermit_enabled_post_types)
 		global $wp_post_types, $wp_roles;
 		
 		$core_meta_caps = array_fill_keys( array( 'read_post', 'edit_post', 'delete_post' ), true );

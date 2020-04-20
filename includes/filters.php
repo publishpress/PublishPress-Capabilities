@@ -206,7 +206,7 @@ function _cme_remap_term_meta_cap ( $caps, $cap, $user_id, $args ) {
 	return $caps;
 }
 
-// Note: this intentionally shares "pp_enabled_post_types" option with Press Permit 
+// Note: this intentionally shares "presspermit_enabled_post_types" option with PublishPress Permissions 
 function cme_get_assisted_post_types() {
 	$type_args = array( 'public' => true, 'show_ui' => true );
 	
@@ -216,7 +216,8 @@ function cme_get_assisted_post_types() {
 		$post_types = array_diff_key( $types, array_fill_keys( (array) $omit_types, true ) );
 	}
 	
-	$enabled = (array) get_option( 'pp_enabled_post_types', array( 'post' => true, 'page' => true ) );
+	$option_name = (defined('PRESSPERMIT_VERSION')) ? 'presspermit_enabled_post_types' : 'pp_enabled_post_types';
+	$enabled = (array) get_option( $option_name, array( 'post' => true, 'page' => true ) );
 	$post_types = array_intersect( $post_types, array_keys( array_filter( $enabled ) ) );
 	
 	return apply_filters( 'cme_assisted_post_types', $post_types, $type_args );
