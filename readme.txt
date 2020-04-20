@@ -7,7 +7,7 @@ Tags: user roles, capabilities, permissions, authors, editors, post types, taxon
 Requires at least: 4.9.7
 Tested up to: 5.4
 Requires PHP: 5.6.20
-Stable tag: 1.9.4
+Stable tag: 1.9.5
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -114,8 +114,12 @@ Fixed : Non-administrators with user editing capabilities could add new Administ
 
 == Changelog ==
 
+= 1.9.5 - 6 Apr 2020 =
+  * Fixed : Fatal error loading Capabilities screen on a small percentage of installations
+  * Compat : PublishPress Permissions - Post Type selections for "Type-Specific Capabilities" were not synchronized with PublishPress Permissions under some conditions
+
 = 1.9.4 - 2 Apr 2020 =
-  * Fatal error loading Capabilities screen on some installations
+  * Fixed : Fatal error loading Capabilities screen on a small percentage of installations
   * Fixed : Capabilities menu was displayed to non-Administrators with no items except "Upgrade to Pro"
 
 = 1.9.3 - 17 Mar 2020 =
