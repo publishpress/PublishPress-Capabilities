@@ -7,7 +7,7 @@ Tags: user roles, capabilities, permissions, authors, editors, post types, taxon
 Requires at least: 4.9.7
 Tested up to: 5.4
 Requires PHP: 5.6.20
-Stable tag: 1.9.6
+Stable tag: 1.9.5
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -113,11 +113,6 @@ Follow PublishPress on [Facebook](https://www.facebook.com/publishpress), [Twitt
 Fixed : Non-administrators with user editing capabilities could add new Administrators
 
 == Changelog ==
-
-= 1.9.6 - 21 Apr 2020 =
-  * Change : Add New Role retains capitalization as entered for role title (otherwise applies proper case)
-  * Feature : Rename Role sidebar box on Capabilities screen
-  * Fixed : Fatal error on plugin load if Administrator role does not exist
 
 = 1.9.5 - 6 Apr 2020 =
   * Fixed : Fatal error loading Capabilities screen on a small percentage of installations
