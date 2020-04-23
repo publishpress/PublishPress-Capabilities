@@ -114,7 +114,7 @@ Fixed : Non-administrators with user editing capabilities could add new Administ
 
 == Changelog ==
 
-= 1.9.6 - 21 Apr 2020 =
+= 1.9.6 - 23 Apr 2020 =
   * Change : Add New Role retains capitalization as entered for role title (otherwise applies proper case)
   * Feature : Rename Role sidebar box on Capabilities screen
   * Fixed : Fatal error on plugin load if Administrator role does not exist
