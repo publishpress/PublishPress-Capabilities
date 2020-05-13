@@ -49,10 +49,29 @@ add_filter('plugin_action_links_' . plugin_basename(CME_FILE), '_cme_fltPluginAc
 
 add_filter('pp_custom_status_list', 'cme_filter_custom_status_list', 10, 2);
 
+add_action('plugins_loaded', '_cme_migrate_pp_options');
+
 function _cme_publishpress_roles_js() {
 	if (defined('PUBLISHPRESS_VERSION') && ((strpos($_SERVER['REQUEST_URI'], 'page=pp-manage-roles')))) {
 		require_once(dirname(__FILE__) . '/publishpress-roles.php');
 		CME_PublishPressRoles::scripts();  // @todo: .js
+	}
+}
+
+// Capabilities previously stored, retrieved settings from 'pp_' option names. Now using 'presspermit_' option names unless PressPermit 2.6.x or older is activated, but need to migrate previous settings
+function _cme_migrate_pp_options() {
+	if (!get_option('cme_pp_options_migrated') && get_option('cme_enabled_post_types')) {
+		foreach(['enabled_post_types', 'enabled_taxonomies', 'define_create_posts_cap'] as $option_basename) {
+			if (!$presspermit_options = get_option("presspermit_{$option_basename}")) {
+				$prefix = ('enabled_post_types' == $option_basename) ? 'cme_' : 'pp_';
+				
+				if ($option_val = get_option("{$prefix}_{$option_basename}")) {
+					update_option("presspermit_{$option_basename}", $option_val);
+				}
+			}
+		}
+
+		update_option('cme_pp_options_migrated', true);
 	}
 }
 
@@ -210,13 +229,13 @@ function _cme_remap_term_meta_cap ( $caps, $cap, $user_id, $args ) {
 function cme_get_assisted_post_types() {
 	$type_args = array( 'public' => true, 'show_ui' => true );
 	
-	$types = get_post_types( $type_args, 'names', 'or' );
+	$post_types = get_post_types( $type_args, 'names', 'or' );
 	
 	if ( $omit_types = apply_filters( 'pp_unfiltered_post_types', array( 'wp_block' ) ) ) {
-		$post_types = array_diff_key( $types, array_fill_keys( (array) $omit_types, true ) );
+		$post_types = array_diff_key( $post_types, array_fill_keys( (array) $omit_types, true ) );
 	}
 	
-	$option_name = (defined('PRESSPERMIT_VERSION')) ? 'presspermit_enabled_post_types' : 'pp_enabled_post_types';
+	$option_name = (defined('PPC_VERSION') && !defined('PRESSPERMIT_VERSION')) ? 'pp_enabled_post_types' : 'presspermit_enabled_post_types';
 	$enabled = (array) get_option( $option_name, array( 'post' => true, 'page' => true ) );
 	$post_types = array_intersect( $post_types, array_keys( array_filter( $enabled ) ) );
 	
@@ -234,7 +253,8 @@ function cme_get_assisted_taxonomies() {
 		$taxonomies = array_diff_key( $taxonomies, array_fill_keys( (array) $omit_taxonomies, true ) );
 	}
 	
-	$enabled = (array) get_option( 'pp_enabled_taxonomies', array() );
+	$option_name = (defined('PPC_VERSION') && !defined('PRESSPERMIT_VERSION')) ? 'pp_enabled_taxonomies' : 'presspermit_enabled_taxonomies';
+	$enabled = (array) get_option( $option_name, array() );
 	$taxonomies = array_intersect( $taxonomies, array_keys( array_filter( $enabled ) ) );
 	
 	return apply_filters( 'cme_assisted_taxonomies', $taxonomies, $tx_args );

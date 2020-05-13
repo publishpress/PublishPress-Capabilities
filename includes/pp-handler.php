@@ -14,6 +14,8 @@ function _cme_update_pp_usage() {
 		
 		$posted = $_POST;
 		
+		$pp_prefix = (defined('PPC_VERSION') && !defined('PRESSPERMIT_VERSION')) ? 'pp' : 'presspermit';
+
 		foreach( $options as $option_basename ) {
 			if ( ! isset( $posted["{$option_basename}-options"] ) )
 				continue;
@@ -36,8 +38,7 @@ function _cme_update_pp_usage() {
 				}
 			}
 
-			//$option_name = ( ( 'detailed_taxonomies' == $option_basename ) || ! defined( 'PRESSPERMIT_ACTIVE' ) ) ?  'cme_' . $option_basename : 'pp_' . $option_basename;
-			$option_name = ( 'detailed_taxonomies' == $option_basename ) ?  'cme_' . $option_basename : 'pp_' . $option_basename;
+			$option_name = ( 'detailed_taxonomies' == $option_basename ) ?  'cme_' . $option_basename : $pp_prefix . '_' . $option_basename;
 			
 			if ( $current = get_option( $option_name ) ) {
 				if ( $current = array_diff_key( $current, $unselected ) )
@@ -61,7 +62,7 @@ function _cme_update_pp_usage() {
 		}
 		
 		if ( ! empty( $_REQUEST['update_filtered_types']) ) {
-			update_option( 'pp_' . 'define_create_posts_cap', ! empty($_REQUEST['pp_define_create_posts_cap']) );
+			update_option( $pp_prefix . '_define_create_posts_cap', ! empty($_REQUEST['pp_define_create_posts_cap']) );
 		}
 	}
 	

@@ -35,7 +35,7 @@ class Capsman_PP_UI {
 		
 			echo '<ul class="ul-disc publishpress-caps-extra-hints" style="margin-top:10px;display:none">';
 			
-			$pp_prefix = ( defined( 'PRESSPERMIT_VERSION') ) ? 'presspermit' : 'pp';
+			$pp_prefix = (defined('PPC_VERSION') && !defined('PRESSPERMIT_VERSION')) ? 'pp' : 'presspermit';
 
 			if ( defined( 'PPCE_VERSION' ) || ! defined( 'PRESSPERMIT_ACTIVE' ) || in_array( $default, array( 'subscriber', 'contributor', 'author', 'editor' ) ) ) {
 				echo '<li>';
@@ -114,7 +114,9 @@ class Capsman_PP_UI {
 				echo '<td style="width:50%">';
 				
 				$option_basename = 'enabled_post_types';
-				$enabled = get_option( 'pp_' . $option_basename, array( 'post' => true, 'page' => true ) );
+				$pp_prefix = (defined('PPC_VERSION') && !defined('PRESSPERMIT_VERSION')) ? 'pp' : 'presspermit';
+
+				$enabled = get_option( $pp_prefix . '_' . $option_basename, array( 'post' => true, 'page' => true ) );
 				
 				foreach( $defined_types as $key => $type_obj ) {
 					if ( ! $key )
@@ -148,7 +150,9 @@ class Capsman_PP_UI {
 				</tr>
 				</table>
 				
-				<?php $define_create_posts_cap = get_option( 'pp_define_create_posts_cap' );?>
+				<?php 
+				
+				$define_create_posts_cap = get_option("{$pp_prefix}_define_create_posts_cap");?>
 				
 					<div style="margin-top:10px;margin-bottom:10px">
 					<label for="pp_define_create_posts_cap">
@@ -180,8 +184,10 @@ class Capsman_PP_UI {
 				
 				echo '<td style="width:50%">';
 
+				$pp_prefix = (defined('PPC_VERSION') && !defined('PRESSPERMIT_VERSION')) ? 'pp' : 'presspermit';
+
 				$option_basename = 'enabled_taxonomies';
-				$option_name = 'pp_' . $option_basename;
+				$option_name = $pp_prefix . '_' . $option_basename;
 				
 				$enabled = get_option( $option_name, array() );
 				

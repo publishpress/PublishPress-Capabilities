@@ -33,7 +33,9 @@ class CME_Cap_Helper {
 		
 		$append_caps = array( 'edit_published_posts' => 'edit_posts', 'edit_private_posts' => 'edit_posts', 'delete_posts' => 'edit_posts', 'delete_others_posts' => 'delete_posts', 'delete_published_posts' => 'delete_posts', 'delete_private_posts' => 'delete_posts', 'read' => 'read' );
 		
-		if ( get_option('pp_define_create_posts_cap') ) {
+		$pp_prefix = (defined('PPC_VERSION') && !defined('PRESSPERMIT_VERSION')) ? 'pp' : 'presspermit';
+
+		if ( get_option("{$pp_prefix}_define_create_posts_cap") ) {
 			foreach( array( 'post', 'page' ) as $post_type ) {
 				if ( $wp_post_types[$post_type]->cap->create_posts == $wp_post_types[$post_type]->cap->edit_posts ) {
 					$wp_post_types[$post_type]->cap->create_posts = "create_{$post_type}s";
