@@ -62,7 +62,9 @@ function _cme_publishpress_roles_js() {
 function _cme_migrate_pp_options() {
 	if (!get_option('cme_pp_options_migrated') && get_option('cme_enabled_post_types')) {
 		foreach(['enabled_post_types', 'enabled_taxonomies', 'define_create_posts_cap'] as $option_basename) {
-			if (!$presspermit_options = get_option("presspermit_{$option_basename}")) {
+			$presspermit_options = get_option("presspermit_{$option_basename}");
+			
+			if (!$presspermit_options || !defined('PRESSPERMIT_VERSION')) {
 				$prefix = ('enabled_post_types' == $option_basename) ? 'cme_' : 'pp_';
 				
 				if ($option_val = get_option("{$prefix}_{$option_basename}")) {
