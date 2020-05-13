@@ -7,7 +7,7 @@ Tags: user roles, capabilities, permissions, authors, editors, post types, taxon
 Requires at least: 4.9.7
 Tested up to: 5.4
 Requires PHP: 5.6.20
-Stable tag: 1.9.6
+Stable tag: 1.9.9
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -114,10 +114,14 @@ Fixed : Non-administrators with user editing capabilities could add new Administ
 
 == Changelog ==
 
+= 1.9.9 - 13 May 2020 =
+  * Compat : PublishPress Permissions - "Type-Specific Capabilities" setting was not properly synchronized with Permissions > Settings > Core > Filtered Post Types
+
 = 1.9.6 - 23 Apr 2020 =
   * Change : Add New Role retains capitalization as entered for role title (otherwise applies proper case)
   * Feature : Rename Role sidebar box on Capabilities screen
   * Fixed : Fatal error on plugin load if Administrator role does not exist
+  * Compat : PublishPress Permissions - Post Type selections for "Type-Specific Capabilities" were not synchronized with PublishPress Permissions under some conditions
 
 = 1.9.5 - 6 Apr 2020 =
   * Fixed : Fatal error loading Capabilities screen on a small percentage of installations
