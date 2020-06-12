@@ -7,7 +7,7 @@ Tags: user roles, capabilities, permissions, authors, editors, post types, taxon
 Requires at least: 4.9.7
 Tested up to: 5.4
 Requires PHP: 5.6.20
-Stable tag: 1.9.9
+Stable tag: 1.9.10
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -113,6 +113,9 @@ Follow PublishPress on [Facebook](https://www.facebook.com/publishpress), [Twitt
 Fixed : Non-administrators with user editing capabilities could add new Administrators
 
 == Changelog ==
+
+= 1.9.10 - 1 Jun 2020 =
+  * Fixed : PublishPress Permissions - Type / Taxonomy settings incorrectly synchronized under some conditions
 
 = 1.9.9 - 13 May 2020 =
   * Compat : PublishPress Permissions - "Type-Specific Capabilities" setting was not properly synchronized with Permissions > Settings > Core > Filtered Post Types
