@@ -7,7 +7,7 @@ Tags: user roles, capabilities, permissions, authors, editors, post types, taxon
 Requires at least: 4.9.7
 Tested up to: 5.4
 Requires PHP: 5.6.20
-Stable tag: 1.9.10
+Stable tag: 1.9.12
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -114,7 +114,7 @@ Fixed : Non-administrators with user editing capabilities could add new Administ
 
 == Changelog ==
 
-= 1.9.12-beta =
+= 1.9.12 - 16 Jun 2020 =
   * Fixed : Fatal error due to missing vendor library folder
 
 = 1.9.11 - 16 Jun 2020 =
