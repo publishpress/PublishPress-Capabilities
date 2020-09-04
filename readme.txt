@@ -5,7 +5,7 @@ Author: PublishPress
 Author URI: https://publishpress.com
 Tags: user roles, capabilities, permissions, authors, editors, post types, taxonomies
 Requires at least: 4.9.7
-Tested up to: 5.4
+Tested up to: 5.5
 Requires PHP: 5.6.20
 Stable tag: 1.9.12
 License: GPLv3
@@ -113,6 +113,9 @@ Follow PublishPress on [Facebook](https://www.facebook.com/publishpress), [Twitt
 Fixed : Non-administrators with user editing capabilities could add new Administrators
 
 == Changelog ==
+
+= 1.9.13-beta =
+  * Compat : Advanced Gutenberg - include AG Profile capabilities in Editing, Deletion, Reading capabilities grid
 
 = 1.9.12 - 16 Jun 2020 =
   * Fixed : Fatal error due to missing vendor library folder
