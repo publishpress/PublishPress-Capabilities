@@ -43,9 +43,9 @@ $auto_backups = $wpdb->get_results("SELECT option_name, option_value FROM $wpdb-
         <?php wp_nonce_field('capsman-backup-tool'); ?>
 
         <ul id="publishpress-capability-backup-tabs" class="nav-tab-wrapper">
-            <li class="nav-tab nav-tab-active"><a href="#pcb-tab-backup">Backup</a></li>
-            <li class="nav-tab"><a href="#pcb-tab-restore">Restore</a></li>
-            <li class="nav-tab"><a href="#pcb-tab-reset">Reset Roles</a></li>
+            <li class="nav-tab nav-tab-active"><a href="#ppcb-tab-backup">Backup</a></li>
+            <li class="nav-tab"><a href="#ppcb-tab-restore">Restore</a></li>
+            <li class="nav-tab"><a href="#ppcb-tab-reset">Reset Roles</a></li>
         </ul>
 
         <fieldset>
@@ -54,7 +54,7 @@ $auto_backups = $wpdb->get_results("SELECT option_name, option_value FROM $wpdb-
                     <td class="content">
 
 
-                        <dl id="pcb-tab-backup">
+                        <dl id="ppcb-tab-backup">
                             <dt><?php _e('Backup', 'capsman-enhanced'); ?></dt>
                             <dd>
                                 <table width='100%' class="form-table">
@@ -75,7 +75,7 @@ $auto_backups = $wpdb->get_results("SELECT option_name, option_value FROM $wpdb-
                         </dl>
 
 
-                        <dl id="pcb-tab-restore" style="display:none;">
+                        <dl id="ppcb-tab-restore" style="display:none;">
                             <dt><?php _e('Restore Backup', 'capsman-enhanced'); ?></dt>
                             <dd>
                                 <table width='100%' class="form-table">
@@ -171,7 +171,7 @@ $auto_backups = $wpdb->get_results("SELECT option_name, option_value FROM $wpdb-
                         </dl>
 
 
-                        <dl id="pcb-tab-reset" style="display:none;">
+                        <dl id="ppcb-tab-reset" style="display:none;">
                             <dt><?php if (defined('WPLANG') && WPLANG && ('en_EN' != WPLANG)) _e('Reset WordPress Defaults', 'capsman-enhanced'); else echo 'Reset Roles to WordPress Defaults'; ?></dt>
                             <dd>
                                 <p style="text-align:center;"><strong><span
@@ -225,7 +225,7 @@ $auto_backups = $wpdb->get_results("SELECT option_name, option_value FROM $wpdb-
                 $('#publishpress-capability-backup-tabs').children('li').filter('.nav-tab-active').removeClass('nav-tab-active');
                 $(this).addClass('nav-tab-active');
 
-                $('dl[id^="pcb-"]').hide();
+                $('dl[id^="ppcb-"]').hide();
                 $($(this).find('a').first().attr('href')).show();
             });
 
