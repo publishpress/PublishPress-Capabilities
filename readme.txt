@@ -117,7 +117,9 @@ Fixed : Non-administrators with user editing capabilities could add new Administ
 = 1.9.13-rc =
   * Feature : Improved design and styling for Backup and Restore
   * Compat : Advanced Gutenberg - include AG Profile capabilities in Editing, Deletion, Reading capabilities grid
+  * Fixed : Media Create / upload_files capability could not be removed from role
   * Fixed : Multisite - Incorrect menu display on sites where main site ID is not 1
+  * Fixed : Language file load failure if plugin directory structure is non-standard
 
 = 1.9.12 - 16 Jun 2020 =
   * Fixed : Fatal error due to missing vendor library folder
