@@ -493,6 +493,10 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 						$(chks).prop( 'checked', ! $(chks).first().is(':checked') );
 						return false;
 					});
+					
+					$('input[name^="caps["]').click(function() {
+						$('input[name="' + $(this).attr('name') + '"]').prop('checked', $(this).prop('checked'));
+					});
 				});
 				/* ]]> */
 				</script>
