@@ -257,7 +257,7 @@ class CapsmanHandler
 		
 		$this->cm->log_db_roles();
 		
-		if ( is_multisite() && is_super_admin() && ( 1 == get_current_blog_id() ) ) {
+		if (is_multisite() && is_super_admin() && is_main_site()) {
 			if ( ! $autocreate_roles = get_site_option( 'cme_autocreate_roles' ) )
 				$autocreate_roles = array();
 			
