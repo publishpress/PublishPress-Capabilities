@@ -1193,8 +1193,9 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 
 <?php
 function cme_network_role_ui( $default ) {
-	if ( ! is_multisite() || ! is_super_admin() || ( 1 != get_current_blog_id() ) )
+	if (!is_multisite() || !is_super_admin() || !is_main_site()) {
 		return false;
+	}
 	?>
 
 	<div style="float:right;margin-left:10px;margin-right:10px">
