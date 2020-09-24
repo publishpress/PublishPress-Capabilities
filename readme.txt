@@ -115,6 +115,7 @@ Fixed : Non-administrators with user editing capabilities could add new Administ
 == Changelog ==
 
 = 1.9.13-rc =
+  * Feature : Improved design and styling for Backup and Restore
   * Compat : Advanced Gutenberg - include AG Profile capabilities in Editing, Deletion, Reading capabilities grid
   * Fixed : Multisite - Incorrect menu display on sites where main site ID is not 1
 
