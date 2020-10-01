@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Capability Manager Enhanced\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-20 16:39-0500\n"
-"PO-Revision-Date: 2020-04-20 16:39-0500\n"
+"POT-Creation-Date: 2020-10-01 11:42-0500\n"
+"PO-Revision-Date: 2020-10-01 11:42-0500\n"
 "Last-Translator: Kevin Behrens <kevin@publishpress.com>\n"
 "Language-Team: PublishPress <help@publishpress.com>\n"
 "MIME-Version: 1.0\n"
@@ -58,7 +58,7 @@ msgid "Capabilities for %s"
 msgstr ""
 
 #: F:\snapshot\capability-manager-enhanced/includes/admin.php:84
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1053
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1059
 msgid "Save Changes"
 msgstr ""
 
@@ -72,7 +72,7 @@ msgid "<strong>Note:</strong> Capability changes <strong>remain in the database<
 msgstr ""
 
 #: F:\snapshot\capability-manager-enhanced/includes/admin.php:133
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1155
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1161
 msgid "PublishPress Permissions"
 msgstr ""
 
@@ -204,79 +204,79 @@ msgstr ""
 msgid "can delete posts which are currently published with private visibility"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:416
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:522
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:784
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:879
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:976
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:418
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:528
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:790
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:885
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:982
 #, php-format
 msgid "%s: assigned by Permission Group"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:431
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:433
 #, php-format
 msgid "shared capability: %s"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:499
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:505
 msgid "Other WordPress Core Capabilities"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:541
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:547
 msgid "Lockout Prevention: To remove read capability, first remove WordPress admin / editing capabilities, or add \"dashboard_lockout_ok\" capability"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:584
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:823
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:932
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1019
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:590
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:829
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:938
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1025
 msgid "check/uncheck all"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:584
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:823
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:932
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1019
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:590
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:829
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:938
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1025
 msgid "negate all (storing as disabled capabilities)"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:584
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:823
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:932
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1019
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:590
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:829
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:938
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1025
 msgid "negate none (add/remove all capabilities normally)"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:758
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:764
 #, php-format
 msgid "%s Capabilities"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:831
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:837
 msgid "Additional Capabilities"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:941
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:947
 msgid "Meta capabilities are used in code as placeholders for other capabilities. Assiging to a role has no effect."
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:942
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:948
 msgid "Invalid Capabilities"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1032
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1038
 msgid "Role level is mostly deprecated. However, it still determines eligibility for Post Author assignment and limits the application of user editing capabilities."
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1033
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1039
 msgid "Role Level:"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1056
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1062
 msgid "Delete this role"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1056
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1062
 #, php-format
 msgid ""
 "You are about to delete the %s role.\n"
@@ -284,110 +284,110 @@ msgid ""
 " 'Cancel' to stop, 'OK' to delete."
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1056
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1062
 msgid "Delete Role"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1063
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1069
 msgid "Select New Role"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1072
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1078
 msgid "Change"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1091
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1097
 msgid "Create New Role"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1094
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1110
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1100
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1116
 msgid "Role Name"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1097
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1113
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1103
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1119
 msgid "Make role available for supplemental assignment to Permission Groups only"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1097
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1113
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1103
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1119
 msgid "hidden"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1101
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1107
 msgid "Create"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1107
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1113
 msgid "Copy this role to"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1117
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1123
 msgid "Copy"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1123
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1129
 msgid "Rename Role"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1125
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1131
 msgid "New Role Name"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1128
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1134
 msgid "Rename"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1134
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1140
 msgid "Add Capability"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1137
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1143
 msgid "Add to role"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1142
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1148
 msgid "Backup Tool"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1144
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1150
 msgid "Backup / Restore Roles"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1149
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1155
 msgid "Related Permissions Plugins"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1152
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1158
 msgid "Multiple Authors"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1161
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1167
 msgid "PublishPress"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1166
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1172
 msgid "PublishPress Revisions"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1168
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1174
 msgid "Help / Contact Form"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1206
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1213
 msgid "Create this role definition in new (future) sites"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1206
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1213
 msgid "include in new sites"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1209
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1216
 msgid "Copy / update this role definition to all sites now"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1209
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1216
 msgid "sync role to all sites now"
 msgstr ""
 
@@ -395,33 +395,33 @@ msgstr ""
 msgid "You do not have permission to restore roles."
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/backup-handler.php:44
+#: F:\snapshot\capability-manager-enhanced/includes/backup-handler.php:42
 msgid "New backup saved."
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/backup-handler.php:50
+#: F:\snapshot\capability-manager-enhanced/includes/backup-handler.php:58
 msgid "Roles and Capabilities restored from initial backup."
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/backup-handler.php:52
-#: F:\snapshot\capability-manager-enhanced/includes/backup-handler.php:61
-#: F:\snapshot\capability-manager-enhanced/includes/backup-handler.php:70
+#: F:\snapshot\capability-manager-enhanced/includes/backup-handler.php:60
+#: F:\snapshot\capability-manager-enhanced/includes/backup-handler.php:69
+#: F:\snapshot\capability-manager-enhanced/includes/backup-handler.php:78
 msgid "Restore failed. No backup found."
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/backup-handler.php:59
+#: F:\snapshot\capability-manager-enhanced/includes/backup-handler.php:67
 msgid "Roles and Capabilities restored from last backup."
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/backup-handler.php:68
+#: F:\snapshot\capability-manager-enhanced/includes/backup-handler.php:76
 msgid "Roles and Capabilities restored from selected auto-backup."
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/backup-handler.php:88
+#: F:\snapshot\capability-manager-enhanced/includes/backup-handler.php:96
 msgid "Needed function to create default roles not found!"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/backup-handler.php:101
+#: F:\snapshot\capability-manager-enhanced/includes/backup-handler.php:109
 msgid "Roles and Capabilities reset to WordPress defaults"
 msgstr ""
 
@@ -430,98 +430,124 @@ msgstr ""
 msgid "Backup Tool for %1$sPublishPress Capabilities%2$s"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/backup.php:48
-msgid "Backup and Restore"
-msgstr ""
-
-#: F:\snapshot\capability-manager-enhanced/includes/backup.php:52
-msgid "Select action:"
-msgstr ""
-
-#: F:\snapshot\capability-manager-enhanced/includes/backup.php:55
-msgid "Backup roles and capabilities"
-msgstr ""
-
-#: F:\snapshot\capability-manager-enhanced/includes/backup.php:59
-msgid "Restore initial backup"
+#: F:\snapshot\capability-manager-enhanced/includes/backup.php:57
+msgid "Backup Roles and Capabilities"
 msgstr ""
 
 #: F:\snapshot\capability-manager-enhanced/includes/backup.php:62
-msgid "Restore last manually saved backup"
+#, php-format
+msgid "PublishPress Capabilities automatically creates a backup on installation and whenever you save changes. The initial backup and last %d auto-backups are kept."
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/backup.php:69
-#, php-format
-msgid "Restore auto-backup (%s)"
+#: F:\snapshot\capability-manager-enhanced/includes/backup.php:67
+msgid "A backup created on this screen replaces any previous manual backups, but is never automatically replaced."
 msgstr ""
 
 #: F:\snapshot\capability-manager-enhanced/includes/backup.php:72
-msgid "Do Action"
+msgid "Manual Backup"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/backup.php:76
-msgid "To view the contents of a backup, select it in the dropdown above."
-msgstr ""
-
-#: F:\snapshot\capability-manager-enhanced/includes/backup.php:110
-#, php-format
-msgid "Initial Backup - %s"
-msgstr ""
-
-#: F:\snapshot\capability-manager-enhanced/includes/backup.php:110
-msgid "Initial Backup"
-msgstr ""
-
-#: F:\snapshot\capability-manager-enhanced/includes/backup.php:111
+#: F:\snapshot\capability-manager-enhanced/includes/backup.php:82
 #, php-format
 msgid "Last Manual Backup - %s"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/backup.php:111
+#: F:\snapshot\capability-manager-enhanced/includes/backup.php:82
 msgid "Last Backup"
+msgstr ""
+
+#: F:\snapshot\capability-manager-enhanced/includes/backup.php:86
+msgid "Restore Previous Roles and Capabilities"
+msgstr ""
+
+#: F:\snapshot\capability-manager-enhanced/includes/backup.php:89
+msgid "PublishPress Capabilities automatically creates a backup on installation and whenever you save changes."
+msgstr ""
+
+#: F:\snapshot\capability-manager-enhanced/includes/backup.php:93
+msgid "On this screen, you can restore an earlier version of your roles and capabilities."
+msgstr ""
+
+#: F:\snapshot\capability-manager-enhanced/includes/backup.php:98
+msgid "Available Backups:"
+msgstr ""
+
+#: F:\snapshot\capability-manager-enhanced/includes/backup.php:112
+#, php-format
+msgid "Manual backup of all roles (%s)"
 msgstr ""
 
 #: F:\snapshot\capability-manager-enhanced/includes/backup.php:127
 #, php-format
+msgid "Auto-backup of all roles (%s)"
+msgstr ""
+
+#: F:\snapshot\capability-manager-enhanced/includes/backup.php:135
+msgid "Initial backup of all roles"
+msgstr ""
+
+#: F:\snapshot\capability-manager-enhanced/includes/backup.php:144
+msgid "Restore Selected Roles"
+msgstr ""
+
+#: F:\snapshot\capability-manager-enhanced/includes/backup.php:155
+msgid "Show changes from current roles only"
+msgstr ""
+
+#: F:\snapshot\capability-manager-enhanced/includes/backup.php:161
+#, php-format
+msgid "Initial Backup - %s"
+msgstr ""
+
+#: F:\snapshot\capability-manager-enhanced/includes/backup.php:161
+msgid "Initial Backup"
+msgstr ""
+
+#: F:\snapshot\capability-manager-enhanced/includes/backup.php:187
+#, php-format
 msgid "%s (%s roles)"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/backup.php:143
+#: F:\snapshot\capability-manager-enhanced/includes/backup.php:195
+msgid "(this role will be removed if you restore backup)"
+msgstr ""
+
+#: F:\snapshot\capability-manager-enhanced/includes/backup.php:224
 #, php-format
 msgid "%s (level %s)"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/backup.php:164
+#: F:\snapshot\capability-manager-enhanced/includes/backup.php:259
 msgid "Reset WordPress Defaults"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/backup.php:166
+#: F:\snapshot\capability-manager-enhanced/includes/backup.php:262
 msgid "WARNING:"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/backup.php:166
+#: F:\snapshot\capability-manager-enhanced/includes/backup.php:262
 msgid "Reseting default Roles and Capabilities will set them to the WordPress install defaults."
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/backup.php:169
+#: F:\snapshot\capability-manager-enhanced/includes/backup.php:266
 msgid "If you have installed any plugin that adds new roles or capabilities, these will be lost."
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/backup.php:170
+#: F:\snapshot\capability-manager-enhanced/includes/backup.php:268
 msgid "It is recommended to use this only as a last resource!"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/backup.php:171
+#: F:\snapshot\capability-manager-enhanced/includes/backup.php:271
 msgid "Reset Roles and Capabilities to WordPress defaults"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/backup.php:171
+#: F:\snapshot\capability-manager-enhanced/includes/backup.php:273
 msgid ""
 "You are about to reset Roles and Capabilities to WordPress defaults.\n"
 " 'Cancel' to stop, 'OK' to reset."
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/backup.php:171
+#: F:\snapshot\capability-manager-enhanced/includes/backup.php:273
 msgid "Reset to WordPress defaults"
 msgstr ""
 
@@ -534,7 +560,7 @@ msgstr ""
 msgid "Add New"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/filters.php:276
+#: F:\snapshot\capability-manager-enhanced/includes/filters.php:298
 msgid "Edit Roles"
 msgstr ""
 
@@ -703,33 +729,37 @@ msgstr ""
 msgid "Ensure permissions can be controlled separately from other post types."
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/pp-ui.php:155
+#: F:\snapshot\capability-manager-enhanced/includes/pp-ui.php:159
 msgid "Make selected post types require a different capability to add new posts."
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/pp-ui.php:155
+#: F:\snapshot\capability-manager-enhanced/includes/pp-ui.php:159
 msgid "Use create_posts capability"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/pp-ui.php:160
-#: F:\snapshot\capability-manager-enhanced/includes/pp-ui.php:221
-#: F:\snapshot\capability-manager-enhanced/includes/pp-ui.php:277
+#: F:\snapshot\capability-manager-enhanced/includes/pp-ui.php:164
+#: F:\snapshot\capability-manager-enhanced/includes/pp-ui.php:227
+#: F:\snapshot\capability-manager-enhanced/includes/pp-ui.php:283
 msgid "Update"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/pp-ui.php:170
+#: F:\snapshot\capability-manager-enhanced/includes/pp-ui.php:174
 msgid "Taxonomy-Specific Capabilities"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/pp-ui.php:173
+#: F:\snapshot\capability-manager-enhanced/includes/pp-ui.php:177
 msgid "Ensure permissions can be controlled separately from other taxonomies."
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/pp-ui.php:226
+#: F:\snapshot\capability-manager-enhanced/includes/pp-ui.php:232
 msgid "Detailed Taxonomy Capabilities"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/pp-ui.php:229
+#: F:\snapshot\capability-manager-enhanced/includes/pp-ui.php:235
 msgid "Enforce Edit, Delete and Assign capabilities separately from Management capability."
+msgstr ""
+
+#: F:\snapshot\capability-manager-enhanced/vendor/publishpress/wordpress-version-notices/src/Module/MenuLink/Module.php:129
+msgid "Amazing! We are redirecting you to our site..."
 msgstr ""
 

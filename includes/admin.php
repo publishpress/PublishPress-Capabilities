@@ -217,7 +217,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 				$custom_tax = get_taxonomies( array( '_builtin' => false ), 'names' );
 				
 				$defined = array();
-				$defined['type'] = get_post_types( array( 'public' => true, 'show_ui' => true ), 'object', 'or' );
+				$defined['type'] = get_post_types( array( 'public' => true, 'show_ui' => true, 'map_meta_cap' => true ), 'object', 'or' );
 				$defined['taxonomy'] = get_taxonomies( array( 'public' => true ), 'object' );
 				
 				$unfiltered['type'] = apply_filters( 'pp_unfiltered_post_types', array( 'forum','topic','reply','wp_block' ) );  // bbPress' dynamic role def requires additional code to enforce stored caps
@@ -359,7 +359,9 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 								if ( empty($force_distinct_ui) && empty( $cap_properties[$cap_type][$item_type] ) )
 									continue;
 							
-								$row .= "<td><a class='cap_type' href='#toggle_type_caps'>" . $type_obj->labels->name . '</a>';
+								$type_label = (!empty($type_obj->labels->menu_name)) ? $type_obj->labels->menu_name : $type_obj->labels->name;
+
+								$row .= "<td><a class='cap_type' href='#toggle_type_caps'>" . $type_label . '</a>';
 								$row .= '<a href="#" class="neg-type-caps">&nbsp;x&nbsp;</a>';
 								$row .= '</td>';
 								
@@ -490,6 +492,10 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 						var chks = $(this).closest('tr').find('input');
 						$(chks).prop( 'checked', ! $(chks).first().is(':checked') );
 						return false;
+					});
+					
+					$('input[name^="caps["]').click(function() {
+						$('input[name="' + $(this).attr('name') + '"]').prop('checked', $(this).prop('checked'));
 					});
 				});
 				/* ]]> */
@@ -1191,8 +1197,9 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 
 <?php
 function cme_network_role_ui( $default ) {
-	if ( ! is_multisite() || ! is_super_admin() || ( 1 != get_current_blog_id() ) )
+	if (!is_multisite() || !is_super_admin() || !is_main_site()) {
 		return false;
+	}
 	?>
 
 	<div style="float:right;margin-left:10px;margin-right:10px">
