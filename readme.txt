@@ -7,7 +7,7 @@ Tags: user roles, capabilities, permissions, authors, editors, post types, taxon
 Requires at least: 4.9.7
 Tested up to: 5.5
 Requires PHP: 5.6.20
-Stable tag: 1.9.12
+Stable tag: 1.10
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -114,8 +114,9 @@ Fixed : Non-administrators with user editing capabilities could add new Administ
 
 == Changelog ==
 
-= 1.9.13-rc =
+= 1.10 - 1 Oct 2020 =
   * Feature : Improved design and styling for Backup and Restore
+  * Feature : Backup > Restore - filter to display only modified capabilities
   * Compat : Advanced Gutenberg - include AG Profile capabilities in Editing, Deletion, Reading capabilities grid
   * Fixed : Media Create / upload_files capability could not be removed from role
   * Fixed : Multisite - Incorrect menu display on sites where main site ID is not 1
