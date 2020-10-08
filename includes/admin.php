@@ -217,7 +217,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 				$custom_tax = get_taxonomies( array( '_builtin' => false ), 'names' );
 				
 				$defined = array();
-				$defined['type'] = get_post_types( array( 'public' => true, 'show_ui' => true, 'map_meta_cap' => true ), 'object', 'or' );
+				$defined['type'] = apply_filters('cme_filterable_post_types', get_post_types( array( 'public' => true, 'show_ui' => true), 'object', 'or' ));
 				$defined['taxonomy'] = get_taxonomies( array( 'public' => true ), 'object' );
 				
 				$unfiltered['type'] = apply_filters( 'pp_unfiltered_post_types', array( 'forum','topic','reply','wp_block' ) );  // bbPress' dynamic role def requires additional code to enforce stored caps
