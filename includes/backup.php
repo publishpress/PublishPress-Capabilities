@@ -187,9 +187,9 @@ $auto_backups = $wpdb->get_results("SELECT option_name, option_value FROM $wpdb-
                                         <h3><?php printf(__("%s (%s roles)", 'capsman-enhanded'), $caption, count($backup_data)); ?></h3>
 
                                                         <?php 
-                                                        foreach (array_keys($wp_roles->role_objects) as $role) {
+                                                        foreach ($wp_roles->role_objects as $role => $role_object) {
                                                             if (empty($backup_data[$role])) {
-                                                                $role_caption = $props['name'];
+                                                                $role_caption = $role_object->name;
                                                                 $role_class = ' class="cme-change cme-minus"'; 
                                                                 ?>
                                                                 <h4><span<?php echo $role_class;?>><?php echo (translate_user_role($role_caption));?></span> <?php _e('(this role will be removed if you restore backup)', 'capsman-enhanced');?></h4>
