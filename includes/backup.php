@@ -152,7 +152,7 @@ $auto_backups = $wpdb->get_results("SELECT option_name, option_value FROM $wpdb-
 
                                         <td class="cme-backup-info">
                                             <div class="cme_backup_info_changes_only" style="display:none">
-                                            <input type="checkbox" class="cme_backup_info_changes_only" checked=checked><?php _e('Show changes from current roles only', 'capsman-enhanced');?>
+                                            <input type="checkbox" class="cme_backup_info_changes_only" autocomplete="off" checked="checked"><?php _e('Show changes from current roles only', 'capsman-enhanced');?>
                                             </div>
 
                             <?php
