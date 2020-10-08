@@ -7,7 +7,7 @@ Tags: user roles, capabilities, permissions, authors, editors, post types, taxon
 Requires at least: 4.9.7
 Tested up to: 5.5
 Requires PHP: 5.6.20
-Stable tag: 1.10
+Stable tag: 1.10.1
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -113,6 +113,10 @@ Follow PublishPress on [Facebook](https://www.facebook.com/publishpress), [Twitt
 Fixed : Non-administrators with user editing capabilities could add new Administrators
 
 == Changelog ==
+
+= 1.10.1 - 8 Oct 2020 =
+  * Fixed : Type-Specific Capabilities options included some non-public WordPress post types that don't support capability customization 
+  * Fixed : Review of role backup contents does not show name of current roles which would be removed by restoring backup
 
 = 1.10 - 1 Oct 2020 =
   * Feature : Improved design and styling for Backup and Restore
