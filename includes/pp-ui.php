@@ -108,7 +108,7 @@ class Capsman_PP_UI {
 				
 				echo "<table style='width:100%'><tr>";
 				
-				$unfiltered = apply_filters( 'pp_unfiltered_post_types', array('forum','topic','reply','wp_block') );			// bbPress' dynamic role def requires additional code to enforce stored caps
+				$unfiltered = apply_filters( 'pp_unfiltered_post_types', array('forum','topic','reply','wp_block', 'customize_changeset') );			// bbPress' dynamic role def requires additional code to enforce stored caps
 				$hidden = apply_filters( 'pp_hidden_post_types', array() );
 				
 				echo '<td style="width:50%">';
