@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Capability Manager Enhanced\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-01 11:42-0500\n"
-"PO-Revision-Date: 2020-10-01 11:42-0500\n"
+"POT-Creation-Date: 2020-10-08 11:17-0500\n"
+"PO-Revision-Date: 2020-10-08 11:17-0500\n"
 "Last-Translator: Kevin Behrens <kevin@publishpress.com>\n"
 "Language-Team: PublishPress <help@publishpress.com>\n"
 "MIME-Version: 1.0\n"
@@ -560,7 +560,7 @@ msgstr ""
 msgid "Add New"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/filters.php:298
+#: F:\snapshot\capability-manager-enhanced/includes/filters.php:309
 msgid "Edit Roles"
 msgstr ""
 
