@@ -3,18 +3,7 @@
  * Capability Manager Admin Menus Permission.
  * Admin menus permission and visibility per roles.
  *
- * @version        $Rev: 198515 $
- * @author        Jordi Canals
- * @copyright   Copyright (C) 2009, 2010 Jordi Canals
- * @license        GNU General Public License version 2
- * @link        http://alkivia.org
- * @package        Alkivia
- * @subpackage    CapsMan
- *
- *
- *    Copyright 2009, 2010 Jordi Canals <devel@jcanals.cat>
- *
- *    Modifications Copyright 2020, PublishPress <help@publishpress.com>
+ *    Copyright 2020, PublishPress <help@publishpress.com>
  *
  *    This program is free software; you can redistribute it and/or
  *    modify it under the terms of the GNU General Public License
@@ -29,7 +18,6 @@
  *  along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 global $capsman, $menu, $submenu;
 $roles = $this->roles;
 $default_role = $this->current;
@@ -38,71 +26,61 @@ $role_caption = translate_user_role($roles[$default_role]);
 $admin_global_menu = PPC_ADMIN_GLOBAL_MENU;
 $admin_global_submenu = PPC_ADMIN_GLOBAL_SUBMENU;
 
-$admin_menu_option = !empty(get_option('capsman_admin_menus')) ? get_option('capsman_admin_menus') : array();
-$admin_menu_option = array_key_exists($default_role, $admin_menu_option) ? (array)$admin_menu_option[$default_role] : array();
+$admin_menu_option = !empty(get_option('capsman_admin_menus')) ? get_option('capsman_admin_menus') : [];
+$admin_menu_option = array_key_exists($default_role, $admin_menu_option) ? (array)$admin_menu_option[$default_role] : [];
 
-$admin_child_menu_option = !empty(get_option('capsman_admin_child_menus')) ? get_option('capsman_admin_child_menus') : array();
-$admin_child_menu_option = array_key_exists($default_role, $admin_child_menu_option) ? (array)$admin_child_menu_option[$default_role] : array();
-
-
+$admin_child_menu_option = !empty(get_option('capsman_admin_child_menus')) ? get_option('capsman_admin_child_menus') : [];
+$admin_child_menu_option = array_key_exists($default_role, $admin_child_menu_option) ? (array)$admin_child_menu_option[$default_role] : [];
 ?>
-
 
 <div class="wrap publishpress-caps-manage pressshack-admin-wrapper pp-capability-menus-wrapper">
     <div id="icon-capsman-admin" class="icon32"></div>
     <h2><?php _e('Admin Menus Permission', 'capsman-enhanced'); ?></h2>
 
-
     <form method="post" id="ppc-admin-menu-form" action="admin.php?page=<?php echo $this->ID ?>-pp-admin-menus">
         <?php wp_nonce_field('capsman-pp-admin-menus'); ?>
-
 
         <fieldset>
             <table id="akmin">
                 <tr>
                     <td class="content">
 
-
                         <dl>
                             <dt><?php printf(__('Admin Menus Permission for %s', 'capsman-enhanced'), $role_caption); ?></dt>
 
                             <dd>
                                 <div class="publishpress-headline">
-				<span class="cme-subtext">
-				<strong><?php _e('Note', 'capsman-enhanced'); ?>:</strong>
-				<?php _e('This feature only remove menu from admin sidebar menu list and prevent access to the menu page for the restricted roles.', 'capsman-enhanced'); ?>
-				</span>
+                                    <span class="cme-subtext">
+                                    <strong><?php _e('Note', 'capsman-enhanced'); ?>:</strong>
+                                    <?php _e('This feature only remove menu from admin sidebar menu list and prevent access to the menu page for the restricted roles.', 'capsman-enhanced'); ?>
+                                    </span>
                                 </div>
                             </dd>
 
                             <table width='100%' class="form-table">
-
                                 <tr>
                                     <td>
-
-
                                         <select name="ppc-admin-menu-role" class="ppc-admin-menu-role">
                                             <?php
-                                            foreach ($roles as $role => $name) {
+                                            foreach ($roles as $role => $name) :
                                                 $name = translate_user_role($name);
-                                                echo '<option value="' . $role . '"';
-                                                selected($default_role, $role);
-                                                echo '> ' . $name . ' &nbsp;</option>';
-                                            }
+                                                ?>
+                                                <option value="<?php echo $role;?>" <?php selected($default_role, $role);?>> <?php echo $name;?> &nbsp;</option>
+                                            <?php
+                                            endforeach;
                                             ?>
                                         </select> &nbsp;
 
-                                    <td>
-                                        <div style="float:right">
-                                            <input type="submit" name="admin-menu-submit"
-                                                   value="<?php _e('Save Changes', 'capsman-enhanced') ?>"
-                                                   class="button-primary ppc-admin-menu-submit"/> &nbsp;
-                                        </div>
-                                    </td>
+                                        <td>
+                                            <div style="float:right">
+                                                <input type="submit" name="admin-menu-submit"
+                                                    value="<?php _e('Save Changes', 'capsman-enhanced') ?>"
+                                                    class="button-primary ppc-admin-menu-submit"/> &nbsp;
+                                            </div>
+                                        </td>
                                     </td>
                                 </tr>
                             </table>
-
 
                             <div id="pp-capability-menu-wrapper" class="postbox">
                                 <div class="pp-capability-menus">
@@ -128,22 +106,21 @@ $admin_child_menu_option = array_key_exists($default_role, $admin_child_menu_opt
                                                 </tfoot>
 
                                                 <tbody>
-
-
                                                 <tr class="ppc-menu-row parent-menu">
 
-                                                    <td class="menu-column ppc-menu-item"><label
-                                                                for="check-all-item"><span
-                                                                    class="menu-item-link check-all-menu-link"><strong><i
-                                                                            class="dashicons dashicons-leftright"></i>
-		<?php _e('Toggle all', 'capsman-enhanced'); ?></strong></span></label>
+                                                    <td class="menu-column ppc-menu-item">
+                                                        <label for="check-all-item">
+                                                        <span class="menu-item-link check-all-menu-link">
+                                                            <strong><i class="dashicons dashicons-leftright"></i>
+                                                            <?php _e('Toggle all', 'capsman-enhanced'); ?>
+                                                            </strong>
+                                                        </span></label>
                                                     </td>
 
                                                     <td class="restrict-column ppc-menu-checkbox">
-                                                        <input id="check-all-item"
-                                                               class="check-item check-all-menu-item" type="checkbox"/>
+                                                        <input id="check-all-item" class="check-item check-all-menu-item" type="checkbox"/>
                                                     </td>
-
+                                                
                                                 </tr>
 
                                                 <?php
@@ -155,89 +132,123 @@ $admin_child_menu_option = array_key_exists($default_role, $admin_child_menu_opt
 
                                                         $item_menu_slug = $item[2];
 
+                                                        if ('' === $item_menu_slug || (!$item[0] && !isset($admin_global_submenu[$item_menu_slug]))) {
+                                                            continue;
+                                                        }
 
-                                                        if ('' !== $item_menu_slug) {
+                                                        //disable capmans checkbox if admin is editing own role
+                                                        if ($item_menu_slug === 'capsman' && in_array($default_role, wp_get_current_user()->roles)) {
+                                                            $disabled_field = ' disabled="disabled"';
+                                                            $disabled_class = ' disabled';
 
+                                                            $disabled_info = '<div class="tooltip"><i class="dashicons dashicons-info"></i> <span class="tooltiptext">' 
+                                                            . __('This option is disabled to prevent complete lockout', 'capsman-enhanced') 
+                                                            . '</span></div>';
 
-                                                            if (!$item[0] && !isset($admin_global_submenu[$item_menu_slug])) {
-                                                                continue;
-                                                            }
+                                                        } else {
+                                                            $disabled_field = $disabled_class = $disabled_info = '';
+                                                        }
+                                                        ?>
+                                                                            
+                                                        <tr class="ppc-menu-row parent-menu">
 
-                                                            //disable capmans checkbox if admin is editing own role
-                                                            if ($item_menu_slug === 'capsman' && in_array($default_role, wp_get_current_user()->roles)) {
+                                                            <td class="menu-column ppc-menu-item <?php echo $disabled_class;?>">
+
+                                                                <label for="check-item-<?php echo $sn;?>">
+                                                                    <span class="menu-item-link<?php echo (in_array($item_menu_slug, $admin_menu_option)) ? ' restricted' : '';?>">
+                                                                    <strong><i class="dashicons dashicons-arrow-right"></i>
+                                                                        <?php echo strip_tags($item[0]);?>
+                                                                    </strong></span>
+                                                                </label> 
+                                                                
+                                                                <?php echo $disabled_info;?>
+                                                            </td>
+
+                                                            <td class="restrict-column ppc-menu-checkbox">
+                                                            <input id="check-item-<?php echo $sn;?>"<?php echo $disabled_field;?> class="check-item" type="checkbox" 
+                                                                name="pp_cababilities_disabled_menu<?php echo $disabled_class;?>[]" 
+                                                                value="<?php echo $item_menu_slug;?>"<?php echo (in_array($item_menu_slug, $admin_menu_option)) ? ' checked' : '';?> />
+                                                            </td>
+
+                                                        </tr>
+
+                                                        <?php
+                                                        if (!isset($admin_global_submenu[$item_menu_slug])) {
+                                                            continue;
+                                                        }
+
+                                                        foreach ($admin_global_submenu[$item_menu_slug] as $subkey => $subitem) {
+                                                            $sn++;
+                                                            $submenu_slug = $subitem[2];
+
+                                                            //disable capsman-pp-admin-menus checkbox if admin is editing own role
+                                                            if ( $submenu_slug === 'capsman-pp-admin-menus' && in_array($default_role, wp_get_current_user()->roles)) {
                                                                 $disabled_field = ' disabled="disabled"';
                                                                 $disabled_class = ' disabled';
-                                                                $disabled_info = '<div class="tooltip"><i class="dashicons dashicons-info"></i> <span class="tooltiptext">' . __('This option is disabled to prevent complete lockout', 'capsman-enhanced') . '</span></div>';
+
+                                                                $disabled_info = '<div class="tooltip"><i class="dashicons dashicons-info"></i> <span class="tooltiptext">' 
+                                                                . __('This option is disabled to prevent complete lockout', 'capsman-enhanced') 
+                                                                . '</span></div>';
 
                                                             } else {
                                                                 $disabled_field = $disabled_class = $disabled_info = '';
                                                             }
-                                                            echo '<tr class="ppc-menu-row parent-menu">';
 
-                                                            echo '<td class="menu-column ppc-menu-item ' . $disabled_class . '"><label for="check-item-' . $sn . '"><span class="menu-item-link ' . ((in_array($item_menu_slug, $admin_menu_option)) ? 'restricted' : "") . '"><strong><i class="dashicons dashicons-arrow-right"></i>
-							' . strip_tags($item[0]) . '</strong></span></label> ' . $disabled_info . '
-								</td>
+                                                            $sub_menu_value = $item_menu_slug . $subkey;
 
-									<td class="restrict-column ppc-menu-checkbox">
-									<input id="check-item-' . $sn . '"' . $disabled_field . ' class="check-item" type="checkbox" name="pp_cababilities_disabled_menu' . $disabled_class . '[]" value="'
-                                                                . $item_menu_slug . '" ' . ((in_array($item_menu_slug, $admin_menu_option)) ? 'checked' : "") . ' /></td>';
+                                                            ?>
+                                                            <tr class="ppc-menu-row child-menu">
 
-                                                            echo '</tr>';
+                                                                <td class="menu-column ppc-menu-item'<?php echo $disabled_class;?>">
 
-                                                            if (isset($admin_global_submenu[$item_menu_slug])) {
+                                                                    <label for="check-item-<?php echo $sn;?>">
+                                                                        <span class="menu-item-link<?php echo (in_array($sub_menu_value, $admin_child_menu_option)) ? ' restricted' : '';?>">
+                                                                        <strong>&nbsp;&nbsp;&nbsp; &#x25cf;
+                                                                        <?php echo strip_tags($subitem[0]);?>
+                                                                        </strong></span>
+                                                                    </label>
+                                                                    
+                                                                    <?php echo $disabled_info;?>
+                                                                </td>
 
-                                                                foreach ($admin_global_submenu[$item_menu_slug] as $subkey => $subitem) {
-                                                                    $sn++;
-                                                                    $submenu_slug = $subitem[2];
+                                                                <td class="restrict-column ppc-menu-checkbox">
+                                                                    <input id="check-item-<?php echo $sn;?>"<?php echo $disabled_field;?> class="check-item" type="checkbox" 
+                                                                        name="pp_cababilities_disabled_child_menu<?php echo $disabled_class;?>[]" 
+                                                                        value="<?php echo $sub_menu_value;?>" 
+                                                                        <?php echo (in_array($sub_menu_value, $admin_child_menu_option)) ? 'checked' : '';?> 
+                                                                        data-val="<?php echo $sub_menu_value;?>" />
+                                                                </td>
 
-                                                                    //disable capsman-pp-admin-menus checkbox if admin is editing own role
-                                                                    if ( $submenu_slug === 'capsman-pp-admin-menus' && in_array($default_role, wp_get_current_user()->roles)) {
-                                                                        $disabled_field = ' disabled="disabled"';
-                                                                        $disabled_class = ' disabled';
-                                                                        $disabled_info = '<div class="tooltip"><i class="dashicons dashicons-info"></i> <span class="tooltiptext">' . __('This option is disabled to prevent complete lockout', 'capsman-enhanced') . '</span></div>';
+                                                            </tr>
+                                                        <?php
+                                                        }  // end foreach admin_global_submenu
 
-                                                                    } else {
-                                                                        $disabled_field = $disabled_class = $disabled_info = '';
-                                                                    }
+                                                        $sn++;
 
-                                                                    $sub_menu_value = $item_menu_slug . $subkey;
-
-                                                                    echo '<tr class="ppc-menu-row child-menu">';
-
-                                                                    echo '<td class="menu-column ppc-menu-item ' . $disabled_class . '"><label for="check-item-' . $sn . '"><span class="menu-item-link ' . ((in_array($sub_menu_value, $admin_child_menu_option)) ? 'restricted' : "") . '"><strong>&nbsp;&nbsp;&nbsp; &#x25cf;
-							' . strip_tags($subitem[0]) . '</strong></span></label> ' . $disabled_info . '
-
-
-									</td>
-
-									<td class="restrict-column ppc-menu-checkbox">
-									<input id="check-item-' . $sn . '"' . $disabled_field . ' class="check-item" type="checkbox" name="pp_cababilities_disabled_child_menu' . $disabled_class . '[]" value="' . $sub_menu_value . '" ' . ((in_array($sub_menu_value, $admin_child_menu_option)) ? 'checked' : "") . ' data-val="' . $sub_menu_value . '" /></td>';
-
-                                                                    echo '</tr>';
-
-                                                                }
-                                                            }
-                                                            $sn++;
-
-                                                        }
-                                                    }
+                                                    } // end foreach admin_global_menu
 
                                                 } else {
-                                                    echo '<tr><td style="color: red;">' . __('No menu found', 'capsman-enhanced') . '.
-</td></tr>';
-                                                } ?>
+                                                    ?>
+                                                    <tr><td style="color: red;"> <?php _e('No menu found', 'capsman-enhanced');?></td></tr>
+                                                    <?php
+                                                } 
 
+                                                ?>
                                                 <tr class="ppc-menu-row parent-menu">
 
-                                                    <td class="menu-column ppc-menu-item"><label for="check-all-item-2"><span
-                                                                    class="menu-item-link check-all-menu-link"><strong><i
-                                                                            class="dashicons dashicons-leftright"></i>
-		<?php _e('Toggle all', 'capsman-enhanced'); ?></strong></span></label>
+                                                    <td class="menu-column ppc-menu-item">
+                                                        <label for="check-all-item-2">
+                                                            <span class="menu-item-link check-all-menu-link">
+                                                            <strong>
+                                                                <i class="dashicons dashicons-leftright"></i>
+                                                                <?php _e('Toggle all', 'capsman-enhanced'); ?>
+                                                            </strong>
+                                                            </span>
+                                                        </label>
                                                     </td>
 
                                                     <td class="restrict-column ppc-menu-checkbox">
-                                                        <input id="check-all-item-2"
-                                                               class="check-item check-all-menu-item" type="checkbox"/>
+                                                        <input id="check-all-item-2" class="check-item check-all-menu-item" type="checkbox"/>
                                                     </td>
 
                                                 </tr>
@@ -246,7 +257,6 @@ $admin_child_menu_option = array_key_exists($default_role, $admin_child_menu_opt
                                             </table>
                                         </div>
 
-
                                     </div>
                                 </div>
                             </div>
@@ -254,7 +264,6 @@ $admin_child_menu_option = array_key_exists($default_role, $admin_child_menu_opt
                             <input type="submit" name="admin-menu-submit"
                                    value="<?php _e('Save Changes', 'capsman-enhanced') ?>"
                                    class="button-primary ppc-admin-menu-submit"/> &nbsp;
-
 
                         </dl>
 
@@ -315,7 +324,6 @@ $admin_child_menu_option = array_key_exists($default_role, $admin_child_menu_opt
                         $('.check-all-menu-item').prop('checked', false);
                     }
 
-
                 }
 
             });
@@ -349,3 +357,4 @@ $admin_child_menu_option = array_key_exists($default_role, $admin_child_menu_opt
     }
     ?>
 </div>
+<?php
