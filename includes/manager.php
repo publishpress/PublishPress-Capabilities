@@ -649,11 +649,11 @@ class CapabilityManager
 			$this->current = $_POST['ppc-admin-menu-role'];
 
 			//set role admin menu
-			$admin_menu_option = !empty(get_option('capsman_admin_menus')) ? get_option('capsman_admin_menus') : array();
+			$admin_menu_option = !empty(get_option('capsman_admin_menus')) ? get_option('capsman_admin_menus') : [];
 			$admin_menu_option[$_POST['ppc-admin-menu-role']] = isset($_POST['pp_cababilities_disabled_menu']) ? $_POST['pp_cababilities_disabled_menu'] : '';
 
 			//set role admin child menu
-			$admin_child_menu_option = !empty(get_option('capsman_admin_child_menus')) ? get_option('capsman_admin_child_menus') : array();
+			$admin_child_menu_option = !empty(get_option('capsman_admin_child_menus')) ? get_option('capsman_admin_child_menus') : [];
 			$admin_child_menu_option[$_POST['ppc-admin-menu-role']] = isset($_POST['pp_cababilities_disabled_child_menu']) ? $_POST['pp_cababilities_disabled_child_menu'] : '';
 
 			update_option('capsman_admin_menus', $admin_menu_option, false);

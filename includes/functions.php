@@ -145,8 +145,8 @@ function pp_capabilities_admin_menu_permission()
     $disabled_menu 		 	 = '';
     $disabled_child_menu 	 = '';
     $user_roles			 	 = wp_get_current_user()->roles;
-    $admin_menu_option 	 	 = !empty(get_option('capsman_admin_menus')) ? (array)get_option('capsman_admin_menus') : array();
-    $admin_child_menu_option = !empty(get_option('capsman_admin_child_menus')) ? (array)get_option('capsman_admin_child_menus') : array();
+    $admin_menu_option 	 	 = !empty(get_option('capsman_admin_menus')) ? (array)get_option('capsman_admin_menus') : [];
+    $admin_child_menu_option = !empty(get_option('capsman_admin_child_menus')) ? (array)get_option('capsman_admin_child_menus') : [];
 
     //extract disabled menu for roles user belong
     foreach ($user_roles as $role) {
@@ -159,8 +159,8 @@ function pp_capabilities_admin_menu_permission()
     }
 
     if ($disabled_menu || $disabled_child_menu) {
-        $disabled_menu_array = array();
-        $disabled_child_menu_array = array();
+        $disabled_menu_array = [];
+        $disabled_child_menu_array = [];
 
         if ($disabled_menu) {
             $disabled_menu_array = array_filter(explode(", ", $disabled_menu));
