@@ -114,6 +114,9 @@ Fixed : Non-administrators with user editing capabilities could add new Administ
 
 == Changelog ==
 
+= 2.0-beta =
+  * Feature : Restrict access to Admin Menus per-role
+
 = 1.10.1 - 8 Oct 2020 =
   * Fixed : Type-Specific Capabilities options included some non-public WordPress post types that don't support capability customization 
   * Fixed : Review of role backup contents does not show name of current roles which would be removed by restoring backup

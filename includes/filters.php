@@ -31,8 +31,8 @@ if ( defined( 'WC_PLUGIN_FILE' ) ) {
 if (!defined('CME_DISABLE_WP_EDIT_PUBLISHED_WORKAROUND')) {
 	global $wp_version;
 	if (version_compare($wp_version, '4.9.7', '>=')) { // avoid any issues with old REST API implementations
-		require_once (dirname(__FILE__) . '/filters-wp_rest_workarounds.php');
-		new PublishPress\Capabilities\WP_REST_Workarounds();
+	require_once (dirname(__FILE__) . '/filters-wp_rest_workarounds.php');
+	new PublishPress\Capabilities\WP_REST_Workarounds();
 	}
 }
 
@@ -249,6 +249,7 @@ function cme_get_assisted_post_types() {
 	
 	$option_name = (defined('PPC_VERSION') && !defined('PRESSPERMIT_VERSION')) ? 'pp_enabled_post_types' : 'presspermit_enabled_post_types';
 	$enabled = (array) get_option( $option_name, array( 'post' => true, 'page' => true ) );
+
 	$post_types = array_intersect( $post_types, array_keys( array_filter( $enabled ) ) );
 	
 	return apply_filters( 'cme_assisted_post_types', $post_types, $type_args );

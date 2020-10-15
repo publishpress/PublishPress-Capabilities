@@ -3,7 +3,7 @@
  * Plugin Name: PublishPress Capabilities
  * Plugin URI: https://publishpress.com/capability-manager/
  * Description: Manage WordPress role definitions, per-site or network-wide. Organizes post capabilities by post type and operation.
- * Version: 1.10.1
+ * Version: 2.0-beta2
  * Author: PublishPress
  * Author URI: https://publishpress.com/
  * Text Domain: capsman-enhanced
@@ -25,13 +25,13 @@
  * @copyright   Copyright (C) 2009, 2010 Jordi Canals; modifications Copyright (C) 2020 PublishPress
  * @license		GNU General Public License version 3
  * @link		https://publishpress.com/
- * @version 	1.10.1
+ * @version 	2.0-beta2
  */
 
 if (!defined('CAPSMAN_VERSION')) {
-	define('CAPSMAN_VERSION', 			'1.10.1');
-	define('CAPSMAN_ENH_VERSION', 		'1.10.1');
-	define('PUBLISHPRESS_CAPS_VERSION', '1.10.1');
+	define('CAPSMAN_VERSION', 			'2.0-beta2');
+	define('CAPSMAN_ENH_VERSION', 		'2.0-beta2');
+	define('PUBLISHPRESS_CAPS_VERSION', '2.0-beta2');
 }
 
 foreach (get_option('active_plugins') as $plugin_file) {
@@ -64,7 +64,7 @@ if (!$pro_active && is_multisite()) {
 
 if ($pro_active) {
     add_filter(
-        'plugin_row_meta', 
+        'plugin_row_meta',
         function($links, $file)
         {
             if ($file == plugin_basename(__FILE__)) {
@@ -108,9 +108,9 @@ if ( version_compare(PHP_VERSION, '5.4.0', '<') ) {
 } else {
 	global $pagenow;
 
-	if ( is_admin() && 
-	( isset($_REQUEST['page']) && in_array( $_REQUEST['page'], array( 'capsman', 'capsman-tool' ) ) 
-	|| ( ! empty($_SERVER['SCRIPT_NAME']) && strpos( $_SERVER['SCRIPT_NAME'], 'p-admin/plugins.php' ) && ! empty($_REQUEST['action'] ) ) 
+	if ( is_admin() &&
+	( isset($_REQUEST['page']) && in_array( $_REQUEST['page'], array( 'capsman', 'capsman-pp-admin-menus', 'capsman-tool' ) )
+	|| ( ! empty($_SERVER['SCRIPT_NAME']) && strpos( $_SERVER['SCRIPT_NAME'], 'p-admin/plugins.php' ) && ! empty($_REQUEST['action'] ) )
 	|| ( isset($_GET['action']) && 'reset-defaults' == $_GET['action'] )
 	|| in_array( $pagenow, array( 'users.php', 'user-edit.php', 'profile.php', 'user-new.php' ) )
 	) ) {
@@ -119,7 +119,7 @@ if ( version_compare(PHP_VERSION, '5.4.0', '<') ) {
 		// Run the plugin
 		require_once ( dirname(__FILE__) . '/framework/lib/formating.php' );
 		require_once ( dirname(__FILE__) . '/framework/lib/users.php' );
-		
+
 		require_once ( dirname(__FILE__) . '/includes/manager.php' );
 		$capsman = new CapabilityManager();
 	} else {
