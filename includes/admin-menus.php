@@ -120,7 +120,7 @@ $admin_child_menu_option = array_key_exists($default_role, $admin_child_menu_opt
                                                     <td class="restrict-column ppc-menu-checkbox">
                                                         <input id="check-all-item" class="check-item check-all-menu-item" type="checkbox"/>
                                                     </td>
-                                                
+
                                                 </tr>
 
                                                 <?php
@@ -141,15 +141,16 @@ $admin_child_menu_option = array_key_exists($default_role, $admin_child_menu_opt
                                                             $disabled_field = ' disabled="disabled"';
                                                             $disabled_class = ' disabled';
 
-                                                            $disabled_info = '<div class="tooltip"><i class="dashicons dashicons-info"></i> <span class="tooltiptext">' 
-                                                            . __('This option is disabled to prevent complete lockout', 'capsman-enhanced') 
+                                                            $disabled_info = '<div class="tooltip"><i class="dashicons dashicons-info"></i> <span class="tooltiptext">'
+                                                            . __('This option is disabled to prevent complete lockout', 'capsman-enhanced')
                                                             . '</span></div>';
 
                                                         } else {
                                                             $disabled_field = $disabled_class = $disabled_info = '';
                                                         }
+                                                            $menu_title = ppc_process_admin_menu_title($item[0]);
                                                         ?>
-                                                                            
+
                                                         <tr class="ppc-menu-row parent-menu">
 
                                                             <td class="menu-column ppc-menu-item <?php echo $disabled_class;?>">
@@ -157,16 +158,16 @@ $admin_child_menu_option = array_key_exists($default_role, $admin_child_menu_opt
                                                                 <label for="check-item-<?php echo $sn;?>">
                                                                     <span class="menu-item-link<?php echo (in_array($item_menu_slug, $admin_menu_option)) ? ' restricted' : '';?>">
                                                                     <strong><i class="dashicons dashicons-arrow-right"></i>
-                                                                        <?php echo strip_tags($item[0]);?>
+                                                                        <?php echo $menu_title;?>
                                                                     </strong></span>
-                                                                </label> 
-                                                                
+                                                                </label>
+
                                                                 <?php echo $disabled_info;?>
                                                             </td>
 
                                                             <td class="restrict-column ppc-menu-checkbox">
-                                                            <input id="check-item-<?php echo $sn;?>"<?php echo $disabled_field;?> class="check-item" type="checkbox" 
-                                                                name="pp_cababilities_disabled_menu<?php echo $disabled_class;?>[]" 
+                                                            <input id="check-item-<?php echo $sn;?>"<?php echo $disabled_field;?> class="check-item" type="checkbox"
+                                                                name="pp_cababilities_disabled_menu<?php echo $disabled_class;?>[]"
                                                                 value="<?php echo $item_menu_slug;?>"<?php echo (in_array($item_menu_slug, $admin_menu_option)) ? ' checked' : '';?> />
                                                             </td>
 
@@ -181,13 +182,23 @@ $admin_child_menu_option = array_key_exists($default_role, $admin_child_menu_opt
                                                             $sn++;
                                                             $submenu_slug = $subitem[2];
 
+                                                            //skip item if it's double custom bacakground
+                                                            if($submenu_slug === 'custom-background'){
+                                                                continue;
+                                                            }
+
+                                                            //skip item if it's double custom bacakground
+                                                            if($submenu_slug === 'custom-background'){
+                                                                continue;
+                                                            }
+
                                                             //disable capsman-pp-admin-menus checkbox if admin is editing own role
                                                             if ( $submenu_slug === 'capsman-pp-admin-menus' && in_array($default_role, wp_get_current_user()->roles)) {
                                                                 $disabled_field = ' disabled="disabled"';
                                                                 $disabled_class = ' disabled';
 
-                                                                $disabled_info = '<div class="tooltip"><i class="dashicons dashicons-info"></i> <span class="tooltiptext">' 
-                                                                . __('This option is disabled to prevent complete lockout', 'capsman-enhanced') 
+                                                                $disabled_info = '<div class="tooltip"><i class="dashicons dashicons-info"></i> <span class="tooltiptext">'
+                                                                . __('This option is disabled to prevent complete lockout', 'capsman-enhanced')
                                                                 . '</span></div>';
 
                                                             } else {
@@ -195,7 +206,7 @@ $admin_child_menu_option = array_key_exists($default_role, $admin_child_menu_opt
                                                             }
 
                                                             $sub_menu_value = $item_menu_slug . $subkey;
-
+                                                            $sub_menu_title = ppc_process_admin_menu_title($subitem[0]);
                                                             ?>
                                                             <tr class="ppc-menu-row child-menu">
 
@@ -204,18 +215,18 @@ $admin_child_menu_option = array_key_exists($default_role, $admin_child_menu_opt
                                                                     <label for="check-item-<?php echo $sn;?>">
                                                                         <span class="menu-item-link<?php echo (in_array($sub_menu_value, $admin_child_menu_option)) ? ' restricted' : '';?>">
                                                                         <strong>&nbsp;&nbsp;&nbsp; &#x25cf;
-                                                                        <?php echo strip_tags($subitem[0]);?>
+                                                                        <?php echo $sub_menu_title;?>
                                                                         </strong></span>
                                                                     </label>
-                                                                    
+
                                                                     <?php echo $disabled_info;?>
                                                                 </td>
 
                                                                 <td class="restrict-column ppc-menu-checkbox">
-                                                                    <input id="check-item-<?php echo $sn;?>"<?php echo $disabled_field;?> class="check-item" type="checkbox" 
-                                                                        name="pp_cababilities_disabled_child_menu<?php echo $disabled_class;?>[]" 
-                                                                        value="<?php echo $sub_menu_value;?>" 
-                                                                        <?php echo (in_array($sub_menu_value, $admin_child_menu_option)) ? 'checked' : '';?> 
+                                                                    <input id="check-item-<?php echo $sn;?>"<?php echo $disabled_field;?> class="check-item" type="checkbox"
+                                                                        name="pp_cababilities_disabled_child_menu<?php echo $disabled_class;?>[]"
+                                                                        value="<?php echo $sub_menu_value;?>"
+                                                                        <?php echo (in_array($sub_menu_value, $admin_child_menu_option)) ? 'checked' : '';?>
                                                                         data-val="<?php echo $sub_menu_value;?>" />
                                                                 </td>
 
@@ -231,7 +242,7 @@ $admin_child_menu_option = array_key_exists($default_role, $admin_child_menu_opt
                                                     ?>
                                                     <tr><td style="color: red;"> <?php _e('No menu found', 'capsman-enhanced');?></td></tr>
                                                     <?php
-                                                } 
+                                                }
 
                                                 ?>
                                                 <tr class="ppc-menu-row parent-menu">

@@ -114,7 +114,7 @@ function pp_capabilities_admin_menu_permission()
 
     global $menu, $submenu;
 
-    $admin_global_menu 	  = (array)$GLOBALS['menu'];;
+    $admin_global_menu 	  = (array)$GLOBALS['menu'];
     $admin_global_submenu = (array)$GLOBALS['submenu'];
 
     if (is_object($admin_global_submenu)) {
@@ -232,4 +232,18 @@ function pp_cabapbility_admin_menu_access_denied()
 {
     $forbidden = esc_attr__('You did not have permission to access this page.', 'capsman-enhanced');
     wp_die(esc_html($forbidden));
+}
+
+function ppc_process_admin_menu_title($title)
+{
+    //strip count content
+    $title = preg_replace('#<span class="(.*?)count-(.*?)">(.*?)</span>#', '', $title);
+
+    //strip screen reader content
+    $title = preg_replace('#<span class="(.*?)screen-reader-text(.*?)">(.*?)</span>#', '', $title);
+
+    //strip other html tags
+    $title = strip_tags($title);
+
+    return $title;
 }
