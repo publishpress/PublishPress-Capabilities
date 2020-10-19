@@ -187,11 +187,6 @@ $admin_child_menu_option = array_key_exists($default_role, $admin_child_menu_opt
                                                                 continue;
                                                             }
 
-                                                            //skip item if it's double custom bacakground
-                                                            if($submenu_slug === 'custom-background'){
-                                                                continue;
-                                                            }
-
                                                             //disable capsman-pp-admin-menus checkbox if admin is editing own role
                                                             if ( $submenu_slug === 'capsman-pp-admin-menus' && in_array($default_role, wp_get_current_user()->roles)) {
                                                                 $disabled_field = ' disabled="disabled"';
