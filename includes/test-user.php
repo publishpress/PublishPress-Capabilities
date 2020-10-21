@@ -461,7 +461,7 @@ class PPC_TestUser
                     esc_html(sprintf(
                     /* Translators: 1: user display name; 2: roles; */
                         __('You are testing %1$s (%2$s). Click here to return to your Administrator view', 'capsman-enhanced'),
-                        $old_user->display_name,
+                        $user->display_name,
                         $role
                     ))
                 );
