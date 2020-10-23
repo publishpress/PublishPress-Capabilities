@@ -1076,6 +1076,8 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 					}
 					?>
 					</select><span style="margin-left:20px"><input type="submit" name="LoadRole" value="<?php if ( defined('WPLANG') && WPLANG ) _e('Change', 'capsman-enhanced'); else echo('Load'); ?>" class="button" /></span></p>
+
+					<?php do_action('pp-capabilities_select_role');?>
 				</dd>
 			</dl>
 			

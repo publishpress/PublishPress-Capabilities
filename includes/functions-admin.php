@@ -33,7 +33,7 @@ function cme_submenus() {
 		$menu_order
     );
 
-    add_submenu_page('capsman',  __('Restrict Menus', 'capsman-enhanced'), __('Restrict Menus', 'capsman-enhanced'), $cap_name, 'capsman' . '-pp-admin-menus', 'cme_fakefunc');
+    do_action('pp-capabilities-admin-submenus-placeholder');
 
     add_submenu_page('capsman',  __('Backup', 'capsman-enhanced'), __('Backup', 'capsman-enhanced'), $cap_name, 'capsman' . '-tool', 'cme_fakefunc');
 

@@ -299,7 +299,7 @@ class CapabilityManager
 			$menu_order
 		);
 
-		add_submenu_page('capsman',  __('Restrict Menus', 'capsman-enhanced'), __('Restrict Menus', 'capsman-enhanced'), $cap_name, $this->ID . '-pp-admin-menus', array($this, 'pp_admin_menus'));
+		do_action('pp-capabilities-admin-submenus');
 
 		add_submenu_page('capsman',  __('Backup', 'capsman-enhanced'), __('Backup', 'capsman-enhanced'), $cap_name, $this->ID . '-tool', array($this, 'backupTool'));
 
@@ -609,17 +609,6 @@ class CapabilityManager
 
 	    	$this->roles = $roles;
 		}
-	}
-
-	/**
-	 * Manages admin menu permission
-	 *
-	 * @hook add_management_page
-	 * @return void
-	 */
-	function pp_admin_menus ()
-	{
-		include ( dirname(CME_FILE) . '/includes/admin-menus.php' );
 	}
 
 	/**
