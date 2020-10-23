@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Capability Manager Enhanced\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-08 11:17-0500\n"
-"PO-Revision-Date: 2020-10-08 11:17-0500\n"
+"POT-Creation-Date: 2020-10-23 12:25-0500\n"
+"PO-Revision-Date: 2020-10-23 12:25-0500\n"
 "Last-Translator: Kevin Behrens <kevin@publishpress.com>\n"
 "Language-Team: PublishPress <help@publishpress.com>\n"
 "MIME-Version: 1.0\n"
@@ -72,7 +72,7 @@ msgid "<strong>Note:</strong> Capability changes <strong>remain in the database<
 msgstr ""
 
 #: F:\snapshot\capability-manager-enhanced/includes/admin.php:133
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1161
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1163
 msgid "PublishPress Permissions"
 msgstr ""
 
@@ -296,98 +296,98 @@ msgstr ""
 msgid "Change"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1097
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1099
 msgid "Create New Role"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1100
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1116
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1102
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1118
 msgid "Role Name"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1103
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1119
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1105
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1121
 msgid "Make role available for supplemental assignment to Permission Groups only"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1103
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1119
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1105
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1121
 msgid "hidden"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1107
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1109
 msgid "Create"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1113
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1115
 msgid "Copy this role to"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1123
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1125
 msgid "Copy"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1129
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1131
 msgid "Rename Role"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1131
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1133
 msgid "New Role Name"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1134
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1136
 msgid "Rename"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1140
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1142
 msgid "Add Capability"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1143
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1145
 msgid "Add to role"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1148
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1150
 msgid "Backup Tool"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1150
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1152
 msgid "Backup / Restore Roles"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1155
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1157
 msgid "Related Permissions Plugins"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1158
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1160
 msgid "Multiple Authors"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1167
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1169
 msgid "PublishPress"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1172
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1174
 msgid "PublishPress Revisions"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1174
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1176
 msgid "Help / Contact Form"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1213
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1215
 msgid "Create this role definition in new (future) sites"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1213
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1215
 msgid "include in new sites"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1216
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1218
 msgid "Copy / update this role definition to all sites now"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1216
+#: F:\snapshot\capability-manager-enhanced/includes/admin.php:1218
 msgid "sync role to all sites now"
 msgstr ""
 
@@ -568,12 +568,12 @@ msgstr ""
 msgid "Capabilities"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/functions-admin.php:36
+#: F:\snapshot\capability-manager-enhanced/includes/functions-admin.php:38
 msgid "Backup"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/functions-admin.php:41
-#: F:\snapshot\capability-manager-enhanced/includes/functions-admin.php:42
+#: F:\snapshot\capability-manager-enhanced/includes/functions-admin.php:43
+#: F:\snapshot\capability-manager-enhanced/includes/functions-admin.php:44
 msgid "Upgrade to Pro"
 msgstr ""
 
@@ -618,69 +618,69 @@ msgstr ""
 msgid "Role has been deleted. %1$d users moved to default role %2$s."
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/manager.php:172
+#: F:\snapshot\capability-manager-enhanced/includes/manager.php:165
 msgid "Explicity negate this capability by storing as disabled"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/manager.php:173
+#: F:\snapshot\capability-manager-enhanced/includes/manager.php:166
 msgid "Explicitly negate these capabilities by storing as disabled"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/manager.php:174
+#: F:\snapshot\capability-manager-enhanced/includes/manager.php:167
 msgid "Post type registration does not define this capability distinctly"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/manager.php:175
+#: F:\snapshot\capability-manager-enhanced/includes/manager.php:168
 msgid "This capability is explicitly negated. Click to add/remove normally."
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/manager.php:176
+#: F:\snapshot\capability-manager-enhanced/includes/manager.php:169
 msgid "Add or remove this capability from the WordPress role"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/manager.php:177
+#: F:\snapshot\capability-manager-enhanced/includes/manager.php:170
 msgid "Add or remove capability from the role normally"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/manager.php:415
-#: F:\snapshot\capability-manager-enhanced/includes/manager.php:456
+#: F:\snapshot\capability-manager-enhanced/includes/manager.php:410
+#: F:\snapshot\capability-manager-enhanced/includes/manager.php:451
 msgid "You do not have permission to manage capabilities."
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/manager.php:470
+#: F:\snapshot\capability-manager-enhanced/includes/manager.php:465
 msgid "New capability added to role."
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/manager.php:509
+#: F:\snapshot\capability-manager-enhanced/includes/manager.php:504
 msgid "Bad form Received"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/manager.php:655
+#: F:\snapshot\capability-manager-enhanced/includes/manager.php:650
 #, php-format
 msgid "If you like %s, please leave us a %s rating. Thank you!"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/manager.php:666
+#: F:\snapshot\capability-manager-enhanced/includes/manager.php:661
 msgid "About PublishPress Capabilities"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/manager.php:666
+#: F:\snapshot\capability-manager-enhanced/includes/manager.php:661
 msgid "About"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/manager.php:668
+#: F:\snapshot\capability-manager-enhanced/includes/manager.php:663
 msgid "Capabilites Documentation"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/manager.php:668
+#: F:\snapshot\capability-manager-enhanced/includes/manager.php:663
 msgid "Documentation"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/manager.php:670
+#: F:\snapshot\capability-manager-enhanced/includes/manager.php:665
 msgid "Contact the PublishPress team"
 msgstr ""
 
-#: F:\snapshot\capability-manager-enhanced/includes/manager.php:670
+#: F:\snapshot\capability-manager-enhanced/includes/manager.php:665
 msgid "Contact"
 msgstr ""
 
