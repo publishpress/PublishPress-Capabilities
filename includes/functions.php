@@ -234,7 +234,7 @@ function pp_cabapbility_admin_menu_access_denied()
     wp_die(esc_html($forbidden));
 }
 
-function pp_cabapbility_nav_menu_access_denied()
+function pp_capability_nav_menu_access_denied()
 {
     $forbidden = esc_attr__('You did not have permission to access this page.', 'capsman-enhanced');
     wp_die(esc_html($forbidden));
@@ -343,7 +343,7 @@ function pp_capabilities_nav_menu_access($query)
             foreach ($disabled_nav_menu_array as $item_option) {
                 $option_object = $taxonomy_id . '_' . $taxonnomy_type;
                 if (in_array($option_object, $disabled_nav_menu_array)) {
-                    pp_cabapbility_nav_menu_access_denied();
+                    pp_capability_nav_menu_access_denied();
                 }
             }
         }
@@ -355,7 +355,7 @@ function pp_capabilities_nav_menu_access($query)
             foreach ($disabled_nav_menu_array as $item_option) {
                 $option_object = $post_id . '_' . $post_type;
                 if (in_array($option_object, $disabled_nav_menu_array)) {
-                    pp_cabapbility_nav_menu_access_denied();
+                    pp_capability_nav_menu_access_denied();
                 }
             }
         }
