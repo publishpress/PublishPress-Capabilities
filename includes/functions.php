@@ -332,11 +332,11 @@ function pp_capabilities_nav_menu_access($query)
 
     if ($disabled_nav_menu) {
 
-//we only need object id and object name e.g, 1_category
+        //we only need object id and object name e.g, 1_category
         $disabled_object = preg_replace('!(0|[1-9][0-9]*)_([a-zA-Z0-9_.-]*),!s', '$2,', $disabled_nav_menu);
         $disabled_nav_menu_array = array_filter(explode(", ", $disabled_object));
 
-//category tags and taxonomy page check
+        //category tags and taxonomy page check
         if (is_category() || is_tag() || is_tax()) {
             $taxonomy_id = get_queried_object()->term_id;
             $taxonnomy_type = get_queried_object()->taxonomy;
@@ -348,7 +348,7 @@ function pp_capabilities_nav_menu_access($query)
             }
         }
 
-//post, page, cpt check
+        //post, page, cpt check
         if (is_singular()) {
             $post_type = get_post_type();
             $post_id = get_the_ID();
