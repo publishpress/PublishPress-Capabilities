@@ -114,7 +114,7 @@ function pp_capabilities_admin_menu_permission()
 
     global $menu, $submenu;
 
-    $admin_global_menu 	  = (array)$GLOBALS['menu'];;
+    $admin_global_menu = (array)$GLOBALS['menu'];;
     $admin_global_submenu = (array)$GLOBALS['submenu'];
 
     if (is_object($admin_global_submenu)) {
@@ -142,10 +142,10 @@ function pp_capabilities_admin_menu_permission()
         return;
     }
 
-    $disabled_menu 		 	 = '';
-    $disabled_child_menu 	 = '';
-    $user_roles			 	 = wp_get_current_user()->roles;
-    $admin_menu_option 	 	 = !empty(get_option('capsman_admin_menus')) ? (array)get_option('capsman_admin_menus') : [];
+    $disabled_menu = '';
+    $disabled_child_menu = '';
+    $user_roles = wp_get_current_user()->roles;
+    $admin_menu_option = !empty(get_option('capsman_admin_menus')) ? (array)get_option('capsman_admin_menus') : [];
     $admin_child_menu_option = !empty(get_option('capsman_admin_child_menus')) ? (array)get_option('capsman_admin_child_menus') : [];
 
     //extract disabled menu for roles user belong
@@ -233,3 +233,136 @@ function pp_cabapbility_admin_menu_access_denied()
     $forbidden = esc_attr__('You did not have permission to access this page.', 'capsman-enhanced');
     wp_die(esc_html($forbidden));
 }
+
+function pp_cabapbility_nav_menu_access_denied()
+{
+    $forbidden = esc_attr__('You did not have permission to access this page.', 'capsman-enhanced');
+    wp_die(esc_html($forbidden));
+}
+
+/**
+ * Checks the menu items for their visibility options and
+ * removes menu items that are not visible.
+ *
+ * @return array
+ */
+function pp_capabilities_nav_menu_permission($items, $menu, $args)
+{
+
+
+    //return if it's admin page
+    if (is_admin()) {
+        return $items;
+    }
+
+    $disabled_nav_menu = '';
+
+    $user_roles = (array)wp_get_current_user()->roles;
+    $nav_menu_item_option = !empty(get_option('capsman_nav_item_menus')) ? (array)get_option('capsman_nav_item_menus') : [];
+
+    //add loggedin and guest option to role
+    if (is_user_logged_in()) {
+        $user_roles[] = 'ppc_users';
+    } else {
+        $user_roles[] = 'ppc_guest';
+    }
+
+    //extract disabled menu for roles user belong
+    foreach ($user_roles as $role) {
+        if (array_key_exists($role, $nav_menu_item_option)) {
+            $disabled_nav_menu .= implode(", ", (array)$nav_menu_item_option[$role]) . ', ';
+        }
+    }
+
+
+    if ($disabled_nav_menu) {
+
+        //extract only IDS
+        $disabled_item_ids = preg_replace('!(0|[1-9][0-9]*)_([a-zA-Z0-9_.-]*),!s', '$1,', $disabled_nav_menu);
+
+        $disabled_nav_menu_array = array_filter(explode(", ", $disabled_item_ids));
+
+        foreach ($items as $key => $item) {
+
+            $item_parent = get_post_meta($item->ID, '_menu_item_menu_item_parent', true);
+
+            if (in_array($item->ID, $disabled_nav_menu_array) || in_array($item_parent, $disabled_nav_menu_array)) {
+                unset($items[$key]);
+            }
+        }
+
+
+    }
+
+    return $items;
+}
+
+add_filter('wp_get_nav_menu_items', 'pp_capabilities_nav_menu_permission', 10, 3);
+
+
+/**
+ * Checks the menu items for their privacy and remove
+ * if user do not have permission to item
+ *
+ */
+function pp_capabilities_nav_menu_access($query)
+{
+    $user_id = get_current_user_id();
+
+
+    $disabled_nav_menu = '';
+
+    $user_roles = (array)wp_get_current_user()->roles;
+    $nav_menu_item_option = !empty(get_option('capsman_nav_item_menus')) ? (array)get_option('capsman_nav_item_menus') : [];
+
+    //add loggedin and guest option to role
+    if (is_user_logged_in()) {
+        $user_roles[] = 'ppc_users';
+    } else {
+        $user_roles[] = 'ppc_guest';
+    }
+
+    //extract disabled menu for roles user belong
+    foreach ($user_roles as $role) {
+        if (array_key_exists($role, $nav_menu_item_option)) {
+            $disabled_nav_menu .= implode(", ", (array)$nav_menu_item_option[$role]) . ', ';
+        }
+    }
+
+
+    if ($disabled_nav_menu) {
+
+//we only need object id and object name e.g, 1_category
+        $disabled_object = preg_replace('!(0|[1-9][0-9]*)_([a-zA-Z0-9_.-]*),!s', '$2,', $disabled_nav_menu);
+        $disabled_nav_menu_array = array_filter(explode(", ", $disabled_object));
+
+//category tags and taxonomy page check
+        if (is_category() || is_tag() || is_tax()) {
+            $taxonomy_id = get_queried_object()->term_id;
+            $taxonnomy_type = get_queried_object()->taxonomy;
+            foreach ($disabled_nav_menu_array as $item_option) {
+                $option_object = $taxonomy_id . '_' . $taxonnomy_type;
+                if (in_array($option_object, $disabled_nav_menu_array)) {
+                    pp_cabapbility_nav_menu_access_denied();
+                }
+            }
+        }
+
+//post, page, cpt check
+        if (is_singular()) {
+            $post_type = get_post_type();
+            $post_id = get_the_ID();
+            foreach ($disabled_nav_menu_array as $item_option) {
+                $option_object = $post_id . '_' . $post_type;
+                if (in_array($option_object, $disabled_nav_menu_array)) {
+                    pp_cabapbility_nav_menu_access_denied();
+                }
+            }
+        }
+
+
+    }
+
+}
+
+add_filter('parse_query', 'pp_capabilities_nav_menu_access');
