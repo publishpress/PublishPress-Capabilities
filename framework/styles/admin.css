@@ -262,6 +262,11 @@ table#akmin td.sidebar dd {
     visibility: visible;
 }
 
+.ppc-menu-item.parent .menu-item-link {
+    text-transform: uppercase;
+    color: darkgrey;
+}
+
 @media only screen and ( max-width: 782px ) {
 
     .pp-capability-menus {
