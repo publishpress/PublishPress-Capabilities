@@ -147,7 +147,7 @@ class CapabilityManager
      */
     function adminStyles()
     {
-		if ( empty( $_REQUEST['page'] ) || ! in_array( $_REQUEST['page'], array( 'capsman', 'capsman-pp-admin-menus', 'capsman-tool' ) ) )
+		if ( empty( $_REQUEST['page'] ) || ! in_array( $_REQUEST['page'], array( 'capsman', 'capsman-pp-roles', 'capsman-pp-admin-menus', 'capsman-tool' ) ) )
 			return;
 
 		wp_enqueue_style('cme-admin-common', $this->mod_url . '/common/css/pressshack-admin.css', [], PUBLISHPRESS_CAPS_VERSION);
@@ -298,6 +298,11 @@ class CapabilityManager
 			'dashicons-admin-network',
 			$menu_order
 		);
+
+		$hook = add_submenu_page('capsman',  __('Roles', 'capsman-enhanced'), __('Roles', 'capsman-enhanced'), $cap_name, $this->ID . '-pp-roles', array($this, 'pp_roles'));
+		if ( ! empty( $hook ) ) {
+			add_action( "load-$hook", 'admin_roles_page_load' );
+		}
 
 		add_submenu_page('capsman',  __('Admin Menus', 'capsman-enhanced'), __('Admin Menus', 'capsman-enhanced'), $cap_name, $this->ID . '-pp-admin-menus', array($this, 'pp_admin_menus'));
 
@@ -609,6 +614,25 @@ class CapabilityManager
 
 	    	$this->roles = $roles;
 		}
+	}
+
+	/**
+	 * Manages roles
+	 *
+	 * @hook add_management_page
+	 * @return void
+	 */
+	function pp_roles ()
+	{
+
+
+		if ((!is_multisite() || !is_super_admin()) && !current_user_can('administrator') && !current_user_can('manage_capabilities')) {
+            // TODO: Implement exceptions.
+		    wp_die('<strong>' .__('You do not have permission to manage roles.', 'capsman-enhanced') . '</strong>');
+		}
+		
+		include ( dirname(CME_FILE) . '/includes/roles/roles.php' );
+
 	}
 
 	/**

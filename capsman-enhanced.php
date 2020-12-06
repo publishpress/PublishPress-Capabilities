@@ -109,7 +109,7 @@ if ( version_compare(PHP_VERSION, '5.4.0', '<') ) {
 	global $pagenow;
 
 	if ( is_admin() &&
-	( isset($_REQUEST['page']) && in_array( $_REQUEST['page'], array( 'capsman', 'capsman-pp-admin-menus', 'capsman-tool' ) )
+	( isset($_REQUEST['page']) && in_array( $_REQUEST['page'], array( 'capsman', 'capsman-pp-roles', 'capsman-pp-admin-menus', 'capsman-tool' ) )
 	|| ( ! empty($_SERVER['SCRIPT_NAME']) && strpos( $_SERVER['SCRIPT_NAME'], 'p-admin/plugins.php' ) && ! empty($_REQUEST['action'] ) )
 	|| ( isset($_GET['action']) && 'reset-defaults' == $_GET['action'] )
 	|| in_array( $pagenow, array( 'users.php', 'user-edit.php', 'profile.php', 'user-new.php' ) )
@@ -126,6 +126,13 @@ if ( version_compare(PHP_VERSION, '5.4.0', '<') ) {
 		load_plugin_textdomain('capsman-enhanced', false, basename(dirname(__FILE__)) .'/lang');
 		add_action( 'admin_menu', 'cme_submenus', 20 );
 	}
+
+	/**
+	 * Roles.
+	 */
+	require plugin_dir_path( __FILE__ ) . 'includes/roles/roles-functions.php';
+	require plugin_dir_path( __FILE__ ) . 'includes/roles/class/class-pp-roles.php';
+	$roles = pp_roles()->run();
 
 	if (is_admin() && !defined('PUBLISHPRESS_CAPS_PRO_VERSION')) {
 		require_once(__DIR__ . '/includes/CoreAdmin.php');
