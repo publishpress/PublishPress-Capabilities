@@ -19,7 +19,6 @@ class CoreAdmin {
                     'link'    => 'https://publishpress.com/links/capabilities-banner',
                     'screens' => [
                         ['base' => 'toplevel_page_capsman'],
-                        ['base' => 'capabilities_page_capsman-pp-admin-menus'],
                         ['base' => 'capabilities_page_capsman-tool'],
                         ['base' => 'capabilities_page_capability-settings'],
                     ]

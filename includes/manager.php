@@ -147,7 +147,7 @@ class CapabilityManager
      */
     function adminStyles()
     {
-		if ( empty( $_REQUEST['page'] ) || ! in_array( $_REQUEST['page'], array( 'capsman', 'capsman-pp-admin-menus', 'capsman-tool' ) ) )
+		if ( empty( $_REQUEST['page'] ) || ! in_array( $_REQUEST['page'], array( 'capsman', 'capsman-tool' ) ) )
 			return;
 
 		wp_enqueue_style('cme-admin-common', $this->mod_url . '/common/css/pressshack-admin.css', [], PUBLISHPRESS_CAPS_VERSION);
@@ -298,8 +298,6 @@ class CapabilityManager
 			'dashicons-admin-network',
 			$menu_order
 		);
-
-		add_submenu_page('capsman',  __('Admin Menus', 'capsman-enhanced'), __('Admin Menus', 'capsman-enhanced'), $cap_name, $this->ID . '-pp-admin-menus', array($this, 'pp_admin_menus'));
 
 		add_submenu_page('capsman',  __('Backup', 'capsman-enhanced'), __('Backup', 'capsman-enhanced'), $cap_name, $this->ID . '-tool', array($this, 'backupTool'));
 
@@ -609,66 +607,6 @@ class CapabilityManager
 
 	    	$this->roles = $roles;
 		}
-	}
-
-	/**
-	 * Manages admin menu permission
-	 *
-	 * @hook add_management_page
-	 * @return void
-	 */
-	function pp_admin_menus ()
-	{
-
-
-		if ((!is_multisite() || !is_super_admin()) && !current_user_can('administrator') && !current_user_can('manage_capabilities')) {
-            // TODO: Implement exceptions.
-		    wp_die('<strong>' .__('You do not have permission to manage admin menus.', 'capsman-enhanced') . '</strong>');
-		}
-
-		$this->generateNames();
-		$roles = array_keys($this->roles);
-
-		if ( ! isset($this->current) ) {
-			if (empty($_POST) && !empty($_REQUEST['role'])) {
-				$this->current = $_REQUEST['role'];
-			}
-		}
-
-		if (!isset($this->current) || !get_role($this->current)) {
-			$this->current = get_option('default_role');
-		}
-
-		if ( ! in_array($this->current, $roles) ) {
-			$this->current = array_shift($roles);
-		}
-
-		$ppc_admin_menu_reload = '0';
-
-		if ( 'POST' == $_SERVER['REQUEST_METHOD'] && isset($_POST['ppc-admin-menu-role']) ) {
-			$this->current = $_POST['ppc-admin-menu-role'];
-
-			//set role admin menu
-			$admin_menu_option = !empty(get_option('capsman_admin_menus')) ? get_option('capsman_admin_menus') : [];
-			$admin_menu_option[$_POST['ppc-admin-menu-role']] = isset($_POST['pp_cababilities_disabled_menu']) ? $_POST['pp_cababilities_disabled_menu'] : '';
-
-			//set role admin child menu
-			$admin_child_menu_option = !empty(get_option('capsman_admin_child_menus')) ? get_option('capsman_admin_child_menus') : [];
-			$admin_child_menu_option[$_POST['ppc-admin-menu-role']] = isset($_POST['pp_cababilities_disabled_child_menu']) ? $_POST['pp_cababilities_disabled_child_menu'] : '';
-
-			update_option('capsman_admin_menus', $admin_menu_option, false);
-			update_option('capsman_admin_child_menus', $admin_child_menu_option, false);
-
-			//set reload option for menu reflection if user is updating own role
-			if(in_array($_POST['ppc-admin-menu-role'], wp_get_current_user()->roles)){
-			$ppc_admin_menu_reload = '1';
-			}
-
-            ak_admin_notify(__('Settings updated.', 'capsman-enhanced'));
-		}
-
-		include ( dirname(CME_FILE) . '/includes/admin-menus.php' );
-
 	}
 
 	/**
