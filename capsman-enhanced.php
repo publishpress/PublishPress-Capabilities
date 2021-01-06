@@ -127,6 +127,11 @@ if ( version_compare(PHP_VERSION, '5.4.0', '<') ) {
 		add_action( 'admin_menu', 'cme_submenus', 20 );
 	}
 
+	/**
+	 * Block permission.
+	 */
+	require plugin_dir_path( __FILE__ ) . 'includes/block-permission/block-permission.php';
+
 	if (is_admin() && !defined('PUBLISHPRESS_CAPS_PRO_VERSION')) {
 		require_once(__DIR__ . '/includes/CoreAdmin.php');
 		new \PublishPress\Capabilities\CoreAdmin();
