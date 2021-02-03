@@ -92,6 +92,10 @@ table#akmin td.content dd {
     padding: 10px;
 }
 
+select.ppc-admin-menu-role {
+	margin-left: 0;
+}
+
 /* ====================================================== ADMIN SIDEBAR */
 
 table#akmin td.sidebar {

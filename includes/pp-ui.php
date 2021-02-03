@@ -160,6 +160,9 @@ class Capsman_PP_UI {
 					</label>
 					</div>
 				
+				<?php
+				do_action('pp-capabilities-type-specific-ui');
+				?>
 				
 				<input type="submit" name="update_filtered_types" value="<?php _e('Update', 'capsman-enhanced') ?>" class="button" />
 			</dd>
