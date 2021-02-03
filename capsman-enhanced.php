@@ -120,7 +120,7 @@ if ( version_compare(PHP_VERSION, '5.4.0', '<') ) {
 	}
 
 	if ( is_admin() &&
-	( isset($_REQUEST['page']) && in_array( $_REQUEST['page'], ['pp-capabilities', 'pp-capabilities-backup', 'pp-capabilities-roles']) 
+	( isset($_REQUEST['page']) && in_array( $_REQUEST['page'], ['pp-capabilities', 'pp-capabilities-backup', 'pp-capabilities-roles', 'pp-capabilities-settings']) 
 	|| ( ! empty($_SERVER['SCRIPT_NAME']) && strpos( $_SERVER['SCRIPT_NAME'], 'p-admin/plugins.php' ) && ! empty($_REQUEST['action'] ) )
 	|| ( isset($_GET['action']) && 'reset-defaults' == $_GET['action'] )
 	|| in_array( $pagenow, array( 'users.php', 'user-edit.php', 'profile.php', 'user-new.php' ) )

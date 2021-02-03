@@ -126,6 +126,10 @@ class CapabilityManager
 		$this->ID = 'capsman';
 		$this->mod_url = plugins_url( '', CME_FILE );
 
+		if (is_admin() && !empty($_REQUEST['page']) && ('pp-capabilities-settings' == $_REQUEST['page']) && !empty($_POST['all_options'])) {
+			require_once (dirname(CME_FILE) . '/includes/settings-handler.php');
+		}
+
 		$this->moduleLoad();
 
 		add_action('admin_menu', array($this, 'adminMenus'), 5);  // execute prior to PP, to use menu hook
@@ -152,7 +156,7 @@ class CapabilityManager
      */
     function adminStyles()
     {
-		if ( empty( $_REQUEST['page'] ) || ! in_array( $_REQUEST['page'], array( 'pp-capabilities', 'pp-capabilities-roles', 'capsman-pp-admin-menus', 'pp-capabilities-backup' ) ) )
+		if ( empty( $_REQUEST['page'] ) || ! in_array( $_REQUEST['page'], array( 'pp-capabilities', 'pp-capabilities-roles', 'capsman-pp-admin-menus', 'pp-capabilities-backup', 'pp-capabilities-settings' ) ) )
 			return;
 
 		wp_enqueue_style('cme-admin-common', $this->mod_url . '/common/css/pressshack-admin.css', [], PUBLISHPRESS_CAPS_VERSION);
@@ -319,6 +323,10 @@ class CapabilityManager
 		do_action('pp-capabilities-admin-submenus');
 
 		add_submenu_page('pp-capabilities',  __('Backup', 'capsman-enhanced'), __('Backup', 'capsman-enhanced'), $cap_name, 'pp-capabilities-backup', array($this, 'backupTool'));
+
+		if (defined('PUBLISHPRESS_CAPS_PRO_VERSION')) {
+			add_submenu_page('pp-capabilities',  __('Settings', 'capsman-enhanced'), __('Settings', 'capsman-enhanced'), $cap_name, 'pp-capabilities-settings', array($this, 'settingsPage'));
+		}
 
 		if (!defined('PUBLISHPRESS_CAPS_PRO_VERSION')) {
 			add_submenu_page(
@@ -706,6 +714,10 @@ class CapabilityManager
 		}
 
 		include ( dirname(CME_FILE) . '/includes/backup.php' );
+	}
+
+	function settingsPage() {
+		include ( dirname(CME_FILE) . '/includes/settings.php' );
 	}
 }
 
