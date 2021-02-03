@@ -1055,7 +1055,8 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 				$level = ak_caps2level($rcaps);
 				?>
 				<span title="<?php _e('Role level is mostly deprecated. However, it still determines eligibility for Post Author assignment and limits the application of user editing capabilities.', 'capsman-enhanced');?>"> 
-				<?php _e('Role Level:', 'capsman-enhanced');?> <select name="level">
+
+				<?php (in_array(get_locale(), ['en_EN', 'en_US'])) ? printf('Role Level:') : _e('Level:', 'capsman-enhanced');?> <select name="level">
 				<?php for ( $l = $this->max_level; $l >= 0; $l-- ) {?>
 						<option value="<?php echo $l; ?>" style="text-align:right;"<?php selected($level, $l); ?>>&nbsp;<?php echo $l; ?>&nbsp;</option>
 					<?php }
@@ -1102,7 +1103,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 			?>
 
 			<dl>
-				<dt><?php printf('Copy %s Role', translate_user_role($roles[$default])); ?></dt>
+				<dt><?php (!in_array(get_locale(), ['en_EN', 'en_US'])) ? _e('Copy this role to', 'capsman-enhanced') : printf('Copy %s Role', translate_user_role($roles[$default])); ?></dt>
 				<dd style="text-align:center;">
 					<?php $class = ( $support_pp_only_roles ) ? 'tight-text' : 'regular-text'; ?>
 					<p><input type="text" name="copy-name"  class="<?php echo $class;?>" placeholder="<?php _e('Role Name', 'capsman-enhanced') ?>" />
