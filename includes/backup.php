@@ -43,9 +43,9 @@ $auto_backups = $wpdb->get_results("SELECT option_name, option_value FROM $wpdb-
         <?php wp_nonce_field('pp-capabilities-backup'); ?>
 
         <ul id="publishpress-capability-backup-tabs" class="nav-tab-wrapper">
-            <li class="nav-tab nav-tab-active"><a href="#ppcb-tab-restore">Restore</a></li>
-            <li class="nav-tab"><a href="#ppcb-tab-backup">Backup</a></li>
-            <li class="nav-tab"><a href="#ppcb-tab-reset">Reset Roles</a></li>
+            <li class="nav-tab nav-tab-active"><a href="#ppcb-tab-restore"><?php _e('Restore', 'capsman-enhanced');?></a></li>
+            <li class="nav-tab"><a href="#ppcb-tab-backup"><?php _e('Backup', 'capsman-enhanced');?></a></li>
+            <li class="nav-tab"><a href="#ppcb-tab-reset"><?php _e('Reset Roles', 'capsman-enhanced');?></a></li>
         </ul>
 
         <fieldset>
