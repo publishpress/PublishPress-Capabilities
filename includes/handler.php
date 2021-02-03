@@ -3,8 +3,13 @@ class CapsmanHandler
 {
 	var $cm;
 
-	function __construct( $manager_obj ) {
+	function __construct($manager_obj = false) {
+		if ($manager_obj) {
 		$this->cm = $manager_obj;
+		} else {
+			global $capsman;
+			$this->cm = $capsman;
+		}
 	}
 	
 	function processAdminGeneral( $post ) {
@@ -82,7 +87,9 @@ class CapsmanHandler
 			$role = get_role($post['current']);
 			$role->name = $post['current'];		// bbPress workaround
 
-			if ( $newname = $this->createNewName($post['capability-name']) ) {
+			$newname = $this->createNewName($post['capability-name']);
+
+			if (empty($newname['error'])) {
 				$role->add_cap($newname['name']);
 
 				// for bbPress < 2.2, need to log customization of roles following bbPress activation
@@ -140,7 +147,7 @@ class CapsmanHandler
 	 * @param string $name	Name from user input.
 	 * @return array|false An array with the name and display_name, or false if not valid $name.
 	 */
-	private function createNewName( $name ) {
+	public function createNewName( $name ) {
 		// Allow max 40 characters, letters, digits and spaces
 		$name = trim(substr($name, 0, 40));
 		$pattern = '/^[a-zA-Z][a-zA-Z0-9 _]+$/';
@@ -150,7 +157,7 @@ class CapsmanHandler
 
 			$name = str_replace(' ', '_', $name);
 			if ( in_array($name, $roles) || array_key_exists($name, $this->cm->capabilities) ) {
-				return false;	// Already a role or capability with this name.
+				return ['error' => 'role_exists', 'name' => $name];		// Already a role or capability with this name.
 			}
 
 			$display = explode('_', $name);
@@ -167,7 +174,7 @@ class CapsmanHandler
 
 			return compact('name', 'display');
 		} else {
-			return false;
+			return ['error' => 'invalid_name', 'name' => $name];
 		}
 	}
 
@@ -178,12 +185,12 @@ class CapsmanHandler
 	 * @param array $caps	Role capabilities.
 	 * @return string|false	Returns the name of the new role created or false if failed.
 	 */
-	private function createRole( $name, $caps = array() ) {
+	public function createRole( $name, $caps = [], $args = [] ) {
 		if ( ! is_array($caps) )
 			$caps = array();
 
 		$role = $this->createNewName($name);
-		if ( ! is_array($role) ) {
+		if (!empty($role['error'])) {
 			return false;
 		}
 

@@ -35,6 +35,7 @@ function cme_submenus() {
 
     do_action('pp-capabilities-admin-submenus-placeholder');
 
+	add_submenu_page('pp-capabilities',  __('Roles', 'capsman-enhanced'), __('Roles', 'capsman-enhanced'), $cap_name, 'pp-capabilities-roles', 'cme_fakefunc');
     add_submenu_page('pp-capabilities',  __('Backup', 'capsman-enhanced'), __('Backup', 'capsman-enhanced'), $cap_name, 'capsman' . '-tool', 'cme_fakefunc');
 
 	if (!defined('PUBLISHPRESS_CAPS_PRO_VERSION')) {
