@@ -51,7 +51,8 @@ $default_role = $capsman->current;
                         <div id="pp-capability-menu-wrapper" class="postbox">
                             <div class="pp-capability-menus-promo">
                                 <div class="pp-capability-menus-promo-inner">
-                                    <img src="<?php echo plugin_dir_url(CME_FILE) . 'includes-core/pp-capabilities-admin-menus.jpg';?>" />
+                                    <img src="<?php echo plugin_dir_url(CME_FILE) . 'includes-core/pp-capabilities-admin-menus-desktop.jpg';?>" class="pp-capability-desktop" />
+                                    <img src="<?php echo plugin_dir_url(CME_FILE) . 'includes-core/pp-capabilities-admin-menus-mobile.jpg';?>" class="pp-capability-mobile" />
                                     <div class="pp-capability-menus-promo-content">
                                         <p>
                                             <?php _e('You can restrict access to admin menu screens. This feature is available in PublishPress Capabilities Pro', 'capsman-enhanced'); ?>
