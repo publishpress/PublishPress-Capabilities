@@ -117,7 +117,7 @@ Fixed : Non-administrators with user editing capabilities could add new Administ
 = 2.0 =
   * Feature : Roles screen
   * Feature : Settings screen
-  * Lang : Fixed handling, activated partial translations in German, Italian, Russian, Spanish, Swedish, Catalan, Belorussian
+  * Lang : Fixed handling, activated partial translations in German, Italian, Russian, Spanish, Swedish, Belarusian, Catalan
   * Change : Capabilities screen - move role selector to top left, eliminate load button
   * Change : Capabilities screen - move some sidebar items to Settings screen
   * Change : Adjust some captions, variable names, more selective code execution
