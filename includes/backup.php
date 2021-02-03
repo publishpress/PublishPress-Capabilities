@@ -256,16 +256,16 @@ $auto_backups = $wpdb->get_results("SELECT option_name, option_value FROM $wpdb-
 
 
                         <dl id="ppcb-tab-reset" style="display:none;">
-                            <dt><?php if (!in_array(get_locale(), ['en_EN', 'en_US'])) _e('Reset WordPress Defaults', 'capsman-enhanced'); else echo 'Reset Roles to WordPress Defaults'; ?></dt>
+                            <dt><?php if (defined('WPLANG') && WPLANG && ('en_EN' != WPLANG)) _e('Reset WordPress Defaults', 'capsman-enhanced'); else echo 'Reset Roles to WordPress Defaults'; ?></dt>
                             <dd>
                                 <p style="text-align:center;"><strong><span
-                                                style="color:red;"><?php _e('WARNING:', 'capsman-enhanced'); ?></span> <?php if (!in_array(get_locale(), ['en_EN', 'en_US'])) _e('Reseting default Roles and Capabilities will set them to the WordPress install defaults.', 'capsman-enhanced'); else echo 'This will delete and/or modify stored role definitions.'; ?>
+                                                style="color:red;"><?php _e('WARNING:', 'capsman-enhanced'); ?></span> <?php if (defined('WPLANG') && WPLANG && ('en_EN' != WPLANG)) _e('Reseting default Roles and Capabilities will set them to the WordPress install defaults.', 'capsman-enhanced'); else echo 'This will delete and/or modify stored role definitions.'; ?>
                                     </strong><br/>
                                     <br/>
                                     <?php
                                     _e('If you have installed any plugin that adds new roles or capabilities, these will be lost.', 'capsman-enhanced') ?>
                                     <br/>
-                                    <strong><?php if (!in_array(get_locale(), ['en_EN', 'en_US'])) _e('It is recommended to use this only as a last resource!', 'capsman-enhanced'); else echo('It is recommended to use this only as a last resort!'); ?></strong>
+                                    <strong><?php if (defined('WPLANG') && WPLANG && ('en_EN' != WPLANG)) _e('It is recommended to use this only as a last resource!'); else echo('It is recommended to use this only as a last resort!'); ?></strong>
                                 </p>
                                 <p style="text-align:center;"><a class="ak-delete button-primary"
                                                                  title="<?php echo esc_attr(__('Reset Roles and Capabilities to WordPress defaults', 'capsman-enhanced')) ?>"
