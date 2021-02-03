@@ -43,7 +43,7 @@ function _cme_init()
 {
     require_once(dirname(__FILE__) . '/filters.php');
 
-    load_plugin_textdomain('capsman-enhanced', false, dirname(plugin_basename(__FILE__)) . '/lang');
+    load_plugin_textdomain('capsman-enhanced', false, dirname(plugin_basename(__FILE__)) . '/languages');
 }
 
 function cme_is_plugin_active($check_plugin_file)

@@ -7,7 +7,7 @@
  * Author: PublishPress
  * Author URI: https://publishpress.com/
  * Text Domain: capsman-enhanced
- * Domain Path: /lang/
+ * Domain Path: /languages/
  * Min WP Version: 4.9.7
  * Requires PHP: 5.6.20
  * License: GPLv3
@@ -97,7 +97,7 @@ if ( version_compare(PHP_VERSION, '5.4.0', '<') ) {
 	// Send an armin warning
 	add_action('admin_notices', function() {
 		$data = get_plugin_data(__FILE__);
-		load_plugin_textdomain('capsman-enhanced', false, basename(dirname(__FILE__)) .'/lang');
+		load_plugin_textdomain('capsman-enhanced', false, basename(dirname(__FILE__)) .'/languages');
 
 		echo '<div class="error"><p><strong>' . __('Warning:', 'capsman-enhanced') . '</strong> '
 			. sprintf(__('The active plugin %s is not compatible with your PHP version.', 'capsman-enhanced') .'</p><p>',
@@ -120,7 +120,7 @@ if ( version_compare(PHP_VERSION, '5.4.0', '<') ) {
 	}
 
 	if (is_admin()) {
-		load_plugin_textdomain('capsman-enhanced', false, basename(dirname(__FILE__)) .'/lang');
+		load_plugin_textdomain('capsman-enhanced', false, basename(dirname(__FILE__)) .'/languages');
 	}
 
 	if ( is_admin() &&
