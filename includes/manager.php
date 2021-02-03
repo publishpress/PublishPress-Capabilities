@@ -152,7 +152,7 @@ class CapabilityManager
      */
     function adminStyles()
     {
-		if ( empty( $_REQUEST['page'] ) || ! in_array( $_REQUEST['page'], array( 'pp-capabilities', 'pp-capabilities-roles', 'capsman-pp-admin-menus', 'pp-capabilities-backup' ) ) )
+		if ( empty( $_REQUEST['page'] ) || ! in_array( $_REQUEST['page'], array( 'pp-capabilities', 'pp-capabilities-roles', 'pp-capabilities-admin-menus', 'pp-capabilities-nav-menus', 'pp-capabilities-backup', 'pp-capabilities-settings' ) ) )
 			return;
 
 		wp_enqueue_style('cme-admin-common', $this->mod_url . '/common/css/pressshack-admin.css', [], PUBLISHPRESS_CAPS_VERSION);
