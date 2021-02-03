@@ -8,3 +8,15 @@
 .pp-capability-roles-wrapper .role-title-divider {
     color: #555;
 }
+
+div.pp-capability-roles-wrapper #col-left {
+    width: 25%;
+}
+
+div.pp-capability-roles-wrapper #col-right {
+    width: 75%;
+}
+
+table.roles #role {
+    width: 45%;
+}
