@@ -44,6 +44,7 @@ div.pp-capability-menus-wrapper-promo select.ppc-nav-menu-role {
   border-radius: 6px;
   width: 450px;
   box-sizing: border-box;
+  box-shadow: 0 0 25px #ccc;
 }
 
 #pp-capability-menu-wrapper div.pp-capability-menus-promo .pp-capability-menus-promo-inner .pp-capability-menus-promo-gradient {
