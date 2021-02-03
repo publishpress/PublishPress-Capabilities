@@ -18,10 +18,10 @@ class CoreAdmin {
                     'message' => 'You\'re using PublishPress Capabilities Free. The Pro version has more features and support. %sUpgrade to Pro%s',
                     'link'    => 'https://publishpress.com/links/capabilities-banner',
                     'screens' => [
-                        ['base' => 'toplevel_page_capsman'],
-                        ['base' => 'capabilities_page_capsman-pp-admin-menus'],
-                        ['base' => 'capabilities_page_capsman-tool'],
-                        ['base' => 'capabilities_page_capability-settings'],
+                        ['base' => 'toplevel_page_pp-capabilities'],
+                        ['base' => 'capabilities_page_pp-capabilities-admin-menus'],
+                        ['base' => 'capabilities_page_pp-capabilities-backup'],
+                        ['base' => 'capabilities_page_pp-capabilities-settings'],
                     ]
                 ];
 

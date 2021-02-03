@@ -19,7 +19,7 @@ class Capsman_BackupHandler
 	function processBackupTool ()
 	{
         if (isset($_POST['save_backup'])) {
-			check_admin_referer('capsman-backup-tool');
+			check_admin_referer('pp-capabilities-backup');
 		
 			global $wpdb;
 			$wp_roles = $wpdb->prefix . 'user_roles';
@@ -44,7 +44,7 @@ class Capsman_BackupHandler
         }
 
         if (isset($_POST['restore_backup'])) {
-            check_admin_referer('capsman-backup-tool');
+            check_admin_referer('pp-capabilities-backup');
 
             global $wpdb;
             $wp_roles = $wpdb->prefix . 'user_roles';

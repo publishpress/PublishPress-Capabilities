@@ -108,8 +108,19 @@ if ( version_compare(PHP_VERSION, '5.4.0', '<') ) {
 } else {
 	global $pagenow;
 
+	// redirect legacy URLs
+	if (!empty($_REQUEST['page'])) {
+		foreach(['capsman' => 'pp-capabilities', 'capsman-tool' => 'pp-capabilities-backup'] as $find => $replace) {
+			if (isset($_REQUEST['page']) && ($find == $_REQUEST['page'])) {
+				$location = str_replace("page=$find", "page=$replace", $_SERVER['REQUEST_URI']);
+				header( "Location: $location", true);
+				exit;
+			}
+		}
+	}
+
 	if ( is_admin() &&
-	( isset($_REQUEST['page']) && in_array( $_REQUEST['page'], array( 'capsman', 'capsman-pp-admin-menus', 'capsman-tool' ) )
+	( isset($_REQUEST['page']) && in_array( $_REQUEST['page'], ['pp-capabilities', 'pp-capabilities-backup']) 
 	|| ( ! empty($_SERVER['SCRIPT_NAME']) && strpos( $_SERVER['SCRIPT_NAME'], 'p-admin/plugins.php' ) && ! empty($_REQUEST['action'] ) )
 	|| ( isset($_GET['action']) && 'reset-defaults' == $_GET['action'] )
 	|| in_array( $pagenow, array( 'users.php', 'user-edit.php', 'profile.php', 'user-new.php' ) )

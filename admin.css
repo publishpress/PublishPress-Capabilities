@@ -193,11 +193,11 @@ background-color: #84fb84;
 }
 
 div.pressshack-admin-wrapper footer {
-padding-right: 270px;
+padding-right: 5px;
 }
 
-body.capabilities_page_capsman-tool div.pressshack-admin-wrapper footer {
-padding-right: 5px;
+.toplevel_page_pp-capabilities div.pressshack-admin-wrapper footer {
+padding-right: 270px;
 }
 
 #akmin div.publishpress-headline {line-height:25px}

@@ -36,11 +36,11 @@ $auto_backups = $wpdb->get_results("SELECT option_name, option_value FROM $wpdb-
 
 <div class="wrap publishpress-caps-manage publishpress-caps-backup pressshack-admin-wrapper">
     <div id="icon-capsman-admin" class="icon32"></div>
-    <h2><?php printf(__('Backup Tool for %1$sPublishPress Capabilities%2$s', 'capsman-enhanced'), '<a href="admin.php?page=capsman">', '</a>'); ?></h2>
+    <h2><?php printf(__('Backup Tool for %1$sPublishPress Capabilities%2$s', 'capsman-enhanced'), '<a href="admin.php?page=pp-capabilities">', '</a>'); ?></h2>
 
 
-    <form method="post" action="admin.php?page=<?php echo $this->ID ?>-tool">
-        <?php wp_nonce_field('capsman-backup-tool'); ?>
+    <form method="post" action="admin.php?page=pp-capabilities-backup">
+        <?php wp_nonce_field('pp-capabilities-backup'); ?>
 
         <ul id="publishpress-capability-backup-tabs" class="nav-tab-wrapper">
             <li class="nav-tab nav-tab-active"><a href="#ppcb-tab-restore">Restore</a></li>
@@ -269,7 +269,7 @@ $auto_backups = $wpdb->get_results("SELECT option_name, option_value FROM $wpdb-
                                 </p>
                                 <p style="text-align:center;"><a class="ak-delete button-primary"
                                                                  title="<?php echo esc_attr(__('Reset Roles and Capabilities to WordPress defaults', 'capsman-enhanced')) ?>"
-                                                                 href="<?php echo wp_nonce_url("admin.php?page={$this->ID}-tool&amp;action=reset-defaults", 'capsman-reset-defaults'); ?>"
+                                                                 href="<?php echo wp_nonce_url("admin.php?page=pp-capabilities-backup&amp;action=reset-defaults", 'capsman-reset-defaults'); ?>"
                                                                  onclick="if ( confirm('<?php echo esc_js(__("You are about to reset Roles and Capabilities to WordPress defaults.\n 'Cancel' to stop, 'OK' to reset.", 'capsman-enhanced')); ?>') ) { return true;}return false;"><?php _e('Reset to WordPress defaults', 'capsman-enhanced') ?></a>
 
                             </dd>

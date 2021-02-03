@@ -27,7 +27,7 @@ function cme_submenus() {
         $permissions_title,
         $permissions_title,
         $cap_name,
-        'capsman',
+        'pp-capabilities',
         'cme_fakefunc',
         'dashicons-admin-network',
 		$menu_order
@@ -35,11 +35,11 @@ function cme_submenus() {
 
     do_action('pp-capabilities-admin-submenus-placeholder');
 
-    add_submenu_page('capsman',  __('Backup', 'capsman-enhanced'), __('Backup', 'capsman-enhanced'), $cap_name, 'capsman' . '-tool', 'cme_fakefunc');
+    add_submenu_page('pp-capabilities',  __('Backup', 'capsman-enhanced'), __('Backup', 'capsman-enhanced'), $cap_name, 'capsman' . '-tool', 'cme_fakefunc');
 
 	if (!defined('PUBLISHPRESS_CAPS_PRO_VERSION')) {
 	    add_submenu_page(
-	        'capsman',
+	        'pp-capabilities',
 	        __('Upgrade to Pro', 'capsman-enhanced'),
 	        __('Upgrade to Pro', 'capsman-enhanced'),
 	        'manage_capabilities',

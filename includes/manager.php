@@ -133,7 +133,7 @@ class CapabilityManager
 		// Load styles
 		add_action('admin_print_styles', array($this, 'adminStyles'));
 
-		if ( isset($_REQUEST['page']) && ( 'capsman' == $_REQUEST['page'] ) ) {
+		if ( isset($_REQUEST['page']) && ( 'pp-capabilities' == $_REQUEST['page'] ) ) {
 			add_action('admin_enqueue_scripts', array($this, 'adminScriptsPP'));
 		}
 	}
@@ -147,7 +147,7 @@ class CapabilityManager
      */
     function adminStyles()
     {
-		if ( empty( $_REQUEST['page'] ) || ! in_array( $_REQUEST['page'], array( 'capsman', 'capsman-pp-admin-menus', 'capsman-tool' ) ) )
+		if ( empty( $_REQUEST['page'] ) || ! in_array( $_REQUEST['page'], array( 'pp-capabilities', 'capsman-pp-admin-menus', 'pp-capabilities-backup' ) ) )
 			return;
 
 		wp_enqueue_style('cme-admin-common', $this->mod_url . '/common/css/pressshack-admin.css', [], PUBLISHPRESS_CAPS_VERSION);
@@ -197,7 +197,7 @@ class CapabilityManager
         add_filter('map_meta_cap', array(&$this, 'filterUserEdit'), 10, 4);
 
 		// ensure storage, retrieval of db-stored customizations to dynamic roles
-		if ( isset($_REQUEST['page']) && in_array( $_REQUEST['page'], array( 'capsman', 'capsman-tool' ) ) ) {
+		if ( isset($_REQUEST['page']) && in_array( $_REQUEST['page'], array( 'capsman', 'pp-capabilities-backup' ) ) ) {
 			global $wpdb;
 			$role_key = $wpdb->prefix . 'user_roles';
 			$this->log_db_roles();
@@ -293,7 +293,7 @@ class CapabilityManager
 			$permissions_title,
 			$permissions_title,
 			$cap_name,
-			'capsman',
+			'pp-capabilities',
 			array($this, 'generalManager'),
 			'dashicons-admin-network',
 			$menu_order
@@ -301,11 +301,11 @@ class CapabilityManager
 
 		do_action('pp-capabilities-admin-submenus');
 
-		add_submenu_page('capsman',  __('Backup', 'capsman-enhanced'), __('Backup', 'capsman-enhanced'), $cap_name, $this->ID . '-tool', array($this, 'backupTool'));
+		add_submenu_page('pp-capabilities',  __('Backup', 'capsman-enhanced'), __('Backup', 'capsman-enhanced'), $cap_name, 'pp-capabilities-backup', array($this, 'backupTool'));
 
 		if (!defined('PUBLISHPRESS_CAPS_PRO_VERSION')) {
 			add_submenu_page(
-	            'capsman',
+	            'pp-capabilities',
 	            __('Upgrade to Pro', 'capsman-enhanced'),
 	            __('Upgrade to Pro', 'capsman-enhanced'),
 	            'manage_capabilities',
@@ -589,7 +589,7 @@ class CapabilityManager
 		    $roles = ak_get_roles(true);
     		unset($roles['administrator']);
 
-			if ( ( defined( 'CME_LEGACY_USER_EDIT_FILTER' ) && CME_LEGACY_USER_EDIT_FILTER ) || ( ! empty( $_REQUEST['page'] ) && 'capsman' == $_REQUEST['page'] ) ) {
+			if ( ( defined( 'CME_LEGACY_USER_EDIT_FILTER' ) && CME_LEGACY_USER_EDIT_FILTER ) || ( ! empty( $_REQUEST['page'] ) && 'pp-capabilities' == $_REQUEST['page'] ) ) {
 				foreach ( $user->roles as $role ) {			// Unset the roles from capability list.
 					unset ( $this->capabilities[$role] );
 					unset ( $roles[$role]);					// User cannot manage his roles.

@@ -97,7 +97,7 @@ class CapsmanHandler
 				global $wpdb;
 				$wpdb->query( "UPDATE $wpdb->options SET autoload = 'no' WHERE option_name = 'pp_customized_roles'" );
 
-				$url = admin_url('admin.php?page=capsman&role=' . $post['role'] . '&added=1');
+				$url = admin_url('admin.php?page=pp-capabilities&role=' . $post['role'] . '&added=1');
 				wp_redirect($url);
 				exit;
 			} else {
