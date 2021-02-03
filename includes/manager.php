@@ -197,7 +197,7 @@ class CapabilityManager
         add_filter('map_meta_cap', array(&$this, 'filterUserEdit'), 10, 4);
 
 		// ensure storage, retrieval of db-stored customizations to dynamic roles
-		if ( isset($_REQUEST['page']) && in_array( $_REQUEST['page'], array( 'capsman', 'pp-capabilities-backup' ) ) ) {
+		if ( isset($_REQUEST['page']) && in_array( $_REQUEST['page'], array( 'pp-capabilities', 'pp-capabilities-backup' ) ) ) {
 			global $wpdb;
 			$role_key = $wpdb->prefix . 'user_roles';
 			$this->log_db_roles();

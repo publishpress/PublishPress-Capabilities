@@ -50,35 +50,50 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 }
 ?>
 <div class="wrap publishpress-caps-manage pressshack-admin-wrapper">
-	<?php if( defined('PRESSPERMIT_ACTIVE') ) :
+	<?php /*if( defined('PRESSPERMIT_ACTIVE') ) :
 		pp_icon();
 		$style = 'style="height:60px;"';
+		*/
 	?>
-	<?php else:
+	<?php /* else: */
 		$style = '';
 	?>
 	<div id="icon-capsman-admin" class="icon32"></div>
-	<?php endif; ?>
+	<?php /* endif; */ ?>
 	
 	<h1 <?php echo $style;?>><?php _e('Role Capabilities', 'capsman-enhanced') ?></h1>
 	
+	<script type="text/javascript">
+	/* <![CDATA[ */
+	jQuery(document).ready( function($) {
+		$('#publishpress_caps_form').attr('action', 'admin.php?page=pp-capabilities&role=' + $('select[name="role"]').val());
+
+		$('select[name="role"]').change(function(){
+			window.location = '<?php echo admin_url('admin.php?page=pp-capabilities&role='); ?>' + $(this).val() + '';
+		});
+	});
+	/* ]]> */
+	</script>
+
 	<form id="publishpress_caps_form" method="post" action="admin.php?page=<?php echo $this->ID ?>">
 	<?php wp_nonce_field('capsman-general-manager'); ?>
+
+	<p>
+		<select name="role">
+			<?php
+			foreach ( $roles as $role => $name ) {
+				$name = translate_user_role($name);
+				echo '<option value="' . $role .'"'; selected($default, $role); echo '> ' . $name . ' &nbsp;</option>';
+			}
+			?>
+		</select>
+	</p>
+
 	<fieldset>
 	<table id="akmin">
 	<tr>
 		<td class="content">
 		<dl>
-			<dt>
-			<?php 
-			$role_caption = (defined('PUBLISHPRESS_VERSION')) 
-			? '<a href="' . admin_url("admin.php?page=pp-manage-roles&action=edit-role&role-id={$this->current}") . '">' . translate_user_role($roles[$default]) . '</a>'
-			: translate_user_role($roles[$default]);
-
-			printf(__('Capabilities for %s', 'capsman-enhanced'), $role_caption);
-			?>
-			</dt>
-			
 			<dd>
 				<div style="float:right">
 				<input type="submit" name="SaveRole" value="<?php _e('Save Changes', 'capsman-enhanced') ?>" class="button-primary" /> &nbsp;
@@ -1065,51 +1080,22 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 		
 		</td>
 		<td class="sidebar">
-			<dl>
-				<dt><?php if ( defined('WPLANG') && WPLANG ) _e('Select New Role', 'capsman-enhanced'); else echo('Select Role to View / Edit'); ?></dt>
-				<dd style="text-align:center;">
-					<p><select name="role">
-					<?php
-					foreach ( $roles as $role => $name ) {
-						$name = translate_user_role($name);
-						echo '<option value="' . $role .'"'; selected($default, $role); echo '> ' . $name . ' &nbsp;</option>';
-					}
-					?>
-					</select><span style="margin-left:20px"><input type="submit" name="LoadRole" value="<?php if ( defined('WPLANG') && WPLANG ) _e('Change', 'capsman-enhanced'); else echo('Load'); ?>" class="button" /></span></p>
-
-					<?php do_action('pp-capabilities_select_role');?>
-				</dd>
-			</dl>
-			
-			<script type="text/javascript">
-			/* <![CDATA[ */
-			jQuery(document).ready( function($) {
-				$('select[name="role"]').val('<?php echo $default;?>');
-
-				$('input.button[name="LoadRole"]').click(function(){
-					$('#publishpress_caps_form').attr('action', 'admin.php?page=capsman&role=' + $('select[name="role"]').val());
-				});
-			});
-			/* ]]> */
-			</script>
-			
 			<?php do_action('publishpress-caps_sidebar_top');?>
 
 			<dl>
-				<dt><?php _e('Create New Role', 'capsman-enhanced'); ?></dt>
+				<dt><?php _e('Add Capability', 'capsman-enhanced'); ?></dt>
 				<dd style="text-align:center;">
-					<?php $class = ( $support_pp_only_roles ) ? 'tight-text' : 'regular-text'; ?>
-					<p><input type="text" name="create-name" class="<?php echo $class;?>" placeholder="<?php _e('Role Name', 'capsman-enhanced') ?>" />
-					
-					<?php if( $support_pp_only_roles ) : ?>
-					<label for="new_role_pp_only" title="<?php _e('Make role available for supplemental assignment to Permission Groups only', 'capsman-enhanced');?>"> <input type="checkbox" name="new_role_pp_only" id="new_role_pp_only" autocomplete="off" value="1"> <?php _e('hidden', 'capsman-enhanced'); ?> </label>
-					<?php endif; ?>
-					
-					<br />
-					<input type="submit" name="CreateRole" value="<?php _e('Create', 'capsman-enhanced') ?>" class="button" />
-					</p>
+					<p><input type="text" name="capability-name" class="regular-text" placeholder="<?php echo 'capability_name';?>" /><br />
+					<input type="submit" name="AddCap" value="<?php _e('Add to role', 'capsman-enhanced') ?>" class="button" /></p>
 				</dd>
 			</dl>
+			
+			<?php 
+				$pp_ui->pp_types_ui( $defined['type'] );
+				$pp_ui->pp_taxonomies_ui( $defined['taxonomy'] );
+
+				do_action('publishpress-caps_sidebar_bottom');
+			?>
 
 			<dl>
 				<dt><?php defined('WPLANG') && WPLANG ? _e('Copy this role to', 'capsman-enhanced') : printf('Copy %s Role', translate_user_role($roles[$default])); ?></dt>
@@ -1137,54 +1123,6 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 					</p>
 				</dd>
 			</dl>
-
-			<dl>
-				<dt><?php _e('Add Capability', 'capsman-enhanced'); ?></dt>
-				<dd style="text-align:center;">
-					<p><input type="text" name="capability-name" class="regular-text" placeholder="<?php echo 'capability_name';?>" /><br />
-					<input type="submit" name="AddCap" value="<?php _e('Add to role', 'capsman-enhanced') ?>" class="button" /></p>
-				</dd>
-			</dl>
-			
-			<!-- <dl class="cme-backup-tool">
-				<dt><?php _e('Backup Tool', 'capsman-enhanced'); ?></dt>
-				<dd style="text-align:center;">
-					<p><a href="admin.php?page=capsman-tool"><?php _e('Backup / Restore Roles', 'capsman-enhanced');?></a></p>
-				</dd>
-			</dl> -->
-			
-			<dl>
-				<dt><?php _e('Related Permissions Plugins', 'capsman-enhanced'); ?></dt>
-				<dd>
-				<ul>
-					<li><a href="https://publishpress.com/ma/" target="_blank"><?php _e('Multiple Authors', 'capsman-enhanced');?></a></li>
-					</li>
-
-					<li><a href="#pp-more"><?php _e('PublishPress Permissions', 'capsman-enhanced');?></a>
-					</li>
-
-					<?php $_url = "plugin-install.php?tab=plugin-information&plugin=publishpress&TB_iframe=true&width=640&height=678";
-					$url = ( is_multisite() ) ? network_admin_url($_url) : admin_url($_url);
-					?>
-					<li><a class="thickbox" href="<?php echo $url;?>"><?php _e('PublishPress', 'capsman-enhanced');?></a></li>
-					
-					<?php $_url = "plugin-install.php?tab=plugin-information&plugin=revisionary&TB_iframe=true&width=640&height=678";
-					$url = ( is_multisite() ) ? network_admin_url($_url) : admin_url($_url);
-					?>
-					<li><a class="thickbox" href="<?php echo $url;?>"><?php _e('PublishPress Revisions', 'capsman-enhanced');?></a></li>
-
-					<li class="publishpress-contact"><a href="https://publishpress.com/contact" target="_blank"><?php _e('Help / Contact Form', 'capsman-enhanced');?></a></li>
-
-				</ul>
-				</dd>
-			</dl>
-			
-			<?php 
-				$pp_ui->pp_types_ui( $defined['type'] );
-				$pp_ui->pp_taxonomies_ui( $defined['taxonomy'] );
-
-				do_action('publishpress-caps_sidebar_bottom');
-			?>
 		</td>
 	</tr>
 	</table>
