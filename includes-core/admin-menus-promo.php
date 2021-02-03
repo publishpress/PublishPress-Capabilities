@@ -48,7 +48,7 @@ $default_role = $capsman->current;
                                 value="<?php _e('Save Changes', 'capsman-enhanced') ?>"
                                 class="button-primary ppc-admin-menu-submit" style="float:right" />
                         </div>
-                        <div id="pp-capability-menu-wrapper" class="postbox">
+                        <div id="pp-capability-menu-wrapper" class="postbox" style="box-shadow: none;">
                             <div class="pp-capability-menus-promo">
                                 <div class="pp-capability-menus-promo-inner">
                                     <img src="<?php echo plugin_dir_url(CME_FILE) . 'includes-core/pp-capabilities-admin-menus-desktop.jpg';?>" class="pp-capability-desktop" />
@@ -63,6 +63,7 @@ $default_role = $capsman->current;
                                             </a>
                                         </p>
                                     </div>
+                                    <div class="pp-capability-menus-promo-gradient"></div>
                                 </div>
                             </div>
                         </div>

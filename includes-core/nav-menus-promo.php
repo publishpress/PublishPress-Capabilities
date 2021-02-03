@@ -53,7 +53,7 @@ $default_role = $capsman->current;
                                    class="button-primary ppc-nav-menu-submit" style="float:right" />
                         </div>
 
-                        <div id="pp-capability-menu-wrapper" class="postbox">
+                        <div id="pp-capability-menu-wrapper" class="postbox" style="box-shadow: none;">
                             <div class="pp-capability-menus-promo">
                                 <div class="pp-capability-menus-promo-inner">
                                     <img src="<?php echo plugin_dir_url(CME_FILE) . 'includes-core/pp-capabilities-nav-menus-desktop.jpg';?>" class="pp-capability-desktop" />
@@ -68,6 +68,7 @@ $default_role = $capsman->current;
                                             </a>
                                         </p>
                                     </div>
+                                    <div class="pp-capability-menus-promo-gradient"></div>
                                 </div>
                             </div>
                         </div>
