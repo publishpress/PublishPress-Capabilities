@@ -39,7 +39,6 @@ function cme_submenus() {
   add_submenu_page('pp-capabilities',  __('Backup', 'capsman-enhanced'), __('Backup', 'capsman-enhanced'), $cap_name, 'pp-capabilities-backup', 'cme_fakefunc');
   add_submenu_page('pp-capabilities',  __('Settings', 'capsman-enhanced'), __('Settings', 'capsman-enhanced'), $cap_name, 'pp-capabilities-settings', 'cme_fakefunc');
 
-
 	if (!defined('PUBLISHPRESS_CAPS_PRO_VERSION')) {
 	    add_submenu_page(
 	        'pp-capabilities',
