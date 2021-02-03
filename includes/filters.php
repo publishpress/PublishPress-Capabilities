@@ -114,7 +114,7 @@ function cme_filter_custom_status_list($custom_statuses, $post)
 	$filtered       = [];
 	$option_group   = 'global';
 	
-	$default_status = $publishpress->custom_status->module->options->default_status;
+	$default_status = !empty($publishpress->custom_status->module->options->default_status) ? $publishpress->custom_status->module->options->default_status : 'draft';
 
 	if ( ! is_null($post)) {
 		// Adding a new post? Set the correct default status
@@ -128,8 +128,8 @@ function cme_filter_custom_status_list($custom_statuses, $post)
 
 		// Check if the user, or any of his user groups are capable to use the status. If not, but it is the
 		// current status, we still display it.
-		if (
-			current_user_can('status_change_' . $slug)
+		if (('draft' == $slug)
+			|| current_user_can('status_change_' . $slug)
 			|| (is_null($post) ? false : $status->slug === $post->post_status)
 			|| $status->slug === $default_status
 		) {
