@@ -164,9 +164,9 @@ $auto_backups = $wpdb->get_results("SELECT option_name, option_value FROM $wpdb-
                                 'capsman_backup_initial' => $initial_caption,
                             );
 
-                                            if (!$capsman_backup) {
-                                                $backups['capsman_backup'] = $last_caption;
-                                            }
+                            if (empty($capsman_backup)) {
+                          		$backups['capsman_backup'] = $last_caption;
+                            }
 
                             foreach ($auto_backups as $row) {
                                 $arr = explode('_', str_replace('cme_backup_auto_', '', $row->option_name));
