@@ -24,12 +24,6 @@ $roles = $capsman->roles;
 $default_role = $capsman->current;
 ?>
 
-<style>
-#pp-capability-menu-wrapper div.pp-capability-menus-promo {
-    background-image: url("<?php echo plugin_dir_url(CME_FILE) . 'includes-core/pp-capabilities-admin-menus-promo-blur.png';?>");
-}
-</style>
-
 <div class="wrap publishpress-caps-manage pressshack-admin-wrapper pp-capability-menus-wrapper-promo">
     <div id="icon-capsman-admin" class="icon32"></div>
     <h2><?php _e('Admin Menu Restrictions', 'capsman-enhanced'); ?></h2>
@@ -39,16 +33,6 @@ $default_role = $capsman->current;
             <table id="akmin">
                 <tr>
                     <td class="content">
-
-                        <div class="publishpress-headline">
-                            <span class="cme-subtext">
-                            <span class='pp-capability-role-caption'>
-                            <?php
-                            _e('Note: You are only restricting access to admin menu screens. Some plugins may also add features to other areas of WordPress.', 'capsman-enhanced');
-                            ?>
-                            </span>
-                            </span>
-                        </div>
                         <div class="publishpress-filters">
                             <select name="ppc-admin-menu-role" class="ppc-admin-menu-role">
                                 <?php
@@ -65,7 +49,20 @@ $default_role = $capsman->current;
                                 class="button-primary ppc-admin-menu-submit" style="float:right" />
                         </div>
                         <div id="pp-capability-menu-wrapper" class="postbox">
-                            <div class="pp-capability-menus-promo"> 
+                            <div class="pp-capability-menus-promo">
+                                <div class="pp-capability-menus-promo-inner">
+                                    <img src="<?php echo plugin_dir_url(CME_FILE) . 'includes-core/pp-capabilities-nav-menus.jpg';?>" />
+                                    <div class="pp-capability-menus-promo-content">
+                                        <p>
+                                            <?php _e('You can restrict access to admin menu screens. This feature is available in PublishPress Capabilities Pro', 'capsman-enhanced'); ?>
+                                        </p>
+                                        <p>
+                                            <a href="https://publishpress.com/links/capabilities-banner" target="_blank">
+                                                <?php _e('Upgrade to Pro', 'capsman-enhanced'); ?>
+                                            </a>
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </td>
