@@ -334,7 +334,7 @@ class CapabilityManager
 	            __('Upgrade to Pro', 'capsman-enhanced'),
 	            __('Upgrade to Pro', 'capsman-enhanced'),
 	            'manage_capabilities',
-	            'capabilities-pro',
+	            'capsman-enhanced',
 	            array($this, 'generalManager')
 	        );
 		}
