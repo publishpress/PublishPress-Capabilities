@@ -5,7 +5,7 @@ Author: PublishPress
 Author URI: https://publishpress.com
 Tags: user roles, capabilities, permissions, authors, editors, post types, taxonomies
 Requires at least: 4.9.7
-Tested up to: 5.5
+Tested up to: 5.6
 Requires PHP: 5.6.20
 Stable tag: 1.10.1
 License: GPLv3
@@ -114,8 +114,13 @@ Fixed : Non-administrators with user editing capabilities could add new Administ
 
 == Changelog ==
 
-= 2.0-beta3 =
-  * Change : API for Menu Restrictions (Pro feature)
+= 2.0 =
+  * Feature : Roles screen
+  * Feature : Settings screen
+  * Change : Capabilities screen - move role selector to top left, eliminate load button
+  * Change : Capabilities screen - move some sidebar items to Settings screen
+  * Change : Adjust some captions, variable names, more selective code execution
+  * Compat : bbPress + Permissions Pro - Forum, Topic and Reply capabilities were not displayed in Editing Capabilities grid
 
 = 1.10.1 - 8 Oct 2020 =
   * Fixed : Type-Specific Capabilities options included some non-public WordPress post types that don't support capability customization 
