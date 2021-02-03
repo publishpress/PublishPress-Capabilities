@@ -5,7 +5,7 @@ class CapsmanHandler
 
 	function __construct($manager_obj = false) {
 		if ($manager_obj) {
-		$this->cm = $manager_obj;
+			$this->cm = $manager_obj;
 		} else {
 			global $capsman;
 			$this->cm = $capsman;

@@ -112,7 +112,7 @@ class Capsman_PP_UI {
 				
 				$hidden = apply_filters('presspermit_hidden_post_types', []); 
 				$hidden = apply_filters('pp_hidden_post_types', $hidden);  // maintain legacy filter to support custom code
-				
+
 				echo '<td style="width:50%">';
 				
 				$option_basename = 'enabled_post_types';
@@ -165,7 +165,7 @@ class Capsman_PP_UI {
 				<?php
 				do_action('pp-capabilities-type-specific-ui');
 				?>
-				
+
 				<input type="submit" name="update_filtered_types" value="<?php _e('Update', 'capsman-enhanced') ?>" class="button" />
 			</dd>
 		</dl>

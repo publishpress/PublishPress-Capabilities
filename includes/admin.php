@@ -241,7 +241,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 				
 				$unfiltered['taxonomy'] = apply_filters('presspermit_unfiltered_post_types', ['post_status', 'topic-tag']);  // avoid confusion with Edit Flow administrative taxonomy
 				$unfiltered['taxonomy'] = (defined('PP_CAPABILITIES_NO_LEGACY_FILTERS')) ? $unfiltered['taxonomy'] : apply_filters('pp_unfiltered_post_types', $unfiltered['taxonomy']);
-				
+
 				$enabled_taxonomies = cme_get_assisted_taxonomies();
 				
 				/*
@@ -531,7 +531,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 				foreach( array_keys($core_caps) as $cap_name ) {
 					if ( ! $is_administrator && ! current_user_can($cap_name) )
 						continue;
-				
+
 					if ( $i == $checks_per_row ) {
 						echo '</tr><tr>';
 						$i = 0;
@@ -629,14 +629,14 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 				if (defined('PUBLISHPRESS_VERSION')) {
 					$plugin_caps['PublishPress'] = apply_filters('cme_publishpress_capabilities',
 						array(
-							'edit_metadata',
-							'edit_post_subscriptions',
-							'ppma_edit_orphan_post',
-							'pp_manage_roles',
-							'pp_set_notification_channel',
-							'pp_view_calendar',
-							'pp_view_content_overview',
-							'status_change',
+						'edit_metadata',
+						'edit_post_subscriptions',
+						'ppma_edit_orphan_post',
+						'pp_manage_roles',
+						'pp_set_notification_channel',
+						'pp_view_calendar',
+						'pp_view_content_overview',
+						'status_change',
 						)
 					);
 				}

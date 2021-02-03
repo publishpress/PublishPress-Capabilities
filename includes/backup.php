@@ -68,9 +68,9 @@ $auto_backups = $wpdb->get_results("SELECT option_name, option_value FROM $wpdb-
                                 </p>
 
                                 <div style="margin-top:5px">
-                                            <input type="submit" name="save_backup"
+                                    <input type="submit" name="save_backup"
                                             value="<?php _e('Manual Backup', 'capsman-enhanced') ?>"
-                                                   class="button-primary"/>
+                                            class="button-primary"/>
                                 </div>
                             </dd>
 
@@ -155,22 +155,22 @@ $auto_backups = $wpdb->get_results("SELECT option_name, option_value FROM $wpdb-
                                             <input type="checkbox" class="cme_backup_info_changes_only" autocomplete="off" checked="checked"><?php _e('Show changes from current roles only', 'capsman-enhanced');?>
                                             </div>
 
-                            <?php
-                            global $wp_roles;
+                                        <?php
+                                            global $wp_roles;
 
-                            $initial_caption = ($backup_datestamp = get_option('capsman_backup_initial_datestamp')) ? sprintf(__('Initial Backup - %s', 'capsman-enhanced'), date('j M Y, g:i a', $backup_datestamp)) : __('Initial Backup', 'capsman-enhanced');
+                                            $initial_caption = ($backup_datestamp = get_option('capsman_backup_initial_datestamp')) ? sprintf(__('Initial Backup - %s', 'capsman-enhanced'), date('j M Y, g:i a', $backup_datestamp)) : __('Initial Backup', 'capsman-enhanced');
 
-                            $backups = array(
-                                'capsman_backup_initial' => $initial_caption,
-                            );
+                                            $backups = array(
+                                                'capsman_backup_initial' => $initial_caption,
+                                            );
 
-                            if (empty($capsman_backup)) {
-                          		$backups['capsman_backup'] = $last_caption;
-                            }
+                                            if (empty($capsman_backup)) {
+                                                $backups['capsman_backup'] = $last_caption;
+                                            }
 
-                            foreach ($auto_backups as $row) {
-                                $arr = explode('_', str_replace('cme_backup_auto_', '', $row->option_name));
-                                $arr[1] = str_replace('-', ':', $arr[1]);
+                                            foreach ($auto_backups as $row) {
+                                                $arr = explode('_', str_replace('cme_backup_auto_', '', $row->option_name));
+                                                $arr[1] = str_replace('-', ':', $arr[1]);
 
                                                 $date_caption = implode(' ', $arr);
                                                 $date_caption = str_replace(' ', ', ', $date_caption);
@@ -178,13 +178,13 @@ $auto_backups = $wpdb->get_results("SELECT option_name, option_value FROM $wpdb-
                                                 $date_caption = str_replace(', pm', ' pm', $date_caption);
 
                                                 $backups[$row->option_name] = "Auto-backup from " . $date_caption;
-                            }
+                                            }
 
-                            foreach ($backups as $name => $caption) {
-                                if ($backup_data = get_option($name)) :?>
-                                    <div id="cme_display_<?php echo $name; ?>" style="display:none;padding-left:20px;"
-                                         class="cme-show-backup">
-                                        <h3><?php printf(__("%s (%s roles)", 'capsman-enhanded'), $caption, count($backup_data)); ?></h3>
+                                            foreach ($backups as $name => $caption) {
+                                                if ($backup_data = get_option($name)) :?>
+                                                    <div id="cme_display_<?php echo $name; ?>" style="display:none;padding-left:20px;"
+                                                        class="cme-show-backup">
+                                                        <h3><?php printf(__("%s (%s roles)", 'capsman-enhanded'), $caption, count($backup_data)); ?></h3>
 
                                                         <?php 
                                                         foreach ($wp_roles->role_objects as $role => $role_object) {
@@ -206,29 +206,29 @@ $auto_backups = $wpdb->get_results("SELECT option_name, option_value FROM $wpdb-
                                                                 );
                                                             }
                                                         ?>
-                                            <?php if (!isset($props['name'])) continue; ?>
-                                            <?php
-                                            $level = 0;
-                                            for ($i = 10; $i >= 0; $i--) {
-                                                if (!empty($props['capabilities']["level_{$i}"])) {
-                                                    $level = $i;
-                                                    break;
-                                                }
-                                            }
-                                            ?>
-                                            <?php
-                                            $role_caption = $props['name'];
+                                                            <?php if (!isset($props['name'])) continue; ?>
+                                                            <?php
+                                                            $level = 0;
+                                                            for ($i = 10; $i >= 0; $i--) {
+                                                                if (!empty($props['capabilities']["level_{$i}"])) {
+                                                                    $level = $i;
+                                                                    break;
+                                                                }
+                                                            }
+                                                            ?>
+                                                            <?php
+                                                            $role_caption = $props['name'];
                                                             $role_class = (empty($wp_roles->role_objects[$role])) ? ' class="cme-change cme-plus"' : ''; 
                                                             ?>
 
                                                             <h4<?php echo $role_class;?>><?php printf(__('%s (level %s)', 'capsman-enhanced'), translate_user_role($role_caption), $level); ?></h4>
-                                            <ul style="list-style:disc;padding-left:30px">
+                                                            <ul style="list-style:disc;padding-left:30px">
 
-                                                <?php
-                                                ksort($props['capabilities']);
-                                                foreach ($props['capabilities'] as $cap_name => $val) :
-                                                    if (0 === strpos($cap_name, 'level_')) continue;
-                                                    ?>
+                                                                <?php
+                                                                ksort($props['capabilities']);
+                                                                foreach ($props['capabilities'] as $cap_name => $val) :
+                                                                    if (0 === strpos($cap_name, 'level_')) continue;
+                                                                    ?>
                                                                     <?php 
                                                                     if ($val && (empty($wp_roles->role_objects[$role]) || empty($wp_roles->role_objects[$role]->capabilities[$cap_name]))) {
                                                                         $class = ' class="cme-change cme-plus"';
@@ -240,14 +240,14 @@ $auto_backups = $wpdb->get_results("SELECT option_name, option_value FROM $wpdb-
                                                                     }
                                                                     ?>
                                                                     <li<?php echo $class;?>><?php echo $cap_name;?></li>
-                                                <?php endforeach; ?>
+                                                                <?php endforeach; ?>
 
-                                            </ul>
-                                        <?php endforeach; ?>
-                                    </div>
-                                <?php endif;
-                            }
-                            ?>
+                                                            </ul>
+                                                        <?php endforeach; ?>
+                                                    </div>
+                                                <?php endif;
+                                            }
+                                        ?>
                                         </td>
                                     </tr>
                                 </table>
