@@ -43,9 +43,9 @@ $auto_backups = $wpdb->get_results("SELECT option_name, option_value FROM $wpdb-
         <?php wp_nonce_field('pp-capabilities-backup'); ?>
 
         <ul id="publishpress-capability-backup-tabs" class="nav-tab-wrapper">
-            <li class="nav-tab nav-tab-active"><a href="#ppcb-tab-restore">Restore</a></li>
-            <li class="nav-tab"><a href="#ppcb-tab-backup">Backup</a></li>
-            <li class="nav-tab"><a href="#ppcb-tab-reset">Reset Roles</a></li>
+            <li class="nav-tab nav-tab-active"><a href="#ppcb-tab-restore"><?php _e('Restore', 'capsman-enhanced');?></a></li>
+            <li class="nav-tab"><a href="#ppcb-tab-backup"><?php _e('Backup', 'capsman-enhanced');?></a></li>
+            <li class="nav-tab"><a href="#ppcb-tab-reset"><?php _e('Reset Roles', 'capsman-enhanced');?></a></li>
         </ul>
 
         <fieldset>
@@ -256,16 +256,16 @@ $auto_backups = $wpdb->get_results("SELECT option_name, option_value FROM $wpdb-
 
 
                         <dl id="ppcb-tab-reset" style="display:none;">
-                            <dt><?php if (defined('WPLANG') && WPLANG && ('en_EN' != WPLANG)) _e('Reset WordPress Defaults', 'capsman-enhanced'); else echo 'Reset Roles to WordPress Defaults'; ?></dt>
+                            <dt><?php if (!in_array(get_locale(), ['en_EN', 'en_US'])) _e('Reset WordPress Defaults', 'capsman-enhanced'); else echo 'Reset Roles to WordPress Defaults'; ?></dt>
                             <dd>
                                 <p style="text-align:center;"><strong><span
-                                                style="color:red;"><?php _e('WARNING:', 'capsman-enhanced'); ?></span> <?php if (defined('WPLANG') && WPLANG && ('en_EN' != WPLANG)) _e('Reseting default Roles and Capabilities will set them to the WordPress install defaults.', 'capsman-enhanced'); else echo 'This will delete and/or modify stored role definitions.'; ?>
+                                                style="color:red;"><?php _e('WARNING:', 'capsman-enhanced'); ?></span> <?php if (!in_array(get_locale(), ['en_EN', 'en_US'])) _e('Reseting default Roles and Capabilities will set them to the WordPress install defaults.', 'capsman-enhanced'); else echo 'This will delete and/or modify stored role definitions.'; ?>
                                     </strong><br/>
                                     <br/>
                                     <?php
                                     _e('If you have installed any plugin that adds new roles or capabilities, these will be lost.', 'capsman-enhanced') ?>
                                     <br/>
-                                    <strong><?php if (defined('WPLANG') && WPLANG && ('en_EN' != WPLANG)) _e('It is recommended to use this only as a last resource!'); else echo('It is recommended to use this only as a last resort!'); ?></strong>
+                                    <strong><?php if (!in_array(get_locale(), ['en_EN', 'en_US'])) _e('It is recommended to use this only as a last resource!', 'capsman-enhanced'); else echo('It is recommended to use this only as a last resort!'); ?></strong>
                                 </p>
                                 <p style="text-align:center;"><a class="ak-delete button-primary"
                                                                  title="<?php echo esc_attr(__('Reset Roles and Capabilities to WordPress defaults', 'capsman-enhanced')) ?>"

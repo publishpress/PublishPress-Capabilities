@@ -119,6 +119,10 @@ if ( version_compare(PHP_VERSION, '5.4.0', '<') ) {
 		}
 	}
 
+	if (is_admin()) {
+		load_plugin_textdomain('capsman-enhanced', false, basename(dirname(__FILE__)) .'/lang');
+	}
+
 	if ( is_admin() &&
 	( isset($_REQUEST['page']) && in_array( $_REQUEST['page'], ['pp-capabilities', 'pp-capabilities-backup', 'pp-capabilities-roles', 'pp-capabilities-admin-menus', 'pp-capabilities-nav-menus', 'pp-capabilities-settings']) 
 	|| ( ! empty($_SERVER['SCRIPT_NAME']) && strpos( $_SERVER['SCRIPT_NAME'], 'p-admin/plugins.php' ) && ! empty($_REQUEST['action'] ) )
@@ -134,7 +138,6 @@ if ( version_compare(PHP_VERSION, '5.4.0', '<') ) {
 		require_once ( dirname(__FILE__) . '/includes/manager.php' );
 		$capsman = new CapabilityManager();
 	} else {
-		load_plugin_textdomain('capsman-enhanced', false, basename(dirname(__FILE__)) .'/lang');
 		add_action( 'admin_menu', 'cme_submenus', 20 );
 	}
 
