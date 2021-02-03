@@ -23,7 +23,7 @@ class CapsmanHandler
 				ak_admin_notify(__('New role created.', 'capsman-enhanced'));
 				$this->cm->current = $newrole;
 			} else {
-				if ( empty($post['create-name']) && ( ! defined('WPLANG') || ! WPLANG ) )
+				if ( empty($post['create-name']) && in_array(get_locale(), ['en_EN', 'en_US']) )
 					ak_admin_error( 'Error: No role name specified.', 'capsman-enhanced' );
 				else
 					ak_admin_error(__('Error: Failed creating the new role.', 'capsman-enhanced'));
@@ -49,7 +49,7 @@ class CapsmanHandler
 				ak_admin_notify(__('New role created.', 'capsman-enhanced'));
 				$this->cm->current = $newrole;
 			} else {
-				if ( empty($post['copy-name']) && ( ! defined('WPLANG') || ! WPLANG ) )
+				if ( empty($post['copy-name']) && in_array(get_locale(), ['en_EN', 'en_US']) )
 					ak_admin_error( 'Error: No role name specified.', 'capsman-enhanced' );
 				else
 					ak_admin_error(__('Error: Failed creating the new role.', 'capsman-enhanced'));
