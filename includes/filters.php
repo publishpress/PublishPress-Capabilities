@@ -243,7 +243,10 @@ function cme_get_assisted_post_types() {
 	
 	$post_types = get_post_types( $type_args, 'names', 'or' );
 	
-	if ( $omit_types = apply_filters( 'pp_unfiltered_post_types', array('forum', 'topic', 'reply', 'wp_block', 'customize_changeset') ) ) {
+	$omit_types = apply_filters('presspermit_unfiltered_post_types', ['forum', 'topic', 'reply', 'wp_block', 'customize_changeset']);
+	$omit_types = (defined('PP_CAPABILITIES_NO_LEGACY_FILTERS')) ? $omit_types : apply_filters('pp_unfiltered_post_types', $omit_types);
+
+	if ($omit_types) {
 		$post_types = array_diff_key( $post_types, array_fill_keys( (array) $omit_types, true ) );
 	}
 	

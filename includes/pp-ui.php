@@ -108,8 +108,12 @@ class Capsman_PP_UI {
 				
 				echo "<table style='width:100%'><tr>";
 				
-				$unfiltered = apply_filters( 'pp_unfiltered_post_types', array('forum','topic','reply','wp_block', 'customize_changeset') );			// bbPress' dynamic role def requires additional code to enforce stored caps
-				$hidden = apply_filters( 'pp_hidden_post_types', array() );
+				// bbPress' dynamic role def requires additional code to enforce stored caps
+				$unfiltered = apply_filters('presspermit_unfiltered_post_types', ['forum','topic','reply','wp_block', 'customize_changeset']);
+				$unfiltered = (defined('PP_CAPABILITIES_NO_LEGACY_FILTERS')) ? $unfiltered : apply_filters('pp_unfiltered_post_types', $unfiltered);  // maintain legacy filter to support custom code
+				
+				$hidden = apply_filters('presspermit_hidden_post_types', []); 
+				$hidden = apply_filters('pp_hidden_post_types', $hidden);  // maintain legacy filter to support custom code
 				
 				echo '<td style="width:50%">';
 				
