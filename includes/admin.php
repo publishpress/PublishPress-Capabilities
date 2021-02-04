@@ -469,14 +469,16 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 									$row .= "</td>";
 								}
 
-								if ('type' == $item_type) {
-									$type_metacaps[$type_obj->cap->read_post] = true;
-									$type_metacaps[$type_obj->cap->edit_post] = isset($type_obj->cap->edit_posts) && ($type_obj->cap->edit_post != $type_obj->cap->edit_posts);
-									$type_metacaps[$type_obj->cap->delete_post] = isset($type_obj->cap->delete_posts) && ($type_obj->cap->delete_post != $type_obj->cap->delete_posts);
+								if (!empty($type_obj->map_meta_cap) && !defined('PP_CAPABILITIES_NO_INVALID_SECTION')) {
+									if ('type' == $item_type) {
+										$type_metacaps[$type_obj->cap->read_post] = true;
+										$type_metacaps[$type_obj->cap->edit_post] = isset($type_obj->cap->edit_posts) && ($type_obj->cap->edit_post != $type_obj->cap->edit_posts);
+										$type_metacaps[$type_obj->cap->delete_post] = isset($type_obj->cap->delete_posts) && ($type_obj->cap->delete_post != $type_obj->cap->delete_posts);
 
-								} elseif ('taxonomy' == $item_type && !empty($type_obj->cap->edit_term) && !empty($type_obj->cap->delete_term)) {
-									$type_metacaps[$type_obj->cap->edit_term] = true;
-									$type_metacaps[$type_obj->cap->delete_term] = true;
+									} elseif ('taxonomy' == $item_type && !empty($type_obj->cap->edit_term) && !empty($type_obj->cap->delete_term)) {
+										$type_metacaps[$type_obj->cap->edit_term] = true;
+										$type_metacaps[$type_obj->cap->delete_term] = true;
+									}
 								}
 							}
 
