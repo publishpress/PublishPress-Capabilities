@@ -967,92 +967,87 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 				</table>
 				
 				<?php
-				if (array_intersect(array_keys(array_filter($type_metacaps)), $all_capabilities)) {
-
-				$_title = esc_attr(__('Meta capabilities are used in code as placeholders for other capabilities. Assiging to a role has no effect.'));
-				echo '<p>&nbsp;</p><h3 class="cme-cap-section" title="' . $_title . '">' . __( 'Invalid Capabilities', 'capsman-enhanced' ) . '</h3>';
-				?>
-				<table class="form-table cme-checklist">
-				<tr>
-				<?php
-				$i = 0; $first_row = true;
-
-				foreach( $all_capabilities as $cap_name ) {
-					if ( ! isset($this->capabilities[$cap_name]) ) 
-						$this->capabilities[$cap_name] = str_replace( '_', ' ', $cap_name );
-				}
-
-				uasort( $this->capabilities, 'strnatcasecmp' );  // sort by array values, but maintain keys );
-
-				foreach ( $this->capabilities as $cap_name => $cap ) :
-					if ( ! isset( $type_metacaps[$cap_name] ) )
-						continue;
-
-					if ( ! $is_administrator && empty( $current_user->allcaps[$cap_name] ) ) {
-						continue;
+				if (array_intersect(array_keys(array_filter($type_metacaps)), $all_capabilities) && array_intersect_key($type_metacaps, array_filter($rcaps))) {
+					
+					echo '<h3 class="cme-cap-section">' . __( 'Invalid Capabilities', 'capsman-enhanced' ) . '</h3>';
+					?>
+					
+					<div>
+					<span class="cme-subtext">
+						<?php _e('The following entries have no effect. Please assign desired capabilities in the Read / Edit / Delete grid above.', 'capsman-enhanced');?>
+					</span>
+					</div>
+	
+					<table class="form-table cme-checklist">
+					<tr>
+					<?php
+					$i = 0; $first_row = true;
+	
+					foreach( $all_capabilities as $cap_name ) {
+						if ( ! isset($this->capabilities[$cap_name]) ) 
+							$this->capabilities[$cap_name] = str_replace( '_', ' ', $cap_name );
 					}
-				
+	
+					uasort( $this->capabilities, 'strnatcasecmp' );  // sort by array values, but maintain keys );
+	
+					foreach ( $this->capabilities as $cap_name => $cap ) :
+						if (!isset($type_metacaps[$cap_name]) || empty($rcaps[$cap_name])) {
+							continue;
+						}
+	
+						if ( ! $is_administrator && empty( $current_user->allcaps[$cap_name] ) ) {
+							continue;
+						}
+					
+						if ( $i == $checks_per_row ) {
+							echo '</tr><tr>';
+							$i = 0; $first_row = false;
+						}
+						
+						if ( ! isset( $rcaps[$cap_name] ) )
+							$class = 'cap-no';
+						else
+							$class = ( $rcaps[$cap_name] ) ? 'cap-yes' : 'cap-neg';
+						
+						$title_text = $cap_name;
+	
+						$disabled = '';
+						$checked = checked(1, ! empty($rcaps[$cap_name]), false );
+					?>
+						<td class="<?php echo $class; ?>"><span class="cap-x">X</span><label title="<?php echo $title_text;?>"><input type="checkbox" name="caps[<?php echo $cap_name; ?>]" autocomplete="off" value="1" <?php echo $checked . $disabled;?> />
+						<span>
+						<?php
+						echo str_replace( '_', ' ', $cap );
+						?>
+						</span></label><a href="#" class="neg-cap">&nbsp;x&nbsp;</a>
+						<?php if ( false !== strpos( $class, 'cap-neg' ) ) :?>
+							<input type="hidden" class="cme-negation-input" name="caps[<?php echo $cap_name; ?>]" value="" />
+						<?php endif; ?>
+						</td>
+					<?php
+						$i++;
+					endforeach;
+	
+					if ( ! empty($lock_manage_caps_capability) ) {
+						echo '<input type="hidden" name="caps[manage_capabilities]" value="1" />';
+					}
+					
 					if ( $i == $checks_per_row ) {
 						echo '</tr><tr>';
-						$i = 0; $first_row = false;
-					}
-					
-					if ( ! isset( $rcaps[$cap_name] ) )
-						$class = 'cap-no';
-					else
-						$class = ( $rcaps[$cap_name] ) ? 'cap-yes' : 'cap-neg';
-					
-					if ( ! empty($pp_metagroup_caps[$cap_name]) ) {
-						$class .= ' cap-metagroup';
-						$title_text = sprintf( __( '%s: assigned by Permission Group', 'capsman-enhanced' ), $cap_name );
+						$i = 0;
 					} else {
-						$title_text = $cap_name;
-					}
-					
-					$disabled = '';
-					$checked = checked(1, ! empty($rcaps[$cap_name]), false );
-				?>
-					<td class="<?php echo $class; ?>"><span class="cap-x">X</span><label title="<?php echo $title_text;?>"><input type="checkbox" name="caps[<?php echo $cap_name; ?>]" autocomplete="off" value="1" <?php echo $checked . $disabled;?> />
-					<span>
-					<?php
-					echo str_replace( '_', ' ', $cap );
-					?>
-					</span></label><a href="#" class="neg-cap">&nbsp;x&nbsp;</a>
-					<?php if ( false !== strpos( $class, 'cap-neg' ) ) :?>
-						<input type="hidden" class="cme-negation-input" name="caps[<?php echo $cap_name; ?>]" value="" />
-					<?php endif; ?>
-					</td>
-				<?php
-					$i++;
-				endforeach;
-
-				if ( ! empty($lock_manage_caps_capability) ) {
-					echo '<input type="hidden" name="caps[manage_capabilities]" value="1" />';
-				}
-				
-				if ( $i == $checks_per_row ) {
-					echo '</tr><tr>';
-					$i = 0;
-				} else {
-					if ( ! $first_row ) {
-						// Now close a wellformed table
-						for ( $i; $i < $checks_per_row; $i++ ){
-							echo '<td>&nbsp;</td>';
+						if ( ! $first_row ) {
+							// Now close a wellformed table
+							for ( $i; $i < $checks_per_row; $i++ ){
+								echo '<td>&nbsp;</td>';
+							}
+							echo '</tr>';
 						}
-						echo '</tr>';
 					}
-				}
-				?>
-
-				<tr class="cme-bulk-select">
-				<td colspan="<?php echo $checks_per_row;?>">
-				<span style="float:right">
-				<input type="checkbox" class="cme-check-all" title="<?php _e('check/uncheck all', 'capsman-enhanced');?>">&nbsp;&nbsp;<a class="cme-neg-all" href="#" autocomplete="off" title="<?php _e('negate all (storing as disabled capabilities)', 'capsman-enhanced');?>">X</a> <a class="cme-switch-all" href="#" title="<?php _e('negate none (add/remove all capabilities normally)', 'capsman-enhanced');?>">X</a>
-				</span>
-				</td></tr>
-
-				</table>
-				<?php
+					?>
+					
+					</table><p>&nbsp;</p>
+					<?php
 				} // endif any invalid caps
 				?>
 
