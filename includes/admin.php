@@ -855,7 +855,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 
 
 				if (array_intersect(array_keys(array_filter($type_metacaps)), $all_capabilities) && array_intersect_key($type_metacaps, array_filter($rcaps))) {
-					
+
 					echo '<h3 class="cme-cap-section">' . __( 'Invalid Capabilities', 'capsman-enhanced' ) . '</h3>';
 					?>
 					
