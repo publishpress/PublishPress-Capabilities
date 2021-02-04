@@ -871,12 +871,18 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 				$additional_caps = apply_filters('publishpress_caps_manage_additional_caps', $this->capabilities);
 
 				foreach ($additional_caps as $cap_name => $cap) :
-					if ( isset( $type_caps[$cap_name] ) || isset($core_caps[$cap_name]) || isset($type_metacaps[$cap_name]) )
+					
+					if ((isset($type_caps[$cap_name]) && !isset($type_metacaps[$cap_name]))
+					|| isset($core_caps[$cap_name]) 
+					|| (isset($type_metacaps[$cap_name]) && !empty($rcaps[$cap_name])) ) {
 						continue;
+					}
 
-					foreach(array_keys($plugin_caps) as $plugin) {
-						if ( in_array( $cap_name, $plugin_caps[$plugin]) ) {
-							continue 2;
+					if (!isset($type_metacaps[$cap_name]) || !empty($rcaps[$cap_name])) {
+						foreach(array_keys($plugin_caps) as $plugin) {
+							if ( in_array( $cap_name, $plugin_caps[$plugin]) ) {
+								continue 2;
+							}
 						}
 					}
 
