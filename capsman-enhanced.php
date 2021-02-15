@@ -109,7 +109,7 @@ if ( version_compare(PHP_VERSION, '5.4.0', '<') ) {
 	global $pagenow;
 
 	if ( is_admin() &&
-	( isset($_REQUEST['page']) && in_array( $_REQUEST['page'], array( 'capsman', 'capsman-pp-admin-menus', 'capsman-tool' ) )
+	( isset($_REQUEST['page']) && in_array( $_REQUEST['page'], array( 'capsman', 'capsman-pp-admin-menus', 'capsman-pp-post-features', 'capsman-tool' ) )
 	|| ( ! empty($_SERVER['SCRIPT_NAME']) && strpos( $_SERVER['SCRIPT_NAME'], 'p-admin/plugins.php' ) && ! empty($_REQUEST['action'] ) )
 	|| ( isset($_GET['action']) && 'reset-defaults' == $_GET['action'] )
 	|| in_array( $pagenow, array( 'users.php', 'user-edit.php', 'profile.php', 'user-new.php' ) )

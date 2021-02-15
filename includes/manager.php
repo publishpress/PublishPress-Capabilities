@@ -147,7 +147,7 @@ class CapabilityManager
      */
     function adminStyles()
     {
-		if ( empty( $_REQUEST['page'] ) || ! in_array( $_REQUEST['page'], array( 'capsman', 'capsman-pp-admin-menus', 'capsman-tool' ) ) )
+		if ( empty( $_REQUEST['page'] ) || ! in_array( $_REQUEST['page'], array( 'capsman', 'capsman-pp-admin-menus', 'capsman-pp-post-features', 'capsman-tool' ) ) )
 			return;
 
 		wp_enqueue_style('cme-admin-common', $this->mod_url . '/common/css/pressshack-admin.css', [], PUBLISHPRESS_CAPS_VERSION);
@@ -300,6 +300,8 @@ class CapabilityManager
 		);
 
 		add_submenu_page('capsman',  __('Admin Menus', 'capsman-enhanced'), __('Admin Menus', 'capsman-enhanced'), $cap_name, $this->ID . '-pp-admin-menus', array($this, 'pp_admin_menus'));
+
+		add_submenu_page('capsman',  __('Features', 'capsman-enhanced'), __('Features', 'capsman-enhanced'), $cap_name, $this->ID . '-pp-post-features', array($this, 'pp_post_features'));
 
 		add_submenu_page('capsman',  __('Backup', 'capsman-enhanced'), __('Backup', 'capsman-enhanced'), $cap_name, $this->ID . '-tool', array($this, 'backupTool'));
 
@@ -668,6 +670,58 @@ class CapabilityManager
 		}
 
 		include ( dirname(CME_FILE) . '/includes/admin-menus.php' );
+
+	}
+
+	/**
+	 * Manages post features permission
+	 *
+	 * @hook add_management_page
+	 * @return void
+	 */
+	function pp_post_features ()
+	{
+
+
+		if ((!is_multisite() || !is_super_admin()) && !current_user_can('administrator') && !current_user_can('manage_capabilities')) {
+            // TODO: Implement exceptions.
+		    wp_die('<strong>' .__('You do not have permission to manage post features.', 'capsman-enhanced') . '</strong>');
+		}
+
+		$this->generateNames();
+		$roles = array_keys($this->roles);
+
+		if ( ! isset($this->current) ) {
+			if (empty($_POST) && !empty($_REQUEST['role'])) {
+				$this->current = $_REQUEST['role'];
+			}
+		}
+
+		if (!isset($this->current) || !get_role($this->current)) {
+			$this->current = get_option('default_role');
+		}
+
+		if ( ! in_array($this->current, $roles) ) {
+			$this->current = array_shift($roles);
+		}
+
+		if ( 'POST' == $_SERVER['REQUEST_METHOD'] && isset($_POST['ppc-post-features-role']) ) {
+			$this->current = $_POST['ppc-post-features-role'];
+
+			if(isset($_POST['capsman_feature_ce_post_disabled'])){
+			$post_features_option = !empty(get_option('capsman_feature_ce_post_disabled')) ? get_option('capsman_feature_ce_post_disabled') : [];
+			$post_features_option[$_POST['ppc-post-features-role']] = $_POST['capsman_feature_ce_post_disabled'];
+			update_option('capsman_feature_ce_post_disabled', $post_features_option, false);
+			}
+
+			$gutenberg_post_features_option = !empty(get_option('capsman_feature_gutenberg_post_disabled')) ? get_option('capsman_feature_gutenberg_post_disabled') : [];
+			$gutenberg_post_features_option[$_POST['ppc-post-features-role']] = isset($_POST['capsman_feature_ce_post_disabled']) ? $_POST['capsman_feature_gutenberg_post_disabled'] : '';
+			update_option('capsman_feature_gutenberg_post_disabled', $gutenberg_post_features_option, false);
+
+            ak_admin_notify(__('Settings updated.', 'capsman-enhanced'));
+		}
+
+		include ( dirname(CME_FILE) . '/includes/features.php' );
 
 	}
 

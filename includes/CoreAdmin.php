@@ -20,6 +20,7 @@ class CoreAdmin {
                     'screens' => [
                         ['base' => 'toplevel_page_capsman'],
                         ['base' => 'capabilities_page_capsman-pp-admin-menus'],
+                        ['base' => 'capabilities_page_capsman-pp-post-features'],
                         ['base' => 'capabilities_page_capsman-tool'],
                         ['base' => 'capabilities_page_capability-settings'],
                     ]

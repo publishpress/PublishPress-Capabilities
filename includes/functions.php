@@ -233,3 +233,430 @@ function pp_cabapbility_admin_menu_access_denied()
     $forbidden = esc_attr__('You did not have permission to access this page.', 'capsman-enhanced');
     wp_die(esc_html($forbidden));
 }
+
+
+/**
+ * Recursive search in array.
+ *
+ * @param string $needle
+ * @param array $haystack
+ *
+ * @return bool
+ */
+function pp_capabilities_features_recursive_in_array($needle, $haystack)
+{
+
+    if ('' === $haystack) {
+        return false;
+    }
+
+    if (!$haystack) {
+        return false;
+    }
+
+    foreach ($haystack as $stalk) {
+        if ($needle === $stalk
+            || (is_array($stalk)
+                && pp_capabilities_features_recursive_in_array($needle, $stalk)
+            )
+        ) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+
+/**
+ * Get post type.
+ *
+ * @return null|string String of the post type.
+ */
+function pp_capabilities_features_get_current_post_type()
+{
+
+    global $post, $typenow, $current_screen;
+
+    // We have a post so we can just get the post type from that.
+    if ($post && $post->post_type) {
+        return $post->post_type;
+    }
+
+    // Check the global $typenow - set in admin.php
+    if ($typenow) {
+        return $typenow;
+    }
+
+    // Check the global $current_screen object - set in screen.php
+    if ($current_screen && $current_screen->post_type) {
+        return $current_screen->post_type;
+    }
+
+    // lastly check the post_type querystring
+    if (isset($_REQUEST['post_type'])) {
+        return sanitize_key($_REQUEST['post_type']);
+    }
+
+    // we do not know the post type!
+    return NULL;
+}
+
+function pp_cabapbility_post_metaboxes()
+{
+
+    $metaboxes = array(
+        '#contextual-help-link-wrap',
+        '#screen-options-link-wrap',
+        '.page-title-action',
+        '#titlediv #title',
+        '#pageslugdiv',
+        '#submitdiv',
+        '#save-post',
+        '#post-preview',
+        '.misc-pub-post-status',
+        '.misc-pub-visibility',
+        '.misc-pub-curtime',
+        '#categories, #categorydiv, #categorydivsb, th.column-categories, td.categories',
+        '#category-add-toggle',
+        '#tags, #tagsdiv,#tagsdivsb,#tagsdiv-post_tag, th.column-tags, td.tags',
+        '#date, #datediv, th.column-date, td.date, div.curtime',
+        '#passworddiv',
+        '.side-info',
+        '#notice',
+        '#post-body h2',
+        '#media-buttons, #wp-content-media-buttons',
+        '#wp-word-count',
+        '#slugdiv,#edit-slug-box',
+        '#misc-publishing-actions',
+        '#commentstatusdiv',
+        '#editor-toolbar #edButtonHTML, #quicktags, #content-html, .wp-switch-editor.switch-html',
+    );
+
+    $post_type = 'post';
+    $post_type_supports = $GLOBALS['_wp_post_type_features'][$post_type];
+    $post_type_supports['page-attributes'] = '1';
+
+    foreach ($post_type_supports as $post_type_support => $key) {
+        if (post_type_supports($post_type, $post_type_support)
+            && 'excerpt' === $post_type_support
+        ) {
+            $post_type_support = $post_type . 'excerpt';
+        }
+        if ('page-attributes' === $post_type_support) {
+            $post_type_support = 'pageparentdiv';
+        }
+        if ('custom-fields' === $post_type_support) {
+            $post_type_support = $post_type . 'custom';
+        }
+        if ('post-formats' === $post_type_support) {
+            $post_type_support = 'format';
+        }
+        if ('editor' === $post_type_support) {
+            $post_type_support = 'postdivrich';
+        }
+
+        $metaboxes[] = '#' . $post_type_support
+            . ', #' . $post_type_support
+            . 'div, th.column-' . $post_type_support
+            . ', td.' . $post_type_support; //th and td for raw in edit screen
+    }
+
+    if (function_exists('current_theme_supports')
+        && current_theme_supports(
+            'post-thumbnails', 'post'
+        )
+    ) {
+        $metaboxes[] = '#postimagediv';
+    }
+
+    $metaboxes_names = array(
+        esc_attr__('Help', 'capsman-enhanced'),
+        esc_attr__('Screen Options', 'capsman-enhanced'),
+        esc_attr__('Add New', 'capsman-enhanced'),
+        esc_attr__('Title', 'capsman-enhanced'),
+        esc_attr__('Permalink', 'capsman-enhanced'),
+        esc_attr__('Publish Box', 'capsman-enhanced'),
+        esc_attr__('Save Draft', 'capsman-enhanced'),
+        esc_attr__('Preview', 'capsman-enhanced'),
+        esc_attr__('Publish Status ', 'capsman-enhanced'),
+        esc_attr__('Publish Visibility', 'capsman-enhanced'),
+        esc_attr__('Publish Schedule', 'capsman-enhanced'),
+        esc_attr__('Publish', 'capsman-enhanced'),
+        esc_attr__('Categories', 'capsman-enhanced'),
+        esc_attr__('Add New Category', 'capsman-enhanced'),
+        esc_attr__('Tags', 'capsman-enhanced'),
+        esc_attr__('Date', 'capsman-enhanced'),
+        esc_attr__('Password Protect This Post', 'capsman-enhanced'),
+        esc_attr__('Related, Shortcuts', 'capsman-enhanced'),
+        esc_attr__('Messages', 'capsman-enhanced'),
+        esc_attr__('h2: Advanced Options', 'capsman-enhanced'),
+        esc_attr__('Media Buttons (all)', 'capsman-enhanced'),
+        esc_attr__('Word count', 'capsman-enhanced'),
+        esc_attr__('Post Slug', 'capsman-enhanced'),
+        esc_attr__('Publish Actions', 'capsman-enhanced'),
+        esc_attr__('Discussion', 'capsman-enhanced'),
+        esc_attr__('HTML Editor Button', 'capsman-enhanced')
+    );
+
+    foreach ($post_type_supports as $post_type_support => $key) {
+        if (post_type_supports($post_type, $post_type_support)) {
+            $metaboxes_names[] = ucfirst($post_type_support);
+        } elseif ('page-attributes' === $post_type_support) {
+            $metaboxes_names[] = ucfirst($post_type_support);
+        }
+    }
+
+    if (function_exists('current_theme_supports')
+        && current_theme_supports(
+            'post-thumbnails', 'post'
+        )
+    ) {
+        $metaboxes_names[] = esc_attr__('Post Thumbnail', 'capsman-enhanced');
+    }
+
+    return array('metaboxes' => $metaboxes, 'metaboxes_names' => $metaboxes_names);
+}
+
+
+/**
+ * Set metabox options from database an area post.
+ */
+function pp_capabilities_features_set_metabox_post_option()
+{
+
+
+    $user_roles = wp_get_current_user()->roles;
+    $ce_post_disabled = !empty(get_option('capsman_feature_ce_post_disabled')) ? get_option('capsman_feature_ce_post_disabled') : [];
+    $pp_capabilities_features_admin_head = '';
+    // It's better to declare $metaboxes as an array for better manipulation later.
+    $metaboxes = array();
+
+    foreach ($user_roles as $role) {
+        if (array_key_exists($role, $ce_post_disabled)) {
+            $disabled_metaboxes_post_[$role] = (array)$ce_post_disabled[$role];
+            $metaboxes[] = implode(',', $disabled_metaboxes_post_[$role]);
+        }
+
+        $pp_capabilities_features_admin_head .= '<style>' . implode(',', $metaboxes) . ' {display:none !important;}</style>';
+    }
+
+    if (!empty($metaboxes)) {
+        echo $pp_capabilities_features_admin_head;
+    }
+
+}
+
+
+/**
+ * Register block editor script.
+ */
+function pp_capabilities_features_block_script()
+{
+
+    global $pagenow, $post_type;
+
+    $post_id = 0;
+    if (isset($_GET['post']) && !is_array($_GET['post'])) {
+        $post_id = (int)esc_attr($_GET['post']);
+    } elseif (isset($_POST['post_ID'])) {
+        $post_id = (int)esc_attr($_POST['post_ID']);
+    }
+
+    $current_post_type = $post_type;
+    if (!isset($current_post_type) || empty($current_post_type)) {
+        $current_post_type = get_post_type($post_id);
+    }
+    if (!isset($current_post_type) || empty($current_post_type)) {
+        $current_post_type = pp_capabilities_features_get_current_post_type();
+    }
+    if (!$current_post_type) { // set hard to post
+        $current_post_type = 'post';
+    }
+
+    // Get all user roles.
+    $user_roles = wp_get_current_user()->roles;
+    $gutenberg_post_disabled = !empty(get_option('capsman_feature_gutenberg_post_disabled')) ? get_option('capsman_feature_gutenberg_post_disabled') : [];
+
+
+    // pages for post type Post
+    $def_post_pages = array('post.php', 'post-new.php');
+    $def_post_types = array('post');
+    $pp_capabilities_features_block_script = '';
+    $pp_capabilities_features_block_styles = '';
+    $block_metaboxes = [];
+
+    foreach ($user_roles as $role) {
+        if (array_key_exists($role, $gutenberg_post_disabled)) {
+            $disabled_metaboxes_post_[$role] = (array)$gutenberg_post_disabled[$role];
+            $block_metaboxes[] = $metaboxes[] = implode(',', $disabled_metaboxes_post_[$role]);
+        }
+        $pp_capabilities_features_block_script .= implode(',', $block_metaboxes);
+        $pp_capabilities_features_block_styles .= '<style>' . implode(',', $metaboxes) . ' {display:none !important;}</style>';
+
+    }
+
+    // set meta-box post option
+    if (!empty($block_metaboxes) && in_array($pagenow, $def_post_pages, TRUE) && in_array($current_post_type, $def_post_types, TRUE)) {
+        // script file
+        wp_register_script(
+            'ppc-features-block-script',
+            plugin_dir_url(CME_FILE) . 'features-block-script.js',
+            ['wp-blocks', 'wp-edit-post']
+        );
+        //localize script
+        wp_localize_script('ppc-features-block-script', 'ppc_features', array('disabled_panel' => $pp_capabilities_features_block_script));
+
+        // register block editor script
+        register_block_type('ppc/features-block-script', array(
+            'editor_script' => 'ppc-features-block-script'
+        ));
+
+        echo $pp_capabilities_features_block_styles;
+
+    }
+
+}
+
+add_action('init', 'pp_capabilities_features_block_script');
+
+/**
+ * Check user-option and add new style.
+ */
+function pp_capabilities_features_admin_init()
+{
+
+    global $pagenow, $post_type;
+
+    $post_id = 0;
+    if (isset($_GET['post']) && !is_array($_GET['post'])) {
+        $post_id = (int)esc_attr($_GET['post']);
+    } elseif (isset($_POST['post_ID'])) {
+        $post_id = (int)esc_attr($_POST['post_ID']);
+    }
+
+    $current_post_type = $post_type;
+    if (!isset($current_post_type) || empty($current_post_type)) {
+        $current_post_type = get_post_type($post_id);
+    }
+    if (!isset($current_post_type) || empty($current_post_type)) {
+        $current_post_type = pp_capabilities_features_get_current_post_type();
+    }
+    if (!$current_post_type) { // set hard to post
+        $current_post_type = 'post';
+    }
+
+    // Get all user roles.
+    $user_roles = wp_get_current_user()->roles;
+    $ce_post_disabled = !empty(get_option('capsman_feature_ce_post_disabled')) ? get_option('capsman_feature_ce_post_disabled') : [];
+
+
+    // pages for post type Post
+    $def_post_pages = array('post.php', 'post-new.php');
+    $def_post_types = array('post');
+    $disabled_metaboxes_post_all = array();
+
+    foreach ($user_roles as $role) {
+        if (array_key_exists($role, $ce_post_disabled)) {
+            $disabled_metaboxes_post_[$role] = (array)$ce_post_disabled[$role];
+        }
+        $disabled_metaboxes_post_all[] = $disabled_metaboxes_post_[$role];
+
+    }
+
+    // Post options.
+    if (in_array($pagenow, $def_post_pages, TRUE)) {
+        // Set default editor tinymce
+        if (pp_capabilities_features_recursive_in_array(
+            '#editor-toolbar #edButtonHTML, #quicktags, #content-html',
+            $disabled_metaboxes_post_all
+        )
+        ) {
+            add_filter('wp_default_editor', 'pp_capabilities_features_return_tinmyce');
+            /**
+             * Return string tinymce.
+             * Necessary for php 5.2 usage :(; not possible to use an anonymous function.
+             *
+             * @return string
+             */
+            function pp_capabilities_features_return_tinmyce()
+            {
+                return 'tinymce';
+            }
+        }
+
+        // Remove media buttons
+        if (pp_capabilities_features_recursive_in_array('media_buttons', $disabled_metaboxes_post_all)
+        ) {
+            remove_action('media_buttons', 'media_buttons');
+        }
+    }
+
+    // set meta-box post option
+    if (in_array($pagenow, $def_post_pages, TRUE) && in_array($current_post_type, $def_post_types, TRUE)) {
+        add_action('admin_head', 'pp_capabilities_features_set_metabox_post_option', 1);
+    }
+}
+
+if (is_admin()) {
+    add_action('admin_init', 'pp_capabilities_features_admin_init');
+}
+
+
+function pp_cabapbility_post_gutenberg_metaboxes()
+{
+
+    $metaboxes = array(
+        //Top bar
+        __('Add block', 'capsman-enhanced') => '.edit-post-header-toolbar .edit-post-header-toolbar__inserter-toggle.has-icon',
+        __('Tools', 'capsman-enhanced') => '.edit-post-header-toolbar .components-dropdown:first-of-type',
+        __('Undo', 'capsman-enhanced') => '.edit-post-header-toolbar .editor-history__undo',
+        __('Redo', 'capsman-enhanced') => '.edit-post-header-toolbar .editor-history__redo',
+        __('Content structure', 'capsman-enhanced') => '.edit-post-header__toolbar .table-of-contents',
+        __('Block navigation', 'capsman-enhanced') => '.edit-post-header__toolbar .block-editor-block-navigation',
+        __('Save Draft', 'capsman-enhanced') => '.edit-post-header__settings .components-button.editor-post-save-draft',
+        __('Switch to draft', 'capsman-enhanced') => '.edit-post-header__settings .components-button.editor-post-switch-to-draft',
+        __('Preview', 'capsman-enhanced') => '.edit-post-header__settings .block-editor-post-preview__dropdown',
+        __('Publish', 'capsman-enhanced') => '.edit-post-header__settings .editor-post-publish-button__button',
+        __('Settings', 'capsman-enhanced') => '.edit-post-header__settings .interface-pinned-items button',
+        __('More tools & options', 'capsman-enhanced') => '.edit-post-header__settings .edit-post-more-menu .components-button',
+        //Body
+        __('Add title', 'capsman-enhanced') => '.wp-block.editor-post-title__block',
+        __('Content', 'capsman-enhanced') => '.block-editor-block-list__layout',
+        //Document Panel
+        __('Status & visibility', 'capsman-enhanced') => 'post-status',
+        __('Permalink', 'capsman-enhanced') => 'post-link',
+        __('Categories', 'capsman-enhanced') => 'taxonomy-panel-category',
+        __('Tags', 'capsman-enhanced') => 'taxonomy-panel-post_tag',
+        __('Featured image', 'capsman-enhanced') => 'featured-image',
+        __('Excerpt', 'capsman-enhanced') => 'post-excerpt',
+        __('Discussion', 'capsman-enhanced') => 'discussion-panel',
+        __('Post Attributes', 'capsman-enhanced') => 'page-attributes',
+        //Block Panel
+        __('Block Panel', 'capsman-enhanced') => '.block-editor-block-inspector',
+        __('Paragraph', 'capsman-enhanced') => '.block-editor-block-card',
+        __('Typography', 'capsman-enhanced') => '.block-editor-block-inspector .components-panel__body:first-of-type',
+        __('Color settings', 'capsman-enhanced') => '.block-editor-panel-color-gradient-settings',
+        __('Text settings', 'capsman-enhanced') => '.block-editor-panel-color-gradient-settings + .components-panel__body',
+    );
+
+    return $metaboxes;
+}
+
+/**
+ * Check if Classic Editor plugin is active.
+ *
+ * @return bool
+ */
+function pp_cabapbility_is_classic_editor_plugin_active()
+{
+    if (!function_exists('is_plugin_active')) {
+        include_once ABSPATH . 'wp-admin/includes/plugin.php';
+    }
+
+    if (is_plugin_active('classic-editor/classic-editor.php')) {
+        return true;
+    }
+
+    return false;
+}
