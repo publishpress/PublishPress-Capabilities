@@ -79,6 +79,14 @@ class Pp_Roles_Actions
         return false;
     }
 
+    protected function notify_success($message) {
+        $this->notify($message, 'success', false);
+    }
+
+    protected function notify_error($message) {
+        $this->notify($message, 'error', false);
+    }
+
     /**
      * Notify the user with a message. Handles ajax and post requests
      *
@@ -98,22 +106,29 @@ class Pp_Roles_Actions
             wp_send_json_error(sprintf($format, $type, $message));
             exit;
         } else {
-            //enqueue message
-            pp_capabilities_roles()->notify->add($type, $message);
-
-            $redirect_url = wp_get_referer();
-            $redirect_url = wp_get_raw_referer();
-            if (empty($redirect_url)) {
-                $params = array(
-                    'page' => 'pp-capabilities-roles',
-                );
-                $redirect_url = add_query_arg($params, admin_url('admin.php'));
-            }
-            if ($redirect) {
-                wp_safe_redirect($redirect_url);
-                die();
-            }
-        }
+	        //enqueue message
+	        pp_capabilities_roles()->notify->add($type, $message);
+	
+			// @todo: migrate Capabilities screen notice display method
+	        if (!empty($_REQUEST['page']) && ('pp-capabilities' == $_REQUEST['page'])) {
+	            $redirect = false;
+	        }
+	
+			if ($redirect) {
+	            $redirect_url = wp_get_referer();
+	            $redirect_url = wp_get_raw_referer();
+	            
+	            if (empty($redirect_url)) {
+	                $params = array(
+	                    'page' => 'pp-capabilities-roles',
+	                );
+	                $redirect_url = add_query_arg($params, admin_url('admin.php'));
+	            }
+	         
+	            wp_safe_redirect($redirect_url);
+	            die();
+	       	}  
+		}  
     }
 
     /**

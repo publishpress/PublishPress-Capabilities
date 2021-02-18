@@ -1,6 +1,6 @@
 <?php
 
-class Pp_Roles_Notifications
+class PP_Capabilities_Notices
 {
 
     /**

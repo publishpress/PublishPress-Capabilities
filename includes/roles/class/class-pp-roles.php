@@ -69,10 +69,6 @@ class PP_Capabilities_Roles
              * The class responsible for handling form submissions
              */
             require_once 'class-pp-roles-actions.php';
-            /**
-             * The class responsible for handling notifications
-             */
-            require_once 'class-pp-roles-notifications.php';
         }
 
         $this->loader = new Pp_Roles_Loader();
@@ -109,7 +105,7 @@ class PP_Capabilities_Roles
             /**
              * Notifications
              */
-            $notifications = new Pp_Roles_Notifications();
+            $notifications = new PP_Capabilities_Notices();
             $this->loader->set('notify', $notifications);
 
 
