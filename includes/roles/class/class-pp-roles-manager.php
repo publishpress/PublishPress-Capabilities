@@ -21,14 +21,14 @@ class Pp_Roles_Manager
     {
         $roles = get_editable_roles();
         $count = count_users();
-        $res = array();
+        $res = [];
         foreach ($roles as $role => $detail) {
-            $res[] = array(
+            $res[] = [
                 'role' => $role,
                 'name' => $detail['name'],
                 'count' => isset($count['avail_roles'][$role]) ? $count['avail_roles'][$role] : 0,
                 'is_system' => $this->is_system_role($role)
-            );
+            ];
         }
 
         return $res;
@@ -42,14 +42,14 @@ class Pp_Roles_Manager
     public function get_system_roles()
     {
 
-        $roles = array(
+        $roles = [
             'administrator',
             'editor',
             'author',
             'contributor',
             'subscriber',
             'revisor'
-        );
+        ];
 
         $roles = apply_filters('pp-roles-get-system-roles', $roles);
 

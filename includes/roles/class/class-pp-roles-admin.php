@@ -81,9 +81,9 @@ class Pp_Roles_Admin
                 require_once plugin_dir_path(__FILE__) . 'class-pp-roles-list-table.php';
             }
 
-            $this->roles_list_table = new PP_Capabilities_Roles_List_Table(array(
+            $this->roles_list_table = new PP_Capabilities_Roles_List_Table([
                 'screen' => get_current_screen()
-            ));
+            ]);
         }
 
         return $this->roles_list_table;

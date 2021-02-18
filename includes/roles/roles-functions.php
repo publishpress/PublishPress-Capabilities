@@ -23,13 +23,13 @@ function admin_roles_page_load()
 {
     $plugin_name = 'capsman';
     //enqueue styles
-    wp_enqueue_style($plugin_name, plugin_dir_url(CME_FILE) . 'includes/roles/css/pp-roles-admin.css', array(), PUBLISHPRESS_CAPS_VERSION, 'all');
+    wp_enqueue_style($plugin_name, plugin_dir_url(CME_FILE) . 'includes/roles/css/pp-roles-admin.css', [], PUBLISHPRESS_CAPS_VERSION, 'all');
 
     //enqueue scripts
-    wp_enqueue_script($plugin_name . '_table_edit', plugin_dir_url(CME_FILE) . 'includes/roles/js/pp-roles-admin.js', array('jquery'), PUBLISHPRESS_CAPS_VERSION, false);
+    wp_enqueue_script($plugin_name . '_table_edit', plugin_dir_url(CME_FILE) . 'includes/roles/js/pp-roles-admin.js', ['jquery'], PUBLISHPRESS_CAPS_VERSION, false);
 
     //Localize
-    wp_localize_script($plugin_name . '_table_edit', 'pp_roles_i18n', array('confirm_delete' => __('Are you sure you want to delete this role?', 'capsman-enhanced')));
+    wp_localize_script($plugin_name . '_table_edit', 'pp_roles_i18n', ['confirm_delete' => __('Are you sure you want to delete this role?', 'capsman-enhanced')]);
 
     //initialize table here to be able to register default WP_List_Table screen options
     pp_capabilities_roles()->admin->get_roles_list_table();
@@ -38,7 +38,7 @@ function admin_roles_page_load()
     pp_capabilities_roles()->admin->handle_actions();
 
     //Add screen options
-    add_screen_option('per_page', array('default' => 999));
+    add_screen_option('per_page', ['default' => 999]);
 }
 
 

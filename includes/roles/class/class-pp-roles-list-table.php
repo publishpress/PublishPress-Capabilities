@@ -22,7 +22,7 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
      *
      * @param array $args
      */
-    function __construct($args = array())
+    function __construct($args = [])
     {
         global $status, $page;
 
@@ -30,11 +30,11 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
         //add_filter("manage_{$screen->id}_columns", [$this, 'get_columns']);
 
         //Set parent defaults
-        parent::__construct(array(
+        parent::__construct([
             'singular' => 'role',     //singular name of the listed records
             'plural' => 'roles',    //plural name of the listed records
             'ajax' => true        //does this table support ajax?
-        ));
+        ]);
 
         $this->manager = pp_capabilities_roles()->manager;
     }
@@ -57,7 +57,7 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
      */
     public function single_row($item)
     {
-        $class = array('roles-tr');
+        $class = ['roles-tr'];
         $id = 'role-' . md5($item['role']);
 
         echo sprintf('<tr id="%s" class="%s">', $id, implode(' ', $class));
@@ -72,12 +72,12 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
      */
     public function get_columns()
     {
-        $columns = array(
+        $columns = [
             'cb' => '<input type="checkbox"/>', //Render a checkbox instead of text
             'role' => __('Role', 'capsman-enhanced'),
             'name' => __('Name', 'capsman-enhanced'),
             'count' => __('Users', 'capsman-enhanced'),
-        );
+        ];
 
         return $columns;
     }
@@ -90,11 +90,11 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
      */
     protected function get_sortable_columns()
     {
-        $sortable_columns = array(
-            'role' => array('role', true),
-            'name' => array('name', true),
-            'count' => array('count', true),
-        );
+        $sortable_columns = [
+            'name' => ['name', true],
+            'role' => ['role', true],
+            'count' => ['count', true],
+        ];
 
         return $sortable_columns;
     }
@@ -111,29 +111,38 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
     protected function handle_row_actions($item, $column_name, $primary)
     {
         //Build row actions
-        $actions = array(
-            'edit' => sprintf('<a href="%s">%s</a>',
-                add_query_arg(array(
-                    'page' => 'pp-capabilities',
-                    'role' => esc_attr($item['role'])
-                ), admin_url('admin.php')),
+        if (pp_capabilities_is_editable_role($item['role'])) {
+            $actions = [
+                'edit' => sprintf(
+                    '<a href="%s">%s</a>',
+                    add_query_arg(
+                        ['page' => 'pp-capabilities', 'role' => esc_attr($item['role'])], 
+                        admin_url('admin.php')
+                    ),
                 __('Capabilities', 'capsman-enhanced')
             ),
-        );
+            ];
+        } else {
+            $actions = [
+                'edit' => '<span class="pp-caps-action-note">' . __('(non-editable role)', 'capsman-enhanced') . '</span>',
+            ];
+        }
 
         if (!$this->manager->is_system_role($item['role'])) {
             //Dont these actions if it's a system role
-            $actions = array_merge($actions, array(
-                'delete' => sprintf('<a href="%s" class="delete-role">%s</a>',
-                    add_query_arg(array(
+            $actions = array_merge($actions, [
+                'delete' => sprintf(
+                    '<a href="%s" class="delete-role">%s</a>',
+                    add_query_arg([
                         'page' => 'pp-capabilities-roles',
                         'action' => 'pp-roles-delete-role',
                         'role' => esc_attr($item['role']),
                         '_wpnonce' => wp_create_nonce('bulk-roles')
-                    ), admin_url('admin.php')),
+                    ], 
+                    admin_url('admin.php')),
                     __('Delete', 'capsman-enhanced')
                 ),
-            ));
+            ]);
         }
 
         return $column_name === $primary ? $this->row_actions($actions, false) : '';
@@ -176,7 +185,7 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
      */
     protected function column_role($item)
     {
-        $states = array();
+        $states = [];
         $role_states = '';
 
         // If the role is the default role.
@@ -198,10 +207,13 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
             $role_states = '<span class="row-title-divider"> &ndash; </span>' . join(', ', $states);
         }
 
-        $out = sprintf('<a href="%1$s"><strong><span class="row-title">%2$s</span>%3$s</strong></a>', add_query_arg(array(
-            'page' => 'pp-capabilities',
-            'role' => esc_attr($item['role'])
-        ), admin_url('admin.php')), esc_html($item['role']), $role_states);
+        $out = sprintf(
+                '<a href="%1$s"><strong><span class="row-title">%2$s</span>%3$s</strong></a>', 
+                add_query_arg(
+                    ['page' => 'pp-capabilities', 'role' => esc_attr($item['role'])], 
+                    admin_url('admin.php')
+                ), 
+                esc_html($item['name']), $role_states);
 
         return $out;
     }
@@ -238,9 +250,9 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
      */
     protected function get_bulk_actions()
     {
-        $actions = array(
+        $actions = [
             'pp-roles-delete-role' => __('Delete', 'capsman-enhanced')
-        );
+        ];
 
         return $actions;
     }
@@ -320,7 +332,7 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
             <label class="screen-reader-text" for="<?php echo esc_attr($input_id); ?>"><?php echo $text; ?>:</label>
             <input type="search" id="<?php echo esc_attr($input_id); ?>" name="s"
                    value="<?php _admin_search_query(); ?>"/>
-            <?php submit_button($text, '', '', false, array('id' => 'search-submit')); ?>
+            <?php submit_button($text, '', '', false, ['id' => 'search-submit']); ?>
         </p>
         <?php
     }
@@ -349,7 +361,7 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
          * Handle search
          */
         if ((!empty($_REQUEST['s'])) && $search = $_REQUEST['s']) {
-            $data_filtered = array();
+            $data_filtered = [];
             foreach ($data as $item) {
                 if ($this->str_contains($item['role'], $search, false) || $this->str_contains($item['name'], $search, false)) {
                     $data_filtered[] = $item;
@@ -394,10 +406,10 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
         /**
          * We also have to register our pagination options & calculations.
          */
-        $this->set_pagination_args(array(
+        $this->set_pagination_args([
             'total_items' => $total_items,                      //calculate the total number of items
             'per_page' => $per_page,                         //determine how many items to show on a page
             'total_pages' => ceil($total_items / $per_page)   //calculate the total number of pages
-        ));
+        ]);
     }
 }

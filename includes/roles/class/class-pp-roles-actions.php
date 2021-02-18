@@ -16,10 +16,10 @@ class Pp_Roles_Actions
     /**
      * @var array
      */
-    protected $actions = array(
+    protected $actions = [
         'pp-roles-add-role',
         'pp-roles-delete-role',
-    );
+    ];
 
     /**
      * Pp_Roles_Actions constructor.
@@ -96,7 +96,7 @@ class Pp_Roles_Actions
      */
     protected function notify($message, $type = 'error', $redirect = true)
     {
-        if (!in_array($type, array('error', 'success', 'warning'))) {
+        if (!in_array($type, ['error', 'success', 'warning'])) {
             $type = 'error';
         }
 
@@ -119,9 +119,9 @@ class Pp_Roles_Actions
 	            $redirect_url = wp_get_raw_referer();
 	            
 	            if (empty($redirect_url)) {
-	                $params = array(
+                    $params = [
 	                    'page' => 'pp-capabilities-roles',
-	                );
+                    ];
 	                $redirect_url = add_query_arg($params, admin_url('admin.php'));
 	            }
 	         
@@ -227,12 +227,12 @@ class Pp_Roles_Actions
                 $hook_suffix = '';
             }
             
-            pp_capabilities_roles()->admin->get_roles_list_table()->single_row(array(
+            pp_capabilities_roles()->admin->get_roles_list_table()->single_row([
                 'role' => $result->name,
                 'name' => $this->manager->get_role_name($result->name),
                 'count' => isset($count_users['avail_roles'][$result->name]) ? $count_users['avail_roles'][$result->name] : 0,
                 'is_system' => $this->manager->is_system_role($result->name)
-            ));
+            ]);
             $out = ob_get_clean();
 
             wp_send_json_success($out);
