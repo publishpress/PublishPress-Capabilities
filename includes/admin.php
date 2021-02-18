@@ -40,6 +40,8 @@ if ( $block_read_removal = _cme_is_read_removal_blocked( $this->current ) ) {
 	}
 }
 
+require_once (dirname(CME_FILE) . '/includes/roles/roles-functions.php');
+
 require_once( dirname(__FILE__).'/pp-ui.php' );
 $pp_ui = new Capsman_PP_UI();
 
@@ -63,6 +65,10 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 	
 	<h1 <?php echo $style;?>><?php _e('Role Capabilities', 'capsman-enhanced') ?></h1>
 	
+	<?php
+	echo pp_capabilities_roles()->notify->display();
+	?>
+
 	<script type="text/javascript">
 	/* <![CDATA[ */
 	jQuery(document).ready( function($) {
