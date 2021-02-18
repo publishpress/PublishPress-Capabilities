@@ -86,10 +86,6 @@ define ('PUBLISHPRESS_CAPS_ABSPATH', __DIR__);
 
 require_once (dirname(__FILE__) . '/includes/functions.php');
 
-if (is_admin()) {
-	require_once (dirname(__FILE__) . '/includes/functions-admin.php');
-}
-
 // ============================================ START PROCEDURE ==========
 
 // Check required PHP version.
@@ -121,24 +117,11 @@ if ( version_compare(PHP_VERSION, '5.4.0', '<') ) {
 
 	if (is_admin()) {
 		load_plugin_textdomain('capsman-enhanced', false, basename(dirname(__FILE__)) .'/languages');
-	}
 
-	if ( is_admin() &&
-	( isset($_REQUEST['page']) && in_array( $_REQUEST['page'], ['pp-capabilities', 'pp-capabilities-backup', 'pp-capabilities-roles', 'pp-capabilities-admin-menus', 'pp-capabilities-nav-menus', 'pp-capabilities-settings']) 
-	|| ( ! empty($_SERVER['SCRIPT_NAME']) && strpos( $_SERVER['SCRIPT_NAME'], 'p-admin/plugins.php' ) && ! empty($_REQUEST['action'] ) )
-	|| ( isset($_GET['action']) && 'reset-defaults' == $_GET['action'] )
-	|| in_array( $pagenow, array( 'users.php', 'user-edit.php', 'profile.php', 'user-new.php' ) )
-	) ) {
-		global $capsman;
-
-		// Run the plugin
-		require_once ( dirname(__FILE__) . '/framework/lib/formating.php' );
-		require_once ( dirname(__FILE__) . '/framework/lib/users.php' );
-
-		require_once ( dirname(__FILE__) . '/includes/manager.php' );
-		$capsman = new CapabilityManager();
-	} else {
-		add_action( 'admin_menu', 'cme_submenus', 20 );
+		// @todo: refactor
+		global $capsman_admin;
+		require_once (dirname(__FILE__) . '/includes/functions-admin.php');
+		$capsman_admin = new PP_Capabilities_Admin_UI();
 	}
 
 	if (is_admin() && !defined('PUBLISHPRESS_CAPS_PRO_VERSION')) {
