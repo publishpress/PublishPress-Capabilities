@@ -248,8 +248,18 @@ class Pp_Roles_Actions
     /**
      * Delete role action
      */
-    public function delete_role()
+    public function delete_role($role = '', $args = [])
     {
+        $defaults = ['allow_system_role_deletion' => false, 'nonce_check' => 'bulk-roles'];
+        $args = array_merge($defaults, $args);
+        foreach (array_keys($defaults) as $var) {
+            $$var = $args[$var];
+        }
+
+        if (empty($role)) {
+            $role = (isset($_REQUEST['role'])) ? $_REQUEST['role'] : '';
+        }
+
         /**
          * Check capabilities
          */
@@ -258,18 +268,20 @@ class Pp_Roles_Actions
         /**
          * Check nonce
          */
-        $this->check_nonce('bulk-roles');
+        if ($nonce_check) {
+            $this->check_nonce($nonce_check);
+        }
 
         /**
          * Validate input data
          */
-        $roles = array();
-        if (isset($_REQUEST['role'])) {
-            if (is_string($_REQUEST['role'])) {
-                $input = sanitize_text_field($_REQUEST['role']);
+        $roles = [];
+        if ($role) {
+            if (is_string($role)) {
+                $input = sanitize_text_field($role);
                 $roles[] = $input;
-            } else if (is_array($_REQUEST['role'])) {
-                foreach ($_REQUEST['role'] as $key => $id) {
+            } else if (is_array($role)) {
+                foreach ($role as $key => $id) {
                     $roles[] = sanitize_text_field($id);
                 }
             }
@@ -285,35 +297,74 @@ class Pp_Roles_Actions
             $this->notify($out);
         }
 
+        $default = get_option('default_role');
+        
+		if ( $default == $role ) {
+            //ak_admin_error(sprintf(__('Cannot delete default role. You <a href="%s">have to change it first</a>.', 'capsman-enhanced'), 'options-general.php'));
+            $this->notify(__('Cannot delete default role. You <a href="%s">have to change it first</a>.', 'capsman-enhanced'), 'options-general.php');
+			return;
+		}
+
         /**
          * Check if is a system role
          */
-        foreach ($roles as $key => $role) {
-
-            if ($this->manager->is_system_role($role)) {
-                unset($roles[$key]);
-            }
-        }
-
-        if (empty($roles)) {
-            $out = __('Deleting a system role is not allowed.', 'capsman-enhanced');
-            $this->notify($out);
+        if (!$allow_system_role_deletion) {
+	        foreach ($roles as $key => $role) {
+	
+	            if ($this->manager->is_system_role($role)) {
+	                unset($roles[$key]);
+	            }
+	        }
+	
+	        if (empty($roles)) {
+	            $out = __('Deleting a system role is not allowed.', 'capsman-enhanced');
+	            $this->notify($out);
+	        }
         }
 
         /**
          * Delete roles
          */
+        $deleted = 0;
+        $user_count = 0;
+
         foreach ($roles as $role) {
-            $deleted = $this->manager->delete_role($role);
+            if (pp_capabilities_is_editable_role($role)) {
+                $moved_users = $this->manager->delete_role($role);
+                if (false !== $moved_users) {
+                    $deleted++;
+                    $user_count = $user_count + $moved_users;
+                }
+            }
         }
 
-        $single = sprintf('The role %s was successfully deleted.', '<strong>' . $roles[0] . '</strong>');
-        $plural = sprintf('The selected %s roles were successfully deleted.', '<strong>' . count($roles) . '</strong>');
-        $out = _n($single, $plural, count($roles), 'capsman-enhanced');
-        if ($this->is_ajax()) {
-            wp_send_json_success($out);
+        if ($deleted) {
+            $default_name = (wp_roles()->is_role($default)) ? wp_roles()->role_names[$default] : $default;
+            $users_message = ($user_count) ? sprintf(__('%1$d users moved to default role %2$s.', 'capsman-enhanced'), $user_count, $default_name) : '';
+            
+            $role_name = (wp_roles()->is_role($roles[0])) ? wp_roles()->role_names[$roles[0]] : $roles[0];
+
+            $single = sprintf(
+                __('The role %1$s was successfully deleted. %2$s', 'capsman-enhanced'), 
+                '<strong>' . $roles[0] . '</strong>',
+                $users_message
+            );
+            
+            $plural = sprintf(
+                __('The selected %1$s roles were successfully deleted. %2$s', 'capsman-enhanced'), 
+                '<strong>' . $deleted . '</strong>',
+                $users_message
+            );
+            
+            $out = _n($single, $plural, $deleted, 'capsman-enhanced');
+
+	        if ($this->is_ajax()) {
+	            wp_send_json_success($out);
+	        } else {
+	            $this->notify($out, 'success');
+	        }
         } else {
-            $this->notify($out, 'success');
+            $this->notify(_('The role could not be deleted.', 'capsman-enhanced'));
         }
     }
 

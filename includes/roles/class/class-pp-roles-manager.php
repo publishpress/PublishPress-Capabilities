@@ -135,11 +135,57 @@ class Pp_Roles_Manager
      *
      * @return bool
      */
-    public function delete_role($role)
+    public function delete_role($role, $args = [])
     {
+        global $wpdb, $wp_roles;
+
+        $default = get_option('default_role');
+
+        if ($default == $role) {
+            return false;
+        }
+
+		$like = '%' . $wpdb->esc_like( $role ) . '%';
+
+		$query = $wpdb->prepare( "SELECT ID FROM {$wpdb->usermeta} INNER JOIN {$wpdb->users} "
+			. "ON {$wpdb->usermeta}.user_id = {$wpdb->users}.ID "
+			. "WHERE meta_key='{$wpdb->prefix}capabilities' AND meta_value LIKE %s", $like );
+
+		$users = $wpdb->get_results($query);
+
+		// Array of all roles except the one being deleted, for use below
+		$role_names = array_diff_key( $wp_roles->role_names, [$role => true] );
+        
+		$count = 0;
+		foreach ( $users as $u ) {
+			$skip_role_set = false;
+		
+			$user = new WP_User($u->ID);
+			if ( $user->has_cap($role) ) {		// Check again the user has the deleting role
+				// Role may have been assigned supplementally.  Don't move a user to default role if they still have one or more roles following the deletion.
+				foreach( array_keys($role_names) as $_role_name ) {
+					if ( $user->has_cap($_role_name) ) {
+						$skip_role_set = true;
+						break;
+					}
+				}
+				
+				if ( ! $skip_role_set ) {
+					$user->set_role($default);
+					$count++;
+				}
+			}
+		}
+
         remove_role($role);
 
-        return !$this->is_role($role);
-    }
+		if ( $customized_roles = get_option( 'pp_customized_roles' ) ) {
+			if ( isset( $customized_roles[$role] ) ) {
+				unset( $customized_roles[$role] );
+				update_option( 'pp_customized_roles', $customized_roles );
+			}
+    	}
 
+		return $count;
+    }
 }

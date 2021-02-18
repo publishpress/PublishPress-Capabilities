@@ -1,4 +1,19 @@
 <?php
+function pp_capabilities_is_editable_role($role_name, $args = []) {
+    static $editable_roles;
+
+    if (!function_exists('wp_roles')) {
+        return false;
+    }
+
+    if (!isset($editable_roles) || !empty($args['force_refresh'])) {
+        $all_roles = wp_roles()->roles;
+        $editable_roles = apply_filters('editable_roles', $all_roles);
+    }
+
+    return apply_filters('pp_capabilities_editable_role', isset($editable_roles[$role_name]), $role_name);
+}
+
 function _cme_act_pp_active()
 {
     if (defined('PRESSPERMIT_VERSION') || (defined('PPC_VERSION') && function_exists('pp_init_cap_caster'))) {
