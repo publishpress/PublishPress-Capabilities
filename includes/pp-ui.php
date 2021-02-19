@@ -31,8 +31,6 @@ class Capsman_PP_UI {
 	
 	function show_capability_hints( $default ) {					
 		if ( pp_capabilities_get_permissions_option('display_hints') ) {
-			$cme_id = 'capsman';
-		
 			echo '<ul class="ul-disc publishpress-caps-extra-hints" style="margin-top:10px;display:none">';
 			
 			$pp_prefix = (defined('PPC_VERSION') && !defined('PRESSPERMIT_VERSION')) ? 'pp' : 'presspermit';
@@ -48,9 +46,9 @@ class Capsman_PP_UI {
 					$parenthetical = '';
 
 				if ( defined( 'PRESSPERMIT_ACTIVE' ) )
-					printf( __( '"Posts" capabilities selected here also define type-specific role assignment for Permission Groups%s.', $cme_id ), $parenthetical );
+					printf( __( '"Posts" capabilities selected here also define type-specific role assignment for Permission Groups%s.', 'capsman-enhanced' ), $parenthetical ) ;
 				else
-					printf( __( '"Posts" capabilities selected here also define type-specific role assignment for Permit Groups%s.', $cme_id ), $parenthetical ) ;
+					printf( __( '"Posts" capabilities selected here also define type-specific role assignment for Permit Groups%s.', 'capsman-enhanced' ), $parenthetical ) ;
 
 				echo '</li>';
 			}
@@ -58,12 +56,12 @@ class Capsman_PP_UI {
 			$status_hint = '';
 			if ( defined( 'PRESSPERMIT_ACTIVE' ) )
 				if ( defined( 'PPS_VERSION' ) )
-					$status_hint = sprintf( __( 'Capabilities for custom statuses can be manually added here. (See %sPermissions > Post Statuses%s for applicable names). %sSupplemental status-specific roles%s are usually more convenient, though.', $cme_id ), "<a href='" . admin_url("admin.php?page={$pp_prefix}-statuses&show_caps=1") . "'>", '</a>', "<a href='" . admin_url("admin.php?page={$pp_prefix}-groups") . "'>", '</a>' ) ;
+					$status_hint = sprintf( __( 'Capabilities for custom statuses can be manually added here. (See %sPermissions > Post Statuses%s for applicable names). %sSupplemental status-specific roles%s are usually more convenient, though.', 'capsman-enhanced' ), "<a href='" . admin_url("admin.php?page={$pp_prefix}-statuses&show_caps=1") . "'>", '</a>', "<a href='" . admin_url("admin.php?page={$pp_prefix}-groups") . "'>", '</a>' ) ;
 				elseif ( pp_capabilities_get_permissions_option( 'display_extension_hints' ) )
-					$status_hint = sprintf( __( 'Capabilities for custom statuses can be manually added here. Or activate the PP Custom Post Statuses extension to assign status-specific supplemental roles.', $cme_id ), "<a href='" . admin_url("admin.php?page={$pp_prefix}-role-usage") . "'>", '</a>' ) ;
+					$status_hint = sprintf( __( 'Capabilities for custom statuses can be manually added here. Or activate the PP Custom Post Statuses extension to assign status-specific supplemental roles.', 'capsman-enhanced' ), "<a href='" . admin_url("admin.php?page={$pp_prefix}-role-usage") . "'>", '</a>' ) ;
 			
 			elseif ( defined( 'PP_VERSION' ) )
-				$status_hint = sprintf( __( 'Capabilities for custom statuses can be manually added to a role here (see Conditions > Status > Capability Mapping for applicable names). However, it is usually more convenient to use Permit Groups to assign a supplemental status-specific role.', $cme_id ), "<a href='" . admin_url("admin.php?page={$pp_prefix}-role-usage") . "'>", '</a>' ) ;
+				$status_hint = sprintf( __( 'Capabilities for custom statuses can be manually added to a role here (see Conditions > Status > Capability Mapping for applicable names). However, it is usually more convenient to use Permit Groups to assign a supplemental status-specific role.', 'capsman-enhanced' ), "<a href='" . admin_url("admin.php?page={$pp_prefix}-role-usage") . "'>", '</a>' ) ;
 			
 			if ( $status_hint )
 				echo "<li>$status_hint</li>";
@@ -108,9 +106,13 @@ class Capsman_PP_UI {
 				
 				echo "<table style='width:100%'><tr>";
 				
-				$unfiltered = apply_filters( 'pp_unfiltered_post_types', array('forum','topic','reply','wp_block', 'customize_changeset') );			// bbPress' dynamic role def requires additional code to enforce stored caps
-				$hidden = apply_filters( 'pp_hidden_post_types', array() );
+				// bbPress' dynamic role def requires additional code to enforce stored caps
+				$unfiltered = apply_filters('presspermit_unfiltered_post_types', ['forum','topic','reply','wp_block', 'customize_changeset']);
+				$unfiltered = (defined('PP_CAPABILITIES_NO_LEGACY_FILTERS')) ? $unfiltered : apply_filters('pp_unfiltered_post_types', $unfiltered);  // maintain legacy filter to support custom code
 				
+				$hidden = apply_filters('presspermit_hidden_post_types', []); 
+				$hidden = apply_filters('pp_hidden_post_types', $hidden);  // maintain legacy filter to support custom code
+
 				echo '<td style="width:50%">';
 				
 				$option_basename = 'enabled_post_types';
@@ -160,7 +162,10 @@ class Capsman_PP_UI {
 					</label>
 					</div>
 				
-				
+				<?php
+				do_action('pp-capabilities-type-specific-ui');
+				?>
+
 				<input type="submit" name="update_filtered_types" value="<?php _e('Update', 'capsman-enhanced') ?>" class="button" />
 			</dd>
 		</dl>
