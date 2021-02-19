@@ -20,3 +20,7 @@ div.pp-capability-roles-wrapper #col-right {
 table.roles #role {
     width: 45%;
 }
+
+span.pp-caps-action-note {
+    color: #444;
+}
