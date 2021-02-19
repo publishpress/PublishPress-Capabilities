@@ -17,7 +17,10 @@ class CapsmanHandler
 	function processAdminGeneral( $post ) {
 		global $wp_roles;
 		
-		do_action('publishpress-caps_process_update');
+		if ('pp-capabilities-settings' == $_REQUEST['page']) {
+			do_action('publishpress-caps_process_update');
+			return;
+		}
 
 		// Create a new role.
 		if ( ! empty($post['CreateRole']) ) {

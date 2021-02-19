@@ -126,7 +126,7 @@ class CapabilityManager
 		$this->ID = 'capsman';
 		$this->mod_url = plugins_url( '', CME_FILE );
 
-		if (is_admin() && !empty($_REQUEST['page']) && ('pp-capabilities-settings' == $_REQUEST['page']) && !empty($_POST['all_options'])) {
+		if (is_admin() && !empty($_REQUEST['page']) && ('pp-capabilities-settings' == $_REQUEST['page']) && (!empty($_POST['all_options']) || !empty($_POST['all_options_pro']))) {
 			require_once (dirname(CME_FILE) . '/includes/settings-handler.php');
 		}
 
