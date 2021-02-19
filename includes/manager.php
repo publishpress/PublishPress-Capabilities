@@ -349,8 +349,8 @@ class CapabilityManager
                 function($arr) {
                     return [
                         'cb' => '<input type="checkbox"/>', 
-						'name' => __('Name', 'capsman-enhanced'),
                         'role' => __('Role', 'capsman-enhanced'),
+                        'name' => __('Name', 'capsman-enhanced'),
                         'count' => __('Users', 'capsman-enhanced'),
                     ];
                 }
