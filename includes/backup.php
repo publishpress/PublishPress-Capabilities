@@ -132,7 +132,7 @@ $auto_backups = $wpdb->get_results("SELECT option_name, option_value FROM $wpdb-
                                                 if ($initial = get_option('capsman_backup_initial')):?>
                                                     <li>
                                                     <input type="radio" name="select_restore" value="restore_initial" id="cme_restore_initial">
-                                                    <label for="cme_restore_manual"><?php _e('Initial backup of all roles', 'capsman-enhanced'); ?></label>
+                                                    <label for="cme_restore_initial"><?php _e('Initial backup of all roles', 'capsman-enhanced'); ?></label>
                                                     </li>
                                                 <?php endif; ?>
                                             <!-- </select> --> 
