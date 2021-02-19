@@ -46,13 +46,6 @@ function _cme_core_caps() {
 	'update_plugins', 'delete_plugins', 'install_plugins', 'update_themes', 'install_themes',
 	'update_core', 'list_users', 'remove_users', 'promote_users', 'edit_theme_options', 'delete_themes', 'export' ), true );
 
-	// @todo (possibly) 
-	/*
-	if (is_multisite()) {
-		$core_caps['manage_network_plugins'] = true;
-	}
-	*/
-
 	ksort( $core_caps );
 	return $core_caps;
 }
@@ -355,8 +348,8 @@ class CapabilityManager
 
                 function($arr) {
                     return [
-						'cb' => '<input type="checkbox"/>', 
-						'name' => __('Name', 'capsman-enhanced'),
+                        'cb' => '<input type="checkbox"/>', 
+						            'name' => __('Name', 'capsman-enhanced'),
                         'role' => __('Role', 'capsman-enhanced'),
                         'count' => __('Users', 'capsman-enhanced'),
                     ];
