@@ -20,8 +20,6 @@ class CoreAdmin {
                     'screens' => [
                         ['base' => 'toplevel_page_pp-capabilities'],
                         ['base' => 'capabilities_page_pp-capabilities-roles'],
-                        ['base' => 'capabilities_page_pp-capabilities-admin-menus'],
-                        ['base' => 'capabilities_page_pp-capabilities-nav-menus'],
                         ['base' => 'capabilities_page_pp-capabilities-backup'],
                         ['base' => 'capabilities_page_pp-capabilities-settings'],
                     ]
