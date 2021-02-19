@@ -554,7 +554,13 @@ class CapabilityManager
 
 		if ( ! isset($this->current) ) { // By default, we manage the default role
 			if (empty($_POST) && !empty($_REQUEST['role'])) {
-				$this->current = $_REQUEST['role'];
+				$role = $_REQUEST['role'];
+
+				if (!pp_capabilities_is_editable_role($role)) {
+					wp_die(__('The selected role is not editable.', 'capsman-enhanced'));
+				}
+
+				$this->current = $role;
 			}
 		}
 

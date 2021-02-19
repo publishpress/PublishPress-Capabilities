@@ -88,8 +88,10 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 		<select name="role">
 			<?php
 			foreach ( $roles as $role => $name ) {
-				$name = translate_user_role($name);
-				echo '<option value="' . $role .'"'; selected($default, $role); echo '> ' . $name . ' &nbsp;</option>';
+				if (pp_capabilities_is_editable_role($role)) {
+					$name = translate_user_role($name);
+					echo '<option value="' . $role .'"'; selected($default, $role); echo '> ' . $name . ' &nbsp;</option>';
+				}
 			}
 			?>
 		</select>

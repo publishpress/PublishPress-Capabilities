@@ -62,6 +62,11 @@ class CapsmanHandler
 				( method_exists( $wp_roles, 'for_site' ) ) ? $wp_roles->for_site() : $wp_roles->reinit();
 			}
 			
+			if (!pp_capabilities_is_editable_role($post['current'])) {
+				ak_admin_error( 'The selected role is not editable.', 'capsman-enhanced' );
+				return;
+			}
+
 			$this->saveRoleCapabilities($post['current'], $post['caps'], $post['level']);
 			
 			if ( defined( 'PRESSPERMIT_ACTIVE' ) ) {  // log customized role caps for subsequent restoration
@@ -84,6 +89,11 @@ class CapsmanHandler
 				( method_exists( $wp_roles, 'for_site' ) ) ? $wp_roles->for_site() : $wp_roles->reinit();
 			}
 			
+			if (!pp_capabilities_is_editable_role($post['current'])) {
+				ak_admin_error( 'The selected role is not editable.', 'capsman-enhanced' );
+				return;
+			}
+
 			$role = get_role($post['current']);
 			$role->name = $post['current'];		// bbPress workaround
 
@@ -347,52 +357,14 @@ class CapsmanHandler
 	 */
 	function adminDeleteRole ()
 	{
-		global $wpdb, $wp_roles;
+		$role_name = $_GET['role'];
+		check_admin_referer('delete-role_' . $role_name);
 
-		check_admin_referer('delete-role_' . $_GET['role']);
+		$this->cm->current = $role_name;
 		
-		$this->cm->current = $_GET['role'];
-		$default = get_option('default_role');
-		if (  $default == $this->cm->current ) {
-			ak_admin_error(sprintf(__('Cannot delete default role. You <a href="%s">have to change it first</a>.', 'capsman-enhanced'), 'options-general.php'));
-			return;
+		if (!pp_capabilities_is_editable_role($role_name)) {
+			ak_admin_error( 'The selected role is not editable.', 'capsman-enhanced' );
 		}
-
-		$like = $wpdb->esc_like( $this->cm->current );
-
-		$query = $wpdb->prepare( "SELECT ID FROM {$wpdb->usermeta} INNER JOIN {$wpdb->users} "
-			. "ON {$wpdb->usermeta}.user_id = {$wpdb->users}.ID "
-			. "WHERE meta_key='{$wpdb->prefix}capabilities' AND meta_value LIKE %s", $like );
-
-		$users = $wpdb->get_results($query);
-
-		// Array of all roles except the one being deleted, for use below
-		$role_names = array_diff_key( array_keys( $wp_roles->role_names ), array( $this->cm->current => true ) );
-		
-		$count = 0;
-		foreach ( $users as $u ) {
-			$skip_role_set = false;
-		
-			$user = new WP_User($u->ID);
-			if ( $user->has_cap($this->cm->current) ) {		// Check again the user has the deleting role
-				
-				// Role may have been assigned supplementally.  Don't move a user to default role if they still have one or more roles following the deletion.
-				foreach( $role_names as $_role_name ) {
-					if ( $user->has_cap($_role_name) ) {
-						$skip_role_set = true;
-						break;
-					}
-				}
-				
-				if ( ! $skip_role_set ) {
-					$user->set_role($default);
-					$count++;
-				}
-			}
-		}
-
-		remove_role($this->cm->current);
-		unset($this->cm->roles[$this->cm->current]);
 
 		if ( $customized_roles = get_option( 'pp_customized_roles' ) ) {
 			if ( isset( $customized_roles[$this->cm->current] ) ) {

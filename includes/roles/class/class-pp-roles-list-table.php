@@ -16,6 +16,7 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
      * @var Pp_Roles_Manager
      */
     protected $manager;
+    private $default_role = '';
 
     /**
      * PP_Capabilities_Roles_List_Table constructor.
@@ -37,6 +38,8 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
         ]);
 
         $this->manager = pp_capabilities_roles()->manager;
+
+        $this->default_role = get_option('default_role');
     }
 
     /**
@@ -128,7 +131,7 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
             ];
         }
 
-        if (!$this->manager->is_system_role($item['role'])) {
+        if (!$this->manager->is_system_role($item['role']) && ($this->default_role != $item['role']) && pp_capabilities_is_editable_role($item['role'])) {
             //Dont these actions if it's a system role
             $actions = array_merge($actions, [
                 'delete' => sprintf(
@@ -170,7 +173,7 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
      */
     protected function column_cb($item)
     {
-        $disabled = $this->manager->is_system_role($item['role']) ? ' disabled=disabled' : '';
+        $disabled = ($this->manager->is_system_role($item['role']) || ($this->default_role == $item['role']) || !pp_capabilities_is_editable_role($item['role'])) ? ' disabled=disabled' : '';
         $out = sprintf('<input type="checkbox" name="%1$s[]" value="%2$s"' . $disabled .  ' />', 'role', $item['role']);
     
         return $out;
@@ -207,13 +210,17 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
             $role_states = '<span class="row-title-divider"> &ndash; </span>' . join(', ', $states);
         }
 
-        $out = sprintf(
+        if (pp_capabilities_is_editable_role($item['role'])) {
+        	$out = sprintf(
                 '<a href="%1$s"><strong><span class="row-title">%2$s</span>%3$s</strong></a>', 
                 add_query_arg(
                     ['page' => 'pp-capabilities', 'role' => esc_attr($item['role'])], 
                     admin_url('admin.php')
                 ), 
                 esc_html($item['name']), $role_states);
+        } else {
+            $out = esc_html($item['name']);
+        }
 
         return $out;
     }

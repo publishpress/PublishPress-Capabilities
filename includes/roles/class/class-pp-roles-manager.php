@@ -19,7 +19,7 @@ class Pp_Roles_Manager
      */
     public function get_roles_for_list_table()
     {
-        $roles = get_editable_roles();
+        $roles = wp_roles()->roles; // get_editable_roles();
         $count = count_users();
         $res = [];
         foreach ($roles as $role => $detail) {
