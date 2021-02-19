@@ -164,11 +164,11 @@ class CapabilityManager
 		wp_register_style( $this->ID . 'framework_admin', $this->mod_url . '/framework/styles/admin.css', false, PUBLISHPRESS_CAPS_VERSION);
    		wp_enqueue_style( $this->ID . 'framework_admin');
 
-   		wp_register_style( $this->ID . '_admin', $this->mod_url . '/admin.css', false, PUBLISHPRESS_CAPS_VERSION);
+   		wp_register_style( $this->ID . '_admin', $this->mod_url . '/common/css/admin.css', false, PUBLISHPRESS_CAPS_VERSION);
    		wp_enqueue_style( $this->ID . '_admin');
 
 		$suffix = defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ? '.dev' : '';
-		$url = $this->mod_url . "/admin{$suffix}.js";
+		$url = $this->mod_url . "/common/js/admin{$suffix}.js";
 		wp_enqueue_script( 'cme_admin', $url, array('jquery'), PUBLISHPRESS_CAPS_VERSION, true );
 		wp_localize_script( 'cme_admin', 'cmeAdmin', array(
 			'negationCaption' => __( 'Explicity negate this capability by storing as disabled', 'capsman-enhanced' ),
