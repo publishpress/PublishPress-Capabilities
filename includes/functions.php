@@ -66,7 +66,7 @@ function cme_is_plugin_active($check_plugin_file)
     if (!$check_plugin_file)
         return false;
 
-    $plugins = get_option('active_plugins');
+    $plugins = (array)get_option('active_plugins');
 
     foreach ($plugins as $plugin_file) {
         if (false !== strpos($plugin_file, $check_plugin_file))

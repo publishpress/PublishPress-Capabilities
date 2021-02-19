@@ -43,7 +43,7 @@ class PP_Capabilities_Admin_UI {
 	    $menu_order = 72;
 	
 	    if (defined('PUBLISHPRESS_PERMISSIONS_MENU_GROUPING')) {
-	        foreach (get_option('active_plugins') as $plugin_file) {
+            foreach ((array)get_option('active_plugins') as $plugin_file) {
 	            if ( false !== strpos($plugin_file, 'publishpress.php') ) {
 	                $menu_order = 27;
 	            }
