@@ -199,9 +199,9 @@ $auto_backups = $wpdb->get_results("SELECT option_name, option_value FROM $wpdb-
                                                         ?>
 
                                                         <?php foreach ($backup_data as $role => $props) : 
-                                                            if (!empty($wp_roles->role_objects[$role]->capabilities)) {
+                                                            if (isset($wp_roles->role_objects[$role]->capabilities)) {
                                                                 $props['capabilities'] = array_merge(
-                                                                    array_fill_keys(array_keys($wp_roles->role_objects[$role]->capabilities), false),
+                                                                    array_fill_keys(array_keys($wp_roles->role_objects[$role]->capabilities), 0),
                                                                     $props['capabilities']
                                                                 );
                                                             }
@@ -222,9 +222,9 @@ $auto_backups = $wpdb->get_results("SELECT option_name, option_value FROM $wpdb-
                                                             ?>
 
                                                             <h4<?php echo $role_class;?>><?php printf(__('%s (level %s)', 'capsman-enhanced'), translate_user_role($role_caption), $level); ?></h4>
-                                                            <ul style="list-style:disc;padding-left:30px">
 
                                                                 <?php
+                                                            	$items = [];
 																$any_changes = false;
                                                                 ksort($props['capabilities']);
                                                                 foreach ($props['capabilities'] as $cap_name => $val) :
@@ -233,18 +233,31 @@ $auto_backups = $wpdb->get_results("SELECT option_name, option_value FROM $wpdb-
                                                                     <?php 
                                                                     if ($val && (empty($wp_roles->role_objects[$role]) || empty($wp_roles->role_objects[$role]->capabilities[$cap_name]))) {
                                                                         $class = ' class="cme-change cme-plus"';
-                                                                    } elseif (!$val) {
+
+                                                                	} elseif ((false === $props['capabilities'][$cap_name]) && (!isset($wp_roles->role_objects[$role]->capabilities[$cap_name]) || false !== $wp_roles->role_objects[$role]->capabilities[$cap_name])) {
+                                                                    	$class = ' class="cme-change cme-negate"';
+
+                                                                	} elseif (!$val && !empty($wp_roles->role_objects[$role]->capabilities[$cap_name])) {
                                                                         $class = ' class="cme-change cme-minus"';
                                                                         $cap_name = "&nbsp;&nbsp;$cap_name&nbsp;&nbsp;";
                                                                     } else {
                                                                         $class = '';
                                                                     }
+
+                                                                	$items[$cap_name] = $class;
+
 																	$any_changes = $any_changes || $class;
                                                                     ?>
+                                                            <?php endforeach; ?>
+
+                                                            <?php if ($items) :?>
+                                                                <ul class="pp-restore-caps">
+                                                                <?php foreach($items as $cap_name => $class) :?>
                                                                     <li<?php echo $class;?>><?php echo $cap_name;?></li>
                                                                 <?php endforeach; ?>
 
-                                                            </ul>
+                                                            	</ul>
+                                                            <?php endif;?>
                                                             
                                                             <?php if (!$any_changes):?>
                                                                 <span class="pp-restore-caps-no-change">
