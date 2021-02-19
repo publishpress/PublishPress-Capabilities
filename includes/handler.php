@@ -366,10 +366,15 @@ class CapsmanHandler
 			ak_admin_error( 'The selected role is not editable.', 'capsman-enhanced' );
 		}
 
-		if (false !== pp_capabilities_roles()->actions->delete_role($role_name, ['allow_system_role_deletion' => true, 'nonce_check' => false])) {
-			unset($this->cm->roles[$role_name]);
-			$this->cm->current = get_option('default_role');
+		if ( $customized_roles = get_option( 'pp_customized_roles' ) ) {
+			if ( isset( $customized_roles[$this->cm->current] ) ) {
+				unset( $customized_roles[$this->cm->current] );
+				update_option( 'pp_customized_roles', $customized_roles );
+			}
 		}
+		
+		ak_admin_notify(sprintf(__('Role has been deleted. %1$d users moved to default role %2$s.', 'capsman-enhanced'), $count, $this->cm->roles[$default]));
+		$this->cm->current = $default;
 	}
 }
 
