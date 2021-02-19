@@ -67,7 +67,7 @@ $auto_backups = $wpdb->get_results("SELECT option_name, option_value FROM $wpdb-
                                 <?php _e('A backup created on this screen replaces any previous manual backups, but is never automatically replaced.', 'capsman-enhanced');?>
                                 </p>
 
-                                <div style="margin-top:5px">
+                                <div class="pp-caps-backup-button">
                                     <input type="submit" name="save_backup"
                                             value="<?php _e('Manual Backup', 'capsman-enhanced') ?>"
                                             class="button-primary"/>
@@ -182,7 +182,7 @@ $auto_backups = $wpdb->get_results("SELECT option_name, option_value FROM $wpdb-
 
                                             foreach ($backups as $name => $caption) {
                                                 if ($backup_data = get_option($name)) :?>
-                                                    <div id="cme_display_<?php echo $name; ?>" style="display:none;padding-left:20px;"
+                                                    <div id="cme_display_<?php echo $name; ?>" style="display:none;"
                                                         class="cme-show-backup">
                                                         <h3><?php printf(__("%s (%s roles)", 'capsman-enhanded'), $caption, count($backup_data)); ?></h3>
 
@@ -258,8 +258,7 @@ $auto_backups = $wpdb->get_results("SELECT option_name, option_value FROM $wpdb-
                         <dl id="ppcb-tab-reset" style="display:none;">
                             <dt><?php if (!in_array(get_locale(), ['en_EN', 'en_US'])) _e('Reset WordPress Defaults', 'capsman-enhanced'); else echo 'Reset Roles to WordPress Defaults'; ?></dt>
                             <dd>
-                                <p style="text-align:center;"><strong><span
-                                                style="color:red;"><?php _e('WARNING:', 'capsman-enhanced'); ?></span> <?php if (!in_array(get_locale(), ['en_EN', 'en_US'])) _e('Reseting default Roles and Capabilities will set them to the WordPress install defaults.', 'capsman-enhanced'); else echo 'This will delete and/or modify stored role definitions.'; ?>
+                                <p><strong><span class="pp-caps-warning"><?php _e('WARNING:', 'capsman-enhanced'); ?></span> <?php if (!in_array(get_locale(), ['en_EN', 'en_US'])) _e('Reseting default Roles and Capabilities will set them to the WordPress install defaults.', 'capsman-enhanced'); else echo 'This will delete and/or modify stored role definitions.'; ?>
                                     </strong><br/>
                                     <br/>
                                     <?php
@@ -267,7 +266,7 @@ $auto_backups = $wpdb->get_results("SELECT option_name, option_value FROM $wpdb-
                                     <br/>
                                     <strong><?php if (!in_array(get_locale(), ['en_EN', 'en_US'])) _e('It is recommended to use this only as a last resource!', 'capsman-enhanced'); else echo('It is recommended to use this only as a last resort!'); ?></strong>
                                 </p>
-                                <p style="text-align:center;"><a class="ak-delete button-primary"
+                                <p><a class="ak-delete button-primary"
                                                                  title="<?php echo esc_attr(__('Reset Roles and Capabilities to WordPress defaults', 'capsman-enhanced')) ?>"
                                                                  href="<?php echo wp_nonce_url("admin.php?page=pp-capabilities-backup&amp;action=reset-defaults", 'capsman-reset-defaults'); ?>"
                                                                  onclick="if ( confirm('<?php echo esc_js(__("You are about to reset Roles and Capabilities to WordPress defaults.\n 'Cancel' to stop, 'OK' to reset.", 'capsman-enhanced')); ?>') ) { return true;}return false;"><?php _e('Reset to WordPress defaults', 'capsman-enhanced') ?></a>
