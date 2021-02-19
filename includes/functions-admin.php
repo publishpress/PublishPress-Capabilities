@@ -8,6 +8,18 @@ class PP_Capabilities_Admin_UI {
          * The class responsible for handling notifications
          */
         require_once (dirname(CME_FILE) . '/classes/pp-capabilities-notices.php');
+
+        add_action('admin_enqueue_scripts', [$this, 'adminScripts']);
+        add_action('admin_print_scripts', [$this, 'adminPrintScripts']);
+
+        add_action('profile_update', [$this, 'action_profile_update'], 10, 2);
+
+        if (is_multisite()) {
+            add_action('add_user_to_blog', [$this, 'action_profile_update'], 9);
+        } else {
+            add_action('user_register', [$this, 'action_profile_update'], 9);
+        }
+
         if (is_admin() && (isset($_REQUEST['page']) && (in_array($_REQUEST['page'], ['pp-capabilities', 'pp-capabilities-backup', 'pp-capabilities-roles', 'pp-capabilities-admin-menus', 'pp-capabilities-nav-menus', 'pp-capabilities-settings']))
         || (!empty($_REQUEST['action']) && in_array($_REQUEST['action'], ['pp-roles-add-role', 'pp-roles-delete-role']))
         || ( ! empty($_SERVER['SCRIPT_NAME']) && strpos( $_SERVER['SCRIPT_NAME'], 'p-admin/plugins.php' ) && ! empty($_REQUEST['action'] ) ) 
@@ -24,6 +36,120 @@ class PP_Capabilities_Admin_UI {
             $capsman = new CapabilityManager();
         } else {
             add_action( 'admin_menu', [$this, 'cmeSubmenus'], 20 );
+        }
+    }
+
+    function adminScripts() {
+        global $publishpress;
+
+        if (function_exists('get_current_screen') && (!defined('PUBLISHPRESS_VERSION') || empty($publishpress) || empty($publishpress->modules) || empty($publishpress->modules->roles))) {
+            $screen = get_current_screen();
+
+            if ('user-edit' === $screen->base || ('user' === $screen->base && 'add' === $screen->action)) {
+                // Check if we are on the user's profile page
+                wp_enqueue_script(
+                    'pp-capabilities-chosen-js',
+                    plugin_dir_url(CME_FILE) . 'common/libs/chosen-v1.8.3/chosen.jquery.js',
+                    ['jquery'],
+                    CAPSMAN_VERSION
+                );
+                wp_enqueue_script(
+                    'pp-capabilities-roles-profile-js',
+                    plugin_dir_url(CME_FILE) . 'common/js/profile.js',
+                    ['jquery', 'pp-capabilities-chosen-js'],
+                    CAPSMAN_VERSION
+                );
+
+                wp_enqueue_style(
+                    'pp-capabilities-chosen-css',
+                    plugin_dir_url(CME_FILE) . 'common/libs/chosen-v1.8.3/chosen.css',
+                    false,
+                    CAPSMAN_VERSION
+                );
+                wp_enqueue_style(
+                    'pp-capabilities-roles-profile-css',
+                    plugin_dir_url(CME_FILE) . 'common/css/profile.css',
+                    ['pp-capabilities-chosen-css'],
+                    CAPSMAN_VERSION
+                );
+
+                $userId = isset($_GET['user_id']) ? (int)$_GET['user_id'] : 0;
+
+                wp_localize_script(
+                    'pp-capabilities-roles-profile-js',
+                    'ppCapabilitiesProfileData',
+                    [
+                        'selected_roles' => $this->getUsersRoles($userId),
+                    ]
+                );
+            }
+        }
+    }
+
+    function adminPrintScripts() {
+        // Counteract overzealous menu icon styling in PublishPress <= 3.2.0 :)
+        if (defined('PUBLISHPRESS_VERSION') && version_compare(constant('PUBLISHPRESS_VERSION'), '3.2.0', '<=')):?>
+        <style type="text/css">
+        #toplevel_page_pp-capabilities .dashicons-before::before, #toplevel_page_pp-capabilities .wp-has-current-submenu .dashicons-before::before {
+            background-image: inherit !important;
+            content: "\f112" !important;
+        }
+        </style>
+        <?php endif;
+    }
+
+    /**
+     * Returns a list of roles with name and display name to populate a select field.
+     *
+     * @param int $userId
+     *
+     * @return array
+     */
+    protected function getUsersRoles($userId)
+    {
+        if (empty($userId)) {
+            return [];
+        }
+
+        $user = get_user_by('id', $userId);
+
+        if (empty($user)) {
+            return [];
+        }
+
+        return $user->roles;
+    }
+
+    public function action_profile_update($userId, $oldUserData = [])
+    {
+        // Check if we need to update the user's roles, allowing to set multiple roles.
+        if (isset($_POST['pp_roles']) && current_user_can('promote_users')) {
+            // Remove the user's roles
+            $user = get_user_by('ID', $userId);
+
+            $newRoles     = $_POST['pp_roles'];
+            $currentRoles = $user->roles;
+
+            if (empty($newRoles) || !is_array($newRoles)) {
+                return;
+            }
+
+            // Remove unselected roles
+            foreach ($currentRoles as $role) {
+                // Check if it is a bbPress rule. If so, don't remove it.
+                $isBBPressRole = preg_match('/^bbp_/', $role);
+
+                if (!in_array($role, $newRoles) && !$isBBPressRole) {
+                    $user->remove_role($role);
+                }
+            }
+
+            // Add new roles
+            foreach ($newRoles as $role) {
+                if (!in_array($role, $currentRoles)) {
+                    $user->add_role($role);
+                }
+            }
         }
     }
 
