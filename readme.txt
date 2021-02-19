@@ -114,14 +114,21 @@ Fixed : Non-administrators with user editing capabilities could add new Administ
 
 == Changelog ==
 
-= 2.0 =
+= 2.0 - 18 Feb 2020 =
   * Feature : Roles screen
+  * Feature : Multiple role assignment on Add / Edit User screen
   * Feature : Settings screen
   * Lang : Fixed handling, activated partial translations in German, Italian, Russian, Spanish, Swedish, Belarusian, Catalan
   * Change : Capabilities screen - move role selector to top left, eliminate load button
   * Change : Capabilities screen - move some sidebar items to Settings screen
   * Change : Adjust some captions, variable names, more selective code execution
-  * Compat : bbPress + Permissions Pro - Forum, Topic and Reply capabilities were not displayed in Editing Capabilities grid
+  * Compat : bbPress - Forum, Topic and Reply capabilities were not displayed in Editing Capabilities grid
+  * Fixed : uneditable bbPress roles could be opened for editing (require Capabilities Pro)
+  * Fixed : Invalid Capabilities - Brief explanatory caption; avoid false positives for post types with map_meta_cap disabled
+  * Fixed : PHP warning for invalid foreach argument, on sites with no active_plugins option stored
+  * Fixed : Backup > Restore - Negated capabilities were not displayed correctly in restore preview
+  * Fixed : Backup > Restore - Clicking label for Initial Backup jumped selection to Last Manual Backup
+  * Change : Backup > Restore - Preview displays "No changes" below role name where appropriate 
 
 = 1.10.1 - 8 Oct 2020 =
   * Fixed : Type-Specific Capabilities options included some non-public WordPress post types that don't support capability customization 
