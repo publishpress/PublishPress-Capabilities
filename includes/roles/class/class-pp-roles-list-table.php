@@ -77,8 +77,8 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
     {
         $columns = [
             'cb' => '<input type="checkbox"/>', //Render a checkbox instead of text
+            'name' => __('Role Name', 'capsman-enhanced'),
             'role' => __('Role', 'capsman-enhanced'),
-            'name' => __('Name', 'capsman-enhanced'),
             'count' => __('Users', 'capsman-enhanced'),
         ];
 
@@ -186,7 +186,7 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
      *
      * @return string
      */
-    protected function column_role($item)
+    protected function column_name($item)
     {
         $states = [];
         $role_states = '';
