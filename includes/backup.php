@@ -225,6 +225,7 @@ $auto_backups = $wpdb->get_results("SELECT option_name, option_value FROM $wpdb-
                                                             <ul style="list-style:disc;padding-left:30px">
 
                                                                 <?php
+																$any_changes = false;
                                                                 ksort($props['capabilities']);
                                                                 foreach ($props['capabilities'] as $cap_name => $val) :
                                                                     if (0 === strpos($cap_name, 'level_')) continue;
@@ -238,11 +239,19 @@ $auto_backups = $wpdb->get_results("SELECT option_name, option_value FROM $wpdb-
                                                                     } else {
                                                                         $class = '';
                                                                     }
+																	$any_changes = $any_changes || $class;
                                                                     ?>
                                                                     <li<?php echo $class;?>><?php echo $cap_name;?></li>
                                                                 <?php endforeach; ?>
 
                                                             </ul>
+                                                            
+                                                            <?php if (!$any_changes):?>
+                                                                <span class="pp-restore-caps-no-change">
+                                                                <?php _e('No changes', 'capsman-enhanced');?>
+                                                                </span>
+                                                            <?php endif;?>
+                                                            
                                                         <?php endforeach; ?>
                                                     </div>
                                                 <?php endif;
@@ -312,6 +321,7 @@ $auto_backups = $wpdb->get_results("SELECT option_name, option_value FROM $wpdb-
             $('input.cme_backup_info_changes_only').click(function() {
                 $(this).attr('disabled', true);
                 $('td.cme-backup-info div.current-display li:not(.cme-change)').toggle(!$(this).prop('checked'));
+                $('span.pp-restore-caps-no-change').toggle($(this).prop('checked'));
                 $(this).removeAttr('disabled');
             });
 
