@@ -88,7 +88,7 @@ class PP_Capabilities_Admin_UI {
 
     function adminPrintScripts() {
         // Counteract overzealous menu icon styling in PublishPress <= 3.2.0 :)
-        if (defined('PUBLISHPRESS_VERSION') && version_compare(constant('PUBLISHPRESS_VERSION'), '3.2.0', '<=')):?>
+        if (defined('PUBLISHPRESS_VERSION') && version_compare(constant('PUBLISHPRESS_VERSION'), '3.2.0', '<=') && defined('PP_CAPABILITIES_FIX_ADMIN_ICON')):?>
         <style type="text/css">
         #toplevel_page_pp-capabilities .dashicons-before::before, #toplevel_page_pp-capabilities .wp-has-current-submenu .dashicons-before::before {
             background-image: inherit !important;
