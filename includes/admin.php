@@ -222,7 +222,8 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 					global $wpdb;
 						
 					if ( ! empty($_REQUEST['cme_net_sync_role'] ) ) {
-						switch_to_blog(1);
+						$main_site_id = (function_exists('get_main_site_id')) ? get_main_site_id() : 1;
+						switch_to_blog($main_site_id);
 						wp_cache_delete( $wpdb->prefix . 'user_roles', 'options' );
 					}
 						
