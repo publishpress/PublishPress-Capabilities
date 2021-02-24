@@ -1170,6 +1170,9 @@ function cme_network_role_ui( $default ) {
 		<div>
 		<label for="cme_net_sync_role" title="<?php echo esc_attr(__('Copy / update this role definition to all sites now', 'capsman-enhanced'));?>"><input type="checkbox" name="cme_net_sync_role" id="cme_net_sync_role" autocomplete="off" value="1"> <?php _e('sync role to all sites now', 'capsman-enhanced'); ?> </label>
 		</div>
+		<div>
+		<label for="cme_net_sync_options" title="<?php echo esc_attr(__('Copy option settings to all sites now', 'capsman-enhanced'));?>"><input type="checkbox" name="cme_net_sync_options" id="cme_net_sync_options" autocomplete="off" value="1"> <?php _e('sync options to all sites now', 'capsman-enhanced'); ?> </label>
+		</div>
 	</div>
 <?php
 	return true;
