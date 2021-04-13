@@ -124,6 +124,10 @@ if ( version_compare(PHP_VERSION, '5.4.0', '<') ) {
 		$capsman_admin = new PP_Capabilities_Admin_UI();
 	}
 
+	require_once ( dirname(__FILE__) . '/includes/test-user.php' );
+	$ppc_test_user = new PPC_TestUser();
+	$ppc_test_user->run();
+
 	if (is_admin() && !defined('PUBLISHPRESS_CAPS_PRO_VERSION')) {
 		require_once(__DIR__ . '/includes-core/CoreAdmin.php');
 		new \PublishPress\Capabilities\CoreAdmin();
