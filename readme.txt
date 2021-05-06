@@ -5,7 +5,7 @@ Author: PublishPress
 Author URI: https://publishpress.com
 Tags: user roles, capabilities, permissions, authors, editors, post types, taxonomies
 Requires at least: 4.9.7
-Tested up to: 5.6
+Tested up to: 5.7
 Requires PHP: 5.6.20
 Stable tag: 2.0
 License: GPLv3
