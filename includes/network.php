@@ -6,7 +6,9 @@ function _cme_new_blog( $new_blog_id ) {
 		
 		$restore_blog_id = $blog_id;
 		
-		switch_to_blog( 1 );
+		$main_site_id = (function_exists('get_main_site_id')) ? get_main_site_id() : 1;
+
+		switch_to_blog($main_site_id);
 		( method_exists( $wp_roles, 'for_site' ) ) ? $wp_roles->for_site() : $wp_roles->reinit();
 		
 		$main_site_caps = array();

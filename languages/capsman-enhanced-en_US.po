@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PublishPress Capabilities\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-03 12:15-0500\n"
-"PO-Revision-Date: 2021-02-03 12:15-0500\n"
-"Last-Translator: PublishPress <help@publishpress.com>\n"
+"POT-Creation-Date: 2021-05-06 13:51-0400\n"
+"PO-Revision-Date: 2021-05-06 13:51-0400\n"
+"Last-Translator: Kevin Behrens <kevin@publishpress.com>\n"
 "Language-Team: PublishPress <help@publishpress.com>\n"
 "Language: en_US\n"
 "MIME-Version: 1.0\n"
@@ -57,23 +57,35 @@ msgstr ""
 msgid "Nav Menus"
 msgstr ""
 
-#: includes-core/admin-menus-promo.php:35
+#: includes-core/admin-menus-promo.php:29
 msgid "Admin Menu Restrictions"
 msgstr ""
 
-#: includes-core/admin-menus-promo.php:47
-msgid ""
-"Note: You are only restricting access to admin menu screens. Some plugins "
-"may also add features to other areas of WordPress."
-msgstr ""
-
-#: includes-core/admin-menus-promo.php:64 includes-core/nav-menus-promo.php:58
-#: includes/admin.php:99 includes/admin.php:1078 includes/settings.php:54
+#: includes-core/admin-menus-promo.php:48 includes-core/nav-menus-promo.php:52
+#: includes/admin.php:99 includes/admin.php:1079 includes/settings.php:54
 msgid "Save Changes"
 msgstr ""
 
-#: includes-core/nav-menus-promo.php:35
+#: includes-core/admin-menus-promo.php:58
+msgid ""
+"You can restrict access to admin menu screens. This feature is available in "
+"PublishPress Capabilities Pro"
+msgstr ""
+
+#: includes-core/admin-menus-promo.php:62 includes-core/nav-menus-promo.php:67
+#: includes/functions-admin.php:45 includes/functions-admin.php:46
+#: includes/manager.php:334 includes/manager.php:335
+msgid "Upgrade to Pro"
+msgstr ""
+
+#: includes-core/nav-menus-promo.php:29
 msgid "Navigation Menu Restrictions"
+msgstr ""
+
+#: includes-core/nav-menus-promo.php:63
+msgid ""
+"You can restrict access to navigation menus. This feature is available in "
+"PublishPress Capabilities Pro"
 msgstr ""
 
 #: includes/admin.php:38
@@ -311,15 +323,15 @@ msgid ""
 "capabilities."
 msgstr ""
 
-#: includes/admin.php:1058
-msgid "Role Level:"
+#: includes/admin.php:1059
+msgid "Level:"
 msgstr ""
 
-#: includes/admin.php:1081
+#: includes/admin.php:1082
 msgid "Delete this role"
 msgstr ""
 
-#: includes/admin.php:1081
+#: includes/admin.php:1082
 #, php-format
 msgid ""
 "You are about to delete the %s role.\n"
@@ -327,68 +339,68 @@ msgid ""
 " 'Cancel' to stop, 'OK' to delete."
 msgstr ""
 
-#: includes/admin.php:1081
+#: includes/admin.php:1082
 msgid "Delete Role"
 msgstr ""
 
-#: includes/admin.php:1090
+#: includes/admin.php:1091
 msgid "Add Capability"
 msgstr ""
 
-#: includes/admin.php:1093
+#: includes/admin.php:1094
 msgid "Add to role"
 msgstr ""
 
-#: includes/admin.php:1105
+#: includes/admin.php:1106
 msgid "Copy this role to"
 msgstr ""
 
-#: includes/admin.php:1108
+#: includes/admin.php:1109
 msgid "Role Name"
 msgstr ""
 
-#: includes/admin.php:1111 includes/pp-ui.php:84
+#: includes/admin.php:1112 includes/pp-ui.php:84
 msgid ""
 "Make role available for supplemental assignment to Permission Groups only"
 msgstr ""
 
-#: includes/admin.php:1111
+#: includes/admin.php:1112
 msgid "hidden"
 msgstr ""
 
-#: includes/admin.php:1115
+#: includes/admin.php:1116
 msgid "Copy"
 msgstr ""
 
-#: includes/admin.php:1121
+#: includes/admin.php:1122
 msgid "Rename Role"
 msgstr ""
 
-#: includes/admin.php:1123
+#: includes/admin.php:1124
 msgid "New Role Name"
 msgstr ""
 
-#: includes/admin.php:1126
+#: includes/admin.php:1127
 msgid "Rename"
 msgstr ""
 
-#: includes/admin.php:1157
+#: includes/admin.php:1158
 msgid "Create this role definition in new (future) sites"
 msgstr ""
 
-#: includes/admin.php:1157
+#: includes/admin.php:1158
 msgid "include in new sites"
 msgstr ""
 
-#: includes/admin.php:1160
+#: includes/admin.php:1161
 msgid "Copy / update this role definition to all sites now"
 msgstr ""
 
-#: includes/admin.php:1160
+#: includes/admin.php:1161
 msgid "sync role to all sites now"
 msgstr ""
 
-#: includes/backup-handler.php:9 includes/manager.php:708
+#: includes/backup-handler.php:9 includes/manager.php:701
 msgid "You do not have permission to restore roles."
 msgstr ""
 
@@ -431,7 +443,7 @@ msgid "Restore"
 msgstr ""
 
 #: includes/backup.php:47 includes/functions-admin.php:39
-#: includes/manager.php:332
+#: includes/manager.php:325
 msgid "Backup"
 msgstr ""
 
@@ -586,23 +598,18 @@ msgstr ""
 msgid "Edit Roles"
 msgstr ""
 
-#: includes/functions-admin.php:14 includes/manager.php:296
+#: includes/functions-admin.php:14 includes/manager.php:289
 #: includes/roles/class/class-pp-roles-list-table.php:120
 msgid "Capabilities"
 msgstr ""
 
-#: includes/functions-admin.php:36 includes/manager.php:318
+#: includes/functions-admin.php:36 includes/manager.php:311
 #: includes/roles/roles.php:4
 msgid "Roles"
 msgstr ""
 
-#: includes/functions-admin.php:40 includes/manager.php:335
+#: includes/functions-admin.php:40 includes/manager.php:328
 msgid "Settings"
-msgstr ""
-
-#: includes/functions-admin.php:45 includes/functions-admin.php:46
-#: includes/manager.php:341 includes/manager.php:342
-msgid "Upgrade to Pro"
 msgstr ""
 
 #: includes/handler.php:23 includes/handler.php:49
@@ -645,88 +652,88 @@ msgstr ""
 msgid "Role has been deleted. %1$d users moved to default role %2$s."
 msgstr ""
 
-#: includes/manager.php:181
+#: includes/manager.php:174
 msgid "Explicity negate this capability by storing as disabled"
 msgstr ""
 
-#: includes/manager.php:182
+#: includes/manager.php:175
 msgid "Explicitly negate these capabilities by storing as disabled"
 msgstr ""
 
-#: includes/manager.php:183
+#: includes/manager.php:176
 msgid "Post type registration does not define this capability distinctly"
 msgstr ""
 
-#: includes/manager.php:184
+#: includes/manager.php:177
 msgid "This capability is explicitly negated. Click to add/remove normally."
 msgstr ""
 
-#: includes/manager.php:185
+#: includes/manager.php:178
 msgid "Add or remove this capability from the WordPress role"
 msgstr ""
 
-#: includes/manager.php:186
+#: includes/manager.php:179
 msgid "Add or remove capability from the role normally"
 msgstr ""
 
-#: includes/manager.php:359
+#: includes/manager.php:352
 #: includes/roles/class/class-pp-roles-list-table.php:77
 msgid "Role"
 msgstr ""
 
-#: includes/manager.php:360
+#: includes/manager.php:353
 #: includes/roles/class/class-pp-roles-list-table.php:78
 #: includes/roles/roles.php:33
 msgid "Name"
 msgstr ""
 
-#: includes/manager.php:361
+#: includes/manager.php:354
 #: includes/roles/class/class-pp-roles-list-table.php:79
 msgid "Users"
 msgstr ""
 
-#: includes/manager.php:388
+#: includes/manager.php:381
 msgid "You do not have permission to manage roles."
 msgstr ""
 
-#: includes/manager.php:494 includes/manager.php:535
+#: includes/manager.php:487 includes/manager.php:528
 msgid "You do not have permission to manage capabilities."
 msgstr ""
 
-#: includes/manager.php:549
+#: includes/manager.php:542
 msgid "New capability added to role."
 msgstr ""
 
-#: includes/manager.php:588
+#: includes/manager.php:581
 msgid "Bad form Received"
 msgstr ""
 
-#: includes/manager.php:738
+#: includes/manager.php:731
 #, php-format
 msgid "If you like %s, please leave us a %s rating. Thank you!"
 msgstr ""
 
-#: includes/manager.php:749
+#: includes/manager.php:742
 msgid "About PublishPress Capabilities"
 msgstr ""
 
-#: includes/manager.php:749
+#: includes/manager.php:742
 msgid "About"
 msgstr ""
 
-#: includes/manager.php:751
+#: includes/manager.php:744
 msgid "Capabilites Documentation"
 msgstr ""
 
-#: includes/manager.php:751
+#: includes/manager.php:744
 msgid "Documentation"
 msgstr ""
 
-#: includes/manager.php:753
+#: includes/manager.php:746
 msgid "Contact the PublishPress team"
 msgstr ""
 
-#: includes/manager.php:753
+#: includes/manager.php:746
 msgid "Contact"
 msgstr ""
 
@@ -861,12 +868,16 @@ msgstr ""
 msgid "Search Roles"
 msgstr ""
 
-#: includes/roles/roles.php:25 includes/roles/roles.php:40
+#: includes/roles/roles.php:25
 msgid "Add New Role"
 msgstr ""
 
 #: includes/roles/roles.php:35
 msgid "The name is how it appears on your site."
+msgstr ""
+
+#: includes/roles/roles.php:40
+msgid "Add"
 msgstr ""
 
 #: includes/roles/roles.php:52

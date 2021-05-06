@@ -145,6 +145,11 @@ class CapabilityManager
 
 		add_action('wp_ajax_pp-roles-add-role', [$this, 'handleRolesAjax']);
     	add_action('wp_ajax_pp-roles-delete-role', [$this, 'handleRolesAjax']);
+
+		if (defined('PRESSPERMIT_VERSION')) {
+			add_action('wp_ajax_pp-roles-hide-role', [$this, 'handleRolesAjax']);
+			add_action('wp_ajax_pp-roles-unhide-role', [$this, 'handleRolesAjax']);
+		}
 	}
 
     /**
@@ -416,6 +421,9 @@ class CapabilityManager
 	 */
 	function filterEditRoles ( $roles )
 	{
+		global $current_user;
+
+		if (function_exists('wp_get_current_user')) {  // Avoid downstream fatal error from premature current_user_can() call if get_editable_roles() is called too early
 	    $this->generateNames();
         $valid = array_keys($this->roles);
 
@@ -424,6 +432,7 @@ class CapabilityManager
                 unset($roles[$role]);
             }
         }
+		}
 
         return $roles;
 	}
