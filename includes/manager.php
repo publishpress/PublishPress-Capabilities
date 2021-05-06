@@ -145,6 +145,11 @@ class CapabilityManager
 
 		add_action('wp_ajax_pp-roles-add-role', [$this, 'handleRolesAjax']);
     	add_action('wp_ajax_pp-roles-delete-role', [$this, 'handleRolesAjax']);
+
+		if (defined('PRESSPERMIT_VERSION')) {
+			add_action('wp_ajax_pp-roles-hide-role', [$this, 'handleRolesAjax']);
+			add_action('wp_ajax_pp-roles-unhide-role', [$this, 'handleRolesAjax']);
+		}
 	}
 
     /**

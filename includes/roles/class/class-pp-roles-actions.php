@@ -19,6 +19,8 @@ class Pp_Roles_Actions
     protected $actions = [
         'pp-roles-add-role',
         'pp-roles-delete-role',
+        'pp-roles-hide-role',
+        'pp-roles-unhide-role',
     ];
 
     /**
@@ -368,4 +370,125 @@ class Pp_Roles_Actions
         }
     }
 
+    /**
+     * Hide role action
+     */
+    public function hide_role($role = '', $args = [])
+    {
+        if (!defined('PRESSPERMIT_ACTIVE')) {
+            return;
+        }
+
+        if (empty($role)) {
+            $role = (isset($_REQUEST['role'])) ? $_REQUEST['role'] : '';
+        }
+
+        /**
+         * Check capabilities
+         */
+        $this->check_permissions();
+
+        /**
+         * Validate input data
+         */
+        $roles = [];
+        if ($role) {
+            if (is_string($role)) {
+                $input = sanitize_text_field($role);
+                $roles[] = $input;
+            } else if (is_array($role)) {
+                foreach ($role as $key => $id) {
+                    $roles[] = sanitize_text_field($id);
+                }
+            }
+        } else {
+            return;
+        }
+
+        /**
+         * If no roles provided return
+         */
+        if (empty($roles)) {
+            $out = __('Missing parameters, refresh the page and try again.', 'capsman-enhanced');
+            $this->notify($out);
+        }
+
+        $pp_only = (array) pp_capabilities_get_permissions_option( 'supplemental_role_defs' );
+        $pp_only = array_merge($pp_only, (array) $roles);
+        pp_capabilities_update_permissions_option('supplemental_role_defs', $pp_only);
+
+        $role_name = (wp_roles()->is_role($roles[0])) ? wp_roles()->role_names[$roles[0]] : $roles[0];
+
+        $out = sprintf(
+            __('The role %1$s was successfully hidden.', 'capsman-enhanced'), 
+            '<strong>' . $roles[0] . '</strong>'
+        );
+        
+        if ($this->is_ajax()) {
+            wp_send_json_success($out);
+        } else {
+            $this->notify($out, 'success');
+        }
+    }
+
+    /**
+     * Unhide role action
+     */
+    public function unhide_role($role = '', $args = [])
+    {
+        if (!defined('PRESSPERMIT_ACTIVE')) {
+            return;
+        }
+
+        if (empty($role)) {
+            $role = (isset($_REQUEST['role'])) ? $_REQUEST['role'] : '';
+        }
+
+        /**
+         * Check capabilities
+         */
+        $this->check_permissions();
+
+        /**
+         * Validate input data
+         */
+        $roles = [];
+        if ($role) {
+            if (is_string($role)) {
+                $input = sanitize_text_field($role);
+                $roles[] = $input;
+            } else if (is_array($role)) {
+                foreach ($role as $key => $id) {
+                    $roles[] = sanitize_text_field($id);
+                }
+            }
+        } else {
+            return;
+        }
+
+        /**
+         * If no roles provided return
+         */
+        if (empty($roles)) {
+            $out = __('Missing parameters, refresh the page and try again.', 'capsman-enhanced');
+            $this->notify($out);
+        }
+
+        $pp_only = (array) pp_capabilities_get_permissions_option( 'supplemental_role_defs' );
+        $pp_only = array_diff($pp_only, (array) $roles);
+        pp_capabilities_update_permissions_option('supplemental_role_defs', $pp_only);
+
+        $role_name = (wp_roles()->is_role($roles[0])) ? wp_roles()->role_names[$roles[0]] : $roles[0];
+
+        $out = sprintf(
+            __('The role %1$s was successfully unhidden.', 'capsman-enhanced'), 
+            '<strong>' . $roles[0] . '</strong>'
+        );
+        
+        if ($this->is_ajax()) {
+            wp_send_json_success($out);
+        } else {
+            $this->notify($out, 'success');
+        }
+    }
 }

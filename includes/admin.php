@@ -1079,7 +1079,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 		</dl>
 
 		<?php
-		$support_pp_only_roles = ( defined('PRESSPERMIT_ACTIVE') ) ? $pp_ui->pp_only_roles_ui( $default ) : false;
+		$support_pp_only_roles = defined('PRESSPERMIT_ACTIVE');
 		cme_network_role_ui( $default );
 		?>
 		
