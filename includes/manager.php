@@ -416,6 +416,9 @@ class CapabilityManager
 	 */
 	function filterEditRoles ( $roles )
 	{
+		global $current_user;
+
+		if (function_exists('wp_get_current_user')) {  // Avoid downstream fatal error from premature current_user_can() call if get_editable_roles() is called too early
 	    $this->generateNames();
         $valid = array_keys($this->roles);
 
@@ -424,6 +427,7 @@ class CapabilityManager
                 unset($roles[$role]);
             }
         }
+		}
 
         return $roles;
 	}
