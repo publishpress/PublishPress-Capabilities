@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PublishPress Capabilities\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-03 11:36-0500\n"
+"POT-Creation-Date: 2021-05-06 13:51-0400\n"
 "PO-Revision-Date: 2020-10-08 11:17-0500\n"
 "Last-Translator: Kevin Behrens <kevin@publishpress.com>\n"
 "Language-Team: PublishPress <help@publishpress.com>\n"
@@ -27,16 +27,16 @@ msgstr ""
 msgid "<strong>This plugin can be deleted.</strong>"
 msgstr ""
 
-#: capsman-enhanced.php:102
+#: capsman-enhanced.php:98
 msgid "Warning:"
 msgstr ""
 
-#: capsman-enhanced.php:103
+#: capsman-enhanced.php:99
 #, php-format
 msgid "The active plugin %s is not compatible with your PHP version."
 msgstr ""
 
-#: capsman-enhanced.php:105
+#: capsman-enhanced.php:101
 #, php-format
 msgid "%s is required for this plugin."
 msgstr ""
@@ -45,29 +45,39 @@ msgstr ""
 msgid "Settings saved."
 msgstr ""
 
-#: includes-core/CoreAdmin.php:55 includes/functions-admin.php:37
+#: includes-core/CoreAdmin.php:53 includes/functions-admin.php:191
 msgid "Admin Menus"
 msgstr ""
 
-#: includes-core/CoreAdmin.php:56 includes/functions-admin.php:38
+#: includes-core/CoreAdmin.php:54 includes/functions-admin.php:192
 msgid "Nav Menus"
 msgstr ""
 
-#: includes-core/admin-menus-promo.php:35
+#: includes-core/admin-menus-promo.php:29
 msgid "Admin Menu Restrictions"
 msgstr ""
 
-#: includes-core/admin-menus-promo.php:47
-msgid "Note: You are only restricting access to admin menu screens. Some plugins may also add features to other areas of WordPress."
-msgstr ""
-
-#: includes-core/admin-menus-promo.php:64 includes-core/nav-menus-promo.php:58
-#: includes/admin.php:99 includes/admin.php:1078 includes/settings.php:54
+#: includes-core/admin-menus-promo.php:48 includes-core/nav-menus-promo.php:52
+#: includes/admin.php:107 includes/admin.php:1089 includes/settings.php:54
 msgid "Save Changes"
 msgstr ""
 
-#: includes-core/nav-menus-promo.php:35
+#: includes-core/admin-menus-promo.php:58
+msgid "You can restrict access to admin menu screens. This feature is available in PublishPress Capabilities Pro"
+msgstr ""
+
+#: includes-core/admin-menus-promo.php:62 includes-core/nav-menus-promo.php:67
+#: includes/functions-admin.php:202 includes/functions-admin.php:203
+#: includes/manager.php:346 includes/manager.php:347
+msgid "Upgrade to Pro"
+msgstr ""
+
+#: includes-core/nav-menus-promo.php:29
 msgid "Navigation Menu Restrictions"
+msgstr ""
+
+#: includes-core/nav-menus-promo.php:63
+msgid "You can restrict access to navigation menus. This feature is available in PublishPress Capabilities Pro"
 msgstr ""
 
 #: includes/admin.php:38
@@ -75,215 +85,212 @@ msgstr ""
 msgid "Warning: This role cannot access the dashboard without the read capability. %1$sClick here to fix this now%2$s."
 msgstr ""
 
-#: includes/admin.php:64
+#: includes/admin.php:66
 msgid "Role Capabilities"
 msgstr ""
 
-#: includes/admin.php:109
+#: includes/admin.php:117
 msgid "<strong>Note:</strong> Capability changes <strong>remain in the database</strong> after plugin deactivation."
 msgstr ""
 
-#: includes/admin.php:114
+#: includes/admin.php:122
 #, php-format
 msgid "<strong>Note:</strong> Capability changes <strong>remain in the database</strong> after plugin deactivation. You can also configure this role as a %sPermission Group%s."
 msgstr ""
 
-#: includes/admin.php:148 includes/settings.php:38
+#: includes/admin.php:156 includes/settings.php:38
 msgid "PublishPress Permissions"
 msgstr ""
 
-#: includes/admin.php:150
+#: includes/admin.php:158
 msgid "Automatically define type-specific capabilities for your custom post types and taxonomies"
 msgstr ""
 
-#: includes/admin.php:154
+#: includes/admin.php:162
 msgid "Assign standard WP roles supplementally for a specific post type"
 msgstr ""
 
-#: includes/admin.php:158
+#: includes/admin.php:166
 msgid "Assign custom WP roles supplementally for a specific post type <em>(Pro)</em>"
 msgstr ""
 
-#: includes/admin.php:162
+#: includes/admin.php:170
 msgid "Customize reading permissions per-category or per-post"
 msgstr ""
 
-#: includes/admin.php:166
+#: includes/admin.php:174
 msgid "Customize editing permissions per-category or per-post <em>(Pro)</em>"
 msgstr ""
 
-#: includes/admin.php:170
+#: includes/admin.php:178
 msgid "Custom Post Visibility statuses, fully implemented throughout wp-admin <em>(Pro)</em>"
 msgstr ""
 
-#: includes/admin.php:174
+#: includes/admin.php:182
 msgid "Custom Moderation statuses for access-controlled, multi-step publishing workflow <em>(Pro)</em>"
 msgstr ""
 
-#: includes/admin.php:178
+#: includes/admin.php:186
 msgid "Regulate permissions for Edit Flow post statuses <em>(Pro)</em>"
 msgstr ""
 
-#: includes/admin.php:182
+#: includes/admin.php:190
 msgid "Customize the moderated editing of published content with Revisionary or Post Forking <em>(Pro)</em>"
 msgstr ""
 
-#: includes/admin.php:186
+#: includes/admin.php:194
 msgid "Grant Spectator, Participant or Moderator access to specific bbPress forums <em>(Pro)</em>"
 msgstr ""
 
-#: includes/admin.php:190
+#: includes/admin.php:198
 msgid "Grant supplemental content permissions to a BuddyPress group <em>(Pro)</em>"
 msgstr ""
 
-#: includes/admin.php:194
+#: includes/admin.php:202
 msgid "WPML integration to mirror permissions to translations <em>(Pro)</em>"
 msgstr ""
 
-#: includes/admin.php:198
+#: includes/admin.php:206
 msgid "Member support forum"
 msgstr ""
 
-#: includes/admin.php:205
+#: includes/admin.php:213
 #, php-format
 msgid "%1$sgrab%2$s %3$s"
 msgstr ""
 
-#: includes/admin.php:205
+#: includes/admin.php:213
 #, php-format
 msgid "%s (free install)"
 msgstr ""
 
-#: includes/admin.php:207
+#: includes/admin.php:215
 #, php-format
 msgid "%1$sbuy%2$s %3$s"
 msgstr ""
 
-#: includes/admin.php:207
+#: includes/admin.php:215
 #, php-format
 msgid "%s info/purchase"
 msgstr ""
 
-#: includes/admin.php:287
+#: includes/admin.php:296
 msgid "&nbsp;"
 msgstr ""
 
-#: includes/admin.php:288
+#: includes/admin.php:297
 msgid "Reading"
 msgstr ""
 
-#: includes/admin.php:289
+#: includes/admin.php:298
 msgid "Editing Capabilities"
 msgstr ""
 
-#: includes/admin.php:290
+#: includes/admin.php:299
 msgid "Deletion Capabilities"
 msgstr ""
 
-#: includes/admin.php:294
+#: includes/admin.php:303
 msgid "can read posts which are currently published with private visibility"
 msgstr ""
 
-#: includes/admin.php:295
+#: includes/admin.php:304
 msgid "has basic editing capability (but may need other capabilities based on post status and ownership)"
 msgstr ""
 
-#: includes/admin.php:296
+#: includes/admin.php:305
 msgid "can edit posts which were created by other users"
 msgstr ""
 
-#: includes/admin.php:297
+#: includes/admin.php:306
 msgid "can edit posts which are currently published"
 msgstr ""
 
-#: includes/admin.php:298
+#: includes/admin.php:307
 msgid "can edit posts which are currently published with private visibility"
 msgstr ""
 
-#: includes/admin.php:299
+#: includes/admin.php:308
 msgid "can make a post publicly visible"
 msgstr ""
 
-#: includes/admin.php:300
+#: includes/admin.php:309
 msgid "has basic deletion capability (but may need other capabilities based on post status and ownership)"
 msgstr ""
 
-#: includes/admin.php:301
+#: includes/admin.php:310
 msgid "can delete posts which were created by other users"
 msgstr ""
 
-#: includes/admin.php:302
+#: includes/admin.php:311
 msgid "can delete posts which are currently published"
 msgstr ""
 
-#: includes/admin.php:303
+#: includes/admin.php:312
 msgid "can delete posts which are currently published with private visibility"
 msgstr ""
 
-#: includes/admin.php:437 includes/admin.php:547 includes/admin.php:809
-#: includes/admin.php:904 includes/admin.php:1001
+#: includes/admin.php:446 includes/admin.php:558 includes/admin.php:818
+#: includes/admin.php:1004
 #, php-format
 msgid "%s: assigned by Permission Group"
 msgstr ""
 
-#: includes/admin.php:452
+#: includes/admin.php:461
 #, php-format
 msgid "shared capability: %s"
 msgstr ""
 
-#: includes/admin.php:524
+#: includes/admin.php:535
 msgid "Other WordPress Core Capabilities"
 msgstr ""
 
-#: includes/admin.php:566
+#: includes/admin.php:577
 msgid "Lockout Prevention: To remove read capability, first remove WordPress admin / editing capabilities, or add \"dashboard_lockout_ok\" capability"
 msgstr ""
 
-#: includes/admin.php:609 includes/admin.php:848 includes/admin.php:957
-#: includes/admin.php:1044
+#: includes/admin.php:620 includes/admin.php:857 includes/admin.php:1057
 msgid "check/uncheck all"
 msgstr ""
 
-#: includes/admin.php:609 includes/admin.php:848 includes/admin.php:957
-#: includes/admin.php:1044
+#: includes/admin.php:620 includes/admin.php:857 includes/admin.php:1057
 msgid "negate all (storing as disabled capabilities)"
 msgstr ""
 
-#: includes/admin.php:609 includes/admin.php:848 includes/admin.php:957
-#: includes/admin.php:1044
+#: includes/admin.php:620 includes/admin.php:857 includes/admin.php:1057
 msgid "negate none (add/remove all capabilities normally)"
 msgstr ""
 
-#: includes/admin.php:783
+#: includes/admin.php:792
 #, php-format
 msgid "%s Capabilities"
 msgstr ""
 
-#: includes/admin.php:856
-msgid "Additional Capabilities"
-msgstr ""
-
-#: includes/admin.php:966
-msgid "Meta capabilities are used in code as placeholders for other capabilities. Assiging to a role has no effect."
-msgstr ""
-
-#: includes/admin.php:967
+#: includes/admin.php:868
 msgid "Invalid Capabilities"
 msgstr ""
 
-#: includes/admin.php:1057
+#: includes/admin.php:873
+msgid "The following entries have no effect. Please assign desired capabilities in the Read / Edit / Delete grid above."
+msgstr ""
+
+#: includes/admin.php:950
+msgid "Additional Capabilities"
+msgstr ""
+
+#: includes/admin.php:1067
 msgid "Role level is mostly deprecated. However, it still determines eligibility for Post Author assignment and limits the application of user editing capabilities."
 msgstr ""
 
-#: includes/admin.php:1058
-msgid "Role Level:"
+#: includes/admin.php:1069
+msgid "Level:"
 msgstr ""
 
-#: includes/admin.php:1081
+#: includes/admin.php:1092
 msgid "Delete this role"
 msgstr ""
 
-#: includes/admin.php:1081
+#: includes/admin.php:1092
 #, php-format
 msgid ""
 "You are about to delete the %s role.\n"
@@ -291,67 +298,76 @@ msgid ""
 " 'Cancel' to stop, 'OK' to delete."
 msgstr ""
 
-#: includes/admin.php:1081
+#: includes/admin.php:1092
 msgid "Delete Role"
 msgstr ""
 
-#: includes/admin.php:1090
+#: includes/admin.php:1101
 msgid "Add Capability"
 msgstr ""
 
-#: includes/admin.php:1093
+#: includes/admin.php:1104
 msgid "Add to role"
 msgstr ""
 
-#: includes/admin.php:1105
+#: includes/admin.php:1116
 msgid "Copy this role to"
 msgstr ""
 
-#: includes/admin.php:1108
+#: includes/admin.php:1119
+#: includes/roles/class/class-pp-roles-list-table.php:80
 msgid "Role Name"
 msgstr ""
 
-#: includes/admin.php:1111 includes/pp-ui.php:84
+#: includes/admin.php:1122 includes/pp-ui.php:84
 msgid "Make role available for supplemental assignment to Permission Groups only"
 msgstr ""
 
-#: includes/admin.php:1111
+#: includes/admin.php:1122
 msgid "hidden"
 msgstr ""
 
-#: includes/admin.php:1115
+#: includes/admin.php:1126
 msgid "Copy"
 msgstr ""
 
-#: includes/admin.php:1121
+#: includes/admin.php:1132
 msgid "Rename Role"
 msgstr ""
 
-#: includes/admin.php:1123
+#: includes/admin.php:1134
 msgid "New Role Name"
 msgstr ""
 
-#: includes/admin.php:1126
+#: includes/admin.php:1137
 msgid "Rename"
 msgstr ""
 
-#: includes/admin.php:1157
+#: includes/admin.php:1168
 msgid "Create this role definition in new (future) sites"
 msgstr ""
 
-#: includes/admin.php:1157
+#: includes/admin.php:1168
 msgid "include in new sites"
 msgstr ""
 
-#: includes/admin.php:1160
+#: includes/admin.php:1171
 msgid "Copy / update this role definition to all sites now"
 msgstr ""
 
-#: includes/admin.php:1160
+#: includes/admin.php:1171
 msgid "sync role to all sites now"
 msgstr ""
 
-#: includes/backup-handler.php:9 includes/manager.php:708
+#: includes/admin.php:1174
+msgid "Copy option settings to all sites now"
+msgstr ""
+
+#: includes/admin.php:1174
+msgid "sync options to all sites now"
+msgstr ""
+
+#: includes/backup-handler.php:9 includes/manager.php:723
 msgid "You do not have permission to restore roles."
 msgstr ""
 
@@ -387,6 +403,19 @@ msgstr ""
 #: includes/backup.php:39
 #, php-format
 msgid "Backup Tool for %1$sPublishPress Capabilities%2$s"
+msgstr ""
+
+#: includes/backup.php:46
+msgid "Restore"
+msgstr ""
+
+#: includes/backup.php:47 includes/functions-admin.php:193
+#: includes/manager.php:337
+msgid "Backup"
+msgstr ""
+
+#: includes/backup.php:48
+msgid "Reset Roles"
 msgstr ""
 
 #: includes/backup.php:57
@@ -476,37 +505,41 @@ msgstr ""
 msgid "%s (level %s)"
 msgstr ""
 
-#: includes/backup.php:259
+#: includes/backup.php:264
+msgid "No changes"
+msgstr ""
+
+#: includes/backup.php:281
 msgid "Reset WordPress Defaults"
 msgstr ""
 
-#: includes/backup.php:262
+#: includes/backup.php:283
 msgid "WARNING:"
 msgstr ""
 
-#: includes/backup.php:262
+#: includes/backup.php:283
 msgid "Reseting default Roles and Capabilities will set them to the WordPress install defaults."
 msgstr ""
 
-#: includes/backup.php:266
+#: includes/backup.php:287
 msgid "If you have installed any plugin that adds new roles or capabilities, these will be lost."
 msgstr ""
 
-#: includes/backup.php:268
+#: includes/backup.php:289
 msgid "It is recommended to use this only as a last resource!"
 msgstr ""
 
-#: includes/backup.php:271
+#: includes/backup.php:292
 msgid "Reset Roles and Capabilities to WordPress defaults"
 msgstr ""
 
-#: includes/backup.php:273
+#: includes/backup.php:294
 msgid ""
 "You are about to reset Roles and Capabilities to WordPress defaults.\n"
 " 'Cancel' to stop, 'OK' to reset."
 msgstr ""
 
-#: includes/backup.php:273
+#: includes/backup.php:294
 msgid "Reset to WordPress defaults"
 msgstr ""
 
@@ -523,150 +556,133 @@ msgstr ""
 msgid "Edit Roles"
 msgstr ""
 
-#: includes/functions-admin.php:14 includes/manager.php:296
-#: includes/roles/class/class-pp-roles-list-table.php:120
+#: includes/functions-admin.php:168 includes/manager.php:301
+#: includes/roles/class/class-pp-roles-list-table.php:125
 msgid "Capabilities"
 msgstr ""
 
-#: includes/functions-admin.php:36 includes/manager.php:318
+#: includes/functions-admin.php:190 includes/manager.php:323
 #: includes/roles/roles.php:4
 msgid "Roles"
 msgstr ""
 
-#: includes/functions-admin.php:39 includes/manager.php:332
-msgid "Backup"
-msgstr ""
-
-#: includes/functions-admin.php:40 includes/manager.php:335
+#: includes/functions-admin.php:196 includes/manager.php:340
 msgid "Settings"
 msgstr ""
 
-#: includes/functions-admin.php:45 includes/functions-admin.php:46
-#: includes/manager.php:341 includes/manager.php:342
-msgid "Upgrade to Pro"
-msgstr ""
-
-#: includes/handler.php:23 includes/handler.php:49
+#: includes/handler.php:28 includes/handler.php:54
 msgid "New role created."
 msgstr ""
 
-#: includes/handler.php:29 includes/handler.php:55
+#: includes/handler.php:34 includes/handler.php:60
 msgid "Error: Failed creating the new role."
 msgstr ""
 
-#: includes/handler.php:42
+#: includes/handler.php:47
 #, php-format
 msgid "Role \"%s\" (id %s) renamed to \"%s\""
 msgstr ""
 
-#: includes/handler.php:111
+#: includes/handler.php:126
 msgid "Incorrect capability name."
 msgstr ""
 
-#: includes/handler.php:116
+#: includes/handler.php:131
 msgid "Type / Taxonomy settings saved."
 msgstr ""
 
-#: includes/handler.php:122
+#: includes/handler.php:137
 msgid "Bad form received."
 msgstr ""
 
-#: includes/handler.php:245
+#: includes/handler.php:260
 msgid "You cannot remove Manage Capabilities from Administrators"
 msgstr ""
 
-#: includes/handler.php:357
-#, php-format
-msgid "Cannot delete default role. You <a href=\"%s\">have to change it first</a>."
-msgstr ""
-
-#: includes/handler.php:404
-#, php-format
-msgid "Role has been deleted. %1$d users moved to default role %2$s."
-msgstr ""
-
-#: includes/manager.php:181
+#: includes/manager.php:186
 msgid "Explicity negate this capability by storing as disabled"
 msgstr ""
 
-#: includes/manager.php:182
+#: includes/manager.php:187
 msgid "Explicitly negate these capabilities by storing as disabled"
 msgstr ""
 
-#: includes/manager.php:183
+#: includes/manager.php:188
 msgid "Post type registration does not define this capability distinctly"
 msgstr ""
 
-#: includes/manager.php:184
+#: includes/manager.php:189
 msgid "This capability is explicitly negated. Click to add/remove normally."
 msgstr ""
 
-#: includes/manager.php:185
+#: includes/manager.php:190
 msgid "Add or remove this capability from the WordPress role"
 msgstr ""
 
-#: includes/manager.php:186
+#: includes/manager.php:191
 msgid "Add or remove capability from the role normally"
 msgstr ""
 
-#: includes/manager.php:359
-#: includes/roles/class/class-pp-roles-list-table.php:77
-msgid "Role"
-msgstr ""
-
-#: includes/manager.php:360
-#: includes/roles/class/class-pp-roles-list-table.php:78
-#: includes/roles/roles.php:33
+#: includes/manager.php:364 includes/roles/roles.php:33
 msgid "Name"
 msgstr ""
 
-#: includes/manager.php:361
-#: includes/roles/class/class-pp-roles-list-table.php:79
+#: includes/manager.php:365
+#: includes/roles/class/class-pp-roles-list-table.php:81
+msgid "Role"
+msgstr ""
+
+#: includes/manager.php:366
+#: includes/roles/class/class-pp-roles-list-table.php:82
 msgid "Users"
 msgstr ""
 
-#: includes/manager.php:388
+#: includes/manager.php:393
 msgid "You do not have permission to manage roles."
 msgstr ""
 
-#: includes/manager.php:494 includes/manager.php:535
+#: includes/manager.php:503 includes/manager.php:544
 msgid "You do not have permission to manage capabilities."
 msgstr ""
 
-#: includes/manager.php:549
+#: includes/manager.php:558
 msgid "New capability added to role."
 msgstr ""
 
-#: includes/manager.php:588
+#: includes/manager.php:576
+msgid "The selected role is not editable."
+msgstr ""
+
+#: includes/manager.php:603
 msgid "Bad form Received"
 msgstr ""
 
-#: includes/manager.php:738
+#: includes/manager.php:753
 #, php-format
 msgid "If you like %s, please leave us a %s rating. Thank you!"
 msgstr ""
 
-#: includes/manager.php:749
+#: includes/manager.php:764
 msgid "About PublishPress Capabilities"
 msgstr ""
 
-#: includes/manager.php:749
+#: includes/manager.php:764
 msgid "About"
 msgstr ""
 
-#: includes/manager.php:751
+#: includes/manager.php:766
 msgid "Capabilites Documentation"
 msgstr ""
 
-#: includes/manager.php:751
+#: includes/manager.php:766
 msgid "Documentation"
 msgstr ""
 
-#: includes/manager.php:753
+#: includes/manager.php:768
 msgid "Contact the PublishPress team"
 msgstr ""
 
-#: includes/manager.php:753
+#: includes/manager.php:768
 msgid "Contact"
 msgstr ""
 
@@ -743,30 +759,78 @@ msgstr ""
 msgid "Enforce Edit, Delete and Assign capabilities separately from Management capability."
 msgstr ""
 
-#: includes/roles/class/class-pp-roles-actions.php:126
+#: includes/roles/class/class-pp-roles-actions.php:143
 msgid "You do not have sufficient permissions to perform this action."
 msgstr ""
 
-#: includes/roles/class/class-pp-roles-actions.php:142
+#: includes/roles/class/class-pp-roles-actions.php:159
 msgid "Your link has expired, refresh the page and try again."
 msgstr ""
 
-#: includes/roles/class/class-pp-roles-actions.php:163
-#: includes/roles/class/class-pp-roles-actions.php:269
+#: includes/roles/class/class-pp-roles-actions.php:180
+#: includes/roles/class/class-pp-roles-actions.php:298
+#: includes/roles/class/class-pp-roles-actions.php:412
+#: includes/roles/class/class-pp-roles-actions.php:473
 msgid "Missing parameters, refresh the page and try again."
 msgstr ""
 
-#: includes/roles/class/class-pp-roles-actions.php:197
+#: includes/roles/class/class-pp-roles-actions.php:214
 msgid "Something went wrong, the system wasn't able to create the role, refresh the page and try again."
 msgstr ""
 
-#: includes/roles/class/class-pp-roles-actions.php:284
+#: includes/roles/class/class-pp-roles-actions.php:306
+#, php-format
+msgid "Cannot delete default role. You <a href=\"%s\">have to change it first</a>."
+msgstr ""
+
+#: includes/roles/class/class-pp-roles-actions.php:322
 msgid "Deleting a system role is not allowed."
 msgstr ""
 
-#: includes/roles/class/class-pp-roles-list-table.php:134
-#: includes/roles/class/class-pp-roles-list-table.php:242
+#: includes/roles/class/class-pp-roles-actions.php:345
+#, php-format
+msgid "%1$d users moved to default role %2$s."
+msgstr ""
+
+#: includes/roles/class/class-pp-roles-actions.php:350
+#, php-format
+msgid "The role %1$s was successfully deleted. %2$s"
+msgstr ""
+
+#: includes/roles/class/class-pp-roles-actions.php:356
+#, php-format
+msgid "The selected %1$s roles were successfully deleted. %2$s"
+msgstr ""
+
+#: includes/roles/class/class-pp-roles-actions.php:369
+msgid "The role could not be deleted."
+msgstr ""
+
+#: includes/roles/class/class-pp-roles-actions.php:423
+#, php-format
+msgid "The role %1$s was successfully hidden."
+msgstr ""
+
+#: includes/roles/class/class-pp-roles-actions.php:484
+#, php-format
+msgid "The role %1$s was successfully unhidden."
+msgstr ""
+
+#: includes/roles/class/class-pp-roles-list-table.php:130
+msgid "(non-editable role)"
+msgstr ""
+
+#: includes/roles/class/class-pp-roles-list-table.php:150
+msgid "Unhide"
+msgstr ""
+
+#: includes/roles/class/class-pp-roles-list-table.php:168
+#: includes/roles/class/class-pp-roles-list-table.php:305
 msgid "Delete"
+msgstr ""
+
+#: includes/roles/class/class-pp-roles-list-table.php:189
+msgid "Hide"
 msgstr ""
 
 #: includes/roles/roles-functions.php:32
@@ -782,12 +846,16 @@ msgstr ""
 msgid "Search Roles"
 msgstr ""
 
-#: includes/roles/roles.php:25 includes/roles/roles.php:40
+#: includes/roles/roles.php:25
 msgid "Add New Role"
 msgstr ""
 
 #: includes/roles/roles.php:35
 msgid "The name is how it appears on your site."
+msgstr ""
+
+#: includes/roles/roles.php:40
+msgid "Add"
 msgstr ""
 
 #: includes/roles/roles.php:52
