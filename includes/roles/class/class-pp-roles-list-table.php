@@ -129,6 +129,28 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
             $actions = [
                 'edit' => '<span class="pp-caps-action-note">' . __('(non-editable role)', 'capsman-enhanced') . '</span>',
             ];
+
+            if (defined("PRESSPERMIT_ACTIVE")) {
+                static $pp_only;
+
+                if (!isset($pp_only)) {
+                    $pp_only = (array) pp_capabilities_get_permissions_option('supplemental_role_defs');
+                }
+
+                if (in_array($item['role'], $pp_only)) {
+                    $actions['unhide'] = sprintf(
+                        '<a href="%s" class="hide-role">%s</a>',
+                        add_query_arg([
+                            'page' => 'pp-capabilities-roles',
+                            'action' => 'pp-roles-unhide-role',
+                            'role' => esc_attr($item['role']),
+                            '_wpnonce' => wp_create_nonce('bulk-roles')
+                        ], 
+                        admin_url('admin.php')),
+                        __('Unhide', 'capsman-enhanced')
+                    );
+                }
+            }
         }
 
         if (!$this->manager->is_system_role($item['role']) && ($this->default_role != $item['role']) && pp_capabilities_is_editable_role($item['role'])) {
@@ -146,6 +168,28 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
                     __('Delete', 'capsman-enhanced')
                 ),
             ]);
+
+            if (defined("PRESSPERMIT_ACTIVE")) {
+                static $pp_only;
+
+                if (!isset($pp_only)) {
+                    $pp_only = (array) pp_capabilities_get_permissions_option('supplemental_role_defs');
+                }
+
+                if (!in_array($item['role'], $pp_only)) {
+                    $actions['hide'] = sprintf(
+                        '<a href="%s" class="hide-role">%s</a>',
+                        add_query_arg([
+                            'page' => 'pp-capabilities-roles',
+                            'action' => 'pp-roles-hide-role',
+                            'role' => esc_attr($item['role']),
+                            '_wpnonce' => wp_create_nonce('bulk-roles')
+                        ], 
+                        admin_url('admin.php')),
+                        __('Hide', 'capsman-enhanced')
+                    );
+                }
+            }
         }
 
         return $column_name === $primary ? $this->row_actions($actions, false) : '';
