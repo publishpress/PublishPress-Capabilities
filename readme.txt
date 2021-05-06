@@ -141,6 +141,14 @@ Fixed : Non-administrators with user editing capabilities could add new Administ
 
 == Changelog ==
 
+= 2.0.2-rc =
+  * Feature : Multisite - "sync options to all sites" checkbox. Copies "use create_posts capability", Type-Specific Capabilities, Taxonomy-Specific Capabilities, Detailed Taxonomy Capabilities settings 
+  * Fixed : Multisite - "sync role to all sites" did not work if main site ID is not 1
+  * Fixed : Fatal error on Capabilities screen if another plugin calls get_editable_roles() too early
+  * Fixed : Add New User - couldn't display password entry
+  * Compat : PublishPress - Authors without publish capability could directly publish on the Calendar screen
+  * Change : Permissions - Hide / Unhide Role setting moved to Roles screen row actions
+
 = 2.0 - 18 Feb 2020 =
   * Feature : Roles screen
   * Feature : Multiple role assignment on Add / Edit User screen
