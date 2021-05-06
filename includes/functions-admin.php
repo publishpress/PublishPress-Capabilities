@@ -79,7 +79,7 @@ class PP_Capabilities_Admin_UI {
                     'pp-capabilities-roles-profile-js',
                     'ppCapabilitiesProfileData',
                     [
-                        'selected_roles' => $this->getUsersRoles($userId),
+                        'selected_roles' => ($userId) ? $this->getUsersRoles($userId) : (array) get_option('default_role'),
                     ]
                 );
             }
