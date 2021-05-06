@@ -141,7 +141,7 @@ Fixed : Non-administrators with user editing capabilities could add new Administ
 
 == Changelog ==
 
-= 2.0.2-rc =
+= 2.0.2 - 6 May 2021 =
   * Feature : Multisite - "sync options to all sites" checkbox. Copies "use create_posts capability", Type-Specific Capabilities, Taxonomy-Specific Capabilities, Detailed Taxonomy Capabilities settings 
   * Fixed : Multisite - "sync role to all sites" did not work if main site ID is not 1
   * Fixed : Fatal error on Capabilities screen if another plugin calls get_editable_roles() too early
