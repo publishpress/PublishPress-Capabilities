@@ -357,7 +357,6 @@ class CapsmanHandler
 							foreach ( $del_caps as $cap => $grant) {
 								$blog_role->remove_cap($cap);
 							}
-	
 						} else {
 							$wp_roles->add_role( $role_name, $role_caption, $new_caps );
 						}
