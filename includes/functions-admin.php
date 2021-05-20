@@ -9,7 +9,7 @@ class PP_Capabilities_Admin_UI {
          */
         require_once (dirname(CME_FILE) . '/classes/pp-capabilities-notices.php');
 
-        add_action('admin_enqueue_scripts', [$this, 'adminScripts']);
+        add_action('admin_enqueue_scripts', [$this, 'adminScripts'], 100);
         add_action('admin_print_scripts', [$this, 'adminPrintScripts']);
 
         add_action('profile_update', [$this, 'action_profile_update'], 10, 2);
@@ -45,7 +45,7 @@ class PP_Capabilities_Admin_UI {
         if (function_exists('get_current_screen') && (!defined('PUBLISHPRESS_VERSION') || empty($publishpress) || empty($publishpress->modules) || empty($publishpress->modules->roles))) {
             $screen = get_current_screen();
 
-            if ('user-edit' === $screen->base || ('user' === $screen->base && 'add' === $screen->action)) {
+            if ('user-edit' === $screen->base || ('user' === $screen->base && 'add' === $screen->action && defined('PP_CAPABILITIES_ADD_USER_MULTI_ROLES'))) {
                 // Check if we are on the user's profile page
                 wp_enqueue_script(
                     'pp-capabilities-chosen-js',
@@ -73,13 +73,17 @@ class PP_Capabilities_Admin_UI {
                     CAPSMAN_VERSION
                 );
 
-                $userId = isset($_GET['user_id']) ? (int)$_GET['user_id'] : 0;
+                $roles = !empty($_GET['user_id']) ?$this->getUsersRoles($_GET['user_id']) : [];
+
+                if (empty($roles)) {
+                    $roles = (array) get_option('default_role');
+                }
 
                 wp_localize_script(
                     'pp-capabilities-roles-profile-js',
                     'ppCapabilitiesProfileData',
                     [
-                        'selected_roles' => ($userId) ? $this->getUsersRoles($userId) : (array) get_option('default_role'),
+                        'selected_roles' => $roles
                     ]
                 );
             }
