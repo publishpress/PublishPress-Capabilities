@@ -129,6 +129,15 @@ if ($classic_editor) {
 
         </form>
 
+        <style>
+        span.menu-item-link {
+            webkit-user-select: none; /* Safari */        
+            -moz-user-select: none; /* Firefox */
+            -ms-user-select: none; /* IE10+/Edge */
+            user-select: none; /* Standard */
+        }
+        </style>
+
         <script type="text/javascript">
             /* <![CDATA[ */
             jQuery(document).ready(function ($) {
@@ -215,7 +224,7 @@ if ($classic_editor) {
                     $('.pp-capability-menus-wrapper .ppc-editor-features-submit').hide();
 
                     //show loading
-                    $('#pp-capability-menu-wrapper').html('<img src="<?php echo $capsman->mod_url; ?>/images/loader-black.gif" alt="loading...">');
+                    $('#pp-capability-menu-wrapper').html('<img src="<?php echo $capsman->mod_url; ?>/images/loader-black.gif" alt="">');
 
                     //go to url
                     window.location = '<?php echo admin_url('admin.php?page=pp-capabilities-editor-features&role='); ?>' + $(this).val() + '';
