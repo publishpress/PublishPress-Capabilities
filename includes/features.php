@@ -76,11 +76,11 @@ if ($classic_editor) {
                                             </select> &nbsp;
 
 
-                                            <div style="float:right">
-                                                <input type="submit" name="editor-features-submit"
-                                    				value="<?php _e('Save Changes', 'capabilities-pro') ?>"
-                                    				class="button-primary ppc-editor-features-submit" style="float:right" />
-                                            </div>
+
+                                            <input type="submit" name="editor-features-submit"
+                                				value="<?php _e('Save Changes', 'capabilities-pro') ?>"
+                                				class="button-primary ppc-editor-features-submit" style="float:right" />
+
 
                                 <?php if ($classic_editor) { ?>
                                     <ul class="nav-tab-wrapper">
