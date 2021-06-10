@@ -465,19 +465,16 @@ if (is_admin()) {
 
 
 /**
- * Check if Classic Editor plugin is active.
+ * Check if Classic Editor plugin is available.
  *
  * @return bool
  */
-function pp_cabapbility_is_classic_editor_plugin_active()
+function pp_capabilities_is_classic_editor_available()
 {
-    if (!function_exists('is_plugin_active')) {
-        include_once ABSPATH . 'wp-admin/includes/plugin.php';
-    }
+    global $wp_version;
 
-    if (is_plugin_active('classic-editor/classic-editor.php')) {
-        return true;
-    }
-
-    return false;
+    return class_exists('Classic_Editor')
+        || function_exists( 'the_gutenberg_project' )
+        || class_exists('Gutenberg_Ramp')
+        || version_compare($wp_version, '5.0', '<');
 }

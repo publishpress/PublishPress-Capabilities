@@ -23,7 +23,7 @@ $roles = $this->roles;
 $default_role = $this->current;
 $role_caption = translate_user_role($roles[$default_role]);
 
-$classic_editor = pp_cabapbility_is_classic_editor_plugin_active();
+$classic_editor = pp_capabilities_is_classic_editor_available();
 
 $gutenberg_metaboxes = pp_cabapbility_post_gutenberg_metaboxes();
 $gutenberg_post_disabled = !empty(get_option('capsman_feature_gutenberg_post_disabled')) ? get_option('capsman_feature_gutenberg_post_disabled') : [];
@@ -36,7 +36,6 @@ if ($classic_editor) {
     $ce_post_disabled = !empty(get_option('capsman_feature_ce_post_disabled')) ? get_option('capsman_feature_ce_post_disabled') : [];
     $ce_post_disabled = array_key_exists($default_role, $ce_post_disabled) ? (array)$ce_post_disabled[$default_role] : [];
 }
-
 ?>
 
     <div class="wrap publishpress-caps-manage pressshack-admin-wrapper pp-capability-menus-wrapper">
