@@ -1,13 +1,16 @@
 if(ppc_features.disabled_panel){
     var disabled_panel = ppc_features.disabled_panel;
     var disabled_panel = disabled_panel.split(',');
+
+    var taxs = ppc_features.taxonomies;
+    taxs = taxs.split(',');
     
-    if(disabled_panel.includes("taxonomy-panel-category")){
-        wp.data.dispatch('core/edit-post').removeEditorPanel( 'taxonomy-panel-category' ) ; // category
-    }
-    if(disabled_panel.includes("taxonomy-panel-post_tag")){
-        wp.data.dispatch('core/edit-post').removeEditorPanel( 'taxonomy-panel-post_tag' ); // tags
-    }
+    taxs.forEach ((tax) => {
+        if(disabled_panel.includes("taxonomy-panel-" + tax)){
+            wp.data.dispatch('core/edit-post').removeEditorPanel('taxonomy-panel-' + tax); // category / tag / custom taxonomy
+        }
+    });
+
     if(disabled_panel.includes("featured-image")){
         wp.data.dispatch('core/edit-post').removeEditorPanel( 'featured-image' ); // featured image
     }

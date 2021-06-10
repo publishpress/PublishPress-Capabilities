@@ -1,5 +1,5 @@
 <?php
-$ce_elements = PP_Capabilities_Post_Features::elementsClassic();
+$ce_elements = PP_Capabilities_Post_Features::elementsLayoutClassic();
 
 $ce_post_disabled = [];
 
