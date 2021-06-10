@@ -19,8 +19,8 @@
  */
 
 global $capsman;
-$roles = $this->roles;
-$default_role = $this->current;
+$roles = $capsman->roles;
+$default_role = $capsman->current;
 $role_caption = translate_user_role($roles[$default_role]);
 
 $classic_editor = pp_capabilities_is_classic_editor_available();
