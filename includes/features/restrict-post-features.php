@@ -102,8 +102,13 @@ class PP_Capabilities_Post_Features {
             __('h2: Advanced Options', 'capsman-enhanced') =>        '#post-body h2',
             */
 
-        $post_type_supports = get_all_post_type_supports('post');
-        $post_type_supports['page-attributes'] = '1';
+        $post_type_supports = [];
+
+        $def_post_types = apply_filters('pp_capabilities_feature_post_types', ['post', 'page']);
+
+        foreach($def_post_types as $post_type) {
+            $post_type_supports = array_merge($post_type_supports, get_all_post_type_supports($post_type));
+        }
 
         foreach (array_keys($post_type_supports) as $feature) {
             $label = ucfirst(str_replace(['-', '_'], ' ', $feature));
@@ -154,7 +159,9 @@ class PP_Capabilities_Post_Features {
     {
         $restrict_elements = [];
 
-        $post_type = pp_capabilities_get_post_type();
+        if (!$post_type = pp_capabilities_get_post_type()) {
+            return;
+        }
 
         // Only restrictions associated with this user's role(s) will be applied
         $role_restrictions = array_intersect_key(
