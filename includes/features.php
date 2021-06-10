@@ -82,6 +82,7 @@ if ($classic_editor) {
                                 				class="button-primary ppc-editor-features-submit" style="float:right" />
 
 											<input type="hidden" name="ppc-tab" value="<?php echo (!empty($_REQUEST['ppc-tab'])) ? sanitize_key($_REQUEST['ppc-tab']) : 'gutenberg';?>" />
+                            		</div>
 
 									<script type="text/javascript">
 		                            /* <![CDATA[ */
