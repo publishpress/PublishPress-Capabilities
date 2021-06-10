@@ -75,7 +75,7 @@ if ($classic_editor) {
                                                 ?>
                                             </select> &nbsp;
 
-
+                                			<img class="loading" src="<?php echo $capsman->mod_url; ?>/images/wpspin_light.gif" style="display: none">
 
                                             <input type="submit" name="editor-features-submit"
                                 				value="<?php _e('Save Changes', 'capabilities-pro') ?>"
