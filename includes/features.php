@@ -18,6 +18,8 @@
  *  along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
+require_once (dirname(CME_FILE) . '/includes/features/restrict-editor-features.php');
+
 global $capsman;
 $roles = $capsman->roles;
 $default_role = $capsman->current;
