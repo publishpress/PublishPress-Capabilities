@@ -153,7 +153,7 @@ class PP_Capabilities_Post_Features {
 
 
     /**
-     * Classic Editor screen: Output Styles to Hide UI elements for Post Features configured as restricted
+     * Classic Editor screen: Output Styles to Hide UI elements for Editor Features configured as restricted
      */
     public static function applyRestrictionsClassic()
     {
@@ -180,7 +180,7 @@ class PP_Capabilities_Post_Features {
     }
 
     /**
-     * Classic Editor: Apply / Queue Post Feature restrictions
+     * Classic Editor: Apply / Queue editor feature restrictions
      */
     public static function adminInitClassic($post_type)
     {
@@ -223,7 +223,7 @@ class PP_Capabilities_Post_Features {
     }
 
     /**
-     * Gutenberg Editor: Hide UI elements for Post Features configured as restricted
+     * Gutenberg Editor: Hide UI elements for editor features configured as restricted
      */
     public static function applyRestrictions($post_type)
     {

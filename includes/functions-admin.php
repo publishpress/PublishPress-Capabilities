@@ -34,7 +34,7 @@ class PP_Capabilities_Admin_UI {
         switch ($editor) {
             case 'gutenberg':
                 if (_pp_capabilities_is_block_editor_active()) {
-                    require_once ( dirname(CME_FILE) . '/includes/features/restrict-post-features.php' );
+                    require_once ( dirname(CME_FILE) . '/includes/features/restrict-editor-features.php' );
                     PP_Capabilities_Post_Features::applyRestrictions($post_type);
                 }
                 
@@ -42,7 +42,7 @@ class PP_Capabilities_Admin_UI {
 
             case 'classic':
                 if (!_pp_capabilities_is_block_editor_active()) {
-                    require_once ( dirname(CME_FILE) . '/includes/features/restrict-post-features.php' );
+                    require_once ( dirname(CME_FILE) . '/includes/features/restrict-editor-features.php' );
                     PP_Capabilities_Post_Features::adminInitClassic($post_type);
                 }
         }
@@ -91,8 +91,7 @@ function cme_submenus() {
     );
 
     add_submenu_page('capsman',  __('Admin Menus', 'capsman-enhanced'), __('Admin Menus', 'capsman-enhanced'), $cap_name, 'capsman' . '-pp-admin-menus', 'cme_fakefunc');
-
-    add_submenu_page('capsman',  __('Features', 'capsman-enhanced'), __('Features', 'capsman-enhanced'), $cap_name, 'capsman' . '-pp-post-features', 'cme_fakefunc');
+	add_submenu_page('pp-capabilities',  __('Editor Features', 'capsman-enhanced'), __('Editor Features', 'capsman-enhanced'), $cap_name, 'pp-capabilities-post-features', 'cme_fakefunc');
 
     add_submenu_page('capsman',  __('Backup', 'capsman-enhanced'), __('Backup', 'capsman-enhanced'), $cap_name, 'capsman' . '-tool', 'cme_fakefunc');
 

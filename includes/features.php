@@ -40,11 +40,11 @@ if ($classic_editor) {
 
     <div class="wrap publishpress-caps-manage pressshack-admin-wrapper pp-capability-menus-wrapper">
         <div id="icon-capsman-admin" class="icon32"></div>
-        <h2><?php _e('Edit Posts Permission', 'capsman-enhanced'); ?></h2>
+        <h2><?php _e('Post Feature Restriction', 'capsman-enhanced'); ?></h2>
 
         <form method="post" id="ppc-post-features-form"
-              action="admin.php?page=<?php echo $this->ID ?>-pp-post-features">
-            <?php wp_nonce_field('capsman-pp-post-features'); ?>
+              action="admin.php?page=pp-capabilities-post-features">
+            <?php wp_nonce_field('pp-capabilities-post-features'); ?>
 
             <fieldset>
                 <table id="akmin">
@@ -224,7 +224,7 @@ if ($classic_editor) {
                     $('#pp-capability-menu-wrapper').html('<img src="<?php echo $capsman->mod_url; ?>/images/loader-black.gif" alt="loading...">');
 
                     //go to url
-                    window.location = '<?php echo admin_url('admin.php?page=' . $this->ID . '-pp-post-features&role='); ?>' + $(this).val() + '';
+                    window.location = '<?php echo admin_url('admin.php?page=pp-capabilities-post-features&role='); ?>' + $(this).val() + '';
 
                 });
 
