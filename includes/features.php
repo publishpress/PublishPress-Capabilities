@@ -40,11 +40,11 @@ if ($classic_editor) {
 
     <div class="wrap publishpress-caps-manage pressshack-admin-wrapper pp-capability-menus-wrapper">
         <div id="icon-capsman-admin" class="icon32"></div>
-        <h2><?php _e('Post Feature Restriction', 'capsman-enhanced'); ?></h2>
+        <h2><?php _e('Editor Feature Restriction', 'capsman-enhanced'); ?></h2>
 
-        <form method="post" id="ppc-post-features-form"
-              action="admin.php?page=pp-capabilities-post-features">
-            <?php wp_nonce_field('pp-capabilities-post-features'); ?>
+        <form method="post" id="ppc-editor-features-form"
+              action="admin.php?page=pp-capabilities-editor-features">
+            <?php wp_nonce_field('pp-capabilities-editor-features'); ?>
 
             <fieldset>
                 <table id="akmin">
@@ -66,7 +66,7 @@ if ($classic_editor) {
                                 <table width='100%' class="form-table">
                                     <tr>
                                         <td>
-                                            <select name="ppc-post-features-role" class="ppc-post-features-role">
+                                            <select name="ppc-editor-features-role" class="ppc-editor-features-role">
                                                 <?php
                                                 foreach ($roles as $role => $name) :
                                                     $name = translate_user_role($name);
@@ -81,9 +81,9 @@ if ($classic_editor) {
 
                                         <td>
                                             <div style="float:right">
-                                                <input type="submit" name="post-features-submit"
-                                                       value="<?php _e('Save Changes', 'capsman-enhanced') ?>"
-                                                       class="button-primary ppc-post-features-submit"/> &nbsp;
+                                                <input type="submit" name="editor-features-submit"
+                                    				value="<?php _e('Save Changes', 'capabilities-pro') ?>"
+                                    				class="button-primary ppc-editor-features-submit" style="float:right" />
                                             </div>
                                         </td>
                                         </td>
@@ -91,11 +91,12 @@ if ($classic_editor) {
                                 </table>
                                 <?php if ($classic_editor) { ?>
                                     <ul class="nav-tab-wrapper">
-                                        <li class="post-features-tab gutenberg-tab nav-tab nav-tab-active"
-                                            data-tab=".post-features-gutenberg"><a
+                                        <li class="editor-features-tab gutenberg-tab nav-tab nav-tab-active"
+                                            data-tab=".editor-features-gutenberg"><a
                                                     href="#"><?php _e('Gutenberg', 'capsman-enhanced') ?></a></li>
-                                        <li class="post-features-tab classic-tab nav-tab"
-                                            data-tab=".post-features-classic"><a
+                                        
+                                        <li class="editor-features-tab classic-tab nav-tab"
+                                            data-tab=".editor-features-classic"><a 
                                                     href="#"><?php _e('Classic', 'capsman-enhanced') ?></a></li>
                                     </ul>
                                 <?php } ?>
@@ -109,9 +110,10 @@ if ($classic_editor) {
                                                  style="display: block;">
                                                 <?php
                                                 $sn = 0;
-                                                include(dirname(CME_FILE) . '/includes/features-gutenberg.php');
+                                            include(dirname(__FILE__) . '/editor-features-gutenberg.php');
+
                                                 if ($classic_editor) {
-                                                    include(dirname(CME_FILE) . '/includes/features-classic.php');
+                                                include(dirname(__FILE__) . '/editor-features-classic.php');
                                                 }
                                                 ?>
 
@@ -121,9 +123,9 @@ if ($classic_editor) {
                                     </div>
                                 </div>
 
-                                <input type="submit" name="post-features-submit"
+                            <input type="submit" name="editor-features-submit"
                                        value="<?php _e('Save Changes', 'capsman-enhanced') ?>"
-                                       class="button-primary ppc-post-features-submit"/> &nbsp;
+                                    class="button-primary ppc-editor-features-submit"/> &nbsp;
 
                             </dl>
 
@@ -142,7 +144,7 @@ if ($classic_editor) {
                 // -------------------------------------------------------------
                 //   Set form action attribute to include role
                 // -------------------------------------------------------------
-                $('#ppc-post-features-form').attr('action', '<?php echo admin_url('admin.php?page=' . $this->ID . '-pp-post-features&role=' . $default_role . ''); ?>');
+                $('#ppc-editor-features-form').attr('action', '<?php echo admin_url('admin.php?page=pp-capabilities-editor-features&role=' . $default_role . ''); ?>');
 
                 // -------------------------------------------------------------
                 //   Instant restricted item class
@@ -212,29 +214,29 @@ if ($classic_editor) {
                 // -------------------------------------------------------------
                 //   Load selected roles menu
                 // -------------------------------------------------------------
-                $(document).on('change', '.pp-capability-menus-wrapper .ppc-post-features-role', function () {
+                $(document).on('change', '.pp-capability-menus-wrapper .ppc-editor-features-role', function () {
 
                     //disable select
-                    $('.pp-capability-menus-wrapper .ppc-post-features-role').attr('disabled', true);
+                    $('.pp-capability-menus-wrapper .ppc-editor-features-role').attr('disabled', true);
 
                     //hide button
-                    $('.pp-capability-menus-wrapper .ppc-post-features-submit').hide();
+                    $('.pp-capability-menus-wrapper .ppc-editor-features-submit').hide();
 
                     //show loading
                     $('#pp-capability-menu-wrapper').html('<img src="<?php echo $capsman->mod_url; ?>/images/loader-black.gif" alt="loading...">');
 
                     //go to url
-                    window.location = '<?php echo admin_url('admin.php?page=pp-capabilities-post-features&role='); ?>' + $(this).val() + '';
+                    window.location = '<?php echo admin_url('admin.php?page=pp-capabilities-editor-features&role='); ?>' + $(this).val() + '';
 
                 });
 
 
                 // -------------------------------------------------------------
-                //   Post features tab
+                //   Editor features tab
                 // -------------------------------------------------------------
-                $('.post-features-tab').click(function (e) {
+                $('.editor-features-tab').click(function (e) {
                     e.preventDefault();
-                    $('.post-features-tab').removeClass('nav-tab-active');
+                    $('.editor-features-tab').removeClass('nav-tab-active');
                     $(this).addClass('nav-tab-active');
                     $('.pp-capability-menus-select').hide();
                     $($(this).attr('data-tab')).show();
