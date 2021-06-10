@@ -51,21 +51,14 @@ if ($classic_editor) {
                     <tr>
                         <td class="content">
 
-                            <dl>
-                                <dt><?php printf(__('Edit Posts Permission for %s', 'capsman-enhanced'), $role_caption); ?></dt>
-
-                                <dd>
                                     <div class="publishpress-headline">
                                     <span class="cme-subtext">
                                     <strong><?php _e('Note', 'capsman-enhanced'); ?>:</strong>
                                     <?php _e('This feature only remove the option for the restricted roles.', 'capsman-enhanced'); ?>
                                     </span>
                                     </div>
-                                </dd>
 
-                                <table width='100%' class="form-table">
-                                    <tr>
-                                        <td>
+                            		<div class="publishpress-filters">
                                             <select name="ppc-editor-features-role" class="ppc-editor-features-role">
                                                 <?php
                                                 foreach ($roles as $role => $name) :
@@ -79,16 +72,13 @@ if ($classic_editor) {
                                                 ?>
                                             </select> &nbsp;
 
-                                        <td>
+
                                             <div style="float:right">
                                                 <input type="submit" name="editor-features-submit"
                                     				value="<?php _e('Save Changes', 'capabilities-pro') ?>"
                                     				class="button-primary ppc-editor-features-submit" style="float:right" />
                                             </div>
-                                        </td>
-                                        </td>
-                                    </tr>
-                                </table>
+
                                 <?php if ($classic_editor) { ?>
                                     <ul class="nav-tab-wrapper">
                                         <li class="editor-features-tab gutenberg-tab nav-tab nav-tab-active"
@@ -127,7 +117,6 @@ if ($classic_editor) {
                                        value="<?php _e('Save Changes', 'capsman-enhanced') ?>"
                                     class="button-primary ppc-editor-features-submit"/> &nbsp;
 
-                            </dl>
 
                         </td>
                     </tr>
