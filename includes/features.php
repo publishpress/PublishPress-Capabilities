@@ -167,54 +167,29 @@ $classic_editor = pp_capabilities_is_classic_editor_available();
                     current_tab = 'gutenberg';
                     <?php } ?>
 
-                    if ($(this).is(':checked')) {
-                        //add class if value is checked
-                        $(this).parent().parent().find('.menu-item-link').addClass('restricted');
+                    //add class if feature is restricted for any post type
+                    var anyRestricted = $(this).closest('tr').find('input:checked').length > 0;
+                    $(this).closest('tr').find('.menu-item-link').toggleClass('restricted', anyRestricted);
+
+                    var isChecked = $(this).is(':checked');
 
                         //toggle all checkbox
                         if ($(this).hasClass('check-all-menu-item')) {
-                            if (current_tab == 'gutenberg') {
-                                $("input[type='checkbox'][name='capsman_feature_gutenberg_post_disabled[]']").prop('checked', true);
-                                $('.gutenberg.menu-item-link').addClass('restricted');
-                            } else {
-                                $("input[type='checkbox'][name='capsman_feature_ce_post_disabled[]']").prop('checked', true);
-                                $('.classic.menu-item-link').addClass('restricted');
-                            }
-                        } else {
-                            if (current_tab == 'gutenberg') {
-                                $('.gutenberg.check-all-menu-link').removeClass('restricted');
-                                $('.gutenberg.check-all-menu-item').prop('checked', false);
-                            } else {
-                                $('.classic.check-all-menu-link').removeClass('restricted');
-                                $('.classic.check-all-menu-item').prop('checked', false);
-                            }
-                        }
+                        var suffix = ('gutenberg' == current_tab) ? '' : current_tab + '_';
+                        $("input[type='checkbox'][name='capsman_feature_restrict_" + suffix + $(this).attr('pp_type') + "[]']").prop('checked', isChecked);
 
+                        $('.' + current_tab + '.menu-item-link').each(function(i,e) {
+                            $(this).toggleClass('restricted', $(this).closest('tr').find('input:checked').length > 0);
+                        });
                     } else {
-                        //unchecked value
-                        $(this).parent().parent().find('.menu-item-link').removeClass('restricted');
-
-                        //toggle all checkbox
-                        if ($(this).hasClass('check-all-menu-item')) {
-                            if (current_tab == 'gutenberg') {
-                                $("input[type='checkbox'][name='capsman_feature_gutenberg_post_disabled[]']").prop('checked', false);
-                                $('.gutenberg.menu-item-link').removeClass('restricted');
-                            } else {
-                                $("input[type='checkbox'][name='capsman_feature_ce_post_disabled[]']").prop('checked', false);
-                                $('.classic.menu-item-link').removeClass('restricted');
-                            }
-                        } else {
-                            if (current_tab == 'gutenberg') {
-                                $('.gutenberg.check-all-menu-link').removeClass('restricted');
-                                $('.gutenberg.check-all-menu-item').prop('checked', false);
-                            } else {
-                                $('.classic.check-all-menu-link').removeClass('restricted');
-                                $('.classic.check-all-menu-item').prop('checked', false);
-                            }
-                        }
-
+                        $('.' + current_tab + '.check-all-menu-link').removeClass('restricted').prop('checked', false);
                     }
+                });
 
+                $('span.menu-item-link').click(function(e) {
+                    var chks = $(this).closest('tr').find('input');
+                    $(chks).prop('checked', !$(this).hasClass('restricted'));
+                    $(this).toggleClass('restricted', $(chks).filter(':checked').length);
                 });
 
                 // -------------------------------------------------------------
