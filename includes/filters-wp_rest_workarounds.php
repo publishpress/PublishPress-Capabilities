@@ -47,7 +47,9 @@ class WP_REST_Workarounds
     */
 	public function fltPublishCapReplacement($wp_sitecaps, $reqd_caps, $args)
 	{
-		if ($this->skip_filtering) {
+		global $pagenow;
+
+		if ($this->skip_filtering || (!in_array($pagenow, ['post.php', 'post-new.php']) && (!defined('REST_REQUEST') || !constant('REST_REQUEST')))) {
 			return $wp_sitecaps;
 		}
 

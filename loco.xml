@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<bundle name="PublishPress Capabilities Pro">
+  <domain name="capabilities-pro">
+    <project name="PublishPress Capabilities Pro" slug="capabilities-pro">
+      <source>
+        <directory>includes-pro</directory>
+      </source>
+      <target>
+        <directory>includes-pro/languages</directory>
+      </target>
+      <template>
+        <file>includes-pro/languages/capabilities-pro.pot</file>
+      </template>
+    </project>
+  </domain>
+  <domain name="capsman-enhanced">
+    <project name="PublishPress Capabilities" slug="capsman-enhanced">
+      <source>
+        <directory>.</directory>
+      </source>
+      <target>
+        <directory>languages</directory>
+      </target>
+      <template>
+        <file>languages/capsman-enhanced.pot</file>
+      </template>
+    </project>
+  </domain>
+  <exclude>
+    <directory>includes-pro</directory>
+    <directory>vendor</directory>
+  </exclude>
+</bundle>

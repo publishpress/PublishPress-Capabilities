@@ -114,7 +114,7 @@ function cme_filter_custom_status_list($custom_statuses, $post)
 	$filtered       = [];
 	$option_group   = 'global';
 	
-	$default_status = $publishpress->custom_status->module->options->default_status;
+	$default_status = !empty($publishpress->custom_status->module->options->default_status) ? $publishpress->custom_status->module->options->default_status : 'draft';
 
 	if ( ! is_null($post)) {
 		// Adding a new post? Set the correct default status
@@ -128,8 +128,8 @@ function cme_filter_custom_status_list($custom_statuses, $post)
 
 		// Check if the user, or any of his user groups are capable to use the status. If not, but it is the
 		// current status, we still display it.
-		if (
-			current_user_can('status_change_' . $slug)
+		if (('draft' == $slug)
+			|| current_user_can('status_change_' . $slug)
 			|| (is_null($post) ? false : $status->slug === $post->post_status)
 			|| $status->slug === $default_status
 		) {
@@ -243,12 +243,16 @@ function cme_get_assisted_post_types() {
 	
 	$post_types = get_post_types( $type_args, 'names', 'or' );
 	
-	if ( $omit_types = apply_filters( 'pp_unfiltered_post_types', array('forum', 'topic', 'reply', 'wp_block', 'customize_changeset') ) ) {
+	$omit_types = apply_filters('presspermit_unfiltered_post_types', ['forum', 'topic', 'reply', 'wp_block', 'customize_changeset']);
+	$omit_types = (defined('PP_CAPABILITIES_NO_LEGACY_FILTERS')) ? $omit_types : apply_filters('pp_unfiltered_post_types', $omit_types);
+
+	if ($omit_types) {
 		$post_types = array_diff_key( $post_types, array_fill_keys( (array) $omit_types, true ) );
 	}
 	
 	$option_name = (defined('PPC_VERSION') && !defined('PRESSPERMIT_VERSION')) ? 'pp_enabled_post_types' : 'presspermit_enabled_post_types';
 	$enabled = (array) get_option( $option_name, array( 'post' => true, 'page' => true ) );
+
 	$post_types = array_intersect( $post_types, array_keys( array_filter( $enabled ) ) );
 	
 	return apply_filters( 'cme_assisted_post_types', $post_types, $type_args );
@@ -257,31 +261,31 @@ function cme_get_assisted_post_types() {
 // Note: this intentionally does NOT share Press Permit' option name, for back compat reasons
 // Enabling filtered taxonomies in PP previously did not cause the edit_terms, delete_terms, assign_terms capabilities to be enforced
 function cme_get_assisted_taxonomies() {
-	$tx_args = array( 'public' => true );
-	
-	$taxonomies = get_taxonomies( $tx_args );
-	
-	if ( $omit_taxonomies = apply_filters( 'pp_unfiltered_taxonomies', array() ) ) {
-		$taxonomies = array_diff_key( $taxonomies, array_fill_keys( (array) $omit_taxonomies, true ) );
+	$tx_args = ['public' => true, 'show_ui' => true];
+	$taxonomies = apply_filters('cme_filterable_taxonomies', get_taxonomies($tx_args, 'object', 'or'));
+	$taxonomies = array_combine(array_keys($taxonomies), array_keys($taxonomies));
+
+	if ($omit_taxonomies = apply_filters('pp_unfiltered_taxonomies', [])) {
+		$taxonomies = array_diff($taxonomies, (array) $omit_taxonomies);
 	}
 	
 	$option_name = (defined('PPC_VERSION') && !defined('PRESSPERMIT_VERSION')) ? 'pp_enabled_taxonomies' : 'presspermit_enabled_taxonomies';
-	$enabled = (array) get_option( $option_name, array() );
+	$enabled = (array) get_option( $option_name, []);
 	$taxonomies = array_intersect( $taxonomies, array_keys( array_filter( $enabled ) ) );
 	
 	return apply_filters( 'cme_assisted_taxonomies', $taxonomies, $tx_args );
 }
 
 function cme_get_detailed_taxonomies() {
-	$tx_args = array( 'public' => true );
-	
-	$taxonomies = get_taxonomies( $tx_args );
-	
-	if ( $omit_taxonomies = apply_filters( 'pp_unfiltered_taxonomies', array() ) ) {
-		$taxonomies = array_diff_key( $taxonomies, array_fill_keys( (array) $omit_taxonomies, true ) );
+	$tx_args = ['public' => true, 'show_ui' => true];
+	$taxonomies = apply_filters('cme_filterable_taxonomies', get_taxonomies($tx_args, 'object', 'or'));
+	$taxonomies = array_combine(array_keys($taxonomies), array_keys($taxonomies));
+
+	if ($omit_taxonomies = apply_filters('pp_unfiltered_taxonomies', [])) {
+		$taxonomies = array_diff($taxonomies, (array) $omit_taxonomies);
 	}
 	
-	$enabled = (array) get_option( 'cme_detailed_taxonomies', array() );
+	$enabled = (array) get_option('cme_detailed_taxonomies', []);
 	$taxonomies = array_intersect( $taxonomies, array_keys( array_filter( $enabled ) ) );
 	
 	return apply_filters( 'cme_detailed_taxonomies', $taxonomies, $tx_args );
@@ -305,7 +309,7 @@ function _cme_fltPluginActionLinks($links, $file)
 {
 	if ($file == plugin_basename(CME_FILE)) {
 		if (!is_network_admin()) {
-			$links[] = "<a href='" . admin_url("admin.php?page=capsman") . "'>" . __('Edit Roles', 'capsman-enhanced') . "</a>";
+			$links[] = "<a href='" . admin_url("admin.php?page=pp-capabilities") . "'>" . __('Edit Roles', 'capsman-enhanced') . "</a>";
 		}
 	}
 

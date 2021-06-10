@@ -35,7 +35,7 @@
  */
 function ak_admin_notify( $message = '' )
 {
-    if ( is_admin() ) {
+    if (is_admin() && !did_action('pp_capabilities_error')) {
 	    if ( empty($message) ) {
 		    $message = __('Settings saved.', 'capsman-enhanced');
     	}
@@ -53,5 +53,7 @@ function ak_admin_error( $message )
 {
     if ( is_admin() ) {
         echo '<div id="error" class="error"><p><strong>' . $message . '</strong></p></div>';
-    }
+	}
+	
+	do_action('pp_capabilities_error');
 }
