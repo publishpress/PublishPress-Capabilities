@@ -274,8 +274,7 @@ function pp_capabilities_get_post_type()
         return sanitize_key($_REQUEST['post_type']);
     }
 
-    // we do not know the post type!
-    return NULL;
+    return 'post';
 }
 
 /**
