@@ -81,14 +81,29 @@ if ($classic_editor) {
                                 				value="<?php _e('Save Changes', 'capabilities-pro') ?>"
                                 				class="button-primary ppc-editor-features-submit" style="float:right" />
 
+											<input type="hidden" name="ppc-tab" value="<?php echo (!empty($_REQUEST['ppc-tab'])) ? sanitize_key($_REQUEST['ppc-tab']) : 'gutenberg';?>" />
+
+									<script type="text/javascript">
+		                            /* <![CDATA[ */
+		                            jQuery(document).ready(function($) {
+		                                $('li.gutenberg-tab').click(function() {
+		                                    $('div.publishpress-filters input[name=ppc-tab]').val('gutenberg');
+		                                });
+		
+		                                $('li.classic-tab').click(function() {
+		                                    $('div.publishpress-filters input[name=ppc-tab]').val('classic');
+		                                });
+		                            });
+		                            /* ]]> */
+		                            </script>
 
                                 <?php if ($classic_editor) { ?>
                                     <ul class="nav-tab-wrapper">
-                                        <li class="editor-features-tab gutenberg-tab nav-tab nav-tab-active"
+                                    <li class="editor-features-tab gutenberg-tab nav-tab <?php if (empty($_REQUEST['ppc-tab']) || ('gutenberg' == $_REQUEST['ppc-tab'])) echo 'nav-tab-active';?>"
                                             data-tab=".editor-features-gutenberg"><a
                                                     href="#"><?php _e('Gutenberg', 'capsman-enhanced') ?></a></li>
                                         
-                                        <li class="editor-features-tab classic-tab nav-tab"
+                                    <li class="editor-features-tab classic-tab nav-tab <?php if (!empty($_REQUEST['ppc-tab']) && ('classic' == $_REQUEST['ppc-tab'])) echo 'nav-tab-active';?>"
                                             data-tab=".editor-features-classic"><a 
                                                     href="#"><?php _e('Classic', 'capsman-enhanced') ?></a></li>
                                     </ul>

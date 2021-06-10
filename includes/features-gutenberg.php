@@ -1,4 +1,5 @@
-<table class="wp-list-table widefat fixed pp-capability-menus-select post-features-gutenberg">
+<table class="wp-list-table widefat fixed striped pp-capability-menus-select editor-features-gutenberg" <?php if (!empty($_REQUEST['ppc-tab']) && ('gutenberg' != $_REQUEST['ppc-tab'])) echo 'style="display:none;"';?>>
+
 
     <thead>
     <tr>

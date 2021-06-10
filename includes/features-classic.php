@@ -1,4 +1,5 @@
-<table class="wp-list-table widefat fixed pp-capability-menus-select post-features-classic" style="display:none;">
+<table class="wp-list-table widefat fixed striped pp-capability-menus-select editor-features-classic" <?php if (empty($_REQUEST['ppc-tab']) || ('classic' != $_REQUEST['ppc-tab'])) echo 'style="display:none;"';?>>
+
 
     <thead>
     <tr>
