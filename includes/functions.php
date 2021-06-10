@@ -239,9 +239,8 @@ function pp_cabapbility_admin_menu_access_denied()
  *
  * @return null|string String of the post type.
  */
-function pp_capabilities_features_get_current_post_type()
+function pp_capabilities_get_post_type()
 {
-
     global $post, $typenow, $current_screen;
 
     // We have a post so we can just get the post type from that.
@@ -257,6 +256,17 @@ function pp_capabilities_features_get_current_post_type()
     // Check the global $current_screen object - set in screen.php
     if ($current_screen && $current_screen->post_type) {
         return $current_screen->post_type;
+    }
+
+    if (isset($_GET['post']) && !is_array($_GET['post'])) {
+        $post_id = (int) esc_attr($_GET['post']);
+
+    } elseif (isset($_POST['post_ID'])) {
+        $post_id = (int) esc_attr($_POST['post_ID']);
+    }
+
+    if (!empty($post_id)) {
+        return get_post_type($post_id);
     }
 
     // lastly check the post_type querystring
