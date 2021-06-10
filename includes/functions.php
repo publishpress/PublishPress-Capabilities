@@ -234,40 +234,6 @@ function pp_cabapbility_admin_menu_access_denied()
     wp_die(esc_html($forbidden));
 }
 
-
-/**
- * Recursive search in array.
- *
- * @param string $needle
- * @param array $haystack
- *
- * @return bool
- */
-function pp_capabilities_features_recursive_in_array($needle, $haystack)
-{
-
-    if ('' === $haystack) {
-        return false;
-    }
-
-    if (!$haystack) {
-        return false;
-    }
-
-    foreach ($haystack as $stalk) {
-        if ($needle === $stalk
-            || (is_array($stalk)
-                && pp_capabilities_features_recursive_in_array($needle, $stalk)
-            )
-        ) {
-            return true;
-        }
-    }
-
-    return false;
-}
-
-
 /**
  * Get post type.
  *
@@ -300,122 +266,6 @@ function pp_capabilities_features_get_current_post_type()
 
     // we do not know the post type!
     return NULL;
-}
-
-function pp_cabapbility_post_metaboxes()
-{
-
-    $metaboxes = array(
-        '#contextual-help-link-wrap',
-        '#screen-options-link-wrap',
-        '.page-title-action',
-        '#titlediv #title',
-        '#pageslugdiv',
-        '#submitdiv',
-        '#save-post',
-        '#post-preview',
-        '.misc-pub-post-status',
-        '.misc-pub-visibility',
-        '.misc-pub-curtime',
-        '#categories, #categorydiv, #categorydivsb, th.column-categories, td.categories',
-        '#category-add-toggle',
-        '#tags, #tagsdiv,#tagsdivsb,#tagsdiv-post_tag, th.column-tags, td.tags',
-        '#date, #datediv, th.column-date, td.date, div.curtime',
-        '#passworddiv',
-        '.side-info',
-        '#notice',
-        '#post-body h2',
-        '#media-buttons, #wp-content-media-buttons',
-        '#wp-word-count',
-        '#slugdiv,#edit-slug-box',
-        '#misc-publishing-actions',
-        '#commentstatusdiv',
-        '#editor-toolbar #edButtonHTML, #quicktags, #content-html, .wp-switch-editor.switch-html',
-    );
-
-    $post_type = 'post';
-    $post_type_supports = $GLOBALS['_wp_post_type_features'][$post_type];
-    $post_type_supports['page-attributes'] = '1';
-
-    foreach ($post_type_supports as $post_type_support => $key) {
-        if (post_type_supports($post_type, $post_type_support)
-            && 'excerpt' === $post_type_support
-        ) {
-            $post_type_support = $post_type . 'excerpt';
-        }
-        if ('page-attributes' === $post_type_support) {
-            $post_type_support = 'pageparentdiv';
-        }
-        if ('custom-fields' === $post_type_support) {
-            $post_type_support = $post_type . 'custom';
-        }
-        if ('post-formats' === $post_type_support) {
-            $post_type_support = 'format';
-        }
-        if ('editor' === $post_type_support) {
-            $post_type_support = 'postdivrich';
-        }
-
-        $metaboxes[] = '#' . $post_type_support
-            . ', #' . $post_type_support
-            . 'div, th.column-' . $post_type_support
-            . ', td.' . $post_type_support; //th and td for raw in edit screen
-    }
-
-    if (function_exists('current_theme_supports')
-        && current_theme_supports(
-            'post-thumbnails', 'post'
-        )
-    ) {
-        $metaboxes[] = '#postimagediv';
-    }
-
-    $metaboxes_names = array(
-        esc_attr__('Help', 'capsman-enhanced'),
-        esc_attr__('Screen Options', 'capsman-enhanced'),
-        esc_attr__('Add New', 'capsman-enhanced'),
-        esc_attr__('Title', 'capsman-enhanced'),
-        esc_attr__('Permalink', 'capsman-enhanced'),
-        esc_attr__('Publish Box', 'capsman-enhanced'),
-        esc_attr__('Save Draft', 'capsman-enhanced'),
-        esc_attr__('Preview', 'capsman-enhanced'),
-        esc_attr__('Publish Status ', 'capsman-enhanced'),
-        esc_attr__('Publish Visibility', 'capsman-enhanced'),
-        esc_attr__('Publish Schedule', 'capsman-enhanced'),
-        esc_attr__('Publish', 'capsman-enhanced'),
-        esc_attr__('Categories', 'capsman-enhanced'),
-        esc_attr__('Add New Category', 'capsman-enhanced'),
-        esc_attr__('Tags', 'capsman-enhanced'),
-        esc_attr__('Date', 'capsman-enhanced'),
-        esc_attr__('Password Protect This Post', 'capsman-enhanced'),
-        esc_attr__('Related, Shortcuts', 'capsman-enhanced'),
-        esc_attr__('Messages', 'capsman-enhanced'),
-        esc_attr__('h2: Advanced Options', 'capsman-enhanced'),
-        esc_attr__('Media Buttons (all)', 'capsman-enhanced'),
-        esc_attr__('Word count', 'capsman-enhanced'),
-        esc_attr__('Post Slug', 'capsman-enhanced'),
-        esc_attr__('Publish Actions', 'capsman-enhanced'),
-        esc_attr__('Discussion', 'capsman-enhanced'),
-        esc_attr__('HTML Editor Button', 'capsman-enhanced')
-    );
-
-    foreach ($post_type_supports as $post_type_support => $key) {
-        if (post_type_supports($post_type, $post_type_support)) {
-            $metaboxes_names[] = ucfirst($post_type_support);
-        } elseif ('page-attributes' === $post_type_support) {
-            $metaboxes_names[] = ucfirst($post_type_support);
-        }
-    }
-
-    if (function_exists('current_theme_supports')
-        && current_theme_supports(
-            'post-thumbnails', 'post'
-        )
-    ) {
-        $metaboxes_names[] = esc_attr__('Post Thumbnail', 'capsman-enhanced');
-    }
-
-    return array('metaboxes' => $metaboxes, 'metaboxes_names' => $metaboxes_names);
 }
 
 
@@ -603,45 +453,6 @@ if (is_admin()) {
 }
 
 
-function pp_cabapbility_post_gutenberg_metaboxes()
-{
-
-    $metaboxes = array(
-        //Top bar
-        __('Add block', 'capsman-enhanced') => '.edit-post-header-toolbar .edit-post-header-toolbar__inserter-toggle.has-icon',
-        __('Tools', 'capsman-enhanced') => '.edit-post-header-toolbar .components-dropdown:first-of-type',
-        __('Undo', 'capsman-enhanced') => '.edit-post-header-toolbar .editor-history__undo',
-        __('Redo', 'capsman-enhanced') => '.edit-post-header-toolbar .editor-history__redo',
-        __('Content structure', 'capsman-enhanced') => '.edit-post-header__toolbar .table-of-contents',
-        __('Block navigation', 'capsman-enhanced') => '.edit-post-header__toolbar .block-editor-block-navigation',
-        __('Save Draft', 'capsman-enhanced') => '.edit-post-header__settings .components-button.editor-post-save-draft',
-        __('Switch to draft', 'capsman-enhanced') => '.edit-post-header__settings .components-button.editor-post-switch-to-draft',
-        __('Preview', 'capsman-enhanced') => '.edit-post-header__settings .block-editor-post-preview__dropdown',
-        __('Publish', 'capsman-enhanced') => '.edit-post-header__settings .editor-post-publish-button__button',
-        __('Settings', 'capsman-enhanced') => '.edit-post-header__settings .interface-pinned-items button',
-        __('More tools & options', 'capsman-enhanced') => '.edit-post-header__settings .edit-post-more-menu .components-button',
-        //Body
-        __('Add title', 'capsman-enhanced') => '.wp-block.editor-post-title__block',
-        __('Content', 'capsman-enhanced') => '.block-editor-block-list__layout',
-        //Document Panel
-        __('Status & visibility', 'capsman-enhanced') => 'post-status',
-        __('Permalink', 'capsman-enhanced') => 'post-link',
-        __('Categories', 'capsman-enhanced') => 'taxonomy-panel-category',
-        __('Tags', 'capsman-enhanced') => 'taxonomy-panel-post_tag',
-        __('Featured image', 'capsman-enhanced') => 'featured-image',
-        __('Excerpt', 'capsman-enhanced') => 'post-excerpt',
-        __('Discussion', 'capsman-enhanced') => 'discussion-panel',
-        __('Post Attributes', 'capsman-enhanced') => 'page-attributes',
-        //Block Panel
-        __('Block Panel', 'capsman-enhanced') => '.block-editor-block-inspector',
-        __('Paragraph', 'capsman-enhanced') => '.block-editor-block-card',
-        __('Typography', 'capsman-enhanced') => '.block-editor-block-inspector .components-panel__body:first-of-type',
-        __('Color settings', 'capsman-enhanced') => '.block-editor-panel-color-gradient-settings',
-        __('Text settings', 'capsman-enhanced') => '.block-editor-panel-color-gradient-settings + .components-panel__body',
-    );
-
-    return $metaboxes;
-}
 
 /**
  * Check if Classic Editor plugin is active.
