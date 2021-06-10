@@ -53,8 +53,11 @@ if ($classic_editor) {
 
                                     <div class="publishpress-headline">
                                     <span class="cme-subtext">
-                                    <strong><?php _e('Note', 'capsman-enhanced'); ?>:</strong>
-                                    <?php _e('This feature only remove the option for the restricted roles.', 'capsman-enhanced'); ?>
+	                                <span class='pp-capability-role-caption'>
+	                                <?php
+	                                _e('Select editor features to remove. Note that this screen cannot be used to grant additional features to any role.', 'capabilities-pro');
+	                                ?>
+	                                </span>
                                     </span>
                                     </div>
 
