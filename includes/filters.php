@@ -261,31 +261,31 @@ function cme_get_assisted_post_types() {
 // Note: this intentionally does NOT share Press Permit' option name, for back compat reasons
 // Enabling filtered taxonomies in PP previously did not cause the edit_terms, delete_terms, assign_terms capabilities to be enforced
 function cme_get_assisted_taxonomies() {
-	$tx_args = array( 'public' => true );
+	$tx_args = ['public' => true, 'show_ui' => true];
+	$taxonomies = apply_filters('cme_filterable_taxonomies', get_taxonomies($tx_args, 'object', 'or'));
+	$taxonomies = array_combine(array_keys($taxonomies), array_keys($taxonomies));
 	
-	$taxonomies = get_taxonomies( $tx_args );
-	
-	if ( $omit_taxonomies = apply_filters( 'pp_unfiltered_taxonomies', array() ) ) {
-		$taxonomies = array_diff_key( $taxonomies, array_fill_keys( (array) $omit_taxonomies, true ) );
+	if ($omit_taxonomies = apply_filters('pp_unfiltered_taxonomies', [])) {
+		$taxonomies = array_diff($taxonomies, (array) $omit_taxonomies);
 	}
 	
 	$option_name = (defined('PPC_VERSION') && !defined('PRESSPERMIT_VERSION')) ? 'pp_enabled_taxonomies' : 'presspermit_enabled_taxonomies';
-	$enabled = (array) get_option( $option_name, array() );
+	$enabled = (array) get_option( $option_name, []);
 	$taxonomies = array_intersect( $taxonomies, array_keys( array_filter( $enabled ) ) );
 	
 	return apply_filters( 'cme_assisted_taxonomies', $taxonomies, $tx_args );
 }
 
 function cme_get_detailed_taxonomies() {
-	$tx_args = array( 'public' => true );
+	$tx_args = ['public' => true, 'show_ui' => true];
+	$taxonomies = apply_filters('cme_filterable_taxonomies', get_taxonomies($tx_args, 'object', 'or'));
+	$taxonomies = array_combine(array_keys($taxonomies), array_keys($taxonomies));
 	
-	$taxonomies = get_taxonomies( $tx_args );
-	
-	if ( $omit_taxonomies = apply_filters( 'pp_unfiltered_taxonomies', array() ) ) {
-		$taxonomies = array_diff_key( $taxonomies, array_fill_keys( (array) $omit_taxonomies, true ) );
+	if ($omit_taxonomies = apply_filters('pp_unfiltered_taxonomies', [])) {
+		$taxonomies = array_diff($taxonomies, (array) $omit_taxonomies);
 	}
 	
-	$enabled = (array) get_option( 'cme_detailed_taxonomies', array() );
+	$enabled = (array) get_option('cme_detailed_taxonomies', []);
 	$taxonomies = array_intersect( $taxonomies, array_keys( array_filter( $enabled ) ) );
 	
 	return apply_filters( 'cme_detailed_taxonomies', $taxonomies, $tx_args );
