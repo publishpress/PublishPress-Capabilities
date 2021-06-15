@@ -8,7 +8,7 @@ function pp_capabilities_is_editable_role($role_name, $args = []) {
 
     if (!isset($editable_roles) || !empty($args['force_refresh'])) {
         $all_roles = wp_roles()->roles;
-        $editable_roles = apply_filters('editable_roles', $all_roles);
+        $editable_roles = apply_filters('editable_roles', $all_roles, $args);
     }
 
     return apply_filters('pp_capabilities_editable_role', isset($editable_roles[$role_name]), $role_name);
