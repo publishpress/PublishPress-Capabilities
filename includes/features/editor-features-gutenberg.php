@@ -26,18 +26,18 @@ foreach($def_post_types as $post_type) {
         <?php endforeach;?>
     </tr>
     </<?php echo $tag;?>>
-        <?php endforeach;?>
+    <?php endforeach;?>
 
     <tbody>
     <?php
-
     foreach ($gutenberg_elements as $section_title => $arr) {
         ?>
         <tr class="ppc-menu-row parent-menu">
-        <td colspan="<?php echo (count($def_post_types) + 1);?>">
-        <h4 class="ppc-menu-row-section"><?php echo $section_title;?></h4>
-        </td>
+            <td colspan="<?php echo (count($def_post_types) + 1);?>">
+            <h4 class="ppc-menu-row-section"><?php echo $section_title;?></h4>
+            </td>
         </tr>
+        
         <?php
         foreach ($arr as $feature_slug => $arr_feature) {
         ?>
