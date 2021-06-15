@@ -35,7 +35,6 @@ $classic_editor = pp_capabilities_is_classic_editor_available();
               action="admin.php?page=pp-capabilities-editor-features">
             <?php wp_nonce_field('pp-capabilities-editor-features'); ?>
 
-            <fieldset>
                 <table id="akmin">
                     <tr>
                         <td class="content">
@@ -127,8 +126,6 @@ $classic_editor = pp_capabilities_is_classic_editor_available();
                         </td>
                     </tr>
                 </table>
-
-            </fieldset>
 
         </form>
 
