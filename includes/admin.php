@@ -520,7 +520,12 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 				jQuery(document).ready( function($) {
 					$('a[href="#toggle_type_caps"]').click( function() {
 						var chks = $(this).closest('tr').find('input');
-						$(chks).prop( 'checked', ! $(chks).first().is(':checked') );
+						var set_checked = ! $(chks).first().is(':checked');
+
+						$(chks).each(function(i,e) {
+							$('input[name="' + $(this).attr('name') + '"]').prop('checked', set_checked);
+						});
+						
 						return false;
 					});
 					
