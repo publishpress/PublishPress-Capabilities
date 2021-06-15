@@ -387,7 +387,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 								if ( empty($force_distinct_ui) && empty( $cap_properties[$cap_type][$item_type] ) )
 									continue;
 							
-								$type_label = (!empty($type_obj->labels->menu_name)) ? $type_obj->labels->menu_name : $type_obj->labels->name;
+								$type_label = (defined('CME_LEGACY_MENU_NAME_LABEL') && !empty($type_obj->labels->menu_name)) ? $type_obj->labels->menu_name : $type_obj->labels->name;
 
 								$row .= "<td><a class='cap_type' href='#toggle_type_caps'>" . $type_label . '</a>';
 								$row .= '<a href="#" class="neg-type-caps">&nbsp;x&nbsp;</a>';
