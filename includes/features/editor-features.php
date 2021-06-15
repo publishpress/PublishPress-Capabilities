@@ -129,6 +129,12 @@ $classic_editor = pp_capabilities_is_classic_editor_available();
 
         </form>
 
+        <?php if (!defined('PUBLISHPRESS_CAPS_PRO_VERSION') || get_option('cme_display_branding')) {
+            cme_publishpressFooter();
+        }
+        ?>
+    </div>
+
         <style>
         span.menu-item-link {
             webkit-user-select: none; /* Safari */        
@@ -223,11 +229,4 @@ $classic_editor = pp_capabilities_is_classic_editor_available();
             });
             /* ]]> */
         </script>
-
-
-        <?php if (!defined('PUBLISHPRESS_CAPS_PRO_VERSION') || get_option('cme_display_branding')) {
-            cme_publishpressFooter();
-        }
-        ?>
-    </div>
 <?php
