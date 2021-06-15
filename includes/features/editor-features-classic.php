@@ -60,9 +60,9 @@ foreach($def_post_types as $post_type) {
     foreach ($ce_elements as $section_title => $arr) {
         ?>
         <tr class="ppc-menu-row parent-menu">
-        <td colspan="<?php echo (count($def_post_types) + 1);?>"><h4 class="ppc-menu-row-section">
-        <?php echo $section_title;?>
-        </span></td>
+        <td colspan="<?php echo (count($def_post_types) + 1);?>">
+        <h4 class="ppc-menu-row-section"><?php echo $section_title;?></h4>
+        </td>
         </tr>
         <?php
 
