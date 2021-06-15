@@ -240,16 +240,16 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 				$custom_types = get_post_types( array( '_builtin' => false ), 'names' );
 				$custom_tax = get_taxonomies( array( '_builtin' => false ), 'names' );
 				
-				$defined = array();
-				$defined['type'] = apply_filters('cme_filterable_post_types', get_post_types( array( 'public' => true, 'show_ui' => true), 'object', 'or' ));
-				$defined['taxonomy'] = get_taxonomies( array( 'public' => true ), 'object' );
+				$defined = [];
+				$defined['type'] = apply_filters('cme_filterable_post_types', get_post_types(['public' => true, 'show_ui' => true], 'object', 'or'));
+				$defined['taxonomy'] = apply_filters('cme_filterable_taxonomies', get_taxonomies(['public' => true, 'show_ui' => true], 'object', 'or'));
 				
 				// bbPress' dynamic role def requires additional code to enforce stored caps
 				$unfiltered['type'] = apply_filters('presspermit_unfiltered_post_types', ['forum','topic','reply','wp_block']);
 				$unfiltered['type'] = (defined('PP_CAPABILITIES_NO_LEGACY_FILTERS')) ? $unfiltered['type'] : apply_filters('pp_unfiltered_post_types', $unfiltered['type']);
 				
 				$unfiltered['taxonomy'] = apply_filters('presspermit_unfiltered_post_types', ['post_status', 'topic-tag']);  // avoid confusion with Edit Flow administrative taxonomy
-				$unfiltered['taxonomy'] = (defined('PP_CAPABILITIES_NO_LEGACY_FILTERS')) ? $unfiltered['taxonomy'] : apply_filters('pp_unfiltered_post_types', $unfiltered['taxonomy']);
+				$unfiltered['taxonomy'] = (defined('PP_CAPABILITIES_NO_LEGACY_FILTERS')) ? $unfiltered['taxonomy'] : apply_filters('pp_unfiltered_taxonomies', $unfiltered['taxonomy']);
 
 				$enabled_taxonomies = cme_get_assisted_taxonomies();
 				
