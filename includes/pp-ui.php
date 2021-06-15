@@ -70,24 +70,6 @@ class Capsman_PP_UI {
 		}
 	}
 	
-	function pp_only_roles_ui( $default ) {
-		$support_pp_only_roles = defined('PRESSPERMIT_ACTIVE') || version_compare( PP_VERSION, '1.0-beta1.4', '>=');
-		?>
-		
-		<?php if ( $support_pp_only_roles && ! in_array( $default, array( /*'subscriber', 'contributor', 'author', 'editor',*/ 'administrator' ) ) ) : ?>
-		<div style="float:right">
-			<?php
-			pp_refresh_options();
-			$pp_only = (array) pp_capabilities_get_permissions_option( 'supplemental_role_defs' );
-			$checked = ( in_array( $default, $pp_only ) ) ? 'checked="checked"': '';
-			?>
-			<label for="pp_only_role" title="<?php _e('Make role available for supplemental assignment to Permission Groups only', 'capsman-enhanced');?>"><input type="checkbox" name="pp_only_role" id="pp_only_role" autocomplete="off" value="1" <?php echo $checked;?>> <?php _e('hidden role', 'capsman-enhanced'); ?> </label>
-		</div>
-		<?php endif; ?>
-	<?php
-		return $support_pp_only_roles;
-	}
-	
 	// Note: CME can now impose type-specific capabilities without Press Permit Core active
 	function pp_types_ui( $defined_types ) {
 		?>
