@@ -78,10 +78,16 @@ height: 2em;
 table .cme-typecaps th {
 padding-left: 0.3em;
 padding-right: 0.3em;
+cursor: pointer;
 }
 
 table.cme-typecaps span.cap-x {
 display: none;
+cursor: pointer;
+}
+
+table.cme-checklist span.cap-x {
+cursor: pointer;
 }
 
 h3.cme-cap-section {
