@@ -136,6 +136,8 @@ $classic_editor = pp_capabilities_is_classic_editor_available();
             -ms-user-select: none; /* IE10+/Edge */
             user-select: none; /* Standard */
         }
+
+        input.check-all-menu-item {margin-top: 5px !important;}
         </style>
 
         <script type="text/javascript">
@@ -171,7 +173,7 @@ $classic_editor = pp_capabilities_is_classic_editor_available();
                     //toggle all checkbox
                     if ($(this).hasClass('check-all-menu-item')) {
                         var suffix = ('gutenberg' == current_tab) ? '' : current_tab + '_';
-                        $("input[type='checkbox'][name='capsman_feature_restrict_" + suffix + $(this).attr('pp_type') + "[]']").prop('checked', isChecked);
+                    	$("input[type='checkbox'][name='capsman_feature_restrict_" + suffix + $(this).data('pp_type') + "[]']").prop('checked', isChecked);
 
                         $('.' + current_tab + '.menu-item-link').each(function(i,e) {
                             $(this).toggleClass('restricted', $(this).closest('tr').find('input:checked').length > 0);

@@ -12,50 +12,23 @@ foreach($def_post_types as $post_type) {
 ?>
 
 <table class="wp-list-table widefat fixed striped pp-capability-menus-select editor-features-classic" <?php if (empty($_REQUEST['ppc-tab']) || ('classic' != $_REQUEST['ppc-tab'])) echo 'style="display:none;"';?>>
-
-    <thead>
+    <?php foreach(['thead', 'tfoot'] as $tag):?>
+    <<?php echo $tag;?>>
     <tr>
         <th class="menu-column"><?php _e('Classic Editor Screen', 'capsman-enhanced') ?></th>
 
         <?php foreach($def_post_types as $post_type) :
             $type_obj = get_post_type_object($post_type);    
         ?>
-            <th class="restrict-column"><?php printf(__('%s Restrict', 'capsman-enhanced'), $type_obj->labels->singular_name);?></th>
+            <th class="restrict-column ppc-menu-row"><?php printf(__('%s Restrict', 'capsman-enhanced'), $type_obj->labels->singular_name);?><br />
+            <input class="check-item classic check-all-menu-item" type="checkbox" title="<?php _e('Toggle all', 'capsman-enhanced');?>" data-pp_type="<?php echo $post_type;?>" />
+            </th>
         <?php endforeach;?>
     </tr>
-    </thead>
-
-    <tfoot>
-    <tr>
-        <th class="menu-column"><?php _e('Classic Editor Screen', 'capsman-enhanced') ?></th>
-
-        <?php foreach($def_post_types as $post_type) :
-            $type_obj = get_post_type_object($post_type);    
-        ?>
-            <th class="restrict-column"><?php printf(__('%s Restrict', 'capsman-enhanced'), $type_obj->labels->singular_name);?></th>
+    </<?php echo $tag;?>>
         <?php endforeach;?>
-    </tr>
-    </tfoot>
 
     <tbody>
-    <tr class="ppc-menu-row parent-menu">
-
-        <td class="menu-column ppc-menu-item">
-            <label for="classic-check-all-item">
-                <span class="classic menu-item-link check-all-menu-link">
-                    <strong><i class="dashicons dashicons-leftright"></i>
-                    <?php _e('Toggle all', 'capsman-enhanced'); ?>
-                    </strong>
-                </span></label>
-        </td>
-
-        <?php foreach($def_post_types as $post_type) :?>
-            <td class="restrict-column ppc-menu-checkbox">
-                <input id="classic-check-all-item" class="check-item classic check-all-menu-item" type="checkbox" pp_type="<?php echo $post_type;?>" />
-            </td>
-        <?php endforeach;?>
-    </tr>
-
     <?php
     foreach ($ce_elements as $section_title => $arr) {
         ?>
