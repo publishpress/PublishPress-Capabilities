@@ -31,8 +31,8 @@ if ( defined( 'WC_PLUGIN_FILE' ) ) {
 if (!defined('CME_DISABLE_WP_EDIT_PUBLISHED_WORKAROUND')) {
 	global $wp_version;
 	if (version_compare($wp_version, '4.9.7', '>=')) { // avoid any issues with old REST API implementations
-	require_once (dirname(__FILE__) . '/filters-wp_rest_workarounds.php');
-	new PublishPress\Capabilities\WP_REST_Workarounds();
+		require_once (dirname(__FILE__) . '/filters-wp_rest_workarounds.php');
+		new PublishPress\Capabilities\WP_REST_Workarounds();
 	}
 }
 
