@@ -261,7 +261,9 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
                     ['page' => 'pp-capabilities', 'role' => esc_attr($item['role'])], 
                     admin_url('admin.php')
                 ), 
-                esc_html($item['name']), $role_states);
+                esc_html($item['name']), 
+                $role_states
+            );
         } else {
             $out = esc_html($item['name']);
         }

@@ -168,20 +168,21 @@ class CapabilityManager
      */
     function adminStyles()
     {
+      
 		if ( empty( $_REQUEST['page'] ) || ! in_array( $_REQUEST['page'], array( 'pp-capabilities', 'pp-capabilities-roles', 'pp-capabilities-admin-menus', 'pp-capabilities-nav-menus', 'pp-capabilities-editor-features', 'pp-capabilities-backup', 'pp-capabilities-settings' ) ) )
 			return;
 
 		wp_enqueue_style('cme-admin-common', $this->mod_url . '/common/css/pressshack-admin.css', [], PUBLISHPRESS_CAPS_VERSION);
 
 		wp_register_style( $this->ID . 'framework_admin', $this->mod_url . '/framework/styles/admin.css', false, PUBLISHPRESS_CAPS_VERSION);
-   		wp_enqueue_style( $this->ID . 'framework_admin');
+   	wp_enqueue_style( $this->ID . 'framework_admin');
 
-   		wp_register_style( $this->ID . '_admin', $this->mod_url . '/common/css/admin.css', false, PUBLISHPRESS_CAPS_VERSION);
-   		wp_enqueue_style( $this->ID . '_admin');
+   	wp_register_style( $this->ID . '_admin', $this->mod_url . '/common/css/admin.css', false, PUBLISHPRESS_CAPS_VERSION);
+   	wp_enqueue_style( $this->ID . '_admin');
 
 		$suffix = defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ? '.dev' : '';
 		$url = $this->mod_url . "/common/js/admin{$suffix}.js";
-		
+
 		wp_enqueue_script( 'cme_admin', $url, array('jquery'), PUBLISHPRESS_CAPS_VERSION, true );
 		wp_localize_script( 'cme_admin', 'cmeAdmin', array(
 			'negationCaption' => __( 'Explicity negate this capability by storing as disabled', 'capsman-enhanced' ),
@@ -332,7 +333,7 @@ class CapabilityManager
                 }
             );
 		}
-		
+
 		add_submenu_page('pp-capabilities',  __('Editor Features', 'capsman-enhanced'), __('Editor Features', 'capsman-enhanced'), $cap_name, 'pp-capabilities-editor-features', [$this, 'ManageEditorFeatures']);
 
 		do_action('pp-capabilities-admin-submenus');
@@ -363,8 +364,8 @@ class CapabilityManager
 
                 function($arr) {
                     return [
-						'cb' => '<input type="checkbox"/>', 
-						'name' => __('Name', 'capsman-enhanced'),
+                        'cb' => '<input type="checkbox"/>', 
+						            'name' => __('Name', 'capsman-enhanced'),
                         'role' => __('Role', 'capsman-enhanced'),
                         'count' => __('Users', 'capsman-enhanced'),
                     ];
