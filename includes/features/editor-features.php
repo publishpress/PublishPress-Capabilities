@@ -205,7 +205,8 @@ $classic_editor = pp_capabilities_is_classic_editor_available();
             $('.pp-capability-menus-wrapper .ppc-editor-features-submit').hide();
 
             //show loading
-            $('#pp-capability-menu-wrapper').html('<img src="<?php echo $capsman->mod_url; ?>/images/loader-black.gif" alt="">');
+            $('#pp-capability-menu-wrapper').hide();
+            $('div.publishpress-caps-manage img.loading').show();
 
             //go to url
             window.location = '<?php echo admin_url('admin.php?page=pp-capabilities-editor-features&role='); ?>' + $(this).val() + '';
