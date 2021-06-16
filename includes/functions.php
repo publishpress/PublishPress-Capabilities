@@ -179,3 +179,4 @@ function pp_capabilities_is_classic_editor_available()
         || class_exists('Gutenberg_Ramp')
         || version_compare($wp_version, '5.0', '<');
 }
+
