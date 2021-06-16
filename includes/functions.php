@@ -121,3 +121,62 @@ function pp_capabilities_update_permissions_option($option_basename, $option_val
 {
     function_exists('presspermit') ? presspermit()->updateOption($option_basename, $option_val) : pp_update_option($option_basename, $option_val);
 }
+
+/**
+ * Get post type.
+ *
+ * @return null|string String of the post type.
+ */
+function pp_capabilities_get_post_type()
+{
+    global $post, $typenow, $current_screen;
+
+    // We have a post so we can just get the post type from that.
+    if ($post && $post->post_type) {
+        return $post->post_type;
+    }
+
+    // Check the global $typenow - set in admin.php
+    if ($typenow) {
+        return $typenow;
+    }
+
+    // Check the global $current_screen object - set in screen.php
+    if ($current_screen && $current_screen->post_type) {
+        return $current_screen->post_type;
+    }
+
+    if (isset($_GET['post']) && !is_array($_GET['post'])) {
+        $post_id = (int) esc_attr($_GET['post']);
+
+    } elseif (isset($_POST['post_ID'])) {
+        $post_id = (int) esc_attr($_POST['post_ID']);
+    }
+
+    if (!empty($post_id)) {
+        return get_post_type($post_id);
+    }
+
+    // lastly check the post_type querystring
+    if (isset($_REQUEST['post_type'])) {
+        return sanitize_key($_REQUEST['post_type']);
+    }
+
+    return 'post';
+}
+
+/**
+ * Check if Classic Editor plugin is available.
+ *
+ * @return bool
+ */
+function pp_capabilities_is_classic_editor_available()
+{
+    global $wp_version;
+
+    return class_exists('Classic_Editor')
+        || function_exists( 'the_gutenberg_project' )
+        || class_exists('Gutenberg_Ramp')
+        || version_compare($wp_version, '5.0', '<');
+}
+

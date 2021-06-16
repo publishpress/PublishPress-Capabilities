@@ -31,8 +31,8 @@ if ( defined( 'WC_PLUGIN_FILE' ) ) {
 if (!defined('CME_DISABLE_WP_EDIT_PUBLISHED_WORKAROUND')) {
 	global $wp_version;
 	if (version_compare($wp_version, '4.9.7', '>=')) { // avoid any issues with old REST API implementations
-	require_once (dirname(__FILE__) . '/filters-wp_rest_workarounds.php');
-	new PublishPress\Capabilities\WP_REST_Workarounds();
+		require_once (dirname(__FILE__) . '/filters-wp_rest_workarounds.php');
+		new PublishPress\Capabilities\WP_REST_Workarounds();
 	}
 }
 
@@ -264,7 +264,7 @@ function cme_get_assisted_taxonomies() {
 	$tx_args = ['public' => true, 'show_ui' => true];
 	$taxonomies = apply_filters('cme_filterable_taxonomies', get_taxonomies($tx_args, 'object', 'or'));
 	$taxonomies = array_combine(array_keys($taxonomies), array_keys($taxonomies));
-	
+
 	if ($omit_taxonomies = apply_filters('pp_unfiltered_taxonomies', [])) {
 		$taxonomies = array_diff($taxonomies, (array) $omit_taxonomies);
 	}
@@ -280,7 +280,7 @@ function cme_get_detailed_taxonomies() {
 	$tx_args = ['public' => true, 'show_ui' => true];
 	$taxonomies = apply_filters('cme_filterable_taxonomies', get_taxonomies($tx_args, 'object', 'or'));
 	$taxonomies = array_combine(array_keys($taxonomies), array_keys($taxonomies));
-	
+
 	if ($omit_taxonomies = apply_filters('pp_unfiltered_taxonomies', [])) {
 		$taxonomies = array_diff($taxonomies, (array) $omit_taxonomies);
 	}

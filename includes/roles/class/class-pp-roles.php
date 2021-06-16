@@ -107,8 +107,6 @@ class PP_Capabilities_Roles
              */
             $notifications = new PP_Capabilities_Notices();
             $this->loader->set('notify', $notifications);
-
-
         }
     }
 
