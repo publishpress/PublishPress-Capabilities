@@ -141,6 +141,12 @@ Fixed : Non-administrators with user editing capabilities could add new Administ
 
 == Changelog ==
 
+= 2.1 - 24 Jun 2021 =
+  * Feature : Editor Features restriction (new screen to block editor elements per-role)
+  * Fixed : If Media "Create" capability is selected / unselected by clicking Media caption or Create caption, the corresponding upload_files checkbox (in Other WP Core Capabilities section) is not toggled, leading to an apparant update failure
+  * Fixed : If Media "Create" capability is negated or un-negated, the corresponding upload_files checkbox (in Other WP Core Capabilities section) is not toggled, leading to an apparant update failure 
+  * Fixed : PHP Warning if a role is stored without a valid capabilities array
+
 = 2.0.2 - 6 May 2021 =
   * Feature : Multisite - "sync options to all sites" checkbox. Copies "use create_posts capability", Type-Specific Capabilities, Taxonomy-Specific Capabilities, Detailed Taxonomy Capabilities settings 
   * Fixed : Multisite - "sync role to all sites" did not work if main site ID is not 1
