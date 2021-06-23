@@ -152,7 +152,7 @@ $auto_backups = $wpdb->get_results("SELECT option_name, option_value FROM $wpdb-
 
                                         <td class="cme-backup-info">
                                             <div class="cme_backup_info_changes_only" style="display:none">
-                                            <input type="checkbox" class="cme_backup_info_changes_only" autocomplete="off" checked="checked"><?php _e('Show changes from current roles only', 'capsman-enhanced');?>
+                                            <input type="checkbox" class="cme_backup_info_changes_only" autocomplete="off" checked="checked"> <?php _e('Show changes from current roles only', 'capsman-enhanced');?>
                                             </div>
 
                                         <?php
@@ -223,31 +223,32 @@ $auto_backups = $wpdb->get_results("SELECT option_name, option_value FROM $wpdb-
 
                                                             <h4<?php echo $role_class;?>><?php printf(__('%s (level %s)', 'capsman-enhanced'), translate_user_role($role_caption), $level); ?></h4>
 
-                                                                <?php
-                                                            	$items = [];
-																$any_changes = false;
-                                                                ksort($props['capabilities']);
-                                                                foreach ($props['capabilities'] as $cap_name => $val) :
-                                                                    if (0 === strpos($cap_name, 'level_')) continue;
-                                                                    ?>
-                                                                    <?php 
-                                                                    if ($val && (empty($wp_roles->role_objects[$role]) || empty($wp_roles->role_objects[$role]->capabilities[$cap_name]))) {
-                                                                        $class = ' class="cme-change cme-plus"';
+                                                            <?php
+                                                            $items = [];
+                                                            $any_changes = false;
 
-                                                                	} elseif ((false === $props['capabilities'][$cap_name]) && (!isset($wp_roles->role_objects[$role]->capabilities[$cap_name]) || false !== $wp_roles->role_objects[$role]->capabilities[$cap_name])) {
-                                                                    	$class = ' class="cme-change cme-negate"';
+                                                            ksort($props['capabilities']);
+                                                            foreach ($props['capabilities'] as $cap_name => $val) :
+                                                                if (0 === strpos($cap_name, 'level_')) continue;
+                                                                ?>
+                                                                <?php 
+                                                                if ($val && (empty($wp_roles->role_objects[$role]) || empty($wp_roles->role_objects[$role]->capabilities[$cap_name]))) {
+                                                                    $class = ' class="cme-change cme-plus"';
 
-                                                                	} elseif (!$val && !empty($wp_roles->role_objects[$role]->capabilities[$cap_name])) {
-                                                                        $class = ' class="cme-change cme-minus"';
-                                                                        $cap_name = "&nbsp;&nbsp;$cap_name&nbsp;&nbsp;";
-                                                                    } else {
-                                                                        $class = '';
-                                                                    }
+                                                                } elseif ((false === $props['capabilities'][$cap_name]) && (!isset($wp_roles->role_objects[$role]->capabilities[$cap_name]) || false !== $wp_roles->role_objects[$role]->capabilities[$cap_name])) {
+                                                                    $class = ' class="cme-change cme-negate"';
 
-                                                                	$items[$cap_name] = $class;
+                                                                } elseif (!$val && !empty($wp_roles->role_objects[$role]->capabilities[$cap_name])) {
+                                                                    $class = ' class="cme-change cme-minus"';
+                                                                    $cap_name = "&nbsp;&nbsp;$cap_name&nbsp;&nbsp;";
+                                                                } else {
+                                                                    $class = '';
+                                                                }
 
-																	$any_changes = $any_changes || $class;
-                                                                    ?>
+                                                                $items[$cap_name] = $class;
+
+                                                                $any_changes = $any_changes || $class;
+                                                                ?>
                                                             <?php endforeach; ?>
 
                                                             <?php if ($items) :?>
@@ -255,16 +256,14 @@ $auto_backups = $wpdb->get_results("SELECT option_name, option_value FROM $wpdb-
                                                                 <?php foreach($items as $cap_name => $class) :?>
                                                                     <li<?php echo $class;?>><?php echo $cap_name;?></li>
                                                                 <?php endforeach; ?>
-
-                                                            	</ul>
+                                                                </ul>
                                                             <?php endif;?>
-                                                            
+
                                                             <?php if (!$any_changes):?>
                                                                 <span class="pp-restore-caps-no-change">
                                                                 <?php _e('No changes', 'capsman-enhanced');?>
                                                                 </span>
                                                             <?php endif;?>
-                                                            
                                                         <?php endforeach; ?>
                                                     </div>
                                                 <?php endif;

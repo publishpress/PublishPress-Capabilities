@@ -108,29 +108,29 @@ class Pp_Roles_Actions
             wp_send_json_error(sprintf($format, $type, $message));
             exit;
         } else {
-	        //enqueue message
-	        pp_capabilities_roles()->notify->add($type, $message);
-	
-			// @todo: migrate Capabilities screen notice display method
-	        if (!empty($_REQUEST['page']) && ('pp-capabilities' == $_REQUEST['page'])) {
-	            $redirect = false;
-	        }
-	
-			if ($redirect) {
-	            $redirect_url = wp_get_referer();
-	            $redirect_url = wp_get_raw_referer();
+            //enqueue message
+            pp_capabilities_roles()->notify->add($type, $message);
+
+            // @todo: migrate Capabilities screen notice display method
+            if (!empty($_REQUEST['page']) && ('pp-capabilities' == $_REQUEST['page'])) {
+                $redirect = false;
+            }
+
+            if ($redirect) {
+                $redirect_url = wp_get_referer();
+                $redirect_url = wp_get_raw_referer();
 	            
-	            if (empty($redirect_url)) {
+                if (empty($redirect_url)) {
                     $params = [
-	                    'page' => 'pp-capabilities-roles',
+                        'page' => 'pp-capabilities-roles',
                     ];
-	                $redirect_url = add_query_arg($params, admin_url('admin.php'));
-	            }
-	         
-	            wp_safe_redirect($redirect_url);
-	            die();
-	       	}  
-		}  
+                    $redirect_url = add_query_arg($params, admin_url('admin.php'));
+                }
+
+                wp_safe_redirect($redirect_url);
+                die();
+            }
+        }
     }
 
     /**
@@ -185,7 +185,7 @@ class Pp_Roles_Actions
          * Validate input data
          */
         require_once(dirname(CME_FILE).'/includes/handler.php');
-		$capsman_handler = new CapsmanHandler();
+        $capsman_handler = new CapsmanHandler();
         $role = $capsman_handler->createNewName($_REQUEST['name']);
         
         /**
@@ -311,17 +311,17 @@ class Pp_Roles_Actions
          * Check if is a system role
          */
         if (!$allow_system_role_deletion) {
-	        foreach ($roles as $key => $role) {
+            foreach ($roles as $key => $role) {
 	
-	            if ($this->manager->is_system_role($role)) {
-	                unset($roles[$key]);
-	            }
-	        }
-	
-	        if (empty($roles)) {
-	            $out = __('Deleting a system role is not allowed.', 'capsman-enhanced');
-	            $this->notify($out);
-	        }
+                if ($this->manager->is_system_role($role)) {
+                    unset($roles[$key]);
+                }
+            }
+
+            if (empty($roles)) {
+                $out = __('Deleting a system role is not allowed.', 'capsman-enhanced');
+                $this->notify($out);
+            }
         }
 
         /**
@@ -360,11 +360,11 @@ class Pp_Roles_Actions
             
             $out = _n($single, $plural, $deleted, 'capsman-enhanced');
 
-	        if ($this->is_ajax()) {
-	            wp_send_json_success($out);
-	        } else {
-	            $this->notify($out, 'success');
-	        }
+            if ($this->is_ajax()) {
+                wp_send_json_success($out);
+            } else {
+                $this->notify($out, 'success');
+            }
         } else {
             $this->notify(_('The role could not be deleted.', 'capsman-enhanced'));
         }

@@ -31,8 +31,8 @@ if ( defined( 'WC_PLUGIN_FILE' ) ) {
 if (!defined('CME_DISABLE_WP_EDIT_PUBLISHED_WORKAROUND')) {
 	global $wp_version;
 	if (version_compare($wp_version, '4.9.7', '>=')) { // avoid any issues with old REST API implementations
-	require_once (dirname(__FILE__) . '/filters-wp_rest_workarounds.php');
-	new PublishPress\Capabilities\WP_REST_Workarounds();
+		require_once (dirname(__FILE__) . '/filters-wp_rest_workarounds.php');
+		new PublishPress\Capabilities\WP_REST_Workarounds();
 	}
 }
 
@@ -261,31 +261,31 @@ function cme_get_assisted_post_types() {
 // Note: this intentionally does NOT share Press Permit' option name, for back compat reasons
 // Enabling filtered taxonomies in PP previously did not cause the edit_terms, delete_terms, assign_terms capabilities to be enforced
 function cme_get_assisted_taxonomies() {
-	$tx_args = array( 'public' => true );
-	
-	$taxonomies = get_taxonomies( $tx_args );
-	
-	if ( $omit_taxonomies = apply_filters( 'pp_unfiltered_taxonomies', array() ) ) {
-		$taxonomies = array_diff_key( $taxonomies, array_fill_keys( (array) $omit_taxonomies, true ) );
+	$tx_args = ['public' => true, 'show_ui' => true];
+	$taxonomies = apply_filters('cme_filterable_taxonomies', get_taxonomies($tx_args, 'object', 'or'));
+	$taxonomies = array_combine(array_keys($taxonomies), array_keys($taxonomies));
+
+	if ($omit_taxonomies = apply_filters('pp_unfiltered_taxonomies', [])) {
+		$taxonomies = array_diff($taxonomies, (array) $omit_taxonomies);
 	}
 	
 	$option_name = (defined('PPC_VERSION') && !defined('PRESSPERMIT_VERSION')) ? 'pp_enabled_taxonomies' : 'presspermit_enabled_taxonomies';
-	$enabled = (array) get_option( $option_name, array() );
+	$enabled = (array) get_option( $option_name, []);
 	$taxonomies = array_intersect( $taxonomies, array_keys( array_filter( $enabled ) ) );
 	
 	return apply_filters( 'cme_assisted_taxonomies', $taxonomies, $tx_args );
 }
 
 function cme_get_detailed_taxonomies() {
-	$tx_args = array( 'public' => true );
-	
-	$taxonomies = get_taxonomies( $tx_args );
-	
-	if ( $omit_taxonomies = apply_filters( 'pp_unfiltered_taxonomies', array() ) ) {
-		$taxonomies = array_diff_key( $taxonomies, array_fill_keys( (array) $omit_taxonomies, true ) );
+	$tx_args = ['public' => true, 'show_ui' => true];
+	$taxonomies = apply_filters('cme_filterable_taxonomies', get_taxonomies($tx_args, 'object', 'or'));
+	$taxonomies = array_combine(array_keys($taxonomies), array_keys($taxonomies));
+
+	if ($omit_taxonomies = apply_filters('pp_unfiltered_taxonomies', [])) {
+		$taxonomies = array_diff($taxonomies, (array) $omit_taxonomies);
 	}
 	
-	$enabled = (array) get_option( 'cme_detailed_taxonomies', array() );
+	$enabled = (array) get_option('cme_detailed_taxonomies', []);
 	$taxonomies = array_intersect( $taxonomies, array_keys( array_filter( $enabled ) ) );
 	
 	return apply_filters( 'cme_detailed_taxonomies', $taxonomies, $tx_args );

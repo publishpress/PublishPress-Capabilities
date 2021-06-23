@@ -1,6 +1,6 @@
 <?php
 class CME_PublishPressRoles {
-    function scripts() {
+    public static function scripts() {
     ?>
         <script type="text/javascript">
             /* <![CDATA[ */

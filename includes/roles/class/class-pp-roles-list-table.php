@@ -122,8 +122,8 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
                         ['page' => 'pp-capabilities', 'role' => esc_attr($item['role'])], 
                         admin_url('admin.php')
                     ),
-                __('Capabilities', 'capsman-enhanced')
-            ),
+                    __('Capabilities', 'capsman-enhanced')
+                ),
             ];
         } else {
             $actions = [
@@ -255,13 +255,15 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
         }
 
         if (pp_capabilities_is_editable_role($item['role'])) {
-        	$out = sprintf(
+            $out = sprintf(
                 '<a href="%1$s"><strong><span class="row-title">%2$s</span>%3$s</strong></a>', 
                 add_query_arg(
                     ['page' => 'pp-capabilities', 'role' => esc_attr($item['role'])], 
                     admin_url('admin.php')
                 ), 
-                esc_html($item['name']), $role_states);
+                esc_html($item['name']), 
+                $role_states
+            );
         } else {
             $out = esc_html($item['name']);
         }

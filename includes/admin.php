@@ -240,16 +240,16 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 				$custom_types = get_post_types( array( '_builtin' => false ), 'names' );
 				$custom_tax = get_taxonomies( array( '_builtin' => false ), 'names' );
 				
-				$defined = array();
-				$defined['type'] = apply_filters('cme_filterable_post_types', get_post_types( array( 'public' => true, 'show_ui' => true), 'object', 'or' ));
-				$defined['taxonomy'] = get_taxonomies( array( 'public' => true ), 'object' );
+				$defined = [];
+				$defined['type'] = apply_filters('cme_filterable_post_types', get_post_types(['public' => true, 'show_ui' => true], 'object', 'or'));
+				$defined['taxonomy'] = apply_filters('cme_filterable_taxonomies', get_taxonomies(['public' => true, 'show_ui' => true], 'object', 'or'));
 				
 				// bbPress' dynamic role def requires additional code to enforce stored caps
 				$unfiltered['type'] = apply_filters('presspermit_unfiltered_post_types', ['forum','topic','reply','wp_block']);
 				$unfiltered['type'] = (defined('PP_CAPABILITIES_NO_LEGACY_FILTERS')) ? $unfiltered['type'] : apply_filters('pp_unfiltered_post_types', $unfiltered['type']);
 				
 				$unfiltered['taxonomy'] = apply_filters('presspermit_unfiltered_post_types', ['post_status', 'topic-tag']);  // avoid confusion with Edit Flow administrative taxonomy
-				$unfiltered['taxonomy'] = (defined('PP_CAPABILITIES_NO_LEGACY_FILTERS')) ? $unfiltered['taxonomy'] : apply_filters('pp_unfiltered_post_types', $unfiltered['taxonomy']);
+				$unfiltered['taxonomy'] = (defined('PP_CAPABILITIES_NO_LEGACY_FILTERS')) ? $unfiltered['taxonomy'] : apply_filters('pp_unfiltered_taxonomies', $unfiltered['taxonomy']);
 
 				$enabled_taxonomies = cme_get_assisted_taxonomies();
 				
@@ -387,7 +387,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 								if ( empty($force_distinct_ui) && empty( $cap_properties[$cap_type][$item_type] ) )
 									continue;
 							
-								$type_label = (!empty($type_obj->labels->menu_name)) ? $type_obj->labels->menu_name : $type_obj->labels->name;
+								$type_label = (defined('CME_LEGACY_MENU_NAME_LABEL') && !empty($type_obj->labels->menu_name)) ? $type_obj->labels->menu_name : $type_obj->labels->name;
 
 								$row .= "<td><a class='cap_type' href='#toggle_type_caps'>" . $type_label . '</a>';
 								$row .= '<a href="#" class="neg-type-caps">&nbsp;x&nbsp;</a>';
@@ -520,7 +520,12 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 				jQuery(document).ready( function($) {
 					$('a[href="#toggle_type_caps"]').click( function() {
 						var chks = $(this).closest('tr').find('input');
-						$(chks).prop( 'checked', ! $(chks).first().is(':checked') );
+						var set_checked = ! $(chks).first().is(':checked');
+
+						$(chks).each(function(i,e) {
+							$('input[name="' + $(this).attr('name') + '"]').prop('checked', set_checked);
+						});
+						
 						return false;
 					});
 					
@@ -1161,11 +1166,9 @@ function cme_network_role_ui( $default ) {
 		<?php
 		if ( ! $autocreate_roles = get_site_option( 'cme_autocreate_roles' ) )
 			$autocreate_roles = array();
-		
-		$checked = ( in_array( $default, $autocreate_roles ) ) ? 'checked="checked"': '';
 		?>
 		<div style="margin-bottom: 5px">
-		<label for="cme_autocreate_role" title="<?php _e('Create this role definition in new (future) sites', 'capsman-enhanced');?>"><input type="checkbox" name="cme_autocreate_role" id="cme_autocreate_role" autocomplete="off" value="1" <?php echo $checked;?>> <?php _e('include in new sites', 'capsman-enhanced'); ?> </label>
+		<label for="cme_autocreate_role" title="<?php _e('Create this role definition in new (future) sites', 'capsman-enhanced');?>"><input type="checkbox" name="cme_autocreate_role" id="cme_autocreate_role" autocomplete="off" value="1" <?php echo checked(in_array($default, $autocreate_roles));?>> <?php _e('include in new sites', 'capsman-enhanced'); ?> </label>
 		</div>
 		<div>
 		<label for="cme_net_sync_role" title="<?php echo esc_attr(__('Copy / update this role definition to all sites now', 'capsman-enhanced'));?>"><input type="checkbox" name="cme_net_sync_role" id="cme_net_sync_role" autocomplete="off" value="1"> <?php _e('sync role to all sites now', 'capsman-enhanced'); ?> </label>

@@ -343,7 +343,7 @@ class CapsmanHandler
 							$stored_role_caps = ( ! empty($blog_role->capabilities) && is_array($blog_role->capabilities) ) ? array_intersect( $blog_role->capabilities, array(true, 1) ) : array();
 							
 							$old_caps = array_intersect_key( $stored_role_caps, $this->cm->capabilities);
-	
+
 							// Find caps to add and remove
 							$add_caps = array_diff_key($new_caps, $old_caps);
 							$del_caps = array_intersect_key( array_diff_key($old_caps, $new_caps), $main_admin_caps );	// don't mess with caps that are totally unused on main site
@@ -352,12 +352,11 @@ class CapsmanHandler
 							foreach ( $add_caps as $cap => $grant ) {
 								$blog_role->add_cap( $cap, $grant );
 							}
-	
+
 							// Remove capabilities from role
 							foreach ( $del_caps as $cap => $grant) {
 								$blog_role->remove_cap($cap);
 							}
-	
 						} else {
 							$wp_roles->add_role( $role_name, $role_caption, $new_caps );
 						}

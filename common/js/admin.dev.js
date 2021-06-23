@@ -12,6 +12,8 @@ jQuery(document).ready( function($) {
 		var cap_name_attr = $(this).parent().find('input[type="checkbox"]').attr('name');
 		$(this).after('<input type="hidden" class="cme-negation-input" name="'+cap_name_attr+'" value="" />');
 		
+		$('input[name="' + cap_name_attr + '"]').closest('td').removeClass('cap-yes').removeClass('cap-no').addClass('cap-neg');
+
 		return false;
 	});
 	
@@ -21,6 +23,16 @@ jQuery(document).ready( function($) {
 		$(this).parent().find('input[type="checkbox"]').prop('checked',false);
 		$(this).parent().find('input.cme-negation-input').remove();
 		
+		// Also apply for any other checkboxes with the same name
+		var cap_name_attr = $(this).next('input[type="checkbox"]').attr('name');
+
+		if (!cap_name_attr) {
+			cap_name_attr = $(this).next('label').find('input[type="checkbox"]').attr('name');
+		}
+
+		$('input[name="' + cap_name_attr + '"]').parent().closest('td').removeClass('cap-neg').removeClass('cap-yes').addClass('cap-no');
+		$('input[name="' + cap_name_attr + '"]').prop('checked',false).parent().find('input.cme-negation-input').remove();
+
 		return false;
 	});
 	
@@ -51,6 +63,8 @@ jQuery(document).ready( function($) {
 
 			var cap_name_attr = $(this).find('input[type="checkbox"]').attr('name');
 			$(this).append('<input type="hidden" class="cme-negation-input" name="'+cap_name_attr+'" value="" />');
+
+			$('input[name="' + cap_name_attr + '"]').parent().next('a.neg-cap:visible').click();
 		});
 		
 		return false;
@@ -67,9 +81,12 @@ jQuery(document).ready( function($) {
 		else
 			var class_sel = '[class*="post-cap"]';
 		
-		$(this).closest("table")
-			.find("tr td" + class_sel + ":nth-child(" + (columnNo+1) + ') input[type="checkbox"]:visible')
-			.prop("checked", check_val);
+		var chks = $(this).closest("table")
+			.find("tr td" + class_sel + ":nth-child(" + (columnNo+1) + ') input[type="checkbox"]:visible');
+
+		$(chks).each(function(i,e) {
+			$('input[name="' + $(this).attr('name') + '"]').prop('checked', check_val);
+		});
 		
 		$(this).prop('checked_all',check_val);
 	});

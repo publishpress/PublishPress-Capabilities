@@ -7,7 +7,7 @@ Tags: user roles, capabilities, permissions, authors, editors, post types, taxon
 Requires at least: 4.9.7
 Tested up to: 5.7
 Requires PHP: 5.6.20
-Stable tag: 2.0.2
+Stable tag: 2.1
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -140,6 +140,12 @@ Follow PublishPress on [Facebook](https://www.facebook.com/publishpress), [Twitt
 Fixed : Non-administrators with user editing capabilities could add new Administrators
 
 == Changelog ==
+
+= 2.1 - 24 Jun 2021 =
+  * Feature : Editor Features restriction (new screen to block editor elements per-role)
+  * Fixed : If Media "Create" capability is selected / unselected by clicking Media caption or Create caption, the corresponding upload_files checkbox (in Other WP Core Capabilities section) is not toggled, leading to an apparant update failure
+  * Fixed : If Media "Create" capability is negated or un-negated, the corresponding upload_files checkbox (in Other WP Core Capabilities section) is not toggled, leading to an apparant update failure 
+  * Fixed : PHP Warning if a role is stored without a valid capabilities array
 
 = 2.0.2 - 6 May 2021 =
   * Feature : Multisite - "sync options to all sites" checkbox. Copies "use create_posts capability", Type-Specific Capabilities, Taxonomy-Specific Capabilities, Detailed Taxonomy Capabilities settings 

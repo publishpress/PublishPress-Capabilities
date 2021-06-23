@@ -85,6 +85,10 @@ function ak_level2caps( $level ) {
  * @return int 			Level found, if no level found, will return 0.
  */
 function ak_caps2level( $caps ) {
+	if (!is_array($caps)) {
+		return 0;
+	}
+
 	$level = array_reduce( array_keys( $caps ), '_ak_caps2level_CB', 0);
 	return $level;
 }

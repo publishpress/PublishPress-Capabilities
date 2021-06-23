@@ -177,14 +177,14 @@ class Pp_Roles_Manager
 			}
 		}
 
-        remove_role($role);
+		remove_role($role);
 
 		if ( $customized_roles = get_option( 'pp_customized_roles' ) ) {
 			if ( isset( $customized_roles[$role] ) ) {
 				unset( $customized_roles[$role] );
 				update_option( 'pp_customized_roles', $customized_roles );
 			}
-    	}
+		}
 
 		return $count;
     }
