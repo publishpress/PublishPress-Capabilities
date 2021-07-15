@@ -141,6 +141,9 @@ Fixed : Non-administrators with user editing capabilities could add new Administ
 
 == Changelog ==
 
+= 2.1.1-beta =
+  * Fixed : Some security scans flagged an unused file in external library "chosen". That file (and other developer documentation files) has been removed
+
 = 2.1 - 24 Jun 2021 =
   * Feature : Editor Features restriction (new screen to block editor elements per-role)
   * Fixed : If Media "Create" capability is selected / unselected by clicking Media caption or Create caption, the corresponding upload_files checkbox (in Other WP Core Capabilities section) is not toggled, leading to an apparant update failure
