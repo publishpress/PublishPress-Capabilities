@@ -67,11 +67,6 @@ function _cme_update_pp_usage() {
 	}
 	
 	if ( defined( 'PRESSPERMIT_ACTIVE' ) ) {
-		
-		if (defined('PUBLISHPRESS_CAPS_PRO_VERSION')) {
-			update_option('cme_custom_status_control', (int) !empty($_REQUEST['cme_custom_status_control']));
-		}
-		
 		if ( ! empty( $_REQUEST['SaveRole']) ) {
 			if ( ! empty( $_REQUEST['role'] ) ) {
 				$pp_only = (array) pp_capabilities_get_permissions_option( 'supplemental_role_defs' );
