@@ -30,6 +30,9 @@ class CoreAdmin {
         }
 
         add_action('pp-capabilities-admin-submenus', [$this, 'actCapabilitiesSubmenus']);
+
+        add_action('wp_ajax_ppc_submit_feature_gutenberg_by_ajax', [$this, 'ppc_submit_custom_feature_post_promo_callback']);
+        add_action('wp_ajax_ppc_submit_feature_classic_by_ajax', [$this, 'ppc_submit_custom_feature_post_promo_callback']);
     }
 
     function setUpgradeMenuLink() {
@@ -63,4 +66,38 @@ class CoreAdmin {
         wp_enqueue_style('pp-capabilities-admin-core', plugin_dir_url(CME_FILE) . 'includes-core/admin-core.css', [], PUBLISHPRESS_CAPS_VERSION, 'all');
         include (dirname(__FILE__) . '/nav-menus-promo.php');
     }
+
+    /**
+    * Submit new item for editor feature ajax callback.
+    *
+    * @since 2.1.1
+    */
+    function ppc_submit_custom_feature_post_promo_callback()
+    {
+
+        $response['status']  = 'error';
+        $response['message'] = __('An error occured!', 'capsman-enhanced');
+        $response['content'] = '';
+
+        $def_post_types = apply_filters('pp_capabilities_feature_post_types', ['post', 'page']);
+        $custom_label   = isset($_POST['custom_label']) ? $_POST['custom_label'] : '';
+        $custom_element = isset($_POST['custom_element']) ? $_POST['custom_element'] : '';
+        $security       = isset($_POST['security']) ? $_POST['security'] : '';
+        $action         = isset($_POST['action']) ? $_POST['action'] : '';
+
+        if (!wp_verify_nonce($security, 'ppc-custom-feature-nonce')) {
+            $response['message'] = __('Invalid action. Reload this page and try again if occured in error.', 'capsman-enhanced');
+        } elseif (empty(trim($custom_label)) || empty(trim($custom_element))) {
+            $response['message'] = __('All fields are required.', 'capsman-enhanced');
+        } else {
+            $response['status']  = 'promo';
+            $response['message'] = __('This is a pro feature. Upgrade to PRO version of the plugin to be able to add custom item.','capsman-enhanced');
+        }
+
+        wp_send_json($response);
+    } 
+
+
+
+
 }

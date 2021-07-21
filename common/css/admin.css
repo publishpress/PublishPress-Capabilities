@@ -416,3 +416,54 @@ div.publishpress-caps-backup td.cme-backup-info .cme-negate {
 table#akmin tr td input[type=checkbox] {
   margin: 0;
 }
+
+.ppc-add-custom-row-body .ppc-feature-classic-new-name,
+.ppc-add-custom-row-body .ppc-feature-gutenberg-new-name {
+    height: 50px;
+    width: 100%;
+}
+
+.ppc-add-custom-row-body .ppc-feature-classic-new-ids,
+.ppc-add-custom-row-body .ppc-feature-gutenberg-new-ids {
+    resize: none;height: 45px;
+    width: 80%;
+}
+
+.ppc-add-custom-row-body .ppc-feature-classic-new-submit,
+.ppc-add-custom-row-body .ppc-feature-gutenberg-new-submit {
+    margin-top: -40px;
+    margin-left: 20px;
+    color: #ffffff;
+    background: #655997;
+    cursor: pointer;
+}
+
+.ppc-add-custom-row-body .ppc-feature-post-loader.is-active {
+    margin-top: -40px;
+    float: none;
+}
+
+.ppc-custom-features-delete {
+    cursor: pointer;
+    color: red;
+}
+
+.ppc-menu-overlay-item {
+    background: #feb123 !important;
+    opacity: 0.7 !important;
+}
+
+.ppc-add-custom-row-body .left {
+    display: inline-block;
+    width: 35%;
+    margin-right: 20px;
+}
+
+.ppc-add-custom-row-body .right {
+    display: inline-block;
+    width: 60%;
+}
+
+.ppc-post-features-note {
+    clear:both;
+}

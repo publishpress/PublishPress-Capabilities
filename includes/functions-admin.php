@@ -413,3 +413,247 @@ function _pp_capabilities_is_block_editor_active($post_type = '', $args = [])
     // Returns true if at least one condition is true.
     return $result;
 }
+
+/**
+ * Add custom element form to classic feature post
+ *
+ * @param array $def_post_types Post type.
+ * @param array $ce_elements All classic editor elements.
+ * @param array $ce_post_disabled All classic editor disabled post type element.
+ *
+ * @since 2.1.1
+ */
+function ppc_add_feature_classic_custom_form($def_post_types, $ce_elements, $ce_post_disabled)
+{
+    ?>
+
+    <tr class="ppc-menu-row parent-menu ppc-add-custom-row-header">
+        <td colspan="3">
+            <p><?php echo __('You can remove custom item/elements from screen by adding their IDs or classes here.',
+                    'capsman-enhanced'); ?></p>
+        </td>
+    </tr>
+
+
+    <tr class="ppc-add-custom-row-body">
+        <td colspan="3">
+
+            <div class="left">
+            <?php echo __('Name/Label', 'capsman-enhanced'); ?> <font color="red">*</font>
+            <input class="ppc-feature-classic-new-name" type="text"/>
+            <small><?php echo __('Enter the name/label by which this custom element will be listed.',
+                    'capsman-enhanced'); ?></small>
+            </div>
+            
+            <div class="right">
+            <?php echo __('Element Ids or Classes', 'capsman-enhanced'); ?> <font color="red">*</font>
+            <div><textarea class="ppc-feature-classic-new-ids"></textarea>
+                <input class="ppc-feature-submit-form-nonce" type="hidden"
+                       value="<?php echo wp_create_nonce('ppc-custom-feature-nonce'); ?>"/>
+                <button type="button" class="ppc-feature-classic-new-submit"><?php echo __('Add',
+                        'capsman-enhanced'); ?></button>
+                <span class="ppc-feature-post-loader spinner"></span>
+            </div>
+            <div>
+                <small><?php echo __('Possible IDs or classes. Separate multiple values by comma (e.g: .custom-item-one, .custom-item-two, #new-item-id).',
+                        'capsman-enhanced'); ?></small>
+            </div>
+            </div>
+            <div class="ppc-post-features-note"></div>
+        </td>
+    </tr>
+
+    <?php
+}
+add_action('pp_capabilities_feature_classic_after_tr', 'ppc_add_feature_classic_custom_form', 10, 3);
+
+
+/**
+ * Add custom element form to gutenberg feature post
+ *
+ * @param array $def_post_types Post type.
+ * @param array $gutenberg_elements All gutenberg elements.
+ * @param array $gutenberg_post_disabled All gutenberg disabled post type element.
+ *
+ * @since 2.1.1
+ */
+function ppc_add_feature_gutenberg_custom_form($def_post_types, $ce_elements, $ce_post_disabled)
+{
+    ?>
+
+    <tr class="ppc-menu-row parent-menu ppc-add-custom-row-header">
+        <td colspan="3">
+            <p><?php echo __('You can remove custom item/elements from screen by adding their IDs or classes here.',
+                    'capsman-enhanced'); ?></p>
+        </td>
+    </tr>
+
+    <tr class="ppc-add-custom-row-body">
+        <td colspan="3">
+
+            <div class="left">
+            <?php echo __('Name/Label', 'capsman-enhanced'); ?> <font color="red">*</font>
+            <input class="ppc-feature-gutenberg-new-name" type="text"/>
+            <small><?php echo __('Enter the name/label by which this custom element will be listed.',
+                    'capsman-enhanced'); ?></small>
+            </div>
+            
+            <div class="right">
+            <?php echo __('Element Ids or Classes', 'capsman-enhanced'); ?> <font color="red">*</font>
+            <div><textarea class="ppc-feature-gutenberg-new-ids"></textarea>
+                <input class="ppc-feature-submit-form-nonce" type="hidden"
+                       value="<?php echo wp_create_nonce('ppc-custom-feature-nonce'); ?>"/>
+                <button type="button" class="ppc-feature-gutenberg-new-submit"><?php echo __('Add',
+                        'capsman-enhanced'); ?></button>
+                <span class="ppc-feature-post-loader spinner"></span>
+            </div>
+            <div>
+                <small><?php echo __('Possible IDs or classes. Separate multiple values by comma (e.g: .custom-item-one, .custom-item-two, #new-item-id).',
+                        'capsman-enhanced'); ?></small>
+            </div>
+            </div>
+            <div class="ppc-post-features-note"></div>
+
+        </td>
+    </tr>
+
+    <?php
+}
+add_action('pp_capabilities_feature_gutenberg_after_tr', 'ppc_add_feature_gutenberg_custom_form', 10, 3);
+
+
+/**
+ * Add custom element form to classic feature post
+ *
+ * @param array $def_post_types Post type.
+ * @param array $ce_elements All classic editor elements.
+ * @param array $ce_post_disabled All classic editor disabled post type element.
+ *
+ * @since 2.1.1
+ */
+function ppc_filter_post_feature_elements($elements)
+{
+
+    $current_filter = current_filter();
+
+    if ($current_filter === 'pp_capabilities_post_feature_elements') {
+
+        $data          = ppc_get_feature_post_gutenberg_custom_data();
+        $added_element = [];
+
+        if (count($data) > 0) {
+            foreach ($data as $name => $restrict_data) {
+                $delete_button        = '<span class="ppc-custom-features-delete" data-id="' . $name . '" data-parent="gutenberg"><small>(' . __('Delete',
+                        'capsman-enhanced') . ')</small></span>';
+                $added_element[$name] = [
+                    'label'    => $restrict_data['label'] . ' <small>(' . $restrict_data['elements'] . ')</small> &nbsp; ' . $delete_button . '',
+                    'elements' => $restrict_data['elements'],
+                ];
+            }
+        }
+
+        $elements[__('Custom items', 'capsman-enhanced')] = $added_element;
+
+    } elseif ($current_filter === 'pp_capabilities_post_feature_elements_classic') {
+
+        $data          = ppc_get_feature_post_classic_custom_data();
+        $added_element = [];
+
+        if (count($data) > 0) {
+            foreach ($data as $name => $restrict_data) {
+                $delete_button        = '<span class="ppc-custom-features-delete" data-id="' . $name . '" data-parent="classic"><small>(' . __('Delete',
+                        'capsman-enhanced') . ')</small></span>';
+                $added_element[$name] = [
+                    'label'    => $restrict_data['label'] . ' <small>(' . $restrict_data['elements'] . ')</small> &nbsp; ' . $delete_button . '',
+                    'elements' => $restrict_data['elements'],
+                ];
+            }
+        }
+
+        $elements[__('Custom items', 'capsman-enhanced')] = $added_element;
+    }
+
+    return $elements;
+}
+
+add_filter('pp_capabilities_post_feature_elements', 'ppc_filter_post_feature_elements');
+add_filter('pp_capabilities_post_feature_elements_classic', 'ppc_filter_post_feature_elements');
+
+
+/**
+ * Fetch our customs post feature gutenberg options.
+ *
+ * @return mixed
+ *
+ * @since 2.1.1
+ */
+function ppc_get_feature_post_gutenberg_custom_data()
+{
+    $data = (array)get_option('ppc_feature_post_gutenberg_custom_data');
+    $data = array_filter($data);
+
+    return $data;
+}
+
+/**
+ * Fetch our customs post feature classic options.
+ *
+ * @return mixed
+ *
+ * @since 2.1.1
+ */
+function ppc_get_feature_post_classic_custom_data()
+{
+    $data = (array)get_option('ppc_feature_post_classic_custom_data');
+    $data = array_filter($data);
+
+    return $data;
+}
+
+
+/**
+ * Delete custom added post features item ajax callback.
+ *
+ * @since 2.1.1
+ */
+function ppc_delete_custom_post_features_by_ajax_callback()
+{
+
+    $response['status']  = 'error';
+    $response['message'] = __('An error occured!', 'capsman-enhanced');
+    $response['content'] = '';
+
+    $delete_id     = isset($_POST['delete_id']) ? $_POST['delete_id'] : '';
+    $delete_parent = isset($_POST['delete_parent']) ? $_POST['delete_parent'] : '';
+    $security      = isset($_POST['security']) ? $_POST['security'] : '';
+
+    if (!wp_verify_nonce($security, 'ppc-custom-feature-nonce')) {
+        $response['message'] = __('Invalid action. Reload this page and try again if occured in error.',
+            'capsman-enhanced');
+    } elseif (empty(trim($delete_id)) || empty(trim($delete_parent))) {
+        $response['message'] = __('Invalid request!.', 'capsman-enhanced');
+    } else {
+
+        if ($delete_parent === 'gutenberg') {
+            $data = ppc_get_feature_post_gutenberg_custom_data();
+            if (array_key_exists($delete_id, $data)) {
+                unset($data[$delete_id]);
+                update_option('ppc_feature_post_gutenberg_custom_data', $data);
+            }
+        } elseif ($delete_parent === 'classic') {
+            $data = ppc_get_feature_post_classic_custom_data();
+            if (array_key_exists($delete_id, $data)) {
+                unset($data[$delete_id]);
+                update_option('ppc_feature_post_classic_custom_data', $data);
+            }
+        }
+
+        if (!empty($delete_parent)) {
+            $response['status']  = 'success';
+            $response['message'] = __('Selected item deleted successfully', 'capsman-enhanced');
+        }
+    }
+
+    wp_send_json($response);
+}
+add_action('wp_ajax_ppc_delete_custom_post_features_by_ajax', 'ppc_delete_custom_post_features_by_ajax_callback');

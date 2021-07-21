@@ -62,5 +62,19 @@ foreach($def_post_types as $post_type) {
     }
     ?>
 
+    <?php
+    /**
+	* Fires after all table <tr> element.
+	*
+	* @param array     $def_post_types          Post type.
+	* @param array     $gutenberg_elements      All gutenberg elements.
+	* @param array     $gutenberg_post_disabled All gutenberg disabled post type element.
+	*
+	* @since 2.1.1
+	*/
+	do_action( 'pp_capabilities_feature_gutenberg_after_tr', $def_post_types, $gutenberg_elements, $gutenberg_post_disabled );
+    
+    ?>
+
     </tbody>
 </table>

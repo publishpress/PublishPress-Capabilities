@@ -181,7 +181,6 @@ class CapabilityManager
 
 		$suffix = defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ? '.dev' : '';
 		$url = $this->mod_url . "/common/js/admin{$suffix}.js";
-
 		wp_enqueue_script( 'cme_admin', $url, array('jquery'), PUBLISHPRESS_CAPS_VERSION, true );
 		wp_localize_script( 'cme_admin', 'cmeAdmin', array(
 			'negationCaption' => __( 'Explicity negate this capability by storing as disabled', 'capsman-enhanced' ),
@@ -189,7 +188,9 @@ class CapabilityManager
 			'typeCapUnregistered' => __( 'Post type registration does not define this capability distinctly', 'capsman-enhanced' ),
 			'capNegated' => __( 'This capability is explicitly negated. Click to add/remove normally.', 'capsman-enhanced' ),
 			'chkCaption' => __( 'Add or remove this capability from the WordPress role', 'capsman-enhanced' ),
-			'switchableCaption' => __( 'Add or remove capability from the role normally', 'capsman-enhanced' ) )
+			'switchableCaption' => __( 'Add or remove capability from the role normally', 'capsman-enhanced' ) ,
+			'deleteWarning' => __( 'Are you sure you want to delete this item ?', 'capsman-enhanced' )
+        ),
 		);
     }
 
