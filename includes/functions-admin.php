@@ -523,11 +523,9 @@ add_action('pp_capabilities_feature_gutenberg_after_tr', 'ppc_add_feature_gutenb
 
 
 /**
- * Add custom element form to classic feature post
+ * Filter post features element and add our custom items
  *
- * @param array $def_post_types Post type.
- * @param array $ce_elements All classic editor elements.
- * @param array $ce_post_disabled All classic editor disabled post type element.
+ * @param array $elements Post screen elements.
  *
  * @since 2.1.1
  */
