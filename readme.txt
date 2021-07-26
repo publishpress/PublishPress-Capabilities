@@ -143,6 +143,7 @@ Fixed : Non-administrators with user editing capabilities could add new Administ
 
 = 2.1.1-beta =
   * Fixed : Some security scans flagged an unused file in external library "chosen". That file (and other developer documentation files) has been removed
+  * Feature : Added ability to block metaboxes to Editor Features #89
 
 = 2.1 - 24 Jun 2021 =
   * Feature : Editor Features restriction (new screen to block editor elements per-role)
