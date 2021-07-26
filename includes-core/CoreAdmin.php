@@ -30,6 +30,11 @@ class CoreAdmin {
         }
 
         add_action('pp-capabilities-admin-submenus', [$this, 'actCapabilitiesSubmenus']);
+
+        add_filter('pp_capabilities_post_feature_elements', [$this, 'ppc_free_post_feature_metaboxes_elements']);
+        add_filter('pp_capabilities_post_feature_elements_classic', [$this, 'ppc_free_post_feature_metaboxes_elements']);
+        add_action('pp_capabilities_feature_gutenberg_metaboxes_section', [$this, 'ppc_post_feature_metaboxes_section_promo'], 11, 3);
+        add_action('pp_capabilities_feature_classic_metaboxes_section', [$this, 'ppc_post_feature_metaboxes_section_promo'], 11, 3);
     }
 
     function setUpgradeMenuLink() {
@@ -63,4 +68,38 @@ class CoreAdmin {
         wp_enqueue_style('pp-capabilities-admin-core', plugin_dir_url(CME_FILE) . 'includes-core/admin-core.css', [], PUBLISHPRESS_CAPS_VERSION, 'all');
         include (dirname(__FILE__) . '/nav-menus-promo.php');
     }
+
+    /**
+    * Filter post features element and add metaboxes items
+    *
+    * @param array $elements Post screen elements.
+    *
+    * @since 2.1.1
+    */
+    public function ppc_free_post_feature_metaboxes_elements($elements)
+    {
+
+        $elements[__('Metaboxes', 'capsman-enhanced')] = [];
+
+        return $elements;
+    }
+
+    /**
+    * Add promo to post features metaboxes section title
+    *
+    * @param array $post_types Post type.
+    * @param array $elements All elements.
+    * @param array $post_disabled All disabled post type element.
+    *
+    * @since 2.1.1
+    */
+    function ppc_post_feature_metaboxes_section_promo($post_types, $elements, $post_disabled)
+    {
+    ?>
+    <div style="color:red;text-align:center;">
+        <?php _e('This is a PRO feature. Upgrade to PublishPress Capabilities Pro to have ability to hide metaboxes.', 'capsman-enhanced') ?>
+    </div>
+    <?php
+}
+
 }

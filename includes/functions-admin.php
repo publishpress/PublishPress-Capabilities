@@ -413,3 +413,173 @@ function _pp_capabilities_is_block_editor_active($post_type = '', $args = [])
     // Returns true if at least one condition is true.
     return $result;
 }
+
+/**
+ * Add description to post features metaboxes section title
+ *
+ * @param array $post_types Post type.
+ * @param array $elements All elements.
+ * @param array $post_disabled All disabled post type element.
+ *
+ * @since 2.1.1
+ */
+function ppc_post_feature_metaboxes_section_description($post_types, $elements, $post_disabled)
+{
+    ?>
+    <small>
+        <?php _e('To update metaboxes list, you must visit editor screen and then reload this page for all captured metaboxes.',
+            'capsman-enhanced') ?>
+    </small>
+    <a href="<?php echo admin_url('post-new.php'); ?>" target="blank"><?php _e('GOTO editor screen.',
+            'capsman-enhanced') ?> </a>
+    <?php
+}
+
+add_action('pp_capabilities_feature_gutenberg_metaboxes_section', 'ppc_post_feature_metaboxes_section_description', 10,
+    3);
+add_action('pp_capabilities_feature_classic_metaboxes_section', 'ppc_post_feature_metaboxes_section_description', 10,
+    3);
+
+
+/**
+ * Retrieve current post screen metaboxes
+ *
+ * @param string $screen Screen id
+ *
+ * @return string
+ *
+ * @since 2.1.1
+ */
+function ppc_get_meta_boxes($screen = null)
+{
+    global $wp_meta_boxes;
+
+    $meta_boxes = false;
+
+    if (empty($screen)) {
+        $screen = get_current_screen();
+    } elseif (is_string($screen)) {
+        $screen = convert_to_screen($screen);
+    }
+
+    if ($screen) {
+        $page       = $screen->id;
+        $meta_boxes = $wp_meta_boxes[$page];
+    }
+
+    return $meta_boxes;
+}
+
+/**
+ * Capture metaboxes for post features
+ *
+ * @param array $post_types Post type.
+ * @param array $elements All elements.
+ * @param array $post_disabled All disabled post type element.
+ *
+ * @since 2.1.1
+ */
+function ppc_capture_post_feature_metaboxes()
+{
+
+    $screen = get_current_screen();
+
+    if (!$screen) {
+        return;
+    }
+
+    if (!$screen->base) {
+        return;
+    }
+
+    if ($screen->base !== 'post') {
+        return;
+    }
+
+    $post_type = $screen->post_type;
+
+    $current_meta_box = [];
+    $fetch_metaboxes  = ppc_get_meta_boxes($post_type);
+
+    if (is_array($fetch_metaboxes) && count($fetch_metaboxes) > 0) {
+        foreach ($fetch_metaboxes as $post_metabox_locations => $post_metabox_values) {
+            //$post_metabox_locations => ['advanced', 'side', 'normal']
+            foreach ($post_metabox_values as $post_metabox_priority => $post_metabox_datas) {
+                //$post_metabox_priority => ['default', 'high', 'core', 'low']
+                if (count($post_metabox_datas) > 0) {
+                    foreach ($post_metabox_datas as $meta_key => $meta_values) {
+                        if (isset($meta_values['args']) && isset($meta_values['args']['taxonomy']) && !empty($meta_values['args']['taxonomy'])) {
+                            //exclude taxonomy since they've been covered by another section
+                            continue;
+                        }
+
+                        $current_meta_box[$meta_key] = [
+                            'id'        => $meta_values['id'],
+                            'title'     => $meta_values['title'],
+                            'locations' => $post_metabox_locations,
+                            'priority'  => $post_metabox_priority
+                        ];
+                    }
+                }
+            }
+        }
+    }
+
+    //save the result
+    $post_metaboxes_data             = ppc_get_feature_post_metaboxes_data();
+    $post_metaboxes_data[$post_type] = $current_meta_box;
+
+    update_option('ppc_feature_post_metaboxes_data', $post_metaboxes_data);
+
+}
+
+add_action('admin_head', 'ppc_capture_post_feature_metaboxes', 999);
+
+
+/**
+ * Fetch our metaboxes post feature options.
+ *
+ * @return array
+ *
+ * @since 2.1.1
+ */
+function ppc_get_feature_post_metaboxes_data()
+{
+    $data = (array)get_option('ppc_feature_post_metaboxes_data');
+    $data = array_filter($data);
+
+    return $data;
+}
+
+/**
+ * Array list of ids excluded for metaboxes section.
+ *
+ * @return array
+ *
+ * @since 2.1.1
+ */
+function ppc_get_feature_post_metaboxes_excluded()
+{
+    $data = [
+        'postimagediv',//Featured image
+        'commentstatusdiv',//Discussion
+        'postexcerpt',//Excerpt
+        'submitdiv',//Publish
+    ];
+
+    return $data;
+}
+
+/**
+ * Remove all non-alphanumeric and space characters from a string.
+ *
+ * @param string $string .
+ *
+ * @return string
+ *
+ * @since 2.1.1
+ */
+function ppc_remove_non_alphanumeric_space_characters($string)
+{
+    return preg_replace("/(\W)+/", "", $string);
+}

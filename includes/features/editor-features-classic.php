@@ -35,6 +35,18 @@ foreach($def_post_types as $post_type) {
         <tr class="ppc-menu-row parent-menu">
             <td colspan="<?php echo (count($def_post_types) + 1);?>">
             <h4 class="ppc-menu-row-section"><?php echo $section_title;?></h4>
+            <?php
+            /**
+	        * Add support for section description
+            *
+	        * @param array     $def_post_types          Post type.
+	        * @param array     $gutenberg_elements      All gutenberg elements.
+	        * @param array     $gutenberg_post_disabled All gutenberg disabled post type element.
+            *
+	        * @since 2.1.1
+	        */
+	        do_action( "pp_capabilities_feature_classic_{$section_slug}_section", $def_post_types, $gutenberg_elements, $gutenberg_post_disabled );
+            ?>
             </td>
         </tr>
         
@@ -63,6 +75,20 @@ foreach($def_post_types as $post_type) {
             <?php
         }
     }
+    ?>
+
+    <?php
+    /**
+	* Fires after all table <tr> element.
+	*
+	* @param array     $def_post_types      Post type.
+	* @param array     $ce_elements         All classic editor elements.
+	* @param array     $ce_post_disabled    All classic editor disabled post type element.
+	*
+	* @since 2.1.1
+	*/
+	do_action( 'pp_capabilities_feature_classic_after_tr', $def_post_types, $ce_elements, $ce_post_disabled );
+
     ?>
 
     </tbody>
