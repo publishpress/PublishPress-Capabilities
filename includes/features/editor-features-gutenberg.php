@@ -38,14 +38,14 @@ foreach($def_post_types as $post_type) {
             <h4 class="ppc-menu-row-section"><?php echo $section_title;?></h4>
             <?php
             /**
-	        * Add support for section description
-            *
-	        * @param array     $def_post_types          Post type.
-	        * @param array     $gutenberg_elements      All gutenberg elements.
-	        * @param array     $gutenberg_post_disabled All gutenberg disabled post type element.
-            *
-	        * @since 2.1.1
-	        */
+	         * Add support for section description
+             *
+	         * @param array     $def_post_types          Post type.
+	         * @param array     $gutenberg_elements      All gutenberg elements.
+	         * @param array     $gutenberg_post_disabled All gutenberg disabled post type element.
+             *
+	         * @since 2.1.1
+	         */
 	        do_action( "pp_capabilities_feature_gutenberg_{$section_slug}_section", $def_post_types, $gutenberg_elements, $gutenberg_post_disabled );
             ?>
             </td>
