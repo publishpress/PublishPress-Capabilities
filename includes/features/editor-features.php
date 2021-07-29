@@ -22,7 +22,8 @@ require_once (dirname(CME_FILE) . '/includes/features/restrict-editor-features.p
 
 global $capsman;
 $roles = $capsman->roles;
-$default_role = $capsman->current;
+
+$default_role = $capsman->get_last_role();
 
 $classic_editor = pp_capabilities_is_classic_editor_available();
 ?>
