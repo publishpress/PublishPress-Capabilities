@@ -188,7 +188,10 @@ $classic_editor = pp_capabilities_is_classic_editor_available();
             }
         });
 
-        $('span.menu-item-link').click(function(e) {
+        $(document).on("click", "span.menu-item-link", function (e) {
+            if($(e.target).parent().hasClass('ppc-custom-features-delete')){
+                return;
+            }
             var chks = $(this).closest('tr').find('input');
             $(chks).prop('checked', !$(this).hasClass('restricted'));
             $(this).toggleClass('restricted', $(chks).filter(':checked').length);

@@ -413,3 +413,17 @@ function _pp_capabilities_is_block_editor_active($post_type = '', $args = [])
     // Returns true if at least one condition is true.
     return $result;
 }
+
+/**
+ * Remove all non-alphanumeric and space characters from a string.
+ *
+ * @param string $string .
+ *
+ * @return string
+ *
+ * @since 2.1.1
+ */
+function ppc_remove_non_alphanumeric_space_characters($string)
+{
+    return preg_replace("/(\W)+/", "", $string);
+}
