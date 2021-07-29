@@ -142,6 +142,7 @@ Fixed : Non-administrators with user editing capabilities could add new Administ
 == Changelog ==
 
 = 2.2-beta =
+  * Feature : Retain last role selection for Capabilities, Editor Features screens
   * Fixed : Some security scans flagged an unused file in external library "chosen". That file (and other developer documentation files) has been removed
 
 = 2.1 - 24 Jun 2021 =
