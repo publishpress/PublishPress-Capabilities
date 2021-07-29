@@ -141,7 +141,7 @@ Fixed : Non-administrators with user editing capabilities could add new Administ
 
 == Changelog ==
 
-= 2.1.1-beta =
+= 2.2-beta =
   * Fixed : Some security scans flagged an unused file in external library "chosen". That file (and other developer documentation files) has been removed
 
 = 2.1 - 24 Jun 2021 =
