@@ -475,6 +475,7 @@ class CapabilityManager
             ak_admin_notify(__('Settings updated.', 'capabilities-pro'));
 		}
 
+		do_action('pp_capabilities_editor_features');
         include(dirname(CME_FILE) . '/includes/features/editor-features.php');
     }
 
