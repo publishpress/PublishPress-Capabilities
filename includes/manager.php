@@ -168,8 +168,14 @@ class CapabilityManager
      */
     function adminStyles()
     {
-		if ( empty( $_REQUEST['page'] ) || ! in_array( $_REQUEST['page'], array( 'pp-capabilities', 'pp-capabilities-roles', 'pp-capabilities-admin-menus', 'pp-capabilities-nav-menus', 'pp-capabilities-editor-features', 'pp-capabilities-backup', 'pp-capabilities-settings' ) ) )
+		if (empty($_REQUEST['page']) 
+		|| !in_array( 
+			$_REQUEST['page'], 
+			['pp-capabilities', 'pp-capabilities-roles', 'pp-capabilities-admin-menus', 'pp-capabilities-nav-menus', 'pp-capabilities-editor-features', 'pp-capabilities-backup', 'pp-capabilities-settings']
+			)
+		) {
 			return;
+		}
 
 		wp_enqueue_style('cme-admin-common', $this->mod_url . '/common/css/pressshack-admin.css', [], PUBLISHPRESS_CAPS_VERSION);
 
@@ -183,7 +189,7 @@ class CapabilityManager
 		$url = $this->mod_url . "/common/js/admin{$suffix}.js";
 
 		wp_enqueue_script( 'cme_admin', $url, array('jquery'), PUBLISHPRESS_CAPS_VERSION, true );
-		wp_localize_script( 'cme_admin', 'cmeAdmin', array(
+		wp_localize_script( 'cme_admin', 'cmeAdmin', [
 			'negationCaption' => __( 'Explicity negate this capability by storing as disabled', 'capsman-enhanced' ),
 			'typeCapsNegationCaption' => __( 'Explicitly negate these capabilities by storing as disabled', 'capsman-enhanced' ),
 			'typeCapUnregistered' => __( 'Post type registration does not define this capability distinctly', 'capsman-enhanced' ),
@@ -191,7 +197,7 @@ class CapabilityManager
 			'chkCaption' => __( 'Add or remove this capability from the WordPress role', 'capsman-enhanced' ),
 			'switchableCaption' => __( 'Add or remove capability from the role normally', 'capsman-enhanced' ) ,
 			'deleteWarning' => __( 'Are you sure you want to delete this item ?', 'capsman-enhanced' )
-        	)
+			]
 		);
     }
 
