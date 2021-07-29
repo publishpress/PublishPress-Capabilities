@@ -229,6 +229,26 @@ class CapabilityManager
 		add_filter( 'plugins_loaded', array( &$this, 'processRoleUpdate' ) );
     }
 
+	public function set_current_role($role_name) {
+		global $current_user;
+
+		if ($role_name && !empty($current_user) && !empty($current_user->ID)) {
+			update_option("capsman_last_role_{$current_user->ID}", $role_name);
+		}
+	}
+
+	public function get_last_role() {
+		global $current_user;
+	
+		$role_name = get_option("capsman_last_role_{$current_user->ID}");
+	
+		if (!$role_name || !get_role($role_name)) {
+			$role_name = get_option('default_role');
+		}
+	
+		return $role_name;
+	}
+
 	// Direct query of stored role definitions
 	function log_db_roles( $legacy_arg = '' ) {
 		global $wpdb;
@@ -418,7 +438,7 @@ class CapabilityManager
 
 		if (!isset($this->current)) {
 			if (empty($_POST) && !empty($_REQUEST['role'])) {
-				$this->current = $_REQUEST['role'];
+				$this->set_current_role($_REQUEST['role']);
 			}
 		}
 
@@ -431,7 +451,7 @@ class CapabilityManager
 		}
 
 		if ('POST' == $_SERVER['REQUEST_METHOD'] && isset($_POST['ppc-editor-features-role'])) {
-            $this->current = $_POST['ppc-editor-features-role'];
+            $this->set_current_role($_POST['ppc-editor-features-role']);
 
             $classic_editor = pp_capabilities_is_classic_editor_available();
 
@@ -630,12 +650,12 @@ class CapabilityManager
 					wp_die(__('The selected role is not editable.', 'capsman-enhanced'));
 				}
 
-				$this->current = $role;
+				$this->set_current_role($role);
 			}
 		}
 
 		if (!isset($this->current) || !get_role($this->current)) {
-			$this->current = get_option('default_role');
+			$this->current = $this->get_last_role();
 		}
 
 		if ( ! in_array($this->current, $roles) ) {    // Current role has been deleted.
@@ -663,12 +683,12 @@ class CapabilityManager
 		    $post['caps'] = array();
 		}
 
-		$this->current = $post['current'];
-
 		// Select a new role.
 		if ( ! empty($post['LoadRole']) ) {
-			$this->current = $post['role'];
+			$this->set_current_role($post['role']);
 		} else {
+			$this->set_current_role($post['current']);
+
 			require_once( dirname(__FILE__).'/handler.php' );
 			$capsman_modify = new CapsmanHandler( $this );
 			$capsman_modify->processAdminGeneral( $post );
