@@ -1,7 +1,14 @@
 <?php
 /**
- * Capability Manager.
+ * PublishPress Capabilities [Free]
+ * 
  * Plugin to create and manage roles and capabilities.
+ * 
+ * This is the plugin's original controller module, which is due for some refactoring.
+ * It registers and handles menus, loads javascript, and processes or routes update operations from the Capabilities screen.
+ * 
+ * Note: for lower overhead, this module is only loaded for Capabilities Pro URLs. 
+ * For all other wp-admin URLs, menus are registered by a separate skeleton module.
  *
  * @author		Jordi Canals, Kevin Behrens
  * @copyright   Copyright (C) 2009, 2010 Jordi Canals, (C) 2020 PublishPress
@@ -187,7 +194,6 @@ class CapabilityManager
 
 		$suffix = defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ? '.dev' : '';
 		$url = $this->mod_url . "/common/js/admin{$suffix}.js";
-
 		wp_enqueue_script( 'cme_admin', $url, array('jquery'), PUBLISHPRESS_CAPS_VERSION, true );
 		wp_localize_script( 'cme_admin', 'cmeAdmin', [
 			'negationCaption' => __( 'Explicity negate this capability by storing as disabled', 'capsman-enhanced' ),

@@ -1,6 +1,13 @@
 <?php
 if ( ! defined( 'ABSPATH' ) ) exit;
 
+/*
+ * PublishPress Capabilities [Free]
+ * 
+ * Load general purpose filters which need to execute for any URL, even front end
+ * 
+ */
+
 /**
  * class CME_Extensions
  * 
@@ -83,6 +90,7 @@ function _cme_migrate_pp_options() {
 		update_option('cme_pp_options_migrated', true);
 	}
 }
+
 
 // allow edit_terms, delete_terms, assign_terms capabilities to function separately from manage_terms
 function _cme_remap_term_meta_cap ( $caps, $cap, $user_id, $args ) {

@@ -1,4 +1,11 @@
 <?php
+/*
+ * PublishPress Capabilities [Free]
+ * 
+ * Process update operations from the Capabilities screen
+ * 
+ */
+
 class CapsmanHandler
 {
 	var $cm;

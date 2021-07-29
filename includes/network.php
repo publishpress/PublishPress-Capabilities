@@ -1,4 +1,11 @@
 <?php
+/*
+ * PublishPress Capabilities [Free]
+ * 
+ * Multisite-related functions / filter handlers
+ * 
+ */
+
 add_action( 'wpmu_new_blog', '_cme_new_blog' );
 function _cme_new_blog( $new_blog_id ) {
 	if ( $autocreate_roles = get_site_option( 'cme_autocreate_roles' ) ) {
