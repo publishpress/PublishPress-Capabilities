@@ -119,8 +119,10 @@ if ( version_compare(PHP_VERSION, '5.4.0', '<') ) {
 		load_plugin_textdomain('capsman-enhanced', false, basename(dirname(__FILE__)) .'/languages');
 
 		// @todo: refactor
-		global $capsman_admin;
 		require_once (dirname(__FILE__) . '/includes/functions-admin.php');
+
+		global $capsman_admin;
+		require_once (dirname(__FILE__) . '/includes/admin-load.php');
 		$capsman_admin = new PP_Capabilities_Admin_UI();
 	}
 
