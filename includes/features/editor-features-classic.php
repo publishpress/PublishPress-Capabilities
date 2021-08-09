@@ -76,8 +76,8 @@ foreach($def_post_types as $post_type) {
             <?php
         }
     }
+    do_action('pp_capabilities_features_classic_after_table_tr');
     ?>
-
     </tbody>
 </table>
 
