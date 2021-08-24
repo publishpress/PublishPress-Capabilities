@@ -108,12 +108,6 @@ class PP_Capabilities_Admin_UI {
         if (function_exists('get_current_screen') && (!defined('PUBLISHPRESS_VERSION') || empty($publishpress) || empty($publishpress->modules) || empty($publishpress->modules->roles))) {
             $screen = get_current_screen();
 
-            if (!empty($_REQUEST['page']) && ('pp-capabilities-editor-features' == $_REQUEST['page'])) {
-                $suffix = defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ? '.dev' : '';
-                $url = plugin_dir_url(CME_FILE) . "/includes/features/js/admin{$suffix}.js";
-                wp_enqueue_script( 'pp_capabilities_features_admin', $url, ['jquery'], PUBLISHPRESS_CAPS_VERSION, true );
-            }
-
             if ('user-edit' === $screen->base || ('user' === $screen->base && 'add' === $screen->action && defined('PP_CAPABILITIES_ADD_USER_MULTI_ROLES'))) {
                 // Check if we are on the user's profile page
                 wp_enqueue_script(
