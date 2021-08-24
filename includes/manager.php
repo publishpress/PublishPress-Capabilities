@@ -202,7 +202,8 @@ class CapabilityManager
 			'capNegated' => __( 'This capability is explicitly negated. Click to add/remove normally.', 'capsman-enhanced' ),
 			'chkCaption' => __( 'Add or remove this capability from the WordPress role', 'capsman-enhanced' ),
 			'switchableCaption' => __( 'Add or remove capability from the role normally', 'capsman-enhanced' ) ,
-			'deleteWarning' => __( 'Are you sure you want to delete this item ?', 'capsman-enhanced' )
+			'deleteWarning' => __( 'Are you sure you want to delete this item ?', 'capsman-enhanced' ),
+			'saveWarning'   => __( 'Add or clear custom item entry before saving changes.', 'capsman-enhanced' )
 			]
 		);
     }
