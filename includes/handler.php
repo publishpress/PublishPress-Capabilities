@@ -357,12 +357,17 @@ class CapsmanHandler
 							
 							// Add new capabilities to role
 							foreach ( $add_caps as $cap => $grant ) {
-								$blog_role->add_cap( $cap, $grant );
+								$wp_roles->roles[$role_name]['capabilities'][$cap] = $grant;
+
 							}
 
 							// Remove capabilities from role
 							foreach ( $del_caps as $cap => $grant) {
-								$blog_role->remove_cap($cap);
+								unset($wp_roles->roles[$role_name]['capabilities'][$cap]);
+							}
+
+							if ($wp_roles->use_db) {
+								update_option($wp_roles->role_key, $wp_roles->roles);
 							}
 						} else {
 							$wp_roles->add_role( $role_name, $role_caption, $new_caps );
