@@ -118,7 +118,7 @@
     <tr class="ppc-menu-row parent-menu pp-promo-overlay-row">
         <td class="menu-column ppc-menu-item">
                 <span class="gutenberg menu-item-link restricted">
-                <strong><i class="dashicons dashicons-arrow-right"></i><?php _e('custom item two', 'capsman-enhanced'); ?> <small>(.custom-item-two, #custom-item-two)</small> &nbsp; <span
+                <strong><i class="dashicons dashicons-arrow-right"></i> <?php _e('Permalink: Descriptive Caption', 'capsman-enhanced'); ?> <small>(.editor-post-link p)</small> &nbsp; <span
                         class="ppc-custom-features-delete"><small>(<?php _e('Delete', 'capsman-enhanced'); ?>)</small></span>                </strong></span>
         </td>
 
@@ -132,7 +132,7 @@
     <tr class="ppc-menu-row parent-menu pp-promo-overlay-row">
         <td class="menu-column ppc-menu-item">
                 <span class="gutenberg menu-item-link">
-                <strong><i class="dashicons dashicons-arrow-right"></i><?php _e('Custom plugin ', 'capsman-enhanced'); ?>3 <small>(#custom-plugin-item)</small> &nbsp; <span class="ppc-custom-features-delete"><small>(<?php _e('Delete', 'capsman-enhanced'); ?>)</small></span>                </strong></span>
+                <strong><i class="dashicons dashicons-arrow-right"></i> <?php _e('Page Attributes: Order', 'capsman-enhanced'); ?> <small>(.editor-page-attributes__order)</small> &nbsp; <span class="ppc-custom-features-delete"><small>(<?php _e('Delete', 'capsman-enhanced'); ?>)</small></span>                </strong></span>
         </td>
 
         <td class="restrict-column ppc-menu-checkbox">
