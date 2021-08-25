@@ -42,7 +42,7 @@
     <tr class="ppc-menu-row parent-menu pp-promo-overlay-row">
         <td class="menu-column ppc-menu-item">
                 <span class="gutenberg menu-item-link restricted">
-                <strong><i class="dashicons dashicons-arrow-right"></i><?php _e('Editorial Comments', 'capsman-enhanced'); ?></strong></span>
+                <strong><i class="dashicons dashicons-arrow-right"></i> <?php _e('Editorial Comments', 'capsman-enhanced'); ?></strong></span>
         </td>
 
         <td class="restrict-column ppc-menu-checkbox">
@@ -55,7 +55,7 @@
     <tr class="ppc-menu-row parent-menu pp-promo-overlay-row">
         <td class="menu-column ppc-menu-item">
                 <span class="gutenberg menu-item-link">
-                <strong><i class="dashicons dashicons-arrow-right"></i><?php _e('Notifications', 'capsman-enhanced'); ?></strong></span>
+                <strong><i class="dashicons dashicons-arrow-right"></i> <?php _e('Notifications', 'capsman-enhanced'); ?></strong></span>
         </td>
 
         <td class="restrict-column ppc-menu-checkbox">
@@ -68,7 +68,7 @@
     <tr class="ppc-menu-row parent-menu pp-promo-overlay-row">
         <td class="menu-column ppc-menu-item">
                 <span class="gutenberg menu-item-link">
-                <strong><i class="dashicons dashicons-arrow-right"></i><?php _e('TaxoPress - Settings', 'capsman-enhanced'); ?></strong></span>
+                <strong><i class="dashicons dashicons-arrow-right"></i> <?php _e('TaxoPress - Settings', 'capsman-enhanced'); ?></strong></span>
         </td>
 
         <td class="restrict-column ppc-menu-checkbox">
@@ -104,7 +104,7 @@
     <tr class="ppc-menu-row parent-menu pp-promo-overlay-row">
         <td class="menu-column ppc-menu-item">
                 <span class="gutenberg menu-item-link">
-                <strong><i class="dashicons dashicons-arrow-right"></i><?php _e('Custom item one', 'capsman-enhanced'); ?><small>(.custom-plugin-item, #custom-plugin-item)</small> &nbsp; <span
+                <strong><i class="dashicons dashicons-arrow-right"></i> <?php _e('Custom item one', 'capsman-enhanced'); ?> <small>(.custom-plugin-item, #custom-plugin-item)</small> &nbsp; <span
                         class="ppc-custom-features-delete"><small>(<?php _e('Delete', 'capsman-enhanced'); ?>)</small></span></strong></span>
         </td>
 
