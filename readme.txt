@@ -5,7 +5,7 @@ Author: PublishPress
 Author URI: https://publishpress.com
 Tags: user roles, capabilities, permissions, authors, editors, post types, taxonomies
 Requires at least: 4.9.7
-Tested up to: 5.7
+Tested up to: 5.8
 Requires PHP: 5.6.20
 Stable tag: 2.1
 License: GPLv3
@@ -141,7 +141,7 @@ Fixed : Non-administrators with user editing capabilities could add new Administ
 
 == Changelog ==
 
-= 2.2-beta =
+= 2.2 - 25 Aug 2021 =
   * Feature : Retain last role selection for Capabilities, Editor Features screens
   * Perf : Sync role to all sites - Operation timed out on networks with ~100 sites 
   * Fixed : Some security scans flagged an unused file in external library "chosen". That file (and other developer documentation files) has been removed
