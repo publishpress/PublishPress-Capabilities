@@ -83,7 +83,7 @@
         <td colspan="3">
             <div class="pp-promo-upgrade-notice">
                 <p>
-                    <?php _e('You can restrict access to editor plugins metaboxes and also hide editor item by Classes or Ids. This feature is available in PublishPress Capabilities Pro',
+                    <?php _e('You can select plugin metaboxes to hide, or enter a class or ID for custom items. This feature is available in PublishPress Capabilities Pro.',
                         'capsman-enhanced'); ?>
                 </p>
                 <p>
