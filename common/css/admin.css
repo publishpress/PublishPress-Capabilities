@@ -70,14 +70,24 @@ div.cme-cap-type-tables {
 border: 1px solid black;
 }
 
+table.cme-typecaps {
+
+}
+
+table .cme-typecaps td:first-of-type {
+text-align: left;
+}
+
 table .cme-typecaps td {
 text-align: center;
 height: 2em;
 }
 
+table .cme-typecaps th:first-of-type {
+	width: 160px;
+}
+
 table .cme-typecaps th {
-padding-left: 0.3em;
-padding-right: 0.3em;
 cursor: pointer;
 }
 
@@ -88,6 +98,10 @@ cursor: pointer;
 
 table.cme-checklist span.cap-x {
 cursor: pointer;
+}
+
+table.cme-checklist tr td input[type="checkbox"] {
+	margin-right: 10px !important;
 }
 
 h3.cme-cap-section {
@@ -461,4 +475,37 @@ table#akmin tr td input[type=checkbox] {
 
 #ppc-capabilities-wrapper .ppc-capabilities-content > div > h3 {
 	margin-top: 0;
+}
+
+@media (max-width: 1199px) {
+
+	#ppc-capabilities-wrapper {
+		display: block;
+	}
+
+	#ppc-capabilities-wrapper .ppc-capabilities-tabs > ul > li,
+	#ppc-capabilities-wrapper .ppc-capabilities-tabs > ul > li.ppc-capabilities-tab-active {
+		border-right: none;
+	}
+
+	#publishpress_caps_form #akmin td.content,
+	#publishpress_caps_form #akmin td.sidebar {
+		display: block;
+		padding: 0;
+	}
+
+	#publishpress_caps_form #akmin td.content {
+		margin-bottom: 40px;
+	}
+}
+
+@media (max-width: 782px) {
+
+	table.cme-checklist.form-table tr td {
+    padding: 15px 10px;
+	}
+
+	table .cme-typecaps th:first-of-type {
+    width: 110px;
+	}
 }

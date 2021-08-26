@@ -476,9 +476,9 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 							echo "<div id='cme-cap-type-tables-$cap_type' style='display:$ppc_content_hide;'>";
 							$ppc_content_hide = 'none';
 							echo '<h3>' . $cap_type_names[$cap_type] . '</h3>';
-							echo "<table class='cme-typecaps cme-typecaps-$cap_type' style='width:100%;'>";
+							echo "<table class='widefat fixed striped cme-typecaps cme-typecaps-$cap_type'>";
 
-							echo '<tr><th></th>';
+							echo '<thead><tr><th></th>';
 
 							// label cap properties
 							foreach( $cap_properties[$cap_type][$item_type] as $prop ) {
@@ -497,7 +497,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 								echo '</th>';
 							}
 
-							echo '</tr>';
+							echo '</tr></thead>';
 
 							foreach( $defined[$item_type] as $key => $type_obj ) {
 								if ( in_array( $key, $unfiltered[$item_type] ) )
@@ -637,9 +637,9 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 						<?php
 
 						echo '<h3>' . __( 'Other WordPress Core Capabilities', 'capsman-enhanced' ) . '</h3>';
-						echo '<table class="form-table cme-checklist"><tr>';
+						echo '<table class="widefat fixed striped form-table cme-checklist"><tr>';
 
-						$checks_per_row = get_option( 'cme_form-rows', 5 );
+						$checks_per_row = get_option( 'cme_form-rows', 1 );
 						$i = 0; $first_row = true;
 
 						$core_caps = _cme_core_caps();
@@ -748,10 +748,10 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 						$_plugin_caps = array_fill_keys($__plugin_caps, true);
 
 						echo '<div id="cme-cap-type-tables-' . str_replace( ' ', '-', strtolower($plugin) ) . '" style="display:none;">';
-						echo '<table class="form-table cme-checklist"><tr>';
+						echo '<table class="widefat fixed striped form-table cme-checklist"><tr>';
 						echo '<h3 class="cme-cap-section">' . sprintf(__( '%s Capabilities', 'capsman-enhanced' ), str_replace('_', ' ', $plugin )) . '</h3>';
 
-						$checks_per_row = get_option( 'cme_form-rows', 5 );
+						$checks_per_row = get_option( 'cme_form-rows', 1 );
 						$i = 0; $first_row = true;
 
 						foreach( array_keys($_plugin_caps) as $cap_name ) {
@@ -835,7 +835,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 						</span>
 						</div>
 
-						<table class="form-table cme-checklist">
+						<table class="widefat fixed striped form-table cme-checklist">
 						<tr>
 						<?php
 						$i = 0; $first_row = true;
@@ -914,7 +914,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 						echo '<h3 class="cme-cap-section">' . __( 'Additional Capabilities', 'capsman-enhanced' ) . '</h3>';
 
 						?>
-						<table class="form-table cme-checklist">
+						<table class="widefat fixed striped form-table cme-checklist">
 						<tr>
 						<?php
 						$i = 0; $first_row = true;
