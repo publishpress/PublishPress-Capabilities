@@ -95,8 +95,8 @@ div.pp-capability-menus-wrapper-promo select.ppc-nav-menu-role {
   height: 370px;
 }
 
-.pp-promo-overlay-row {
-  background: rgba(0,0,0,0.2) !important
+tr.pp-promo-blur {
+filter: blur(1.5px);
 }
 
 .pp-promo-overlay-row input[type=checkbox], input[type=radio] {
