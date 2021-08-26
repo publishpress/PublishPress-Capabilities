@@ -1,4 +1,10 @@
 <?php
+/*
+ * PublishPress Capabilities [Free]
+ * 
+ * Process updates to Type-Specific Types / Taxonomies, Detailed Taxonomies
+ * 
+ */
 
 function _cme_update_pp_usage() {
 	static $updated;
@@ -89,4 +95,3 @@ function _cme_update_pp_usage() {
 	
 	return $updated;
 }
-
