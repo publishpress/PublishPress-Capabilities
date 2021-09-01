@@ -143,4 +143,8 @@ if ( is_multisite() )
 	require_once ( dirname(__FILE__) . '/includes/network.php' );
 
 // Display message inviting to install Permissions
-require_once ( dirname(__FILE__) . '/classes/pp-capabilities-permissions.php' );
+if(
+	!in_array( 'press-permit-core/press-permit-core.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) )
+	&& !in_array( 'presspermit-pro/presspermit-pro.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) 
+)
+	require_once ( dirname(__FILE__) . '/classes/pp-capabilities-permissions.php' );
