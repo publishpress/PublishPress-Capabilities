@@ -141,3 +141,6 @@ add_action( 'init', '_cme_cap_helper', 49 );  // Press Permit Cap Helper, regist
 
 if ( is_multisite() )
 	require_once ( dirname(__FILE__) . '/includes/network.php' );
+
+// Display message inviting to install Permissions
+require_once ( dirname(__FILE__) . '/classes/pp-capabilities-permissions.php' );
