@@ -1,4 +1,4 @@
-permissions<?php
+<?php
 /**
  * Original Author: danieliser
  * Original Author URL: https://danieliser.com
