@@ -22,7 +22,7 @@ class PP_Capabilities_Admin_Features {
 
         //Add other element
         $elements[__('Others', 'capsman-enhanced')] = [
-            'item' => ['label' => __('Item', 'capsman-enhanced'), 'action' => 'call_back_function'],
+            'admin-notices' => ['label' => __('Admin Notices', 'capsman-enhanced'), 'action' => 'ppc_admin_notices'],
         ];
 
         self::formatDashboardWidgets();
