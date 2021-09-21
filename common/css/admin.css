@@ -530,10 +530,39 @@ table#akmin .pp-capability-menus-select .restrict-column {
   margin-bottom: 25px !important;
 }
 
+
+.pp-capability-menus-wrapper .tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+.pp-capability-menus-wrapper .tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+
+  position: absolute;
+  z-index: 1;
+}
+
+.pp-capability-menus-wrapper .tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
 .capabilities_page_pp-capabilities-admin-menus input.ppc-admin-menu-submit, 
 .capabilities_page_pp-capabilities-nav-menus input.ppc-nav-menu-submit {
-  margin-bottom: 10px !important;
+margin-bottom: 10px !important;
 }
+
+.pp-capability-menus-wrapper .features-section-header {
+  padding-left: 35px !important;
+}
+
 @media only screen and ( max-width: 782px ) {
 
   .pp-capability-menus {

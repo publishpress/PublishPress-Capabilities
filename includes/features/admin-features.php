@@ -143,16 +143,8 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
 
                                                     <tr class="ppc-menu-row parent-menu">
 
-                                                        <td class="restrict-column ppc-menu-checkbox">
-                                                            <input id="check-item-<?php echo $sn; ?>" class="check-item" type="checkbox" />
-                                                        </td>
-
-                                                        <td class="menu-column ppc-menu-item">
-
-                                                            <label for="check-item-<?php echo $sn; ?>">
-                                                                <span class="menu-item-link">
-                                                                <strong><i class="dashicons dashicons-<?php echo $icon_name ?>"></i>  <?php echo $section_title; ?> </strong></span>
-                                                            </label>
+                                                        <td class="features-section-header" colspan="2">
+                                                            <strong><i class="dashicons dashicons-<?php echo $icon_name ?>"></i>  <?php echo $section_title; ?> </strong>
                                                         </td>
 
                                                     </tr>
@@ -164,7 +156,6 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                                                             continue;
                                                         }
                                                         $item_name = $arr_feature['label'];
-                                                        $item_slug = strtolower(ppc_remove_non_alphanumeric_space_characters($item_name));;
                                                         ?>
 
                                                         <tr class="ppc-menu-row child-menu">
@@ -174,23 +165,29 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                                                                     id="check-item-<?php echo $sn; ?>"
                                                                     class="check-item" type="checkbox"
                                                                     name="pp_cababilities_disabled_child_menu[]"
-                                                                    value="<?php echo $item_slug; ?>"
-                                                                    <?php echo (in_array($item_slug,
+                                                                    value="<?php echo $feature_slug; ?>"
+                                                                    <?php echo (in_array($feature_slug,
                                                                         $disabled_admin_items)) ? 'checked' : ''; ?>
-                                                                    data-val="<?php echo $item_slug; ?>"/>
+                                                                    data-val="<?php echo $feature_slug; ?>"/>
                                                             </td>
                                                             <td class="menu-column ppc-menu-item'">
 
                                                                 <label for="check-item-<?php echo $sn; ?>">
                                                                     <span
-                                                                        class="menu-item-link<?php echo (in_array($item_slug,
+                                                                        class="menu-item-link<?php echo (in_array($feature_slug,
                                                                             $disabled_admin_items)) ? ' restricted' : ''; ?>">
                                                                     <strong>
                                                                         <?php 
-                                                                        if( isset($icon_list[$item_slug]) ){
-                                                                            echo '<i class="dashicons dashicons-'.$icon_list[$item_slug].'"></i>';
+                                                                        if( (isset($arr_feature['step']) && $arr_feature['step'] > 0) && isset($arr_feature['parent']) && !empty($arr_feature['parent']) ){
+                                                                            $step_margin = $arr_feature['step']*20;
+                                                                            echo '<span style="margin-left: '.$step_margin.'px;"></span>';
+                                                                            echo ' '.$arr_feature['position'].'. ';
                                                                         }else{
-                                                                            echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &mdash;';
+                                                                            if( isset($icon_list[$feature_slug]) ){
+                                                                                echo '<i class="dashicons dashicons-'.$icon_list[$feature_slug].'"></i>';
+                                                                            }else{
+                                                                                echo '&mdash;';
+                                                                            }
                                                                         }
                                                                         ?>
                                                                     <?php echo $item_name; ?>

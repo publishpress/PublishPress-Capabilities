@@ -12,10 +12,7 @@ class PP_Capabilities_Admin_Features {
         $elements = [];
 
         //Add toolbar
-        $elements[__('Toolbar', 'capsman-enhanced')] = [
-            'item' => ['label' => __('Item', 'capsman-enhanced'), 'action' => 'ppc_id'],
-            'item2' => ['label' => __('Item 2', 'capsman-enhanced'), 'action' => 'ppc_class'],
-        ];
+        $elements[__('Admin Toolbar', 'capsman-enhanced')] = self::formatAdminToolbar();
 
         //Add dashboard widget
         $elements[__('Dashboard widgets', 'capsman-enhanced')] = self::formatDashboardWidgets();
@@ -24,8 +21,6 @@ class PP_Capabilities_Admin_Features {
         $elements[__('Others', 'capsman-enhanced')] = [
             'admin-notices' => ['label' => __('Admin Notices', 'capsman-enhanced'), 'action' => 'ppc_admin_notices'],
         ];
-
-        self::formatDashboardWidgets();
 
         return apply_filters('pp_capabilities_admin_features_elements', $elements);
     }
@@ -38,11 +33,41 @@ class PP_Capabilities_Admin_Features {
     public static function elementLayoutItemIcons(){
         $icons = [];
 
-        $icons['toolbar']           = 'open-folder';
+        $icons['admintoolbar']      = 'open-folder';
         $icons['dashboardwidgets']  = 'dashboard';
         $icons['others']            = 'admin-tools';
+        $icons['menu-toggle']       = 'menu';
+        $icons['wp-logo']           = 'wordpress';
+        $icons['site-name']         = 'admin-home';
+        $icons['updates']           = 'update';
+        $icons['comments']          = 'admin-comments';
+        $icons['new-content']       = 'plus';
+        $icons['wpseo-menu']        = 'open-folder';
+        $icons['top-secondary']     = 'admin-users';
 
         return apply_filters('pp_capabilities_admin_features_icons', $icons); 
+    }
+    
+    /**
+	 * Let provide support for known adminbar with empty title due to icon title only.
+	 *
+	 */
+    public static function elementToolbarTitleFallback($id){
+        $title = [];
+
+        $title['menu-toggle']      = __('Mobile Menu Toggle', 'capsman-enhanced');
+        $title['wp-logo']          = __('WordPress Logo', 'capsman-enhanced');
+        $title['wp-logo-external'] = __('WordPress External Link', 'capsman-enhanced');
+        $title['updates']          = __('Updates', 'capsman-enhanced');
+        $title['comments']         = __('Comments', 'capsman-enhanced');
+        $title['top-secondary']    = __('Right bar', 'capsman-enhanced');
+        $title['user-actions']     = __('User actions', 'capsman-enhanced');
+        $title['new-content']      = __('New', 'capsman-enhanced');
+        $title['new-content']      = __('New', 'capsman-enhanced');
+        $title['user-info']        = __('User Display Name', 'capsman-enhanced');
+        $title['wpseo-menu']       = __('Yoast SEO', 'capsman-enhanced');
+
+        return isset($title[$id]) ? $title[$id] : $id; 
     }
 
 	/**
@@ -83,7 +108,6 @@ class PP_Capabilities_Admin_Features {
 		$widgets = self::dashboardWidgets();
 
 		$elements_widget = [];
-
         //add widget that may not be part of wp_meta_boxes
         $elements_widget['dashboard_welcome_panel'] = ['label' => __('Welcome panel', 'capsman-enhanced'), 'action' => 'ppc_dashboard_widget'];
         //loop other widgets
@@ -99,7 +123,88 @@ class PP_Capabilities_Admin_Features {
 		}
 
         return $elements_widget;
-
     }
+
+	/**
+	 * Format admin toolbar.
+	 *
+	 * @return array Elements layout item.
+	 */
+	public static function formatAdminToolbar() {
+        global $toolbar_items;
+
+        $toolbars = $GLOBALS['adminbarArray'];
+        $toolbarTree = self::formatAdminToolbarTree($toolbars);
+        //set toolbar element with steps
+        self::setAdminToolbarElement($toolbarTree);
+
+        return $toolbar_items;
+    }
+
+	/**
+	 * Build multidimensional array for admin toolbar.
+	 *
+	 * @return array.
+	 */
+    public static function formatAdminToolbarTree(array $items, $parentId = '') {
+	    $branch = array();
+
+    	foreach ($items as $item) {
+	    	if ($item['parent'] == $parentId) {
+		    	$children = self::formatAdminToolbarTree($items, $item['id']);
+			    if ($children) {
+				    $item['children'] = $children;
+			    }
+			    $branch[] = $item;
+		    }
+	    }
+    
+        return $branch;
+    }
+
+	/**
+	 * Set admin toolbar element.
+	 *
+	 */
+    public static function setAdminToolbarElement(array $toolbarTrees, $steps = 1,  $step_list = []) {
+        global $toolbar_items;
+
+        $position = 0;
+        foreach ($toolbarTrees as $toolbarTree) {
+            $position++;
+		    $id = $toolbarTree['id'];
+		    $itemTitle = self::ppc_process_admin_features_title($toolbarTree['title']);
+
+            //let fall back to known title/id if title still empty
+            if(empty(trim($itemTitle))){
+               $itemTitle = self::elementToolbarTitleFallback($id);
+            }
+            
+            $toolbar_items[$id] = ['label' => $itemTitle, 'parent' => $toolbarTree['parent'], 'step' => $steps, 'position' => $position, 'action' => 'ppc_adminbar'];
+		    foreach ($toolbarTree as $key => $value) {
+			    if (is_array($value)) {
+				    self::setAdminToolbarElement($value, $steps+1, $step_list);
+			    }
+		    }
+	    }
+    }
+
+    /**
+	 * Process admin features title.
+	 *
+	 */
+    public static function ppc_process_admin_features_title($title)
+    {
+        //strip span and div content
+		$title = preg_replace('#(<span.*?>).*?(</span>)#', '', $title);
+		$title = preg_replace('#(<img.*?>)#', '', $title);
+
+        //strip other html tags
+        $title = strip_tags($title);
+
+        return $title;
+    }
+
+    
 
 }

@@ -22,6 +22,7 @@ class PP_Capabilities_Admin_UI {
 
         if (is_admin()) {
             add_action('admin_init', [$this, 'featureRestrictionsClassic']);
+            add_action('admin_bar_menu', [$this, 'featuresGetAdminBarNodes'], 999);
         }
 
         add_action('admin_enqueue_scripts', [$this, 'adminScripts'], 100);
@@ -219,6 +220,28 @@ class PP_Capabilities_Admin_UI {
                 }
             }
         }
+    }
+    
+    /**
+	 * Get admin bar node and set as global for our usage.
+	 *
+	 * @return array||object $wp_admin_bar nodes.
+	 */
+    public function featuresGetAdminBarNodes($wp_admin_bar){
+
+	    $adminBarNode = $wp_admin_bar->get_nodes();
+	    $ppcAdminBar = [];
+
+    	if (is_array($adminBarNode) || is_object($adminBarNode)) {
+	    	foreach ($adminBarNode as $adminBarnode) {
+		    	$id = $adminBarnode->id;
+			    $title = $adminBarnode->title;
+			    $parent = $adminBarnode->parent;
+			    $ppcAdminBar[$id] = array('id' => $id, 'title' => $title, 'parent' => $parent);
+		    }
+	    }
+
+    	$GLOBALS['ppcAdminBar'] = $ppcAdminBar;
     }
 
 
