@@ -229,7 +229,7 @@ class PP_Capabilities_Admin_UI {
 	 */
     public function featuresGetAdminBarNodes($wp_admin_bar){
 
-	    $adminBarNode = $wp_admin_bar->get_nodes();
+	    $adminBarNode = is_object($wp_admin_bar) ? $wp_admin_bar->get_nodes() : '';
 	    $ppcAdminBar = [];
 
     	if (is_array($adminBarNode) || is_object($adminBarNode)) {

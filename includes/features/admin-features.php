@@ -27,8 +27,9 @@ $roles        = $capsman->roles;
 $default_role = $capsman->get_last_role();
 
 
-$disabled_admin_items = !empty(get_option('capsman_admin_child_menus')) ? (array)get_option('capsman_admin_child_menus') : [];
-$disabled_admin_items = array_key_exists($default_role, $disabled_admin_items) ? (array)$disabled_admin_items[$default_role] : [];
+$disabled_admin_items = !empty(get_option('capsman_disabled_admin_features')) ? (array)get_option('capsman_disabled_admin_features') : [];
+$disabled_admin_items = array_key_exists($default_role,
+    $disabled_admin_items) ? (array)$disabled_admin_items[$default_role] : [];
 
 
 $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
@@ -131,7 +132,7 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                                                 <tbody>
 
                                                 <?php
-                                                $icon_list = (array) PP_Capabilities_Admin_Features::elementLayoutItemIcons();
+                                                $icon_list = (array)PP_Capabilities_Admin_Features::elementLayoutItemIcons();
 
                                                 $sn = 0;
                                                 foreach ($admin_features_elements as $section_title => $arr) {
@@ -144,7 +145,9 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                                                     <tr class="ppc-menu-row parent-menu">
 
                                                         <td class="features-section-header" colspan="2">
-                                                            <strong><i class="dashicons dashicons-<?php echo $icon_name ?>"></i>  <?php echo $section_title; ?> </strong>
+                                                            <strong><i
+                                                                    class="dashicons dashicons-<?php echo $icon_name ?>"></i> <?php echo $section_title; ?>
+                                                            </strong>
                                                         </td>
 
                                                     </tr>
@@ -164,7 +167,7 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                                                                 <input
                                                                     id="check-item-<?php echo $sn; ?>"
                                                                     class="check-item" type="checkbox"
-                                                                    name="pp_cababilities_disabled_child_menu[]"
+                                                                    name="pp_cababilities_disabled_admin_features[]"
                                                                     value="<?php echo $feature_slug; ?>"
                                                                     <?php echo (in_array($feature_slug,
                                                                         $disabled_admin_items)) ? 'checked' : ''; ?>
@@ -177,20 +180,20 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                                                                         class="menu-item-link<?php echo (in_array($feature_slug,
                                                                             $disabled_admin_items)) ? ' restricted' : ''; ?>">
                                                                     <strong>
-                                                                        <?php 
-                                                                        if( (isset($arr_feature['step']) && $arr_feature['step'] > 0) && isset($arr_feature['parent']) && !empty($arr_feature['parent']) ){
-                                                                            $step_margin = $arr_feature['step']*20;
-                                                                            echo '<span style="margin-left: '.$step_margin.'px;"></span>';
-                                                                            echo ' '.$arr_feature['position'].'. ';
-                                                                        }else{
-                                                                            if( isset($icon_list[$feature_slug]) ){
-                                                                                echo '<i class="dashicons dashicons-'.$icon_list[$feature_slug].'"></i>';
-                                                                            }else{
+                                                                        <?php
+                                                                        if ((isset($arr_feature['step']) && $arr_feature['step'] > 0) && isset($arr_feature['parent']) && !empty($arr_feature['parent'])) {
+                                                                            $step_margin = $arr_feature['step'] * 20;
+                                                                            echo '<span style="margin-left: ' . $step_margin . 'px;"></span>';
+                                                                            echo ' ' . $arr_feature['position'] . '. ';
+                                                                        } else {
+                                                                            if (isset($icon_list[$feature_slug])) {
+                                                                                echo '<i class="dashicons dashicons-' . $icon_list[$feature_slug] . '"></i>';
+                                                                            } else {
                                                                                 echo '&mdash;';
                                                                             }
                                                                         }
                                                                         ?>
-                                                                    <?php echo $item_name; ?>
+                                                                        <?php echo $item_name; ?>
                                                                     </strong></span>
                                                                 </label>
                                                             </td>
@@ -247,8 +250,7 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
 
                         //toggle all checkbox
                         if ($(this).hasClass('check-all-menu-item')) {
-                            $("input[type='checkbox'][name='pp_cababilities_disabled_menu[]']").prop('checked', true)
-                            $("input[type='checkbox'][name='pp_cababilities_disabled_child_menu[]']").prop('checked', true)
+                            $("input[type='checkbox'][name='pp_cababilities_disabled_admin_features[]']").prop('checked', true)
                             $('.menu-item-link').addClass('restricted')
                         } else {
                             $('.check-all-menu-link').removeClass('restricted')
@@ -261,8 +263,7 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
 
                         //toggle all checkbox
                         if ($(this).hasClass('check-all-menu-item')) {
-                            $("input[type='checkbox'][name='pp_cababilities_disabled_menu[]']").prop('checked', false)
-                            $("input[type='checkbox'][name='pp_cababilities_disabled_child_menu[]']").prop('checked', false)
+                            $("input[type='checkbox'][name='pp_cababilities_disabled_admin_features[]']").prop('checked', false)
                             $('.menu-item-link').removeClass('restricted')
                         } else {
                             $('.check-all-menu-link').removeClass('restricted')
