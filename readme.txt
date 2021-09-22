@@ -144,6 +144,7 @@ Fixed : Non-administrators with user editing capabilities could add new Administ
 = 2.2-beta =
   * Feature : Retain last role selection for Capabilities, Editor Features screens
   * Fixed : Some security scans flagged an unused file in external library "chosen". That file (and other developer documentation files) has been removed
+  * Feature : New "Admin Features" screen #200
 
 = 2.1 - 24 Jun 2021 =
   * Feature : Editor Features restriction (new screen to block editor elements per-role)
