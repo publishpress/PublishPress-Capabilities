@@ -188,3 +188,39 @@ function pp_capabilities_is_classic_editor_available()
         || class_exists('Gutenberg_Ramp')
         || version_compare($wp_version, '5.0', '<');
 }
+
+    
+/**
+ * Get admin bar node and set as global for our usage.
+ * Due to admin toolbar, this function need to run in frontend as well
+ *
+ * @return array||object $wp_admin_bar nodes.
+ */
+function ppc_features_get_admin_bar_nodes($wp_admin_bar){
+
+    $adminBarNode = is_object($wp_admin_bar) ? $wp_admin_bar->get_nodes() : '';
+    $ppcAdminBar = [];
+
+    if (is_array($adminBarNode) || is_object($adminBarNode)) {
+        foreach ($adminBarNode as $adminBarnode) {
+            $id = $adminBarnode->id;
+            $title = $adminBarnode->title;
+            $parent = $adminBarnode->parent;
+            $ppcAdminBar[$id] = array('id' => $id, 'title' => $title, 'parent' => $parent);
+        }
+    }
+
+    $GLOBALS['ppcAdminBar'] = $ppcAdminBar;
+}
+add_action('admin_bar_menu', 'ppc_features_get_admin_bar_nodes', 999);
+
+/**
+ * Implement admin features restriction.
+ * Due to admin toolbar, this function need to run in frontend as well
+ *
+ */
+function ppc_admin_feature_restrictions() {
+    require_once ( dirname(CME_FILE) . '/includes/features/restrict-admin-features.php' );    
+    PP_Capabilities_Admin_Features::adminFeaturedRestriction();
+}
+add_action('plugins_loaded', 'ppc_admin_feature_restrictions');

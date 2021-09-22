@@ -20,28 +20,23 @@
 
 require_once(dirname(CME_FILE) . '/includes/features/restrict-admin-features.php');
 
-global $capsman, $menu, $submenu;
-global $admin_global_menu, $admin_global_submenu;
+global $capsman;
 
 $roles        = $capsman->roles;
 $default_role = $capsman->get_last_role();
 
 
 $disabled_admin_items = !empty(get_option('capsman_disabled_admin_features')) ? (array)get_option('capsman_disabled_admin_features') : [];
-$disabled_admin_items = array_key_exists($default_role,
-    $disabled_admin_items) ? (array)$disabled_admin_items[$default_role] : [];
-
+$disabled_admin_items = array_key_exists($default_role, $disabled_admin_items) ? (array)$disabled_admin_items[$default_role] : [];
 
 $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
-
-
 ?>
 
     <div class="wrap publishpress-caps-manage pressshack-admin-wrapper pp-capability-menus-wrapper">
         <div id="icon-capsman-admin" class="icon32"></div>
         <h2><?php _e('Admin Features Restrictions', 'capabilities-pro'); ?></h2>
 
-        <form method="post" id="ppc-admin-menu-form" action="admin.php?page=pp-capabilities-admin-features">
+        <form method="post" id="ppc-admin-features-form" action="admin.php?page=pp-capabilities-admin-features">
             <?php wp_nonce_field('pp-capabilities-admin-features'); ?>
 
             <fieldset>
@@ -60,7 +55,7 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                             </span>
                             </div>
                             <div class="publishpress-filters">
-                                <select name="ppc-admin-menu-role" class="ppc-admin-menu-role">
+                                <select name="ppc-admin-features-role" class="ppc-admin-features-role">
                                     <?php
                                     foreach ($roles as $role => $name) :
                                         $name = translate_user_role($name);
@@ -75,9 +70,9 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                                 <img class="loading" src="<?php echo $capsman->mod_url; ?>/images/wpspin_light.gif"
                                      style="display: none">
 
-                                <input type="submit" name="admin-menu-submit"
+                                <input type="submit" name="admin-features-submit"
                                        value="<?php _e('Save Changes', 'capabilities-pro') ?>"
-                                       class="button-primary ppc-admin-menu-submit" style="float:right"/>
+                                       class="button-primary ppc-admin-features-submit" style="float:right"/>
                             </div>
 
                             <div id="pp-capability-menu-wrapper" class="postbox">
@@ -135,7 +130,7 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                                                 $icon_list = (array)PP_Capabilities_Admin_Features::elementLayoutItemIcons();
 
                                                 $sn = 0;
-                                                foreach ($admin_features_elements as $section_title => $arr) {
+                                                foreach ($admin_features_elements as $section_title => $section_elements) {
                                                     $sn++;
                                                     $section_slug = strtolower(ppc_remove_non_alphanumeric_space_characters($section_title));
                                                     $icon_name    = isset($icon_list[$section_slug]) ? $icon_list[$section_slug] : '&mdash;';
@@ -153,12 +148,17 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                                                     </tr>
 
                                                     <?php
-                                                    foreach ($arr as $feature_slug => $arr_feature) {
+                                                    foreach ($section_elements as $section_id => $section_array) {
                                                         $sn++;
-                                                        if (!$feature_slug) {
+                                                        if (!$section_id) {
                                                             continue;
                                                         }
-                                                        $item_name = $arr_feature['label'];
+                                                        $item_name      = $section_array['label'];
+                                                        $item_action    = $section_array['action'];
+                                                        $restrict_value = $item_action.'||'.$section_id;
+                                                        if($item_action === 'ppc_dashboard_widget'){
+                                                            $restrict_value .= '||'.$section_array['context'];
+                                                        }
                                                         ?>
 
                                                         <tr class="ppc-menu-row child-menu">
@@ -167,27 +167,25 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                                                                 <input
                                                                     id="check-item-<?php echo $sn; ?>"
                                                                     class="check-item" type="checkbox"
-                                                                    name="pp_cababilities_disabled_admin_features[]"
-                                                                    value="<?php echo $feature_slug; ?>"
-                                                                    <?php echo (in_array($feature_slug,
-                                                                        $disabled_admin_items)) ? 'checked' : ''; ?>
-                                                                    data-val="<?php echo $feature_slug; ?>"/>
+                                                                    name="capsman_disabled_admin_features[]"
+                                                                    value="<?php echo $restrict_value; ?>"
+                                                                    <?php echo (in_array($restrict_value, $disabled_admin_items)) ? 'checked' : ''; ?>/>
                                                             </td>
                                                             <td class="menu-column ppc-menu-item'">
 
                                                                 <label for="check-item-<?php echo $sn; ?>">
                                                                     <span
-                                                                        class="menu-item-link<?php echo (in_array($feature_slug,
+                                                                        class="menu-item-link<?php echo (in_array($restrict_value,
                                                                             $disabled_admin_items)) ? ' restricted' : ''; ?>">
                                                                     <strong>
                                                                         <?php
-                                                                        if ((isset($arr_feature['step']) && $arr_feature['step'] > 0) && isset($arr_feature['parent']) && !empty($arr_feature['parent'])) {
-                                                                            $step_margin = $arr_feature['step'] * 20;
+                                                                        if ((isset($section_array['step']) && $section_array['step'] > 0) && isset($section_array['parent']) && !empty($section_array['parent'])) {
+                                                                            $step_margin = $section_array['step'] * 20;
                                                                             echo '<span style="margin-left: ' . $step_margin . 'px;"></span>';
-                                                                            echo ' ' . $arr_feature['position'] . '. ';
+                                                                            echo ' ' . $section_array['position'] . '. ';
                                                                         } else {
-                                                                            if (isset($icon_list[$feature_slug])) {
-                                                                                echo '<i class="dashicons dashicons-' . $icon_list[$feature_slug] . '"></i>';
+                                                                            if (isset($icon_list[$section_id])) {
+                                                                                echo '<i class="dashicons dashicons-' . $icon_list[$section_id] . '"></i>';
                                                                             } else {
                                                                                 echo '&mdash;';
                                                                             }
@@ -201,8 +199,8 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                                                         </tr>
 
                                                         <?php
-                                                    }
-                                                }
+                                                    }//end $section_elements subsection loop
+                                                }// end $admin_features_elements section loop
 
                                                 ?>
                                                 </tbody>
@@ -212,9 +210,9 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                                     </div>
                                 </div>
                             </div>
-                            <input type="submit" name="admin-menu-submit"
+                            <input type="submit" name="admin-features-submit"
                                    value="<?php _e('Save Changes', 'capabilities-pro') ?>"
-                                   class="button-primary ppc-admin-menu-submit"/>
+                                   class="button-primary ppc-admin-features-submit"/>
                         </td>
                     </tr>
                 </table>
@@ -230,14 +228,14 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                 // -------------------------------------------------------------
                 //   reload page for instant reflection if user is updating own role
                 // -------------------------------------------------------------
-                <?php if(!empty($ppc_admin_menu_reload) && (int)$ppc_admin_menu_reload === 1){ ?>
+                <?php if(!empty($ppc_page_reload) && (int)$ppc_page_reload === 1){ ?>
                 window.location = '<?php echo admin_url('admin.php?page=pp-capabilities-admin-features&role=' . $default_role . ''); ?>'
                 <?php } ?>
 
                 // -------------------------------------------------------------
                 //   Set form action attribute to include role
                 // -------------------------------------------------------------
-                $('#ppc-admin-menu-form').attr('action', '<?php echo admin_url('admin.php?page=pp-capabilities-admin-features&role=' . $default_role . ''); ?>')
+                $('#ppc-admin-features-form').attr('action', '<?php echo admin_url('admin.php?page=pp-capabilities-admin-features&role=' . $default_role . ''); ?>')
 
                 // -------------------------------------------------------------
                 //   Instant restricted item class
@@ -250,7 +248,7 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
 
                         //toggle all checkbox
                         if ($(this).hasClass('check-all-menu-item')) {
-                            $("input[type='checkbox'][name='pp_cababilities_disabled_admin_features[]']").prop('checked', true)
+                            $("input[type='checkbox'][name='capsman_disabled_admin_features[]']").prop('checked', true)
                             $('.menu-item-link').addClass('restricted')
                         } else {
                             $('.check-all-menu-link').removeClass('restricted')
@@ -263,7 +261,7 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
 
                         //toggle all checkbox
                         if ($(this).hasClass('check-all-menu-item')) {
-                            $("input[type='checkbox'][name='pp_cababilities_disabled_admin_features[]']").prop('checked', false)
+                            $("input[type='checkbox'][name='capsman_disabled_admin_features[]']").prop('checked', false)
                             $('.menu-item-link').removeClass('restricted')
                         } else {
                             $('.check-all-menu-link').removeClass('restricted')
@@ -277,13 +275,13 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                 // -------------------------------------------------------------
                 //   Load selected roles menu
                 // -------------------------------------------------------------
-                $(document).on('change', '.pp-capability-menus-wrapper .ppc-admin-menu-role', function() {
+                $(document).on('change', '.pp-capability-menus-wrapper .ppc-admin-features-role', function() {
 
                     //disable select
-                    $('.pp-capability-menus-wrapper .ppc-admin-menu-role').attr('disabled', true)
+                    $('.pp-capability-menus-wrapper .ppc-admin-features-role').attr('disabled', true)
 
                     //hide button
-                    $('.pp-capability-menus-wrapper .ppc-admin-menu-submit').hide()
+                    $('.pp-capability-menus-wrapper .ppc-admin-features-submit').hide()
 
                     //show loading
                     $('#pp-capability-menu-wrapper').hide()

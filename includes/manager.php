@@ -532,11 +532,16 @@ class CapabilityManager
 		if ('POST' == $_SERVER['REQUEST_METHOD'] && isset($_POST['ppc-admin-features-role'])) {
             $this->set_current_role($_POST['ppc-admin-features-role']);
 
-            /*$posted_settings = (isset($_POST["capsman_feature_restrict_{$post_type}"])) ? $_POST["capsman_feature_restrict_{$post_type}"] : [];
-            $post_features_option = get_option("capsman_feature_restrict_{$post_type}", []);
-            $post_features_option[$_POST['ppc-admin-features-role']] = $posted_settings;
-            update_option("capsman_feature_restrict_{$post_type}", $post_features_option, false);
-			*/
+			$disabled_admin_items = !empty(get_option('capsman_disabled_admin_features')) ? (array)get_option('capsman_disabled_admin_features') : [];
+			$disabled_admin_items[$_POST['ppc-admin-features-role']] = isset($_POST['capsman_disabled_admin_features']) ? $_POST['capsman_disabled_admin_features'] : '';
+
+			update_option('capsman_disabled_admin_features', $disabled_admin_items, false);
+
+			//set reload option for instant reflection if user is updating own role
+			if(in_array($_POST['ppc-admin-features-role'], wp_get_current_user()->roles)){
+				$ppc_page_reload = '1';
+			}
+			
             ak_admin_notify(__('Settings updated.', 'capabilities-pro'));
 		}
 
