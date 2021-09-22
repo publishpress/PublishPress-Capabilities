@@ -18,6 +18,11 @@ class PP_Capabilities_Admin_UI {
          */
         require_once (dirname(CME_FILE) . '/classes/pp-capabilities-notices.php');
 
+        /**
+         * Include review request
+         */
+        require_once (dirname(CME_FILE) . '/includes/review/review-request.php');
+
         add_action('init', [$this, 'featureRestrictionsGutenberg']);
 
         if (is_admin()) {

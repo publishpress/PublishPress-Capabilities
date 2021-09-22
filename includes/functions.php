@@ -224,3 +224,39 @@ function ppc_admin_feature_restrictions() {
     PP_Capabilities_Admin_Features::adminFeaturedRestriction();
 }
 add_action('plugins_loaded', 'ppc_admin_feature_restrictions');
+
+/**
+ * List of capabilities admin pages
+ *
+ */
+function pp_capabilities_admin_pages(){
+
+    $pp_capabilities_pages = [
+        'pp-capabilities', 
+        'pp-capabilities-roles', 
+        'pp-capabilities-admin-menus', 
+        'pp-capabilities-nav-menus', 
+        'pp-capabilities-editor-features', 
+        'pp-capabilities-backup', 
+        'pp-capabilities-settings', 
+        'pp-capabilities-admin-features'
+    ];
+
+   return apply_filters('pp_capabilities_admin_pages', $pp_capabilities_pages);
+}
+
+/**
+ * Check if user is in capabilities admin page
+ *
+ */
+function is_pp_capabilities_admin_page(){
+    
+    $pp_capabilities_pages = pp_capabilities_admin_pages();
+
+    $is_pp_capabilities_page = false;
+	if ( isset( $_GET['page'] ) && in_array( $_GET['page'], $pp_capabilities_pages )) {
+        $is_pp_capabilities_page = true;
+    }
+
+    return apply_filters('is_pp_capabilities_admin_page', $is_pp_capabilities_page);
+}
