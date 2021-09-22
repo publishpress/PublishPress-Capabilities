@@ -283,7 +283,7 @@ if (!class_exists('PP_Capabilities_Modules_Reviews')) {
                             'one_week'     => [
                                 'message'    => sprintf($time_message, __('1 week', 'capsman-enhanced')),
                                 'conditions' => [
-                                    true,
+                                    strtotime(self::installed_on() . ' +1 week') < time(),
                                 ],
                                 'link'       => 'https://wordpress.org/support/plugin/capability-manager-enhanced/reviews/?rate=5#rate-response',
                                 'pri'        => 10,
