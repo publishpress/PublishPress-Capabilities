@@ -18,11 +18,6 @@ class PP_Capabilities_Admin_Features
         //Add dashboard widget
         $elements[__('Dashboard widgets', 'capsman-enhanced')] = self::formatDashboardWidgets();
 
-        //Add other element
-        $elements[__('Others', 'capsman-enhanced')] = [
-            'admin-notices' => ['label' => __('Admin Notices', 'capsman-enhanced'), 'action' => 'ppc_admin_notices'],
-        ];
-
         return apply_filters('pp_capabilities_admin_features_elements', $elements);
     }
 
@@ -37,7 +32,6 @@ class PP_Capabilities_Admin_Features
 
         $icons['admintoolbar']     = 'open-folder';
         $icons['dashboardwidgets'] = 'dashboard';
-        $icons['others']           = 'admin-tools';
         $icons['menu-toggle']      = 'menu';
         $icons['wp-logo']          = 'wordpress';
         $icons['site-name']        = 'admin-home';
@@ -269,17 +263,10 @@ class PP_Capabilities_Admin_Features
 
 		if(is_admin()){
 			$ppc_disabled_widget = self::adminFeaturesRestrictedElements($all_disabled_elements, 'ppc_dashboard_widget');
-			$ppc_disabled_notice = self::adminFeaturesRestrictedElements($all_disabled_elements, 'ppc_admin_notices');
-
 			//disable widget
 			if(count($ppc_disabled_widget) > 0){
 				add_action( 'wp_dashboard_setup', [ __CLASS__, 'disableDashboardWidgets' ], 99 );
 				add_action( 'wp_network_dashboard_setup', [ __CLASS__, 'disableDashboardWidgets' ], 99 );
-			}
-
-			//disable admin notice
-			if(count($ppc_disabled_notice) > 0){
-				add_action('admin_head', [ __CLASS__, 'disableAdminNotices'], 99);
 			}
 		}
     }
@@ -329,15 +316,6 @@ class PP_Capabilities_Admin_Features
 				remove_meta_box( $widget_id, get_current_screen()->base, $widget_content );
 			}
 		}
-	}
-
-	/**
-	 * Disable admin notices.
-	 *
-	 */
-	public static function disableAdminNotices() {
-		remove_all_actions( 'user_admin_notices' );
-        remove_all_actions( 'admin_notices' );
 	}
 
 }
