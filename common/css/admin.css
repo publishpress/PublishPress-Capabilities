@@ -36,7 +36,7 @@ a.cap_type {
 a.cap_type:hover {
 	text-decoration: underline;
 }
-	
+
 ul.cme-listhoriz li {
 text-align: center;
 padding-right: 1em;
@@ -61,7 +61,7 @@ float: left;
 margin: 0;
 }
 
-	
+
 div.cme-listhoriz h3 {
 margin: 0.2em;
 }
@@ -241,40 +241,40 @@ table#akmin td.sidebar li.publishpress-contact a{
   min-width:600px;
 }
 
-#pp_features div.pp-logo { 
+#pp_features div.pp-logo {
   text-align: center;
 }
 
-#pp_features div.features-wrap { 
-  margin-left: auto; 
-  margin-right: auto; 
-  text-align: center; 
+#pp_features div.features-wrap {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
   width: 600px;
 }
 
-#pp_features ul.pp-features { 
-  list-style: none; 
-  padding-top:10px; 
-  text-align:left; 
+#pp_features ul.pp-features {
+  list-style: none;
+  padding-top:10px;
+  text-align:left;
   margin-left: auto;
 }
 
-#pp_features ul.pp-features li:before { 
+#pp_features ul.pp-features li:before {
   content: "\2713\0020";
 }
 
-#pp_features ul.pp-features li { 
+#pp_features ul.pp-features li {
   padding-bottom: 5px;
 }
 
-#pp_features img.cme-play { 
-  margin-bottom: -3px; 
+#pp_features img.cme-play {
+  margin-bottom: -3px;
   margin-left: 5px;
 }
 
 div.publishpress-caps-manage span.manage-members {
-  margin-left:5px; 
-  font-weight:normal; 
+  margin-left:5px;
+  font-weight:normal;
   color: #777;
 }
 
@@ -283,7 +283,7 @@ div.publishpress-caps-manage span.manage-members a {
 }
 
 div.publishpress-caps-manage span.manage-members a:hover {
-  text-decoration: underline; 
+  text-decoration: underline;
   color:#655997;
 }
 
@@ -296,8 +296,8 @@ div.publishpress-headline .cme-subtext a:hover {
 }
 
 div.publishpress-caps-backup th {
-  text-align:right; 
-  padding-top:28px; 
+  text-align:right;
+  padding-top:28px;
   width: 140px;
 }
 
@@ -340,7 +340,7 @@ div.pp-caps-backup-button {
 }
 
 div.cme-restore-button {
-  margin-top: 25px; 
+  margin-top: 25px;
   padding-left: 5px;
 }
 
@@ -361,7 +361,7 @@ div.publishpress-caps-backup td.cme-backup-info li.cme-change {
 }
 
 div.publishpress-caps-backup td.cme-backup-info .cme-plus {
-  font-weight: bold; 
+  font-weight: bold;
   color: green;
 }
 
@@ -379,14 +379,14 @@ span.pp-restore-caps-no-change {
 }
 
 div.publishpress-caps-backup td.cme-backup-info .cme-minus {
-  font-weight: bold; 
-  color: #a00; 
+  font-weight: bold;
+  color: #a00;
   text-decoration: line-through;
 }
 
 div.publishpress-caps-backup td.cme-backup-info .cme-negate {
-  font-weight: bold; 
-  background-color: #a00; 
+  font-weight: bold;
+  background-color: #a00;
   color: white;
   text-decoration: line-through;
 }
