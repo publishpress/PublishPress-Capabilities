@@ -143,14 +143,11 @@ if ( is_multisite() )
 	require_once ( dirname(__FILE__) . '/includes/network.php' );
 
 // Display message inviting to install Permissions
-if ( !defined('CAPSMAN_INSTALL_PERMISSIONS') ) {
-	define(
-		'CAPSMAN_INSTALL_PERMISSIONS',
-		!cme_is_plugin_active('press-permit-core.php') && !cme_is_plugin_active('presspermit-pro.php')
-	);
-}
-
-if( CAPSMAN_INSTALL_PERMISSIONS && ( !isset( $_GET['pp-after-click'] ) ) ) {
+if ((defined('WP_DEBUG') && defined('CAPSMAN_INSTALL_PERMISSIONS'))
+|| (!cme_is_plugin_active('press-permit-core.php') && !cme_is_plugin_active('presspermit-pro.php')))
+&& !isset( $_GET['pp-after-click'])
+&& !defined('CAPSMAN_DISABLE_PERMISSIONS_PROMO')
+) {
 	add_action('init', function() {
 		global $pagenow;
 
