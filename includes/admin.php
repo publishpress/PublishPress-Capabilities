@@ -86,6 +86,8 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 	<form id="publishpress_caps_form" method="post" action="admin.php?page=<?php echo $this->ID ?>">
 	<?php wp_nonce_field('capsman-general-manager'); ?>
 
+	<input type="hidden" name="pp_caps_tab" value="edit" />
+
 	<p>
 		<select name="role">
 			<?php
@@ -251,6 +253,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 				$('.ppc-capabilities-tabs > ul > li').click( function() {
 					var $tab = $(this).attr('data-content');
 					console.log( $tab );
+					$("[name='pp_caps_tab']").val($(this).attr('data-slug'));
 
 					// Show current Content
 					$('.ppc-capabilities-content > div').hide();
@@ -268,20 +271,27 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 				<div class="ppc-capabilities-tabs">
 					<ul>
 						<?php
-						// caps: edit, delete, read
+						$active_tab_slug = (!empty($_REQUEST['pp_caps_tab'])) ? sanitize_key($_REQUEST['pp_caps_tab']) : 'edit';
+						$active_tab_id = "cme-cap-type-tables-{$active_tab_slug}";
+
 						$ppc_tab_active = ' class="ppc-capabilities-tab-active"';
+
+						// caps: edit, delete, read
 						foreach( array_keys($cap_properties) as $cap_type ) {
-							echo '<li data-content="cme-cap-type-tables-' . $cap_type . '"' . $ppc_tab_active . '>'
+							$tab_id = "cme-cap-type-tables-$cap_type";
+							$tab_active = ($tab_id == $active_tab_id) ? $ppc_tab_active : '';
+
+							echo '<li data-slug="'. $cap_type . '"' . ' data-content="cme-cap-type-tables-' . $cap_type . '"' . $tab_active . '>'
 								. $cap_type_names[$cap_type] .
 							'</li>';
-							$ppc_tab_active = '';
 						}
 						// caps: other
-						?>
-						<li data-content="cme-cap-type-tables-other">
-							<?php echo __( 'Other WordPress Core Capabilities', 'capsman-enhanced' ) ?>
-						</li>
-						<?php
+						$tab_id = "cme-cap-type-tables-other";
+						$tab_active = ($tab_id == $active_tab_id) ? $ppc_tab_active : '';
+						$tab_caption = __( 'Other WordPress Core Capabilities', 'capsman-enhanced' );
+
+						echo '<li data-slug="other" data-content="' . $tab_id . '"' . $tab_active . '>' . $tab_caption . '</li>';
+
 						// caps: plugins
 						$plugin_caps = [];
 						if (defined('PUBLISHPRESS_VERSION')) {
@@ -433,17 +443,26 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 						$plugin_caps = apply_filters('cme_plugin_capabilities', $plugin_caps);
 						foreach($plugin_caps as $plugin => $__plugin_caps) {
 							$_plugin_caps = array_fill_keys($__plugin_caps, true);
-							echo '<li data-content="cme-cap-type-tables-' . str_replace( ' ', '-', strtolower($plugin) ) . '"' . $ppc_tab_active . '>'
+
+							$tab_slug = str_replace(' ', '-', strtolower($plugin));
+							$tab_id = 'cme-cap-type-tables-' . $tab_slug;
+							$tab_active = ($tab_id == $active_tab_id) ? $ppc_tab_active : '';
+
+							echo '<li data-slug="' . $tab_slug . '" data-content="' . $tab_id .'"' . $tab_active . '>'
 								. sprintf(__( '%s Capabilities', 'capsman-enhanced' ), str_replace('_', ' ', $plugin )) .
 							'</li>';
 						}
+
+						$tab_id = "cme-cap-type-tables-invalid";
+						$tab_active = ($tab_id == $active_tab_id) ? $ppc_tab_active : '';
+						$tab_caption = __( 'Invalid Capabilities', 'capsman-enhanced' );
+						echo '<li id="cme_tab_invalid_caps" data-slug="invalid" data-content="cme-cap-type-tables-' . $tab_id . '"' . $tab_active . ' style="display:none;">' . $tab_caption . '</li>';
+
+						$tab_id = "cme-cap-type-tables-additional";
+						$tab_active = ($tab_id == $active_tab_id) ? $ppc_tab_active : '';
+						$tab_caption = __( 'Additional Capabilities', 'capsman-enhanced' );
+						echo '<li data-slug="additional" data-content="' . $tab_id . '"' . $tab_active . '>' . $tab_caption . '</li>';
 						?>
-						<li data-content="cme-cap-type-tables-invalid-capabilities">
-							<?php _e( 'Invalid Capabilities', 'capsman-enhanced' ) ?>
-						</li>
-						<li data-content="cme-cap-type-tables-additional-capabilities">
-							<?php _e( 'Additional Capabilities', 'capsman-enhanced' ) ?>
-						</li>
 					</ul>
 				</div>
 				<div class="ppc-capabilities-content">
@@ -829,6 +848,14 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 						echo '<h3 class="cme-cap-section">' . __( 'Invalid Capabilities', 'capsman-enhanced' ) . '</h3>';
 						?>
 
+						<script type="text/javascript">
+						/* <![CDATA[ */
+						jQuery(document).ready( function($) {
+							$('#cme_tab_invalid_caps').show();
+						});
+						/* ]]> */
+						</script>
+
 						<div>
 						<span class="cme-subtext">
 							<?php _e('The following entries have no effect. Please assign desired capabilities in the Read / Edit / Delete grid above.', 'capsman-enhanced');?>
@@ -908,7 +935,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 						<?php
 					} // endif any invalid caps
 					?>
-					<div id="cme-cap-type-tables-additional-capabilities" style="display:none;">
+					<div id="cme-cap-type-tables-additional" style="display:none;">
 						<?php
 						// caps: additional
 						echo '<h3 class="cme-cap-section">' . __( 'Additional Capabilities', 'capsman-enhanced' ) . '</h3>';
