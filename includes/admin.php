@@ -264,6 +264,8 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 					$('.ppc-capabilities-content > div').hide();
 					$('#' + $tab).show();
 
+					$('#' + $tab + '-taxonomy').show();
+
 					// Active current Tab
 					$('.ppc-capabilities-tabs > ul > li').removeClass('ppc-capabilities-tab-active');
 					$(this).addClass('ppc-capabilities-tab-active');
@@ -509,9 +511,18 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 							if ( ! count( $cap_properties[$cap_type][$item_type] ) )
 								continue;
 
-							echo "<div id='cme-cap-type-tables-$cap_type' style='display:$ppc_content_hide;'>";
-							$ppc_content_hide = 'none';
-							echo '<h3>' .  sprintf(__('%s Capabilities', 'capability-manager-enhanced'), $cap_type_names[$cap_type]) . '</h3>';
+							$id = "cme-cap-type-tables-$cap_type";
+							$div_display = ($id == $active_tab_id) ? 'block' : 'none';
+
+							if ($item_type == 'taxonomy') {
+								$id .= '-taxonomy';
+							}
+
+							echo "<div id='$id' style='display:$div_display;'>";
+							
+							$caption_pattern = ('taxonomy' == $item_type) ? __('Taxonomy %s Capabilities', 'capability-manager-enhanced') : __('Post %s Capabilities', 'capability-manager-enhanced');
+
+							echo '<h3>' .  sprintf($caption_pattern, $cap_type_names[$cap_type]) . '</h3>';
 							echo "<table class='widefat fixed striped cme-typecaps cme-typecaps-$cap_type'>";
 
 							echo '<thead><tr><th></th>';
