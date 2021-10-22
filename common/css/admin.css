@@ -89,6 +89,7 @@ table .cme-typecaps th:first-of-type {
 
 table .cme-typecaps th {
 cursor: pointer;
+text-align: center;
 }
 
 table.cme-typecaps span.cap-x {
