@@ -285,6 +285,18 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 								. $cap_type_names[$cap_type] .
 							'</li>';
 						}
+
+						if ($extra_tabs = apply_filters('pp_capabilities_extra_post_capability_tabs', [])) {
+							foreach($extra_tabs as $tab_slug => $tab_caption) {
+								$tab_id = "cme-cap-type-tables-{$tab_slug}";
+								$tab_active = ($tab_id == $active_tab_id) ? $ppc_tab_active : '';
+
+								echo '<li data-slug="' . $tab_slug . '"' . ' data-content="' . $tab_id . '"' . $tab_active . '>'
+								. $tab_caption .
+								'</li>';
+							}
+						}
+
 						// caps: other
 						$tab_id = "cme-cap-type-tables-other";
 						$tab_active = ($tab_id == $active_tab_id) ? $ppc_tab_active : '';
