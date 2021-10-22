@@ -151,5 +151,6 @@ if ( !defined('CAPSMAN_INSTALL_PERMISSIONS') ) {
 	);
 }
 
-if( CAPSMAN_INSTALL_PERMISSIONS && ( !isset( $_GET['pp-after-click'] ) ) )
-	require_once ( dirname(__FILE__) . '/classes/pp-capabilities-permissions.php' );
+if( CAPSMAN_INSTALL_PERMISSIONS && ( !isset( $_GET['pp-after-click'] ) ) ) {
+	require_once ( dirname(__FILE__) . '/includes-core/pp-capabilities-permissions.php' );
+}
