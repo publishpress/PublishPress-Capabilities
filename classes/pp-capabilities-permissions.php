@@ -236,7 +236,7 @@ if( !class_exists('Ppc_Install_Permissions') ) {
 
 			if ( ! isset( $triggers ) ) {
 
-				$time_message = __( 'Do you want to control permisions for specific posts and pages?', 'capsman-enhanced' );
+				$time_message = __( 'Do you want to control permissions for specific posts and pages?', 'capsman-enhanced' );
 
 				$triggers = apply_filters( 'ppc_permissions_triggers', array(
 					'time_installed' => array(
