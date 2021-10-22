@@ -216,8 +216,8 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 			$cap_type_names = array(
 				'' => __( '&nbsp;', 'capsman-enhanced' ),
 				'read' => __( 'Reading', 'capsman-enhanced' ),
-				'edit' => __( 'Editing Capabilities', 'capsman-enhanced' ),
-				'delete' => __( 'Deletion Capabilities', 'capsman-enhanced' )
+				'edit' => __( 'Editing', 'capsman-enhanced' ),
+				'delete' => __( 'Deletion', 'capsman-enhanced' )
 			);
 
 			$cap_tips = array(
@@ -288,7 +288,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 						// caps: other
 						$tab_id = "cme-cap-type-tables-other";
 						$tab_active = ($tab_id == $active_tab_id) ? $ppc_tab_active : '';
-						$tab_caption = __( 'Other WordPress Core Capabilities', 'capsman-enhanced' );
+						$tab_caption = __( 'WordPress Core', 'capsman-enhanced' );
 
 						echo '<li data-slug="other" data-content="' . $tab_id . '"' . $tab_active . '>' . $tab_caption . '</li>';
 
@@ -449,7 +449,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 							$tab_active = ($tab_id == $active_tab_id) ? $ppc_tab_active : '';
 
 							echo '<li data-slug="' . $tab_slug . '" data-content="' . $tab_id .'"' . $tab_active . '>'
-								. sprintf(__( '%s Capabilities', 'capsman-enhanced' ), str_replace('_', ' ', $plugin )) .
+								. str_replace('_', ' ', $plugin ) .
 							'</li>';
 						}
 
@@ -460,7 +460,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 
 						$tab_id = "cme-cap-type-tables-additional";
 						$tab_active = ($tab_id == $active_tab_id) ? $ppc_tab_active : '';
-						$tab_caption = __( 'Additional Capabilities', 'capsman-enhanced' );
+						$tab_caption = __( 'Additional', 'capsman-enhanced' );
 						echo '<li data-slug="additional" data-content="' . $tab_id . '"' . $tab_active . '>' . $tab_caption . '</li>';
 						?>
 					</ul>
@@ -494,7 +494,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 
 							echo "<div id='cme-cap-type-tables-$cap_type' style='display:$ppc_content_hide;'>";
 							$ppc_content_hide = 'none';
-							echo '<h3>' . $cap_type_names[$cap_type] . '</h3>';
+							echo '<h3>' .  sprintf(__('%s Capabilities', 'capability-manager-enhanced'), $cap_type_names[$cap_type]) . '</h3>';
 							echo "<table class='widefat fixed striped cme-typecaps cme-typecaps-$cap_type'>";
 
 							echo '<thead><tr><th></th>';
@@ -655,7 +655,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 					<div id="cme-cap-type-tables-other" style="display:none;">
 						<?php
 
-						echo '<h3>' . __( 'Other WordPress Core Capabilities', 'capsman-enhanced' ) . '</h3>';
+						echo '<h3>' . __( 'WordPress Core Capabilities', 'capsman-enhanced' ) . '</h3>';
 						echo '<table class="widefat fixed striped form-table cme-checklist"><tr>';
 
 						$checks_per_row = get_option( 'cme_form-rows', 1 );
@@ -768,7 +768,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 
 						echo '<div id="cme-cap-type-tables-' . str_replace( ' ', '-', strtolower($plugin) ) . '" style="display:none;">';
 						echo '<table class="widefat fixed striped form-table cme-checklist"><tr>';
-						echo '<h3 class="cme-cap-section">' . sprintf(__( '%s Capabilities', 'capsman-enhanced' ), str_replace('_', ' ', $plugin )) . '</h3>';
+						echo '<h3 class="cme-cap-section">' . sprintf(__( 'Plugin Capabilities &ndash; %s', 'capsman-enhanced' ), str_replace('_', ' ', $plugin )) . '</h3>';
 
 						$checks_per_row = get_option( 'cme_form-rows', 1 );
 						$i = 0; $first_row = true;
