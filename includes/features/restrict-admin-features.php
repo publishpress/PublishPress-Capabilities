@@ -253,7 +253,7 @@ class PP_Capabilities_Admin_Features
             }
         }
 		//merge all array values incase it's more than role
-		$all_disabled_elements = array_merge(...$all_disabled_elements);
+        //$all_disabled_elements = array_merge(...$all_disabled_elements);  // This is a PHP 7.4 operator
 
 		//disable toolbar
 		$ppc_disabled_toolbar = self::adminFeaturesRestrictedElements($all_disabled_elements, 'ppc_adminbar');
