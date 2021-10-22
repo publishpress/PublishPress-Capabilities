@@ -12,10 +12,14 @@ foreach($def_post_types as $post_type) {
 ?>
 
 <table class="wp-list-table widefat fixed striped pp-capability-menus-select editor-features-gutenberg" <?php if (!empty($_REQUEST['ppc-tab']) && ('gutenberg' != $_REQUEST['ppc-tab'])) echo 'style="display:none;"';?>>
-    <?php foreach(['thead', 'tfoot'] as $tag):?>
+    <?php foreach(['thead', 'tfoot'] as $tag):
+        if (defined('PUBLISHPRESS_CAPS_PRO_VERSION') && ('tfoot' == $tag)) {
+            continue;
+        }
+    ?>
     <<?php echo $tag;?>>
     <tr>
-        <th class="menu-column"><?php if ('thead' == $tag) {_e('Gutenberg Screen', 'capsman-enhanced');}?></th>
+        <th class="menu-column"><?php _e('Gutenberg Screen', 'capsman-enhanced');?></th>
 
         <?php foreach($def_post_types as $post_type) :
             $type_obj = get_post_type_object($post_type);    
@@ -73,8 +77,9 @@ foreach($def_post_types as $post_type) {
         <?php
         }
     }
+    
+    do_action('pp_capabilities_features_gutenberg_after_table_tr');
     ?>
-
     </tbody>
 </table>
 
