@@ -487,7 +487,6 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 				<div class="ppc-capabilities-content">
 					<?php
 					// caps: read, edit, deletion
-					$ppc_content_hide = 'block';
 					foreach( array_keys($cap_properties) as $cap_type ) {
 
 						foreach( array_keys($defined) as $item_type ) {
@@ -672,15 +671,17 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 						} // end foreach item type
 					}
 
-
-					do_action('publishpress-caps_manager_postcaps_section', compact('current', 'rcaps', 'pp_metagroup_caps', 'is_administrator', 'default_caps', 'custom_types', 'defined', 'unfiltered', 'pp_metagroup_caps'));
+					do_action('publishpress-caps_manager_postcaps_section', compact('current', 'rcaps', 'pp_metagroup_caps', 'is_administrator', 'default_caps', 'custom_types', 'defined', 'unfiltered', 'pp_metagroup_caps','caps_manager_postcaps_section', 'active_tab_id'));
 
 					$type_caps = apply_filters('publishpress_caps_manager_typecaps', $type_caps);
 
 					// clicking on post type name toggles corresponding checkbox selections
 					// caps: other
+
+					$id = "cme-cap-type-tables-other";
+					$div_display = ($id == $active_tab_id) ? 'block' : 'none';
 					?>
-					<div id="cme-cap-type-tables-other" style="display:none;">
+					<div id="<?php echo $id;?>" style="display:<?php echo $div_display;?>">
 						<?php
 
 						echo '<h3>' . __( 'WordPress Core Capabilities', 'capsman-enhanced' ) . '</h3>';
@@ -794,7 +795,10 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 					foreach($plugin_caps as $plugin => $__plugin_caps) {
 						$_plugin_caps = array_fill_keys($__plugin_caps, true);
 
-						echo '<div id="cme-cap-type-tables-' . str_replace( ' ', '-', strtolower($plugin) ) . '" style="display:none;">';
+						$id = 'cme-cap-type-tables-' . str_replace( ' ', '-', strtolower($plugin));
+						$div_display = ($id == $active_tab_id) ? 'block' : 'none';
+
+						echo '<div id="' . $id . '" style="display:' . $div_display . '">';
 						echo '<table class="widefat fixed striped form-table cme-checklist"><tr>';
 						echo '<h3 class="cme-cap-section">' . sprintf(__( 'Plugin Capabilities &ndash; %s', 'capsman-enhanced' ), str_replace('_', ' ', $plugin )) . '</h3>';
 
@@ -871,8 +875,10 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 
 					// caps: invalid
 					if (array_intersect(array_keys(array_filter($type_metacaps)), $all_capabilities) && array_intersect_key($type_metacaps, array_filter($rcaps))) {
+						$id = "cme-cap-type-tables-invalid";
+						$div_display = ($id == $active_tab_id) ? 'block' : 'none';
 
-						echo '<div id="cme-cap-type-tables-invalid-capabilities" style="display:none;">';
+						echo '<div id="' . $id . '" style="display:' . $div_display . '">';
 						echo '<h3 class="cme-cap-section">' . __( 'Invalid Capabilities', 'capsman-enhanced' ) . '</h3>';
 						?>
 
@@ -962,8 +968,11 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 					</div>
 						<?php
 					} // endif any invalid caps
+
+					$id = "cme-cap-type-tables-additional";
+					$div_display = ($id == $active_tab_id) ? 'block' : 'none';
 					?>
-					<div id="cme-cap-type-tables-additional" style="display:none;">
+					<div id="<?php echo $id;?>" style="display:<?php echo $div_display;?>">
 						<?php
 						// caps: additional
 						echo '<h3 class="cme-cap-section">' . __( 'Additional Capabilities', 'capsman-enhanced' ) . '</h3>';
