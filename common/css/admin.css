@@ -70,9 +70,11 @@ div.cme-cap-type-tables {
 border: 1px solid black;
 }
 
+/*
 table.cme-typecaps {
 
 }
+*/
 
 table .cme-typecaps td:first-of-type {
 text-align: left;
@@ -440,9 +442,11 @@ table#akmin tr td input[type=checkbox] {
 	min-height: 400px;
 }
 
+/*
 #ppc-capabilities-wrapper .ppc-capabilities-tabs {
 
 }
+*/
 
 #ppc-capabilities-wrapper .ppc-capabilities-tabs > ul {
 	padding: 0;
