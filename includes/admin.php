@@ -252,7 +252,8 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 				// Tabs and Content display
 				$('.ppc-capabilities-tabs > ul > li').click( function() {
 					var $tab = $(this).attr('data-content');
-					console.log( $tab );
+					//console.log( $tab );
+
 					$("[name='pp_caps_tab']").val($(this).attr('data-slug'));
 
 					// Show current Content
