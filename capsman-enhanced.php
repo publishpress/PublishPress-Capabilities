@@ -151,5 +151,14 @@ if ( !defined('CAPSMAN_INSTALL_PERMISSIONS') ) {
 }
 
 if( CAPSMAN_INSTALL_PERMISSIONS && ( !isset( $_GET['pp-after-click'] ) ) ) {
-	require_once ( dirname(__FILE__) . '/includes-core/pp-capabilities-permissions.php' );
+	add_action('init', function() {
+		global $pagenow;
+
+		if (in_array($pagenow, ['edit.php', 'plugins.php', 'plugin-install.php']) 
+		|| ('admin.php' == $pagenow && !empty($_REQUEST['page']) && (false !== strpos($_REQUEST['page'], 'pp-capabilities')))
+		|| (!empty($_REQUEST['action']) && ('ppc_permissions_action' == $_REQUEST['action']))
+		) {
+			require_once ( dirname(__FILE__) . '/includes-core/pp-capabilities-permissions.php' );
+		}
+	});
 }

@@ -27,8 +27,11 @@ if( !class_exists('Ppc_Install_Permissions') ) {
 		 *
 		 */
 		public static function init() {
-			add_action( 'init', array( __CLASS__, 'hooks' ) );
-			add_action( 'wp_ajax_ppc_permissions_action', array( __CLASS__, 'ajax_handler' ) );
+			if (!isset( $_GET['pp-after-click'])) {
+				self::hooks();
+
+				add_action( 'wp_ajax_ppc_permissions_action', array( __CLASS__, 'ajax_handler' ) );
+			}
 		}
 
 		/**
