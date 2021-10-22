@@ -86,7 +86,11 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 	<form id="publishpress_caps_form" method="post" action="admin.php?page=<?php echo $this->ID ?>">
 	<?php wp_nonce_field('capsman-general-manager'); ?>
 
-	<input type="hidden" name="pp_caps_tab" value="edit" />
+	<?php 
+	$tab = (!empty($_REQUEST['pp_caps_tab'])) ? sanitize_key($_REQUEST['pp_caps_tab']) : 'edit';
+	?>
+
+	<input type="hidden" name="pp_caps_tab" value="<?php echo $tab;?>" />
 
 	<p>
 		<select name="role">
