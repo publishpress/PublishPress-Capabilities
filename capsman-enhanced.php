@@ -146,8 +146,7 @@ if ( is_multisite() )
 if ( !defined('CAPSMAN_INSTALL_PERMISSIONS') ) {
 	define(
 		'CAPSMAN_INSTALL_PERMISSIONS',
-		!in_array( 'press-permit-core/press-permit-core.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) )
-		&& !in_array( 'presspermit-pro/presspermit-pro.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) )
+		!cme_is_plugin_active('press-permit-core.php') && !cme_is_plugin_active('presspermit-pro.php')
 	);
 }
 
