@@ -186,5 +186,6 @@ function pp_capabilities_is_classic_editor_available()
     return class_exists('Classic_Editor')
         || function_exists( 'the_gutenberg_project' )
         || class_exists('Gutenberg_Ramp')
-        || version_compare($wp_version, '5.0', '<');
+        || version_compare($wp_version, '5.0', '<')
+        || (function_exists('et_get_option') && 'on' === et_get_option('et_enable_classic_editor', 'off'));
 }
