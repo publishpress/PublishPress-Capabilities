@@ -141,7 +141,7 @@ Fixed : Non-administrators with user editing capabilities could add new Administ
 
 == Changelog ==
 
-= 2.3-beta =
+= 2.3 - 28 Oct 2021 =
   * Change : Role Capabilities screen uses tabs
   * Feature : New "Admin Features" screen #200
   
