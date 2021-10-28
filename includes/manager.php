@@ -575,7 +575,7 @@ class CapabilityManager
 	{
 		global $current_user;
 
-		if (function_exists('wp_get_current_user')) {  // Avoid downstream fatal error from premature current_user_can() call if get_editable_roles() is called too early
+		if (function_exists('wp_get_current_user') || defined('PP_CAPABILITIES_ROLES_FILTER_EARLY_EXECUTION')) {  // Avoid downstream fatal error from premature current_user_can() call if get_editable_roles() is called too early
 			$this->generateNames();
 			$valid = array_keys($this->roles);
 
