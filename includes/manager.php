@@ -178,7 +178,7 @@ class CapabilityManager
 		if (empty($_REQUEST['page']) 
 		|| !in_array( 
 			$_REQUEST['page'], 
-			['pp-capabilities', 'pp-capabilities-roles', 'pp-capabilities-admin-menus', 'pp-capabilities-nav-menus', 'pp-capabilities-editor-features', 'pp-capabilities-backup', 'pp-capabilities-settings']
+			['pp-capabilities', 'pp-capabilities-roles', 'pp-capabilities-admin-menus', 'pp-capabilities-nav-menus', 'pp-capabilities-editor-features', 'pp-capabilities-backup', 'pp-capabilities-settings', 'pp-capabilities-admin-features']
 			)
 		) {
 			return;
@@ -370,6 +370,8 @@ class CapabilityManager
 
 		add_submenu_page('pp-capabilities',  __('Editor Features', 'capsman-enhanced'), __('Editor Features', 'capsman-enhanced'), $cap_name, 'pp-capabilities-editor-features', [$this, 'ManageEditorFeatures']);
 
+		add_submenu_page('pp-capabilities',  __('Admin Features', 'capsman-enhanced'), __('Admin Features', 'capsman-enhanced'), $cap_name, 'pp-capabilities-admin-features', [$this, 'ManageAdminFeatures']);
+
 		do_action('pp-capabilities-admin-submenus');
 
 		add_submenu_page('pp-capabilities',  __('Backup', 'capsman-enhanced'), __('Backup', 'capsman-enhanced'), $cap_name, 'pp-capabilities-backup', array($this, 'backupTool'));
@@ -442,6 +444,12 @@ class CapabilityManager
         require_once ( dirname(CME_FILE) . '/includes/roles/roles.php' );
 	}
 
+
+	/**
+	 * Manages Editor Features
+	 *
+	 * @return void
+	 */
 	public function ManageEditorFeatures() {
 		if ((!is_multisite() || !is_super_admin()) && !current_user_can('administrator') && !current_user_can('manage_capabilities')) {
             // TODO: Implement exceptions.
@@ -492,6 +500,53 @@ class CapabilityManager
 
 		do_action('pp_capabilities_editor_features');
         include(dirname(CME_FILE) . '/includes/features/editor-features.php');
+    }
+	
+	/**
+	 * Manages Admin Features
+	 *
+	 * @return void
+	 */
+	public function ManageAdminFeatures() {
+		if ((!is_multisite() || !is_super_admin()) && !current_user_can('administrator') && !current_user_can('manage_capabilities')) {
+            // TODO: Implement exceptions.
+		    wp_die('<strong>' .__('You do not have permission to manage admin features.', 'capabilities-pro') . '</strong>');
+		}
+
+		$this->generateNames();
+		$roles = array_keys($this->roles);
+
+		if (!isset($this->current)) {
+			if (empty($_POST) && !empty($_REQUEST['role'])) {
+				$this->set_current_role($_REQUEST['role']);
+			}
+		}
+
+		if (!isset($this->current) || !get_role($this->current)) {
+			$this->current = get_option('default_role');
+		}
+
+		if (!in_array($this->current, $roles)) {
+			$this->current = array_shift($roles);
+		}
+
+		if ('POST' == $_SERVER['REQUEST_METHOD'] && isset($_POST['ppc-admin-features-role'])) {
+            $this->set_current_role($_POST['ppc-admin-features-role']);
+
+			$disabled_admin_items = !empty(get_option('capsman_disabled_admin_features')) ? (array)get_option('capsman_disabled_admin_features') : [];
+			$disabled_admin_items[$_POST['ppc-admin-features-role']] = isset($_POST['capsman_disabled_admin_features']) ? $_POST['capsman_disabled_admin_features'] : '';
+
+			update_option('capsman_disabled_admin_features', $disabled_admin_items, false);
+
+			//set reload option for instant reflection if user is updating own role
+			if(in_array($_POST['ppc-admin-features-role'], wp_get_current_user()->roles)){
+				$ppc_page_reload = '1';
+			}
+			
+            ak_admin_notify(__('Settings updated.', 'capabilities-pro'));
+		}
+
+        include(dirname(CME_FILE) . '/includes/features/admin-features.php');
     }
 
 	/**
