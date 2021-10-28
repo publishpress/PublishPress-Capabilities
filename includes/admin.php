@@ -513,8 +513,12 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 							$id = "cme-cap-type-tables-$cap_type";
 							$div_display = ($id == $active_tab_id) ? 'block' : 'none';
 
+							$any_caps = false;
+
 							if ($item_type == 'taxonomy') {
 								$id .= '-taxonomy';
+
+								ob_start();
 							}
 
 							echo "<div id='$id' style='display:$div_display;'>";
@@ -623,6 +627,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 
 													$type_caps [$cap_name] = true;
 													$display_row = true;
+													$any_caps = true;
 												}
 											} else {
 												//$td_classes []= "cap-unreg";
@@ -667,6 +672,14 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 
 							echo '</table>';
 							echo '</div>';
+
+							if ($item_type == 'taxonomy') {
+								if ($any_caps)  {
+									ob_flush();
+								} else {
+									ob_clean();
+								}
+							}
 
 						} // end foreach item type
 					}
