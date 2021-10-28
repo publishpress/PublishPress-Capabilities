@@ -12,14 +12,10 @@ foreach($def_post_types as $post_type) {
 ?>
 
 <table class="wp-list-table widefat fixed striped pp-capability-menus-select editor-features-classic" <?php if (empty($_REQUEST['ppc-tab']) || ('classic' != $_REQUEST['ppc-tab'])) echo 'style="display:none;"';?>>
-    <?php foreach(['thead', 'tfoot'] as $tag):
-        if (defined('PUBLISHPRESS_CAPS_PRO_VERSION') && ('tfoot' == $tag)) {
-            continue;
-        }
-    ?>
+    <?php foreach(['thead', 'tfoot'] as $tag):?>
     <<?php echo $tag;?>>
     <tr>
-        <th class="menu-column"><?php _e('Classic Editor Screen', 'capsman-enhanced');?></th>
+        <th class="menu-column"><?php if ('thead' == $tag || !defined('PUBLISHPRESS_CAPS_PRO_VERSION')) {_e('Classic Editor Screen', 'capsman-enhanced');}?></th>
 
         <?php foreach($def_post_types as $post_type) :
             $type_obj = get_post_type_object($post_type);    
