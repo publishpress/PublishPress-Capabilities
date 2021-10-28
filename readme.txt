@@ -141,6 +141,10 @@ Fixed : Non-administrators with user editing capabilities could add new Administ
 
 == Changelog ==
 
+= 2.3-beta =
+  * Change : Role Capabilities screen uses tabs
+  * Feature : New "Admin Features" screen #200
+
 = 2.2 - 26 Aug 2021 =
   * Feature : Retain last role selection for Capabilities, Editor Features screens
   * Perf : Sync role to all sites - Operation timed out on networks with ~100 sites 
