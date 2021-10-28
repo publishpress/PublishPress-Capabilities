@@ -566,6 +566,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 									$row .= '</td>';
 
 									$display_row = ! empty($force_distinct_ui);
+									$col_count = 0;
 
 									foreach( $cap_properties[$cap_type][$item_type] as $prop ) {
 										$td_classes = array();
@@ -649,6 +650,14 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 											$row .= '<input type="hidden" class="cme-negation-input" name="caps[' . $cap_name . ']" value="" />';
 
 										$row .= "</td>";
+
+										$col_count++;
+									}
+
+									if ('taxonomy' == $item_type) {
+										for ($i = $col_count; $i < 3; $i++) {
+											$row .= "<td></td>";
+										}
 									}
 
 									if (!empty($type_obj->map_meta_cap) && !defined('PP_CAPABILITIES_NO_INVALID_SECTION')) {
