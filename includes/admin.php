@@ -519,7 +519,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 
 							echo "<div id='$id' style='display:$div_display;'>";
 							
-							$caption_pattern = ('taxonomy' == $item_type) ? __('Taxonomy %s Capabilities', 'capability-manager-enhanced') : __('Post %s Capabilities', 'capability-manager-enhanced');
+							$caption_pattern = ('taxonomy' == $item_type) ? __('Term %s Capabilities', 'capability-manager-enhanced') : __('Post %s Capabilities', 'capability-manager-enhanced');
 
 							echo '<h3>' .  sprintf($caption_pattern, $cap_type_names[$cap_type]) . '</h3>';
 							echo "<table class='widefat fixed striped cme-typecaps cme-typecaps-$cap_type'>";
