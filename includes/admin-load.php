@@ -18,11 +18,6 @@ class PP_Capabilities_Admin_UI {
          */
         require_once (dirname(CME_FILE) . '/classes/pp-capabilities-notices.php');
 
-        /**
-         * Include review request
-         */
-        require_once (dirname(CME_FILE) . '/includes/review/review-request.php');
-
         add_action('init', [$this, 'featureRestrictionsGutenberg']);
 
         if (is_admin()) {
@@ -58,6 +53,36 @@ class PP_Capabilities_Admin_UI {
         } else {
             add_action( 'admin_menu', [$this, 'cmeSubmenus'], 20 );
         }
+
+        add_action('init', function() { // late execution avoids clash with autoloaders in other plugins
+            global $pagenow;
+
+            if ((($pagenow == 'admin.php') && isset($_GET['page']) && in_array($_GET['page'], ['pp-capabilities', 'pp-capabilities-roles', 'pp-capabilities-backup'])) // @todo: CSS for button alignment in Editor Features, Admin Features
+            || (defined('DOING_AJAX') && DOING_AJAX && (false !== strpos($_REQUEST['action'], 'capability-manager-enhanced')))
+            ) {
+                if (!class_exists('\PublishPress\WordPressReviews\ReviewsController')) {
+                    include_once PUBLISHPRESS_CAPS_ABSPATH . '/vendor/publishpress/wordpress-reviews/ReviewsController.php';
+                }
+    
+                if (class_exists('\PublishPress\WordPressReviews\ReviewsController')) {
+                    $reviews = new \PublishPress\WordPressReviews\ReviewsController(
+                        'capability-manager-enhanced',
+                        'PublishPress Capabilities',
+                        plugin_dir_url(CME_FILE) . 'common/img/capabilities-wp-logo.png'
+                    );
+        
+                    add_filter('publishpress_wp_reviews_display_banner_capability-manager-enhanced', [$this, 'shouldDisplayBanner']);
+        
+                    $reviews->init();
+                }
+            }
+        });
+    }
+
+    public function shouldDisplayBanner() {
+        global $pagenow;
+
+        return ($pagenow == 'admin.php') && isset($_GET['page']) && in_array($_GET['page'], ['pp-capabilities', 'pp-capabilities-roles', 'pp-capabilities-backup']);
     }
 
     private function applyFeatureRestrictions($editor = 'gutenberg') {
