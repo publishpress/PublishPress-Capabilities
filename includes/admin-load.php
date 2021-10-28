@@ -35,7 +35,7 @@ class PP_Capabilities_Admin_UI {
             add_action('user_register', [$this, 'action_profile_update'], 9);
         }
 
-        if (is_admin() && (isset($_REQUEST['page']) && (in_array($_REQUEST['page'], ['pp-capabilities', 'pp-capabilities-backup', 'pp-capabilities-roles', 'pp-capabilities-admin-menus', 'pp-capabilities-editor-features', 'pp-capabilities-nav-menus', 'pp-capabilities-settings']))
+        if (is_admin() && (isset($_REQUEST['page']) && (in_array($_REQUEST['page'], ['pp-capabilities', 'pp-capabilities-backup', 'pp-capabilities-roles', 'pp-capabilities-admin-menus', 'pp-capabilities-editor-features', 'pp-capabilities-nav-menus', 'pp-capabilities-settings', 'pp-capabilities-admin-features']))
 
         || (!empty($_REQUEST['action']) && in_array($_REQUEST['action'], ['pp-roles-add-role', 'pp-roles-delete-role', 'pp-roles-hide-role', 'pp-roles-unhide-role']))
         || ( ! empty($_SERVER['SCRIPT_NAME']) && strpos( $_SERVER['SCRIPT_NAME'], 'p-admin/plugins.php' ) && ! empty($_REQUEST['action'] ) ) 
@@ -53,6 +53,36 @@ class PP_Capabilities_Admin_UI {
         } else {
             add_action( 'admin_menu', [$this, 'cmeSubmenus'], 20 );
         }
+
+        add_action('init', function() { // late execution avoids clash with autoloaders in other plugins
+            global $pagenow;
+
+            if ((($pagenow == 'admin.php') && isset($_GET['page']) && in_array($_GET['page'], ['pp-capabilities', 'pp-capabilities-roles', 'pp-capabilities-backup'])) // @todo: CSS for button alignment in Editor Features, Admin Features
+            || (defined('DOING_AJAX') && DOING_AJAX && (false !== strpos($_REQUEST['action'], 'capability-manager-enhanced')))
+            ) {
+                if (!class_exists('\PublishPress\WordPressReviews\ReviewsController')) {
+                    include_once PUBLISHPRESS_CAPS_ABSPATH . '/vendor/publishpress/wordpress-reviews/ReviewsController.php';
+                }
+    
+                if (class_exists('\PublishPress\WordPressReviews\ReviewsController')) {
+                    $reviews = new \PublishPress\WordPressReviews\ReviewsController(
+                        'capability-manager-enhanced',
+                        'PublishPress Capabilities',
+                        plugin_dir_url(CME_FILE) . 'common/img/capabilities-wp-logo.png'
+                    );
+        
+                    add_filter('publishpress_wp_reviews_display_banner_capability-manager-enhanced', [$this, 'shouldDisplayBanner']);
+        
+                    $reviews->init();
+                }
+            }
+        });
+    }
+
+    public function shouldDisplayBanner() {
+        global $pagenow;
+
+        return ($pagenow == 'admin.php') && isset($_GET['page']) && in_array($_GET['page'], ['pp-capabilities', 'pp-capabilities-roles', 'pp-capabilities-backup']);
     }
 
     private function applyFeatureRestrictions($editor = 'gutenberg') {
@@ -257,6 +287,7 @@ class PP_Capabilities_Admin_UI {
 
         add_submenu_page('pp-capabilities',  __('Roles', 'capsman-enhanced'), __('Roles', 'capsman-enhanced'), $cap_name, 'pp-capabilities-roles', 'cme_fakefunc');
         add_submenu_page('pp-capabilities',  __('Editor Features', 'capsman-enhanced'), __('Editor Features', 'capsman-enhanced'), $cap_name, 'pp-capabilities-editor-features', 'cme_fakefunc');
+        add_submenu_page('pp-capabilities',  __('Admin Features', 'capsman-enhanced'), __('Admin Features', 'capsman-enhanced'), $cap_name, 'pp-capabilities-admin-features', 'cme_fakefunc');
         add_submenu_page('pp-capabilities',  __('Admin Menus', 'capsman-enhanced'), __('Admin Menus', 'capsman-enhanced'), $cap_name, 'pp-capabilities-admin-menus', 'cme_fakefunc');
         add_submenu_page('pp-capabilities',  __('Nav Menus', 'capsman-enhanced'), __('Nav Menus', 'capsman-enhanced'), $cap_name, 'pp-capabilities-nav-menus', 'cme_fakefunc');
         add_submenu_page('pp-capabilities',  __('Backup', 'capsman-enhanced'), __('Backup', 'capsman-enhanced'), $cap_name, 'pp-capabilities-backup', 'cme_fakefunc');

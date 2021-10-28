@@ -7,7 +7,7 @@ Tags: user roles, capabilities, permissions, authors, editors, post types, taxon
 Requires at least: 4.9.7
 Tested up to: 5.8
 Requires PHP: 5.6.20
-Stable tag: 2.2
+Stable tag: 2.3
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -141,6 +141,10 @@ Fixed : Non-administrators with user editing capabilities could add new Administ
 
 == Changelog ==
 
+= 2.3 - 28 Oct 2021 =
+  * Change : Role Capabilities screen uses tabs
+  * Feature : New "Admin Features" screen #200
+  
 = 2.2 - 26 Aug 2021 =
   * Feature : Retain last role selection for Capabilities, Editor Features screens
   * Perf : Sync role to all sites - Operation timed out on networks with ~100 sites 
