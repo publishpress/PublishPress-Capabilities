@@ -326,6 +326,13 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 							);
 						}
 
+						//PublishPress Capabilities Capabilities
+						$plugin_caps['PublishPress Capabilities'] = apply_filters('cme_publishpress_capabilities_capabilities',
+							array(
+							'manage_capabilities',
+							)
+						);
+
 						if (defined('PUBLISHPRESS_MULTIPLE_AUTHORS_VERSION')) {
 							if ($_caps = apply_filters('cme_multiple_authors_capabilities', array())) {
 								$plugin_caps['PublishPress Authors'] = $_caps;
