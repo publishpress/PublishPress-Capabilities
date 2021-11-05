@@ -151,6 +151,9 @@ Fixed : Non-administrators with user editing capabilities could add new Administ
 
 == Changelog ==
 
+= 2.3.1 - [===unreleased===]
+  * Feature : Disable more items in the WordPress admin area #240
+
 = 2.3 - 28 Oct 2021 =
   * Change : Role Capabilities screen uses tabs
   * Feature : New "Admin Features" screen #200
