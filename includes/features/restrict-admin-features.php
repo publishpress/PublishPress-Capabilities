@@ -259,7 +259,14 @@ class PP_Capabilities_Admin_Features
 		//disable toolbar
 		$ppc_disabled_toolbar = self::adminFeaturesRestrictedElements($all_disabled_elements, 'ppc_adminbar');
 		if(count($ppc_disabled_toolbar) > 0){
-			add_action( 'wp_before_admin_bar_render', [ __CLASS__, 'disableDashboardBar' ], 99 );
+            if(in_array('ppc_adminbar||admintoolbar', $ppc_disabled_toolbar)){//whole admin bar disabled
+                //frontend admin tool bar
+                add_filter('show_admin_bar', '__return_false');
+                //backend admin tool bar
+                add_action('admin_head', [__CLASS__, 'disableDashboardBarBackend']);
+            }else{
+			    add_action( 'wp_before_admin_bar_render', [ __CLASS__, 'disableDashboardBar' ], 99 );
+            }
 		}
 
 		if(is_admin()){
@@ -270,6 +277,16 @@ class PP_Capabilities_Admin_Features
 				add_action( 'wp_network_dashboard_setup', [ __CLASS__, 'disableDashboardWidgets' ], 99 );
 			}
 		}
+    }
+
+	/**
+	 * Disable backend admin bar.
+	 *
+	 */
+    public static function disableDashboardBarBackend()
+    {
+        echo '<style>html.wp-toolbar { padding-top:0!important; }</style>';
+        echo '<style>#wpadminbar { display:none!important }</style>';
     }
 
 	/**

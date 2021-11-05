@@ -135,15 +135,32 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                                                     $section_slug = strtolower(ppc_remove_non_alphanumeric_space_characters($section_title));
                                                     $icon_name    = isset($icon_list[$section_slug]) ? $icon_list[$section_slug] : '&mdash;';
                                                     ?>
-
-
                                                     <tr class="ppc-menu-row parent-menu">
-
+                                                        <?php if($section_slug === 'admintoolbar'){
+                                                            $restrict_value = 'ppc_adminbar||admintoolbar';
+                                                            ?>
+                                                        <td class="features-section-header restrict-column ppc-menu-checkbox" style="text-align: left;" colspan="2">
+                                                            <input
+                                                                    id="check-item-<?php echo $sn; ?>"
+                                                                    class="check-item" type="checkbox"
+                                                                    name="capsman_disabled_admin_features[]"
+                                                                    value="<?php echo $restrict_value; ?>"
+                                                                    <?php echo (in_array($restrict_value, $disabled_admin_items)) ? 'checked' : ''; ?>/>
+                                                                    <label for="check-item-<?php echo $sn; ?>">
+                                                            <strong class="menu-column ppc-menu-item menu-item-link<?php echo (in_array($restrict_value,
+                                                                            $disabled_admin_items)) ? ' restricted' : ''; ?>">
+                                                                <i class="dashicons dashicons-<?php echo $icon_name ?>"></i> <?php echo $section_title; ?>
+                                                            </strong>
+                                                        </label>
+                                                        </td>
+                                                            <?php
+                                                        }else{ ?>
                                                         <td class="features-section-header" colspan="2">
                                                             <strong><i
                                                                     class="dashicons dashicons-<?php echo $icon_name ?>"></i> <?php echo $section_title; ?>
                                                             </strong>
                                                         </td>
+                                                        <?php } ?>
 
                                                     </tr>
 
@@ -171,7 +188,7 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                                                                     value="<?php echo $restrict_value; ?>"
                                                                     <?php echo (in_array($restrict_value, $disabled_admin_items)) ? 'checked' : ''; ?>/>
                                                             </td>
-                                                            <td class="menu-column ppc-menu-item'">
+                                                            <td class="menu-column ppc-menu-item">
 
                                                                 <label for="check-item-<?php echo $sn; ?>">
                                                                     <span
