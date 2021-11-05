@@ -151,10 +151,12 @@ Fixed : Non-administrators with user editing capabilities could add new Administ
 
 == Changelog ==
 
+= 2.3.1 - [===unreleased===]
+  * Feature : Add a chechbox to disable the whole admin toolbar #239
+
 = 2.3 - 28 Oct 2021 =
   * Change : Role Capabilities screen uses tabs
   * Feature : New "Admin Features" screen #200
-  * Feature : Add a chechbox to disable the whole admin toolbar #239
   
 = 2.2 - 26 Aug 2021 =
   * Feature : Retain last role selection for Capabilities, Editor Features screens
