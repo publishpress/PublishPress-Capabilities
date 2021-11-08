@@ -249,7 +249,7 @@ if( !class_exists('Ppc_Install_Permissions') ) {
 								'conditions' => array(
 									strtotime( self::installed_on() . ' +1 week' ) < time(),
 								),
-								'link'       => admin_url( 'plugin-install.php?s=publishpress+permissions+control+access&tab=search&type=term&pp-after-click' ),
+								'link'       => admin_url( 'plugin-install.php?s=publishpress-ppcore-install&tab=search&type=term&pp-after-click' ),
 								'pri'        => 10,
 							),
 						),
@@ -371,7 +371,7 @@ if( !class_exists('Ppc_Install_Permissions') ) {
 					<?php echo $tigger['message']; ?>
 				</p>
 				<p>
-	                <a class="button button-primary ppc-dismiss" target="_blank" href="<?php echo admin_url( 'plugin-install.php?s=press-permit-core&tab=search&type=term&pp-after-click' ) ?>" data-reason="am_now">
+	                <a class="button button-primary ppc-dismiss" target="_blank" href="<?php echo admin_url( 'plugin-install.php?s=publishpress-ppcore-install&tab=search&type=term&pp-after-click' ) ?>" data-reason="am_now">
 	                    <strong><?php _e( 'Install PublishPress Permissions', 'capsman-enhanced' ); ?></strong>
 	                </a>
 				</p>
