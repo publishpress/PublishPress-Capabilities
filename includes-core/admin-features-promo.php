@@ -28,12 +28,12 @@
       <input type="checkbox">
    </td>
    <td class="menu-column ppc-menu-item">
-      <label for="check-item-38">
-      <span class="menu-item-link">
-      <strong> — Welcome panel <small
-         class="entry">(#welcome-panel)</small> &nbsp; <span
-         class="ppc-custom-features-css-delete red-pointer"
-         data-id="16188f4b317b0b"><small>(Delete)</small></span></strong></span>
+      <label>
+         <span class="menu-item-link">
+         <strong> — Welcome panel <small
+            class="entry">(#welcome-panel)</small> &nbsp; <span
+            class="ppc-custom-features-css-delete red-pointer"
+            data-id="16188f4b317b0b"><small>(Delete)</small></span></strong></span>
       </label>
    </td>
 </tr>
@@ -42,13 +42,13 @@
    <input type="checkbox">
    </td>
    <td class="menu-column ppc-menu-item">
-      <label for="check-item-39">
-      <span class="menu-item-link restricted">
-      <strong>
-      — Woocomerce and site health <small
-         class="entry">(#wc_admin_dashboard_setup, #dashboard_site_health)</small> &nbsp; <span
-         class="ppc-custom-features-css-delete red-pointer"
-         data-id="16188f4dfe6150"><small>(Delete)</small></span></strong></span>
+      <label>
+         <span class="menu-item-link restricted">
+         <strong>
+         — Woocomerce and site health <small
+            class="entry">(#wc_admin_dashboard_setup, #dashboard_site_health)</small> &nbsp; <span
+            class="ppc-custom-features-css-delete red-pointer"
+            data-id="16188f4dfe6150"><small>(Delete)</small></span></strong></span>
       </label>
    </td>
 </tr>
@@ -57,13 +57,13 @@
    <input type="checkbox">
    </td>
    <td class="menu-column ppc-menu-item">
-      <label for="check-item-40">
-      <span class="menu-item-link">
-      <strong>
-      — Others <small
-         class="entry">(#dashboard_activity, #dashboard_right_now,#dashboard_primary)</small> &nbsp; <span
-         class="ppc-custom-features-css-delete red-pointer"
-         data-id="16188f50c5b7b7"><small>(Delete)</small></span> </strong></span>
+      <label>
+         <span class="menu-item-link">
+         <strong>
+         — Others <small
+            class="entry">(#dashboard_activity, #dashboard_right_now,#dashboard_primary)</small> &nbsp; <span
+            class="ppc-custom-features-css-delete red-pointer"
+            data-id="16188f50c5b7b7"><small>(Delete)</small></span> </strong></span>
       </label>
    </td>
 </tr>
@@ -92,13 +92,13 @@
    <input type="checkbox">
    </td>
    <td class="menu-column ppc-menu-item">
-      <label for="check-item-38">
-      <span class="menu-item-link">
-      <strong>
-      — Plugin add <small
-         class="entry">(/wp-admin/plugin-install.php)</small> &nbsp; <span
-         class="ppc-custom-features-url-delete red-pointer"
-         data-id="16183aea9b16aa"><small>(Delete)</small></span> </strong></span>
+      <label>
+         <span class="menu-item-link">
+         <strong>
+         — Plugin add <small
+            class="entry">(/wp-admin/plugin-install.php)</small> &nbsp; <span
+            class="ppc-custom-features-url-delete red-pointer"
+            data-id="16183aea9b16aa"><small>(Delete)</small></span> </strong></span>
       </label>
    </td>
 </tr>
@@ -107,13 +107,13 @@
    <input type="checkbox">
    </td>
    <td class="menu-column ppc-menu-item">
-      <label for="check-item-39">
-      <span class="menu-item-link restricted">
-      <strong>
-      — Some settings pages <small
-         class="entry">(/wp-admin/options-general.php, /wp-admin/options-writing.php, /wp-admin/options-reading.php)</small> &nbsp; <span
-         class="ppc-custom-features-url-delete red-pointer"
-         data-id="16183aedcbab7b"><small>(Delete)</small></span> </strong></span>
+      <label>
+         <span class="menu-item-link restricted">
+         <strong>
+         — Some settings pages <small
+            class="entry">(/wp-admin/options-general.php, /wp-admin/options-writing.php, /wp-admin/options-reading.php)</small> &nbsp; <span
+            class="ppc-custom-features-url-delete red-pointer"
+            data-id="16183aedcbab7b"><small>(Delete)</small></span> </strong></span>
       </label>
    </td>
 </tr>
@@ -122,13 +122,13 @@
    <input type="checkbox">
    </td>
    <td class="menu-column ppc-menu-item">
-      <label for="check-item-40">
-      <span class="menu-item-link">
-      <strong>
-      — TaxoPress Taxonomy Add <small
-         class="entry">(/wp-admin/admin.php?page=st_taxonomies&amp;add=taxonomy)</small> &nbsp; <span
-         class="ppc-custom-features-url-delete red-pointer"
-         data-id="16183aefacc9bc"><small>(Delete)</small></span></strong></span>
+      <label>
+         <span class="menu-item-link">
+         <strong>
+         — TaxoPress Taxonomy Add <small
+            class="entry">(/wp-admin/admin.php?page=st_taxonomies&amp;add=taxonomy)</small> &nbsp; <span
+            class="ppc-custom-features-url-delete red-pointer"
+            data-id="16183aefacc9bc"><small>(Delete)</small></span></strong></span>
       </label>
    </td>
 </tr>
