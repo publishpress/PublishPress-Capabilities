@@ -239,7 +239,7 @@ if( !class_exists('Ppc_Install_Permissions') ) {
 
 			if ( ! isset( $triggers ) ) {
 
-				$time_message = __( 'Do you want to control permissions for specific posts and pages?', 'capsman-enhanced' );
+				$time_message = __( 'Do you want to control permissions for specific posts and pages? Choose who can read and edit each post, and allow specific user roles or users to manage each post. PublishPress Permissions is free to install.', 'capsman-enhanced' );
 
 				$triggers = apply_filters( 'ppc_permissions_triggers', array(
 					'time_installed' => array(
@@ -365,8 +365,36 @@ if( !class_exists('Ppc_Install_Permissions') ) {
 				}(jQuery));
 			</script>
 
-			<div class="notice notice-success is-dismissible ppc-notice">
+			<style>
+				.ppc-notice p,
+				.ppc-notice .button {
+					font-size: 15px;
+				}
+				.ppc-notice .button.button-primary {
+				    background-color: #655897;
+				    border-color: #3d355c;
+				    color: #fff;
+				}
+				.ppc-notice img.logo {
+					float: right;
+					margin-top: 10px;
+					margin-left: 10px;
+					height: 110px;
+				}
+				@media (min-width:1000px) {
+	                .ppc-notice img.logo {
+	                    height: 90px;
+	                }
+	            }
+	            @media (min-width:1700px) {
+	                .ppc-notice img.logo {
+	                    height: 70px;
+	                }
+	            }
+			</style>
 
+			<div class="notice notice-success is-dismissible ppc-notice">
+				<img class="logo" src="<?php echo plugin_dir_url(CME_FILE) . 'includes-core/permissions-icon.jpg' ?>" />
 				<p>
 					<?php echo $tigger['message']; ?>
 				</p>
