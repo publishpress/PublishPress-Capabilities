@@ -720,6 +720,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 							echo '<input type="text" class="regular-text ppc-filter-text" placeholder="' . __('Filter by capability', 'capability-manager-enhanced') . '">';
 							echo ' <button class="button secondary-button ppc-filter-text-reset" type="button">' . __('Clear', 'capability-manager-enhanced') . '</button>';
 						echo '</div>';
+						echo '<div class="ppc-filter-no-results" style="display:none;">' . __( 'No results found. Please try again with a different word.', 'capsman-enhanced' ) . '</div>';
 
 						echo '<table class="widefat fixed striped form-table cme-checklist">';
 
@@ -849,6 +850,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 							echo '<input type="text" class="regular-text ppc-filter-text" placeholder="' . __('Filter by capability', 'capability-manager-enhanced') . '">';
 							echo ' <button class="button secondary-button ppc-filter-text-reset" type="button">' . __('Clear', 'capability-manager-enhanced') . '</button>';
 						echo '</div>';
+						echo '<div class="ppc-filter-no-results" style="display:none;">' . __( 'No results found. Please try again with a different word.', 'capsman-enhanced' ) . '</div>';
 
 						echo '<table class="widefat fixed striped form-table cme-checklist">';
 
@@ -1038,6 +1040,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 							echo '<input type="text" class="regular-text ppc-filter-text" placeholder="' . __('Filter by capability', 'capability-manager-enhanced') . '">';
 							echo ' <button class="button secondary-button ppc-filter-text-reset" type="button">' . __('Clear', 'capability-manager-enhanced') . '</button>';
 						echo '</div>';
+						echo '<div class="ppc-filter-no-results" style="display:none;">' . __( 'No results found. Please try again with a different word.', 'capsman-enhanced' ) . '</div>';
 						?>
 						<table class="widefat fixed striped form-table cme-checklist">
 						<?php

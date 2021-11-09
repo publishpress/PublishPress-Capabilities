@@ -146,5 +146,11 @@ jQuery(document).ready( function($) {
 	    if($(this).val().length === 0){
 	        $(this).parent().siblings('table').find('tr').show(); // Show all the table rows
 	    }
+	    // Show / Hide the no-results message
+	    if($(this).parent().siblings('table').find('tr:visible').length === 0) {
+	        $(this).parent().siblings('.ppc-filter-no-results').show();
+	    } else {
+	        $(this).parent().siblings('.ppc-filter-no-results').hide();
+	    }
 	});
 });

@@ -591,6 +591,10 @@ margin-bottom: 10px !important;
 	margin-left: 5px;
 }
 
+.ppc-filter-no-results {
+	margin-top: 20px;
+}
+
 /* ====================================================== Main Screen */
 
 #ppc-capabilities-wrapper {
