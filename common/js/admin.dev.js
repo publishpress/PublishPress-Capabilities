@@ -100,7 +100,7 @@ jQuery(document).ready( function($) {
 	/* Filter Edit, Delete and Read capabilities */
 
 	// Fill the <select> extracting the values and labels from the tables
-	$('.ppc-filter').each(function(){
+	$('.ppc-filter-select').each(function(){
 	    var filter = $(this)
 	    var options = new Array();
 	    $(this).siblings('table').find('tbody').find('tr').each(function(){
@@ -117,15 +117,35 @@ jQuery(document).ready( function($) {
 	    });
 	});
 
-	$('.ppc-filter').prop('selectedIndex', 0); // Reset filters on load
+	// Reset select filters on load
+	$('.ppc-filter-select').prop('selectedIndex', 0);
 
-	$('.ppc-filter-reset').click(function(){
-	    $(this).prev('.ppc-filter').prop('selectedIndex', 0);
+	$('.ppc-filter-select-reset').click(function(){
+	    $(this).prev('.ppc-filter-select').prop('selectedIndex', 0);
 	    $(this).siblings('table').find('tr').show(); // Show all the table rows
 	});
-	$('.ppc-filter').change(function(){
+	$('.ppc-filter-select').change(function(){
 	    $(this).siblings('table').find('tr').hide();
 	    $(this).siblings('table').find('thead tr:first-child').show(); // Show the table heading
 	    $(this).siblings('table').find('tr.' + $(this).val()).show(); // Show only the filtered row
+	});
+
+	/* Filter WordPress core, WooCommerce, Additional capabilities */
+
+	// Reset select filters on load
+	$('.ppc-filter-text').val('');
+
+	$('.ppc-filter-text-reset').click(function(){
+	    $(this).prev('.ppc-filter-text').val('');
+	    $(this).siblings('table').find('tr').show(); // Show all the table rows
+	});
+	$('.ppc-filter-text').keyup(function(){
+	    console.log($(this).val());
+	    $(this).siblings('table').find('tr').hide();
+	    $(this).siblings('table').find('tr[class*="' + $(this).val() + '"]').show(); // Show only the filtered row
+	    $(this).siblings('table').find('tr.cme-bulk-select').hide(); // Hide bulk row
+	    if($(this).val().length === 0){
+	        $(this).siblings('table').find('tr').show(); // Show all the table rows
+	    }
 	});
 });
