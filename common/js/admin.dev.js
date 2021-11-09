@@ -103,7 +103,7 @@ jQuery(document).ready( function($) {
 	$('.ppc-filter-select').each(function(){
 	    var filter = $(this)
 	    var options = new Array();
-	    $(this).siblings('table').find('tbody').find('tr').each(function(){
+	    $(this).parent().siblings('table').find('tbody').find('tr').each(function(){
 	        options.push({
 	            value : $(this).attr('class'),
 	            text : $(this).find('.cap_type').text()
@@ -122,12 +122,12 @@ jQuery(document).ready( function($) {
 
 	$('.ppc-filter-select-reset').click(function(){
 	    $(this).prev('.ppc-filter-select').prop('selectedIndex', 0);
-	    $(this).siblings('table').find('tr').show(); // Show all the table rows
+	    $(this).parent().siblings('table').find('tr').show(); // Show all the table rows
 	});
 	$('.ppc-filter-select').change(function(){
-	    $(this).siblings('table').find('tr').hide();
-	    $(this).siblings('table').find('thead tr:first-child').show(); // Show the table heading
-	    $(this).siblings('table').find('tr.' + $(this).val()).show(); // Show only the filtered row
+	    $(this).parent().siblings('table').find('tr').hide();
+	    $(this).parent().siblings('table').find('thead tr:first-child').show(); // Show the table heading
+	    $(this).parent().siblings('table').find('tr.' + $(this).val()).show(); // Show only the filtered row
 	});
 
 	/* Filter WordPress core, WooCommerce, Additional capabilities */
@@ -137,15 +137,14 @@ jQuery(document).ready( function($) {
 
 	$('.ppc-filter-text-reset').click(function(){
 	    $(this).prev('.ppc-filter-text').val('');
-	    $(this).siblings('table').find('tr').show(); // Show all the table rows
+	    $(this).parent().siblings('table').find('tr').show(); // Show all the table rows
 	});
 	$('.ppc-filter-text').keyup(function(){
-	    console.log($(this).val());
-	    $(this).siblings('table').find('tr').hide();
-	    $(this).siblings('table').find('tr[class*="' + $(this).val() + '"]').show(); // Show only the filtered row
-	    $(this).siblings('table').find('tr.cme-bulk-select').hide(); // Hide bulk row
+	    $(this).parent().siblings('table').find('tr').hide();
+	    $(this).parent().siblings('table').find('tr[class*="' + $(this).val() + '"]').show(); // Show only the filtered row
+	    $(this).parent().siblings('table').find('tr.cme-bulk-select').hide(); // Hide bulk row
 	    if($(this).val().length === 0){
-	        $(this).siblings('table').find('tr').show(); // Show all the table rows
+	        $(this).parent().siblings('table').find('tr').show(); // Show all the table rows
 	    }
 	});
 });

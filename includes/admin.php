@@ -527,10 +527,12 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 
 							echo '<h3>' .  sprintf($caption_pattern, $cap_type_names[$cap_type]) . '</h3>';
 
-							echo '<select class="ppc-filter-select">';
-								echo '<option value="">' . __('Filter by post type', 'capability-manager-enhanced') . '</option>';
-							echo '</select>';
-							echo ' <button class="button secondary-button ppc-filter-select-reset" type="button">' . __('Clear', 'capability-manager-enhanced') . '</button>';
+							echo '<div class="ppc-filter-wrapper">';
+								echo '<select class="ppc-filter-select">';
+									echo '<option value="">' . __('Filter by post type', 'capability-manager-enhanced') . '</option>';
+								echo '</select>';
+								echo ' <button class="button secondary-button ppc-filter-select-reset" type="button">' . __('Clear', 'capability-manager-enhanced') . '</button>';
+							echo '</div>';
 
 							echo "<table class='widefat fixed striped cme-typecaps cme-typecaps-$cap_type'>";
 
@@ -714,8 +716,10 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 
 						echo '<h3>' . __( 'WordPress Core Capabilities', 'capsman-enhanced' ) . '</h3>';
 
-						echo '<input type="text" class="regular-text ppc-filter-text" placeholder="' . __('Filter by capability', 'capability-manager-enhanced') . '">';
-						echo ' <button class="button secondary-button ppc-filter-text-reset" type="button">' . __('Clear', 'capability-manager-enhanced') . '</button>';
+						echo '<div class="ppc-filter-wrapper">';
+							echo '<input type="text" class="regular-text ppc-filter-text" placeholder="' . __('Filter by capability', 'capability-manager-enhanced') . '">';
+							echo ' <button class="button secondary-button ppc-filter-text-reset" type="button">' . __('Clear', 'capability-manager-enhanced') . '</button>';
+						echo '</div>';
 
 						echo '<table class="widefat fixed striped form-table cme-checklist">';
 
@@ -841,8 +845,10 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 
 						echo '<h3 class="cme-cap-section">' . sprintf(__( 'Plugin Capabilities &ndash; %s', 'capsman-enhanced' ), str_replace('_', ' ', $plugin )) . '</h3>';
 
-						echo '<input type="text" class="regular-text ppc-filter-text" placeholder="' . __('Filter by capability', 'capability-manager-enhanced') . '">';
-						echo ' <button class="button secondary-button ppc-filter-text-reset" type="button">' . __('Clear', 'capability-manager-enhanced') . '</button>';
+						echo '<div class="ppc-filter-wrapper">';
+							echo '<input type="text" class="regular-text ppc-filter-text" placeholder="' . __('Filter by capability', 'capability-manager-enhanced') . '">';
+							echo ' <button class="button secondary-button ppc-filter-text-reset" type="button">' . __('Clear', 'capability-manager-enhanced') . '</button>';
+						echo '</div>';
 
 						echo '<table class="widefat fixed striped form-table cme-checklist">';
 
@@ -1028,9 +1034,10 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 						// caps: additional
 						echo '<h3 class="cme-cap-section">' . __( 'Additional Capabilities', 'capsman-enhanced' ) . '</h3>';
 
-						echo '<input type="text" class="regular-text ppc-filter-text" placeholder="' . __('Filter by capability', 'capability-manager-enhanced') . '">';
-						echo ' <button class="button secondary-button ppc-filter-text-reset" type="button">' . __('Clear', 'capability-manager-enhanced') . '</button>';
-
+						echo '<div class="ppc-filter-wrapper">';
+							echo '<input type="text" class="regular-text ppc-filter-text" placeholder="' . __('Filter by capability', 'capability-manager-enhanced') . '">';
+							echo ' <button class="button secondary-button ppc-filter-text-reset" type="button">' . __('Clear', 'capability-manager-enhanced') . '</button>';
+						echo '</div>';
 						?>
 						<table class="widefat fixed striped form-table cme-checklist">
 						<?php

@@ -143,7 +143,7 @@
     min-height: 28px;
     text-decoration: none;
     padding: 15px 10px;
-    border-width: 2px;
+    border-width: 1px;
     border-style: solid;
 }
 
@@ -151,7 +151,7 @@
     background-color: #FFB300;
     border-color: #C58C07;
     color: #754D26;
-    
+
     text-shadow: none;
 }
 
