@@ -32,6 +32,12 @@
 global $wpdb;
 
 $auto_backups = $wpdb->get_results("SELECT option_name, option_value FROM $wpdb->options WHERE option_name LIKE 'cme_backup_auto_%' ORDER BY option_id DESC");
+
+// Check if Permissions is installed
+$pp_permissions_installed = false;
+if (!cme_is_plugin_active('press-permit-core.php') && !cme_is_plugin_active('presspermit-pro.php')) {
+    $pp_permissions_installed = true;
+}
 ?>
 
 <div class="wrap publishpress-caps-manage publishpress-caps-backup pressshack-admin-wrapper">
@@ -42,7 +48,7 @@ $auto_backups = $wpdb->get_results("SELECT option_name, option_value FROM $wpdb-
     <form method="post" action="admin.php?page=pp-capabilities-backup">
         <?php wp_nonce_field('pp-capabilities-backup'); ?>
 
-        <div class="pp-columns-wrapper">
+        <div class="pp-columns-wrapper<?php echo $pp_permissions_installed === true ? ' pp-enable-sidebar' : '' ?>">
             <div class="pp-column-left">
                 <ul id="publishpress-capability-backup-tabs" class="nav-tab-wrapper">
                     <li class="nav-tab nav-tab-active"><a href="#ppcb-tab-restore"><?php _e('Restore', 'capsman-enhanced');?></a></li>
@@ -303,40 +309,43 @@ $auto_backups = $wpdb->get_results("SELECT option_name, option_value FROM $wpdb-
                     </table>
                 </fieldset>
             </div><!-- .pp-column-left -->
-            <div class="pp-column-right">
-                <p class="nav-tab-wrapper ppc-recommendations-heading">
-                    <?php _e( 'Recommendations for you', 'capsman-enhanced' ) ?>
-                </p>
-                <div class="pp-sidebar-box">
-                    <h3>
-                        <?php _e( 'Control permissions for individual posts and pages', 'capsman-enhanced' ) ?>
-                    </h3>
-                    <ul>
-                        <li>
-                            <?php _e( 'Choose who can read and edit each post.', 'capsman-enhanced' ) ?>
-                        </li>
-                        <li>
-                            <?php _e( 'Allow specific user roles or users to manage each post.', 'capsman-enhanced' ) ?>
-                        </li>
-                        <li>
-                            <?php _e( 'PublishPress Permissions is 100% free to install.', 'capsman-enhanced' ) ?>
-                        </li>
-                    </ul>
-                    <p>
-                        <a class="button button-primary"
-                           href="<?php echo admin_url('plugin-install.php?s=publishpress-ppcore-install&tab=search&type=term') ?>"
-                        >
-                            <?php _e( 'Click here to install PublishPress Permissions for free', 'capsman-enhanced' ); ?>
-                        </a>
+
+            <?php if( $pp_permissions_installed ) { ?>
+                <div class="pp-column-right">
+                    <p class="nav-tab-wrapper pp-recommendations-heading">
+                        <?php _e( 'Recommendations for you', 'capsman-enhanced' ) ?>
                     </p>
-                    <div class="pp-box-banner-image">
-                        <a href="<?php echo admin_url('plugin-install.php?s=publishpress-ppcore-install&tab=search&type=term') ?>">
-                            <img src="<?php echo plugin_dir_url(CME_FILE) . 'includes-core/pp-permissions-install.jpg';?>"
-                            title="<?php _e( 'Click here to install PublishPress Permissions for free', 'capsman-enhanced' ); ?>" />
-                        </a>
+                    <div class="pp-sidebar-box">
+                        <h3>
+                            <?php _e( 'Control permissions for individual posts and pages', 'capsman-enhanced' ) ?>
+                        </h3>
+                        <ul>
+                            <li>
+                                <?php _e( 'Choose who can read and edit each post.', 'capsman-enhanced' ) ?>
+                            </li>
+                            <li>
+                                <?php _e( 'Allow specific user roles or users to manage each post.', 'capsman-enhanced' ) ?>
+                            </li>
+                            <li>
+                                <?php _e( 'PublishPress Permissions is 100% free to install.', 'capsman-enhanced' ) ?>
+                            </li>
+                        </ul>
+                        <p>
+                            <a class="button button-primary"
+                               href="<?php echo admin_url('plugin-install.php?s=publishpress-ppcore-install&tab=search&type=term') ?>"
+                            >
+                                <?php _e( 'Click here to install PublishPress Permissions for free', 'capsman-enhanced' ); ?>
+                            </a>
+                        </p>
+                        <div class="pp-box-banner-image">
+                            <a href="<?php echo admin_url('plugin-install.php?s=publishpress-ppcore-install&tab=search&type=term') ?>">
+                                <img src="<?php echo plugin_dir_url(CME_FILE) . 'includes-core/pp-permissions-install.jpg';?>"
+                                title="<?php _e( 'Click here to install PublishPress Permissions for free', 'capsman-enhanced' ); ?>" />
+                            </a>
+                        </div>
                     </div>
-                </div>
-            </div><!-- .pp-column-right -->
+                </div><!-- .pp-column-right -->
+            <?php } ?>
         </div><!-- .pp-columns-wrapper -->
     </form>
 

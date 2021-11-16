@@ -652,26 +652,26 @@ margin-bottom: 10px !important;
 
 /* Banner on the right inviting to install Permissions */
 
-.pp-columns-wrapper {
+.pp-columns-wrapper.pp-enable-sidebar {
 	display: table;
 	width: 100%;
 }
 
-.pp-columns-wrapper .pp-column-left {
+.pp-columns-wrapper.pp-enable-sidebar .pp-column-left {
 	width: 75%;
 }
 
-.pp-columns-wrapper .pp-column-right {
+.pp-columns-wrapper.pp-enable-sidebar .pp-column-right {
 	width: calc( 25% - 20px );
 	margin-left: 20px;
 }
 
-.pp-columns-wrapper .pp-column-left,
-.pp-columns-wrapper .pp-column-right {
+.pp-columns-wrapper.pp-enable-sidebar .pp-column-left,
+.pp-columns-wrapper.pp-enable-sidebar .pp-column-right {
 	float: left;
 }
 
-.nav-tab-wrapper.ppc-recommendations-heading {
+.nav-tab-wrapper.pp-recommendations-heading {
 	padding-bottom: 16px;
 	opacity: 0.8;
 	margin-bottom: 25px;
@@ -716,13 +716,13 @@ margin-bottom: 10px !important;
 
 @media (max-width: 1199px) {
 
-	.pp-columns-wrapper .pp-column-left,
-	.pp-columns-wrapper .pp-column-right {
+	.pp-columns-wrapper.pp-enable-sidebar .pp-column-left,
+	.pp-columns-wrapper.pp-enable-sidebar .pp-column-right {
 		float: none;
 		width: 100%;
 	}
 
-	.pp-columns-wrapper .pp-column-right {
+	.pp-columns-wrapper.pp-enable-sidebar .pp-column-right {
 		margin-left: 0;
 		margin-bottom: 20px;
 	}
