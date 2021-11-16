@@ -42,7 +42,7 @@ $auto_backups = $wpdb->get_results("SELECT option_name, option_value FROM $wpdb-
     <form method="post" action="admin.php?page=pp-capabilities-backup">
         <?php wp_nonce_field('pp-capabilities-backup'); ?>
 
-        <div class="pp-columns-wrapper<?php echo CAPSMAN_PERMISSIONS_INSTALLED === true ? ' pp-enable-sidebar' : '' ?>">
+        <div class="pp-columns-wrapper<?php echo !CAPSMAN_PERMISSIONS_INSTALLED ? ' pp-enable-sidebar' : '' ?>">
             <div class="pp-column-left">
                 <ul id="publishpress-capability-backup-tabs" class="nav-tab-wrapper">
                     <li class="nav-tab nav-tab-active"><a href="#ppcb-tab-restore"><?php _e('Restore', 'capsman-enhanced');?></a></li>
@@ -304,7 +304,7 @@ $auto_backups = $wpdb->get_results("SELECT option_name, option_value FROM $wpdb-
                 </fieldset>
             </div><!-- .pp-column-left -->
 
-            <?php if( CAPSMAN_PERMISSIONS_INSTALLED ) { ?>
+            <?php if( !CAPSMAN_PERMISSIONS_INSTALLED ) { ?>
                 <div class="pp-column-right">
                     <p class="nav-tab-wrapper pp-recommendations-heading">
                         <?php _e( 'Recommendations for you', 'capsman-enhanced' ) ?>

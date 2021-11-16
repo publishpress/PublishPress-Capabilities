@@ -144,7 +144,7 @@ if ( is_multisite() )
 
 // Check if Permissions is installed
 if (!cme_is_plugin_active('press-permit-core.php') && !cme_is_plugin_active('presspermit-pro.php')) {
-	define('CAPSMAN_PERMISSIONS_INSTALLED', true);
-} else {
 	define('CAPSMAN_PERMISSIONS_INSTALLED', false);
+} else {
+	define('CAPSMAN_PERMISSIONS_INSTALLED', true);
 }
