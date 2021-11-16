@@ -571,7 +571,7 @@ table#akmin .pp-capability-menus-select .restrict-column {
   visibility: visible;
 }
 
-.capabilities_page_pp-capabilities-admin-menus input.ppc-admin-menu-submit, 
+.capabilities_page_pp-capabilities-admin-menus input.ppc-admin-menu-submit,
 .capabilities_page_pp-capabilities-nav-menus input.ppc-nav-menu-submit {
 margin-bottom: 10px !important;
 }
@@ -650,6 +650,84 @@ margin-bottom: 10px !important;
 	}
 }
 
+/* Banner on the right inviting to install Permissions */
+
+.pp-columns-wrapper {
+	display: table;
+	width: 100%;
+}
+
+.pp-columns-wrapper .pp-column-left {
+	width: 75%;
+}
+
+.pp-columns-wrapper .pp-column-right {
+	width: calc( 25% - 20px );
+	margin-left: 20px;
+}
+
+.pp-columns-wrapper .pp-column-left,
+.pp-columns-wrapper .pp-column-right {
+	float: left;
+}
+
+.nav-tab-wrapper.ppc-recommendations-heading {
+	padding-bottom: 16px;
+	opacity: 0.8;
+	margin-bottom: 25px;
+}
+
+.pp-sidebar-box {
+	padding: 20px;
+	background: #fff;
+	box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.1);
+	border: 1px solid #dcdcdc;
+	font-size: 1.1em;
+}
+
+.pp-sidebar-box h3 {
+	line-height: 1.2em;
+	margin: 0;
+	padding: 0;
+}
+
+.pp-sidebar-box ul {
+	list-style: disc;
+	margin: 20px 15px 20px;
+	padding: 0;
+}
+
+.pp-sidebar-box img {
+	max-width: 100%;
+}
+
+.pp-sidebar-box .button {
+	text-align: center;
+	display: block;
+	white-space: normal;
+	line-height: 20px !important;
+	padding: 4px 10px !important;
+}
+
+.pp-sidebar-box .pp-box-banner-image {
+	background: #655997;
+	text-align: center;
+}
+
+@media (max-width: 1199px) {
+
+	.pp-columns-wrapper .pp-column-left,
+	.pp-columns-wrapper .pp-column-right {
+		float: none;
+		width: 100%;
+	}
+
+	.pp-columns-wrapper .pp-column-right {
+		margin-left: 0;
+		margin-bottom: 20px;
+	}
+}
+
 @media (max-width: 782px) {
 
 	table.cme-checklist.form-table tr td {
@@ -668,5 +746,5 @@ margin-bottom: 10px !important;
   #pp-capability-menu-wrapper table th {
       line-height: 24px;
   }
-  
+
 }
