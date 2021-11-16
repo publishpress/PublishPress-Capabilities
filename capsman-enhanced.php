@@ -141,3 +141,10 @@ add_action( 'init', '_cme_cap_helper', 49 );  // Press Permit Cap Helper, regist
 
 if ( is_multisite() )
 	require_once ( dirname(__FILE__) . '/includes/network.php' );
+
+// Check if Permissions is installed
+if (!cme_is_plugin_active('press-permit-core.php') && !cme_is_plugin_active('presspermit-pro.php')) {
+	define('CAPSMAN_PERMISSIONS_INSTALLED', true);
+} else {
+	define('CAPSMAN_PERMISSIONS_INSTALLED', false);
+}

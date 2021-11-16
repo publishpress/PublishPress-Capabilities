@@ -32,12 +32,6 @@
 global $wpdb;
 
 $auto_backups = $wpdb->get_results("SELECT option_name, option_value FROM $wpdb->options WHERE option_name LIKE 'cme_backup_auto_%' ORDER BY option_id DESC");
-
-// Check if Permissions is installed
-$pp_permissions_installed = false;
-if (!cme_is_plugin_active('press-permit-core.php') && !cme_is_plugin_active('presspermit-pro.php')) {
-    $pp_permissions_installed = true;
-}
 ?>
 
 <div class="wrap publishpress-caps-manage publishpress-caps-backup pressshack-admin-wrapper">
@@ -48,7 +42,7 @@ if (!cme_is_plugin_active('press-permit-core.php') && !cme_is_plugin_active('pre
     <form method="post" action="admin.php?page=pp-capabilities-backup">
         <?php wp_nonce_field('pp-capabilities-backup'); ?>
 
-        <div class="pp-columns-wrapper<?php echo $pp_permissions_installed === true ? ' pp-enable-sidebar' : '' ?>">
+        <div class="pp-columns-wrapper<?php echo CAPSMAN_PERMISSIONS_INSTALLED === true ? ' pp-enable-sidebar' : '' ?>">
             <div class="pp-column-left">
                 <ul id="publishpress-capability-backup-tabs" class="nav-tab-wrapper">
                     <li class="nav-tab nav-tab-active"><a href="#ppcb-tab-restore"><?php _e('Restore', 'capsman-enhanced');?></a></li>
@@ -310,7 +304,7 @@ if (!cme_is_plugin_active('press-permit-core.php') && !cme_is_plugin_active('pre
                 </fieldset>
             </div><!-- .pp-column-left -->
 
-            <?php if( $pp_permissions_installed ) { ?>
+            <?php if( CAPSMAN_PERMISSIONS_INSTALLED ) { ?>
                 <div class="pp-column-right">
                     <p class="nav-tab-wrapper pp-recommendations-heading">
                         <?php _e( 'Recommendations for you', 'capsman-enhanced' ) ?>
