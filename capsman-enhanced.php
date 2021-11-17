@@ -145,6 +145,11 @@ if ( is_multisite() )
 // Check if Permissions is installed
 if (!cme_is_plugin_active('press-permit-core.php') && !cme_is_plugin_active('presspermit-pro.php')) {
 	define('CAPSMAN_PERMISSIONS_INSTALLED', false);
+
+	// Sidebar banners library
+	if (!defined('PP_WP_BANNERS_LOADED')) {
+	    require_once __DIR__ . '/vendor/publishpress/wordpress-banners/banners.php';
+	}
 } else {
 	define('CAPSMAN_PERMISSIONS_INSTALLED', true);
 }

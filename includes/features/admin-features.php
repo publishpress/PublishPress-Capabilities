@@ -221,11 +221,11 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
 
                     </fieldset>
                 </div><!-- .pp-column-left -->
-                <?php if( !CAPSMAN_PERMISSIONS_INSTALLED ) { ?>
+                <?php if( !CAPSMAN_PERMISSIONS_INSTALLED && class_exists('PP_WP_Banners') ) { ?>
                     <div class="pp-column-right">
                         <?php
-                        require_once(dirname(CME_FILE).'/includes/pp-sidebar-banner.php');
-                        Capsman_PP_Sidebar_Banner::install_permissions_banner();
+                        $banners = new PP_WP_Banners();
+                        $banners->pp_install_permissions_banner('capsman-enhanced');
                         ?>
                     </div><!-- .pp-column-right -->
                 <?php } ?>
