@@ -225,7 +225,7 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                     <div class="pp-column-right">
                         <?php
                         $banners = new PP_WP_Banners();
-                        $banners->pp_install_banner(
+                        $banners->pp_display_banner(
                             __( 'Recommendations for you', 'capsman-enhanced' ),
                             __( 'Control permissions for individual posts and pages', 'capsman-enhanced' ),
                             array(
