@@ -110,16 +110,16 @@
         },
         {
             "name": "publishpress/wordpress-banners",
-            "version": "v1.0.0",
+            "version": "v1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/publishpress/wordpress-banners.git",
-                "reference": "08aca53bbee693e322c86dab6ba8b0c3ddac2418"
+                "reference": "80837bb68d43176d75b120d790f963dbe3123015"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/publishpress/wordpress-banners/zipball/08aca53bbee693e322c86dab6ba8b0c3ddac2418",
-                "reference": "08aca53bbee693e322c86dab6ba8b0c3ddac2418",
+                "url": "https://api.github.com/repos/publishpress/wordpress-banners/zipball/80837bb68d43176d75b120d790f963dbe3123015",
+                "reference": "80837bb68d43176d75b120d790f963dbe3123015",
                 "shasum": ""
             },
             "require": {
@@ -140,9 +140,9 @@
             "homepage": "http://publishpress.com/",
             "support": {
                 "issues": "https://github.com/publishpress/wordpress-banners/issues",
-                "source": "https://github.com/publishpress/wordpress-banners/tree/v1.0.0"
+                "source": "https://github.com/publishpress/wordpress-banners/tree/v1.1.0"
             },
-            "time": "2021-11-17T02:11:29+00:00"
+            "time": "2021-11-18T00:56:16+00:00"
         },
         {
             "name": "publishpress/wordpress-reviews",
