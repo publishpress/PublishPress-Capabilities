@@ -306,8 +306,18 @@ $auto_backups = $wpdb->get_results("SELECT option_name, option_value FROM $wpdb-
             <?php if( !CAPSMAN_PERMISSIONS_INSTALLED && class_exists('PP_WP_Banners') ) { ?>
                 <div class="pp-column-right">
                     <?php
-                    $banners = new PP_WP_Banners();
-                    $banners->pp_install_permissions_banner('capsman-enhanced');
+                    PP_WP_Banners::pp_install_banner(
+                        __( 'Recommendations for you', 'capsman-enhanced' ),
+                        __( 'Control permissions for individual posts and pages', 'capsman-enhanced' ),
+                        array(
+                            __( 'Choose who can read and edit each post.', 'capsman-enhanced' ),
+                            __( 'Allow specific user roles or users to manage each post.', 'capsman-enhanced' ),
+                            __( 'PublishPress Permissions is 100% free to install.', 'capsman-enhanced' )
+                        ),
+                        admin_url( 'plugin-install.php?s=publishpress-ppcore-install&tab=search&type=term' ),
+                        __( 'Click here to install PublishPress Permissions for free', 'capsman-enhanced' ),
+                        'install-permissions.jpg'
+                    );
                     ?>
                 </div><!-- .pp-column-right -->
             <?php } ?>
