@@ -130,7 +130,8 @@ $classic_editor = pp_capabilities_is_classic_editor_available();
             <?php if( !CAPSMAN_PERMISSIONS_INSTALLED && class_exists('PP_WP_Banners') ) { ?>
                 <div class="pp-column-right">
                     <?php
-                    PP_WP_Banners::pp_install_banner(
+                    $banners = new PP_WP_Banners();
+                    $banners->pp_install_banner(
                         __( 'Recommendations for you', 'capsman-enhanced' ),
                         __( 'Control permissions for individual posts and pages', 'capsman-enhanced' ),
                         array(
