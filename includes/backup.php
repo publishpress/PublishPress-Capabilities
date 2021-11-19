@@ -303,10 +303,10 @@ $auto_backups = $wpdb->get_results("SELECT option_name, option_value FROM $wpdb-
                     </table>
                 </fieldset>
             </div><!-- .pp-column-left -->
-            <?php if( !CAPSMAN_PERMISSIONS_INSTALLED && class_exists('PP_WP_Banners') ) { ?>
+            <?php if( !CAPSMAN_PERMISSIONS_INSTALLED ) { ?>
                 <div class="pp-column-right">
                     <?php
-                    $banners = new PP_WP_Banners();
+                    $banners = new PublishPress\WordPressBanners\BannersController;
                     $banners->pp_display_banner(
                         __( 'Recommendations for you', 'capsman-enhanced' ),
                         __( 'Control permissions for individual posts and pages', 'capsman-enhanced' ),

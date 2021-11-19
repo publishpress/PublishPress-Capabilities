@@ -18,6 +18,6 @@
 	  "pimple/pimple": "3.2.3.*",
 	  "publishpress/wordpress-reviews":  "^1.1",
       "publishpress/wordpress-version-notices": "dev-master",
-        "publishpress/wordpress-banners": "^1.1"
+        "publishpress/wordpress-banners": "^1.2"
     }
   }
