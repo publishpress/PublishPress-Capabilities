@@ -224,7 +224,7 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                 <?php if( !CAPSMAN_PERMISSIONS_INSTALLED ) { ?>
                     <div class="pp-column-right">
                         <?php
-                        $banners = new PublishPress\WordPressBanners\BannersController;
+                        $banners = new PublishPress\WordPressBanners\BannersMain;
                         $banners->pp_display_banner(
                             __( 'Recommendations for you', 'capsman-enhanced' ),
                             __( 'Control permissions for individual posts and pages', 'capsman-enhanced' ),

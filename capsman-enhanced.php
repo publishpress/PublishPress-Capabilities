@@ -148,7 +148,7 @@ if (!cme_is_plugin_active('press-permit-core.php') && !cme_is_plugin_active('pre
 
 	// Sidebar banners library
 	if (!defined('PP_WP_BANNERS_VERSION')) {
-	    require_once __DIR__ . '/vendor/publishpress/wordpress-banners/BannersController.php';
+	    require_once __DIR__ . '/vendor/publishpress/wordpress-banners/BannersMain.php';
 	}
 } else {
 	define('CAPSMAN_PERMISSIONS_INSTALLED', true);

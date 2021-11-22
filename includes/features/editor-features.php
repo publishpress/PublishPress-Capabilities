@@ -130,7 +130,7 @@ $classic_editor = pp_capabilities_is_classic_editor_available();
             <?php if( !CAPSMAN_PERMISSIONS_INSTALLED ) { ?>
                 <div class="pp-column-right">
                     <?php
-                    $banners = new PublishPress\WordPressBanners\BannersController;
+                    $banners = new PublishPress\WordPressBanners\BannersMain;
                     $banners->pp_display_banner(
                         __( 'Recommendations for you', 'capsman-enhanced' ),
                         __( 'Control permissions for individual posts and pages', 'capsman-enhanced' ),
