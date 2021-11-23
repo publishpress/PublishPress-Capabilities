@@ -316,7 +316,7 @@ $auto_backups = $wpdb->get_results("SELECT option_name, option_value FROM $wpdb-
                             __( 'PublishPress Permissions is 100% free to install.', 'capsman-enhanced' )
                         ),
                         admin_url( 'plugin-install.php?s=publishpress-ppcore-install&tab=search&type=term' ),
-                        __( 'Click here to install PublishPress Permissions for free', 'capsman-enhanced' ),
+                        __( 'Click here to install PublishPress Permissions', 'capsman-enhanced' ),
                         'install-permissions.jpg'
                     );
                     ?>
