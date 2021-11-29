@@ -220,8 +220,10 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                                                 }// end $admin_features_elements section loop
 
                                                 ?>
+                                                <?php do_action('pp_capabilities_admin_features_after_table_tr'); ?>
                                                 </tbody>
                                             </table>
+                                            <?php do_action('pp_capabilities_admin_features_after_table'); ?>
                                         </div>
 
                                     </div>
