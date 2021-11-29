@@ -326,6 +326,13 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 							);
 						}
 
+						//PublishPress Capabilities Capabilities
+						$plugin_caps['PublishPress Capabilities'] = apply_filters('cme_publishpress_capabilities_capabilities',
+							array(
+							'manage_capabilities',
+							)
+						);
+
 						if (defined('PUBLISHPRESS_MULTIPLE_AUTHORS_VERSION')) {
 							if ($_caps = apply_filters('cme_multiple_authors_capabilities', array())) {
 								$plugin_caps['PublishPress Authors'] = $_caps;
@@ -693,7 +700,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 						} // end foreach item type
 					}
 
-					do_action('publishpress-caps_manager_postcaps_section', compact('current', 'rcaps', 'pp_metagroup_caps', 'is_administrator', 'default_caps', 'custom_types', 'defined', 'unfiltered', 'pp_metagroup_caps','caps_manager_postcaps_section', 'active_tab_id'));
+					do_action('publishpress-caps_manager_postcaps_section', compact('current', 'rcaps', 'pp_metagroup_caps', 'is_administrator', 'default_caps', 'custom_types', 'defined', 'unfiltered', 'pp_metagroup_caps', 'active_tab_id'));
 
 					$type_caps = apply_filters('publishpress_caps_manager_typecaps', $type_caps);
 
