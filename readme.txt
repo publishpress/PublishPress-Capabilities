@@ -153,6 +153,7 @@ Fixed : Non-administrators with user editing capabilities could add new Administ
 
 = 2.3.1 - [===unrealeased===]
   * Update : Admin features list to use Dashes and not numbers #229
+  * Update : Support for PublishPress Capabilities as a tab #220
 
 = 2.3 - 28 Oct 2021 =
   * Change : Role Capabilities screen uses tabs
