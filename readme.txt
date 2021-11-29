@@ -152,6 +152,7 @@ Fixed : Non-administrators with user editing capabilities could add new Administ
 == Changelog ==
 
 = 2.3.1 =
+  * Feature : Disable more items in the WordPress admin area #240
   * Feature : Add a chechbox to disable the whole admin toolbar #239
   * Update : Admin features list to use Dashes and not numbers #229
   * Update : Support for PublishPress Capabilities as a tab #220
