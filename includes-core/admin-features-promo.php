@@ -71,7 +71,7 @@
    <td colspan="2">
       <div class="pp-promo-upgrade-notice">
          <p>
-            <?php _e('You can block pages by URL for roles and also hide specific items in admin area by entering their CSS class or ID. This feature is available in PublishPress Capabilities Pro.',
+            <?php _e('You can block pages by URL or hide Admin elements by entering a CSS class or ID. This feature is available in PublishPress Capabilities Pro.',
                'capsman-enhanced'); ?>
          </p>
          <p>
