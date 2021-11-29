@@ -182,7 +182,7 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                                                                         if ((isset($section_array['step']) && $section_array['step'] > 0) && isset($section_array['parent']) && !empty($section_array['parent'])) {
                                                                             $step_margin = $section_array['step'] * 20;
                                                                             echo '<span style="margin-left: ' . $step_margin . 'px;"></span>';
-                                                                            echo ' ' . $section_array['position'] . '. ';
+                                                                            echo ' &mdash; ';
                                                                         } else {
                                                                             if (isset($icon_list[$section_id])) {
                                                                                 echo '<i class="dashicons dashicons-' . $icon_list[$section_id] . '"></i>';
