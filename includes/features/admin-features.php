@@ -79,29 +79,38 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
 
                                     <div id="pp-capability-menu-wrapper" class="postbox">
                                         <div class="pp-capability-menus">
-
-                                            <div class="pp-capability-menus-wrap">
-                                                <div id="pp-capability-menus-general"
-                                                     class="pp-capability-menus-content editable-role" style="display: block;">
-
-                                                    <table
-                                                        class="wp-list-table widefat fixed striped pp-capability-menus-select">
-
-                                                        <thead>
-                                                        <tr class="ppc-menu-row parent-menu">
-
-                                                            <td class="restrict-column ppc-menu-checkbox">
-                                                                <input id="check-all-item"
-                                                                       class="check-item check-all-menu-item" type="checkbox"/>
-                                                            </td>
-                                                            <td class="menu-column ppc-menu-item">
-                                                                <label for="check-all-item">
-                                                                <span class="menu-item-link check-all-menu-link">
-                                                                    <strong>
-                                                                    <?php _e('Toggle all', 'capabilities-pro'); ?>
-                                                                    </strong>
-                                                                </span></label>
-                                                            </td>
+                                                $sn = 0;
+                                                foreach ($admin_features_elements as $section_title => $section_elements) {
+                                                    $sn++;
+                                                    $section_slug = strtolower(ppc_remove_non_alphanumeric_space_characters($section_title));
+                                                    $icon_name    = isset($icon_list[$section_slug]) ? $icon_list[$section_slug] : '&mdash;';
+                                                    ?>
+                                                    <tr class="ppc-menu-row parent-menu">
+                                                        <?php if($section_slug === 'admintoolbar'){
+                                                            $restrict_value = 'ppc_adminbar||admintoolbar';
+                                                            ?>
+                                                        <td class="features-section-header restrict-column ppc-menu-checkbox" style="text-align: left;" colspan="2">
+                                                            <input
+                                                                    id="check-item-<?php echo $sn; ?>"
+                                                                    class="check-item" type="checkbox"
+                                                                    name="capsman_disabled_admin_features[]"
+                                                                    value="<?php echo $restrict_value; ?>"
+                                                                    <?php echo (in_array($restrict_value, $disabled_admin_items)) ? 'checked' : ''; ?>/>
+                                                                    <label for="check-item-<?php echo $sn; ?>">
+                                                            <strong class="menu-column ppc-menu-item menu-item-link<?php echo (in_array($restrict_value,
+                                                                            $disabled_admin_items)) ? ' restricted' : ''; ?>">
+                                                                <i class="dashicons dashicons-<?php echo $icon_name ?>"></i> <?php echo $section_title; ?>
+                                                            </strong>
+                                                        </label>
+                                                        </td>
+                                                            <?php
+                                                        }else{ ?>
+                                                        <td class="features-section-header" colspan="2">
+                                                            <strong><i
+                                                                    class="dashicons dashicons-<?php echo $icon_name ?>"></i> <?php echo $section_title; ?>
+                                                            </strong>
+                                                        </td>
+                                                        <?php } ?>
 
                                                         </tr>
                                                         </thead>
@@ -114,12 +123,26 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                                                                        class="check-item check-all-menu-item" type="checkbox"/>
                                                             </td>
                                                             <td class="menu-column ppc-menu-item">
-                                                                <label for="check-all-item-2">
-                                                                    <span class="menu-item-link check-all-menu-link">
+                                                                <label for="check-item-<?php echo $sn; ?>">
+                                                                    <span
+                                                                        class="menu-item-link<?php echo (in_array($restrict_value,
+                                                                            $disabled_admin_items)) ? ' restricted' : ''; ?>">
                                                                     <strong>
-                                                                        <?php _e('Toggle all', 'capabilities-pro'); ?>
-                                                                    </strong>
-                                                                    </span>
+                                                                        <?php
+                                                                        if ((isset($section_array['step']) && $section_array['step'] > 0) && isset($section_array['parent']) && !empty($section_array['parent'])) {
+                                                                            $step_margin = $section_array['step'] * 20;
+                                                                            echo '<span style="margin-left: ' . $step_margin . 'px;"></span>';
+                                                                            echo ' &mdash; ';
+                                                                        } else {
+                                                                            if (isset($icon_list[$section_id])) {
+                                                                                echo '<i class="dashicons dashicons-' . $icon_list[$section_id] . '"></i>';
+                                                                            } else {
+                                                                                echo '&mdash;';
+                                                                            }
+                                                                        }
+                                                                        ?>
+                                                                        <?php echo $item_name; ?>
+                                                                    </strong></span>
                                                                 </label>
                                                             </td>
 
@@ -223,12 +246,12 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                                                             }//end $section_elements subsection loop
                                                         }// end $admin_features_elements section loop
 
-                                                        ?>
+                                                ?>
                                                 <?php do_action('pp_capabilities_admin_features_after_table_tr'); ?>
-                                                        </tbody>
-                                                    </table>
+                                                </tbody>
+                                            </table>
                                             <?php do_action('pp_capabilities_admin_features_after_table'); ?>
-                                                </div>
+                                        </div>
 
                                             </div>
                                         </div>

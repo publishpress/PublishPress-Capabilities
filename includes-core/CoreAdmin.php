@@ -79,5 +79,5 @@ class CoreAdmin {
     function customItemsPromo(){
         wp_enqueue_style('pp-capabilities-admin-core', plugin_dir_url(CME_FILE) . 'includes-core/admin-core.css', [], PUBLISHPRESS_CAPS_VERSION, 'all');
         include (dirname(__FILE__) . '/admin-features-promo.php');
-	}
+    }
 }
