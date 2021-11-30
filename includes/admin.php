@@ -86,7 +86,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 	<form id="publishpress_caps_form" method="post" action="admin.php?page=<?php echo $this->ID ?>">
 	<?php wp_nonce_field('capsman-general-manager'); ?>
 
-	<?php 
+	<?php
 	$tab = (!empty($_REQUEST['pp_caps_tab'])) ? sanitize_key($_REQUEST['pp_caps_tab']) : 'edit';
 	?>
 
@@ -529,7 +529,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 							}
 
 							echo "<div id='$id' style='display:$div_display;'>";
-							
+
 							$caption_pattern = ('taxonomy' == $item_type) ? __('Term %s Capabilities', 'capability-manager-enhanced') : __('Post %s Capabilities', 'capability-manager-enhanced');
 
 							echo '<h3>' .  sprintf($caption_pattern, $cap_type_names[$cap_type]) . '</h3>';

@@ -571,7 +571,7 @@ table#akmin .pp-capability-menus-select .restrict-column {
   visibility: visible;
 }
 
-.capabilities_page_pp-capabilities-admin-menus input.ppc-admin-menu-submit, 
+.capabilities_page_pp-capabilities-admin-menus input.ppc-admin-menu-submit,
 .capabilities_page_pp-capabilities-nav-menus input.ppc-nav-menu-submit {
 margin-bottom: 10px !important;
 }
@@ -668,5 +668,5 @@ margin-bottom: 10px !important;
   #pp-capability-menu-wrapper table th {
       line-height: 24px;
   }
-  
+
 }
