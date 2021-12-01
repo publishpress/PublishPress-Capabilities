@@ -656,7 +656,8 @@ margin-bottom: 10px !important;
 		border-right: none;
 	}
 
-	#publishpress_caps_form #akmin td.content {
+	#publishpress_caps_form #akmin td.content,
+	#publishpress_caps_form #akmin td.sidebar {
 		display: block;
 		padding: 0;
 	}
