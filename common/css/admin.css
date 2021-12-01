@@ -580,6 +580,21 @@ margin-bottom: 10px !important;
   padding-left: 35px !important;
 }
 
+/* Filters */
+.ppc-filter-wrapper {
+	float: right;
+	margin-bottom: 15px;
+	display: flex;
+}
+
+.ppc-filter-wrapper .button {
+	margin-left: 5px;
+}
+
+.ppc-filter-no-results {
+	margin-top: 20px;
+}
+
 /* ====================================================== Main Screen */
 
 #ppc-capabilities-wrapper {
@@ -626,6 +641,7 @@ margin-bottom: 10px !important;
 
 #ppc-capabilities-wrapper .ppc-capabilities-content > div > h3 {
 	margin-top: 0;
+	display: inline-block;
 }
 
 @media (max-width: 1199px) {
@@ -647,6 +663,15 @@ margin-bottom: 10px !important;
 
 	#publishpress_caps_form #akmin td.content {
 		margin-bottom: 40px;
+	}
+}
+
+@media (max-width: 1184px) {
+
+	/* Filters */
+	.ppc-filter-wrapper {
+		float: none;
+		margin-bottom: 25px;
 	}
 }
 
