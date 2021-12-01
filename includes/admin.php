@@ -106,9 +106,9 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 	</p>
 
 	<fieldset>
-	<table id="akmin">
-	<tr>
-		<td class="content">
+	<table id="akmin"><tr><td>
+	<div class="pp-columns-wrapper pp-enable-sidebar">
+		<div class="pp-column-left">
 
 			<div style="float:right">
 			<input type="submit" name="SaveRole" value="<?php echo (in_array(get_locale(), ['en_EN', 'en_US'])) ? 'Save Capabilities' : _e('Save Changes', 'capsman-enhanced'); ?>" class="button-primary" />
@@ -1304,9 +1304,23 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 			<?php endif; ?>
 		</p>
 
-		</td>
-		<td class="sidebar">
-			<?php do_action('publishpress-caps_sidebar_top');?>
+		</div><!-- .pp-column-left -->
+		<div class="pp-column-right">
+			<?php
+			do_action('publishpress-caps_sidebar_top');
+
+			$banners = new PublishPress\WordPressBanners\BannersMain;
+			$banners->pp_display_banner(
+			    __( 'Recommendations for you', 'capsman-enhanced' ),
+			    __( 'PublishPress Capabilities is safe to use', 'capsman-enhanced' ),
+			    array(
+			        __( 'This plugin automatically creates a backup whenever you save changes. You can use these backups to
+restore an earlier version of your roles and capabilities.', 'capsman-enhanced' )
+			    ),
+			    admin_url( 'admin.php?page=pp-capabilities-backup' ),
+			    __( 'Go to the Backup feature', 'capsman-enhanced' )
+			);
+			?>
 
 			<dl>
 				<dt><?php _e('Add Capability', 'capsman-enhanced'); ?></dt>
@@ -1349,9 +1363,9 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 					</p>
 				</dd>
 			</dl>
-		</td>
-	</tr>
-	</table>
+		</div><!-- .pp-column-right -->
+	</div><!-- .pp-columns-wrapper -->
+	</td></tr></table> <!-- .akmin -->
 	</fieldset>
 	</form>
 

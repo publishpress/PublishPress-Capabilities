@@ -189,10 +189,6 @@ margin-top: 5px;
 margin: 0;
 }
 
-#akmin td.sidebar {
-width: 300px;
-}
-
 #akmin .cme-backup-tool a {
 padding-left:0;
 }
@@ -219,10 +215,6 @@ div.pressshack-admin-wrapper footer {
 padding-right: 5px;
 }
 
-.toplevel_page_pp-capabilities div.pressshack-admin-wrapper footer {
-padding-right: 270px;
-}
-
 #akmin div.publishpress-headline {
   line-height:25px;
 }
@@ -242,11 +234,11 @@ padding-right: 270px;
   font-weight:bold;
 }
 
-table#akmin td.sidebar li.publishpress-contact{
+table#akmin td li.publishpress-contact{
   text-align:center;
 }
 
-table#akmin td.sidebar li.publishpress-contact a{
+table#akmin td li.publishpress-contact a{
   padding:5px 0 5px 0;
 }
 
@@ -644,6 +636,11 @@ margin-bottom: 10px !important;
 	display: inline-block;
 }
 
+#publishpress_caps_form table#akmin td .pp-sidebar-box p:not(:last-of-type) {
+	margin: 15px 0;
+	padding: 0;
+}
+
 @media (max-width: 1199px) {
 
 	#ppc-capabilities-wrapper {
@@ -655,8 +652,7 @@ margin-bottom: 10px !important;
 		border-right: none;
 	}
 
-	#publishpress_caps_form #akmin td.content,
-	#publishpress_caps_form #akmin td.sidebar {
+	#publishpress_caps_form #akmin td.content {
 		display: block;
 		padding: 0;
 	}
