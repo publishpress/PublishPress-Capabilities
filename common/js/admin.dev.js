@@ -125,14 +125,18 @@ jQuery(document).ready( function($) {
 	    $(this).parent().siblings('table').find('tr').show(); // Show all the table rows
 	});
 	$('.ppc-filter-select').change(function(){
-	    $(this).parent().siblings('table').find('tr').hide();
-	    $(this).parent().siblings('table').find('thead tr:first-child').show(); // Show the table heading
-	    $(this).parent().siblings('table').find('tr.' + $(this).val()).show(); // Show only the filtered row
+        if($(this).val()){
+			$(this).parent().siblings('table').find('tr').hide();
+    	    $(this).parent().siblings('table').find('thead tr:first-child').show(); // Show the table heading
+    	    $(this).parent().siblings('table').find('tr.' + $(this).val()).show(); // Show only the filtered row
+        } else {
+            $(this).parent().siblings('table').find('tr').show(); // No value selected; show all the table rows
+        }
 	});
 
 	/* Filter WordPress core, WooCommerce, Additional capabilities */
 
-	// Reset select filters on load
+	// Reset text filters on load
 	$('.ppc-filter-text').val('');
 
 	$('.ppc-filter-text-reset').click(function(){
