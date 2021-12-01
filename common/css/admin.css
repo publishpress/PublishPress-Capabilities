@@ -189,6 +189,10 @@ margin-top: 5px;
 margin: 0;
 }
 
+#akmin td.sidebar {
+width: 300px;
+}
+
 #akmin .cme-backup-tool a {
 padding-left:0;
 }
