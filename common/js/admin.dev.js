@@ -142,6 +142,7 @@ jQuery(document).ready( function($) {
 	$('.ppc-filter-text-reset').click(function(){
 	    $(this).prev('.ppc-filter-text').val('');
 	    $(this).parent().siblings('table').find('tr').show(); // Show all the table rows
+		$(this).parent().siblings('.ppc-filter-no-results').hide(); // Hide "no results" message
 	});
 	$('.ppc-filter-text').keyup(function(){
 	    $(this).parent().siblings('table').find('tr').hide();
@@ -152,9 +153,9 @@ jQuery(document).ready( function($) {
 	    }
 	    // Show / Hide the no-results message
 	    if($(this).parent().siblings('table').find('tr:visible').length === 0) {
-	        $(this).parent().siblings('.ppc-filter-no-results').show();
+	        $(this).parent().siblings('.ppc-filter-no-results').show(); // Show "no results" message
 	    } else {
-	        $(this).parent().siblings('.ppc-filter-no-results').hide();
+	        $(this).parent().siblings('.ppc-filter-no-results').hide(); // Hide "no results" message
 	    }
 	});
 });
