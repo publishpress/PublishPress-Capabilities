@@ -95,27 +95,6 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                                                                        class="check-item check-all-menu-item" type="checkbox"/>
                                                             </td>
                                                             <td class="menu-column ppc-menu-item">
-                                                        		<label for="check-item-<?php echo $sn; ?>">
-                                                                    <span
-                                                                        class="menu-item-link<?php echo (in_array($restrict_value,
-                                                                            $disabled_admin_items)) ? ' restricted' : ''; ?>">
-                                                                    <strong>
-                                                                        <?php
-                                                                        if ((isset($section_array['step']) && $section_array['step'] > 0) && isset($section_array['parent']) && !empty($section_array['parent'])) {
-                                                                            $step_margin = $section_array['step'] * 20;
-                                                                            echo '<span style="margin-left: ' . $step_margin . 'px;"></span>';
-                                                                            echo ' &mdash; ';
-                                                                        } else {
-                                                                            if (isset($icon_list[$section_id])) {
-                                                                                echo '<i class="dashicons dashicons-' . $icon_list[$section_id] . '"></i>';
-                                                                            } else {
-                                                                                echo '&mdash;';
-                                                                            }
-                                                                        }
-                                                                        ?>
-                                                                        <?php echo $item_name; ?>
-                                                                    </strong></span>
-                                                                </label>
                                                             </td>
 
                                                         </tr>

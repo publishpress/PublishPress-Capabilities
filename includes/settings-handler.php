@@ -16,7 +16,11 @@ add_action('init', function() {
                 $value = trim($value);
             }
 
-            update_option($option_name, stripslashes_deep($value));
+            foreach (['cme_', 'capsman'] as $prefix) {
+                if (0 === strpos($option_name, $prefix)) {
+                    update_option($option_name, stripslashes_deep($value));
+                }
+            }
         }
     }
 
