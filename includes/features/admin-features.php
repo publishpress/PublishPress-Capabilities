@@ -85,7 +85,7 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
 		                                             class="pp-capability-menus-content editable-role" style="display: block;">
 	
 		                                            <table
-		                                                class="wp-list-table widefat fixed striped pp-capability-menus-select">
+		                                                class="wp-list-table widefat striped pp-capability-menus-select">
 	
                                                         <tfoot>
                                                         <tr class="ppc-menu-row parent-menu">
