@@ -284,9 +284,8 @@ class PP_Capabilities_Admin_Features
                 //backend admin tool bar
                 add_action('admin_head', [__CLASS__, 'disableDashboardBarBackend']);
             } else {
-			        add_action( 'wp_before_admin_bar_render', [ __CLASS__, 'disableDashboardBar' ], 99 );
+			    add_action( 'wp_before_admin_bar_render', [ __CLASS__, 'disableDashboardBar' ], 99 );
             }
-		    }
 		}
 
 		if(is_admin()){
