@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e4272e327da8d284693217bf36e3e228",
+    "content-hash": "bcdf3b8996cf0596c2da4ceeebad609f",
     "packages": [
         {
             "name": "pimple/pimple",
@@ -54,30 +54,31 @@
                 "container",
                 "dependency injection"
             ],
-            "support": {
-                "issues": "https://github.com/silexphp/Pimple/issues",
-                "source": "https://github.com/silexphp/Pimple/tree/master"
-            },
             "time": "2018-01-21T07:42:36+00:00"
         },
         {
             "name": "psr/container",
-            "version": "1.1.2",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/container.git",
-                "reference": "513e0666f7216c7459170d56df27dfcefe1689ea"
+                "reference": "b7ce3b176482dbbc1245ebf52b181af44c2cf55f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/container/zipball/513e0666f7216c7459170d56df27dfcefe1689ea",
-                "reference": "513e0666f7216c7459170d56df27dfcefe1689ea",
+                "url": "https://api.github.com/repos/php-fig/container/zipball/b7ce3b176482dbbc1245ebf52b181af44c2cf55f",
+                "reference": "b7ce3b176482dbbc1245ebf52b181af44c2cf55f",
                 "shasum": ""
             },
             "require": {
-                "php": ">=7.4.0"
+                "php": ">=5.3.0"
             },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
             "autoload": {
                 "psr-4": {
                     "Psr\\Container\\": "src/"
@@ -90,7 +91,7 @@
             "authors": [
                 {
                     "name": "PHP-FIG",
-                    "homepage": "https://www.php-fig.org/"
+                    "homepage": "http://www.php-fig.org/"
                 }
             ],
             "description": "Common Container Interface (PHP FIG PSR-11)",
@@ -102,11 +103,7 @@
                 "container-interop",
                 "psr"
             ],
-            "support": {
-                "issues": "https://github.com/php-fig/container/issues",
-                "source": "https://github.com/php-fig/container/tree/1.1.2"
-            },
-            "time": "2021-11-05T16:50:12+00:00"
+            "time": "2017-02-14T16:28:37+00:00"
         },
         {
             "name": "publishpress/wordpress-banners",
@@ -138,31 +135,42 @@
             ],
             "description": "Display banners in admin pages of PublishPress Plugins.",
             "homepage": "http://publishpress.com/",
-            "support": {
-                "issues": "https://github.com/publishpress/wordpress-banners/issues",
-                "source": "https://github.com/publishpress/wordpress-banners/tree/v1.2.4"
-            },
             "time": "2021-11-22T22:01:45+00:00"
         },
         {
             "name": "publishpress/wordpress-reviews",
-            "version": "v1.1.13",
+            "version": "v1.1.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/publishpress/wordpress-reviews.git",
-                "reference": "6eb69db653b5df376a81571153eacd2da0f5524b"
+                "reference": "2b647f104d7aa64e0c72c028f86e1875035b7a91"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/publishpress/wordpress-reviews/zipball/6eb69db653b5df376a81571153eacd2da0f5524b",
-                "reference": "6eb69db653b5df376a81571153eacd2da0f5524b",
+                "url": "https://api.github.com/repos/publishpress/wordpress-reviews/zipball/2b647f104d7aa64e0c72c028f86e1875035b7a91",
+                "reference": "2b647f104d7aa64e0c72c028f86e1875035b7a91",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.6.20"
             },
             "require-dev": {
-                "overtrue/phplint": "^2.1"
+                "codeception/module-asserts": "^1.0",
+                "codeception/module-cli": "^1.0",
+                "codeception/module-db": "^1.0",
+                "codeception/module-filesystem": "^1.0",
+                "codeception/module-phpbrowser": "^1.0",
+                "codeception/module-rest": "^1.3",
+                "codeception/module-webdriver": "^1.0",
+                "codeception/util-universalframework": "^1.0",
+                "lucatume/wp-browser": "^3",
+                "overtrue/phplint": "^2.1",
+                "phpmd/phpmd": "^2.8",
+                "publishpress/publishpress-plugin-builder": "^1.2",
+                "sebastian/phpcpd": "^5.0",
+                "squizlabs/php_codesniffer": "^3.5",
+                "wp-cli/i18n-command": "^2.2",
+                "wp-cli/wp-cli": "^2.5"
             },
             "type": "library",
             "autoload": {
@@ -191,15 +199,11 @@
                 "reviews",
                 "wordpress plugin"
             ],
-            "support": {
-                "issues": "https://github.com/publishpress/wordpress-reviews/issues",
-                "source": "https://github.com/publishpress/wordpress-reviews/tree/v1.1.13"
-            },
-            "time": "2021-11-16T19:29:19+00:00"
+            "time": "2021-12-01T20:36:26+00:00"
         },
         {
             "name": "publishpress/wordpress-version-notices",
-            "version": "dev-master",
+            "version": "1.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/publishpress/WordPress-Version-Notices.git",
@@ -237,24 +241,18 @@
                 }
             ],
             "description": "Library for displaying version notices for Pro plugins in WordPress.",
-            "support": {
-                "issues": "https://github.com/publishpress/WordPress-Version-Notices/issues",
-                "source": "https://github.com/publishpress/WordPress-Version-Notices/tree/master"
-            },
             "time": "2021-07-14T16:15:47+00:00"
         }
     ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "publishpress/wordpress-version-notices": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
         "php": ">=5.6.20"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.1.0"
+    "plugin-api-version": "1.1.0"
 }

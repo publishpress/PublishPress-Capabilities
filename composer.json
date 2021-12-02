@@ -17,7 +17,7 @@
       "php": ">=5.6.20",
 	  "pimple/pimple": "3.2.3.*",
 	  "publishpress/wordpress-reviews":  "^1.1",
-      "publishpress/wordpress-version-notices": "dev-master",
         "publishpress/wordpress-banners": "^1.2"
+      "publishpress/wordpress-version-notices": "^1",
     }
   }
