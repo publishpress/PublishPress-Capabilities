@@ -178,3 +178,8 @@ filter: blur(1.5px);
     margin-right: 10px;
   }
 }
+
+div.publishpress-wp-reviews-notice a.publishpress-dismiss {
+  vertical-align: top !important;
+  margin-bottom: 0 !important;
+}
