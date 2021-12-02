@@ -87,8 +87,6 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
 		                                            <table
 		                                                class="wp-list-table widefat fixed striped pp-capability-menus-select">
 	
-		                                                
-
                                                         <tfoot>
                                                         <tr class="ppc-menu-row parent-menu">
 
