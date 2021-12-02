@@ -536,7 +536,8 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 
 							echo '<div class="ppc-filter-wrapper">';
 								echo '<select class="ppc-filter-select">';
-									echo '<option value="">' . __('Filter by post type', 'capability-manager-enhanced') . '</option>';
+									$filter_caption = ('taxonomy' == $item_type) ? __('Filter by taxonomy', 'capability-manager-enhanced') : __('Filter by post type', 'capability-manager-enhanced');
+									echo '<option value="">' . $filter_caption . '</option>';
 								echo '</select>';
 								echo ' <button class="button secondary-button ppc-filter-select-reset" type="button">' . __('Clear', 'capability-manager-enhanced') . '</button>';
 							echo '</div>';
