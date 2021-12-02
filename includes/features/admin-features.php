@@ -39,7 +39,7 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
         <form method="post" id="ppc-admin-features-form" action="admin.php?page=pp-capabilities-admin-features">
             <?php wp_nonce_field('pp-capabilities-admin-features'); ?>
 
-            <div class="pp-columns-wrapper<?php echo !CAPSMAN_PERMISSIONS_INSTALLED ? ' pp-enable-sidebar' : '' ?>">
+            <div class="pp-columns-wrapper<?php echo defined('CAPSMAN_PERMISSIONS_INSTALLED') && !CAPSMAN_PERMISSIONS_INSTALLED ? ' pp-enable-sidebar' : '' ?>">
                 <div class="pp-column-left">
                     <fieldset>
                         <table id="akmin">
@@ -234,7 +234,7 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
 
                     </fieldset>
                 </div><!-- .pp-column-left -->
-                <?php if( !CAPSMAN_PERMISSIONS_INSTALLED ) { ?>
+                <?php if (defined('CAPSMAN_PERMISSIONS_INSTALLED') && !CAPSMAN_PERMISSIONS_INSTALLED) { ?>
                     <div class="pp-column-right">
                         <?php
                         $banners = new PublishPress\WordPressBanners\BannersMain;

@@ -35,7 +35,7 @@ $classic_editor = pp_capabilities_is_classic_editor_available();
             action="admin.php?page=pp-capabilities-editor-features">
         <?php wp_nonce_field('pp-capabilities-editor-features'); ?>
 
-        <div class="pp-columns-wrapper<?php echo !CAPSMAN_PERMISSIONS_INSTALLED ? ' pp-enable-sidebar' : '' ?>">
+        <div class="pp-columns-wrapper<?php echo defined('CAPSMAN_PERMISSIONS_INSTALLED') && !CAPSMAN_PERMISSIONS_INSTALLED ? ' pp-enable-sidebar' : '' ?>">
             <div class="pp-column-left">
                 <table id="akmin">
                     <tr>
@@ -127,7 +127,7 @@ $classic_editor = pp_capabilities_is_classic_editor_available();
                     </tr>
                 </table>
             </div><!-- .pp-column-left -->
-            <?php if( !CAPSMAN_PERMISSIONS_INSTALLED ) { ?>
+            <?php if (defined('CAPSMAN_PERMISSIONS_INSTALLED') && !CAPSMAN_PERMISSIONS_INSTALLED) { ?>
                 <div class="pp-column-right">
                     <?php
                     $banners = new PublishPress\WordPressBanners\BannersMain;
