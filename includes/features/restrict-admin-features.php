@@ -275,6 +275,8 @@ class PP_Capabilities_Admin_Features
         //$all_disabled_elements = array_merge(...$all_disabled_elements);  // This is a PHP 7.4 operator
         $all_disabled_elements = (is_array($all_disabled_elements) && isset($all_disabled_elements[0])) ? array_merge($all_disabled_elements[0]) : [];
 
+        do_action('ppc_admin_feature_restriction', $all_disabled_elements);
+
 		//disable toolbar
 		$ppc_disabled_toolbar = self::adminFeaturesRestrictedElements($all_disabled_elements, 'ppc_adminbar');
 		if(count($ppc_disabled_toolbar) > 0){
