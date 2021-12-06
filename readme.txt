@@ -7,7 +7,7 @@ Tags: user roles, capabilities, permissions, admin menus, post editing, post typ
 Requires at least: 4.9.7
 Tested up to: 5.8
 Requires PHP: 5.6.20
-Stable tag: 2.3
+Stable tag: 2.3.1
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -149,7 +149,14 @@ Follow PublishPress on [Facebook](https://www.facebook.com/publishpress), [Twitt
 = 1.5.1 =
 Fixed : Non-administrators with user editing capabilities could add new Administrators
 
+= 2.3.1 =
+Fixed : Security issue. Please update.
+
 == Changelog ==
+
+= 2.3.1 - 3 Dec 2021 =
+  * Fixed : Security issue
+  * Fixed : PHP Notice on Capabilities screen
 
 = 2.3 - 28 Oct 2021 =
   * Change : Role Capabilities screen uses tabs

@@ -693,6 +693,10 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 						} // end foreach item type
 					}
 
+					if (empty($caps_manager_postcaps_section)) {
+						$caps_manager_postcaps_section = '';
+					}
+
 					do_action('publishpress-caps_manager_postcaps_section', compact('current', 'rcaps', 'pp_metagroup_caps', 'is_administrator', 'default_caps', 'custom_types', 'defined', 'unfiltered', 'pp_metagroup_caps','caps_manager_postcaps_section', 'active_tab_id'));
 
 					$type_caps = apply_filters('publishpress_caps_manager_typecaps', $type_caps);
