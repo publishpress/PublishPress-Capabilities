@@ -154,14 +154,22 @@ Fixed : Security issue. Please update.
 
 == Changelog ==
 
-= 2.3.1 - 3 Dec 2021 =
-  * Fixed : Security issue
+= 2.3.2 - 2 Dec 2021 =
+  * Feature : Filter Capabilities display by post type or text entry
+  * Feature : Admin Features - Restrict Admin Bar or individual elements
+  * Fixed : Correct CSRF security issue
   * Fixed : PHP Notice on Capabilities screen
 
+= 2.3.1 =
+  * Feature : Admin Features - more items available for restriction #240
+  * Feature : Admin Features - chechbox to disable admin toolbar #239
+  * Change : Admin Features - captions use dashes, not numbers #229
+  * Change : Capabilities screen - tab for PublishPress Capabilities #220
+  
 = 2.3 - 28 Oct 2021 =
   * Change : Role Capabilities screen uses tabs
   * Feature : New "Admin Features" screen #200
-  
+
 = 2.2 - 26 Aug 2021 =
   * Feature : Retain last role selection for Capabilities, Editor Features screens
   * Perf : Sync role to all sites - Operation timed out on networks with ~100 sites 

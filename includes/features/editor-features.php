@@ -35,96 +35,118 @@ $classic_editor = pp_capabilities_is_classic_editor_available();
             action="admin.php?page=pp-capabilities-editor-features">
         <?php wp_nonce_field('pp-capabilities-editor-features'); ?>
 
-        <table id="akmin">
-            <tr>
-                <td class="content">
+        <div class="pp-columns-wrapper<?php echo defined('CAPSMAN_PERMISSIONS_INSTALLED') && !CAPSMAN_PERMISSIONS_INSTALLED ? ' pp-enable-sidebar' : '' ?>">
+            <div class="pp-column-left">
+                <table id="akmin">
+                    <tr>
+                        <td class="content">
 
-                    <div class="publishpress-headline">
-                        <span class="cme-subtext">
-                        <span class='pp-capability-role-caption'>
-                        <?php
-                        _e('Select editor features to remove. Note that this screen cannot be used to grant additional features to any role.', 'capabilities-pro');
-                        ?>
-                        </span>
-                        </span>
-                    </div>
-
-                    <div class="publishpress-filters">
-                        <select name="ppc-editor-features-role" class="ppc-editor-features-role">
-                            <?php
-                            foreach ($roles as $role => $name) :
-                                $name = translate_user_role($name);
+                            <div class="publishpress-headline">
+                                <span class="cme-subtext">
+                                <span class='pp-capability-role-caption'>
+                                <?php
+                                _e('Select editor features to remove. Note that this screen cannot be used to grant additional features to any role.', 'capabilities-pro');
                                 ?>
-                                <option value="<?php echo $role;?>" <?php selected($default_role, $role);?>><?php echo $name;?></option>
-                            <?php
-                            endforeach;
-                            ?>
-                        </select> &nbsp;
+                                </span>
+                                </span>
+                            </div>
 
-                        <img class="loading" src="<?php echo $capsman->mod_url; ?>/images/wpspin_light.gif" style="display: none">
-
-                        <input type="submit" name="editor-features-submit"
-                            value="<?php _e('Save Changes', 'capabilities-pro') ?>"
-                            class="button-primary ppc-editor-features-submit" style="float:right" />
-
-                        <input type="hidden" name="ppc-tab" value="<?php echo (!empty($_REQUEST['ppc-tab'])) ? sanitize_key($_REQUEST['ppc-tab']) : 'gutenberg';?>" />
-                    </div>
-
-                    <script type="text/javascript">
-                    /* <![CDATA[ */
-                    jQuery(document).ready(function($) {
-                        $('li.gutenberg-tab').click(function() {
-                            $('div.publishpress-filters input[name=ppc-tab]').val('gutenberg');
-                        });
-
-                        $('li.classic-tab').click(function() {
-                            $('div.publishpress-filters input[name=ppc-tab]').val('classic');
-                        });
-                    });
-                    /* ]]> */
-                    </script>
-
-                    <?php if ($classic_editor) { ?>
-                        <ul class="nav-tab-wrapper">
-                            <li class="editor-features-tab gutenberg-tab nav-tab <?php if (empty($_REQUEST['ppc-tab']) || ('gutenberg' == $_REQUEST['ppc-tab'])) echo 'nav-tab-active';?>"
-                                data-tab=".editor-features-gutenberg"><a href="#"><?php _e('Gutenberg', 'capsman-enhanced') ?></a></li>
-
-                            <li class="editor-features-tab classic-tab nav-tab <?php if (!empty($_REQUEST['ppc-tab']) && ('classic' == $_REQUEST['ppc-tab'])) echo 'nav-tab-active';?>"
-                                data-tab=".editor-features-classic"><a href="#"><?php _e('Classic', 'capsman-enhanced') ?></a></li>
-                        </ul>
-                    <?php } ?>
-
-                    <div id="pp-capability-menu-wrapper" class="postbox">
-                        <div class="pp-capability-menus">
-
-                            <div class="pp-capability-menus-wrap">
-                                <div id="pp-capability-menus-general"
-                                        class="pp-capability-menus-content editable-role"
-                                        style="display: block;">
+                            <div class="publishpress-filters">
+                                <select name="ppc-editor-features-role" class="ppc-editor-features-role">
                                     <?php
-                                    $sn = 0;
-                                    include(dirname(__FILE__) . '/editor-features-gutenberg.php');
-
-                                    if ($classic_editor) {
-                                        include(dirname(__FILE__) . '/editor-features-classic.php');
-                                    }
+                                    foreach ($roles as $role => $name) :
+                                        $name = translate_user_role($name);
+                                        ?>
+                                        <option value="<?php echo $role;?>" <?php selected($default_role, $role);?>><?php echo $name;?></option>
+                                    <?php
+                                    endforeach;
                                     ?>
+                                </select> &nbsp;
+
+                                <img class="loading" src="<?php echo $capsman->mod_url; ?>/images/wpspin_light.gif" style="display: none">
+
+                                <input type="submit" name="editor-features-submit"
+                                    value="<?php _e('Save Changes', 'capabilities-pro') ?>"
+                                    class="button-primary ppc-editor-features-submit" style="float:right" />
+
+                                <input type="hidden" name="ppc-tab" value="<?php echo (!empty($_REQUEST['ppc-tab'])) ? sanitize_key($_REQUEST['ppc-tab']) : 'gutenberg';?>" />
+                            </div>
+
+                            <script type="text/javascript">
+                            /* <![CDATA[ */
+                            jQuery(document).ready(function($) {
+                                $('li.gutenberg-tab').click(function() {
+                                    $('div.publishpress-filters input[name=ppc-tab]').val('gutenberg');
+                                });
+
+                                $('li.classic-tab').click(function() {
+                                    $('div.publishpress-filters input[name=ppc-tab]').val('classic');
+                                });
+                            });
+                            /* ]]> */
+                            </script>
+
+                            <?php if ($classic_editor) { ?>
+                                <ul class="nav-tab-wrapper">
+                                    <li class="editor-features-tab gutenberg-tab nav-tab <?php if (empty($_REQUEST['ppc-tab']) || ('gutenberg' == $_REQUEST['ppc-tab'])) echo 'nav-tab-active';?>"
+                                        data-tab=".editor-features-gutenberg"><a href="#"><?php _e('Gutenberg', 'capsman-enhanced') ?></a></li>
+
+                                    <li class="editor-features-tab classic-tab nav-tab <?php if (!empty($_REQUEST['ppc-tab']) && ('classic' == $_REQUEST['ppc-tab'])) echo 'nav-tab-active';?>"
+                                        data-tab=".editor-features-classic"><a href="#"><?php _e('Classic', 'capsman-enhanced') ?></a></li>
+                                </ul>
+                            <?php } ?>
+
+                            <div id="pp-capability-menu-wrapper" class="postbox">
+                                <div class="pp-capability-menus">
+
+                                    <div class="pp-capability-menus-wrap">
+                                        <div id="pp-capability-menus-general"
+                                                class="pp-capability-menus-content editable-role"
+                                                style="display: block;">
+                                            <?php
+                                            $sn = 0;
+                                            include(dirname(__FILE__) . '/editor-features-gutenberg.php');
+
+                                            if ($classic_editor) {
+                                                include(dirname(__FILE__) . '/editor-features-classic.php');
+                                            }
+                                            ?>
+
+                                        </div>
+                                    </div>
 
                                 </div>
                             </div>
 
-                        </div>
-                    </div>
-
-                    <input type="submit" name="editor-features-submit"
-                            value="<?php _e('Save Changes', 'capsman-enhanced') ?>"
-                            class="button-primary ppc-editor-features-submit"/> &nbsp;
+                            <input type="submit" name="editor-features-submit"
+                                    value="<?php _e('Save Changes', 'capsman-enhanced') ?>"
+                                    class="button-primary ppc-editor-features-submit"/> &nbsp;
 
 
-                </td>
-            </tr>
-        </table>
-
+                        </td>
+                    </tr>
+                </table>
+            </div><!-- .pp-column-left -->
+            <?php if (defined('CAPSMAN_PERMISSIONS_INSTALLED') && !CAPSMAN_PERMISSIONS_INSTALLED) { ?>
+                <div class="pp-column-right">
+                    <?php
+                    $banners = new PublishPress\WordPressBanners\BannersMain;
+                    $banners->pp_display_banner(
+                        __( 'Recommendations for you', 'capsman-enhanced' ),
+                        __( 'Control permissions for individual posts and pages', 'capsman-enhanced' ),
+                        array(
+                            __( 'Choose who can read and edit each post.', 'capsman-enhanced' ),
+                            __( 'Allow specific user roles or users to manage each post.', 'capsman-enhanced' ),
+                            __( 'PublishPress Permissions is 100% free to install.', 'capsman-enhanced' )
+                        ),
+                        admin_url( 'plugin-install.php?s=publishpress-ppcore-install&tab=search&type=term' ),
+                        __( 'Click here to install PublishPress Permissions', 'capsman-enhanced' ),
+                        'install-permissions.jpg'
+                    );
+                    ?>
+                </div><!-- .pp-column-right -->
+            <?php } ?>
+        </div><!-- .pp-columns-wrapper -->
     </form>
 
     <?php if (!defined('PUBLISHPRESS_CAPS_PRO_VERSION') || get_option('cme_display_branding')) {
@@ -135,7 +157,7 @@ $classic_editor = pp_capabilities_is_classic_editor_available();
 
 <style>
     span.menu-item-link {
-        webkit-user-select: none; /* Safari */        
+        webkit-user-select: none; /* Safari */
         -moz-user-select: none; /* Firefox */
         -ms-user-select: none; /* IE10+/Edge */
         user-select: none; /* Standard */

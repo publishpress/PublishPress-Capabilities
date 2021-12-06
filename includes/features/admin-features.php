@@ -39,186 +39,200 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
         <form method="post" id="ppc-admin-features-form" action="admin.php?page=pp-capabilities-admin-features">
             <?php wp_nonce_field('pp-capabilities-admin-features'); ?>
 
-            <fieldset>
-                <table id="akmin">
-                    <tr>
-                        <td class="content">
+            <div class="pp-columns-wrapper<?php echo defined('CAPSMAN_PERMISSIONS_INSTALLED') && !CAPSMAN_PERMISSIONS_INSTALLED ? ' pp-enable-sidebar' : '' ?>">
+                <div class="pp-column-left">
+                    <fieldset>
+                        <table id="akmin">
+                            <tr>
+                                <td class="content">
 
-                            <div class="publishpress-headline">
-                            <span class="cme-subtext">
-                            <span class='pp-capability-role-caption'>
-                            <?php
-                            _e('Note: You are only restricting access to admin features screens. Some plugins may also add features to other areas of WordPress.',
-                                'capabilities-pro');
-                            ?>
-                            </span>
-                            </span>
-                            </div>
-                            <div class="publishpress-filters">
-                                <select name="ppc-admin-features-role" class="ppc-admin-features-role">
+                                    <div class="publishpress-headline">
+                                    <span class="cme-subtext">
+                                    <span class='pp-capability-role-caption'>
                                     <?php
-                                    foreach ($roles as $role => $name) :
-                                        $name = translate_user_role($name);
-                                        ?>
-                                        <option value="<?php echo $role; ?>" <?php selected($default_role,
-                                            $role); ?>><?php echo $name; ?></option>
-                                    <?php
-                                    endforeach;
+                                    _e('Note: You are only restricting access to admin features screens. Some plugins may also add features to other areas of WordPress.',
+                                        'capabilities-pro');
                                     ?>
-                                </select> &nbsp;
+                                    </span>
+                                    </span>
+                                    </div>
+                                    <div class="publishpress-filters">
+                                        <select name="ppc-admin-features-role" class="ppc-admin-features-role">
+                                            <?php
+                                            foreach ($roles as $role => $name) :
+                                                $name = translate_user_role($name);
+                                                ?>
+                                                <option value="<?php echo $role; ?>" <?php selected($default_role,
+                                                    $role); ?>><?php echo $name; ?></option>
+                                            <?php
+                                            endforeach;
+                                            ?>
+                                        </select> &nbsp;
 
-                                <img class="loading" src="<?php echo $capsman->mod_url; ?>/images/wpspin_light.gif"
-                                     style="display: none">
+                                        <img class="loading" src="<?php echo $capsman->mod_url; ?>/images/wpspin_light.gif"
+                                             style="display: none">
 
-                                <input type="submit" name="admin-features-submit"
-                                       value="<?php _e('Save Changes', 'capabilities-pro') ?>"
-                                       class="button-primary ppc-admin-features-submit" style="float:right"/>
-                            </div>
+                                        <input type="submit" name="admin-features-submit"
+                                               value="<?php _e('Save Changes', 'capabilities-pro') ?>"
+                                               class="button-primary ppc-admin-features-submit" style="float:right"/>
+                                    </div>
 
-                            <div id="pp-capability-menu-wrapper" class="postbox">
-                                <div class="pp-capability-menus">
-
-                                    <div class="pp-capability-menus-wrap">
-                                        <div id="pp-capability-menus-general"
-                                             class="pp-capability-menus-content editable-role" style="display: block;">
-
-                                            <table
-                                                class="wp-list-table widefat fixed striped pp-capability-menus-select">
-
-                                                <thead>
-                                                <tr class="ppc-menu-row parent-menu">
-
-                                                    <td class="restrict-column ppc-menu-checkbox">
-                                                        <input id="check-all-item"
-                                                               class="check-item check-all-menu-item" type="checkbox"/>
-                                                    </td>
-                                                    <td class="menu-column ppc-menu-item">
-                                                        <label for="check-all-item">
-                                                        <span class="menu-item-link check-all-menu-link">
-                                                            <strong>
-                                                            <?php _e('Toggle all', 'capabilities-pro'); ?>
-                                                            </strong>
-                                                        </span></label>
-                                                    </td>
-
-                                                </tr>
-                                                </thead>
-
-                                                <tfoot>
-                                                <tr class="ppc-menu-row parent-menu">
-
-                                                    <td class="restrict-column ppc-menu-checkbox">
-                                                        <input id="check-all-item-2"
-                                                               class="check-item check-all-menu-item" type="checkbox"/>
-                                                    </td>
-                                                    <td class="menu-column ppc-menu-item">
-                                                        <label for="check-all-item-2">
-                                                            <span class="menu-item-link check-all-menu-link">
-                                                            <strong>
-                                                                <?php _e('Toggle all', 'capabilities-pro'); ?>
-                                                            </strong>
-                                                            </span>
-                                                        </label>
-                                                    </td>
-
-                                                </tr>
-                                                </tfoot>
-
-                                                <tbody>
-
-                                                <?php
-                                                $icon_list = (array)PP_Capabilities_Admin_Features::elementLayoutItemIcons();
-
-                                                $sn = 0;
-                                                foreach ($admin_features_elements as $section_title => $section_elements) {
-                                                    $sn++;
-                                                    $section_slug = strtolower(ppc_remove_non_alphanumeric_space_characters($section_title));
-                                                    $icon_name    = isset($icon_list[$section_slug]) ? $icon_list[$section_slug] : '&mdash;';
-                                                    ?>
-
-
-                                                    <tr class="ppc-menu-row parent-menu">
-
-                                                        <td class="features-section-header" colspan="2">
-                                                            <strong><i
-                                                                    class="dashicons dashicons-<?php echo $icon_name ?>"></i> <?php echo $section_title; ?>
-                                                            </strong>
-                                                        </td>
-
-                                                    </tr>
-
-                                                    <?php
-                                                    foreach ($section_elements as $section_id => $section_array) {
-                                                        $sn++;
-                                                        if (!$section_id) {
-                                                            continue;
-                                                        }
-                                                        $item_name      = $section_array['label'];
-                                                        $item_action    = $section_array['action'];
-                                                        $restrict_value = $item_action.'||'.$section_id;
-                                                        if($item_action === 'ppc_dashboard_widget'){
-                                                            $restrict_value .= '||'.$section_array['context'];
-                                                        }
-                                                        ?>
-
-                                                        <tr class="ppc-menu-row child-menu">
+                                    <div id="pp-capability-menu-wrapper" class="postbox">
+                                        <div class="pp-capability-menus">
+	
+		                                    <div class="pp-capability-menus-wrap">
+		                                        <div id="pp-capability-menus-general"
+		                                             class="pp-capability-menus-content editable-role" style="display: block;">
+	
+		                                            <table
+		                                                class="wp-list-table widefat striped pp-capability-menus-select">
+	
+                                                        <tfoot>
+                                                        <tr class="ppc-menu-row parent-menu">
 
                                                             <td class="restrict-column ppc-menu-checkbox">
-                                                                <input
-                                                                    id="check-item-<?php echo $sn; ?>"
-                                                                    class="check-item" type="checkbox"
-                                                                    name="capsman_disabled_admin_features[]"
-                                                                    value="<?php echo $restrict_value; ?>"
-                                                                    <?php echo (in_array($restrict_value, $disabled_admin_items)) ? 'checked' : ''; ?>/>
+                                                                <input id="check-all-item-2"
+                                                                       class="check-item check-all-menu-item" type="checkbox"/>
                                                             </td>
-                                                            <td class="menu-column ppc-menu-item'">
-
-                                                                <label for="check-item-<?php echo $sn; ?>">
-                                                                    <span
-                                                                        class="menu-item-link<?php echo (in_array($restrict_value,
-                                                                            $disabled_admin_items)) ? ' restricted' : ''; ?>">
-                                                                    <strong>
-                                                                        <?php
-                                                                        if ((isset($section_array['step']) && $section_array['step'] > 0) && isset($section_array['parent']) && !empty($section_array['parent'])) {
-                                                                            $step_margin = $section_array['step'] * 20;
-                                                                            echo '<span style="margin-left: ' . $step_margin . 'px;"></span>';
-                                                                            echo ' ' . $section_array['position'] . '. ';
-                                                                        } else {
-                                                                            if (isset($icon_list[$section_id])) {
-                                                                                echo '<i class="dashicons dashicons-' . $icon_list[$section_id] . '"></i>';
-                                                                            } else {
-                                                                                echo '&mdash;';
-                                                                            }
-                                                                        }
-                                                                        ?>
-                                                                        <?php echo $item_name; ?>
-                                                                    </strong></span>
-                                                                </label>
+                                                            <td class="menu-column ppc-menu-item">
                                                             </td>
 
                                                         </tr>
+                                                        </tfoot>
+
+                                                        <tbody>
 
                                                         <?php
-                                                    }//end $section_elements subsection loop
-                                                }// end $admin_features_elements section loop
+                                                        $icon_list = (array)PP_Capabilities_Admin_Features::elementLayoutItemIcons();
 
-                                                ?>
-                                                </tbody>
-                                            </table>
+                                                        $sn = 0;
+                                                        foreach ($admin_features_elements as $section_title => $section_elements) :
+                                                            $sn++;
+                                                            $section_slug = strtolower(ppc_remove_non_alphanumeric_space_characters($section_title));
+                                                            $icon_name    = isset($icon_list[$section_slug]) ? $icon_list[$section_slug] : '&mdash;';
+                                                            ?>
+
+                                                            <tr class="ppc-menu-row parent-menu">
+		                                                        <?php if ($section_slug === 'admintoolbar') :
+		                                                            $restrict_value = 'ppc_adminbar||admintoolbar';
+		                                                       	?>
+		                                                        <td class="features-section-header restrict-column ppc-menu-checkbox" style="text-align: left;" colspan="2">
+		                                                            <input
+		                                                                    id="check-item-<?php echo $sn; ?>"
+		                                                                    class="check-item" type="checkbox"
+		                                                                    name="capsman_disabled_admin_features[]"
+		                                                                    value="<?php echo $restrict_value; ?>"
+		                                                                    <?php echo (in_array($restrict_value, $disabled_admin_items)) ? 'checked' : ''; ?>/>
+		                                                                    <label for="check-item-<?php echo $sn; ?>">
+		                                                            <strong class="menu-column ppc-menu-item menu-item-link<?php echo (in_array($restrict_value,
+		                                                                            $disabled_admin_items)) ? ' restricted' : ''; ?>">
+		                                                                <i class="dashicons dashicons-<?php echo $icon_name ?>"></i> <?php echo $section_title; ?>
+		                                                            </strong>
+		                                                        </label>
+		                                                        </td>
+		                                                        <?php else : ?>
+		                                                                <td class="features-section-header" colspan="2">
+		                                                                    <strong><i
+		                                                                            class="dashicons dashicons-<?php echo $icon_name ?>"></i> <?php echo $section_title; ?>
+		                                                                    </strong>
+		                                                                </td>
+		                                                        <?php endif; ?>
+
+                                                            </tr>
+
+                                                            <?php
+                                                            foreach ($section_elements as $section_id => $section_array) :
+                                                                $sn++;
+                                                                if (!$section_id) {
+                                                                    continue;
+                                                                }
+                                                                $item_name      = $section_array['label'];
+                                                                $item_action    = $section_array['action'];
+                                                                $restrict_value = $item_action.'||'.$section_id;
+                                                                if($item_action === 'ppc_dashboard_widget'){
+                                                                    $restrict_value .= '||'.$section_array['context'];
+                                                                }
+                                                                ?>
+
+                                                                <tr class="ppc-menu-row child-menu">
+
+                                                                    <td class="restrict-column ppc-menu-checkbox">
+                                                                        <input
+                                                                            id="check-item-<?php echo $sn; ?>"
+                                                                            class="check-item" type="checkbox"
+                                                                            name="capsman_disabled_admin_features[]"
+                                                                            value="<?php echo $restrict_value; ?>"
+                                                                            <?php echo (in_array($restrict_value, $disabled_admin_items)) ? 'checked' : ''; ?>/>
+                                                                    </td>
+                                                            		<td class="menu-column ppc-menu-item">
+
+                                                                        <label for="check-item-<?php echo $sn; ?>">
+                                                                            <span
+                                                                                class="menu-item-link<?php echo (in_array($restrict_value,
+                                                                                    $disabled_admin_items)) ? ' restricted' : ''; ?>">
+                                                                            <strong>
+                                                                                <?php
+                                                                                if ((isset($section_array['step']) && $section_array['step'] > 0) && isset($section_array['parent']) && !empty($section_array['parent'])) {
+                                                                                    $step_margin = $section_array['step'] * 20;
+                                                                                    echo '<span style="margin-left: ' . $step_margin . 'px;"></span>';
+                                                                            echo ' &mdash; ';
+                                                                                } else {
+                                                                                    if (isset($icon_list[$section_id])) {
+                                                                                        echo '<i class="dashicons dashicons-' . $icon_list[$section_id] . '"></i>';
+                                                                                    } else {
+                                                                                        echo '&mdash;';
+                                                                                    }
+                                                                                }
+                                                                                ?>
+                                                                                <?php echo $item_name; ?>
+                                                                            </strong></span>
+                                                                        </label>
+                                                                    </td>
+
+                                                                </tr>
+
+                                                                <?php
+                                                            endforeach; // $section_elements subsection loop
+                                                        endforeach; // $admin_features_elements section loop
+                                                		?>
+		                                                <?php do_action('pp_capabilities_admin_features_after_table_tr'); ?>
+		                                                </tbody>
+		                                            </table>
+		                                            <?php do_action('pp_capabilities_admin_features_after_table'); ?>
+		                                        </div>
+
+                                            </div>
                                         </div>
-
                                     </div>
-                                </div>
-                            </div>
-                            <input type="submit" name="admin-features-submit"
-                                   value="<?php _e('Save Changes', 'capabilities-pro') ?>"
-                                   class="button-primary ppc-admin-features-submit"/>
-                        </td>
-                    </tr>
-                </table>
+                                    <input type="submit" name="admin-features-submit"
+                                           value="<?php _e('Save Changes', 'capabilities-pro') ?>"
+                                           class="button-primary ppc-admin-features-submit"/>
+                                </td>
+                            </tr>
+                        </table>
 
-            </fieldset>
-
+                    </fieldset>
+                </div><!-- .pp-column-left -->
+                <?php if (defined('CAPSMAN_PERMISSIONS_INSTALLED') && !CAPSMAN_PERMISSIONS_INSTALLED) { ?>
+                    <div class="pp-column-right">
+                        <?php
+                        $banners = new PublishPress\WordPressBanners\BannersMain;
+                        $banners->pp_display_banner(
+                            __( 'Recommendations for you', 'capsman-enhanced' ),
+                            __( 'Control permissions for individual posts and pages', 'capsman-enhanced' ),
+                            array(
+                                __( 'Choose who can read and edit each post.', 'capsman-enhanced' ),
+                                __( 'Allow specific user roles or users to manage each post.', 'capsman-enhanced' ),
+                                __( 'PublishPress Permissions is 100% free to install.', 'capsman-enhanced' )
+                            ),
+                            admin_url( 'plugin-install.php?s=publishpress-ppcore-install&tab=search&type=term' ),
+                            __( 'Click here to install PublishPress Permissions', 'capsman-enhanced' ),
+                            'install-permissions.jpg'
+                        );
+                        ?>
+                    </div><!-- .pp-column-right -->
+                <?php } ?>
+            </div><!-- .pp-columns-wrapper -->
         </form>
 
         <script type="text/javascript">

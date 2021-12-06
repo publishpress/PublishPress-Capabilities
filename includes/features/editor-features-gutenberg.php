@@ -18,7 +18,7 @@ foreach($def_post_types as $post_type) {
         <th class="menu-column"><?php if ('thead' == $tag) {_e('Gutenberg Screen', 'capsman-enhanced');}?></th>
 
         <?php foreach($def_post_types as $post_type) :
-            $type_obj = get_post_type_object($post_type);    
+            $type_obj = get_post_type_object($post_type);
         ?>
             <th class="restrict-column ppc-menu-row"><?php printf(__('%s Restrict', 'capsman-enhanced'), $type_obj->labels->singular_name);?><br />
             <input class="check-item gutenberg check-all-menu-item" type="checkbox" title="<?php _e('Toggle all', 'capsman-enhanced');?>" data-pp_type="<?php echo $post_type;?>" />
@@ -50,7 +50,7 @@ foreach($def_post_types as $post_type) {
             ?>
             </td>
         </tr>
-        
+
         <?php
         foreach ($arr as $feature_slug => $arr_feature) {
         ?>
@@ -73,7 +73,7 @@ foreach($def_post_types as $post_type) {
         <?php
         }
     }
-    
+
     do_action('pp_capabilities_features_gutenberg_after_table_tr');
     ?>
     </tbody>

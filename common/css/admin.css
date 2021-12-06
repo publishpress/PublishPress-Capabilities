@@ -482,7 +482,7 @@ table#akmin tr td input[type=checkbox] {
 
 
 table#akmin .pp-capability-menus-select .restrict-column {
-  width: 70px !important;
+  min-width: 90px;
   text-align: center;
   display: table-cell !important;
   clear: none !important;
@@ -571,13 +571,28 @@ table#akmin .pp-capability-menus-select .restrict-column {
   visibility: visible;
 }
 
-.capabilities_page_pp-capabilities-admin-menus input.ppc-admin-menu-submit, 
+.capabilities_page_pp-capabilities-admin-menus input.ppc-admin-menu-submit,
 .capabilities_page_pp-capabilities-nav-menus input.ppc-nav-menu-submit {
 margin-bottom: 10px !important;
 }
 
 .pp-capability-menus-wrapper .features-section-header {
-  padding-left: 35px !important;
+  padding-left: 10px !important;
+}
+
+/* Filters */
+.ppc-filter-wrapper {
+	float: right;
+	margin-bottom: 15px;
+	display: flex;
+}
+
+.ppc-filter-wrapper .button {
+	margin-left: 5px;
+}
+
+.ppc-filter-no-results {
+	margin-top: 20px;
 }
 
 /* ====================================================== Main Screen */
@@ -626,6 +641,7 @@ margin-bottom: 10px !important;
 
 #ppc-capabilities-wrapper .ppc-capabilities-content > div > h3 {
 	margin-top: 0;
+	display: inline-block;
 }
 
 @media (max-width: 1199px) {
@@ -650,6 +666,15 @@ margin-bottom: 10px !important;
 	}
 }
 
+@media (max-width: 1184px) {
+
+	/* Filters */
+	.ppc-filter-wrapper {
+		float: none;
+		margin-bottom: 25px;
+	}
+}
+
 @media (max-width: 782px) {
 
 	table.cme-checklist.form-table tr td {
@@ -668,5 +693,5 @@ margin-bottom: 10px !important;
   #pp-capability-menu-wrapper table th {
       line-height: 24px;
   }
-  
+
 }
