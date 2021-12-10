@@ -77,6 +77,23 @@ class PP_Capabilities_Admin_UI {
                 }
             }
         });
+
+
+        add_filter('pp_capabilities_feature_post_types', [$this, 'fltEditorFeaturesPostTypes'], 5);
+    }
+
+    public function fltEditorFeaturesPostTypes($def_post_types) {
+        $type_args = defined('PP_CAPABILITIES_PRIVATE_TYPES') ? [] : ['public' => true];
+        $def_post_types = array_merge($def_post_types, get_post_types($type_args));
+
+        unset($def_post_types['attachment']);
+
+        if ((count($def_post_types) > 14) && !defined('PP_CAPABILITIES_UNLIMITED_FEATURE_TYPES')) {
+            $custom_types = array_diff($def_post_types, ['post', 'page']);
+            $def_post_types = array_merge(['post', 'page'], array_slice($custom_types, 0, 12));
+        }
+
+        return $def_post_types;
     }
 
     public function shouldDisplayBanner() {
@@ -96,14 +113,13 @@ class PP_Capabilities_Admin_UI {
         static $def_post_types; // avoid redundant filter application
 
         if (!isset($def_post_types)) {
-            //$def_post_types = apply_filters('pp_capabilities_feature_post_types', get_post_types(['public' => true]));
-            $def_post_types = apply_filters('pp_capabilities_feature_post_types', ['post', 'page']);
+            $def_post_types = array_unique(apply_filters('pp_capabilities_feature_post_types', ['post', 'page']));
         }
 
         $post_type = pp_capabilities_get_post_type();
 
         // Return if not a supported post type
-        if (!in_array($post_type, $def_post_types)) {
+        if (in_array($post_type, apply_filters('pp_capabilities_unsupported_post_types', ['attachment']))) {
             return;
         }
 
