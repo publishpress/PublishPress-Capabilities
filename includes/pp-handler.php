@@ -10,7 +10,7 @@ function _cme_update_pp_usage() {
 	static $updated;
 	if ( ! empty($updated) ) { return true; }
 	
-	if ( ! current_user_can( 'manage_capabilities' ) ) {
+	if (!current_user_can( 'manage_capabilities' ) || !check_admin_referer('capsman-general-manager')) {
 		return false;
 	}
 	
