@@ -3,7 +3,7 @@
  * Plugin Name: PublishPress Capabilities
  * Plugin URI: https://publishpress.com/capability-manager/
  * Description: Manage WordPress role definitions, per-site or network-wide. Organizes post capabilities by post type and operation.
- * Version: 2.3
+ * Version: 2.3.2
  * Author: PublishPress
  * Author URI: https://publishpress.com/
  * Text Domain: capsman-enhanced
@@ -25,13 +25,13 @@
  * @copyright   Copyright (C) 2009, 2010 Jordi Canals; modifications Copyright (C) 2020 PublishPress
  * @license		GNU General Public License version 3
  * @link		https://publishpress.com/
- * @version 	2.3
+ * @version 	2.3.2
  */
 
 if (!defined('CAPSMAN_VERSION')) {
-	define('CAPSMAN_VERSION', 			'2.3');
-	define('CAPSMAN_ENH_VERSION', 		'2.3');
-	define('PUBLISHPRESS_CAPS_VERSION', '2.3');
+	define('CAPSMAN_VERSION', 			'2.3.2');
+	define('CAPSMAN_ENH_VERSION', 		'2.3.2');
+	define('PUBLISHPRESS_CAPS_VERSION', '2.3.2');
 }
 
 foreach (get_option('active_plugins') as $plugin_file) {
@@ -142,20 +142,14 @@ add_action( 'init', '_cme_cap_helper', 49 );  // Press Permit Cap Helper, regist
 if ( is_multisite() )
 	require_once ( dirname(__FILE__) . '/includes/network.php' );
 
-// Display message inviting to install Permissions
-if (
-((defined('WP_DEBUG') && defined('CAPSMAN_INSTALL_PERMISSIONS')) || (!cme_is_plugin_active('press-permit-core.php') && !cme_is_plugin_active('presspermit-pro.php')))
-&& !isset( $_GET['pp-after-click'])
-&& !defined('CAPSMAN_DISABLE_PERMISSIONS_PROMO')
-) {
-	add_action('init', function() {
-		global $pagenow;
+// Check if Permissions is installed
+if (!cme_is_plugin_active('press-permit-core.php') && !cme_is_plugin_active('presspermit-pro.php')) {
+	define('CAPSMAN_PERMISSIONS_INSTALLED', false);
 
-		if (in_array($pagenow, ['edit.php', 'plugins.php', 'plugin-install.php']) 
-		|| ('admin.php' == $pagenow && !empty($_REQUEST['page']) && (false !== strpos($_REQUEST['page'], 'pp-capabilities')))
-		|| (!empty($_REQUEST['action']) && ('ppc_permissions_action' == $_REQUEST['action']))
-		) {
-			require_once ( dirname(__FILE__) . '/includes-core/pp-capabilities-permissions.php' );
-		}
-	});
+	// Sidebar banners library
+	if (!defined('PP_WP_BANNERS_VERSION')) {
+	    require_once __DIR__ . '/vendor/publishpress/wordpress-banners/BannersMain.php';
+	}
+} else {
+	define('CAPSMAN_PERMISSIONS_INSTALLED', true);
 }
