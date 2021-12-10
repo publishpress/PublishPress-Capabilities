@@ -187,10 +187,11 @@ function pp_capabilities_is_classic_editor_available()
         || function_exists( 'the_gutenberg_project' )
         || class_exists('Gutenberg_Ramp')
         || version_compare($wp_version, '5.0', '<')
+        || class_exists('WooCommerce')
+        || (defined('PP_CAPABILITIES_CONFIGURE_CLASSIC_EDITOR') && PP_CAPABILITIES_CONFIGURE_CLASSIC_EDITOR)
         || (function_exists('et_get_option') && 'on' === et_get_option('et_enable_classic_editor', 'off'));
 }
 
-    
 /**
  * Get admin bar node and set as global for our usage.
  * Due to admin toolbar, this function need to run in frontend as well
