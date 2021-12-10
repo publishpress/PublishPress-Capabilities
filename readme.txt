@@ -421,7 +421,7 @@ Fixed : Security issue. Please update.
 = 2.3.1 - 6 Dec 2021 =
   * Fixed : Security issue
   * Fixed : PHP Notice on Capabilities screen
-
+  
 = 2.3 - 28 Oct 2021 =
   * Change : Role Capabilities screen uses tabs
   * Feature : New "Admin Features" screen #200

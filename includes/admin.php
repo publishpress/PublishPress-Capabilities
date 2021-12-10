@@ -86,7 +86,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 	<form id="publishpress_caps_form" method="post" action="admin.php?page=<?php echo $this->ID ?>">
 	<?php wp_nonce_field('capsman-general-manager'); ?>
 
-	<?php 
+	<?php
 	$tab = (!empty($_REQUEST['pp_caps_tab'])) ? sanitize_key($_REQUEST['pp_caps_tab']) : 'edit';
 	?>
 
@@ -326,6 +326,13 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 							);
 						}
 
+						//PublishPress Capabilities Capabilities
+						$plugin_caps['PublishPress Capabilities'] = apply_filters('cme_publishpress_capabilities_capabilities',
+							array(
+							'manage_capabilities',
+							)
+						);
+
 						if (defined('PUBLISHPRESS_MULTIPLE_AUTHORS_VERSION')) {
 							if ($_caps = apply_filters('cme_multiple_authors_capabilities', array())) {
 								$plugin_caps['PublishPress Authors'] = $_caps;
@@ -522,10 +529,19 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 							}
 
 							echo "<div id='$id' style='display:$div_display;'>";
-							
+
 							$caption_pattern = ('taxonomy' == $item_type) ? __('Term %s Capabilities', 'capability-manager-enhanced') : __('Post %s Capabilities', 'capability-manager-enhanced');
 
 							echo '<h3>' .  sprintf($caption_pattern, $cap_type_names[$cap_type]) . '</h3>';
+
+							echo '<div class="ppc-filter-wrapper">';
+								echo '<select class="ppc-filter-select">';
+									$filter_caption = ('taxonomy' == $item_type) ? __('Filter by taxonomy', 'capability-manager-enhanced') : __('Filter by post type', 'capability-manager-enhanced');
+									echo '<option value="">' . $filter_caption . '</option>';
+								echo '</select>';
+								echo ' <button class="button secondary-button ppc-filter-select-reset" type="button">' . __('Clear', 'capability-manager-enhanced') . '</button>';
+							echo '</div>';
+
 							echo "<table class='widefat fixed striped cme-typecaps cme-typecaps-$cap_type'>";
 
 							echo '<thead><tr><th></th>';
@@ -711,8 +727,16 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 						<?php
 
 						echo '<h3>' . __( 'WordPress Core Capabilities', 'capsman-enhanced' ) . '</h3>';
-						echo '<table class="widefat fixed striped form-table cme-checklist"><tr>';
 
+						echo '<div class="ppc-filter-wrapper">';
+							echo '<input type="text" class="regular-text ppc-filter-text" placeholder="' . __('Filter by capability', 'capability-manager-enhanced') . '">';
+							echo ' <button class="button secondary-button ppc-filter-text-reset" type="button">' . __('Clear', 'capability-manager-enhanced') . '</button>';
+						echo '</div>';
+						echo '<div class="ppc-filter-no-results" style="display:none;">' . __( 'No results found. Please try again with a different word.', 'capsman-enhanced' ) . '</div>';
+
+						echo '<table class="widefat fixed striped form-table cme-checklist">';
+
+						$centinel_ = true;
 						$checks_per_row = get_option( 'cme_form-rows', 1 );
 						$i = 0; $first_row = true;
 
@@ -721,8 +745,14 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 							if ( ! $is_administrator && ! current_user_can($cap_name) )
 								continue;
 
+							// Output first <tr>
+							if ( $centinel_ == true ) {
+								echo '<tr class="' . esc_html($cap_name) . '">';
+								$centinel_ = false;
+							}
+
 							if ( $i == $checks_per_row ) {
-								echo '</tr><tr>';
+								echo '</tr><tr class="' . esc_html($cap_name) . '">';
 								$i = 0;
 							}
 
@@ -825,9 +855,18 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 						$div_display = ($id == $active_tab_id) ? 'block' : 'none';
 
 						echo '<div id="' . $id . '" style="display:' . $div_display . '">';
-						echo '<table class="widefat fixed striped form-table cme-checklist"><tr>';
+
 						echo '<h3 class="cme-cap-section">' . sprintf(__( 'Plugin Capabilities &ndash; %s', 'capsman-enhanced' ), str_replace('_', ' ', $plugin )) . '</h3>';
 
+						echo '<div class="ppc-filter-wrapper">';
+							echo '<input type="text" class="regular-text ppc-filter-text" placeholder="' . __('Filter by capability', 'capability-manager-enhanced') . '">';
+							echo ' <button class="button secondary-button ppc-filter-text-reset" type="button">' . __('Clear', 'capability-manager-enhanced') . '</button>';
+						echo '</div>';
+						echo '<div class="ppc-filter-no-results" style="display:none;">' . __( 'No results found. Please try again with a different word.', 'capsman-enhanced' ) . '</div>';
+
+						echo '<table class="widefat fixed striped form-table cme-checklist">';
+
+						$centinel_ = true;
 						$checks_per_row = get_option( 'cme_form-rows', 1 );
 						$i = 0; $first_row = true;
 
@@ -839,8 +878,14 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 							if ( ! $is_administrator && ! current_user_can($cap_name) )
 								continue;
 
+							// Output first <tr>
+							if ( $centinel_ == true ) {
+								echo '<tr class="' . esc_html($cap_name) . '">';
+								$centinel_ = false;
+							}
+
 							if ( $i == $checks_per_row ) {
-								echo '</tr><tr>';
+								echo '</tr><tr class="' . esc_html($cap_name) . '">';
 								$i = 0;
 							}
 
@@ -1003,10 +1048,15 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 						// caps: additional
 						echo '<h3 class="cme-cap-section">' . __( 'Additional Capabilities', 'capsman-enhanced' ) . '</h3>';
 
+						echo '<div class="ppc-filter-wrapper">';
+							echo '<input type="text" class="regular-text ppc-filter-text" placeholder="' . __('Filter by capability', 'capability-manager-enhanced') . '">';
+							echo ' <button class="button secondary-button ppc-filter-text-reset" type="button">' . __('Clear', 'capability-manager-enhanced') . '</button>';
+						echo '</div>';
+						echo '<div class="ppc-filter-no-results" style="display:none;">' . __( 'No results found. Please try again with a different word.', 'capsman-enhanced' ) . '</div>';
 						?>
 						<table class="widefat fixed striped form-table cme-checklist">
-						<tr>
 						<?php
+						$centinel_ = true;
 						$i = 0; $first_row = true;
 
 						foreach( $all_capabilities as $cap_name ) {
@@ -1043,8 +1093,14 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 								continue;
 							}
 
+							// Output first <tr>
+							if ( $centinel_ == true ) {
+								echo '<tr class="' . esc_html($cap_name) . '">';
+								$centinel_ = false;
+							}
+
 							if ( $i == $checks_per_row ) {
-								echo '</tr><tr>';
+								echo '</tr><tr class="' . esc_html($cap_name) . '">';
 								$i = 0; $first_row = false;
 							}
 

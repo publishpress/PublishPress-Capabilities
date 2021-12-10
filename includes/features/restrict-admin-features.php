@@ -12,6 +12,9 @@ class PP_Capabilities_Admin_Features
     {
         $elements = [];
 
+        //Add header and footer
+        $elements[__('Header and Footer', 'capsman-enhanced')] = self::formatHeaderFooter();
+
         //Add toolbar
         $elements[__('Admin Toolbar', 'capsman-enhanced')] = self::formatAdminToolbar();
 
@@ -40,6 +43,7 @@ class PP_Capabilities_Admin_Features
         $icons['new-content']      = 'plus';
         $icons['wpseo-menu']       = 'open-folder';
         $icons['top-secondary']    = 'admin-users';
+        $icons['headerandfooter']  = 'admin-multisite';
 
         return apply_filters('pp_capabilities_admin_features_icons', $icons);
     }
@@ -65,6 +69,21 @@ class PP_Capabilities_Admin_Features
         $title['wpseo-menu']       = __('Yoast SEO', 'capsman-enhanced');
 
         return isset($title[$id]) ? $title[$id] : $id;
+    }
+
+    /**
+     * Format header and footer items
+     *
+     * @return array Elements layout item.
+     */
+    public static function formatHeaderFooter()
+    {
+        $elements_item['screen_options'] = ['label'  => __('Screen Options', 'capsman-enhanced'), 'action' => 'ppc_header_footer'];
+        $elements_item['screen_help'] = ['label'  => __('Help', 'capsman-enhanced'), 'action' => 'ppc_header_footer'];
+        $elements_item['footer_thankyou'] = ['label'  => __('Thank you for creating with WordPress', 'capsman-enhanced'), 'action' => 'ppc_header_footer'];
+        $elements_item['footer_upgrade'] = ['label'  => sprintf( __( 'Version %s' ), get_bloginfo('version'), 'capsman-enhanced' ), 'action' => 'ppc_header_footer'];
+
+        return $elements_item;
     }
 
     /**
@@ -256,20 +275,74 @@ class PP_Capabilities_Admin_Features
         //$all_disabled_elements = array_merge(...$all_disabled_elements);  // This is a PHP 7.4 operator
         $all_disabled_elements = (is_array($all_disabled_elements) && isset($all_disabled_elements[0])) ? array_merge($all_disabled_elements[0]) : [];
 
+        do_action('ppc_admin_feature_restriction', $all_disabled_elements);
+
 		//disable toolbar
 		$ppc_disabled_toolbar = self::adminFeaturesRestrictedElements($all_disabled_elements, 'ppc_adminbar');
 		if(count($ppc_disabled_toolbar) > 0){
-			add_action( 'wp_before_admin_bar_render', [ __CLASS__, 'disableDashboardBar' ], 99 );
+            if(in_array('ppc_adminbar||admintoolbar', $ppc_disabled_toolbar)){//whole admin bar disabled
+                //frontend admin tool bar
+                add_filter('show_admin_bar', '__return_false');
+                //backend admin tool bar
+                add_action('admin_head', [__CLASS__, 'disableDashboardBarBackend']);
+            } else {
+			    add_action( 'wp_before_admin_bar_render', [ __CLASS__, 'disableDashboardBar' ], 99 );
+            }
 		}
 
 		if(is_admin()){
 			$ppc_disabled_widget = self::adminFeaturesRestrictedElements($all_disabled_elements, 'ppc_dashboard_widget');
+			$ppc_header_footer   = self::adminFeaturesRestrictedElements($all_disabled_elements, 'ppc_header_footer');
+            
 			//disable widget
 			if(count($ppc_disabled_widget) > 0){
 				add_action( 'wp_dashboard_setup', [ __CLASS__, 'disableDashboardWidgets' ], 99 );
 				add_action( 'wp_network_dashboard_setup', [ __CLASS__, 'disableDashboardWidgets' ], 99 );
 			}
-		}
+
+            //admin header and footer item
+            if(count($ppc_header_footer) > 0){
+                self::disableHeaderFooterElement($ppc_header_footer);
+            }
+		   }
+    }
+
+	/**
+	 * Disable header and footer item
+	 *
+	 */
+	public static function disableHeaderFooterElement($ppc_header_footer) {
+        if(in_array('ppc_header_footer||screen_options', $ppc_header_footer)){
+            add_filter( 'screen_options_show_screen', '__return_false', 999 );
+        }
+        if(in_array('ppc_header_footer||screen_help', $ppc_header_footer)){
+            add_filter('admin_head', [__CLASS__, 'contextual_help_list_remove'], 999);
+        }
+        if(in_array('ppc_header_footer||footer_thankyou', $ppc_header_footer)){
+            add_filter( 'admin_footer_text', '__return_false', 999 );
+        }
+        if(in_array('ppc_header_footer||footer_upgrade', $ppc_header_footer)){
+            add_filter( 'update_footer', '__return_false', 999 );
+        }
+	}
+
+	/**
+	 * Remove help tab
+	 *
+	 */
+    public static function contextual_help_list_remove(){
+        $screen = get_current_screen();
+        $screen->remove_help_tabs();
+    }
+
+  /**
+	 * Disable backend admin bar.
+	 *
+	 */
+    public static function disableDashboardBarBackend()
+    {
+        echo '<style>html.wp-toolbar { padding-top:0!important; }</style>';
+        echo '<style>#wpadminbar { display:none!important }</style>';
     }
 
 	/**
