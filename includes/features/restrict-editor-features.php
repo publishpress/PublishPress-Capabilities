@@ -104,7 +104,7 @@ class PP_Capabilities_Post_Features {
 
         $post_type_supports = [];
 
-        $def_post_types = apply_filters('pp_capabilities_feature_post_types', ['post', 'page']);
+        $def_post_types = array_unique(apply_filters('pp_capabilities_feature_post_types', ['post', 'page']));
 
         foreach($def_post_types as $post_type) {
             $post_type_supports = array_merge($post_type_supports, get_all_post_type_supports($post_type));

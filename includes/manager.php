@@ -474,28 +474,31 @@ class CapabilityManager
 		}
 
 		if ('POST' == $_SERVER['REQUEST_METHOD'] && isset($_POST['ppc-editor-features-role'])) {
-            $this->set_current_role($_POST['ppc-editor-features-role']);
-
-            $classic_editor = pp_capabilities_is_classic_editor_available();
-
-            //$def_post_types = apply_filters('pp_capabilities_feature_post_types', get_post_types(['public' => true]));
-            $def_post_types = apply_filters('pp_capabilities_feature_post_types', ['post', 'page']);
-
-            foreach ($def_post_types as $post_type) {
-                if ($classic_editor) {
-                    $posted_settings = (isset($_POST["capsman_feature_restrict_classic_{$post_type}"])) ? $_POST["capsman_feature_restrict_classic_{$post_type}"] : [];
-                    $post_features_option = get_option("capsman_feature_restrict_classic_{$post_type}", []);
-                    $post_features_option[$_POST['ppc-editor-features-role']] = $posted_settings;
-                    update_option("capsman_feature_restrict_classic_{$post_type}", $post_features_option, false);
-                }
-
-                $posted_settings = (isset($_POST["capsman_feature_restrict_{$post_type}"])) ? $_POST["capsman_feature_restrict_{$post_type}"] : [];
-                $post_features_option = get_option("capsman_feature_restrict_{$post_type}", []);
-                $post_features_option[$_POST['ppc-editor-features-role']] = $posted_settings;
-                update_option("capsman_feature_restrict_{$post_type}", $post_features_option, false);
-            }
-
-            ak_admin_notify(__('Settings updated.', 'capabilities-pro'));
+			if (!check_admin_referer('pp-capabilities-editor-features')) {
+				wp_die('<strong>' .__('You do not have permission to manage editor features.', 'capabilities-pro') . '</strong>');
+			} else {
+	            $this->set_current_role($_POST['ppc-editor-features-role']);
+	
+	            $classic_editor = pp_capabilities_is_classic_editor_available();
+	
+				$def_post_types = array_unique(apply_filters('pp_capabilities_feature_post_types', ['post', 'page']));
+	
+	            foreach ($def_post_types as $post_type) {
+	                if ($classic_editor) {
+	                    $posted_settings = (isset($_POST["capsman_feature_restrict_classic_{$post_type}"])) ? $_POST["capsman_feature_restrict_classic_{$post_type}"] : [];
+	                    $post_features_option = get_option("capsman_feature_restrict_classic_{$post_type}", []);
+	                    $post_features_option[$_POST['ppc-editor-features-role']] = $posted_settings;
+	                    update_option("capsman_feature_restrict_classic_{$post_type}", $post_features_option, false);
+	                }
+	
+	                $posted_settings = (isset($_POST["capsman_feature_restrict_{$post_type}"])) ? $_POST["capsman_feature_restrict_{$post_type}"] : [];
+	                $post_features_option = get_option("capsman_feature_restrict_{$post_type}", []);
+	                $post_features_option[$_POST['ppc-editor-features-role']] = $posted_settings;
+	                update_option("capsman_feature_restrict_{$post_type}", $post_features_option, false);
+	            }
+	
+	            ak_admin_notify(__('Settings updated.', 'capabilities-pro'));
+			}
 		}
 
 		do_action('pp_capabilities_editor_features');
@@ -531,19 +534,23 @@ class CapabilityManager
 		}
 
 		if ('POST' == $_SERVER['REQUEST_METHOD'] && isset($_POST['ppc-admin-features-role'])) {
-            $this->set_current_role($_POST['ppc-admin-features-role']);
-
-			$disabled_admin_items = !empty(get_option('capsman_disabled_admin_features')) ? (array)get_option('capsman_disabled_admin_features') : [];
-			$disabled_admin_items[$_POST['ppc-admin-features-role']] = isset($_POST['capsman_disabled_admin_features']) ? $_POST['capsman_disabled_admin_features'] : '';
-
-			update_option('capsman_disabled_admin_features', $disabled_admin_items, false);
-
-			//set reload option for instant reflection if user is updating own role
-			if(in_array($_POST['ppc-admin-features-role'], wp_get_current_user()->roles)){
-				$ppc_page_reload = '1';
+			if (!check_admin_referer('pp-capabilities-admin-features')) {
+				wp_die('<strong>' .__('You do not have permission to manage admin features.', 'capabilities-pro') . '</strong>');
+			} else {
+	            $this->set_current_role($_POST['ppc-admin-features-role']);
+	
+				$disabled_admin_items = !empty(get_option('capsman_disabled_admin_features')) ? (array)get_option('capsman_disabled_admin_features') : [];
+				$disabled_admin_items[$_POST['ppc-admin-features-role']] = isset($_POST['capsman_disabled_admin_features']) ? $_POST['capsman_disabled_admin_features'] : '';
+	
+				update_option('capsman_disabled_admin_features', $disabled_admin_items, false);
+	
+				//set reload option for instant reflection if user is updating own role
+				if(in_array($_POST['ppc-admin-features-role'], wp_get_current_user()->roles)){
+					$ppc_page_reload = '1';
+				}
+				
+	            ak_admin_notify(__('Settings updated.', 'capabilities-pro'));
 			}
-			
-            ak_admin_notify(__('Settings updated.', 'capabilities-pro'));
 		}
 
         include(dirname(CME_FILE) . '/includes/features/admin-features.php');

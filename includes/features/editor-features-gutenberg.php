@@ -3,7 +3,18 @@ $gutenberg_elements = PP_Capabilities_Post_Features::elementsLayout();
 
 $gutenberg_post_disabled = [];
 
-$def_post_types = apply_filters('pp_capabilities_feature_post_types', ['post', 'page']);
+$def_post_types = array_unique(apply_filters('pp_capabilities_feature_post_types', ['post', 'page']));
+
+asort($def_post_types);
+
+if (count($def_post_types) > 6) {
+    ?>
+    <style type="text/css">
+    .pp-columns-wrapper.pp-enable-sidebar .pp-column-left {width: 100% !important;}
+    .pp-columns-wrapper.pp-enable-sidebar .pp-column-left, .pp-columns-wrapper.pp-enable-sidebar .pp-column-right {float: none !important;}
+    </style>
+    <?php
+}
 
 foreach($def_post_types as $post_type) {
     $_disabled = get_option("capsman_feature_restrict_{$post_type}", []);
@@ -76,6 +87,7 @@ foreach($def_post_types as $post_type) {
 
     do_action('pp_capabilities_features_gutenberg_after_table_tr');
     ?>
+
     </tbody>
 </table>
 
