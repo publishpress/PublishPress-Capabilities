@@ -580,6 +580,12 @@ margin-bottom: 10px !important;
   padding-left: 10px !important;
 }
 
+
+body.capabilities_page_pp-capabilities-admin-features .pp-capability-menus-select .restrict-column {
+  width: 70px !important;
+}
+
+
 /* Filters */
 .ppc-filter-wrapper {
 	float: right;
