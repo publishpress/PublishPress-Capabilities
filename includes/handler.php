@@ -130,7 +130,9 @@ class CapsmanHandler
 				wp_redirect($url);
 				exit;
 			} else {
-				ak_admin_notify(__('Incorrect capability name.'));
+				add_action('all_admin_notices', function() {
+					ak_admin_notify(__('Incorrect capability name.'));
+				});
 			}
 			
 		} elseif ( ! empty($post['update_filtered_types']) || ! empty($post['update_filtered_taxonomies']) || ! empty($post['update_detailed_taxonomies']) ) {
@@ -169,10 +171,10 @@ class CapsmanHandler
 	 * @param string $name	Name from user input.
 	 * @return array|false An array with the name and display_name, or false if not valid $name.
 	 */
-	public function createNewName( $name ) {
+	public function createNewName( $name, $args=[] ) {
 		// Allow max 40 characters, letters, digits and spaces
 		$name = trim(substr($name, 0, 40));
-		$pattern = '/^[a-zA-Z][a-zA-Z0-9 _]+$/';
+		$pattern = (!empty($args['allow_dashes'])) ? '/^[a-zA-Z][a-zA-Z0-9 _\-]+$/' : '/^[a-zA-Z][a-zA-Z0-9 _]+$/';
 
 		if ( preg_match($pattern, $name) ) {
 			$roles = ak_get_roles();
