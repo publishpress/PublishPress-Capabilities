@@ -186,7 +186,7 @@ class Pp_Roles_Actions
          */
         require_once(dirname(CME_FILE).'/includes/handler.php');
         $capsman_handler = new CapsmanHandler();
-        $role = $capsman_handler->createNewName($_REQUEST['name']);
+        $role = $capsman_handler->createNewName(pp_capabilities_sanitize_entry($_REQUEST['name']));
         
         /**
          * Check for invalid name entry
@@ -259,7 +259,7 @@ class Pp_Roles_Actions
         }
 
         if (empty($role)) {
-            $role = (isset($_REQUEST['role'])) ? $_REQUEST['role'] : '';
+            $role = (isset($_REQUEST['role'])) ? sanitize_key($_REQUEST['role']) : '';
         }
 
         /**
@@ -280,11 +280,11 @@ class Pp_Roles_Actions
         $roles = [];
         if ($role) {
             if (is_string($role)) {
-                $input = sanitize_text_field($role);
+                $input = sanitize_key($role);
                 $roles[] = $input;
             } else if (is_array($role)) {
                 foreach ($role as $key => $id) {
-                    $roles[] = sanitize_text_field($id);
+                    $roles[] = sanitize_key($id);
                 }
             }
         } else {
@@ -380,7 +380,7 @@ class Pp_Roles_Actions
         }
 
         if (empty($role)) {
-            $role = (isset($_REQUEST['role'])) ? $_REQUEST['role'] : '';
+            $role = (isset($_REQUEST['role'])) ? sanitize_key($_REQUEST['role']) : '';
         }
 
         /**
@@ -394,11 +394,11 @@ class Pp_Roles_Actions
         $roles = [];
         if ($role) {
             if (is_string($role)) {
-                $input = sanitize_text_field($role);
+                $input = sanitize_key($role);
                 $roles[] = $input;
             } else if (is_array($role)) {
                 foreach ($role as $key => $id) {
-                    $roles[] = sanitize_text_field($id);
+                    $roles[] = sanitize_key($id);
                 }
             }
         } else {
@@ -441,7 +441,7 @@ class Pp_Roles_Actions
         }
 
         if (empty($role)) {
-            $role = (isset($_REQUEST['role'])) ? $_REQUEST['role'] : '';
+            $role = (isset($_REQUEST['role'])) ? sanitize_key($_REQUEST['role']) : '';
         }
 
         /**
@@ -455,11 +455,11 @@ class Pp_Roles_Actions
         $roles = [];
         if ($role) {
             if (is_string($role)) {
-                $input = sanitize_text_field($role);
+                $input = sanitize_key($role);
                 $roles[] = $input;
             } else if (is_array($role)) {
                 foreach ($role as $key => $id) {
-                    $roles[] = sanitize_text_field($id);
+                    $roles[] = sanitize_key($id);
                 }
             }
         } else {

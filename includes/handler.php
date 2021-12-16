@@ -31,7 +31,7 @@ class CapsmanHandler
 
 		// Create a new role.
 		if ( ! empty($post['CreateRole']) ) {
-			if ( $newrole = $this->createRole($post['create-name']) ) {
+			if ( $newrole = $this->createRole(pp_capabilities_sanitize_entry($post['create-name'])) ) {
 				ak_admin_notify(__('New role created.', 'capsman-enhanced'));
 				$this->cm->set_current_role($newrole);
 			} else {
@@ -43,8 +43,8 @@ class CapsmanHandler
 
 		// rename role
 		} elseif (!empty($post['RenameRole']) && !empty($post['rename-name'])) {
-			$current = get_role($post['current']);
-			$new_title = sanitize_text_field($post['rename-name']);
+			$current = get_role(sanitize_key($post['current']));
+			$new_title = pp_capabilities_sanitize_entry($post['rename-name']);
 
 			if ($current && isset($wp_roles->roles[$current->name]) && $new_title) {
 				$old_title = $wp_roles->roles[$current->name]['name'];
@@ -56,8 +56,8 @@ class CapsmanHandler
 			}
 		// Copy current role to a new one.
 		} elseif ( ! empty($post['CopyRole']) ) {
-			$current = get_role($post['current']);
-			if ( $newrole = $this->createRole($post['copy-name'], $current->capabilities) ) {
+			$current = get_role(sanitize_key($post['current']));
+			if ( $newrole = $this->createRole(pp_capabilities_sanitize_entry($post['copy-name']), $current->capabilities) ) {
 				ak_admin_notify(__('New role created.', 'capsman-enhanced'));
 				$this->cm->set_current_role($newrole);
 			} else {
@@ -74,12 +74,12 @@ class CapsmanHandler
 				( method_exists( $wp_roles, 'for_site' ) ) ? $wp_roles->for_site() : $wp_roles->reinit();
 			}
 			
-			if (!pp_capabilities_is_editable_role($post['current'])) {
+			if (!pp_capabilities_is_editable_role(sanitize_key($post['current']))) {
 				ak_admin_error( 'The selected role is not editable.', 'capsman-enhanced' );
 				return;
 			}
 
-			$this->saveRoleCapabilities($post['current'], $post['caps'], $post['level']);
+			$this->saveRoleCapabilities(sanitize_key($post['current']), stripslashes_deep($post['caps']), (int) $post['level']);
 			
 			if ( defined( 'PRESSPERMIT_ACTIVE' ) ) {  // log customized role caps for subsequent restoration
 				// for bbPress < 2.2, need to log customization of roles following bbPress activation
@@ -88,7 +88,9 @@ class CapsmanHandler
 				if ( ! $customized_roles = get_option( 'pp_customized_roles' ) )
 					$customized_roles = array();
 				
-				$customized_roles[$post['role']] = (object) array( 'caps' => array_map( 'boolval', $post['caps'] ), 'plugins' => $plugins );
+				$_role = sanitize_key($post['role']);
+
+				$customized_roles[$_role] = (object) array( 'caps' => array_map( 'boolval', $post['caps'] ), 'plugins' => $plugins );
 				update_option( 'pp_customized_roles', $customized_roles );
 				
 				global $wpdb;
@@ -101,15 +103,15 @@ class CapsmanHandler
 				( method_exists( $wp_roles, 'for_site' ) ) ? $wp_roles->for_site() : $wp_roles->reinit();
 			}
 
-			if (!pp_capabilities_is_editable_role($post['current'])) {
+			if (!pp_capabilities_is_editable_role(sanitize_key($post['current']))) {
 				ak_admin_error( 'The selected role is not editable.', 'capsman-enhanced' );
 				return;
 			}
 
-			$role = get_role($post['current']);
-			$role->name = $post['current'];		// bbPress workaround
+			$role = get_role(sanitize_key($post['current']));
+			$role->name = sanitize_key($post['current']);		// bbPress workaround
 
-			$newname = $this->createNewName($post['capability-name']);
+			$newname = $this->createNewName(sanitize_key($post['capability-name']), ['allow_dashes' => true]);
 
 			if (empty($newname['error'])) {
 				$role->add_cap($newname['name']);
@@ -126,7 +128,7 @@ class CapsmanHandler
 				global $wpdb;
 				$wpdb->query( "UPDATE $wpdb->options SET autoload = 'no' WHERE option_name = 'pp_customized_roles'" );
 
-				$url = admin_url('admin.php?page=pp-capabilities&role=' . $post['role'] . '&added=1');
+				$url = admin_url('admin.php?page=pp-capabilities&role=' . sanitize_key($post['role']) . '&added=1');
 				wp_redirect($url);
 				exit;
 			} else {
@@ -398,7 +400,7 @@ class CapsmanHandler
 	 */
 	function adminDeleteRole ()
 	{
-		$role_name = $_GET['role'];
+		$role_name = sanitize_key($_GET['role']);
 		check_admin_referer('delete-role_' . $role_name);
 		
 		$this->cm->current = $role_name;

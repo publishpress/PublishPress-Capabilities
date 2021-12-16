@@ -461,7 +461,7 @@ class CapabilityManager
 
 		if (!isset($this->current)) {
 			if (empty($_POST) && !empty($_REQUEST['role'])) {
-				$this->set_current_role($_REQUEST['role']);
+				$this->set_current_role(sanitize_key($_REQUEST['role']));
 			}
 		}
 
@@ -477,27 +477,27 @@ class CapabilityManager
 			if (!check_admin_referer('pp-capabilities-editor-features')) {
 				wp_die('<strong>' .__('You do not have permission to manage editor features.', 'capabilities-pro') . '</strong>');
 			} else {
-	            $this->set_current_role($_POST['ppc-editor-features-role']);
-	
-	            $classic_editor = pp_capabilities_is_classic_editor_available();
-	
+				$this->set_current_role(sanitize_key($_POST['ppc-editor-features-role']));
+
+				$classic_editor = pp_capabilities_is_classic_editor_available();
+
 				$def_post_types = array_unique(apply_filters('pp_capabilities_feature_post_types', ['post', 'page']));
-	
-	            foreach ($def_post_types as $post_type) {
-	                if ($classic_editor) {
-	                    $posted_settings = (isset($_POST["capsman_feature_restrict_classic_{$post_type}"])) ? $_POST["capsman_feature_restrict_classic_{$post_type}"] : [];
-	                    $post_features_option = get_option("capsman_feature_restrict_classic_{$post_type}", []);
-	                    $post_features_option[$_POST['ppc-editor-features-role']] = $posted_settings;
-	                    update_option("capsman_feature_restrict_classic_{$post_type}", $post_features_option, false);
-	                }
-	
-	                $posted_settings = (isset($_POST["capsman_feature_restrict_{$post_type}"])) ? $_POST["capsman_feature_restrict_{$post_type}"] : [];
-	                $post_features_option = get_option("capsman_feature_restrict_{$post_type}", []);
-	                $post_features_option[$_POST['ppc-editor-features-role']] = $posted_settings;
-	                update_option("capsman_feature_restrict_{$post_type}", $post_features_option, false);
-	            }
-	
-	            ak_admin_notify(__('Settings updated.', 'capabilities-pro'));
+
+				foreach ($def_post_types as $post_type) {
+					if ($classic_editor) {
+						$posted_settings = (isset($_POST["capsman_feature_restrict_classic_{$post_type}"])) ? stripslashes_deep($_POST["capsman_feature_restrict_classic_{$post_type}"]) : [];
+						$post_features_option = get_option("capsman_feature_restrict_classic_{$post_type}", []);
+						$post_features_option[$_POST['ppc-editor-features-role']] = $posted_settings;
+						update_option("capsman_feature_restrict_classic_{$post_type}", $post_features_option, false);
+					}
+
+					$posted_settings = (isset($_POST["capsman_feature_restrict_{$post_type}"])) ? stripslashes_deep($_POST["capsman_feature_restrict_{$post_type}"]) : [];
+					$post_features_option = get_option("capsman_feature_restrict_{$post_type}", []);
+					$post_features_option[$_POST['ppc-editor-features-role']] = $posted_settings;
+					update_option("capsman_feature_restrict_{$post_type}", $post_features_option, false);
+				}
+
+				ak_admin_notify(__('Settings updated.', 'capabilities-pro'));
 			}
 		}
 
@@ -521,7 +521,7 @@ class CapabilityManager
 
 		if (!isset($this->current)) {
 			if (empty($_POST) && !empty($_REQUEST['role'])) {
-				$this->set_current_role($_REQUEST['role']);
+				$this->set_current_role(sanitize_key($_REQUEST['role']));
 			}
 		}
 
@@ -537,15 +537,17 @@ class CapabilityManager
 			if (!check_admin_referer('pp-capabilities-admin-features')) {
 				wp_die('<strong>' .__('You do not have permission to manage admin features.', 'capabilities-pro') . '</strong>');
 			} else {
-	            $this->set_current_role($_POST['ppc-admin-features-role']);
-	
+				$features_role = sanitize_key($_POST['ppc-admin-features-role']);
+				
+				$this->set_current_role($features_role);
+
 				$disabled_admin_items = !empty(get_option('capsman_disabled_admin_features')) ? (array)get_option('capsman_disabled_admin_features') : [];
-				$disabled_admin_items[$_POST['ppc-admin-features-role']] = isset($_POST['capsman_disabled_admin_features']) ? $_POST['capsman_disabled_admin_features'] : '';
-	
+				$disabled_admin_items[$features_role] = isset($_POST['capsman_disabled_admin_features']) ? stripslashes_deep($_POST['capsman_disabled_admin_features']) : '';
+
 				update_option('capsman_disabled_admin_features', $disabled_admin_items, false);
 	
 				//set reload option for instant reflection if user is updating own role
-				if(in_array($_POST['ppc-admin-features-role'], wp_get_current_user()->roles)){
+				if (in_array($features_role, wp_get_current_user()->roles)){
 					$ppc_page_reload = '1';
 				}
 				
@@ -658,12 +660,12 @@ class CapabilityManager
 			if ( ! empty($_REQUEST['current']) ) { // don't process role update unless form variable is received
 				check_admin_referer('capsman-general-manager');
 
-				$role = get_role($_REQUEST['current']);
+				$role = get_role(sanitize_key($_REQUEST['current']));
 				$current_level = ($role) ? ak_caps2level($role->capabilities) : 0;
 
 				$this->processAdminGeneral();
 
-				$set_level = (isset($_POST['level'])) ? $_POST['level'] : 0;
+				$set_level = (isset($_POST['level'])) ? (int) $_POST['level'] : 0;
 
 				if ($set_level != $current_level) {
 					global $wp_roles, $wp_version;
@@ -674,7 +676,7 @@ class CapabilityManager
 						$wp_roles->reinit();
 					}
 
-					foreach( get_users(array('role' => $_REQUEST['current'], 'fields' => 'ID')) as $ID ) {
+					foreach( get_users(array('role' => sanitize_key($_REQUEST['current']), 'fields' => 'ID')) as $ID ) {
 						$user = new WP_User($ID);
 						$user->get_role_caps();
 						$user->update_user_level_from_caps();
@@ -722,7 +724,7 @@ class CapabilityManager
 
 		if ( ! isset($this->current) ) { // By default, we manage the default role
 			if (empty($_POST) && !empty($_REQUEST['role'])) {
-				$role = $_REQUEST['role'];
+				$role = sanitize_key($_REQUEST['role']);
 
 				if (!pp_capabilities_is_editable_role($role)) {
 					wp_die(__('The selected role is not editable.', 'capsman-enhanced'));
@@ -763,9 +765,9 @@ class CapabilityManager
 
 		// Select a new role.
 		if ( ! empty($post['LoadRole']) ) {
-			$this->set_current_role($post['role']);
+			$this->set_current_role(sanitize_key($post['role']));
 		} else {
-			$this->set_current_role($post['current']);
+			$this->set_current_role(sanitize_key($post['current']));
 
 			require_once( dirname(__FILE__).'/handler.php' );
 			$capsman_modify = new CapsmanHandler( $this );

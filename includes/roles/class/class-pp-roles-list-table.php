@@ -413,7 +413,7 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
         /**
          * Handle search
          */
-        if ((!empty($_REQUEST['s'])) && $search = $_REQUEST['s']) {
+        if ((!empty($_REQUEST['s'])) && $search = pp_capabilities_sanitize_entry($_REQUEST['s'])) {
             $data_filtered = [];
             foreach ($data as $item) {
                 if ($this->str_contains($item['role'], $search, false) || $this->str_contains($item['name'], $search, false)) {
@@ -428,8 +428,8 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
          */
         function usort_reorder($a, $b)
         {
-            $orderby = (!empty($_REQUEST['orderby'])) ? sanitize_text_field($_REQUEST['orderby']) : 'role'; //If no sort, default to role
-            $order = (!empty($_REQUEST['order'])) ? sanitize_text_field($_REQUEST['order']) : 'asc'; //If no order, default to asc
+            $orderby = (!empty($_REQUEST['orderby'])) ? pp_capabilities_sanitize_entry($_REQUEST['orderby']) : 'role'; //If no sort, default to role
+            $order = (!empty($_REQUEST['order'])) ? sanitize_key($_REQUEST['order']) : 'asc'; //If no order, default to asc
             $result = strnatcasecmp($a[$orderby], $b[$orderby]); //Determine sort order, case insensitive, natural order
 
             return ($order === 'asc') ? $result : -$result; //Send final sort direction to usort
