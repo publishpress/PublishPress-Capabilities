@@ -183,7 +183,7 @@ class PP_Capabilities_Admin_UI {
                     CAPSMAN_VERSION
                 );
 
-                $roles = !empty($_GET['user_id']) ?$this->getUsersRoles($_GET['user_id']) : [];
+                $roles = !empty($_GET['user_id']) ? $this->getUsersRoles((int) $_GET['user_id']) : [];
 
                 if (empty($roles)) {
                     $roles = (array) get_option('default_role');
@@ -241,7 +241,7 @@ class PP_Capabilities_Admin_UI {
             // Remove the user's roles
             $user = get_user_by('ID', $userId);
 
-            $newRoles     = $_POST['pp_roles'];
+            $newRoles     = array_map('sanitize_key', $_POST['pp_roles']);
             $currentRoles = $user->roles;
 
             if (empty($newRoles) || !is_array($newRoles)) {
