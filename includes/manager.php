@@ -652,14 +652,14 @@ class CapabilityManager
 
 	function processRoleUpdate() {
 		if ( 'POST' == $_SERVER['REQUEST_METHOD'] && ( ! empty($_REQUEST['SaveRole']) || ! empty($_REQUEST['AddCap']) ) ) {
+			check_admin_referer('capsman-general-manager');
+			
 			if ((!is_multisite() || !is_super_admin()) && !current_user_can('administrator') && !current_user_can('manage_capabilities')) {
 				// TODO: Implement exceptions.
 				wp_die('<strong>' .__('You do not have permission to manage capabilities.', 'capsman-enhanced') . '</strong>');
 			}
 
 			if ( ! empty($_REQUEST['current']) ) { // don't process role update unless form variable is received
-				check_admin_referer('capsman-general-manager');
-
 				$role = get_role(sanitize_key($_REQUEST['current']));
 				$current_level = ($role) ? ak_caps2level($role->capabilities) : 0;
 
