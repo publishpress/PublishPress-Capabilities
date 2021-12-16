@@ -409,6 +409,11 @@ Fixed : Security issue. Please update.
 
 == Changelog ==
 
+= 2.3.3 - 16 Dec 2021 =
+  * Fixed : Capability names with dashes could not be added
+  * Fixed : After role rename, title in dropdown does not refresh
+  * Fixed : Input sanitization consistency
+
 = 2.3.2 - 8 Dec 2021 =
   * Feature : Filter Capabilities display by post type or text entry
   * Feature : Editor Features - Restrict editor elements for custom post types
