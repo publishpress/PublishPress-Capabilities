@@ -51,8 +51,10 @@ class CapsmanHandler
 				$wp_roles->roles[$current->name]['name'] = $new_title;
 				update_option($wp_roles->role_key, $wp_roles->roles);
 
-				ak_admin_notify(sprintf(__('Role "%s" (id %s) renamed to "%s"', 'capsman-enhanced'), $old_title, strtolower($current->name), $new_title));
 				$this->cm->set_current_role($current->name);
+
+				$url = admin_url('admin.php?page=pp-capabilities&role=' . sanitize_key($current->name));
+				wp_redirect($url);
 			}
 		// Copy current role to a new one.
 		} elseif ( ! empty($post['CopyRole']) ) {
