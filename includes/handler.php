@@ -44,7 +44,7 @@ class CapsmanHandler
 		// rename role
 		} elseif (!empty($post['RenameRole']) && !empty($post['rename-name'])) {
 			$current = get_role(sanitize_key($post['current']));
-			$new_title = pp_capabilities_sanitize_entry($post['rename-name']);
+			$new_title = sanitize_text_field($post['rename-name']);
 
 			if ($current && isset($wp_roles->roles[$current->name]) && $new_title) {
 				$old_title = $wp_roles->roles[$current->name]['name'];

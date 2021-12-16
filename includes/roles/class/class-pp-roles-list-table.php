@@ -413,7 +413,7 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
         /**
          * Handle search
          */
-        if ((!empty($_REQUEST['s'])) && $search = pp_capabilities_sanitize_entry($_REQUEST['s'])) {
+        if ((!empty($_REQUEST['s'])) && $search = sanitize_text_field($_REQUEST['s'])) {
             $data_filtered = [];
             foreach ($data as $item) {
                 if ($this->str_contains($item['role'], $search, false) || $this->str_contains($item['name'], $search, false)) {
