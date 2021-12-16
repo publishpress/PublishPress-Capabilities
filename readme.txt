@@ -7,7 +7,7 @@ Tags: user roles, capabilities, permissions, admin menus, post editing, post typ
 Requires at least: 4.9.7
 Tested up to: 5.8
 Requires PHP: 5.6.20
-Stable tag: 2.3.2
+Stable tag: 2.3.3
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -413,6 +413,7 @@ Fixed : Security issue. Please update.
   * Fixed : Capability names with dashes could not be added
   * Fixed : After role rename, title in dropdown does not refresh
   * Fixed : Input sanitization consistency
+  * Lang : Spanish, French, Italian
 
 = 2.3.2 - 8 Dec 2021 =
   * Feature : Filter Capabilities display by post type or text entry
@@ -426,7 +427,7 @@ Fixed : Security issue. Please update.
 = 2.3.1 - 6 Dec 2021 =
   * Fixed : Security issue
   * Fixed : PHP Notice on Capabilities screen
-  
+
 = 2.3 - 28 Oct 2021 =
   * Change : Role Capabilities screen uses tabs
   * Feature : New "Admin Features" screen #200
