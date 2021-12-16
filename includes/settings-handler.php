@@ -7,9 +7,9 @@
  */
 
 add_action('init', function() {
-    if (wp_verify_nonce($_REQUEST['_wpnonce'], 'pp-capabilities-settings') && current_user_can('manage_capabilities')) {
+    if (check_admin_referer('pp-capabilities-settings') && current_user_can('manage_capabilities')) {
         if (!empty($_POST['all_options'])) {
-	        foreach(explode(',', $_POST['all_options']) as $option_name) {
+	        foreach(array_map('sanitize_key', explode(',', $_POST['all_options'])) as $option_name) {
 	            foreach (['cme_', 'capsman', 'pp_capabilities'] as $prefix) {
 	                if (0 === strpos($option_name, $prefix)) {
 			            $value = isset($_POST[$option_name]) ? $_POST[$option_name] : '';

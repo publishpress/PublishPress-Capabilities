@@ -77,7 +77,7 @@ class Capsman_BackupHandler
 					break;
 
 				default:
-                    if ($roles = get_option($_POST['select_restore'])) {
+                    if ($roles = get_option(sanitize_key($_POST['select_restore']))) {
 						update_option($wp_roles, $roles);
 						ak_admin_notify(__('Roles and Capabilities restored from selected auto-backup.', 'capsman-enhanced'));
 					} else {

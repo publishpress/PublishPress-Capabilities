@@ -60,7 +60,7 @@ $auto_backups = $wpdb->get_results("SELECT option_name, option_value FROM $wpdb-
                                     <dd>
                                         <p class="description">
                                         <?php
-                                        $max_auto_backups = (defined('CME_AUTOBACKUPS')) ? CME_AUTOBACKUPS : 20;
+                                        $max_auto_backups = (defined('CME_AUTOBACKUPS')) ? (int) CME_AUTOBACKUPS : 20;
                                         printf(__('PublishPress Capabilities automatically creates a backup on installation and whenever you save changes. The initial backup and last %d auto-backups are kept.', 'capsman-enhanced'), $max_auto_backups);
                                         ?>
                                         </p>
