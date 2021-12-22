@@ -545,7 +545,7 @@ class CapabilityManager
 				$disabled_admin_items[$features_role] = isset($_POST['capsman_disabled_admin_features']) ? stripslashes_deep($_POST['capsman_disabled_admin_features']) : '';
 
 				update_option('capsman_disabled_admin_features', $disabled_admin_items, false);
-	
+
 				//set reload option for instant reflection if user is updating own role
 				if (in_array($features_role, wp_get_current_user()->roles)){
 					$ppc_page_reload = '1';
