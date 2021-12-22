@@ -37,7 +37,7 @@ if (!defined('CAPSMAN_VERSION')) {
 foreach (get_option('active_plugins') as $plugin_file) {
 	if ( false !== strpos($plugin_file, 'capsman.php') ) {
 		add_action('admin_notices', function() {
-			$message = __( '<strong>Error:</strong> PublishPress Capabilities cannot function because another copy of Capability Manager is active.', 'capsman-enhanced' );
+			$message = esc_html__( '<strong>Error:</strong> PublishPress Capabilities cannot function because another copy of Capability Manager is active.', 'capsman-enhanced' );
 			echo '<div id="message" class="error fade" style="color: black">' . $message . '</div>';
 		});
 		return;
@@ -68,7 +68,7 @@ if ($pro_active) {
         function($links, $file)
         {
             if ($file == plugin_basename(__FILE__)) {
-                $links[]= __('<strong>This plugin can be deleted.</strong>', 'press-permit-core');
+                $links[]= esc_html__('<strong>This plugin can be deleted.</strong>', 'press-permit-core');
             }
 
             return $links;
@@ -95,10 +95,10 @@ if ( version_compare(PHP_VERSION, '5.4.0', '<') ) {
 		$data = get_plugin_data(__FILE__);
 		load_plugin_textdomain('capsman-enhanced', false, basename(dirname(__FILE__)) .'/languages');
 
-		echo '<div class="error"><p><strong>' . __('Warning:', 'capsman-enhanced') . '</strong> '
-			. sprintf(__('The active plugin %s is not compatible with your PHP version.', 'capsman-enhanced') .'</p><p>',
-				'&laquo;' . $data['Name'] . ' ' . $data['Version'] . '&raquo;')
-			. sprintf(__('%s is required for this plugin.', 'capsman-enhanced'), 'PHP-5 ')
+		echo '<div class="error"><p><strong>' . esc_html__('Warning:', 'capsman-enhanced') . '</strong> '
+			. sprintf(esc_html__('The active plugin %s is not compatible with your PHP version.', 'capsman-enhanced') .'</p><p>',
+				'&laquo;' . esc_html($data['Name']) . ' ' . esc_html($data['Version']) . '&raquo;')
+			. sprintf(esc_html__('%s is required for this plugin.', 'capsman-enhanced'), 'PHP-5 ')
 			. '</p></div>';
 	});
 } else {
