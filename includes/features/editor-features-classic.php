@@ -26,13 +26,13 @@ foreach($def_post_types as $post_type) {
     <?php foreach(['thead', 'tfoot'] as $tag):?>
     <<?php echo $tag;?>>
     <tr>
-        <th class="menu-column"><?php if ('thead' == $tag || !defined('PUBLISHPRESS_CAPS_PRO_VERSION')) {_e('Classic Editor Screen', 'capsman-enhanced');}?></th>
+        <th class="menu-column"><?php if ('thead' == $tag || !defined('PUBLISHPRESS_CAPS_PRO_VERSION')) {esc_html_e('Classic Editor Screen', 'capsman-enhanced');}?></th>
 
         <?php foreach($def_post_types as $post_type) :
             $type_obj = get_post_type_object($post_type);    
         ?>
-            <th class="restrict-column ppc-menu-row"><?php printf(__('%s Restrict', 'capsman-enhanced'), $type_obj->labels->singular_name);?><br />
-            <input class="check-item classic check-all-menu-item" type="checkbox" title="<?php _e('Toggle all', 'capsman-enhanced');?>" data-pp_type="<?php echo $post_type;?>" />
+            <th class="restrict-column ppc-menu-row"><?php printf(esc_html__('%s Restrict', 'capsman-enhanced'), $type_obj->labels->singular_name);?><br />
+            <input class="check-item classic check-all-menu-item" type="checkbox" title="<?php esc_attr_e('Toggle all', 'capsman-enhanced');?>" data-pp_type="<?php echo $post_type;?>" />
             </th>
         <?php endforeach;?>
     </tr>
@@ -46,7 +46,7 @@ foreach($def_post_types as $post_type) {
         ?>
         <tr class="ppc-menu-row parent-menu">
             <td colspan="<?php echo (count($def_post_types) + 1);?>">
-            <h4 class="ppc-menu-row-section"><?php echo $section_title;?></h4>
+            <h4 class="ppc-menu-row-section"><?php echo esc_html($section_title);?></h4>
             <?php
             /**
 	         * Add support for section description
@@ -72,7 +72,7 @@ foreach($def_post_types as $post_type) {
                 <td class="menu-column ppc-menu-item">
                     <span class="classic menu-item-link<?php echo (in_array($feature_slug, $ce_post_disabled['post'])) ? ' restricted' : ''; ?>">
                     <strong><i class="dashicons dashicons-arrow-right"></i>
-                        <?php echo $arr_feature['label']; ?>
+                        <?php echo esc_html($arr_feature['label']); ?>
                     </strong></span>
                 </td>
 
@@ -80,7 +80,7 @@ foreach($def_post_types as $post_type) {
                     <td class="restrict-column ppc-menu-checkbox">
                         <input id="cb_<?php echo $post_type . '-' . str_replace(['#', '.'], '_', $feature_slug);?>" class="check-item" type="checkbox"
                                 name="capsman_feature_restrict_classic_<?php echo $post_type;?>[]"
-                                value="<?php echo $feature_slug; ?>" <?php checked(in_array($feature_slug, $ce_post_disabled[$post_type]));?> />
+                                value="<?php echo esc_attr($feature_slug); ?>" <?php checked(in_array($feature_slug, $ce_post_disabled[$post_type]));?> />
                     </td>
                 <?php endforeach;?>
             </tr>
