@@ -413,6 +413,7 @@ Fixed : Security issue. Please update.
   * Fixed : Capability names with dashes could not be added
   * Fixed : After role rename, title in dropdown does not refresh
   * Fixed : Input sanitization consistency
+  * Lang : Spanish, French, Italian
 
 = 2.3.2 - 8 Dec 2021 =
   * Feature : Filter Capabilities display by post type or text entry
