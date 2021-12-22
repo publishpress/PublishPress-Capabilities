@@ -125,10 +125,26 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 			<?php
 			$msg = __( '<strong>Note:</strong> Capability changes <strong>remain in the database</strong> after plugin deactivation.', 'capsman-enhanced' );
 
+			// preserve translation strings for now
+			$_msg = str_replace('<strong>', '%%b', $msg);
+			$_msg = str_replace('</strong>', '%%ub', $_msg);
+			$_msg = esc_html($_msg);
+			$_msg = str_replace('%%b', '<strong>', $_msg);
+			$msg = str_replace('%%ub', '</strong>', $_msg);
+
 			if (defined('PRESSPERMIT_ACTIVE') && function_exists('presspermit')) {
 				if ($group = presspermit()->groups()->getMetagroup('wp_role', $this->current)) {
+					$msg = __('<strong>Note:</strong> Capability changes <strong>remain in the database</strong> after plugin deactivation. You can also configure this role as a %sPermission Group%s.', 'capsman-enhanced');
+
+					// preserve translation strings for now
+					$_msg = str_replace('<strong>', '%%b', $msg);
+					$_msg = str_replace('</strong>', '%%ub', $_msg);
+					$_msg = esc_html($_msg);
+					$_msg = str_replace('%%b', '<strong>', $_msg);
+					$msg = str_replace('%%ub', '</strong>', $_msg);
+
 					$msg = sprintf(
-						__('<strong>Note:</strong> Capability changes <strong>remain in the database</strong> after plugin deactivation. You can also configure this role as a %sPermission Group%s.', 'capsman-enhanced'),
+						$msg,
 						'<a href="' . admin_url("admin.php?page=presspermit-edit-permissions&action=edit&agent_id={$group->ID}") . '">',
 						'</a>'
 					);
