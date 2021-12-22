@@ -65,7 +65,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 	<div id="icon-capsman-admin" class="icon32"></div>
 	<?php /* endif; */ ?>
 
-	<h1 <?php echo $style;?>><?php _e('Role Capabilities', 'capsman-enhanced') ?></h1>
+	<h1 <?php echo $style;?>><?php esc_html_e('Role Capabilities', 'capsman-enhanced') ?></h1>
 
 	<?php
 	echo pp_capabilities_roles()->notify->display();
@@ -96,9 +96,11 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 		<select name="role">
 			<?php
 			foreach ( $roles as $role => $name ) {
+				$role = sanitize_key($role);
+
 				if (pp_capabilities_is_editable_role($role)) {
 					$name = translate_user_role($name);
-					echo '<option value="' . $role .'"'; selected($default, $role); echo '> ' . $name . ' &nbsp;</option>';
+					echo '<option value="' . $role .'"'; selected($default, $role); echo '> ' . esc_html($name) . ' &nbsp;</option>';
 				}
 			}
 			?>
@@ -111,7 +113,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 		<td class="content">
 
 			<div style="float:right">
-			<input type="submit" name="SaveRole" value="<?php echo (in_array(get_locale(), ['en_EN', 'en_US'])) ? 'Save Capabilities' : _e('Save Changes', 'capsman-enhanced'); ?>" class="button-primary" />
+			<input type="submit" name="SaveRole" value="<?php echo (in_array(get_locale(), ['en_EN', 'en_US'])) ? 'Save Capabilities' : esc_html_e('Save Changes', 'capsman-enhanced'); ?>" class="button-primary" />
 			</div>
 
 			<?php
@@ -218,23 +220,23 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 			$stati = get_post_stati( array( 'internal' => false ) );
 
 			$cap_type_names = array(
-				'' => __( '&nbsp;', 'capsman-enhanced' ),
-				'read' => __( 'Reading', 'capsman-enhanced' ),
-				'edit' => __( 'Editing', 'capsman-enhanced' ),
-				'delete' => __( 'Deletion', 'capsman-enhanced' )
+				'' => esc_html__( '&nbsp;', 'capsman-enhanced' ),
+				'read' => esc_html__( 'Reading', 'capsman-enhanced' ),
+				'edit' => esc_html__( 'Editing', 'capsman-enhanced' ),
+				'delete' => esc_html__( 'Deletion', 'capsman-enhanced' )
 			);
 
 			$cap_tips = array(
-				'read_private' => __( 'can read posts which are currently published with private visibility', 'capsman-enhanced' ),
-				'edit' => __( 'has basic editing capability (but may need other capabilities based on post status and ownership)', 'capsman-enhanced' ),
-				'edit_others' => __( 'can edit posts which were created by other users', 'capsman-enhanced' ),
-				'edit_published' => __( 'can edit posts which are currently published', 'capsman-enhanced' ),
-				'edit_private' => __( 'can edit posts which are currently published with private visibility', 'capsman-enhanced' ),
-				'publish' => __( 'can make a post publicly visible', 'capsman-enhanced' ),
-				'delete' => __( 'has basic deletion capability (but may need other capabilities based on post status and ownership)', 'capsman-enhanced' ),
-				'delete_others' => __( 'can delete posts which were created by other users', 'capsman-enhanced' ),
-				'delete_published' => __( 'can delete posts which are currently published', 'capsman-enhanced' ),
-				'delete_private' => __( 'can delete posts which are currently published with private visibility', 'capsman-enhanced' ),
+				'read_private' => esc_attr__( 'can read posts which are currently published with private visibility', 'capsman-enhanced' ),
+				'edit' => esc_attr__( 'has basic editing capability (but may need other capabilities based on post status and ownership)', 'capsman-enhanced' ),
+				'edit_others' => esc_attr__( 'can edit posts which were created by other users', 'capsman-enhanced' ),
+				'edit_published' => esc_attr__( 'can edit posts which are currently published', 'capsman-enhanced' ),
+				'edit_private' => esc_attr__( 'can edit posts which are currently published with private visibility', 'capsman-enhanced' ),
+				'publish' => esc_attr__( 'can make a post publicly visible', 'capsman-enhanced' ),
+				'delete' => esc_attr__( 'has basic deletion capability (but may need other capabilities based on post status and ownership)', 'capsman-enhanced' ),
+				'delete_others' => esc_attr__( 'can delete posts which were created by other users', 'capsman-enhanced' ),
+				'delete_published' => esc_attr__( 'can delete posts which are currently published', 'capsman-enhanced' ),
+				'delete_private' => esc_attr__( 'can delete posts which are currently published with private visibility', 'capsman-enhanced' ),
 			);
 
 			$default_caps = array( 'read_private_posts', 'edit_posts', 'edit_others_posts', 'edit_published_posts', 'edit_private_posts', 'publish_posts', 'delete_posts', 'delete_others_posts', 'delete_published_posts', 'delete_private_posts',
@@ -295,11 +297,13 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 
 						if ($extra_tabs = apply_filters('pp_capabilities_extra_post_capability_tabs', [])) {
 							foreach($extra_tabs as $tab_slug => $tab_caption) {
+								$tab_slug = sanitize_key($tab_slug);
+								
 								$tab_id = "cme-cap-type-tables-{$tab_slug}";
 								$tab_active = ($tab_id == $active_tab_id) ? $ppc_tab_active : '';
 
 								echo '<li data-slug="' . $tab_slug . '"' . ' data-content="' . $tab_id . '"' . $tab_active . '>'
-								. $tab_caption .
+								. esc_html($tab_caption) .
 								'</li>';
 							}
 						}
@@ -307,7 +311,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 						// caps: other
 						$tab_id = "cme-cap-type-tables-other";
 						$tab_active = ($tab_id == $active_tab_id) ? $ppc_tab_active : '';
-						$tab_caption = __( 'WordPress Core', 'capsman-enhanced' );
+						$tab_caption = esc_html__( 'WordPress Core', 'capsman-enhanced' );
 
 						echo '<li data-slug="other" data-content="' . $tab_id . '"' . $tab_active . '>' . $tab_caption . '</li>';
 
@@ -468,7 +472,9 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 						}
 						$plugin_caps = apply_filters('cme_plugin_capabilities', $plugin_caps);
 						foreach($plugin_caps as $plugin => $__plugin_caps) {
-							$_plugin_caps = array_fill_keys($__plugin_caps, true);
+							$plugin = esc_html($plugin);
+
+							$_plugin_caps = array_fill_keys(array_map('sanitize_key', $__plugin_caps), true);
 
 							$tab_slug = str_replace(' ', '-', strtolower($plugin));
 							$tab_id = 'cme-cap-type-tables-' . $tab_slug;
@@ -481,12 +487,12 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 
 						$tab_id = "cme-cap-type-tables-invalid";
 						$tab_active = ($tab_id == $active_tab_id) ? $ppc_tab_active : '';
-						$tab_caption = __( 'Invalid Capabilities', 'capsman-enhanced' );
+						$tab_caption = esc_html__( 'Invalid Capabilities', 'capsman-enhanced' );
 						echo '<li id="cme_tab_invalid_caps" data-slug="invalid" data-content="cme-cap-type-tables-' . $tab_id . '"' . $tab_active . ' style="display:none;">' . $tab_caption . '</li>';
 
 						$tab_id = "cme-cap-type-tables-additional";
 						$tab_active = ($tab_id == $active_tab_id) ? $ppc_tab_active : '';
-						$tab_caption = __( 'Additional', 'capsman-enhanced' );
+						$tab_caption = esc_html__( 'Additional', 'capsman-enhanced' );
 						echo '<li data-slug="additional" data-content="' . $tab_id . '"' . $tab_active . '>' . $tab_caption . '</li>';
 						?>
 					</ul>
@@ -530,16 +536,16 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 
 							echo "<div id='$id' style='display:$div_display;'>";
 
-							$caption_pattern = ('taxonomy' == $item_type) ? __('Term %s Capabilities', 'capability-manager-enhanced') : __('Post %s Capabilities', 'capability-manager-enhanced');
+							$caption_pattern = ('taxonomy' == $item_type) ? esc_html__('Term %s Capabilities', 'capability-manager-enhanced') : esc_html__('Post %s Capabilities', 'capability-manager-enhanced');
 
 							echo '<h3>' .  sprintf($caption_pattern, $cap_type_names[$cap_type]) . '</h3>';
 
 							echo '<div class="ppc-filter-wrapper">';
 								echo '<select class="ppc-filter-select">';
-									$filter_caption = ('taxonomy' == $item_type) ? __('Filter by taxonomy', 'capability-manager-enhanced') : __('Filter by post type', 'capability-manager-enhanced');
+									$filter_caption = ('taxonomy' == $item_type) ? esc_html__('Filter by taxonomy', 'capability-manager-enhanced') : esc_html__('Filter by post type', 'capability-manager-enhanced');
 									echo '<option value="">' . $filter_caption . '</option>';
 								echo '</select>';
-								echo ' <button class="button secondary-button ppc-filter-select-reset" type="button">' . __('Clear', 'capability-manager-enhanced') . '</button>';
+								echo ' <button class="button secondary-button ppc-filter-select-reset" type="button">' . esc_html__('Clear', 'capability-manager-enhanced') . '</button>';
 							echo '</div>';
 
 							echo "<table class='widefat fixed striped cme-typecaps cme-typecaps-$cap_type'>";
@@ -632,7 +638,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 
 												if ( $is_administrator || current_user_can($cap_name) ) {
 													if ( ! empty($pp_metagroup_caps[$cap_name]) ) {
-														$title = ' title="' . sprintf( __( '%s: assigned by Permission Group', 'capsman-enhanced' ), $cap_name ) . '"';
+														$title = ' title="' . sprintf( esc_attr__( '%s: assigned by Permission Group', 'capsman-enhanced' ), $cap_name ) . '"';
 													} else {
 														$title = ' title="' . $cap_name . '"';
 													}
@@ -648,7 +654,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 												}
 											} else {
 												//$td_classes []= "cap-unreg";
-												$title = 'title="' . sprintf( __( 'shared capability: %s', 'capsman-enhanced' ), esc_attr( $type_obj->cap->$prop ) ) . '"';
+												$title = 'title="' . sprintf( esc_attr__( 'shared capability: %s', 'capsman-enhanced' ), esc_attr( $type_obj->cap->$prop ) ) . '"';
 											}
 
 											if ( isset($rcaps[$cap_name]) && empty($rcaps[$cap_name]) ) {
@@ -726,13 +732,13 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 					<div id="<?php echo $id;?>" style="display:<?php echo $div_display;?>">
 						<?php
 
-						echo '<h3>' . __( 'WordPress Core Capabilities', 'capsman-enhanced' ) . '</h3>';
+						echo '<h3>' . esc_html__( 'WordPress Core Capabilities', 'capsman-enhanced' ) . '</h3>';
 
 						echo '<div class="ppc-filter-wrapper">';
-							echo '<input type="text" class="regular-text ppc-filter-text" placeholder="' . __('Filter by capability', 'capability-manager-enhanced') . '">';
-							echo ' <button class="button secondary-button ppc-filter-text-reset" type="button">' . __('Clear', 'capability-manager-enhanced') . '</button>';
+							echo '<input type="text" class="regular-text ppc-filter-text" placeholder="' . esc_html__('Filter by capability', 'capability-manager-enhanced') . '">';
+							echo ' <button class="button secondary-button ppc-filter-text-reset" type="button">' . esc_html__('Clear', 'capability-manager-enhanced') . '</button>';
 						echo '</div>';
-						echo '<div class="ppc-filter-no-results" style="display:none;">' . __( 'No results found. Please try again with a different word.', 'capsman-enhanced' ) . '</div>';
+						echo '<div class="ppc-filter-no-results" style="display:none;">' . esc_html__( 'No results found. Please try again with a different word.', 'capsman-enhanced' ) . '</div>';
 
 						echo '<table class="widefat fixed striped form-table cme-checklist">';
 
@@ -742,17 +748,19 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 
 						$core_caps = _cme_core_caps();
 						foreach( array_keys($core_caps) as $cap_name ) {
+							$cap_name = sanitize_key($cap_name);
+
 							if ( ! $is_administrator && ! current_user_can($cap_name) )
 								continue;
 
 							// Output first <tr>
 							if ( $centinel_ == true ) {
-								echo '<tr class="' . esc_html($cap_name) . '">';
+								echo '<tr class="' . $cap_name . '">';
 								$centinel_ = false;
 							}
 
 							if ( $i == $checks_per_row ) {
-								echo '</tr><tr class="' . esc_html($cap_name) . '">';
+								echo '</tr><tr class="' . $cap_name . '">';
 								$i = 0;
 							}
 
@@ -782,7 +790,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 											$class .= ' cap-locked';
 											$disabled = 'disabled="disabled"';
 											if ( 'administrator' != $this->current ) {
-												$title = esc_attr( __('Lockout Prevention: To remove read capability, first remove WordPress admin / editing capabilities, or add "dashboard_lockout_ok" capability', 'capsman-enhanced' ) );
+												$title = __('Lockout Prevention: To remove read capability, first remove WordPress admin / editing capabilities, or add "dashboard_lockout_ok" capability', 'capsman-enhanced' );
 											}
 										}
 									}
@@ -790,7 +798,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 							}
 
 							?>
-							<td class="<?php echo $class; ?>"><span class="cap-x">X</span><label title="<?php echo $title;?>"><input type="checkbox" name="caps[<?php echo $cap_name; ?>]" autocomplete="off" value="1" <?php echo $checked . $disabled;?> />
+							<td class="<?php echo $class; ?>"><span class="cap-x">X</span><label title="<?php echo esc_attr($title);?>"><input type="checkbox" name="caps[<?php echo $cap_name; ?>]" autocomplete="off" value="1" <?php echo $checked . $disabled;?> />
 							<span>
 							<?php
 							echo str_replace( '_', ' ', $cap_name );
@@ -825,7 +833,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 						<tr class="cme-bulk-select">
 						<td colspan="<?php echo $checks_per_row;?>">
 						<span style="float:right">
-						<input type="checkbox" class="cme-check-all" autocomplete="off" title="<?php _e('check/uncheck all', 'capsman-enhanced');?>">&nbsp;&nbsp;<a class="cme-neg-all" href="#" title="<?php _e('negate all (storing as disabled capabilities)', 'capsman-enhanced');?>">X</a> <a class="cme-switch-all" href="#" title="<?php _e('negate none (add/remove all capabilities normally)', 'capsman-enhanced');?>">X</a>
+						<input type="checkbox" class="cme-check-all" autocomplete="off" title="<?php esc_attr_e('check/uncheck all', 'capsman-enhanced');?>">&nbsp;&nbsp;<a class="cme-neg-all" href="#" title="<?php esc_attr_e('negate all (storing as disabled capabilities)', 'capsman-enhanced');?>">X</a> <a class="cme-switch-all" href="#" title="<?php esc_attr_e('negate none (add/remove all capabilities normally)', 'capsman-enhanced');?>">X</a>
 						</span>
 						</td></tr>
 
@@ -849,6 +857,8 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 					$plugin_caps = apply_filters('cme_plugin_capabilities', $plugin_caps);
 
 					foreach($plugin_caps as $plugin => $__plugin_caps) {
+						$plugin = esc_html($plugin);
+
 						$_plugin_caps = array_fill_keys($__plugin_caps, true);
 
 						$id = 'cme-cap-type-tables-' . str_replace( ' ', '-', strtolower($plugin));
@@ -856,13 +866,13 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 
 						echo '<div id="' . $id . '" style="display:' . $div_display . '">';
 
-						echo '<h3 class="cme-cap-section">' . sprintf(__( 'Plugin Capabilities &ndash; %s', 'capsman-enhanced' ), str_replace('_', ' ', $plugin )) . '</h3>';
+						echo '<h3 class="cme-cap-section">' . sprintf(esc_html__( 'Plugin Capabilities &ndash; %s', 'capsman-enhanced' ), str_replace('_', ' ', $plugin )) . '</h3>';
 
 						echo '<div class="ppc-filter-wrapper">';
-							echo '<input type="text" class="regular-text ppc-filter-text" placeholder="' . __('Filter by capability', 'capability-manager-enhanced') . '">';
-							echo ' <button class="button secondary-button ppc-filter-text-reset" type="button">' . __('Clear', 'capability-manager-enhanced') . '</button>';
+							echo '<input type="text" class="regular-text ppc-filter-text" placeholder="' . esc_html__('Filter by capability', 'capability-manager-enhanced') . '">';
+							echo ' <button class="button secondary-button ppc-filter-text-reset" type="button">' . esc_html__('Clear', 'capability-manager-enhanced') . '</button>';
 						echo '</div>';
-						echo '<div class="ppc-filter-no-results" style="display:none;">' . __( 'No results found. Please try again with a different word.', 'capsman-enhanced' ) . '</div>';
+						echo '<div class="ppc-filter-no-results" style="display:none;">' . esc_html__( 'No results found. Please try again with a different word.', 'capsman-enhanced' ) . '</div>';
 
 						echo '<table class="widefat fixed striped form-table cme-checklist">';
 
@@ -871,6 +881,8 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 						$i = 0; $first_row = true;
 
 						foreach( array_keys($_plugin_caps) as $cap_name ) {
+							$cap_name = sanitize_key($cap_name);
+
 							if ( isset( $type_caps[$cap_name] ) || isset($core_caps[$cap_name]) || isset($type_metacaps[$cap_name]) ) {
 								continue;
 							}
@@ -880,12 +892,12 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 
 							// Output first <tr>
 							if ( $centinel_ == true ) {
-								echo '<tr class="' . esc_html($cap_name) . '">';
+								echo '<tr class="' . $cap_name . '">';
 								$centinel_ = false;
 							}
 
 							if ( $i == $checks_per_row ) {
-								echo '</tr><tr class="' . esc_html($cap_name) . '">';
+								echo '</tr><tr class="' . $cap_name . '">';
 								$i = 0;
 							}
 
@@ -905,7 +917,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 							$checked = checked(1, ! empty($rcaps[$cap_name]), false );
 							$title = $title_text;
 							?>
-							<td class="<?php echo $class; ?>"><span class="cap-x">X</span><label title="<?php echo $title;?>"><input type="checkbox" name="caps[<?php echo $cap_name; ?>]" autocomplete="off" value="1" <?php echo $checked . $disabled;?> />
+							<td class="<?php echo $class; ?>"><span class="cap-x">X</span><label title="<?php echo esc_attr($title);?>"><input type="checkbox" name="caps[<?php echo $cap_name; ?>]" autocomplete="off" value="1" <?php echo $checked . $disabled;?> />
 							<span>
 							<?php
 							echo str_replace( '_', ' ', $cap_name );
@@ -935,7 +947,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 						<tr class="cme-bulk-select">
 						<td colspan="<?php echo $checks_per_row;?>">
 						<span style="float:right">
-						<input type="checkbox" class="cme-check-all" title="<?php _e('check/uncheck all', 'capsman-enhanced');?>">&nbsp;&nbsp;<a class="cme-neg-all" href="#" autocomplete="off" title="<?php _e('negate all (storing as disabled capabilities)', 'capsman-enhanced');?>">X</a> <a class="cme-switch-all" href="#" title="<?php _e('negate none (add/remove all capabilities normally)', 'capsman-enhanced');?>">X</a>
+						<input type="checkbox" class="cme-check-all" title="<?php esc_attr_e('check/uncheck all', 'capsman-enhanced');?>">&nbsp;&nbsp;<a class="cme-neg-all" href="#" autocomplete="off" title="<?php esc_attr_e('negate all (storing as disabled capabilities)', 'capsman-enhanced');?>">X</a> <a class="cme-switch-all" href="#" title="<?php esc_attr_e('negate none (add/remove all capabilities normally)', 'capsman-enhanced');?>">X</a>
 						</span>
 						</td></tr>
 
@@ -950,7 +962,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 						$div_display = ($id == $active_tab_id) ? 'block' : 'none';
 
 						echo '<div id="' . $id . '" style="display:' . $div_display . '">';
-						echo '<h3 class="cme-cap-section">' . __( 'Invalid Capabilities', 'capsman-enhanced' ) . '</h3>';
+						echo '<h3 class="cme-cap-section">' . esc_html__( 'Invalid Capabilities', 'capsman-enhanced' ) . '</h3>';
 						?>
 
 						<script type="text/javascript">
@@ -963,7 +975,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 
 						<div>
 						<span class="cme-subtext">
-							<?php _e('The following entries have no effect. Please assign desired capabilities in the Read / Edit / Delete grid above.', 'capsman-enhanced');?>
+							<?php esc_html_e('The following entries have no effect. Please assign desired capabilities in the Read / Edit / Delete grid above.', 'capsman-enhanced');?>
 						</span>
 						</div>
 
@@ -980,6 +992,8 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 						uasort( $this->capabilities, 'strnatcasecmp' );  // sort by array values, but maintain keys );
 
 						foreach ( $this->capabilities as $cap_name => $cap ) :
+							$cap_name = sanitize_key($cap_name);
+
 							if (!isset($type_metacaps[$cap_name]) || empty($rcaps[$cap_name])) {
 								continue;
 							}
@@ -1006,7 +1020,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 							<td class="<?php echo $class; ?>"><span class="cap-x">X</span><label title="<?php echo $title_text;?>"><input type="checkbox" name="caps[<?php echo $cap_name; ?>]" autocomplete="off" value="1" <?php echo $checked . $disabled;?> />
 							<span>
 							<?php
-							echo str_replace( '_', ' ', $cap );
+							echo esc_html(str_replace( '_', ' ', $cap ));
 							?>
 							</span></label><a href="#" class="neg-cap">&nbsp;x&nbsp;</a>
 							<?php if ( false !== strpos( $class, 'cap-neg' ) ) :?>
@@ -1046,13 +1060,13 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 					<div id="<?php echo $id;?>" style="display:<?php echo $div_display;?>">
 						<?php
 						// caps: additional
-						echo '<h3 class="cme-cap-section">' . __( 'Additional Capabilities', 'capsman-enhanced' ) . '</h3>';
+						echo '<h3 class="cme-cap-section">' . esc_html__( 'Additional Capabilities', 'capsman-enhanced' ) . '</h3>';
 
 						echo '<div class="ppc-filter-wrapper">';
-							echo '<input type="text" class="regular-text ppc-filter-text" placeholder="' . __('Filter by capability', 'capability-manager-enhanced') . '">';
-							echo ' <button class="button secondary-button ppc-filter-text-reset" type="button">' . __('Clear', 'capability-manager-enhanced') . '</button>';
+							echo '<input type="text" class="regular-text ppc-filter-text" placeholder="' . esc_html__('Filter by capability', 'capability-manager-enhanced') . '">';
+							echo ' <button class="button secondary-button ppc-filter-text-reset" type="button">' . esc_html__('Clear', 'capability-manager-enhanced') . '</button>';
 						echo '</div>';
-						echo '<div class="ppc-filter-no-results" style="display:none;">' . __( 'No results found. Please try again with a different word.', 'capsman-enhanced' ) . '</div>';
+						echo '<div class="ppc-filter-no-results" style="display:none;">' . esc_html__( 'No results found. Please try again with a different word.', 'capsman-enhanced' ) . '</div>';
 						?>
 						<table class="widefat fixed striped form-table cme-checklist">
 						<?php
@@ -1069,6 +1083,8 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 						$additional_caps = apply_filters('publishpress_caps_manage_additional_caps', $this->capabilities);
 
 						foreach ($additional_caps as $cap_name => $cap) :
+							$cap_name = sanitize_key($cap_name);
+							
 
 							if ((isset($type_caps[$cap_name]) && !isset($type_metacaps[$cap_name]))
 							|| isset($core_caps[$cap_name])
@@ -1095,12 +1111,12 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 
 							// Output first <tr>
 							if ( $centinel_ == true ) {
-								echo '<tr class="' . esc_html($cap_name) . '">';
+								echo '<tr class="' . $cap_name . '">';
 								$centinel_ = false;
 							}
 
 							if ( $i == $checks_per_row ) {
-								echo '</tr><tr class="' . esc_html($cap_name) . '">';
+								echo '</tr><tr class="' . $cap_name . '">';
 								$i = 0; $first_row = false;
 							}
 
@@ -1111,7 +1127,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 
 							if ( ! empty($pp_metagroup_caps[$cap_name]) ) {
 								$class .= ' cap-metagroup';
-								$title_text = sprintf( __( '%s: assigned by Permission Group', 'capsman-enhanced' ), $cap_name );
+								$title_text = sprintf( esc_html__( '%s: assigned by Permission Group', 'capsman-enhanced' ), $cap_name );
 							} else {
 								$title_text = $cap_name;
 							}
@@ -1132,7 +1148,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 							<td class="<?php echo $class; ?>"><span class="cap-x">X</span><label title="<?php echo $title_text;?>"><input type="checkbox" name="caps[<?php echo $cap_name; ?>]" autocomplete="off" value="1" <?php echo $checked . $disabled;?> />
 							<span>
 							<?php
-							echo str_replace( '_', ' ', $cap );
+							echo esc_html(str_replace( '_', ' ', $cap ));
 							?>
 							</span></label><a href="#" class="neg-cap">&nbsp;x&nbsp;</a>
 							<?php if ( false !== strpos( $class, 'cap-neg' ) ) :?>
@@ -1164,7 +1180,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 						<tr class="cme-bulk-select">
 						<td colspan="<?php echo $checks_per_row;?>">
 						<span style="float:right">
-						<input type="checkbox" class="cme-check-all" title="<?php _e('check/uncheck all', 'capsman-enhanced');?>">&nbsp;&nbsp;<a class="cme-neg-all" href="#" autocomplete="off" title="<?php _e('negate all (storing as disabled capabilities)', 'capsman-enhanced');?>">X</a> <a class="cme-switch-all" href="#" title="<?php _e('negate none (add/remove all capabilities normally)', 'capsman-enhanced');?>">X</a>
+						<input type="checkbox" class="cme-check-all" title="<?php esc_attr_e('check/uncheck all', 'capsman-enhanced');?>">&nbsp;&nbsp;<a class="cme-neg-all" href="#" autocomplete="off" title="<?php esc_attr_e('negate all (storing as disabled capabilities)', 'capsman-enhanced');?>">X</a> <a class="cme-switch-all" href="#" title="<?php esc_attr_e('negate none (add/remove all capabilities normally)', 'capsman-enhanced');?>">X</a>
 						</span>
 						</td></tr>
 
@@ -1191,66 +1207,66 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 
 			<?php /* play.png icon by Pavel: http://kde-look.org/usermanager/search.php?username=InFeRnODeMoN */ ?>
 
-			<div id="pp_features" style="display:none"><div class="pp-logo"><a href="https://publishpress.com/presspermit/"><img src="<?php echo $img_url;?>pp-logo.png" alt="<?php _e('PublishPress Permissions', 'capsman-enhanced');?>" /></a></div><div class="features-wrap"><ul class="pp-features">
+			<div id="pp_features" style="display:none"><div class="pp-logo"><a href="https://publishpress.com/presspermit/"><img src="<?php echo $img_url;?>pp-logo.png" alt="<?php esc_attr_e('PublishPress Permissions', 'capsman-enhanced');?>" /></a></div><div class="features-wrap"><ul class="pp-features">
 			<li>
-			<?php _e( "Automatically define type-specific capabilities for your custom post types and taxonomies", 'capsman-enhanced' );?>
+			<?php esc_html_e( "Automatically define type-specific capabilities for your custom post types and taxonomies", 'capsman-enhanced' );?>
 			<a href="https://presspermit.com/tutorial/regulate-post-type-access" target="_blank"><img class="cme-play" alt="*" src="<?php echo $img_url;?>play.png" /></a></li>
 
 			<li>
-			<?php _e( "Assign standard WP roles supplementally for a specific post type", 'capsman-enhanced' );?>
+			<?php esc_html_e( "Assign standard WP roles supplementally for a specific post type", 'capsman-enhanced' );?>
 			<a href="https://presspermit.com/tutorial/regulate-post-type-access" target="_blank"><img class="cme-play" alt="*" src="<?php echo $img_url;?>play.png" /></a></li>
 
 			<li>
-			<?php _e( "Assign custom WP roles supplementally for a specific post type <em>(Pro)</em>", 'capsman-enhanced' );?>
+			<?php esc_html_e( "Assign custom WP roles supplementally for a specific post type <em>(Pro)</em>", 'capsman-enhanced' );?>
 			</li>
 
 			<li>
-			<?php _e( "Customize reading permissions per-category or per-post", 'capsman-enhanced' );?>
+			<?php esc_html_e( "Customize reading permissions per-category or per-post", 'capsman-enhanced' );?>
 			<a href="https://presspermit.com/tutorial/category-exceptions" target="_blank"><img class="cme-play" alt="*" src="<?php echo $img_url;?>play.png" /></a></li>
 
 			<li>
-			<?php _e( "Customize editing permissions per-category or per-post <em>(Pro)</em>", 'capsman-enhanced' );?>
+			<?php esc_html_e( "Customize editing permissions per-category or per-post <em>(Pro)</em>", 'capsman-enhanced' );?>
 			<a href="https://presspermit.com/tutorial/page-editing-exceptions" target="_blank"><img class="cme-play" alt="*" src="<?php echo $img_url;?>play.png" /></a></li>
 
 			<li>
-			<?php _e( "Custom Post Visibility statuses, fully implemented throughout wp-admin <em>(Pro)</em>", 'capsman-enhanced' );?>
+			<?php esc_html_e( "Custom Post Visibility statuses, fully implemented throughout wp-admin <em>(Pro)</em>", 'capsman-enhanced' );?>
 			<a href="https://presspermit.com/tutorial/custom-post-visibility" target="_blank"><img class="cme-play" alt="*" src="<?php echo $img_url;?>play.png" /></a></li>
 
 			<li>
-			<?php _e( "Custom Moderation statuses for access-controlled, multi-step publishing workflow <em>(Pro)</em>", 'capsman-enhanced' );?>
+			<?php esc_html_e( "Custom Moderation statuses for access-controlled, multi-step publishing workflow <em>(Pro)</em>", 'capsman-enhanced' );?>
 			<a href="https://presspermit.com/tutorial/multi-step-moderation" target="_blank"><img class="cme-play" alt="*" src="<?php echo $img_url;?>play.png" /></a></li>
 
 			<li>
-			<?php _e( "Regulate permissions for Edit Flow post statuses <em>(Pro)</em>", 'capsman-enhanced' );?>
+			<?php esc_html_e( "Regulate permissions for Edit Flow post statuses <em>(Pro)</em>", 'capsman-enhanced' );?>
 			<a href="https://presspermit.com/tutorial/edit-flow-integration" target="_blank"><img class="cme-play" alt="*" src="<?php echo $img_url;?>play.png" /></a></li>
 
 			<li>
-			<?php _e( "Customize the moderated editing of published content with Revisionary or Post Forking <em>(Pro)</em>", 'capsman-enhanced' );?>
+			<?php esc_html_e( "Customize the moderated editing of published content with Revisionary or Post Forking <em>(Pro)</em>", 'capsman-enhanced' );?>
 			<a href="https://presspermit.com/tutorial/published-content-revision" target="_blank"><img class="cme-play" alt="*" src="<?php echo $img_url;?>play.png" /></a></li>
 
 			<li>
-			<?php _e( "Grant Spectator, Participant or Moderator access to specific bbPress forums <em>(Pro)</em>", 'capsman-enhanced' );?>
+			<?php esc_html_e( "Grant Spectator, Participant or Moderator access to specific bbPress forums <em>(Pro)</em>", 'capsman-enhanced' );?>
 			</li>
 
 			<li>
-			<?php _e( "Grant supplemental content permissions to a BuddyPress group <em>(Pro)</em>", 'capsman-enhanced' );?>
+			<?php esc_html_e( "Grant supplemental content permissions to a BuddyPress group <em>(Pro)</em>", 'capsman-enhanced' );?>
 			<a href="https://presspermit.com/tutorial/buddypress-content-permissions" target="_blank"><img class="cme-play" alt="*" src="<?php echo $img_url;?>play.png" /></a></li>
 
 			<li>
-			<?php _e( "WPML integration to mirror permissions to translations <em>(Pro)</em>", 'capsman-enhanced' );?>
+			<?php esc_html_e( "WPML integration to mirror permissions to translations <em>(Pro)</em>", 'capsman-enhanced' );?>
 			</li>
 
 			<li>
-			<?php _e( "Member support forum", 'capsman-enhanced' );?>
+			<?php esc_html_e( "Member support forum", 'capsman-enhanced' );?>
 			</li>
 
 			</ul></div>
 
 			<?php
 			echo '<div>';
-			printf( __('%1$sgrab%2$s %3$s', 'capsman-enhanced'), '<strong>', '</strong>', '<span class="plugins update-message"><a href="' . cme_plugin_info_url('press-permit-core') . '" class="thickbox" title="' . sprintf( __('%s (free install)', 'capsman-enhanced'), 'Permissions Pro' ) . '">Permissions Pro</a></span>' );
+			printf( esc_html__('%1$sgrab%2$s %3$s', 'capsman-enhanced'), '<strong>', '</strong>', '<span class="plugins update-message"><a href="' . cme_plugin_info_url('press-permit-core') . '" class="thickbox" title="' . sprintf( esc_attr__('%s (free install)', 'capsman-enhanced'), 'Permissions Pro' ) . '">Permissions Pro</a></span>' );
 			echo '&nbsp;&nbsp;&bull;&nbsp;&nbsp;';
-			printf( __('%1$sbuy%2$s %3$s', 'capsman-enhanced'), '<strong>', '</strong>',  '<a href="https://publishpress.com/presspermit/" target="_blank" title="' . sprintf( __('%s info/purchase', 'capsman-enhanced'), 'Permissions Pro' ) . '">Permissions&nbsp;Pro</a>' );
+			printf( esc_html__('%1$sbuy%2$s %3$s', 'capsman-enhanced'), '<strong>', '</strong>',  '<a href="https://publishpress.com/presspermit/" target="_blank" title="' . sprintf( esc_attr__('%s info/purchase', 'capsman-enhanced'), 'Permissions Pro' ) . '">Permissions&nbsp;Pro</a>' );
 			echo '&nbsp;&nbsp;&bull;&nbsp;&nbsp;';
 			echo '<a href="#pp-hide">hide</a>';
 			echo '</div></div>';
@@ -1282,9 +1298,9 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 			<?php
 			$level = ak_caps2level($rcaps);
 			?>
-			<span title="<?php _e('Role level is mostly deprecated. However, it still determines eligibility for Post Author assignment and limits the application of user editing capabilities.', 'capsman-enhanced');?>">
+			<span title="<?php esc_attr_e('Role level is mostly deprecated. However, it still determines eligibility for Post Author assignment and limits the application of user editing capabilities.', 'capsman-enhanced');?>">
 
-			<?php (in_array(get_locale(), ['en_EN', 'en_US'])) ? printf('Role Level:') : _e('Level:', 'capsman-enhanced');?> <select name="level">
+			<?php (in_array(get_locale(), ['en_EN', 'en_US'])) ? printf('Role Level:') : esc_html_e('Level:', 'capsman-enhanced');?> <select name="level">
 			<?php for ( $l = $this->max_level; $l >= 0; $l-- ) {?>
 					<option value="<?php echo $l; ?>" style="text-align:right;"<?php selected($level, $l); ?>>&nbsp;<?php echo $l; ?>&nbsp;</option>
 				<?php }
@@ -1302,10 +1318,10 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 		<p class="submit" style="padding-top:0;">
 			<input type="hidden" name="action" value="update" />
 			<input type="hidden" name="current" value="<?php echo $default; ?>" />
-			<input type="submit" name="SaveRole" value="<?php echo (in_array(get_locale(), ['en_EN', 'en_US'])) ? 'Save Capabilities' : _e('Save Changes', 'capsman-enhanced');?>" class="button-primary" /> &nbsp;
+			<input type="submit" name="SaveRole" value="<?php echo (in_array(get_locale(), ['en_EN', 'en_US'])) ? 'Save Capabilities' : esc_html_e('Save Changes', 'capsman-enhanced');?>" class="button-primary" /> &nbsp;
 
 			<?php if ( current_user_can('administrator') && 'administrator' != $default ) : ?>
-				<a class="ak-delete" title="<?php echo esc_attr(__('Delete this role', 'capsman-enhanced')) ?>" href="<?php echo wp_nonce_url("admin.php?page={$this->ID}&amp;action=delete&amp;role={$default}", 'delete-role_' . $default); ?>" onclick="if ( confirm('<?php echo esc_js(sprintf(__("You are about to delete the %s role.\n\n 'Cancel' to stop, 'OK' to delete.", 'capsman-enhanced'), $roles[$default])); ?>') ) { return true;}return false;"><?php _e('Delete Role', 'capsman-enhanced')?></a>
+				<a class="ak-delete" title="<?php echo esc_attr__('Delete this role', 'capsman-enhanced') ?>" href="<?php echo wp_nonce_url("admin.php?page={$this->ID}&amp;action=delete&amp;role={$default}", 'delete-role_' . $default); ?>" onclick="if ( confirm('<?php echo esc_js(sprintf(__("You are about to delete the %s role.\n\n 'Cancel' to stop, 'OK' to delete.", 'capsman-enhanced'), $roles[$default])); ?>') ) { return true;}return false;"><?php esc_html_e('Delete Role', 'capsman-enhanced')?></a>
 			<?php endif; ?>
 		</p>
 
@@ -1314,10 +1330,10 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 			<?php do_action('publishpress-caps_sidebar_top');?>
 
 			<dl>
-				<dt><?php _e('Add Capability', 'capsman-enhanced'); ?></dt>
+				<dt><?php esc_html_e('Add Capability', 'capsman-enhanced'); ?></dt>
 				<dd style="text-align:center;">
 					<p><input type="text" name="capability-name" class="regular-text" placeholder="<?php echo 'capability_name';?>" /><br />
-					<input type="submit" name="AddCap" value="<?php _e('Add to role', 'capsman-enhanced') ?>" class="button" /></p>
+					<input type="submit" name="AddCap" value="<?php esc_html_e('Add to role', 'capsman-enhanced') ?>" class="button" /></p>
 				</dd>
 			</dl>
 
@@ -1329,28 +1345,28 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 			?>
 
 			<dl>
-				<dt><?php (!in_array(get_locale(), ['en_EN', 'en_US'])) ? _e('Copy this role to', 'capsman-enhanced') : printf('Copy %s Role', translate_user_role($roles[$default])); ?></dt>
+				<dt><?php (!in_array(get_locale(), ['en_EN', 'en_US'])) ? esc_html_e('Copy this role to', 'capsman-enhanced') : printf('Copy %s Role', translate_user_role($roles[$default])); ?></dt>
 				<dd style="text-align:center;">
 					<?php $class = ( $support_pp_only_roles ) ? 'tight-text' : 'regular-text'; ?>
-					<p><input type="text" name="copy-name"  class="<?php echo $class;?>" placeholder="<?php _e('Role Name', 'capsman-enhanced') ?>" />
+					<p><input type="text" name="copy-name"  class="<?php echo $class;?>" placeholder="<?php esc_html_e('Role Name', 'capsman-enhanced') ?>" />
 
 					<?php if( $support_pp_only_roles ) : ?>
-					<label for="copy_role_pp_only" title="<?php _e('Make role available for supplemental assignment to Permission Groups only', 'capsman-enhanced');?>"> <input type="checkbox" name="copy_role_pp_only" id="copy_role_pp_only" autocomplete="off" value="1"> <?php _e('hidden', 'capsman-enhanced'); ?> </label>
+					<label for="copy_role_pp_only" title="<?php esc_attr_e('Make role available for supplemental assignment to Permission Groups only', 'capsman-enhanced');?>"> <input type="checkbox" name="copy_role_pp_only" id="copy_role_pp_only" autocomplete="off" value="1"> <?php esc_html_e('hidden', 'capsman-enhanced'); ?> </label>
 					<?php endif; ?>
 
 					<br />
-					<input type="submit" name="CopyRole" value="<?php _e('Copy', 'capsman-enhanced') ?>" class="button" />
+					<input type="submit" name="CopyRole" value="<?php esc_html_e('Copy', 'capsman-enhanced') ?>" class="button" />
 					</p>
 				</dd>
 			</dl>
 
 			<dl>
-				<dt><?php _e('Rename Role', 'capsman-enhanced'); ?></dt>
+				<dt><?php esc_html_e('Rename Role', 'capsman-enhanced'); ?></dt>
 				<dd style="text-align:center;">
-					<p><input type="text" name="rename-name" class="regular-text" placeholder="<?php _e('New Role Name', 'capsman-enhanced') ?>" />
+					<p><input type="text" name="rename-name" class="regular-text" placeholder="<?php esc_html_e('New Role Name', 'capsman-enhanced') ?>" />
 
 					<br />
-					<input type="submit" name="RenameRole" value="<?php _e('Rename', 'capsman-enhanced') ?>" class="button" />
+					<input type="submit" name="RenameRole" value="<?php esc_html_e('Rename', 'capsman-enhanced') ?>" class="button" />
 					</p>
 				</dd>
 			</dl>
@@ -1379,13 +1395,13 @@ function cme_network_role_ui( $default ) {
 			$autocreate_roles = array();
 		?>
 		<div style="margin-bottom: 5px">
-		<label for="cme_autocreate_role" title="<?php _e('Create this role definition in new (future) sites', 'capsman-enhanced');?>"><input type="checkbox" name="cme_autocreate_role" id="cme_autocreate_role" autocomplete="off" value="1" <?php echo checked(in_array($default, $autocreate_roles));?>> <?php _e('include in new sites', 'capsman-enhanced'); ?> </label>
+		<label for="cme_autocreate_role" title="<?php esc_attr_e('Create this role definition in new (future) sites', 'capsman-enhanced');?>"><input type="checkbox" name="cme_autocreate_role" id="cme_autocreate_role" autocomplete="off" value="1" <?php echo checked(in_array($default, $autocreate_roles));?>> <?php esc_html_e('include in new sites', 'capsman-enhanced'); ?> </label>
 		</div>
 		<div>
-		<label for="cme_net_sync_role" title="<?php echo esc_attr(__('Copy / update this role definition to all sites now', 'capsman-enhanced'));?>"><input type="checkbox" name="cme_net_sync_role" id="cme_net_sync_role" autocomplete="off" value="1"> <?php _e('sync role to all sites now', 'capsman-enhanced'); ?> </label>
+		<label for="cme_net_sync_role" title="<?php echo esc_attr(esc_html__('Copy / update this role definition to all sites now', 'capsman-enhanced'));?>"><input type="checkbox" name="cme_net_sync_role" id="cme_net_sync_role" autocomplete="off" value="1"> <?php esc_html_e('sync role to all sites now', 'capsman-enhanced'); ?> </label>
 		</div>
 		<div>
-		<label for="cme_net_sync_options" title="<?php echo esc_attr(__('Copy option settings to all sites now', 'capsman-enhanced'));?>"><input type="checkbox" name="cme_net_sync_options" id="cme_net_sync_options" autocomplete="off" value="1"> <?php _e('sync options to all sites now', 'capsman-enhanced'); ?> </label>
+		<label for="cme_net_sync_options" title="<?php echo esc_attr(esc_html__('Copy option settings to all sites now', 'capsman-enhanced'));?>"><input type="checkbox" name="cme_net_sync_options" id="cme_net_sync_options" autocomplete="off" value="1"> <?php esc_html_e('sync options to all sites now', 'capsman-enhanced'); ?> </label>
 		</div>
 	</div>
 <?php
