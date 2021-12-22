@@ -722,7 +722,7 @@ class CapabilityManager
 			}
 		} else {
 			if (!empty($_REQUEST['added'])) {
-				ak_admin_notify(__('New capability added to role.'));
+				ak_admin_notify(__('New capability added to role.', 'capsman-enhanced'));
 			}
 		}
 
