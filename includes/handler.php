@@ -77,7 +77,7 @@ class CapsmanHandler
 			}
 			
 			if (!pp_capabilities_is_editable_role(sanitize_key($post['current']))) {
-				ak_admin_error( 'The selected role is not editable.', 'capsman-enhanced' );
+				ak_admin_error(__('The selected role is not editable.', 'capsman-enhanced'));
 				return;
 			}
 
@@ -106,7 +106,7 @@ class CapsmanHandler
 			}
 
 			if (!pp_capabilities_is_editable_role(sanitize_key($post['current']))) {
-				ak_admin_error( 'The selected role is not editable.', 'capsman-enhanced' );
+				ak_admin_error(__('The selected role is not editable.', 'capsman-enhanced'));
 				return;
 			}
 
@@ -135,7 +135,7 @@ class CapsmanHandler
 				exit;
 			} else {
 				add_action('all_admin_notices', function() {
-					ak_admin_notify(__('Incorrect capability name.'));
+					ak_admin_notify(__('Incorrect capability name.', 'capsman-enhanced'));
 				});
 			}
 			
@@ -410,7 +410,7 @@ class CapsmanHandler
 		$this->cm->current = $role_name;
 
 		if (!pp_capabilities_is_editable_role($role_name)) {
-			ak_admin_error( 'The selected role is not editable.', 'capsman-enhanced' );
+			ak_admin_error(__('The selected role is not editable.', 'capsman-enhanced'));
 		}
 
 		if (false !== pp_capabilities_roles()->actions->delete_role($role_name, ['allow_system_role_deletion' => true, 'nonce_check' => false])) {
