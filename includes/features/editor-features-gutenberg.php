@@ -71,7 +71,15 @@ foreach($def_post_types as $post_type) {
             <td class="menu-column ppc-menu-item">
                 <span class="gutenberg menu-item-link<?php checked(in_array($feature_slug, $gutenberg_post_disabled['post']), true, 'restricted');?>">
                 <strong><i class="dashicons dashicons-arrow-right"></i>
-                    <?php echo esc_html($arr_feature['label']); ?>
+                    <?php 
+                    if(isset($arr_feature['custom_element']) && ($arr_feature['custom_element'] === true)){
+                        $delete_button = '<span class="' . esc_attr($arr_feature['button_class'])  . '" data-id="' . esc_attr($arr_feature['button_data_id'])  . '" data-parent="' . esc_attr($arr_feature['button_data_parent'])  . '"><small>(' . __('Delete', 'capsman-enhanced') . ')</small></span>';
+
+                        echo esc_html($arr_feature['element_label']) . ' <small class="entry">(' . esc_html($arr_feature['element_items']). ')</small> &nbsp; ' . $delete_button . '';
+                    }else{
+                        echo esc_html($arr_feature['label']);
+                    }
+                    ?>
                 </strong></span>
             </td>
 
