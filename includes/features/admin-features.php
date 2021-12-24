@@ -112,7 +112,7 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                                                             $icon_name    = isset($icon_list[$section_slug]) ? $icon_list[$section_slug] : '&mdash;';
                                                             ?>
 
-                                                            <tr class="ppc-menu-row parent-menu">
+                                                            <tr class="ppc-menu-row parent-menu <?php echo esc_attr($section_slug); ?>">
 		                                                        <?php if ($section_slug === 'admintoolbar') :
 		                                                            $restrict_value = 'ppc_adminbar||admintoolbar';
 		                                                       	?>
@@ -154,7 +154,7 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                                                                 }
                                                                 ?>
 
-                                                                <tr class="ppc-menu-row child-menu">
+                                                                <tr class="ppc-menu-row child-menu <?php echo esc_attr($section_slug); ?>">
 
                                                                     <td class="restrict-column ppc-menu-checkbox">
                                                                         <input
