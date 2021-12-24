@@ -184,7 +184,15 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                                                                                     }
                                                                                 }
                                                                                 ?>
-                                                                                <?php echo esc_html($item_name); ?>
+                                                                                <?php 
+                                                                                if(isset($section_array['custom_element']) && ($section_array['custom_element'] === true)){
+                                                                                    $delete_button = '<span class="' . esc_attr($section_array['button_class'])  . '" data-id="' . esc_attr($section_array['button_data_id'])  . '"><small>(' . __('Delete', 'capabilities-pro') . ')</small></span>';
+
+                                                                                    echo esc_html($section_array['element_label']) . ' <small class="entry">(' . esc_html($section_array['element_items']). ')</small> &nbsp; ' . $delete_button . '';
+                                                                                }else{
+                                                                                    echo esc_html($item_name);
+                                                                                }
+                                                                                ?>
                                                                             </strong></span>
                                                                         </label>
                                                                     </td>
