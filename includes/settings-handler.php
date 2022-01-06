@@ -12,8 +12,8 @@ add_action('init', function() {
 	        foreach(array_map('sanitize_key', explode(',', $_POST['all_options'])) as $option_name) {
 	            foreach (['cme_', 'capsman', 'pp_capabilities'] as $prefix) {
 	                if (0 === strpos($option_name, $prefix)) {
-			            $value = isset($_POST[$option_name]) ? $_POST[$option_name] : '';
-			
+	                	$value = isset($_POST[$option_name]) ? $_POST[$option_name] : '';
+
 			            if (!is_array($value)) {
 			                $value = trim($value);
 			            }
