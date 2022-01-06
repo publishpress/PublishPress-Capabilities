@@ -77,9 +77,9 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
     {
         $columns = [
             'cb' => '<input type="checkbox"/>', //Render a checkbox instead of text
-            'name' => __('Role Name', 'capsman-enhanced'),
-            'role' => __('Role', 'capsman-enhanced'),
-            'count' => __('Users', 'capsman-enhanced'),
+            'name' => esc_html__('Role Name', 'capsman-enhanced'),
+            'role' => esc_html__('Role', 'capsman-enhanced'),
+            'count' => esc_html__('Users', 'capsman-enhanced'),
         ];
 
         return $columns;
@@ -122,12 +122,12 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
                         ['page' => 'pp-capabilities', 'role' => esc_attr($item['role'])], 
                         admin_url('admin.php')
                     ),
-                    __('Capabilities', 'capsman-enhanced')
+                    esc_html__('Capabilities', 'capsman-enhanced')
                 ),
             ];
         } else {
             $actions = [
-                'edit' => '<span class="pp-caps-action-note">' . __('(non-editable role)', 'capsman-enhanced') . '</span>',
+                'edit' => '<span class="pp-caps-action-note">' . esc_html__('(non-editable role)', 'capsman-enhanced') . '</span>',
             ];
 
             if (defined("PRESSPERMIT_ACTIVE")) {
@@ -147,7 +147,7 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
                             '_wpnonce' => wp_create_nonce('bulk-roles')
                         ], 
                         admin_url('admin.php')),
-                        __('Unhide', 'capsman-enhanced')
+                        esc_html__('Unhide', 'capsman-enhanced')
                     );
                 }
             }
@@ -165,7 +165,7 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
                         '_wpnonce' => wp_create_nonce('bulk-roles')
                     ], 
                     admin_url('admin.php')),
-                    __('Delete', 'capsman-enhanced')
+                    esc_html__('Delete', 'capsman-enhanced')
                 ),
             ]);
 
@@ -186,7 +186,7 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
                             '_wpnonce' => wp_create_nonce('bulk-roles')
                         ], 
                         admin_url('admin.php')),
-                        __('Hide', 'capsman-enhanced')
+                        esc_html__('Hide', 'capsman-enhanced')
                     );
                 }
             }
@@ -304,7 +304,7 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
     protected function get_bulk_actions()
     {
         $actions = [
-            'pp-roles-delete-role' => __('Delete', 'capsman-enhanced')
+            'pp-roles-delete-role' => esc_html__('Delete', 'capsman-enhanced')
         ];
 
         return $actions;
@@ -382,7 +382,7 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
         }
         ?>
         <p class="search-box">
-            <label class="screen-reader-text" for="<?php echo esc_attr($input_id); ?>"><?php echo $text; ?>:</label>
+            <label class="screen-reader-text" for="<?php echo esc_attr($input_id); ?>"><?php echo esc_html($text); ?>:</label>
             <input type="search" id="<?php echo esc_attr($input_id); ?>" name="s"
                    value="<?php _admin_search_query(); ?>"/>
             <?php submit_button($text, '', '', false, ['id' => 'search-submit']); ?>

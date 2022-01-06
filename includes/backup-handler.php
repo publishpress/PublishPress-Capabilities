@@ -12,7 +12,7 @@ class Capsman_BackupHandler
 
 	function __construct( $manager_obj ) {
 		if ((!is_multisite() || !is_super_admin()) && !current_user_can('administrator') && !current_user_can('restore_roles'))
-			wp_die( __( 'You do not have permission to restore roles.', 'capsman-enhanced' ) );
+			wp_die( esc_html__( 'You do not have permission to restore roles.', 'capsman-enhanced' ) );
 	
 		$this->cm = $manager_obj;
 	}
@@ -112,7 +112,7 @@ class Capsman_BackupHandler
 		populate_roles();
 		$this->cm->setAdminCapability();
 
-		$msg = __('Roles and Capabilities reset to WordPress defaults', 'capsman-enhanced');
+		$msg = esc_html__('Roles and Capabilities reset to WordPress defaults', 'capsman-enhanced');
 		
 		if ( function_exists( 'pp_populate_roles' ) ) {
 			pp_populate_roles();

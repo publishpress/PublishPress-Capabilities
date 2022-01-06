@@ -34,7 +34,7 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
 
     <div class="wrap publishpress-caps-manage pressshack-admin-wrapper pp-capability-menus-wrapper">
         <div id="icon-capsman-admin" class="icon32"></div>
-        <h2><?php _e('Admin Feature Restrictions', 'capabilities-pro'); ?></h2>
+        <h2><?php esc_html_e('Admin Feature Restrictions', 'capabilities-pro'); ?></h2>
 
         <form method="post" id="ppc-admin-features-form" action="admin.php?page=pp-capabilities-admin-features">
             <?php wp_nonce_field('pp-capabilities-admin-features'); ?>
@@ -50,7 +50,7 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                                     <span class="cme-subtext">
                                     <span class='pp-capability-role-caption'>
                                     <?php
-                                    _e('Note: You are only restricting access to admin features screens. Some plugins may also add features to other areas of WordPress.',
+                                    esc_html_e('Note: You are only restricting access to admin features screens. Some plugins may also add features to other areas of WordPress.',
                                         'capabilities-pro');
                                     ?>
                                     </span>
@@ -62,8 +62,8 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                                             foreach ($roles as $role => $name) :
                                                 $name = translate_user_role($name);
                                                 ?>
-                                                <option value="<?php echo $role; ?>" <?php selected($default_role,
-                                                    $role); ?>><?php echo $name; ?></option>
+                                                <option value="<?php echo esc_attr($role); ?>" <?php selected($default_role,
+                                                    $role); ?>><?php echo esc_html($name); ?></option>
                                             <?php
                                             endforeach;
                                             ?>
@@ -73,7 +73,7 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                                              style="display: none">
 
                                         <input type="submit" name="admin-features-submit"
-                                               value="<?php _e('Save Changes', 'capabilities-pro') ?>"
+                                               value="<?php esc_html_e('Save Changes', 'capabilities-pro') ?>"
                                                class="button-primary ppc-admin-features-submit" style="float:right"/>
                                     </div>
 
@@ -109,7 +109,7 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                                                         foreach ($admin_features_elements as $section_title => $section_elements) :
                                                             $sn++;
                                                             $section_slug = strtolower(ppc_remove_non_alphanumeric_space_characters($section_title));
-                                                            $icon_name    = isset($icon_list[$section_slug]) ? $icon_list[$section_slug] : '&mdash;';
+                                                            $icon_name    = isset($icon_list[$section_slug]) ? esc_attr($icon_list[$section_slug]) : '&mdash;';
                                                             ?>
 
                                                             <tr class="ppc-menu-row parent-menu <?php echo esc_attr($section_slug); ?>">
@@ -126,14 +126,14 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
 		                                                                    <label for="check-item-<?php echo $sn; ?>">
 		                                                            <strong class="menu-column ppc-menu-item menu-item-link<?php echo (in_array($restrict_value,
 		                                                                            $disabled_admin_items)) ? ' restricted' : ''; ?>">
-		                                                                <i class="dashicons dashicons-<?php echo $icon_name ?>"></i> <?php echo $section_title; ?>
+		                                                                <i class="dashicons dashicons-<?php echo $icon_name ?>"></i> <?php echo esc_html($section_title); ?>
 		                                                            </strong>
 		                                                        </label>
 		                                                        </td>
 		                                                        <?php else : ?>
 		                                                                <td class="features-section-header" colspan="2">
 		                                                                    <strong><i
-		                                                                            class="dashicons dashicons-<?php echo $icon_name ?>"></i> <?php echo $section_title; ?>
+		                                                                            class="dashicons dashicons-<?php echo $icon_name ?>"></i> <?php echo esc_html($section_title); ?>
 		                                                                    </strong>
 		                                                                </td>
 		                                                        <?php endif; ?>
@@ -184,7 +184,15 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                                                                                     }
                                                                                 }
                                                                                 ?>
-                                                                                <?php echo $item_name; ?>
+                                                                                <?php 
+                                                                                if(isset($section_array['custom_element']) && ($section_array['custom_element'] === true)){
+                                                                                    $delete_button = '<span class="' . esc_attr($section_array['button_class'])  . '" data-id="' . esc_attr($section_array['button_data_id'])  . '"><small>(' . __('Delete', 'capabilities-pro') . ')</small></span>';
+
+                                                                                    echo esc_html($section_array['element_label']) . ' <small class="entry">(' . esc_html($section_array['element_items']). ')</small> &nbsp; ' . $delete_button . '';
+                                                                                }else{
+                                                                                    echo esc_html($item_name);
+                                                                                }
+                                                                                ?>
                                                                             </strong></span>
                                                                         </label>
                                                                     </td>
@@ -205,7 +213,7 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                                         </div>
                                     </div>
                                     <input type="submit" name="admin-features-submit"
-                                           value="<?php _e('Save Changes', 'capabilities-pro') ?>"
+                                           value="<?php esc_html_e('Save Changes', 'capabilities-pro') ?>"
                                            class="button-primary ppc-admin-features-submit"/>
                                 </td>
                             </tr>
@@ -218,15 +226,15 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                         <?php
                         $banners = new PublishPress\WordPressBanners\BannersMain;
                         $banners->pp_display_banner(
-                            __( 'Recommendations for you', 'capsman-enhanced' ),
-                            __( 'Control permissions for individual posts and pages', 'capsman-enhanced' ),
+                            esc_html__( 'Recommendations for you', 'capsman-enhanced' ),
+                            esc_html__( 'Control permissions for individual posts and pages', 'capsman-enhanced' ),
                             array(
-                                __( 'Choose who can read and edit each post.', 'capsman-enhanced' ),
-                                __( 'Allow specific user roles or users to manage each post.', 'capsman-enhanced' ),
-                                __( 'PublishPress Permissions is 100% free to install.', 'capsman-enhanced' )
+                                esc_html__( 'Choose who can read and edit each post.', 'capsman-enhanced' ),
+                                esc_html__( 'Allow specific user roles or users to manage each post.', 'capsman-enhanced' ),
+                                esc_html__( 'PublishPress Permissions is 100% free to install.', 'capsman-enhanced' )
                             ),
                             admin_url( 'plugin-install.php?s=publishpress-ppcore-install&tab=search&type=term' ),
-                            __( 'Click here to install PublishPress Permissions', 'capsman-enhanced' ),
+                            esc_html__( 'Click here to install PublishPress Permissions', 'capsman-enhanced' ),
                             'install-permissions.jpg'
                         );
                         ?>
