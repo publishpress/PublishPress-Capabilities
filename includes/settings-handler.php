@@ -17,7 +17,7 @@ add_action('init', function() {
 			            if (!is_array($value)) {
 			                $value = trim($value);
 			            }
-	
+
 	                    update_option($option_name, stripslashes_deep($value));
 	                }
 	            }
