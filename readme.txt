@@ -409,10 +409,11 @@ Fixed : Security issue. Please update.
 
 == Changelog ==
 
-= 2.3.3 - 16 Dec 2021 =
+= 2.3.3 - 10 Jan 2022 =
   * Fixed : Capability names with dashes could not be added
   * Fixed : After role rename, title in dropdown does not refresh
   * Fixed : Input sanitization consistency
+  * Fixed : Escape output variables
   * Lang : Spanish, French, Italian
 
 = 2.3.2 - 8 Dec 2021 =
