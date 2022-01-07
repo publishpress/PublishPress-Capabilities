@@ -12,13 +12,20 @@ add_action('init', function() {
 	        foreach(array_map('sanitize_key', explode(',', $_POST['all_options'])) as $option_name) {
 	            foreach (['cme_', 'capsman', 'pp_capabilities'] as $prefix) {
 	                if (0 === strpos($option_name, $prefix)) {
-	                	$value = isset($_POST[$option_name]) ? $_POST[$option_name] : '';
+						
+						// Free plugin doesn't currently have any settings, so disable this code for now to avoid sanitization concerns.
+
+						// Leave upstream conditionals in place to ensure access is properly regulated in any future implementation.
+
+						/*
+						$value = isset($_POST[$option_name]) ? $_POST[$option_name] : '';
 
 			            if (!is_array($value)) {
 			                $value = trim($value);
 			            }
 
-	                    update_option($option_name, stripslashes_deep($value));
+						update_option($option_name, $value);
+						*/
 	                }
 	            }
 	        }

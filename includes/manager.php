@@ -485,13 +485,13 @@ class CapabilityManager
 
 				foreach ($def_post_types as $post_type) {
 					if ($classic_editor) {
-						$posted_settings = (isset($_POST["capsman_feature_restrict_classic_{$post_type}"])) ? stripslashes_deep($_POST["capsman_feature_restrict_classic_{$post_type}"]) : [];
+						$posted_settings = (isset($_POST["capsman_feature_restrict_classic_{$post_type}"])) ? array_map('sanitize_text_field', $_POST["capsman_feature_restrict_classic_{$post_type}"]) : [];
 						$post_features_option = get_option("capsman_feature_restrict_classic_{$post_type}", []);
 						$post_features_option[$_POST['ppc-editor-features-role']] = $posted_settings;
 						update_option("capsman_feature_restrict_classic_{$post_type}", $post_features_option, false);
 					}
 
-					$posted_settings = (isset($_POST["capsman_feature_restrict_{$post_type}"])) ? stripslashes_deep($_POST["capsman_feature_restrict_{$post_type}"]) : [];
+					$posted_settings = (isset($_POST["capsman_feature_restrict_{$post_type}"])) ? array_map('sanitize_text_field', $_POST["capsman_feature_restrict_{$post_type}"]) : [];
 					$post_features_option = get_option("capsman_feature_restrict_{$post_type}", []);
 					$post_features_option[$_POST['ppc-editor-features-role']] = $posted_settings;
 					update_option("capsman_feature_restrict_{$post_type}", $post_features_option, false);
@@ -542,7 +542,7 @@ class CapabilityManager
 				$this->set_current_role($features_role);
 
 				$disabled_admin_items = !empty(get_option('capsman_disabled_admin_features')) ? (array)get_option('capsman_disabled_admin_features') : [];
-				$disabled_admin_items[$features_role] = isset($_POST['capsman_disabled_admin_features']) ? stripslashes_deep($_POST['capsman_disabled_admin_features']) : '';
+				$disabled_admin_items[$features_role] = isset($_POST['capsman_disabled_admin_features']) ? array_map('sanitize_text_field', $_POST['capsman_disabled_admin_features']) : '';
 
 				update_option('capsman_disabled_admin_features', $disabled_admin_items, false);
 
@@ -771,20 +771,15 @@ class CapabilityManager
 			return;
 		}
 
-		$post = stripslashes_deep($_POST);
-		if ( empty ($post['caps']) ) {
-		    $post['caps'] = array();
-		}
-
 		// Select a new role.
 		if ( ! empty($post['LoadRole']) ) {
-			$this->set_current_role(sanitize_key($post['role']));
+			$this->set_current_role(sanitize_key($_POST['role']));
 		} else {
-			$this->set_current_role(sanitize_key($post['current']));
+			$this->set_current_role(sanitize_key($_POST['current']));
 
 			require_once( dirname(__FILE__).'/handler.php' );
 			$capsman_modify = new CapsmanHandler( $this );
-			$capsman_modify->processAdminGeneral( $post );
+			$capsman_modify->processAdminGeneral();
 		}
 	}
 

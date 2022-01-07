@@ -51,7 +51,7 @@ function _cme_update_pp_usage() {
 					$value = array_merge( $current, $value );	// retain setting for any types which were previously enabled for filtering but are currently not registered
 			}
 			
-			$value = stripslashes_deep($value);
+			$value = array_map('sanitize_key', $value);
 			
 			update_option( $option_name, $value );
 			
