@@ -171,10 +171,10 @@ function pp_capabilities_get_post_type()
     }
 
     if (isset($_GET['post']) && !is_array($_GET['post'])) {
-        $post_id = (int) esc_attr($_GET['post']);
+        $post_id = (int) $_GET['post'];
 
     } elseif (isset($_POST['post_ID'])) {
-        $post_id = (int) esc_attr($_POST['post_ID']);
+        $post_id = (int) $_POST['post_ID'];
     }
 
     if (!empty($post_id)) {
