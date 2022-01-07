@@ -24,7 +24,7 @@ foreach($def_post_types as $post_type) {
 
 <table class="wp-list-table widefat fixed striped pp-capability-menus-select editor-features-gutenberg" <?php if (!empty($_REQUEST['ppc-tab']) && ('gutenberg' != $_REQUEST['ppc-tab'])) echo 'style="display:none;"';?>>
     <?php foreach(['thead', 'tfoot'] as $tag):?>
-    <<?php echo $tag;?>>
+    <<?php echo sanitize_key($tag);?>>
     <tr>
         <th class="menu-column"><?php if ('thead' == $tag) {esc_html_e('Gutenberg Screen', 'capsman-enhanced');}?></th>
 
@@ -32,11 +32,11 @@ foreach($def_post_types as $post_type) {
             $type_obj = get_post_type_object($post_type);
         ?>
             <th class="restrict-column ppc-menu-row"><?php printf(esc_html__('%s Restrict', 'capsman-enhanced'), $type_obj->labels->singular_name);?><br />
-            <input class="check-item gutenberg check-all-menu-item" type="checkbox" title="<?php esc_attr_e('Toggle all', 'capsman-enhanced');?>" data-pp_type="<?php echo $post_type;?>" />
+            <input class="check-item gutenberg check-all-menu-item" type="checkbox" title="<?php esc_attr_e('Toggle all', 'capsman-enhanced');?>" data-pp_type="<?php echo sanitize_key($post_type);?>" />
             </th>
         <?php endforeach;?>
     </tr>
-    </<?php echo $tag;?>>
+    </<?php echo sanitize_key($tag);?>>
     <?php endforeach;?>
 
     <tbody>
@@ -85,9 +85,9 @@ foreach($def_post_types as $post_type) {
 
             <?php foreach($def_post_types as $post_type) :?>
                 <td class="restrict-column ppc-menu-checkbox">
-                    <input id="check-item-<?php echo "{$post_type}-{$feature_slug}";?>" class="check-item" type="checkbox"
-                        name="capsman_feature_restrict_<?php echo $post_type;?>[]"
-                        value="<?php echo $feature_slug;?>"<?php checked(in_array($feature_slug, $gutenberg_post_disabled[$post_type]));?> />
+                    <input id="check-item-<?php echo sanitize_key($post_type) . '-' . sanitize_key($feature_slug);?>" class="check-item" type="checkbox"
+                        name="capsman_feature_restrict_<?php echo sanitize_key($post_type);?>[]"
+                        value="<?php echo sanitize_key($feature_slug);?>"<?php checked(in_array($feature_slug, $gutenberg_post_disabled[$post_type]));?> />
                 </td>
             <?php endforeach;?>
         </tr>

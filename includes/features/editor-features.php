@@ -63,7 +63,7 @@ $classic_editor = pp_capabilities_is_classic_editor_available();
                                     ?>
                                 </select> &nbsp;
 
-                                <img class="loading" src="<?php echo $capsman->mod_url; ?>/images/wpspin_light.gif" style="display: none">
+                                <img class="loading" src="<?php echo esc_url($capsman->mod_url); ?>/images/wpspin_light.gif" style="display: none">
 
                                 <input type="submit" name="editor-features-submit"
                                     value="<?php esc_html_e('Save Changes', 'capabilities-pro') ?>"
