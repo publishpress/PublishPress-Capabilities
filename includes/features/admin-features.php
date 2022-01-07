@@ -69,7 +69,7 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                                             ?>
                                         </select> &nbsp;
 
-                                        <img class="loading" src="<?php echo $capsman->mod_url; ?>/images/wpspin_light.gif"
+                                        <img class="loading" src="<?php echo esc_url($capsman->mod_url); ?>/images/wpspin_light.gif"
                                              style="display: none">
 
                                         <input type="submit" name="admin-features-submit"
@@ -109,7 +109,7 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                                                         foreach ($admin_features_elements as $section_title => $section_elements) :
                                                             $sn++;
                                                             $section_slug = strtolower(ppc_remove_non_alphanumeric_space_characters($section_title));
-                                                            $icon_name    = isset($icon_list[$section_slug]) ? esc_attr($icon_list[$section_slug]) : '&mdash;';
+                                                            $icon_name    = isset($icon_list[$section_slug]) ? $icon_list[$section_slug] : '&mdash;';
                                                             ?>
 
                                                             <tr class="ppc-menu-row parent-menu <?php echo esc_attr($section_slug); ?>">
@@ -118,22 +118,22 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
 		                                                       	?>
 		                                                        <td class="features-section-header restrict-column ppc-menu-checkbox" style="text-align: left;" colspan="2">
 		                                                            <input
-		                                                                    id="check-item-<?php echo $sn; ?>"
+		                                                                    id="check-item-<?php echo (int) $sn; ?>"
 		                                                                    class="check-item" type="checkbox"
 		                                                                    name="capsman_disabled_admin_features[]"
-		                                                                    value="<?php echo $restrict_value; ?>"
+		                                                                    value="<?php echo pp_capabilities_sanitize_entry($restrict_value); ?>"
 		                                                                    <?php echo (in_array($restrict_value, $disabled_admin_items)) ? 'checked' : ''; ?>/>
-		                                                                    <label for="check-item-<?php echo $sn; ?>">
+		                                                                    <label for="check-item-<?php echo (int) $sn; ?>">
 		                                                            <strong class="menu-column ppc-menu-item menu-item-link<?php echo (in_array($restrict_value,
 		                                                                            $disabled_admin_items)) ? ' restricted' : ''; ?>">
-		                                                                <i class="dashicons dashicons-<?php echo $icon_name ?>"></i> <?php echo esc_html($section_title); ?>
+		                                                                <i class="dashicons dashicons-<?php echo esc_attr($icon_name) ?>"></i> <?php echo esc_html($section_title); ?>
 		                                                            </strong>
 		                                                        </label>
 		                                                        </td>
 		                                                        <?php else : ?>
 		                                                                <td class="features-section-header" colspan="2">
 		                                                                    <strong><i
-		                                                                            class="dashicons dashicons-<?php echo $icon_name ?>"></i> <?php echo esc_html($section_title); ?>
+		                                                                            class="dashicons dashicons-<?php echo esc_attr($icon_name) ?>"></i> <?php echo esc_html($section_title); ?>
 		                                                                    </strong>
 		                                                                </td>
 		                                                        <?php endif; ?>
@@ -158,15 +158,15 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
 
                                                                     <td class="restrict-column ppc-menu-checkbox">
                                                                         <input
-                                                                            id="check-item-<?php echo $sn; ?>"
+                                                                            id="check-item-<?php echo (int) $sn; ?>"
                                                                             class="check-item" type="checkbox"
                                                                             name="capsman_disabled_admin_features[]"
-                                                                            value="<?php echo $restrict_value; ?>"
+                                                                            value="<?php echo pp_capabilities_sanitize_entry($restrict_value); ?>"
                                                                             <?php echo (in_array($restrict_value, $disabled_admin_items)) ? 'checked' : ''; ?>/>
                                                                     </td>
                                                             		<td class="menu-column ppc-menu-item">
 
-                                                                        <label for="check-item-<?php echo $sn; ?>">
+                                                                        <label for="check-item-<?php echo (int) $sn; ?>">
                                                                             <span
                                                                                 class="menu-item-link<?php echo (in_array($restrict_value,
                                                                                     $disabled_admin_items)) ? ' restricted' : ''; ?>">
@@ -174,11 +174,11 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                                                                                 <?php
                                                                                 if ((isset($section_array['step']) && $section_array['step'] > 0) && isset($section_array['parent']) && !empty($section_array['parent'])) {
                                                                                     $step_margin = $section_array['step'] * 20;
-                                                                                    echo '<span style="margin-left: ' . $step_margin . 'px;"></span>';
+                                                                                    echo '<span style="margin-left: ' . (int) $step_margin . 'px;"></span>';
                                                                             echo ' &mdash; ';
                                                                                 } else {
                                                                                     if (isset($icon_list[$section_id])) {
-                                                                                        echo '<i class="dashicons dashicons-' . $icon_list[$section_id] . '"></i>';
+                                                                                        echo '<i class="dashicons dashicons-' . esc_attr($icon_list[$section_id]) . '"></i>';
                                                                                     } else {
                                                                                         echo '&mdash;';
                                                                                     }
