@@ -185,7 +185,7 @@ $auto_backups = $wpdb->get_results("SELECT option_name, option_value FROM $wpdb-
 
                                                     foreach ($backups as $name => $caption) {
                                                         if ($backup_data = get_option($name)) :?>
-                                                            <div id="cme_display_<?php echo $name; ?>" style="display:none;"
+                                                            <div id="cme_display_<?php echo esc_attr($name); ?>" style="display:none;"
                                                                 class="cme-show-backup">
                                                                 <h3><?php printf(esc_html__("%s (%s roles)", 'capsman-enhanded'), $caption, count($backup_data)); ?></h3>
 
@@ -193,9 +193,8 @@ $auto_backups = $wpdb->get_results("SELECT option_name, option_value FROM $wpdb-
                                                                 foreach ($wp_roles->role_objects as $role => $role_object) {
                                                                     if (empty($backup_data[$role])) {
                                                                         $role_caption = $role_object->name;
-                                                                        $role_class = ' class="cme-change cme-minus"';
                                                                         ?>
-                                                                        <h4><span<?php echo $role_class;?>><?php echo (translate_user_role($role_caption));?></span> <?php esc_html_e('(this role will be removed if you restore backup)', 'capsman-enhanced');?></h4>
+                                                                        <h4><span class="cme-change cme-minus"><?php echo (translate_user_role($role_caption));?></span> <?php esc_html_e('(this role will be removed if you restore backup)', 'capsman-enhanced');?></h4>
                                                                         <?php
                                                                     }
                                                                 }
@@ -221,10 +220,10 @@ $auto_backups = $wpdb->get_results("SELECT option_name, option_value FROM $wpdb-
                                                                     ?>
                                                                     <?php
                                                                     $role_caption = $props['name'];
-                                                                    $role_class = (empty($wp_roles->role_objects[$role])) ? ' class="cme-change cme-plus"' : '';
+                                                                    $role_class = (empty($wp_roles->role_objects[$role])) ? 'cme-change cme-plus' : '';
                                                                     ?>
 
-                                                                    <h4<?php echo $role_class;?>><?php printf(esc_html__('%s (level %s)', 'capsman-enhanced'), translate_user_role($role_caption), $level); ?></h4>
+                                                                    <h4 class="<?php echo esc_attr($role_class);?>"><?php printf(esc_html__('%s (level %s)', 'capsman-enhanced'), translate_user_role($role_caption), $level); ?></h4>
 
                                                                     <?php
                                                                     $items = [];
@@ -236,14 +235,14 @@ $auto_backups = $wpdb->get_results("SELECT option_name, option_value FROM $wpdb-
                                                                         ?>
                                                                         <?php
                                                                         if ($val && (empty($wp_roles->role_objects[$role]) || empty($wp_roles->role_objects[$role]->capabilities[$cap_name]))) {
-                                                                            $class = ' class="cme-change cme-plus"';
+                                                                            $class = 'cme-change cme-plus';
 
                                                                         } elseif ((false === $props['capabilities'][$cap_name]) && (!isset($wp_roles->role_objects[$role]->capabilities[$cap_name]) || false !== $wp_roles->role_objects[$role]->capabilities[$cap_name])) {
-                                                                            $class = ' class="cme-change cme-negate"';
+                                                                            $class = 'cme-change cme-negate';
 
                                                                         } elseif (!$val && !empty($wp_roles->role_objects[$role]->capabilities[$cap_name])) {
-                                                                            $class = ' class="cme-change cme-minus"';
-                                                                            $cap_name = "&nbsp;&nbsp;$cap_name&nbsp;&nbsp;";
+                                                                            $class = 'cme-change cme-minus';
+                                                                            $cap_name = "&nbsp;&nbsp;" . sanitize_key($cap_name) . "&nbsp;&nbsp;";
                                                                         } else {
                                                                             $class = '';
                                                                         }
@@ -257,7 +256,7 @@ $auto_backups = $wpdb->get_results("SELECT option_name, option_value FROM $wpdb-
                                                                     <?php if ($items) :?>
                                                                         <ul class="pp-restore-caps">
                                                                         <?php foreach($items as $cap_name => $class) :?>
-                                                                            <li<?php echo $class;?>><?php echo $cap_name;?></li>
+                                                                            <li class="<?php echo $class;?>"><?php echo $cap_name;?></li>
                                                                         <?php endforeach; ?>
                                                                         </ul>
                                                                     <?php endif;?>
