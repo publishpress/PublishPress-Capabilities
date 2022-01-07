@@ -64,15 +64,15 @@ class Capsman_PP_UI {
 			$status_hint = '';
 			if ( defined( 'PRESSPERMIT_ACTIVE' ) )
 				if ( defined( 'PPS_VERSION' ) )
-					$status_hint = sprintf( esc_html__( 'Capabilities for custom statuses can be manually added here. (See %sPermissions > Post Statuses%s for applicable names). %sSupplemental status-specific roles%s are usually more convenient, though.', 'capsman-enhanced' ), "<a href='" . admin_url("admin.php?page={$pp_prefix}-statuses&show_caps=1") . "'>", '</a>', "<a href='" . admin_url("admin.php?page={$pp_prefix}-groups") . "'>", '</a>' ) ;
+					$status_hint = sprintf( __( 'Capabilities for custom statuses can be manually added here. (See %sPermissions > Post Statuses%s for applicable names). %sSupplemental status-specific roles%s are usually more convenient, though.', 'capsman-enhanced' ), "<a href='" . admin_url("admin.php?page={$pp_prefix}-statuses&show_caps=1") . "'>", '</a>', "<a href='" . admin_url("admin.php?page={$pp_prefix}-groups") . "'>", '</a>' ) ;
 				elseif ( pp_capabilities_get_permissions_option( 'display_extension_hints' ) )
-					$status_hint = sprintf( esc_html__( 'Capabilities for custom statuses can be manually added here. Or activate the PP Custom Post Statuses extension to assign status-specific supplemental roles.', 'capsman-enhanced' ), "<a href='" . admin_url("admin.php?page={$pp_prefix}-role-usage") . "'>", '</a>' ) ;
+					$status_hint = sprintf( __( 'Capabilities for custom statuses can be manually added here. Or activate the PP Custom Post Statuses extension to assign status-specific supplemental roles.', 'capsman-enhanced' ), "<a href='" . admin_url("admin.php?page={$pp_prefix}-role-usage") . "'>", '</a>' ) ;
 			
 			elseif ( defined( 'PP_VERSION' ) )
-				$status_hint = sprintf( esc_html__( 'Capabilities for custom statuses can be manually added to a role here (see Conditions > Status > Capability Mapping for applicable names). However, it is usually more convenient to use Permit Groups to assign a supplemental status-specific role.', 'capsman-enhanced' ), "<a href='" . admin_url("admin.php?page={$pp_prefix}-role-usage") . "'>", '</a>' ) ;
+				$status_hint = sprintf( __( 'Capabilities for custom statuses can be manually added to a role here (see Conditions > Status > Capability Mapping for applicable names). However, it is usually more convenient to use Permit Groups to assign a supplemental status-specific role.', 'capsman-enhanced' ), "<a href='" . admin_url("admin.php?page={$pp_prefix}-role-usage") . "'>", '</a>' ) ;
 			
 			if ( $status_hint )
-				echo "<li>$status_hint</li>";
+				echo "<li>" . esc_html($status_hint) . "</li>";
 
 			echo '</ul>';
 		}
@@ -85,8 +85,7 @@ class Capsman_PP_UI {
 			<dt><?php esc_html_e('Type-Specific Capabilities', 'capsman-enhanced'); ?></dt>
 			<dd style="text-align:center;">
 				<?php
-				$caption = esc_html__( 'Ensure permissions can be controlled separately from other post types.', 'capsman-enhanced' );
-				echo "<p class='cme-hint'>$caption</p>";
+				echo "<p class='cme-hint'>" . esc_html__( 'Ensure permissions can be controlled separately from other post types.', 'capsman-enhanced' ) . "</p>";
 				
 				if ( defined( 'PRESSPERMIT_ACTIVE' ) && pp_capabilities_get_permissions_option( 'display_hints' ) ) :?>
 				<div class="cme-subtext" style="margin-top:0">
@@ -123,14 +122,14 @@ class Capsman_PP_UI {
 					?>
 					<div style="text-align:left">
 					<?php if ( ! empty( $hidden[$key] ) ) :?>
-						<input name="<?php echo($id);?>" type="hidden" id="<?php echo($id);?>" value="1" />
-						<input name="<?php echo("{$option_basename}-options[]");?>" type="hidden" value="<?php echo($key)?>" />
+						<input name="<?php echo(esc_attr($id));?>" type="hidden" id="<?php echo(esc_attr($id));?>" value="1" />
+						<input name="<?php echo(esc_attr($option_basename) . "-options[]");?>" type="hidden" value="<?php echo(sanitize_key($key))?>" />
 					
 					<?php else: ?>
 						<div class="agp-vspaced_input">
-						<label for="<?php echo($id);?>" title="<?php echo($key);?>">
-						<input name="<?php echo("{$option_basename}-options[]");?>" type="hidden" value="<?php echo($key)?>" />
-						<input name="<?php echo($id);?>" type="checkbox" id="<?php echo($id);?>" autocomplete="off" value="1" <?php checked('1', ! empty($enabled[$key]) );?> /> <?php echo(esc_html($type_obj->label));?>
+						<label for="<?php echo(esc_attr($id));?>" title="<?php echo(sanitize_key($key));?>">
+						<input name="<?php echo(esc_attr($option_basename) . "-options[]");?>" type="hidden" value="<?php echo(sanitize_key($key))?>" />
+						<input name="<?php echo(esc_attr($id));?>" type="checkbox" id="<?php echo(esc_attr($id));?>" autocomplete="off" value="1" <?php checked('1', ! empty($enabled[$key]) );?> /> <?php echo(esc_html($type_obj->label));?>
 						
 						<?php 
 						echo ('</label></div>');
@@ -201,14 +200,14 @@ class Capsman_PP_UI {
 					?>
 					<div style="text-align:left">
 					<?php if ( ! empty( $hidden[$taxonomy] ) ) :?>
-						<input name="<?php echo($id);?>" type="hidden" id="<?php echo($id);?>" value="1" />
-						<input name="<?php echo("{$option_basename}-options[]");?>" type="hidden" value="<?php echo($taxonomy)?>" />
+						<input name="<?php echo(esc_attr($id));?>" type="hidden" id="<?php echo(esc_attr($id));?>" value="1" />
+						<input name="<?php echo(esc_attr($option_basename) . '-options[]');?>" type="hidden" value="<?php echo(sanitize_key($taxonomy))?>" />
 					
 					<?php else: ?>
-						<div class="agp-vspaced_input">
-						<label for="<?php echo($id);?>" title="<?php echo($taxonomy);?>">
-						<input name="<?php echo("{$option_basename}-options[]");?>" type="hidden" value="<?php echo($taxonomy)?>" />
-						<input name="<?php echo($id);?>" type="checkbox" autocomplete="off" id="<?php echo($id);?>" value="1" <?php checked('1', ! empty($enabled[$taxonomy]) );?> /> <?php echo(esc_html($type_obj->label));?>
+
+						<label for="<?php echo(esc_attr($id));?>" title="<?php echo(sanitize_key($taxonomy));?>">
+						<input name="<?php echo(esc_attr($option_basename) . '-options[]');?>" type="hidden" value="<?php echo(sanitize_key($taxonomy))?>" />
+						<input name="<?php echo(esc_attr($id));?>" type="checkbox" autocomplete="off" id="<?php echo(esc_attr($id));?>" value="1" <?php checked('1', ! empty($enabled[$taxonomy]) );?> /> <?php echo(esc_html($type_obj->label));?>
 						
 						<?php 
 						echo ('</label></div>');
@@ -231,8 +230,7 @@ class Capsman_PP_UI {
 			<dt><?php esc_html_e('Detailed Taxonomy Capabilities', 'capsman-enhanced'); ?></dt>
 			<dd style="text-align:center;">
 				<?php
-				$caption = esc_html__( 'Enforce Edit, Delete and Assign capabilities separately from Management capability.', 'capsman-enhanced' );
-				echo "<p class='cme-hint'>$caption</p>";
+				echo "<p class='cme-hint'>" . esc_html__( 'Enforce Edit, Delete and Assign capabilities separately from Management capability.', 'capsman-enhanced' ) . "</p>";
 				
 				echo "<table style='width:100%'><tr>";
 				
@@ -259,14 +257,14 @@ class Capsman_PP_UI {
 					?>
 					<div style="text-align:left">
 					<?php if ( ! empty( $hidden[$taxonomy] ) ) :?>
-						<input name="<?php echo($id);?>" type="hidden" id="<?php echo($id);?>" value="1" />
-						<input name="<?php echo("{$option_basename}-options[]");?>" type="hidden" value="<?php echo($taxonomy)?>" />
+						<input name="<?php echo(esc_attr($id));?>" type="hidden" id="<?php echo(esc_attr($id));?>" value="1" />
+						<input name="<?php echo(esc_attr($option_basename) . '-options[]');?>" type="hidden" value="<?php echo(sanitize_key($taxonomy))?>" />
 					
 					<?php else: ?>
 						<div class="agp-vspaced_input">
-						<label for="<?php echo($id);?>" title="<?php echo($taxonomy);?>">
-						<input name="<?php echo("{$option_basename}-options[]");?>" type="hidden" value="<?php echo($taxonomy)?>" />
-						<input name="<?php echo($id);?>" type="checkbox" autocomplete="off" id="<?php echo($id);?>" value="1" <?php checked('1', ! empty($enabled[$taxonomy]) );?> /> <?php echo(esc_html($type_obj->label));?>
+						<label for="<?php echo(esc_attr($id));?>" title="<?php echo(sanitize_key($taxonomy));?>">
+						<input name="<?php echo(esc_attr($option_basename) . '-options[]');?>" type="hidden" value="<?php echo(sanitize_key($taxonomy))?>" />
+						<input name="<?php echo(esc_attr($id));?>" type="checkbox" autocomplete="off" id="<?php echo(esc_attr($id));?>" value="1" <?php checked('1', ! empty($enabled[$taxonomy]) );?> /> <?php echo(esc_html($type_obj->label));?>
 						
 						<?php 
 						echo ('</label></div>');
