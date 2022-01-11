@@ -481,8 +481,6 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 						foreach($plugin_caps as $plugin => $__plugin_caps) {
 							$plugin = esc_html($plugin);
 
-							$_plugin_caps = array_fill_keys(array_map('sanitize_key', $__plugin_caps), true);
-
 							$tab_slug = str_replace(' ', '-', strtolower($plugin));
 							$tab_id = 'cme-cap-type-tables-' . $tab_slug;
 							$tab_active = ($tab_id == $active_tab_id) ? $ppc_tab_active : '';
