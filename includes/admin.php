@@ -91,7 +91,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 
 				if (pp_capabilities_is_editable_role($role)) {
 					$name = translate_user_role($name);
-					echo '<option value="' . $role .'"'; selected($default, $role); echo '> ' . esc_html($name) . ' &nbsp;</option>';
+					echo '<option value="' . esc_attr($role) .'"'; selected($default, $role); echo '> ' . esc_html($name) . ' &nbsp;</option>';
 				}
 			}
 			?>
@@ -644,9 +644,9 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 
 												if ( $is_administrator || current_user_can($cap_name) ) {
 													if ( ! empty($pp_metagroup_caps[$cap_name]) ) {
-														$title = sprintf(__( '%s: assigned by Permission Group', 'capsman-enhanced' ), $cap_name );
+														$title = sprintf(__( '%s: assigned by Permission Group', 'capsman-enhanced' ), esc_attr($cap_name) );
 													} else {
-														$title = $cap_name;
+														$title = esc_attr($cap_name);
 													}
 
 													$checkbox = '<input type="checkbox" title="' . esc_attr($title) . '" name="caps[' . esc_attr($cap_name) . ']" autocomplete="off" value="1" ' . checked(1, ! empty($rcaps[$cap_name]), false ) . ' />';
