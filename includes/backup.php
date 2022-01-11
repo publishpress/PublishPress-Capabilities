@@ -180,7 +180,7 @@ $auto_backups = $wpdb->get_results("SELECT option_name, option_value FROM $wpdb-
                                                         $date_caption = str_replace(', pm', ' pm', $date_caption);
                                                         
                                                         $option_name = sanitize_key($row->option_name);
-                                                        $backups[$row->option_name] = "Auto-backup from " . $date_caption;
+                                                        $backups[$option_name] = "Auto-backup from " . $date_caption;
                                                     }
 
                                                     foreach ($backups as $name => $caption) {
