@@ -123,12 +123,12 @@ class Capsman_PP_UI {
 					<div style="text-align:left">
 					<?php if ( ! empty( $hidden[$key] ) ) :?>
 						<input name="<?php echo(esc_attr($id));?>" type="hidden" id="<?php echo(esc_attr($id));?>" value="1" />
-						<input name="<?php echo(esc_attr($option_basename) . "-options[]");?>" type="hidden" value="<?php echo(sanitize_key($key))?>" />
+						<input name="<?php echo(esc_attr($option_basename) . "-options[]");?>" type="hidden" value="<?php echo(esc_attr($key))?>" />
 					
 					<?php else: ?>
 						<div class="agp-vspaced_input">
-						<label for="<?php echo(esc_attr($id));?>" title="<?php echo(sanitize_key($key));?>">
-						<input name="<?php echo(esc_attr($option_basename) . "-options[]");?>" type="hidden" value="<?php echo(sanitize_key($key))?>" />
+						<label for="<?php echo(esc_attr($id));?>" title="<?php echo(esc_attr($key));?>">
+						<input name="<?php echo(esc_attr($option_basename) . "-options[]");?>" type="hidden" value="<?php echo(esc_attr($key))?>" />
 						<input name="<?php echo(esc_attr($id));?>" type="checkbox" id="<?php echo(esc_attr($id));?>" autocomplete="off" value="1" <?php checked('1', ! empty($enabled[$key]) );?> /> <?php echo(esc_html($type_obj->label));?>
 						
 						<?php 
@@ -201,12 +201,12 @@ class Capsman_PP_UI {
 					<div style="text-align:left">
 					<?php if ( ! empty( $hidden[$taxonomy] ) ) :?>
 						<input name="<?php echo(esc_attr($id));?>" type="hidden" id="<?php echo(esc_attr($id));?>" value="1" />
-						<input name="<?php echo(esc_attr($option_basename) . '-options[]');?>" type="hidden" value="<?php echo(sanitize_key($taxonomy))?>" />
+						<input name="<?php echo(esc_attr($option_basename) . '-options[]');?>" type="hidden" value="<?php echo(esc_attr($taxonomy))?>" />
 					
 					<?php else: ?>
 
-						<label for="<?php echo(esc_attr($id));?>" title="<?php echo(sanitize_key($taxonomy));?>">
-						<input name="<?php echo(esc_attr($option_basename) . '-options[]');?>" type="hidden" value="<?php echo(sanitize_key($taxonomy))?>" />
+						<label for="<?php echo(esc_attr($id));?>" title="<?php echo(esc_attr($taxonomy));?>">
+						<input name="<?php echo(esc_attr($option_basename) . '-options[]');?>" type="hidden" value="<?php echo(esc_attr($taxonomy))?>" />
 						<input name="<?php echo(esc_attr($id));?>" type="checkbox" autocomplete="off" id="<?php echo(esc_attr($id));?>" value="1" <?php checked('1', ! empty($enabled[$taxonomy]) );?> /> <?php echo(esc_html($type_obj->label));?>
 						
 						<?php 
@@ -258,12 +258,12 @@ class Capsman_PP_UI {
 					<div style="text-align:left">
 					<?php if ( ! empty( $hidden[$taxonomy] ) ) :?>
 						<input name="<?php echo(esc_attr($id));?>" type="hidden" id="<?php echo(esc_attr($id));?>" value="1" />
-						<input name="<?php echo(esc_attr($option_basename) . '-options[]');?>" type="hidden" value="<?php echo(sanitize_key($taxonomy))?>" />
+						<input name="<?php echo(esc_attr($option_basename) . '-options[]');?>" type="hidden" value="<?php echo(esc_attr($taxonomy))?>" />
 					
 					<?php else: ?>
 						<div class="agp-vspaced_input">
-						<label for="<?php echo(esc_attr($id));?>" title="<?php echo(sanitize_key($taxonomy));?>">
-						<input name="<?php echo(esc_attr($option_basename) . '-options[]');?>" type="hidden" value="<?php echo(sanitize_key($taxonomy))?>" />
+						<label for="<?php echo(esc_attr($id));?>" title="<?php echo(esc_attr($taxonomy));?>">
+						<input name="<?php echo(esc_attr($option_basename) . '-options[]');?>" type="hidden" value="<?php echo(esc_attr($taxonomy))?>" />
 						<input name="<?php echo(esc_attr($id));?>" type="checkbox" autocomplete="off" id="<?php echo(esc_attr($id));?>" value="1" <?php checked('1', ! empty($enabled[$taxonomy]) );?> /> <?php echo(esc_html($type_obj->label));?>
 						
 						<?php 

@@ -242,7 +242,7 @@ $auto_backups = $wpdb->get_results("SELECT option_name, option_value FROM $wpdb-
 
                                                                         } elseif (!$val && !empty($wp_roles->role_objects[$role]->capabilities[$cap_name])) {
                                                                             $class = 'cme-change cme-minus';
-                                                                            $cap_name = "&nbsp;&nbsp;" . sanitize_key($cap_name) . "&nbsp;&nbsp;";
+                                                                            $cap_name = "&nbsp;&nbsp;" . esc_attr($cap_name) . "&nbsp;&nbsp;";
                                                                         } else {
                                                                             $class = '';
                                                                         }

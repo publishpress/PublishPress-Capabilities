@@ -74,14 +74,14 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 	/* ]]> */
 	</script>
 
-	<form id="publishpress_caps_form" method="post" action="admin.php?page=<?php echo sanitize_key($this->ID);?>">
+	<form id="publishpress_caps_form" method="post" action="admin.php?page=<?php echo esc_attr($this->ID);?>">
 	<?php wp_nonce_field('capsman-general-manager'); ?>
 
 	<?php
-	$tab = (!empty($_REQUEST['pp_caps_tab'])) ? sanitize_key($_REQUEST['pp_caps_tab']) : 'edit';
+	$tab = (!empty($_REQUEST['pp_caps_tab'])) ? esc_attr($_REQUEST['pp_caps_tab']) : 'edit';
 	?>
 
-	<input type="hidden" name="pp_caps_tab" value="<?php echo sanitize_key($tab);?>" />
+	<input type="hidden" name="pp_caps_tab" value="<?php echo esc_attr($tab);?>" />
 
 	<p>
 		<select name="role">
@@ -287,7 +287,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 				<div class="ppc-capabilities-tabs">
 					<ul>
 						<?php
-						$active_tab_slug = (!empty($_REQUEST['pp_caps_tab'])) ? sanitize_key($_REQUEST['pp_caps_tab']) : 'edit';
+						$active_tab_slug = (!empty($_REQUEST['pp_caps_tab'])) ? esc_attr($_REQUEST['pp_caps_tab']) : 'edit';
 						$active_tab_id = "cme-cap-type-tables-{$active_tab_slug}";
 
 						$ppc_tab_active = 'ppc-capabilities-tab-active';
@@ -297,19 +297,19 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 							$tab_id = "cme-cap-type-tables-$cap_type";
 							$tab_active = ($tab_id == $active_tab_id) ? $ppc_tab_active : '';
 
-							echo '<li data-slug="'. sanitize_key($cap_type) . '"' . ' data-content="cme-cap-type-tables-' . sanitize_key($cap_type) . '" class="' . $tab_active . '">'
+							echo '<li data-slug="'. esc_attr($cap_type) . '"' . ' data-content="cme-cap-type-tables-' . esc_attr($cap_type) . '" class="' . $tab_active . '">'
 								. $cap_type_names[$cap_type] .
 							'</li>';
 						}
 
 						if ($extra_tabs = apply_filters('pp_capabilities_extra_post_capability_tabs', [])) {
 							foreach($extra_tabs as $tab_slug => $tab_caption) {
-								$tab_slug = sanitize_key($tab_slug);
+								$tab_slug = esc_attr($tab_slug);
 								
 								$tab_id = "cme-cap-type-tables-{$tab_slug}";
 								$tab_active = ($tab_id == $active_tab_id) ? $ppc_tab_active : '';
 
-								echo '<li data-slug="' . sanitize_key($tab_slug) . '"' . ' data-content="' . sanitize_key($tab_id) . '" class="' . $tab_active . '">'
+								echo '<li data-slug="' . esc_attr($tab_slug) . '"' . ' data-content="' . esc_attr($tab_id) . '" class="' . $tab_active . '">'
 								. esc_html($tab_caption) .
 								'</li>';
 							}
@@ -320,7 +320,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 						$tab_active = ($tab_id == $active_tab_id) ? $ppc_tab_active : '';
 						$tab_caption = esc_html__( 'WordPress Core', 'capsman-enhanced' );
 
-						echo '<li data-slug="other" data-content="' . sanitize_key($tab_id) . '" class="' . $tab_active . '">' . esc_attr($tab_caption) . '</li>';
+						echo '<li data-slug="other" data-content="' . esc_attr($tab_id) . '" class="' . $tab_active . '">' . esc_attr($tab_caption) . '</li>';
 
 						// caps: plugins
 						$plugin_caps = [];
@@ -487,7 +487,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 							$tab_id = 'cme-cap-type-tables-' . $tab_slug;
 							$tab_active = ($tab_id == $active_tab_id) ? $ppc_tab_active : '';
 
-							echo '<li data-slug="' . sanitize_key($tab_slug) . '" data-content="' . sanitize_key($tab_id) . '" class="' . $tab_active . '">'
+							echo '<li data-slug="' . esc_attr($tab_slug) . '" data-content="' . esc_attr($tab_id) . '" class="' . $tab_active . '">'
 								. str_replace('_', ' ', $plugin ) .
 							'</li>';
 						}
@@ -495,12 +495,12 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 						$tab_id = "cme-cap-type-tables-invalid";
 						$tab_active = ($tab_id == $active_tab_id) ? $ppc_tab_active : '';
 						$tab_caption = esc_html__( 'Invalid Capabilities', 'capsman-enhanced' );
-						echo '<li id="cme_tab_invalid_caps" data-slug="invalid" data-content="cme-cap-type-tables-' . sanitize_key($tab_id) . '" class="' . $tab_active . '" style="display:none;">' . esc_attr($tab_caption) . '</li>';
+						echo '<li id="cme_tab_invalid_caps" data-slug="invalid" data-content="cme-cap-type-tables-' . esc_attr($tab_id) . '" class="' . $tab_active . '" style="display:none;">' . esc_attr($tab_caption) . '</li>';
 
 						$tab_id = "cme-cap-type-tables-additional";
 						$tab_active = ($tab_id == $active_tab_id) ? $ppc_tab_active : '';
 						$tab_caption = esc_html__( 'Additional', 'capsman-enhanced' );
-						echo '<li data-slug="additional" data-content="' . sanitize_key($tab_id) . '" class="' . $tab_active . '">' . esc_attr($tab_caption) . '</li>';
+						echo '<li data-slug="additional" data-content="' . esc_attr($tab_id) . '" class="' . $tab_active . '">' . esc_attr($tab_caption) . '</li>';
 						?>
 					</ul>
 				</div>
@@ -555,7 +555,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 								echo ' <button class="button secondary-button ppc-filter-select-reset" type="button">' . esc_html__('Clear', 'capability-manager-enhanced') . '</button>';
 							echo '</div>';
 
-							echo "<table class='widefat fixed striped cme-typecaps cme-typecaps-" . sanitize_key($cap_type) . "'>";
+							echo "<table class='widefat fixed striped cme-typecaps cme-typecaps-" . esc_attr($cap_type) . "'>";
 
 							echo '<thead><tr><th></th>';
 
@@ -581,7 +581,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 								if ( in_array( $key, $unfiltered[$item_type] ) )
 									continue;
 
-								$row = "<tr class='cme_type_" . sanitize_key($key) . "'>";
+								$row = "<tr class='cme_type_" . esc_attr($key) . "'>";
 
 								if ( $cap_type ) {
 									if ( empty($force_distinct_ui) && empty( $cap_properties[$cap_type][$item_type] ) )
@@ -649,7 +649,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 														$title = $cap_name;
 													}
 
-													$checkbox = '<input type="checkbox" title="' . esc_attr($title) . '" name="caps[' . sanitize_key($cap_name) . ']" autocomplete="off" value="1" ' . checked(1, ! empty($rcaps[$cap_name]), false ) . ' />';
+													$checkbox = '<input type="checkbox" title="' . esc_attr($title) . '" name="caps[' . esc_attr($cap_name) . ']" autocomplete="off" value="1" ' . checked(1, ! empty($rcaps[$cap_name]), false ) . ' />';
 
 													$type_caps [$cap_name] = true;
 													$display_row = true;
@@ -657,7 +657,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 												}
 											} else {
 												//$td_classes []= "cap-unreg";
-												$title = sprintf( __( 'shared capability: %s', 'capsman-enhanced' ), sanitize_key( $type_obj->cap->$prop ) );
+												$title = sprintf( __( 'shared capability: %s', 'capsman-enhanced' ), esc_attr( $type_obj->cap->$prop ) );
 											}
 
 											if ( isset($rcaps[$cap_name]) && empty($rcaps[$cap_name]) ) {
@@ -672,7 +672,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 										$row .= '<td class="' . esc_attr($td_class) . '" title="' . esc_attr($title) . '"' . "><span class='cap-x'>X</span>$checkbox";
 
 										if ( false !== strpos( $td_class, 'cap-neg' ) )
-											$row .= '<input type="hidden" class="cme-negation-input" name="caps[' . sanitize_key($cap_name) . ']" value="" />';
+											$row .= '<input type="hidden" class="cme-negation-input" name="caps[' . esc_attr($cap_name) . ']" value="" />';
 
 										$row .= "</td>";
 
@@ -732,7 +732,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 					$id = "cme-cap-type-tables-other";
 					$div_display = ($id == $active_tab_id) ? 'block' : 'none';
 					?>
-					<div id="<?php echo sanitize_key($id);?>" style="display:<?php echo sanitize_key($div_display);?>">
+					<div id="<?php echo esc_attr($id);?>" style="display:<?php echo esc_attr($div_display);?>">
 						<?php
 
 						echo '<h3>' . esc_html__( 'WordPress Core Capabilities', 'capsman-enhanced' ) . '</h3>';
@@ -758,12 +758,12 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 
 							// Output first <tr>
 							if ( $centinel_ == true ) {
-								echo '<tr class="' . sanitize_key($cap_name) . '">';
+								echo '<tr class="' . esc_attr($cap_name) . '">';
 								$centinel_ = false;
 							}
 
 							if ( $i == $checks_per_row ) {
-								echo '</tr><tr class="' . sanitize_key($cap_name) . '">';
+								echo '</tr><tr class="' . esc_attr($cap_name) . '">';
 								$i = 0;
 							}
 
@@ -801,21 +801,21 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 							}
 
 							?>
-							<td class="<?php echo esc_attr($class); ?>"><span class="cap-x">X</span><label title="<?php echo esc_attr($title);?>"><input type="checkbox" name="caps[<?php echo sanitize_key($cap_name); ?>]" autocomplete="off" value="1" <?php echo esc_attr($checked) . esc_attr($disabled);?> />
+							<td class="<?php echo esc_attr($class); ?>"><span class="cap-x">X</span><label title="<?php echo esc_attr($title);?>"><input type="checkbox" name="caps[<?php echo esc_attr($cap_name); ?>]" autocomplete="off" value="1" <?php echo esc_attr($checked) . esc_attr($disabled);?> />
 							<span>
 							<?php
-							echo str_replace( '_', ' ', sanitize_key($cap_name) );
+							echo str_replace( '_', ' ', esc_attr($cap_name) );
 							?>
 							</span></label><a href="#" class="neg-cap">&nbsp;x&nbsp;</a>
 							<?php if ( false !== strpos( $class, 'cap-neg' ) ) :?>
-								<input type="hidden" class="cme-negation-input" name="caps[<?php echo sanitize_key($cap_name); ?>]" value="" />
+								<input type="hidden" class="cme-negation-input" name="caps[<?php echo esc_attr($cap_name); ?>]" value="" />
 							<?php endif; ?>
 							</td>
 
 							<?php
 
 							if ( $lock_capability ) {
-								echo '<input type="hidden" name="caps[' . sanitize_key($cap_name) . ']" value="1" />';
+								echo '<input type="hidden" name="caps[' . esc_attr($cap_name) . ']" value="1" />';
 							}
 
 							++$i;
@@ -867,7 +867,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 						$id = 'cme-cap-type-tables-' . str_replace( ' ', '-', strtolower($plugin));
 						$div_display = ($id == $active_tab_id) ? 'block' : 'none';
 
-						echo '<div id="' . esc_attr($id) . '" style="display:' . sanitize_key($div_display) . '">';
+						echo '<div id="' . esc_attr($id) . '" style="display:' . esc_attr($div_display) . '">';
 
 						echo '<h3 class="cme-cap-section">' . sprintf(esc_html__( 'Plugin Capabilities &ndash; %s', 'capsman-enhanced' ), str_replace('_', ' ', $plugin )) . '</h3>';
 
@@ -895,12 +895,12 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 
 							// Output first <tr>
 							if ( $centinel_ == true ) {
-								echo '<tr class="' . sanitize_key($cap_name) . '">';
+								echo '<tr class="' . esc_attr($cap_name) . '">';
 								$centinel_ = false;
 							}
 
 							if ( $i == $checks_per_row ) {
-								echo '</tr><tr class="' . sanitize_key($cap_name) . '">';
+								echo '</tr><tr class="' . esc_attr($cap_name) . '">';
 								$i = 0;
 							}
 
@@ -920,14 +920,14 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 							$checked = checked(1, ! empty($rcaps[$cap_name]), false );
 							$title = $title_text;
 							?>
-							<td class="<?php echo esc_attr($class); ?>"><span class="cap-x">X</span><label title="<?php echo esc_attr($title);?>"><input type="checkbox" name="caps[<?php echo sanitize_key($cap_name); ?>]" autocomplete="off" value="1" <?php echo esc_attr($checked) . esc_attr($disabled);?> />
+							<td class="<?php echo esc_attr($class); ?>"><span class="cap-x">X</span><label title="<?php echo esc_attr($title);?>"><input type="checkbox" name="caps[<?php echo esc_attr($cap_name); ?>]" autocomplete="off" value="1" <?php echo esc_attr($checked) . esc_attr($disabled);?> />
 							<span>
 							<?php
-							echo str_replace( '_', ' ', sanitize_key($cap_name) );
+							echo str_replace( '_', ' ', esc_attr($cap_name) );
 							?>
 							</span></label><a href="#" class="neg-cap">&nbsp;x&nbsp;</a>
 							<?php if ( false !== strpos( $class, 'cap-neg' ) ) :?>
-								<input type="hidden" class="cme-negation-input" name="caps[<?php echo sanitize_key($cap_name); ?>]" value="" />
+								<input type="hidden" class="cme-negation-input" name="caps[<?php echo esc_attr($cap_name); ?>]" value="" />
 							<?php endif; ?>
 							</td>
 
@@ -964,7 +964,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 						$id = "cme-cap-type-tables-invalid";
 						$div_display = ($id == $active_tab_id) ? 'block' : 'none';
 
-						echo '<div id="' . sanitize_key($id) . '" style="display:' . sanitize_key($div_display) . '">';
+						echo '<div id="' . esc_attr($id) . '" style="display:' . esc_attr($div_display) . '">';
 						echo '<h3 class="cme-cap-section">' . esc_html__( 'Invalid Capabilities', 'capsman-enhanced' ) . '</h3>';
 						?>
 
@@ -1020,14 +1020,14 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 							$disabled = '';
 							$checked = checked(1, ! empty($rcaps[$cap_name]), false );
 						?>
-							<td class="<?php echo esc_attr($class); ?>"><span class="cap-x">X</span><label title="<?php echo esc_attr($title_text);?>"><input type="checkbox" name="caps[<?php echo sanitize_key($cap_name); ?>]" autocomplete="off" value="1" <?php echo esc_attr($checked) . esc_attr($disabled);?> />
+							<td class="<?php echo esc_attr($class); ?>"><span class="cap-x">X</span><label title="<?php echo esc_attr($title_text);?>"><input type="checkbox" name="caps[<?php echo esc_attr($cap_name); ?>]" autocomplete="off" value="1" <?php echo esc_attr($checked) . esc_attr($disabled);?> />
 							<span>
 							<?php
 							echo esc_html(str_replace( '_', ' ', $cap ));
 							?>
 							</span></label><a href="#" class="neg-cap">&nbsp;x&nbsp;</a>
 							<?php if ( false !== strpos( $class, 'cap-neg' ) ) :?>
-								<input type="hidden" class="cme-negation-input" name="caps[<?php echo sanitize_key($cap_name); ?>]" value="" />
+								<input type="hidden" class="cme-negation-input" name="caps[<?php echo esc_attr($cap_name); ?>]" value="" />
 							<?php endif; ?>
 							</td>
 						<?php
@@ -1060,7 +1060,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 					$id = "cme-cap-type-tables-additional";
 					$div_display = ($id == $active_tab_id) ? 'block' : 'none';
 					?>
-					<div id="<?php echo sanitize_key($id);?>" style="display:<?php echo sanitize_key($div_display);?>">
+					<div id="<?php echo esc_attr($id);?>" style="display:<?php echo esc_attr($div_display);?>">
 						<?php
 						// caps: additional
 						echo '<h3 class="cme-cap-section">' . esc_html__( 'Additional Capabilities', 'capsman-enhanced' ) . '</h3>';
@@ -1114,12 +1114,12 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 
 							// Output first <tr>
 							if ( $centinel_ == true ) {
-								echo '<tr class="' . sanitize_key($cap_name) . '">';
+								echo '<tr class="' . esc_attr($cap_name) . '">';
 								$centinel_ = false;
 							}
 
 							if ( $i == $checks_per_row ) {
-								echo '</tr><tr class="' . sanitize_key($cap_name) . '">';
+								echo '</tr><tr class="' . esc_attr($cap_name) . '">';
 								$i = 0; $first_row = false;
 							}
 
@@ -1155,7 +1155,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 							?>
 							</span></label><a href="#" class="neg-cap">&nbsp;x&nbsp;</a>
 							<?php if ( false !== strpos( $class, 'cap-neg' ) ) :?>
-								<input type="hidden" class="cme-negation-input" name="caps[<?php echo sanitize_key($cap_name); ?>]" value="" />
+								<input type="hidden" class="cme-negation-input" name="caps[<?php echo esc_attr($cap_name); ?>]" value="" />
 							<?php endif; ?>
 							</td>
 						<?php
@@ -1320,7 +1320,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 
 		<p class="submit" style="padding-top:0;">
 			<input type="hidden" name="action" value="update" />
-			<input type="hidden" name="current" value="<?php echo sanitize_key($default); ?>" />
+			<input type="hidden" name="current" value="<?php echo esc_attr($default); ?>" />
 			<input type="submit" name="SaveRole" value="<?php echo (in_array(get_locale(), ['en_EN', 'en_US'])) ? 'Save Capabilities' : esc_html_e('Save Changes', 'capsman-enhanced');?>" class="button-primary" /> &nbsp;
 
 			<?php if ( current_user_can('administrator') && 'administrator' != $default ) : ?>
