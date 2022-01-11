@@ -36,7 +36,7 @@ class PP_Capabilities_Notices
             $messages = $_COOKIE[$this->cookie];
             $messages = @json_decode($messages, true);
             if (is_array($messages)) {
-                $this->messages = $messages;
+                $this->messages = array_map('esc_html', $messages);
             }
 
             /**
