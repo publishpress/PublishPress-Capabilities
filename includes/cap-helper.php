@@ -371,7 +371,6 @@ class CME_Cap_Helper {
 		}
 		
 		// make sure Nav Menu Managers can also add menu items
-		global $wp_taxonomies;
 		$wp_taxonomies['nav_menu']->cap->assign_terms = 'manage_nav_menus';
 		
 		$this->processed_taxonomies = array_merge( $this->processed_taxonomies, $use_taxonomies );
