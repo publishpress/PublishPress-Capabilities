@@ -191,8 +191,8 @@ $auto_backups = $wpdb->get_results("SELECT option_name, option_value FROM $wpdb-
                                                                 <h3><?php printf(esc_html__("%s (%s roles)", 'capsman-enhanded'), esc_html($caption), count($backup_data)); ?></h3>
 
                                                                 <?php
-                                                                foreach ($wp_roles->role_objects as $role => $role_object) {
-                                                                    if (empty($backup_data[$role])) {
+                                                                foreach ($wp_roles->role_objects as $role_name => $role_object) {
+                                                                    if (empty($backup_data[$role_name])) {
                                                                         $role_caption = $role_object->name;
                                                                         ?>
                                                                         <h4><span class="cme-change cme-minus"><?php echo (translate_user_role($role_caption));?></span> <?php esc_html_e('(this role will be removed if you restore backup)', 'capsman-enhanced');?></h4>
@@ -201,10 +201,10 @@ $auto_backups = $wpdb->get_results("SELECT option_name, option_value FROM $wpdb-
                                                                 }
                                                                 ?>
 
-                                                                <?php foreach ($backup_data as $role => $props) :
-                                                                    if (isset($wp_roles->role_objects[$role]->capabilities)) {
+                                                                <?php foreach ($backup_data as $role_name => $props) :
+                                                                    if (isset($wp_roles->role_objects[$role_name]->capabilities)) {
                                                                         $props['capabilities'] = array_merge(
-                                                                            array_fill_keys(array_keys($wp_roles->role_objects[$role]->capabilities), 0),
+                                                                            array_fill_keys(array_keys($wp_roles->role_objects[$role_name]->capabilities), 0),
                                                                             $props['capabilities']
                                                                         );
                                                                     }
@@ -221,7 +221,7 @@ $auto_backups = $wpdb->get_results("SELECT option_name, option_value FROM $wpdb-
                                                                     ?>
                                                                     <?php
                                                                     $role_caption = $props['name'];
-                                                                    $role_class = (empty($wp_roles->role_objects[$role])) ? 'cme-change cme-plus' : '';
+                                                                    $role_class = (empty($wp_roles->role_objects[$role_name])) ? 'cme-change cme-plus' : '';
                                                                     ?>
 
                                                                     <h4 class="<?php echo esc_attr($role_class);?>"><?php printf(esc_html__('%s (level %s)', 'capsman-enhanced'), translate_user_role($role_caption), $level); ?></h4>
@@ -235,13 +235,13 @@ $auto_backups = $wpdb->get_results("SELECT option_name, option_value FROM $wpdb-
                                                                         if (0 === strpos($cap_name, 'level_')) continue;
                                                                         ?>
                                                                         <?php
-                                                                        if ($val && (empty($wp_roles->role_objects[$role]) || empty($wp_roles->role_objects[$role]->capabilities[$cap_name]))) {
+                                                                        if ($val && (empty($wp_roles->role_objects[$role_name]) || empty($wp_roles->role_objects[$role_name]->capabilities[$cap_name]))) {
                                                                             $class = 'cme-change cme-plus';
 
-                                                                        } elseif ((false === $props['capabilities'][$cap_name]) && (!isset($wp_roles->role_objects[$role]->capabilities[$cap_name]) || false !== $wp_roles->role_objects[$role]->capabilities[$cap_name])) {
+                                                                        } elseif ((false === $props['capabilities'][$cap_name]) && (!isset($wp_roles->role_objects[$role_name]->capabilities[$cap_name]) || false !== $wp_roles->role_objects[$role_name]->capabilities[$cap_name])) {
                                                                             $class = 'cme-change cme-negate';
 
-                                                                        } elseif (!$val && !empty($wp_roles->role_objects[$role]->capabilities[$cap_name])) {
+                                                                        } elseif (!$val && !empty($wp_roles->role_objects[$role_name]->capabilities[$cap_name])) {
                                                                             $class = 'cme-change cme-minus';
                                                                             $cap_name = "&nbsp;&nbsp;" . esc_attr($cap_name) . "&nbsp;&nbsp;";
                                                                         } else {
