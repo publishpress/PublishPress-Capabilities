@@ -476,10 +476,10 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 							);
 						}
 						$plugin_caps = apply_filters('cme_plugin_capabilities', $plugin_caps);
-						foreach($plugin_caps as $plugin => $__plugin_caps) {
-							$plugin = esc_html($plugin);
+						foreach($plugin_caps as $plugin_title => $__plugin_caps) {
+							$plugin_title = esc_html($plugin_title);
 
-							$tab_slug = str_replace(' ', '-', strtolower($plugin));
+							$tab_slug = str_replace(' ', '-', strtolower(sanitize_title($plugin_title)));
 							$tab_id = 'cme-cap-type-tables-' . $tab_slug;
 							$tab_active = ($tab_id == $active_tab_id) ? $ppc_tab_active : '';
 
@@ -854,12 +854,12 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 					// caps: plugins
 					$plugin_caps = apply_filters('cme_plugin_capabilities', $plugin_caps);
 
-					foreach($plugin_caps as $plugin => $__plugin_caps) {
-						$plugin = esc_html($plugin);
+					foreach($plugin_caps as $plugin_title => $__plugin_caps) {
+						$plugin_title = esc_html($plugin_title);
 
 						$_plugin_caps = array_fill_keys($__plugin_caps, true);
 
-						$id = 'cme-cap-type-tables-' . str_replace( ' ', '-', strtolower($plugin));
+						$id = 'cme-cap-type-tables-' . str_replace( ' ', '-', strtolower($plugin_title));
 						$div_display = ($id == $active_tab_id) ? 'block' : 'none';
 
 						echo '<div id="' . esc_attr($id) . '" style="display:' . esc_attr($div_display) . '">';
@@ -1091,8 +1091,8 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 							}
 
 							if (!isset($type_metacaps[$cap_name]) || !empty($rcaps[$cap_name])) {
-								foreach(array_keys($plugin_caps) as $plugin) {
-									if ( in_array( $cap_name, $plugin_caps[$plugin]) ) {
+								foreach(array_keys($plugin_caps) as $plugin_title) {
+									if ( in_array( $cap_name, $plugin_caps[$plugin_title]) ) {
 										continue 2;
 									}
 								}
