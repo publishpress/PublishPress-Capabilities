@@ -91,7 +91,8 @@ class CapsmanHandler
 				return;
 			}
 
-			$this->saveRoleCapabilities(sanitize_key($_POST['current']), array_map('boolval', $_POST['caps']), (int) $_POST['level']);
+			$level = (isset($_POST['level'])) ? (int) $_POST['level'] : 0;
+			$this->saveRoleCapabilities(sanitize_key($_POST['current']), array_map('boolval', $_POST['caps']), $level);
 			
 			if (defined( 'PRESSPERMIT_ACTIVE' ) && !empty($_POST['role'])) {  // log customized role caps for subsequent restoration
 				// for bbPress < 2.2, need to log customization of roles following bbPress activation
@@ -137,7 +138,9 @@ class CapsmanHandler
 				
 				$wpdb->query( "UPDATE $wpdb->options SET autoload = 'no' WHERE option_name = 'pp_customized_roles'" );
 
-				$url = admin_url('admin.php?page=pp-capabilities&role=' . sanitize_key($_POST['role']) . '&added=1');
+				$redirect_role = (!empty($_POST['role'])) ? sanitize_key($_POST['role']) : '';
+
+				$url = admin_url('admin.php?page=pp-capabilities&role=' . esc_attr($redirect_role) . '&added=1');
 				wp_redirect($url);
 				exit;
 			} else {
