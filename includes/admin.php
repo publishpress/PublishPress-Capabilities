@@ -108,7 +108,6 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 			</div>
 
 			<?php
-			global $capsman;
 			$img_url = $capsman->mod_url . '/images/';
 			?>
 			<div class="publishpress-headline" style="margin-bottom:20px;">
