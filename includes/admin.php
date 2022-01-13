@@ -186,13 +186,6 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 
 			$enabled_taxonomies = cme_get_assisted_taxonomies();
 
-			/*
-			if ( ( count($custom_types) || count($custom_tax) ) && ( $is_administrator || current_user_can( 'manage_pp_settings' ) ) ) {
-				$cap_properties[''] = array();
-				$force_distinct_ui = true;
-			}
-			*/
-
 			$cap_properties['edit']['type'] = array( 'edit_posts' );
 
 			foreach( $defined['type'] as $type_obj ) {
@@ -841,15 +834,6 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 					<?php
 					$all_capabilities = apply_filters( 'capsman_get_capabilities', array_keys( $this->capabilities ), $this->ID );
 					$all_capabilities = apply_filters( 'members_get_capabilities', $all_capabilities );
-
-					/*
-					$publishpress_status_change_caps = array();
-					foreach( $all_capabilities as $cap_name ) {
-						if (0 === strpos($cap_name, 'status_change_')) {
-							$publishpress_status_change_caps []= $cap_name;
-						}
-					}
-					*/
 
 					// caps: plugins
 					$plugin_caps = apply_filters('cme_plugin_capabilities', $plugin_caps);
