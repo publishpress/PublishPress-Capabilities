@@ -106,7 +106,7 @@ if ( version_compare(PHP_VERSION, '5.4.0', '<') ) {
 	// redirect legacy URLs
 	if (!empty($_REQUEST['page'])) {
 		foreach(['capsman' => 'pp-capabilities', 'capsman-tool' => 'pp-capabilities-backup'] as $find => $replace) {
-			if (isset($_REQUEST['page']) && ($find == $_REQUEST['page'])) {
+			if (isset($_REQUEST['page']) && ($find == $_REQUEST['page']) && !empty($_SERVER['REQUEST_URI'])) {
 				$location = str_replace("page=$find", "page=$replace", $_SERVER['REQUEST_URI']);
 				header( "Location: $location", true);
 				exit;
