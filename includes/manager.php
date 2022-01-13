@@ -234,7 +234,7 @@ class CapabilityManager
 			add_filter( 'option_' . $role_key, array( &$this, 'reinstate_db_roles' ), PHP_INT_MAX );
 		}
 
-		add_filter( 'plugins_loaded', array( &$this, 'processRoleUpdate' ) );
+		add_action( 'plugins_loaded', array( &$this, 'processRoleUpdate' ) );
     }
 
 	public function set_current_role($role_name) {
