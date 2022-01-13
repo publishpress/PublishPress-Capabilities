@@ -27,9 +27,6 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
     {
         global $status, $page;
 
-        //$screen = get_current_screen();
-        //add_filter("manage_{$screen->id}_columns", [$this, 'get_columns']);
-
         //Set parent defaults
         parent::__construct([
             'singular' => 'role',     //singular name of the listed records
