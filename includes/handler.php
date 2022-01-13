@@ -22,7 +22,8 @@ class CapsmanHandler
 	}
 	
 	function processAdminGeneral() {
-		global $wp_roles;
+		global $wpdb, $wp_roles;
+		
 		check_admin_referer('capsman-general-manager');
 		
 		if ( empty ($_POST['caps']) ) {
