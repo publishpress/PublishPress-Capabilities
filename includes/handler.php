@@ -83,7 +83,6 @@ class CapsmanHandler
 		// Save role changes. Already saved at start with self::saveRoleCapabilities().
 		} elseif ( ! empty($_POST['SaveRole']) && !empty($_POST['current'])) {
 			if ( MULTISITE ) {
-				global $wp_roles;
 				( method_exists( $wp_roles, 'for_site' ) ) ? $wp_roles->for_site() : $wp_roles->reinit();
 			}
 			
@@ -106,13 +105,11 @@ class CapsmanHandler
 				$customized_roles[$_role] = (object) array( 'caps' => array_map( 'boolval', $_POST['caps'] ), 'plugins' => $plugins );
 				update_option( 'pp_customized_roles', $customized_roles );
 				
-				global $wpdb;
 				$wpdb->query( "UPDATE $wpdb->options SET autoload = 'no' WHERE option_name = 'pp_customized_roles'" );
 			}
 		// Create New Capability and adds it to current role.
 		} elseif (!empty($_POST['AddCap']) && !empty($_POST['current']) && !empty($_POST['capability-name'])) {
 			if ( MULTISITE ) {
-				global $wp_roles;
 				( method_exists( $wp_roles, 'for_site' ) ) ? $wp_roles->for_site() : $wp_roles->reinit();
 			}
 
