@@ -33,7 +33,7 @@ class PP_Capabilities_Notices
          * Read cookie if exist
          */
         if (isset($_COOKIE[$this->cookie])) {
-            $messages = $_COOKIE[$this->cookie];
+            $messages = sanitize_text_field($_COOKIE[$this->cookie]);
             $messages = @json_decode($messages, true);
             if (is_array($messages)) {
                 $this->messages = array_map('esc_html', $messages);
