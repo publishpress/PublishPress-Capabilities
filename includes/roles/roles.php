@@ -45,7 +45,7 @@
             </div>
             <div id="col-right">
                 <div class="col-wrap">
-                    <form action="<?php echo add_query_arg('', '') ?>" method="post">
+                    <form action="" method="post">
                         <?php $table->display(); //Display the table ?>
                     </form>
                     <div class="form-wrap edit-term-notes">
