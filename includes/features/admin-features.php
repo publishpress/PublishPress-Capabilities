@@ -69,11 +69,11 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                                             ?>
                                         </select> &nbsp;
 
-                                        <img class="loading" src="<?php echo esc_url($capsman->mod_url); ?>/images/wpspin_light.gif"
+                                        <img class="loading" src="<?php echo esc_url_raw($capsman->mod_url); ?>/images/wpspin_light.gif"
                                              style="display: none">
 
                                         <input type="submit" name="admin-features-submit"
-                                               value="<?php esc_html_e('Save Changes', 'capabilities-pro') ?>"
+                                               value="<?php esc_attr_e('Save Changes', 'capabilities-pro') ?>"
                                                class="button-primary ppc-admin-features-submit" style="float:right"/>
                                     </div>
 
@@ -121,7 +121,7 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
 		                                                                    id="check-item-<?php echo (int) $sn; ?>"
 		                                                                    class="check-item" type="checkbox"
 		                                                                    name="capsman_disabled_admin_features[]"
-		                                                                    value="<?php echo pp_capabilities_sanitize_entry($restrict_value); ?>"
+		                                                                    value="<?php echo esc_attr($restrict_value); ?>"
 		                                                                    <?php echo (in_array($restrict_value, $disabled_admin_items)) ? 'checked' : ''; ?>/>
 		                                                                    <label for="check-item-<?php echo (int) $sn; ?>">
 		                                                            <strong class="menu-column ppc-menu-item menu-item-link<?php echo (in_array($restrict_value,
@@ -161,7 +161,7 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                                                                             id="check-item-<?php echo (int) $sn; ?>"
                                                                             class="check-item" type="checkbox"
                                                                             name="capsman_disabled_admin_features[]"
-                                                                            value="<?php echo pp_capabilities_sanitize_entry($restrict_value); ?>"
+                                                                            value="<?php echo esc_attr($restrict_value); ?>"
                                                                             <?php echo (in_array($restrict_value, $disabled_admin_items)) ? 'checked' : ''; ?>/>
                                                                     </td>
                                                             		<td class="menu-column ppc-menu-item">
@@ -186,9 +186,8 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                                                                                 ?>
                                                                                 <?php 
                                                                                 if(isset($section_array['custom_element']) && ($section_array['custom_element'] === true)){
-                                                                                    $delete_button = '<span class="' . esc_attr($section_array['button_class'])  . '" data-id="' . esc_attr($section_array['button_data_id'])  . '"><small>(' . __('Delete', 'capabilities-pro') . ')</small></span>';
-
-                                                                                    echo esc_html($section_array['element_label']) . ' <small class="entry">(' . esc_html($section_array['element_items']). ')</small> &nbsp; ' . $delete_button . '';
+                                                                                    echo esc_html($section_array['element_label']) . ' <small class="entry">(' . esc_html($section_array['element_items']). ')</small> &nbsp; ' 
+                                                                                    . '<span class="' . esc_attr($section_array['button_class'])  . '" data-id="' . esc_attr($section_array['button_data_id'])  . '"><small>(' . esc_html__('Delete', 'capabilities-pro') . ')</small></span>' . '';
                                                                                 }else{
                                                                                     echo esc_html($item_name);
                                                                                 }
@@ -213,7 +212,7 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                                         </div>
                                     </div>
                                     <input type="submit" name="admin-features-submit"
-                                           value="<?php esc_html_e('Save Changes', 'capabilities-pro') ?>"
+                                           value="<?php esc_attr_e('Save Changes', 'capabilities-pro') ?>"
                                            class="button-primary ppc-admin-features-submit"/>
                                 </td>
                             </tr>
@@ -251,13 +250,13 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                 //   reload page for instant reflection if user is updating own role
                 // -------------------------------------------------------------
                 <?php if(!empty($ppc_page_reload) && (int)$ppc_page_reload === 1){ ?>
-                window.location = '<?php echo admin_url('admin.php?page=pp-capabilities-admin-features&role=' . $default_role . ''); ?>'
+                window.location = '<?php echo esc_url_raw(admin_url('admin.php?page=pp-capabilities-admin-features&role=' . $default_role . '')); ?>'
                 <?php } ?>
 
                 // -------------------------------------------------------------
                 //   Set form action attribute to include role
                 // -------------------------------------------------------------
-                $('#ppc-admin-features-form').attr('action', '<?php echo admin_url('admin.php?page=pp-capabilities-admin-features&role=' . $default_role . ''); ?>')
+                $('#ppc-admin-features-form').attr('action', '<?php echo esc_url_raw(admin_url('admin.php?page=pp-capabilities-admin-features&role=' . $default_role . '')); ?>')
 
                 // -------------------------------------------------------------
                 //   Instant restricted item class
@@ -310,7 +309,7 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                     $('div.publishpress-caps-manage img.loading').show()
 
                     //go to url
-                    window.location = '<?php echo admin_url('admin.php?page=pp-capabilities-admin-features&role='); ?>' + $(this).val() + ''
+                    window.location = '<?php echo esc_url_raw(admin_url('admin.php?page=pp-capabilities-admin-features&role=')); ?>' + $(this).val() + ''
 
                 })
             })
