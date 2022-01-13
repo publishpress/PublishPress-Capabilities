@@ -49,7 +49,7 @@ $default_role = $capsman->current;
 
                             </select> &nbsp;
                             <input type="submit" name="nav-menu-submit"
-                                   value="<?php esc_html_e('Save Changes', 'capsman-enhanced') ?>"
+                                   value="<?php esc_attr_e('Save Changes', 'capsman-enhanced') ?>"
                                    class="button-primary ppc-nav-menu-submit" style="float:right" />
                         </div>
 
