@@ -366,13 +366,13 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
         $input_id = $input_id . '-search-input';
 
         if (!empty($_REQUEST['orderby'])) {
-            echo '<input type="hidden" name="orderby" value="' . esc_attr($_REQUEST['orderby']) . '" />';
+            echo '<input type="hidden" name="orderby" value="' . esc_attr(sanitize_text_field($_REQUEST['orderby'])) . '" />';
         }
         if (!empty($_REQUEST['order'])) {
-            echo '<input type="hidden" name="order" value="' . esc_attr($_REQUEST['order']) . '" />';
+            echo '<input type="hidden" name="order" value="' . esc_attr(sanitize_key($_REQUEST['order'])) . '" />';
         }
         if (!empty($_REQUEST['page'])) {
-            echo '<input type="hidden" name="page" value="' . esc_attr($_REQUEST['page']) . '" />';
+            echo '<input type="hidden" name="page" value="' . (int) $_REQUEST['page'] . '" />';
         }
         ?>
         <p class="search-box">
@@ -422,7 +422,7 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
          */
         function usort_reorder($a, $b)
         {
-            $orderby = (!empty($_REQUEST['orderby'])) ? pp_capabilities_sanitize_entry($_REQUEST['orderby']) : 'role'; //If no sort, default to role
+            $orderby = (!empty($_REQUEST['orderby'])) ? sanitize_text_field($_REQUEST['orderby']) : 'role'; //If no sort, default to role
             $order = (!empty($_REQUEST['order'])) ? sanitize_key($_REQUEST['order']) : 'asc'; //If no order, default to asc
             $result = strnatcasecmp($a[$orderby], $b[$orderby]); //Determine sort order, case insensitive, natural order
 
