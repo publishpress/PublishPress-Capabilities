@@ -50,7 +50,7 @@ class Capsman_BackupHandler
 				
         }
 
-        if (isset($_POST['restore_backup'])) {
+        if (isset($_POST['restore_backup']) && !empty($_POST['select_restore'])) {
             check_admin_referer('pp-capabilities-backup');
 
             $wp_roles = $wpdb->prefix . 'user_roles';
