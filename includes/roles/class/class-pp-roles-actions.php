@@ -350,18 +350,18 @@ class Pp_Roles_Actions
 
         if ($deleted) {
             $default_name = (wp_roles()->is_role($default)) ? wp_roles()->role_names[$default] : $default;
-            $users_message = ($user_count) ? sprintf(__('%1$d users moved to default role %2$s.', 'capsman-enhanced'), $user_count, $default_name) : '';
+            $users_message = ($user_count) ? sprintf(esc_html__('%1$d users moved to default role %2$s.', 'capsman-enhanced'), (int) $user_count, esc_html($default_name)) : '';
             
             $role_name = (wp_roles()->is_role($roles[0])) ? wp_roles()->role_names[$roles[0]] : $roles[0];
 
             $single = sprintf(
-                __('The role %1$s was successfully deleted. %2$s', 'capsman-enhanced'), 
-                '<strong>' . $roles[0] . '</strong>',
+                esc_html__('The role %1$s was successfully deleted. %2$s', 'capsman-enhanced'), 
+                '<strong>' . esc_html($roles[0]) . '</strong>',
                 $users_message
             );
             
             $plural = sprintf(
-                __('The selected %1$s roles were successfully deleted. %2$s', 'capsman-enhanced'), 
+                esc_html__('The selected %1$s roles were successfully deleted. %2$s', 'capsman-enhanced'), 
                 '<strong>' . $deleted . '</strong>',
                 $users_message
             );
