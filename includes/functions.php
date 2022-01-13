@@ -19,7 +19,7 @@
  * @return string Sanitized entry
  */
 function pp_capabilities_sanitize_entry( $entry ) {
-    $entry = preg_replace( '/[^a-zA-Z0-9 \.\,\+\*\:\|\(\)_\-]/', '', $entry );
+    $entry = preg_replace( '/[^a-zA-Z0-9 \.\,\+\*\:\|\(\)_\-\=]/', '', $entry );
     return $entry;
 }
 
