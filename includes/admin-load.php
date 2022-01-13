@@ -158,7 +158,7 @@ class PP_Capabilities_Admin_UI {
                 // Check if we are on the user's profile page
                 wp_enqueue_script(
                     'pp-capabilities-chosen-js',
-                    plugin_dir_url(CME_FILE) . 'common/libs/chosen-v1.8.3/chosen.jquery.js',
+                    plugin_dir_url(CME_FILE) . 'common/libs/chosen-v1.8.7/chosen.jquery.js',
                     ['jquery'],
                     CAPSMAN_VERSION
                 );
@@ -172,7 +172,7 @@ class PP_Capabilities_Admin_UI {
 
                 wp_enqueue_style(
                     'pp-capabilities-chosen-css',
-                    plugin_dir_url(CME_FILE) . 'common/libs/chosen-v1.8.3/chosen.css',
+                    plugin_dir_url(CME_FILE) . 'common/libs/chosen-v1.8.7/chosen.css',
                     false,
                     CAPSMAN_VERSION
                 );
