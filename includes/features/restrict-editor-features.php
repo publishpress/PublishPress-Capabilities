@@ -96,12 +96,6 @@ class PP_Capabilities_Post_Features {
         end($elements);
         $k = key($elements);
 
-            /*
-            esc_html__('Related, Shortcuts', 'capsman-enhanced') =>          '.side-info',
-            esc_html__('Messages', 'capsman-enhanced') =>                    '#notice',
-            esc_html__('h2: Advanced Options', 'capsman-enhanced') =>        '#post-body h2',
-            */
-
         $post_type_supports = [];
 
         $def_post_types = array_unique(apply_filters('pp_capabilities_feature_post_types', ['post', 'page']));
