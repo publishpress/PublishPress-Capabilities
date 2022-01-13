@@ -312,7 +312,7 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
 
         $query_arg = '_wpnonce';
         $action = 'bulk-' . $this->_args['plural'];
-        $checked = $result = isset($_REQUEST[$query_arg]) ? wp_verify_nonce($_REQUEST[$query_arg], $action) : false;
+        $checked = $result = isset($_REQUEST[$query_arg]) ? wp_verify_nonce(sanitize_key($_REQUEST[$query_arg]), $action) : false;
 
         if (!$checked) {
             return;
