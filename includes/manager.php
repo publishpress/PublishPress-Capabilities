@@ -295,7 +295,6 @@ class CapabilityManager
 
 		$backup = get_option($this->ID . '_backup');
 		if ( false === $backup ) {		// No previous backup found. Save it!
-			global $wpdb;
 			$roles = get_option($wpdb->prefix . 'user_roles');
 			update_option( $this->ID . '_backup', $roles, false );
 			update_option( $this->ID . '_backup_datestamp', current_time( 'timestamp' ), false );
