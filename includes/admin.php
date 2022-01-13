@@ -553,7 +553,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 								echo "<th style='text-align:center;' title='" . esc_attr($tip) . "' class='" . esc_attr($th_class) . "'>";
 
 								if ( ( 'delete' != $prop ) || ( 'taxonomy' != $item_type ) || cme_get_detailed_taxonomies() ) {
-									echo ucwords(str_replace('_', '<br />', esc_html($prop)));
+									echo str_replace('_', '<br />', esc_html(ucwords($prop)));
 								}
 
 								echo '</th>';
