@@ -37,7 +37,11 @@ class CapsmanHandler
 
 		// Create a new role.
 		if ( ! empty($_POST['CreateRole']) ) {
-			if ( $newrole = $this->createRole(pp_capabilities_sanitize_entry($_POST['create-name'])) ) {
+			if (!empty($_POST['create-name'])) {
+				$newrole = $this->createRole(sanitize_text_field($_POST['create-name']));
+			}
+
+			if (!empty($newrole)) {
 				ak_admin_notify(__('New role created.', 'capsman-enhanced'));
 				$this->cm->set_current_role($newrole);
 			} else {
@@ -65,7 +69,7 @@ class CapsmanHandler
 		// Copy current role to a new one.
 		} elseif (!empty($_POST['CopyRole']) && !empty($_POST['copy-name']) && !empty($_POST['current'])) {
 			$current = get_role(sanitize_key($_POST['current']));
-			if ( $newrole = $this->createRole(pp_capabilities_sanitize_entry($_POST['copy-name']), $current->capabilities) ) {
+			if ( $newrole = $this->createRole(sanitize_text_field($_POST['copy-name']), $current->capabilities) ) {
 				ak_admin_notify(__('New role created.', 'capsman-enhanced'));
 				$this->cm->set_current_role($newrole);
 			} else {
@@ -119,7 +123,7 @@ class CapsmanHandler
 			$role = get_role(sanitize_key($_POST['current']));
 			$role->name = sanitize_key($_POST['current']);		// bbPress workaround
 
-			$newname = $this->createNewName(sanitize_key($_POST['capability-name']), ['allow_dashes' => true]);
+			$newname = $this->createNewName(sanitize_text_field($_POST['capability-name']), ['allow_dashes' => true]);
 
 			if (empty($newname['error'])) {
 				$role->add_cap($newname['name']);
