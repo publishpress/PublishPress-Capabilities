@@ -133,7 +133,6 @@ class CapsmanHandler
 				$customized_roles[$_POST['role']] = (object) array( 'caps' => array_merge( $role->capabilities, array( $newname['name'] => 1 ) ), 'plugins' => $plugins );
 				update_option( 'pp_customized_roles', $customized_roles );
 				
-				global $wpdb;
 				$wpdb->query( "UPDATE $wpdb->options SET autoload = 'no' WHERE option_name = 'pp_customized_roles'" );
 
 				$url = admin_url('admin.php?page=pp-capabilities&role=' . sanitize_key($_POST['role']) . '&added=1');
