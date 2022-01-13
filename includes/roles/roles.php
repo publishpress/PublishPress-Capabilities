@@ -25,7 +25,7 @@
                         <h2><?php esc_html_e('Add New Role', 'capsman-enhanced') ?> </h2>
                         <form id="addrole" method="post" action="" class="validate">
                             <input type="hidden" name="action" value="pp-roles-add-role">
-                            <input type="hidden" name="screen" value="<?php echo 'capabilities_page_pp-capabilities-roles'; /*get_current_screen()->id*/ ?>">
+                            <input type="hidden" name="screen" value="<?php echo 'capabilities_page_pp-capabilities-roles';?>">
                             <?php
                             wp_nonce_field('add-role');
                             ?>
