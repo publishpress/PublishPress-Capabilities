@@ -61,7 +61,7 @@ $auto_backups = $wpdb->get_results("SELECT option_name, option_value FROM $wpdb-
                                         <p class="description">
                                         <?php
                                         $max_auto_backups = (defined('CME_AUTOBACKUPS')) ? (int) CME_AUTOBACKUPS : 20;
-                                        printf(esc_html__('PublishPress Capabilities automatically creates a backup on installation and whenever you save changes. The initial backup and last %d auto-backups are kept.', 'capsman-enhanced'), $max_auto_backups);
+                                        printf(esc_html__('PublishPress Capabilities automatically creates a backup on installation and whenever you save changes. The initial backup and last %d auto-backups are kept.', 'capsman-enhanced'), esc_attr($max_auto_backups));
                                         ?>
                                         </p>
 
@@ -111,7 +111,7 @@ $auto_backups = $wpdb->get_results("SELECT option_name, option_value FROM $wpdb-
                                                             ?>
                                                                 <li>
                                                                 <input type="radio" name="select_restore" value="restore" id="cme_restore_manual">
-                                                                <label for="cme_restore_manual"><?php printf(esc_html__('Manual backup of all roles (%s)', 'capsman-enhanced'), $manual_date_caption); ?></label>
+                                                                <label for="cme_restore_manual"><?php printf(esc_html__('Manual backup of all roles (%s)', 'capsman-enhanced'), esc_html($manual_date_caption)); ?></label>
                                                                 </li>
                                                                 <?php
                                                                 $listed_manual_backup = true;
@@ -126,7 +126,7 @@ $auto_backups = $wpdb->get_results("SELECT option_name, option_value FROM $wpdb-
 
                                                             <li>
                                                             <input type="radio" name="select_restore" value="<?php echo esc_attr($row->option_name);?>" id="<?php echo esc_attr($row->option_name);?>">
-                                                            <label for="<?php echo esc_attr($row->option_name);?>"><?php printf(esc_html__('Auto-backup of all roles (%s)', 'capsman-enhanced'), $date_caption); ?></label>
+                                                            <label for="<?php echo esc_attr($row->option_name);?>"><?php printf(esc_html__('Auto-backup of all roles (%s)', 'capsman-enhanced'), esc_html($date_caption)); ?></label>
                                                             </li>
                                                         <?php endforeach; ?>
 
@@ -187,7 +187,7 @@ $auto_backups = $wpdb->get_results("SELECT option_name, option_value FROM $wpdb-
                                                         if ($backup_data = get_option($name)) :?>
                                                             <div id="cme_display_<?php echo esc_attr($name); ?>" style="display:none;"
                                                                 class="cme-show-backup">
-                                                                <h3><?php printf(esc_html__("%s (%s roles)", 'capsman-enhanded'), $caption, count($backup_data)); ?></h3>
+                                                                <h3><?php printf(esc_html__("%s (%s roles)", 'capsman-enhanded'), esc_html($caption), count($backup_data)); ?></h3>
 
                                                                 <?php
                                                                 foreach ($wp_roles->role_objects as $role => $role_object) {
@@ -256,7 +256,7 @@ $auto_backups = $wpdb->get_results("SELECT option_name, option_value FROM $wpdb-
                                                                     <?php if ($items) :?>
                                                                         <ul class="pp-restore-caps">
                                                                         <?php foreach($items as $cap_name => $class) :?>
-                                                                            <li class="<?php echo $class;?>"><?php echo $cap_name;?></li>
+                                                                            <li class="<?php echo esc_attr($class);?>"><?php echo esc_html($cap_name);?></li>
                                                                         <?php endforeach; ?>
                                                                         </ul>
                                                                     <?php endif;?>
@@ -291,7 +291,7 @@ $auto_backups = $wpdb->get_results("SELECT option_name, option_value FROM $wpdb-
                                         </p>
                                         <p><a class="ak-delete button-primary"
                                                                          title="<?php echo esc_attr__('Reset Roles and Capabilities to WordPress defaults', 'capsman-enhanced') ?>"
-                                                                         href="<?php echo wp_nonce_url("admin.php?page=pp-capabilities-backup&amp;action=reset-defaults", 'capsman-reset-defaults'); ?>"
+                                                                         href="<?php echo esc_url_raw(wp_nonce_url("admin.php?page=pp-capabilities-backup&amp;action=reset-defaults", 'capsman-reset-defaults')); ?>"
                                                                          onclick="if ( confirm('<?php echo esc_js(__("You are about to reset Roles and Capabilities to WordPress defaults.\n 'Cancel' to stop, 'OK' to reset.", 'capsman-enhanced')); ?>') ) { return true;}return false;"><?php esc_html_e('Reset to WordPress defaults', 'capsman-enhanced') ?></a>
 
                                     </dd>
