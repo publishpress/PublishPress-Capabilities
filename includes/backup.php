@@ -195,7 +195,7 @@ $auto_backups = $wpdb->get_results("SELECT option_name, option_value FROM $wpdb-
                                                                     if (empty($backup_data[$role_name])) {
                                                                         $role_caption = $role_object->name;
                                                                         ?>
-                                                                        <h4><span class="cme-change cme-minus"><?php echo (translate_user_role($role_caption));?></span> <?php esc_html_e('(this role will be removed if you restore backup)', 'capsman-enhanced');?></h4>
+                                                                        <h4><span class="cme-change cme-minus"><?php echo (esc_html(translate_user_role($role_caption)));?></span> <?php esc_html_e('(this role will be removed if you restore backup)', 'capsman-enhanced');?></h4>
                                                                         <?php
                                                                     }
                                                                 }
@@ -224,7 +224,7 @@ $auto_backups = $wpdb->get_results("SELECT option_name, option_value FROM $wpdb-
                                                                     $role_class = (empty($wp_roles->role_objects[$role_name])) ? 'cme-change cme-plus' : '';
                                                                     ?>
 
-                                                                    <h4 class="<?php echo esc_attr($role_class);?>"><?php printf(esc_html__('%s (level %s)', 'capsman-enhanced'), translate_user_role($role_caption), $level); ?></h4>
+                                                                    <h4 class="<?php echo esc_attr($role_class);?>"><?php printf(esc_html__('%s (level %s)', 'capsman-enhanced'), esc_html(translate_user_role($role_caption)), esc_html($level)); ?></h4>
 
                                                                     <?php
                                                                     $items = [];
