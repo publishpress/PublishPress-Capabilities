@@ -109,6 +109,8 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
      */
     protected function handle_row_actions($item, $column_name, $primary)
     {
+        static $pp_only;
+
         //Build row actions
         if (pp_capabilities_is_editable_role($item['role'])) {
             $actions = [
@@ -127,8 +129,6 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
             ];
 
             if (defined("PRESSPERMIT_ACTIVE")) {
-                static $pp_only;
-
                 if (!isset($pp_only)) {
                     $pp_only = (array) pp_capabilities_get_permissions_option('supplemental_role_defs');
                 }
@@ -166,8 +166,6 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
             ]);
 
             if (defined("PRESSPERMIT_ACTIVE")) {
-                static $pp_only;
-
                 if (!isset($pp_only)) {
                     $pp_only = (array) pp_capabilities_get_permissions_option('supplemental_role_defs');
                 }
