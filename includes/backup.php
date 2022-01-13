@@ -71,7 +71,7 @@ $auto_backups = $wpdb->get_results("SELECT option_name, option_value FROM $wpdb-
 
                                         <div class="pp-caps-backup-button">
                                             <input type="submit" name="save_backup"
-                                                    value="<?php esc_html_e('Manual Backup', 'capsman-enhanced') ?>"
+                                                    value="<?php esc_attr_e('Manual Backup', 'capsman-enhanced') ?>"
                                                     class="button-primary"/>
                                         </div>
                                     </dd>
@@ -143,7 +143,7 @@ $auto_backups = $wpdb->get_results("SELECT option_name, option_value FROM $wpdb-
 
                                                     <div class="cme-restore-button">
                                                     <input type="submit" name="restore_backup"
-                                                           value="<?php esc_html_e('Restore Selected Roles', 'capsman-enhanced') ?>"
+                                                           value="<?php esc_attr_e('Restore Selected Roles', 'capsman-enhanced') ?>"
                                                            class="button-primary"/>
 
                                                     <div class="cme-selected-backup-caption">
