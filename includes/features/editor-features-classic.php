@@ -32,7 +32,7 @@ foreach($def_post_types as $type_name) {
             $type_obj = get_post_type_object($type_name);    
         ?>
             <th class="restrict-column ppc-menu-row"><?php printf(esc_html__('%s Restrict', 'capsman-enhanced'), $type_obj->labels->singular_name);?><br />
-            <input class="check-item classic check-all-menu-item" type="checkbox" title="<?php esc_attr_e('Toggle all', 'capsman-enhanced');?>" data-pp_type="<?php echo esc_attr($post_type);?>" />
+            <input class="check-item classic check-all-menu-item" type="checkbox" title="<?php esc_attr_e('Toggle all', 'capsman-enhanced');?>" data-pp_type="<?php echo esc_attr($type_name);?>" />
             </th>
         <?php endforeach;?>
     </tr>
