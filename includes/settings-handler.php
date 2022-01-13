@@ -16,16 +16,6 @@ add_action('init', function() {
 						// Free plugin doesn't currently have any settings, so disable this code for now to avoid sanitization concerns.
 
 						// Leave upstream conditionals in place to ensure access is properly regulated in any future implementation.
-
-						/*
-						$value = isset($_POST[$option_name]) ? $_POST[$option_name] : '';
-
-			            if (!is_array($value)) {
-			                $value = trim($value);
-			            }
-
-						update_option($option_name, $value);
-						*/
 	                }
 	            }
 	        }
