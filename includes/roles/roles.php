@@ -37,7 +37,7 @@
 
                             <p class="submit">
                                 <input type="submit" name="submit" id="submit" class="button button-primary"
-                                       value="<?php esc_html_e('Add'); ?> ">
+                                       value="<?php esc_attr_e('Add'); ?> ">
                             </p>
                         </form>
                     </div>
