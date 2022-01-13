@@ -597,7 +597,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 									foreach( $cap_properties[$cap_type][$item_type] as $prop ) {
 										$td_classes = array();
 										$checkbox = '';
-										$title = '';
+										$cap_title = '';
 
 										if ( ! empty($type_obj->cap->$prop) && ( in_array( $type_obj->name, array( 'post', 'page' ) )
 										|| ! in_array( $type_obj->cap->$prop, $default_caps )
@@ -642,20 +642,19 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 
 												if ( $is_administrator || current_user_can($cap_name) ) {
 													if ( ! empty($pp_metagroup_caps[$cap_name]) ) {
-														$title = sprintf(__( '%s: assigned by Permission Group', 'capsman-enhanced' ), esc_attr($cap_name) );
+														$cap_title = sprintf(__( '%s: assigned by Permission Group', 'capsman-enhanced' ), esc_attr($cap_name) );
 													} else {
-														$title = esc_attr($cap_name);
+														$cap_title = esc_attr($cap_name);
 													}
 
-													$checkbox = '<input type="checkbox" title="' . esc_attr($title) . '" name="caps[' . esc_attr($cap_name) . ']" autocomplete="off" value="1" ' . checked(1, ! empty($rcaps[$cap_name]), false ) . ' />';
+													$checkbox = '<input type="checkbox" title="' . esc_attr($cap_title) . '" name="caps[' . esc_attr($cap_name) . ']" autocomplete="off" value="1" ' . checked(1, ! empty($rcaps[$cap_name]), false ) . ' />';
 
 													$type_caps [$cap_name] = true;
 													$display_row = true;
 													$any_caps = true;
 												}
 											} else {
-												//$td_classes []= "cap-unreg";
-												$title = sprintf( __( 'shared capability: %s', 'capsman-enhanced' ), esc_attr( $type_obj->cap->$prop ) );
+												$cap_title = sprintf( __( 'shared capability: %s', 'capsman-enhanced' ), esc_attr( $type_obj->cap->$prop ) );
 											}
 
 											if ( isset($rcaps[$cap_name]) && empty($rcaps[$cap_name]) ) {
@@ -667,7 +666,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 
 										$td_class = ( $td_classes ) ? implode(' ', $td_classes) : '';
 
-										$row .= '<td class="' . esc_attr($td_class) . '" title="' . esc_attr($title) . '"' . "><span class='cap-x'>X</span>$checkbox";
+										$row .= '<td class="' . esc_attr($td_class) . '" title="' . esc_attr($cap_title) . '"' . "><span class='cap-x'>X</span>$checkbox";
 
 										if ( false !== strpos( $td_class, 'cap-neg' ) )
 											$row .= '<input type="hidden" class="cme-negation-input" name="caps[' . esc_attr($cap_name) . ']" value="" />';
@@ -780,7 +779,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 							$disabled = '';
 							$checked = checked(1, ! empty($rcaps[$cap_name]), false );
 							$lock_capability = false;
-							$title = $title_text;
+							$cap_title = $title_text;
 
 							if ( 'read' == $cap_name ) {
 								if ( ! empty( $block_read_removal ) ) {
@@ -791,7 +790,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 											$class .= ' cap-locked';
 											$disabled = 'disabled';
 											if ( 'administrator' != $this->current ) {
-												$title = __('Lockout Prevention: To remove read capability, first remove WordPress admin / editing capabilities, or add "dashboard_lockout_ok" capability', 'capsman-enhanced' );
+												$cap_title = __('Lockout Prevention: To remove read capability, first remove WordPress admin / editing capabilities, or add "dashboard_lockout_ok" capability', 'capsman-enhanced' );
 											}
 										}
 									}
@@ -799,7 +798,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 							}
 
 							?>
-							<td class="<?php echo esc_attr($class); ?>"><span class="cap-x">X</span><label title="<?php echo esc_attr($title);?>"><input type="checkbox" name="caps[<?php echo esc_attr($cap_name); ?>]" autocomplete="off" value="1" <?php echo esc_attr($checked) . esc_attr($disabled);?> />
+							<td class="<?php echo esc_attr($class); ?>"><span class="cap-x">X</span><label title="<?php echo esc_attr($cap_title);?>"><input type="checkbox" name="caps[<?php echo esc_attr($cap_name); ?>]" autocomplete="off" value="1" <?php echo esc_attr($checked) . esc_attr($disabled);?> />
 							<span>
 							<?php
 							echo str_replace( '_', ' ', esc_attr($cap_name) );
@@ -916,9 +915,9 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 
 							$disabled = '';
 							$checked = checked(1, ! empty($rcaps[$cap_name]), false );
-							$title = $title_text;
+							$cap_title = $title_text;
 							?>
-							<td class="<?php echo esc_attr($class); ?>"><span class="cap-x">X</span><label title="<?php echo esc_attr($title);?>"><input type="checkbox" name="caps[<?php echo esc_attr($cap_name); ?>]" autocomplete="off" value="1" <?php echo esc_attr($checked) . esc_attr($disabled);?> />
+							<td class="<?php echo esc_attr($class); ?>"><span class="cap-x">X</span><label title="<?php echo esc_attr($cap_title);?>"><input type="checkbox" name="caps[<?php echo esc_attr($cap_name); ?>]" autocomplete="off" value="1" <?php echo esc_attr($checked) . esc_attr($disabled);?> />
 							<span>
 							<?php
 							echo str_replace( '_', ' ', esc_attr($cap_name) );
