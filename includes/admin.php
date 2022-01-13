@@ -59,7 +59,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 	<h1><?php esc_html_e('Role Capabilities', 'capsman-enhanced') ?></h1>
 
 	<?php
-	echo pp_capabilities_roles()->notify->display();
+	pp_capabilities_roles()->notify->display();
 	?>
 
 	<script type="text/javascript">

@@ -11,7 +11,7 @@
         //the roles table instance
         $table = pp_capabilities_roles()->admin->get_roles_list_table();
         $table->prepare_items();
-        echo pp_capabilities_roles()->notify->display();
+        pp_capabilities_roles()->notify->display();
         ?>
         <hr class="wp-header-end">
         <div id="ajax-response"></div>

@@ -59,12 +59,10 @@ class PP_Capabilities_Notices
             $messages = $this->get($type);
             foreach ($messages as $message) {
                 if (is_string($message)) {
-                    $html .= sprintf('<div class="notice notice-%s is-dismissible"><p>%s</p></div>', $type, urldecode($message));
+                    printf('<div class="notice notice-%s is-dismissible"><p>%s</p></div>', esc_attr($type), urldecode($message));
                 }
             }
         }
-
-        return $html;
     }
 
     /**
