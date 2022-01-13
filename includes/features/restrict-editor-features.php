@@ -169,7 +169,7 @@ class PP_Capabilities_Post_Features {
 
         // apply the stored restrictions by css
         if ($restrict_elements = array_unique($restrict_elements)) {
-            echo '<style>' . implode(',', $restrict_elements) . ' {display:none !important;}</style>';
+            echo '<style>' . implode(',', array_map('esc_attr', $restrict_elements)) . ' {display:none !important;}</style>';
         }
     }
 
@@ -259,7 +259,7 @@ class PP_Capabilities_Post_Features {
                 ['editor_script' => 'ppc-features-block-script']
             );
 
-            echo '<style>' . implode(',', $restrict_elements) . ' {display:none !important;}</style>';
+            echo '<style>' . implode(',', array_map('esc_attr', $restrict_elements)) . ' {display:none !important;}</style>';
         }
     }
 
