@@ -23,10 +23,10 @@ foreach($def_post_types as $type_name) {
 ?>
 
 <table class="wp-list-table widefat fixed striped pp-capability-menus-select editor-features-classic" <?php if (empty($_REQUEST['ppc-tab']) || ('classic' != $_REQUEST['ppc-tab'])) echo 'style="display:none;"';?>>
-    <?php foreach(['thead', 'tfoot'] as $tag):?>
-    <<?php echo esc_attr($tag);?>>
+    <?php foreach(['thead', 'tfoot'] as $tag_name):?>
+    <<?php echo esc_attr($tag_name);?>>
     <tr>
-        <th class="menu-column"><?php if ('thead' == $tag || !defined('PUBLISHPRESS_CAPS_PRO_VERSION')) {esc_html_e('Classic Editor Screen', 'capsman-enhanced');}?></th>
+        <th class="menu-column"><?php if ('thead' == $tag_name || !defined('PUBLISHPRESS_CAPS_PRO_VERSION')) {esc_html_e('Classic Editor Screen', 'capsman-enhanced');}?></th>
 
         <?php foreach($def_post_types as $type_name) :
             $type_obj = get_post_type_object($type_name);    
@@ -36,7 +36,7 @@ foreach($def_post_types as $type_name) {
             </th>
         <?php endforeach;?>
     </tr>
-    </<?php echo esc_attr($tag);?>>
+    </<?php echo esc_attr($tag_name);?>>
     <?php endforeach;?>
 
     <tbody>
