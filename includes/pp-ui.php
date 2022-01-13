@@ -13,11 +13,19 @@ class Capsman_PP_UI {
 		global $wpdb;
 
 		if ( defined( 'PRESSPERMIT_ACTIVE' ) ) {
-			$query = $wpdb->prepare( "SELECT role_name FROM $wpdb->ppc_roles AS r INNER JOIN $wpdb->pp_groups AS g ON g.ID = r.agent_id AND r.agent_type = 'pp_group' WHERE g.metagroup_type = 'wp_role' AND g.metagroup_id = %s", $default );
-			$pp_supplemental_roles = $wpdb->get_col( $query );
+			$pp_supplemental_roles = $wpdb->get_col( 
+				$wpdb->prepare( 
+					"SELECT role_name FROM $wpdb->ppc_roles AS r INNER JOIN $wpdb->pp_groups AS g ON g.ID = r.agent_id AND r.agent_type = 'pp_group' WHERE g.metagroup_type = 'wp_role' AND g.metagroup_id = %s", 
+					$default 
+				) 
+			);
 		} else {
-			$query = $wpdb->prepare( "SELECT role_name FROM $wpdb->pp_roles AS r INNER JOIN $wpdb->pp_groups AS g ON g.ID = r.group_id AND r.group_type = 'pp_group' AND r.scope = 'site' WHERE g.metagroup_type = 'wp_role' AND g.metagroup_id = %s", $default );
-			$pp_supplemental_roles = $wpdb->get_col( $query );
+			$pp_supplemental_roles = $wpdb->get_col( 
+				$wpdb->prepare( 
+					"SELECT role_name FROM $wpdb->pp_roles AS r INNER JOIN $wpdb->pp_groups AS g ON g.ID = r.group_id AND r.group_type = 'pp_group' AND r.scope = 'site' WHERE g.metagroup_type = 'wp_role' AND g.metagroup_id = %s", 
+					$default 
+				)
+			);
 		}
 
 		$pp_filtered_types = pp_get_enabled_types('post');
