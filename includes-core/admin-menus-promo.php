@@ -51,8 +51,8 @@ $default_role = $capsman->current;
                         <div id="pp-capability-menu-wrapper" class="postbox" style="box-shadow: none;">
                             <div class="pp-capability-menus-promo">
                                 <div class="pp-capability-menus-promo-inner">
-                                    <img src="<?php echo plugin_dir_url(CME_FILE) . 'includes-core/pp-capabilities-admin-menus-desktop.jpg';?>" class="pp-capability-desktop" />
-                                    <img src="<?php echo plugin_dir_url(CME_FILE) . 'includes-core/pp-capabilities-admin-menus-mobile.jpg';?>" class="pp-capability-mobile" />
+                                    <img src="<?php echo esc_url_raw(plugin_dir_url(CME_FILE) . 'includes-core/pp-capabilities-admin-menus-desktop.jpg');?>" class="pp-capability-desktop" />
+                                    <img src="<?php echo esc_url_raw(plugin_dir_url(CME_FILE) . 'includes-core/pp-capabilities-admin-menus-mobile.jpg');?>" class="pp-capability-mobile" />
                                     <div class="pp-capability-menus-promo-content">
                                         <p>
                                             <?php esc_html_e('You can restrict access to admin menu screens. This feature is available in PublishPress Capabilities Pro', 'capsman-enhanced'); ?>
@@ -83,13 +83,13 @@ $default_role = $capsman->current;
             //   reload page for instant reflection if user is updating own role
             // -------------------------------------------------------------
             <?php if((int)$ppc_admin_menu_reload === 1){ ?>
-                window.location = '<?php echo admin_url('admin.php?page=pp-capabilities-admin-menus&role=' . $default_role . ''); ?>';
+                window.location = '<?php echo esc_url_raw(admin_url('admin.php?page=pp-capabilities-admin-menus&role=' . $default_role . '')); ?>';
             <?php } ?>
 
             // -------------------------------------------------------------
             //   Set form action attribute to include role
             // -------------------------------------------------------------
-            $('#ppc-admin-menu-form').attr('action', '<?php echo admin_url('admin.php?page=pp-capabilities-admin-menus&role=' . $default_role . ''); ?>');
+            $('#ppc-admin-menu-form').attr('action', '<?php echo esc_url_raw(admin_url('admin.php?page=pp-capabilities-admin-menus&role=' . $default_role . '')); ?>');
 
             // -------------------------------------------------------------
             //   Instant restricted item class
@@ -140,11 +140,10 @@ $default_role = $capsman->current;
                 $('.pp-capability-menus-wrapper .ppc-admin-menu-submit').hide();
 
                 //show loading
-                $('#pp-capability-menu-wrapper').html('<img src="<?php echo $capsman->mod_url; ?>/images/loader-black.gif" alt="loading...">');
+                $('#pp-capability-menu-wrapper').html('<img src="<?php echo esc_url_raw($capsman->mod_url . '/images/loader-black.gif'); ?>" alt="loading...">');
 
                 //go to url
-                window.location = '<?php echo admin_url('admin.php?page=pp-capabilities-admin-menus&role='); ?>' + $(this).val() + '';
-
+                window.location = '<?php echo esc_url_raw(admin_url('admin.php?page=pp-capabilities-admin-menus&role=')); ?>' + $(this).val() + '';
             });
         });
         /* ]]> */
