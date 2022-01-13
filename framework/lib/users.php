@@ -37,12 +37,9 @@
  * @return array All defined roles. If translated, the key is the role name and value is the translated role.
  */
 function ak_get_roles( $translate = false ) {
-	global $wp_roles;
-	if ( ! isset( $wp_roles ) ) {
-		$wp_roles = new WP_Roles();
-	}
+	$wp_roles_obj = wp_roles();
 
-	$roles = $wp_roles->get_names();
+	$roles = $wp_roles_obj->get_names();
 	if ( $translate ) {
 		foreach ($roles as $k => $r) {
 			$roles[$k] = _x($r, 'User role');
