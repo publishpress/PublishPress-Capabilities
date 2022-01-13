@@ -177,8 +177,7 @@ class Capsman_PP_UI {
 			<dt><?php esc_html_e('Taxonomy-Specific Capabilities', 'capsman-enhanced'); ?></dt>
 			<dd style="text-align:center;">
 				<?php
-				$caption = esc_html__( 'Ensure permissions can be controlled separately from other taxonomies.', 'capsman-enhanced' );
-				echo "<p class='cme-hint'>$caption</p>";
+				echo "<p class='cme-hint'>" . esc_html__( 'Ensure permissions can be controlled separately from other taxonomies.', 'capsman-enhanced' ) . "</p>";
 				
 				echo "<table style='width:100%'><tr>";
 				
