@@ -145,11 +145,7 @@ class CapsmanHandler
 			}
 			
 		} elseif ( ! empty($_POST['update_filtered_types']) || ! empty($_POST['update_filtered_taxonomies']) || ! empty($_POST['update_detailed_taxonomies']) ) {
-			//if ( /*  settings saved successfully on plugins_loaded action  */ ) {
 				ak_admin_notify(__('Type / Taxonomy settings saved.', 'capsman-enhanced'));
-			//} else {
-			//	ak_admin_error(__('Error saving capability settings.', 'capsman-enhanced'));
-			//}
 		} else {
 			if (!apply_filters('publishpress-caps_submission_ok', false)) {
 				ak_admin_error(__('Bad form received.', 'capsman-enhanced'));
