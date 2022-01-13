@@ -16,9 +16,9 @@ if (count($def_post_types) > 6) {
     <?php
 }
 
-foreach($def_post_types as $post_type) {
-    $_disabled = get_option("capsman_feature_restrict_{$post_type}", []);
-    $gutenberg_post_disabled[$post_type] = !empty($_disabled[$default_role]) ? (array)$_disabled[$default_role] : [];
+foreach($def_post_types as $type_name) {
+    $_disabled = get_option("capsman_feature_restrict_{$type_name}", []);
+    $gutenberg_post_disabled[$type_name] = !empty($_disabled[$default_role]) ? (array)$_disabled[$default_role] : [];
 }
 ?>
 
@@ -28,11 +28,11 @@ foreach($def_post_types as $post_type) {
     <tr>
         <th class="menu-column"><?php if ('thead' == $tag) {esc_html_e('Gutenberg Screen', 'capsman-enhanced');}?></th>
 
-        <?php foreach($def_post_types as $post_type) :
-            $type_obj = get_post_type_object($post_type);
+        <?php foreach($def_post_types as $type_name) :
+            $type_obj = get_post_type_object($type_name);
         ?>
             <th class="restrict-column ppc-menu-row"><?php printf(esc_html__('%s Restrict', 'capsman-enhanced'), $type_obj->labels->singular_name);?><br />
-            <input class="check-item gutenberg check-all-menu-item" type="checkbox" title="<?php esc_attr_e('Toggle all', 'capsman-enhanced');?>" data-pp_type="<?php echo esc_attr($post_type);?>" />
+            <input class="check-item gutenberg check-all-menu-item" type="checkbox" title="<?php esc_attr_e('Toggle all', 'capsman-enhanced');?>" data-pp_type="<?php echo esc_attr($type_name);?>" />
             </th>
         <?php endforeach;?>
     </tr>
@@ -83,11 +83,11 @@ foreach($def_post_types as $post_type) {
                 </strong></span>
             </td>
 
-            <?php foreach($def_post_types as $post_type) :?>
+            <?php foreach($def_post_types as $type_name) :?>
                 <td class="restrict-column ppc-menu-checkbox">
-                    <input id="check-item-<?php echo esc_attr($post_type) . '-' . esc_attr($feature_slug);?>" class="check-item" type="checkbox"
-                        name="capsman_feature_restrict_<?php echo esc_attr($post_type);?>[]"
-                        value="<?php echo esc_attr($feature_slug);?>"<?php checked(in_array($feature_slug, $gutenberg_post_disabled[$post_type]));?> />
+                    <input id="check-item-<?php echo esc_attr($type_name) . '-' . esc_attr($feature_slug);?>" class="check-item" type="checkbox"
+                        name="capsman_feature_restrict_<?php echo esc_attr($type_name);?>[]"
+                        value="<?php echo esc_attr($feature_slug);?>"<?php checked(in_array($feature_slug, $gutenberg_post_disabled[$type_name]));?> />
                 </td>
             <?php endforeach;?>
         </tr>
