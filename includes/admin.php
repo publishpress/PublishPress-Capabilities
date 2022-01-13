@@ -789,7 +789,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 							<td class="<?php echo esc_attr($class); ?>"><span class="cap-x">X</span><label title="<?php echo esc_attr($cap_title);?>"><input type="checkbox" name="caps[<?php echo esc_attr($cap_name); ?>]" autocomplete="off" value="1" <?php echo esc_attr($checked) . esc_attr($disabled);?> />
 							<span>
 							<?php
-							echo str_replace( '_', ' ', esc_attr($cap_name) );
+							echo esc_html(str_replace( '_', ' ', $cap_name));
 							?>
 							</span></label><a href="#" class="neg-cap">&nbsp;x&nbsp;</a>
 							<?php if ( false !== strpos( $class, 'cap-neg' ) ) :?>
@@ -899,7 +899,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 							<td class="<?php echo esc_attr($class); ?>"><span class="cap-x">X</span><label title="<?php echo esc_attr($cap_title);?>"><input type="checkbox" name="caps[<?php echo esc_attr($cap_name); ?>]" autocomplete="off" value="1" <?php echo esc_attr($checked) . esc_attr($disabled);?> />
 							<span>
 							<?php
-							echo str_replace( '_', ' ', esc_attr($cap_name) );
+							echo esc_html(str_replace( '_', ' ', $cap_name));
 							?>
 							</span></label><a href="#" class="neg-cap">&nbsp;x&nbsp;</a>
 							<?php if ( false !== strpos( $class, 'cap-neg' ) ) :?>
