@@ -30,7 +30,7 @@ class CapsmanHandler
 		    $_POST['caps'] = array();
 		}
 
-		if ('pp-capabilities-settings' == $_REQUEST['page']) {
+		if (!empty($_REQUEST['page']) && ('pp-capabilities-settings' == $_REQUEST['page'])) {
 			do_action('publishpress-caps_process_update');
 			return;
 		}
@@ -48,7 +48,7 @@ class CapsmanHandler
 			}
 
 		// rename role
-		} elseif (!empty($_POST['RenameRole']) && !empty($_POST['rename-name'])) {
+		} elseif (!empty($_POST['RenameRole']) && !empty($_POST['rename-name']) && !empty($_POST['current'])) {
 			$current = get_role(sanitize_key($_POST['current']));
 			$new_title = sanitize_text_field($_POST['rename-name']);
 
@@ -63,7 +63,7 @@ class CapsmanHandler
 				wp_redirect($url);
 			}
 		// Copy current role to a new one.
-		} elseif ( ! empty($_POST['CopyRole']) ) {
+		} elseif (!empty($_POST['CopyRole']) && !empty($_POST['copy-name']) && !empty($_POST['current'])) {
 			$current = get_role(sanitize_key($_POST['current']));
 			if ( $newrole = $this->createRole(pp_capabilities_sanitize_entry($_POST['copy-name']), $current->capabilities) ) {
 				ak_admin_notify(__('New role created.', 'capsman-enhanced'));
@@ -76,7 +76,7 @@ class CapsmanHandler
 			}
 
 		// Save role changes. Already saved at start with self::saveRoleCapabilities().
-		} elseif ( ! empty($_POST['SaveRole']) ) {
+		} elseif ( ! empty($_POST['SaveRole']) && !empty($_POST['current'])) {
 			if ( MULTISITE ) {
 				global $wp_roles;
 				( method_exists( $wp_roles, 'for_site' ) ) ? $wp_roles->for_site() : $wp_roles->reinit();
@@ -89,7 +89,7 @@ class CapsmanHandler
 
 			$this->saveRoleCapabilities(sanitize_key($_POST['current']), array_map('boolval', $_POST['caps']), (int) $_POST['level']);
 			
-			if ( defined( 'PRESSPERMIT_ACTIVE' ) ) {  // log customized role caps for subsequent restoration
+			if (defined( 'PRESSPERMIT_ACTIVE' ) && !empty($_POST['role'])) {  // log customized role caps for subsequent restoration
 				// for bbPress < 2.2, need to log customization of roles following bbPress activation
 				$plugins = ( function_exists( 'bbp_get_version' ) && version_compare( bbp_get_version(), '2.2', '<' ) ) ? array( 'bbpress.php' ) : array();	// back compat
 
@@ -105,13 +105,13 @@ class CapsmanHandler
 				$wpdb->query( "UPDATE $wpdb->options SET autoload = 'no' WHERE option_name = 'pp_customized_roles'" );
 			}
 		// Create New Capability and adds it to current role.
-		} elseif ( ! empty($_POST['AddCap']) ) {
+		} elseif (!empty($_POST['AddCap']) && !empty($_POST['current']) && !empty($_POST['capability-name'])) {
 			if ( MULTISITE ) {
 				global $wp_roles;
 				( method_exists( $wp_roles, 'for_site' ) ) ? $wp_roles->for_site() : $wp_roles->reinit();
 			}
 
-			if (!pp_capabilities_is_editable_role(sanitize_key($_POST['current']))) {
+			if (empty($_POST['current']) || !pp_capabilities_is_editable_role(sanitize_key($_POST['current']))) {
 				ak_admin_error(__('The selected role is not editable.', 'capsman-enhanced'));
 				return;
 			}
@@ -405,18 +405,20 @@ class CapsmanHandler
 	 */
 	function adminDeleteRole ()
 	{
-		$role_name = sanitize_key($_GET['role']);
-		check_admin_referer('delete-role_' . $role_name);
-		
-		$this->cm->current = $role_name;
-
-		if (!pp_capabilities_is_editable_role($role_name)) {
-			ak_admin_error(__('The selected role is not editable.', 'capsman-enhanced'));
-		}
-
-		if (false !== pp_capabilities_roles()->actions->delete_role($role_name, ['allow_system_role_deletion' => true, 'nonce_check' => false])) {
-			unset($this->cm->roles[$role_name]);
-			$this->cm->current = get_option('default_role');
+		if (!empty($_GET['role'])) {
+			$role_name = sanitize_key($_GET['role']);
+			check_admin_referer('delete-role_' . $role_name);
+			
+			$this->cm->current = $role_name;
+	
+			if (!pp_capabilities_is_editable_role($role_name)) {
+				ak_admin_error(__('The selected role is not editable.', 'capsman-enhanced'));
+			}
+	
+			if (false !== pp_capabilities_roles()->actions->delete_role($role_name, ['allow_system_role_deletion' => true, 'nonce_check' => false])) {
+				unset($this->cm->roles[$role_name]);
+				$this->cm->current = get_option('default_role');
+			}
 		}
 	}
 }
