@@ -788,7 +788,6 @@ class CapabilityManager
 	function _capNamesCB ( $cap )
 	{
 		$cap = str_replace('_', ' ', $cap);
-		//$cap = ucfirst($cap);
 
 		return $cap;
 	}
