@@ -117,34 +117,25 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 			<div class="publishpress-headline" style="margin-bottom:20px;">
 			<span class="cme-subtext">
 			<?php
-			$msg = __( '<strong>Note:</strong> Capability changes <strong>remain in the database</strong> after plugin deactivation.', 'capsman-enhanced' );
-
-			// preserve translation strings for now
-			$_msg = str_replace('<strong>', '%%b', $msg);
-			$_msg = str_replace('</strong>', '%%ub', $_msg);
-			$_msg = esc_html($_msg);
-			$_msg = str_replace('%%b', '<strong>', $_msg);
-			$msg = str_replace('%%ub', '</strong>', $_msg);
 
 			if (defined('PRESSPERMIT_ACTIVE') && function_exists('presspermit')) {
 				if ($group = presspermit()->groups()->getMetagroup('wp_role', $this->current)) {
-					$msg = __('<strong>Note:</strong> Capability changes <strong>remain in the database</strong> after plugin deactivation. You can also configure this role as a %sPermission Group%s.', 'capsman-enhanced');
-
-					// preserve translation strings for now
-					$_msg = str_replace('<strong>', '%%b', $msg);
-					$_msg = str_replace('</strong>', '%%ub', $_msg);
-					$_msg = esc_html($_msg);
-					$_msg = str_replace('%%b', '<strong>', $_msg);
-					$msg = str_replace('%%ub', '</strong>', $_msg);
-
-					$msg = sprintf(
-						$msg,
-						'<a href="' . admin_url("admin.php?page=presspermit-edit-permissions&action=edit&agent_id={$group->ID}") . '">',
+					printf(
+						// back compat with existing language string
+						str_replace(
+							['&lt;strong&gt;', '&lt;/strong&gt;'],
+							['<strong>', '</strong>'],
+							esc_html__('<strong>Note:</strong> Capability changes <strong>remain in the database</strong> after plugin deactivation. You can also configure this role as a %sPermission Group%s.', 'capsman-enhanced')
+						),
+						'<a href="' . esc_url_raw(admin_url("admin.php?page=presspermit-edit-permissions&action=edit&agent_id={$group->ID}")) . '">',
 						'</a>'
 					);
 				}
+			} else {
+				// unescaped for now for back compat with existing language string
+				_e( '<strong>Note:</strong> Capability changes <strong>remain in the database</strong> after plugin deactivation.', 'capsman-enhanced' );
 			}
-			echo $msg;  // escaped above to preserve existing translation string, which includes html tags
+
 			?>
 			</span>
 			</div>
@@ -223,10 +214,10 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 			$stati = get_post_stati( array( 'internal' => false ) );
 
 			$cap_type_names = array(
-				'' => esc_html__( '&nbsp;', 'capsman-enhanced' ),
-				'read' => esc_html__( 'Reading', 'capsman-enhanced' ),
-				'edit' => esc_html__( 'Editing', 'capsman-enhanced' ),
-				'delete' => esc_html__( 'Deletion', 'capsman-enhanced' )
+				'' => __( '&nbsp;', 'capsman-enhanced' ),
+				'read' => __( 'Reading', 'capsman-enhanced' ),
+				'edit' => __( 'Editing', 'capsman-enhanced' ),
+				'delete' => __( 'Deletion', 'capsman-enhanced' )
 			);
 
 			$cap_tips = array(
