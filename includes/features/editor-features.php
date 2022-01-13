@@ -54,10 +54,10 @@ $classic_editor = pp_capabilities_is_classic_editor_available();
                             <div class="publishpress-filters">
                                 <select name="ppc-editor-features-role" class="ppc-editor-features-role">
                                     <?php
-                                    foreach ($roles as $role => $name) :
+                                    foreach ($roles as $role_name => $name) :
                                         $name = translate_user_role($name);
                                         ?>
-                                        <option value="<?php echo esc_attr($role);?>" <?php selected($default_role, $role);?>><?php echo esc_html($name);?></option>
+                                        <option value="<?php echo esc_attr($role_name);?>" <?php selected($default_role, $role_name);?>><?php echo esc_html($name);?></option>
                                     <?php
                                     endforeach;
                                     ?>
