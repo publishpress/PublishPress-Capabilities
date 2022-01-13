@@ -683,6 +683,8 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 
 								if ( $display_row ) {
 									$row .= '</tr>';
+
+									// Escaped piecemeal upstream; cannot be late-escaped until upstream UI output logic is reworked
 									echo $row;
 								}
 							}
