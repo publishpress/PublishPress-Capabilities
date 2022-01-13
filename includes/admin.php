@@ -81,7 +81,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 	$pp_tab = (!empty($_REQUEST['pp_caps_tab'])) ? sanitize_key($_REQUEST['pp_caps_tab']) : 'edit';
 	?>
 
-	<input type="hidden" name="pp_caps_tab" value="<?php echo esc_attr($tab);?>" />
+	<input type="hidden" name="pp_caps_tab" value="<?php echo esc_attr($pp_tab);?>" />
 
 	<p>
 		<select name="role">
@@ -264,16 +264,15 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 			jQuery(document).ready( function($) {
 				// Tabs and Content display
 				$('.ppc-capabilities-tabs > ul > li').click( function() {
-					var $tab = $(this).attr('data-content');
-					//console.log( $tab );
+					var $pp_tab = $(this).attr('data-content');
 
 					$("[name='pp_caps_tab']").val($(this).attr('data-slug'));
 
 					// Show current Content
 					$('.ppc-capabilities-content > div').hide();
-					$('#' + $tab).show();
+					$('#' + $pp_tab).show();
 
-					$('#' + $tab + '-taxonomy').show();
+					$('#' + $pp_tab + '-taxonomy').show();
 
 					// Active current Tab
 					$('.ppc-capabilities-tabs > ul > li').removeClass('ppc-capabilities-tab-active');
