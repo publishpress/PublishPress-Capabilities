@@ -97,7 +97,6 @@ class Capsman_PP_UI {
 				
 				if ( defined( 'PRESSPERMIT_ACTIVE' ) && pp_capabilities_get_permissions_option( 'display_hints' ) ) :?>
 				<div class="cme-subtext" style="margin-top:0">
-				<?php /*_e( '(PP Filtered Post Types, Taxonomies)', 'capsman-enhanced' ); */?>
 				</div>
 				<?php endif;
 				
