@@ -466,7 +466,7 @@ class CapabilityManager
 		}
 
 		if (!empty($_SERVER['REQUEST_METHOD']) && ('POST' == $_SERVER['REQUEST_METHOD']) && isset($_POST['ppc-editor-features-role']) && !empty($_REQUEST['_wpnonce'])) {
-			if (!check_admin_referer('pp-capabilities-editor-features')) {
+			if (!wp_verify_nonce(sanitize_key($_REQUEST['_wpnonce']), 'pp-capabilities-editor-features')) {
 				wp_die('<strong>' . esc_html__('You do not have permission to manage editor features.', 'capabilities-pro') . '</strong>');
 			} else {
 				$this->set_current_role(sanitize_key($_POST['ppc-editor-features-role']));
@@ -526,7 +526,7 @@ class CapabilityManager
 		}
 
 		if (!empty($_SERVER['REQUEST_METHOD']) && ('POST' == $_SERVER['REQUEST_METHOD']) && isset($_POST['ppc-admin-features-role']) && !empty($_REQUEST['_wpnonce'])) {
-			if (!check_admin_referer('pp-capabilities-admin-features')) {
+			if (!wp_verify_nonce(sanitize_key($_REQUEST['_wpnonce']), 'pp-capabilities-admin-features')) {
 				wp_die('<strong>' . esc_html__('You do not have permission to manage admin features.', 'capabilities-pro') . '</strong>');
 			} else {
 				$features_role = sanitize_key($_POST['ppc-admin-features-role']);
