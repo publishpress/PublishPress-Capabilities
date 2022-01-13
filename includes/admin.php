@@ -1120,7 +1120,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 								} elseif ( 'administrator' == $default ) {
 									$class .= ' cap-locked';
 									$lock_manage_caps_capability = true;
-									$disabled = 'disabled="disabled"';
+									$disabled = 'disabled';
 								}
 							}
 						?>
