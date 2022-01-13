@@ -3,7 +3,7 @@
     <div class="wrap">
         <h1 class="wp-heading-inline"><?php esc_html_e('Roles', 'capsman-enhanced') ?> </h1>
         <?php
-        if (isset($_REQUEST['s']) && $search = esc_attr(wp_unslash($_REQUEST['s']))) {
+        if (isset($_REQUEST['s']) && $search_str = esc_attr(wp_unslash(sanitize_text_field($_REQUEST['s'])))) {
             /* translators: %s: search keywords */
             printf(' <span class="subtitle">' . esc_html__('Search results for &#8220;%s&#8221;', 'capsman-enhanced') . '</span>', $search);
         }
