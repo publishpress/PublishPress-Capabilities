@@ -78,7 +78,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 	<?php wp_nonce_field('capsman-general-manager'); ?>
 
 	<?php
-	$tab = (!empty($_REQUEST['pp_caps_tab'])) ? esc_attr($_REQUEST['pp_caps_tab']) : 'edit';
+	$pp_tab = (!empty($_REQUEST['pp_caps_tab'])) ? sanitize_key($_REQUEST['pp_caps_tab']) : 'edit';
 	?>
 
 	<input type="hidden" name="pp_caps_tab" value="<?php echo esc_attr($tab);?>" />
