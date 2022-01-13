@@ -65,6 +65,7 @@ class CapsmanHandler
 
 				$url = admin_url('admin.php?page=pp-capabilities&role=' . sanitize_key($current->name));
 				wp_redirect($url);
+				exit;
 			}
 		// Copy current role to a new one.
 		} elseif (!empty($_POST['CopyRole']) && !empty($_POST['copy-name']) && !empty($_POST['current'])) {
