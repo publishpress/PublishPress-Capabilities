@@ -16,7 +16,7 @@ class CME_PublishPressRoles {
                             link += ' | ';
                         }
 
-                        link += '<a href="<?php echo admin_url('admin.php?page=pp-capabilities');?>' + '&role=' + role_name + '">' + 'Capabilities' + '</a> ';
+                        link += '<a href="<?php echo esc_url_raw(admin_url('admin.php?page=pp-capabilities'));?>' + '&role=' + role_name + '">' + 'Capabilities' + '</a> ';
 
                         if (!is_administrator_role) {
                             link += '| ';

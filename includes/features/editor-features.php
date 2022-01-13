@@ -29,7 +29,7 @@ $classic_editor = pp_capabilities_is_classic_editor_available();
 ?>
 <div class="wrap publishpress-caps-manage pressshack-admin-wrapper pp-capability-menus-wrapper">
     <div id="icon-capsman-admin" class="icon32"></div>
-    <h2><?php _e('Editor Feature Restriction', 'capsman-enhanced'); ?></h2>
+    <h2><?php esc_html_e('Editor Feature Restriction', 'capsman-enhanced'); ?></h2>
 
     <form method="post" id="ppc-editor-features-form"
             action="admin.php?page=pp-capabilities-editor-features">
@@ -45,7 +45,7 @@ $classic_editor = pp_capabilities_is_classic_editor_available();
                                 <span class="cme-subtext">
                                 <span class='pp-capability-role-caption'>
                                 <?php
-                                _e('Select editor features to remove. Note that this screen cannot be used to grant additional features to any role.', 'capabilities-pro');
+                                esc_html_e('Select editor features to remove. Note that this screen cannot be used to grant additional features to any role.', 'capabilities-pro');
                                 ?>
                                 </span>
                                 </span>
@@ -54,19 +54,19 @@ $classic_editor = pp_capabilities_is_classic_editor_available();
                             <div class="publishpress-filters">
                                 <select name="ppc-editor-features-role" class="ppc-editor-features-role">
                                     <?php
-                                    foreach ($roles as $role => $name) :
+                                    foreach ($roles as $role_name => $name) :
                                         $name = translate_user_role($name);
                                         ?>
-                                        <option value="<?php echo $role;?>" <?php selected($default_role, $role);?>><?php echo $name;?></option>
+                                        <option value="<?php echo esc_attr($role_name);?>" <?php selected($default_role, $role_name);?>><?php echo esc_html($name);?></option>
                                     <?php
                                     endforeach;
                                     ?>
                                 </select> &nbsp;
 
-                                <img class="loading" src="<?php echo $capsman->mod_url; ?>/images/wpspin_light.gif" style="display: none">
+                                <img class="loading" src="<?php echo esc_url_raw($capsman->mod_url); ?>/images/wpspin_light.gif" style="display: none">
 
                                 <input type="submit" name="editor-features-submit"
-                                    value="<?php _e('Save Changes', 'capabilities-pro') ?>"
+                                    value="<?php esc_attr_e('Save Changes', 'capabilities-pro') ?>"
                                     class="button-primary ppc-editor-features-submit" style="float:right" />
 
                                 <input type="hidden" name="ppc-tab" value="<?php echo (!empty($_REQUEST['ppc-tab'])) ? sanitize_key($_REQUEST['ppc-tab']) : 'gutenberg';?>" />
@@ -89,10 +89,10 @@ $classic_editor = pp_capabilities_is_classic_editor_available();
                             <?php if ($classic_editor) { ?>
                                 <ul class="nav-tab-wrapper">
                                     <li class="editor-features-tab gutenberg-tab nav-tab <?php if (empty($_REQUEST['ppc-tab']) || ('gutenberg' == $_REQUEST['ppc-tab'])) echo 'nav-tab-active';?>"
-                                        data-tab=".editor-features-gutenberg"><a href="#"><?php _e('Gutenberg', 'capsman-enhanced') ?></a></li>
+                                        data-tab=".editor-features-gutenberg"><a href="#"><?php esc_html_e('Gutenberg', 'capsman-enhanced') ?></a></li>
 
                                     <li class="editor-features-tab classic-tab nav-tab <?php if (!empty($_REQUEST['ppc-tab']) && ('classic' == $_REQUEST['ppc-tab'])) echo 'nav-tab-active';?>"
-                                        data-tab=".editor-features-classic"><a href="#"><?php _e('Classic', 'capsman-enhanced') ?></a></li>
+                                        data-tab=".editor-features-classic"><a href="#"><?php esc_html_e('Classic', 'capsman-enhanced') ?></a></li>
                                 </ul>
                             <?php } ?>
 
@@ -119,7 +119,7 @@ $classic_editor = pp_capabilities_is_classic_editor_available();
                             </div>
 
                             <input type="submit" name="editor-features-submit"
-                                    value="<?php _e('Save Changes', 'capsman-enhanced') ?>"
+                                    value="<?php esc_attr_e('Save Changes', 'capsman-enhanced') ?>"
                                     class="button-primary ppc-editor-features-submit"/> &nbsp;
 
 
@@ -132,15 +132,15 @@ $classic_editor = pp_capabilities_is_classic_editor_available();
                     <?php
                     $banners = new PublishPress\WordPressBanners\BannersMain;
                     $banners->pp_display_banner(
-                        __( 'Recommendations for you', 'capsman-enhanced' ),
-                        __( 'Control permissions for individual posts and pages', 'capsman-enhanced' ),
+                        esc_html__( 'Recommendations for you', 'capsman-enhanced' ),
+                        esc_html__( 'Control permissions for individual posts and pages', 'capsman-enhanced' ),
                         array(
-                            __( 'Choose who can read and edit each post.', 'capsman-enhanced' ),
-                            __( 'Allow specific user roles or users to manage each post.', 'capsman-enhanced' ),
-                            __( 'PublishPress Permissions is 100% free to install.', 'capsman-enhanced' )
+                            esc_html__( 'Choose who can read and edit each post.', 'capsman-enhanced' ),
+                            esc_html__( 'Allow specific user roles or users to manage each post.', 'capsman-enhanced' ),
+                            esc_html__( 'PublishPress Permissions is 100% free to install.', 'capsman-enhanced' )
                         ),
                         admin_url( 'plugin-install.php?s=publishpress-ppcore-install&tab=search&type=term' ),
-                        __( 'Click here to install PublishPress Permissions', 'capsman-enhanced' ),
+                        esc_html__( 'Click here to install PublishPress Permissions', 'capsman-enhanced' ),
                         'install-permissions.jpg'
                     );
                     ?>
@@ -173,7 +173,7 @@ $classic_editor = pp_capabilities_is_classic_editor_available();
         // -------------------------------------------------------------
         //   Set form action attribute to include role
         // -------------------------------------------------------------
-        $('#ppc-editor-features-form').attr('action', '<?php echo admin_url('admin.php?page=pp-capabilities-editor-features&role=' . $default_role . ''); ?>');
+        $('#ppc-editor-features-form').attr('action', '<?php echo esc_url_raw(admin_url('admin.php?page=pp-capabilities-editor-features&role=' . $default_role . '')); ?>');
 
         // -------------------------------------------------------------
         //   Instant restricted item class
@@ -235,7 +235,7 @@ $classic_editor = pp_capabilities_is_classic_editor_available();
             $('div.publishpress-caps-manage img.loading').show();
 
             //go to url
-            window.location = '<?php echo admin_url('admin.php?page=pp-capabilities-editor-features&role='); ?>' + $(this).val() + '';
+            window.location = '<?php echo esc_url_raw(admin_url('admin.php?page=pp-capabilities-editor-features&role=')); ?>' + $(this).val() + '';
 
         });
 

@@ -21,30 +21,40 @@ class CapsmanHandler
 		require_once (dirname(CME_FILE) . '/includes/roles/roles-functions.php');
 	}
 	
-	function processAdminGeneral( $post ) {
-		global $wp_roles;
+	function processAdminGeneral() {
+		global $wpdb, $wp_roles;
 		
-		if ('pp-capabilities-settings' == $_REQUEST['page']) {
+		check_admin_referer('capsman-general-manager');
+		
+		if ( empty ($_POST['caps']) ) {
+		    $_POST['caps'] = array();
+		}
+
+		if (!empty($_REQUEST['page']) && ('pp-capabilities-settings' == $_REQUEST['page'])) {
 			do_action('publishpress-caps_process_update');
 			return;
 		}
 
 		// Create a new role.
-		if ( ! empty($post['CreateRole']) ) {
-			if ( $newrole = $this->createRole(pp_capabilities_sanitize_entry($post['create-name'])) ) {
+		if ( ! empty($_POST['CreateRole']) ) {
+			if (!empty($_POST['create-name'])) {
+				$newrole = $this->createRole(sanitize_text_field($_POST['create-name']));
+			}
+
+			if (!empty($newrole)) {
 				ak_admin_notify(__('New role created.', 'capsman-enhanced'));
 				$this->cm->set_current_role($newrole);
 			} else {
-				if ( empty($post['create-name']) && in_array(get_locale(), ['en_EN', 'en_US']) )
+				if ( empty($_POST['create-name']) && in_array(get_locale(), ['en_EN', 'en_US']) )
 					ak_admin_error('Error: No role name specified.');
 				else
 					ak_admin_error(__('Error: Failed creating the new role.', 'capsman-enhanced'));
 			}
 
 		// rename role
-		} elseif (!empty($post['RenameRole']) && !empty($post['rename-name'])) {
-			$current = get_role(sanitize_key($post['current']));
-			$new_title = sanitize_text_field($post['rename-name']);
+		} elseif (!empty($_POST['RenameRole']) && !empty($_POST['rename-name']) && !empty($_POST['current'])) {
+			$current = get_role(sanitize_key($_POST['current']));
+			$new_title = sanitize_text_field($_POST['rename-name']);
 
 			if ($current && isset($wp_roles->roles[$current->name]) && $new_title) {
 				$old_title = $wp_roles->roles[$current->name]['name'];
@@ -55,65 +65,64 @@ class CapsmanHandler
 
 				$url = admin_url('admin.php?page=pp-capabilities&role=' . sanitize_key($current->name));
 				wp_redirect($url);
+				exit;
 			}
 		// Copy current role to a new one.
-		} elseif ( ! empty($post['CopyRole']) ) {
-			$current = get_role(sanitize_key($post['current']));
-			if ( $newrole = $this->createRole(pp_capabilities_sanitize_entry($post['copy-name']), $current->capabilities) ) {
+		} elseif (!empty($_POST['CopyRole']) && !empty($_POST['copy-name']) && !empty($_POST['current'])) {
+			$current = get_role(sanitize_key($_POST['current']));
+			if ( $newrole = $this->createRole(sanitize_text_field($_POST['copy-name']), $current->capabilities) ) {
 				ak_admin_notify(__('New role created.', 'capsman-enhanced'));
 				$this->cm->set_current_role($newrole);
 			} else {
-				if ( empty($post['copy-name']) && in_array(get_locale(), ['en_EN', 'en_US']) )
+				if ( empty($_POST['copy-name']) && in_array(get_locale(), ['en_EN', 'en_US']) )
 					ak_admin_error('Error: No role name specified.');
 				else
 					ak_admin_error(__('Error: Failed creating the new role.', 'capsman-enhanced'));
 			}
 
 		// Save role changes. Already saved at start with self::saveRoleCapabilities().
-		} elseif ( ! empty($post['SaveRole']) ) {
+		} elseif ( ! empty($_POST['SaveRole']) && !empty($_POST['current'])) {
 			if ( MULTISITE ) {
-				global $wp_roles;
 				( method_exists( $wp_roles, 'for_site' ) ) ? $wp_roles->for_site() : $wp_roles->reinit();
 			}
 			
-			if (!pp_capabilities_is_editable_role(sanitize_key($post['current']))) {
+			if (!pp_capabilities_is_editable_role(sanitize_key($_POST['current']))) {
 				ak_admin_error(__('The selected role is not editable.', 'capsman-enhanced'));
 				return;
 			}
 
-			$this->saveRoleCapabilities(sanitize_key($post['current']), stripslashes_deep($post['caps']), (int) $post['level']);
+			$level = (isset($_POST['level'])) ? (int) $_POST['level'] : 0;
+			$this->saveRoleCapabilities(sanitize_key($_POST['current']), array_map('boolval', $_POST['caps']), $level);
 			
-			if ( defined( 'PRESSPERMIT_ACTIVE' ) ) {  // log customized role caps for subsequent restoration
+			if (defined( 'PRESSPERMIT_ACTIVE' ) && !empty($_POST['role'])) {  // log customized role caps for subsequent restoration
 				// for bbPress < 2.2, need to log customization of roles following bbPress activation
 				$plugins = ( function_exists( 'bbp_get_version' ) && version_compare( bbp_get_version(), '2.2', '<' ) ) ? array( 'bbpress.php' ) : array();	// back compat
 
 				if ( ! $customized_roles = get_option( 'pp_customized_roles' ) )
 					$customized_roles = array();
 				
-				$_role = sanitize_key($post['role']);
+				$_role = sanitize_key($_POST['role']);
 
-				$customized_roles[$_role] = (object) array( 'caps' => array_map( 'boolval', $post['caps'] ), 'plugins' => $plugins );
+				$customized_roles[$_role] = (object) array( 'caps' => array_map( 'boolval', $_POST['caps'] ), 'plugins' => $plugins );
 				update_option( 'pp_customized_roles', $customized_roles );
 				
-				global $wpdb;
 				$wpdb->query( "UPDATE $wpdb->options SET autoload = 'no' WHERE option_name = 'pp_customized_roles'" );
 			}
 		// Create New Capability and adds it to current role.
-		} elseif ( ! empty($post['AddCap']) ) {
+		} elseif (!empty($_POST['AddCap']) && !empty($_POST['current']) && !empty($_POST['capability-name'])) {
 			if ( MULTISITE ) {
-				global $wp_roles;
 				( method_exists( $wp_roles, 'for_site' ) ) ? $wp_roles->for_site() : $wp_roles->reinit();
 			}
 
-			if (!pp_capabilities_is_editable_role(sanitize_key($post['current']))) {
+			if (empty($_POST['current']) || !pp_capabilities_is_editable_role(sanitize_key($_POST['current']))) {
 				ak_admin_error(__('The selected role is not editable.', 'capsman-enhanced'));
 				return;
 			}
 
-			$role = get_role(sanitize_key($post['current']));
-			$role->name = sanitize_key($post['current']);		// bbPress workaround
+			$role = get_role(sanitize_key($_POST['current']));
+			$role->name = sanitize_key($_POST['current']);		// bbPress workaround
 
-			$newname = $this->createNewName(sanitize_key($post['capability-name']), ['allow_dashes' => true]);
+			$newname = $this->createNewName(sanitize_text_field($_POST['capability-name']), ['allow_dashes' => true]);
 
 			if (empty($newname['error'])) {
 				$role->add_cap($newname['name']);
@@ -124,13 +133,14 @@ class CapsmanHandler
 				if ( ! $customized_roles = get_option( 'pp_customized_roles' ) )
 					$customized_roles = array();
 
-				$customized_roles[$post['role']] = (object) array( 'caps' => array_merge( $role->capabilities, array( $newname['name'] => 1 ) ), 'plugins' => $plugins );
+				$customized_roles[sanitize_key($_POST['role'])] = (object) array( 'caps' => array_merge( $role->capabilities, array( $newname['name'] => 1 ) ), 'plugins' => $plugins );
 				update_option( 'pp_customized_roles', $customized_roles );
 				
-				global $wpdb;
 				$wpdb->query( "UPDATE $wpdb->options SET autoload = 'no' WHERE option_name = 'pp_customized_roles'" );
 
-				$url = admin_url('admin.php?page=pp-capabilities&role=' . sanitize_key($post['role']) . '&added=1');
+				$redirect_role = (!empty($_POST['role'])) ? sanitize_key($_POST['role']) : '';
+
+				$url = admin_url('admin.php?page=pp-capabilities&role=' . esc_attr($redirect_role) . '&added=1');
 				wp_redirect($url);
 				exit;
 			} else {
@@ -139,12 +149,8 @@ class CapsmanHandler
 				});
 			}
 			
-		} elseif ( ! empty($post['update_filtered_types']) || ! empty($post['update_filtered_taxonomies']) || ! empty($post['update_detailed_taxonomies']) ) {
-			//if ( /*  settings saved successfully on plugins_loaded action  */ ) {
+		} elseif ( ! empty($_POST['update_filtered_types']) || ! empty($_POST['update_filtered_taxonomies']) || ! empty($_POST['update_detailed_taxonomies']) ) {
 				ak_admin_notify(__('Type / Taxonomy settings saved.', 'capsman-enhanced'));
-			//} else {
-			//	ak_admin_error(__('Error saving capability settings.', 'capsman-enhanced'));
-			//}
 		} else {
 			if (!apply_filters('publishpress-caps_submission_ok', false)) {
 				ak_admin_error(__('Bad form received.', 'capsman-enhanced'));
@@ -152,7 +158,7 @@ class CapsmanHandler
 		}
 
 		if ( ! empty($newrole) && defined('PRESSPERMIT_ACTIVE') ) {
-			if ( ( ! empty($post['CreateRole']) && ! empty( $_REQUEST['new_role_pp_only'] ) ) || ( ! empty($post['CopyRole']) && ! empty( $_REQUEST['copy_role_pp_only'] ) ) ) {
+			if ( ( ! empty($_POST['CreateRole']) && ! empty( $_REQUEST['new_role_pp_only'] ) ) || ( ! empty($_POST['CopyRole']) && ! empty( $_REQUEST['copy_role_pp_only'] ) ) ) {
 				$pp_only = (array) pp_capabilities_get_permissions_option( 'supplemental_role_defs' );
 				$pp_only[]= $newrole;
 
@@ -404,18 +410,20 @@ class CapsmanHandler
 	 */
 	function adminDeleteRole ()
 	{
-		$role_name = sanitize_key($_GET['role']);
-		check_admin_referer('delete-role_' . $role_name);
-		
-		$this->cm->current = $role_name;
-
-		if (!pp_capabilities_is_editable_role($role_name)) {
-			ak_admin_error(__('The selected role is not editable.', 'capsman-enhanced'));
-		}
-
-		if (false !== pp_capabilities_roles()->actions->delete_role($role_name, ['allow_system_role_deletion' => true, 'nonce_check' => false])) {
-			unset($this->cm->roles[$role_name]);
-			$this->cm->current = get_option('default_role');
+		if (!empty($_GET['role'])) {
+			$role_name = sanitize_key($_GET['role']);
+			check_admin_referer('delete-role_' . $role_name);
+			
+			$this->cm->current = $role_name;
+	
+			if (!pp_capabilities_is_editable_role($role_name)) {
+				ak_admin_error(__('The selected role is not editable.', 'capsman-enhanced'));
+			}
+	
+			if (false !== pp_capabilities_roles()->actions->delete_role($role_name, ['allow_system_role_deletion' => true, 'nonce_check' => false])) {
+				unset($this->cm->roles[$role_name]);
+				$this->cm->current = get_option('default_role');
+			}
 		}
 	}
 }

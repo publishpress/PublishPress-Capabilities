@@ -26,7 +26,7 @@ $default_role = $capsman->current;
 
 <div class="wrap publishpress-caps-manage pressshack-admin-wrapper pp-capability-menus-wrapper-promo">
     <div id="icon-capsman-admin" class="icon32"></div>
-    <h2><?php _e('Admin Menu Restrictions', 'capsman-enhanced'); ?></h2>
+    <h2><?php esc_html_e('Admin Menu Restrictions', 'capsman-enhanced'); ?></h2>
 
     <form method="post" id="ppc-admin-menu-form" action="admin.php?page=pp-capabilities-admin-menus">
         <fieldset>
@@ -36,30 +36,30 @@ $default_role = $capsman->current;
                         <div class="publishpress-filters">
                             <select name="ppc-admin-menu-role" class="ppc-admin-menu-role">
                                 <?php
-                                foreach ($roles as $role => $name) :
+                                foreach ($roles as $role_name => $name) :
                                     $name = translate_user_role($name);
                                     ?>
-                                    <option value="<?php echo $role;?>" <?php selected($default_role, $role);?>><?php echo $name;?></option>
+                                    <option value="<?php echo esc_attr($role_name);?>" <?php selected($default_role, $role_name);?>><?php echo esc_html($name);?></option>
                                 <?php
                                 endforeach;
                                 ?>
                             </select> &nbsp;
                             <input type="submit" name="admin-menu-submit"
-                                value="<?php _e('Save Changes', 'capsman-enhanced') ?>"
+                                value="<?php esc_attr_e('Save Changes', 'capsman-enhanced') ?>"
                                 class="button-primary ppc-admin-menu-submit" style="float:right" />
                         </div>
                         <div id="pp-capability-menu-wrapper" class="postbox" style="box-shadow: none;">
                             <div class="pp-capability-menus-promo">
                                 <div class="pp-capability-menus-promo-inner">
-                                    <img src="<?php echo plugin_dir_url(CME_FILE) . 'includes-core/pp-capabilities-admin-menus-desktop.jpg';?>" class="pp-capability-desktop" />
-                                    <img src="<?php echo plugin_dir_url(CME_FILE) . 'includes-core/pp-capabilities-admin-menus-mobile.jpg';?>" class="pp-capability-mobile" />
+                                    <img src="<?php echo esc_url_raw(plugin_dir_url(CME_FILE) . 'includes-core/pp-capabilities-admin-menus-desktop.jpg');?>" class="pp-capability-desktop" />
+                                    <img src="<?php echo esc_url_raw(plugin_dir_url(CME_FILE) . 'includes-core/pp-capabilities-admin-menus-mobile.jpg');?>" class="pp-capability-mobile" />
                                     <div class="pp-capability-menus-promo-content">
                                         <p>
-                                            <?php _e('You can restrict access to admin menu screens. This feature is available in PublishPress Capabilities Pro', 'capsman-enhanced'); ?>
+                                            <?php esc_html_e('You can restrict access to admin menu screens. This feature is available in PublishPress Capabilities Pro', 'capsman-enhanced'); ?>
                                         </p>
                                         <p>
                                             <a href="https://publishpress.com/links/capabilities-banner" target="_blank">
-                                                <?php _e('Upgrade to Pro', 'capsman-enhanced'); ?>
+                                                <?php esc_html_e('Upgrade to Pro', 'capsman-enhanced'); ?>
                                             </a>
                                         </p>
                                     </div>
@@ -83,13 +83,13 @@ $default_role = $capsman->current;
             //   reload page for instant reflection if user is updating own role
             // -------------------------------------------------------------
             <?php if((int)$ppc_admin_menu_reload === 1){ ?>
-                window.location = '<?php echo admin_url('admin.php?page=pp-capabilities-admin-menus&role=' . $default_role . ''); ?>';
+                window.location = '<?php echo esc_url_raw(admin_url('admin.php?page=pp-capabilities-admin-menus&role=' . $default_role . '')); ?>';
             <?php } ?>
 
             // -------------------------------------------------------------
             //   Set form action attribute to include role
             // -------------------------------------------------------------
-            $('#ppc-admin-menu-form').attr('action', '<?php echo admin_url('admin.php?page=pp-capabilities-admin-menus&role=' . $default_role . ''); ?>');
+            $('#ppc-admin-menu-form').attr('action', '<?php echo esc_url_raw(admin_url('admin.php?page=pp-capabilities-admin-menus&role=' . $default_role . '')); ?>');
 
             // -------------------------------------------------------------
             //   Instant restricted item class
@@ -140,11 +140,10 @@ $default_role = $capsman->current;
                 $('.pp-capability-menus-wrapper .ppc-admin-menu-submit').hide();
 
                 //show loading
-                $('#pp-capability-menu-wrapper').html('<img src="<?php echo $capsman->mod_url; ?>/images/loader-black.gif" alt="loading...">');
+                $('#pp-capability-menu-wrapper').html('<img src="<?php echo esc_url_raw($capsman->mod_url . '/images/loader-black.gif'); ?>" alt="loading...">');
 
                 //go to url
-                window.location = '<?php echo admin_url('admin.php?page=pp-capabilities-admin-menus&role='); ?>' + $(this).val() + '';
-
+                window.location = '<?php echo esc_url_raw(admin_url('admin.php?page=pp-capabilities-admin-menus&role=')); ?>' + $(this).val() + '';
             });
         });
         /* ]]> */

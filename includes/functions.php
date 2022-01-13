@@ -19,7 +19,7 @@
  * @return string Sanitized entry
  */
 function pp_capabilities_sanitize_entry( $entry ) {
-    $entry = preg_replace( '/[^a-zA-Z0-9 \.\,\+\*\:\|\(\)_\-]/', '', $entry );
+    $entry = preg_replace( '/[^a-zA-Z0-9 \.\,\+\*\:\|\(\)_\-\=]/', '', $entry );
     return $entry;
 }
 
@@ -125,14 +125,25 @@ function pp_capabilities_autobackup()
 
     $max_auto_backups = (defined('CME_AUTOBACKUPS')) ? (int) CME_AUTOBACKUPS : 20;
 
-    $keep_ids = $wpdb->get_col("SELECT option_id FROM $wpdb->options WHERE option_name LIKE 'cme_backup_auto_%' ORDER BY option_id DESC LIMIT $max_auto_backups");
+    $current_options = $wpdb->get_col("SELECT option_name FROM $wpdb->options WHERE option_name LIKE 'cme_backup_auto_%' ORDER BY option_id DESC");
 
-    if (count($keep_ids) == $max_auto_backups) {
-        $id_csv = implode("','", $keep_ids);
+    if (count($current_options) >= $max_auto_backups) {
+        $i = 0;
 
-        $wpdb->query(
-            "DELETE FROM $wpdb->options WHERE option_name LIKE 'cme_backup_auto_%' AND option_id NOT IN ('$id_csv')"
-        );
+        foreach($current_options as $option_name) {
+            $i++;
+
+            if ($i > $max_auto_backups) {
+        		$wpdb->query(
+                    $wpdb->prepare(
+                        "DELETE FROM $wpdb->options WHERE option_name = %s",
+                        $option_name
+                    )
+        		);
+
+                wp_cache_delete($option_name, 'options');
+            }
+        }
     }
 }
 
@@ -171,10 +182,10 @@ function pp_capabilities_get_post_type()
     }
 
     if (isset($_GET['post']) && !is_array($_GET['post'])) {
-        $post_id = (int) esc_attr($_GET['post']);
+        $post_id = (int) $_GET['post'];
 
     } elseif (isset($_POST['post_ID'])) {
-        $post_id = (int) esc_attr($_POST['post_ID']);
+        $post_id = (int) $_POST['post_ID'];
     }
 
     if (!empty($post_id)) {

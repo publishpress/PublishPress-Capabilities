@@ -13,13 +13,13 @@ class PP_Capabilities_Admin_Features
         $elements = [];
 
         //Add header and footer
-        $elements[__('Header and Footer', 'capsman-enhanced')] = self::formatHeaderFooter();
+        $elements[esc_html__('Header and Footer', 'capsman-enhanced')] = self::formatHeaderFooter();
 
         //Add toolbar
-        $elements[__('Admin Toolbar', 'capsman-enhanced')] = self::formatAdminToolbar();
+        $elements[esc_html__('Admin Toolbar', 'capsman-enhanced')] = self::formatAdminToolbar();
 
         //Add dashboard widget
-        $elements[__('Dashboard widgets', 'capsman-enhanced')] = self::formatDashboardWidgets();
+        $elements[esc_html__('Dashboard widgets', 'capsman-enhanced')] = self::formatDashboardWidgets();
 
         return apply_filters('pp_capabilities_admin_features_elements', $elements);
     }
@@ -56,17 +56,17 @@ class PP_Capabilities_Admin_Features
     {
         $title = [];
 
-        $title['menu-toggle']      = __('Mobile Menu Toggle', 'capsman-enhanced');
-        $title['wp-logo']          = __('WordPress Logo', 'capsman-enhanced');
-        $title['wp-logo-external'] = __('WordPress External Links', 'capsman-enhanced');
-        $title['updates']          = __('Updates', 'capsman-enhanced');
-        $title['comments']         = __('Comments', 'capsman-enhanced');
-        $title['top-secondary']    = __('Right bar', 'capsman-enhanced');
-        $title['user-actions']     = __('User actions', 'capsman-enhanced');
-        $title['new-content']      = __('New', 'capsman-enhanced');
-        $title['new-content']      = __('New', 'capsman-enhanced');
-        $title['user-info']        = __('User Display Name', 'capsman-enhanced');
-        $title['wpseo-menu']       = __('Yoast SEO', 'capsman-enhanced');
+        $title['menu-toggle']      = esc_html__('Mobile Menu Toggle', 'capsman-enhanced');
+        $title['wp-logo']          = esc_html__('WordPress Logo', 'capsman-enhanced');
+        $title['wp-logo-external'] = esc_html__('WordPress External Links', 'capsman-enhanced');
+        $title['updates']          = esc_html__('Updates', 'capsman-enhanced');
+        $title['comments']         = esc_html__('Comments', 'capsman-enhanced');
+        $title['top-secondary']    = esc_html__('Right bar', 'capsman-enhanced');
+        $title['user-actions']     = esc_html__('User actions', 'capsman-enhanced');
+        $title['new-content']      = esc_html__('New', 'capsman-enhanced');
+        $title['new-content']      = esc_html__('New', 'capsman-enhanced');
+        $title['user-info']        = esc_html__('User Display Name', 'capsman-enhanced');
+        $title['wpseo-menu']       = esc_html__('Yoast SEO', 'capsman-enhanced');
 
         return isset($title[$id]) ? $title[$id] : $id;
     }
@@ -78,10 +78,10 @@ class PP_Capabilities_Admin_Features
      */
     public static function formatHeaderFooter()
     {
-        $elements_item['screen_options'] = ['label'  => __('Screen Options', 'capsman-enhanced'), 'action' => 'ppc_header_footer'];
-        $elements_item['screen_help'] = ['label'  => __('Help', 'capsman-enhanced'), 'action' => 'ppc_header_footer'];
-        $elements_item['footer_thankyou'] = ['label'  => __('Thank you for creating with WordPress', 'capsman-enhanced'), 'action' => 'ppc_header_footer'];
-        $elements_item['footer_upgrade'] = ['label'  => sprintf( __( 'Version %s' ), get_bloginfo('version'), 'capsman-enhanced' ), 'action' => 'ppc_header_footer'];
+        $elements_item['screen_options'] = ['label'  => esc_html__('Screen Options', 'capsman-enhanced'), 'action' => 'ppc_header_footer'];
+        $elements_item['screen_help'] = ['label'  => esc_html__('Help', 'capsman-enhanced'), 'action' => 'ppc_header_footer'];
+        $elements_item['footer_thankyou'] = ['label'  => esc_html__('Thank you for creating with WordPress', 'capsman-enhanced'), 'action' => 'ppc_header_footer'];
+        $elements_item['footer_upgrade'] = ['label'  => sprintf( esc_html__( 'Version %s' ), get_bloginfo('version'), 'capsman-enhanced' ), 'action' => 'ppc_header_footer'];
 
         return $elements_item;
     }
@@ -130,7 +130,7 @@ class PP_Capabilities_Admin_Features
 
         $elements_widget = [];
         //add widget that may not be part of wp_meta_boxes
-        $elements_widget['dashboard_welcome_panel'] = ['label'  => __('Welcome panel', 'capsman-enhanced'), 'context' => 'normal', 'action' => 'ppc_dashboard_widget'];
+        $elements_widget['dashboard_welcome_panel'] = ['label'  => esc_html__('Welcome panel', 'capsman-enhanced'), 'context' => 'normal', 'action' => 'ppc_dashboard_widget'];
         //loop other widgets
         foreach ($widgets as $context => $priority) {
             foreach ($priority as $data) {
@@ -304,7 +304,7 @@ class PP_Capabilities_Admin_Features
             if(count($ppc_header_footer) > 0){
                 self::disableHeaderFooterElement($ppc_header_footer);
             }
-		   }
+        }
     }
 
 	/**
@@ -316,7 +316,7 @@ class PP_Capabilities_Admin_Features
             add_filter( 'screen_options_show_screen', '__return_false', 999 );
         }
         if(in_array('ppc_header_footer||screen_help', $ppc_header_footer)){
-            add_filter('admin_head', [__CLASS__, 'contextual_help_list_remove'], 999);
+            add_action('admin_head', [__CLASS__, 'contextual_help_list_remove'], 999);
         }
         if(in_array('ppc_header_footer||footer_thankyou', $ppc_header_footer)){
             add_filter( 'admin_footer_text', '__return_false', 999 );

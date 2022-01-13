@@ -10,7 +10,9 @@ function _cme_update_pp_usage() {
 	static $updated;
 	if ( ! empty($updated) ) { return true; }
 	
-	if (!current_user_can( 'manage_capabilities' ) || !check_admin_referer('capsman-general-manager')) {
+	check_admin_referer('capsman-general-manager');
+
+	if (!current_user_can( 'manage_capabilities' )) {
 		return false;
 	}
 	
@@ -51,7 +53,7 @@ function _cme_update_pp_usage() {
 					$value = array_merge( $current, $value );	// retain setting for any types which were previously enabled for filtering but are currently not registered
 			}
 			
-			$value = stripslashes_deep($value);
+			$value = array_map('sanitize_key', $value);
 			
 			update_option( $option_name, $value );
 			

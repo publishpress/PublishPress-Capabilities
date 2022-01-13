@@ -94,7 +94,7 @@ class Pp_Roles_Admin
      */
     public function admin_notices()
     {
-        echo pp_capabilities_roles()->notify->display();
+        pp_capabilities_roles()->notify->display();
     }
 
     /**

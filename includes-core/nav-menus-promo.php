@@ -26,7 +26,7 @@ $default_role = $capsman->current;
 
 <div class="wrap publishpress-caps-manage pressshack-admin-wrapper pp-capability-menus-wrapper-promo">
     <div id="icon-capsman-admin" class="icon32"></div>
-    <h2><?php _e('Navigation Menu Restrictions', 'capsman-enhanced'); ?></h2>
+    <h2><?php esc_html_e('Navigation Menu Restrictions', 'capsman-enhanced'); ?></h2>
 
     <form method="post" id="ppc-nav-menu-form" action="admin.php?page=pp-capabilities-nav-menus">
         <fieldset>
@@ -38,10 +38,10 @@ $default_role = $capsman->current;
                             <select name="ppc-nav-menu-role" class="ppc-nav-menu-role">
                                 <optgroup label="Roles">
                                     <?php
-                                    foreach ($roles as $role => $name) {
+                                    foreach ($roles as $role_name => $name) {
                                         $name = translate_user_role($name);
                                         ?>
-                                        <option value="<?php echo $role; ?>" <?php selected($default_role, $role); ?>> <?php echo $name; ?>
+                                        <option value="<?php echo esc_attr($role_name); ?>" <?php selected($default_role, $role_name); ?>> <?php echo esc_html($name); ?>
                                             &nbsp;
                                         </option>
                                     <?php } ?>
@@ -49,22 +49,22 @@ $default_role = $capsman->current;
 
                             </select> &nbsp;
                             <input type="submit" name="nav-menu-submit"
-                                   value="<?php _e('Save Changes', 'capsman-enhanced') ?>"
+                                   value="<?php esc_attr_e('Save Changes', 'capsman-enhanced') ?>"
                                    class="button-primary ppc-nav-menu-submit" style="float:right" />
                         </div>
 
                         <div id="pp-capability-menu-wrapper" class="postbox" style="box-shadow: none;">
                             <div class="pp-capability-menus-promo">
                                 <div class="pp-capability-menus-promo-inner">
-                                    <img src="<?php echo plugin_dir_url(CME_FILE) . 'includes-core/pp-capabilities-nav-menus-desktop.jpg';?>" class="pp-capability-desktop" />
-                                    <img src="<?php echo plugin_dir_url(CME_FILE) . 'includes-core/pp-capabilities-nav-menus-mobile.jpg';?>" class="pp-capability-mobile" />
+                                    <img src="<?php echo esc_url_raw(plugin_dir_url(CME_FILE) . 'includes-core/pp-capabilities-nav-menus-desktop.jpg');?>" class="pp-capability-desktop" />
+                                    <img src="<?php echo esc_url_raw(plugin_dir_url(CME_FILE) . 'includes-core/pp-capabilities-nav-menus-mobile.jpg');?>" class="pp-capability-mobile" />
                                     <div class="pp-capability-menus-promo-content">
                                         <p>
-                                            <?php _e('You can restrict access to navigation menus. This feature is available in PublishPress Capabilities Pro', 'capsman-enhanced'); ?>
+                                            <?php esc_html_e('You can restrict access to navigation menus. This feature is available in PublishPress Capabilities Pro', 'capsman-enhanced'); ?>
                                         </p>
                                         <p>
                                             <a href="https://publishpress.com/links/capabilities-banner" target="_blank">
-                                                <?php _e('Upgrade to Pro', 'capsman-enhanced'); ?>
+                                                <?php esc_html_e('Upgrade to Pro', 'capsman-enhanced'); ?>
                                             </a>
                                         </p>
                                     </div>

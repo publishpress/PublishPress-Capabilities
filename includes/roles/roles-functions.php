@@ -77,6 +77,3 @@ function pp_roles_user_has_role($user_id, $roles)
 
     return false;
 }
-
-
-?>
