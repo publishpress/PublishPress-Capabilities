@@ -71,11 +71,11 @@ class Pp_Roles_Actions
         }
 
         if (isset($_REQUEST['action']) && -1 != $_REQUEST['action']) {
-            return $_REQUEST['action'];
+            return sanitize_key($_REQUEST['action']);
         }
 
         if (isset($_REQUEST['action2']) && -1 != $_REQUEST['action2']) {
-            return $_REQUEST['action2'];
+            return sanitize_key($_REQUEST['action2']);
         }
 
         return false;
@@ -153,7 +153,7 @@ class Pp_Roles_Actions
     protected function check_nonce($action = '-1', $query_arg = '_wpnonce')
     {
 
-        $checked = isset($_REQUEST[$query_arg]) && wp_verify_nonce($_REQUEST[$query_arg], $action);
+        $checked = isset($_REQUEST[$query_arg]) && wp_verify_nonce(sanitize_key($_REQUEST[$query_arg]), $action);
         if (!$checked) {
             $this->notify(__('Your link has expired, refresh the page and try again.', 'capsman-enhanced'));
         }
@@ -183,7 +183,7 @@ class Pp_Roles_Actions
          */
         require_once(dirname(CME_FILE).'/includes/handler.php');
         $capsman_handler = new CapsmanHandler();
-        $role = $capsman_handler->createNewName(pp_capabilities_sanitize_entry($_REQUEST['name']));
+        $role = $capsman_handler->createNewName(sanitize_text_field($_REQUEST['name']));
         
         /**
          * Check for invalid name entry
