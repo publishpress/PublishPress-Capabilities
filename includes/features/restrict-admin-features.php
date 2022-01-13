@@ -316,7 +316,7 @@ class PP_Capabilities_Admin_Features
             add_filter( 'screen_options_show_screen', '__return_false', 999 );
         }
         if(in_array('ppc_header_footer||screen_help', $ppc_header_footer)){
-            add_filter('admin_head', [__CLASS__, 'contextual_help_list_remove'], 999);
+            add_action('admin_head', [__CLASS__, 'contextual_help_list_remove'], 999);
         }
         if(in_array('ppc_header_footer||footer_thankyou', $ppc_header_footer)){
             add_filter( 'admin_footer_text', '__return_false', 999 );
