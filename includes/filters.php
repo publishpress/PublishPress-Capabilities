@@ -66,7 +66,7 @@ function _cme_filterable_post_types($post_type_objects) {
 }
 
 function _cme_publishpress_roles_js() {
-	if (defined('PUBLISHPRESS_VERSION') && ((strpos($_SERVER['REQUEST_URI'], 'page=pp-manage-roles')))) {
+	if (defined('PUBLISHPRESS_VERSION') && !empty($_SERVER['REQUEST_URI']) && strpos(sanitize_text_field($_SERVER['REQUEST_URI']), 'page=pp-manage-roles')) {
 		require_once(dirname(__FILE__) . '/publishpress-roles.php');
 		CME_PublishPressRoles::scripts();  // @todo: .js
 	}
