@@ -133,7 +133,7 @@ class CapsmanHandler
 				if ( ! $customized_roles = get_option( 'pp_customized_roles' ) )
 					$customized_roles = array();
 
-				$customized_roles[$_POST['role']] = (object) array( 'caps' => array_merge( $role->capabilities, array( $newname['name'] => 1 ) ), 'plugins' => $plugins );
+				$customized_roles[sanitize_key($_POST['role'])] = (object) array( 'caps' => array_merge( $role->capabilities, array( $newname['name'] => 1 ) ), 'plugins' => $plugins );
 				update_option( 'pp_customized_roles', $customized_roles );
 				
 				$wpdb->query( "UPDATE $wpdb->options SET autoload = 'no' WHERE option_name = 'pp_customized_roles'" );
