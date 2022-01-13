@@ -74,9 +74,8 @@ foreach($def_post_types as $type_name) {
                     <strong><i class="dashicons dashicons-arrow-right"></i>
                         <?php 
                         if(isset($arr_feature['custom_element']) && ($arr_feature['custom_element'] === true)){
-                            $delete_button = '<span class="' . esc_attr($arr_feature['button_class'])  . '" data-id="' . esc_attr($arr_feature['button_data_id'])  . '" data-parent="' . esc_attr($arr_feature['button_data_parent'])  . '"><small>(' . __('Delete', 'capsman-enhanced') . ')</small></span>';
-
-                            echo esc_html($arr_feature['element_label']) . ' <small class="entry">(' . esc_html($arr_feature['element_items']). ')</small> &nbsp; ' . $delete_button . '';
+                            echo esc_html($arr_feature['element_label']) . ' <small class="entry">(' . esc_html($arr_feature['element_items']). ')</small> &nbsp; ' 
+                            . '<span class="' . esc_attr($arr_feature['button_class'])  . '" data-id="' . esc_attr($arr_feature['button_data_id'])  . '" data-parent="' . esc_attr($arr_feature['button_data_parent'])  . '"><small>(' . esc_html__('Delete', 'capsman-enhanced') . ')</small></span>';
                         }else{
                             echo esc_html($arr_feature['label']);
                         }
