@@ -103,7 +103,6 @@ class Pp_Roles_Actions
         }
 
         if ($this->is_ajax()) {
-            //$format = '<div class="notice notice-%s is-dismissible"><p>%s</p><button type="button" class="notice-dismiss"><span class="screen-reader-text">' . esc_html__('Dismiss this notice.', 'capsman-enhanced') . '</span></button></div>';
             $format = '<div class="notice notice-%s is-dismissible"><p>%s</p></div>';
             wp_send_json_error(sprintf($format, $type, $message));
             exit;
@@ -308,7 +307,6 @@ class Pp_Roles_Actions
         $default = get_option('default_role');
         
 		if ( $default == $role ) {
-            //ak_admin_error(sprintf(__('Cannot delete default role. You <a href="%s">have to change it first</a>.', 'capsman-enhanced'), 'options-general.php'));
             $this->notify(
                 sprintf(
                     __('Cannot delete default role. You <a href="%s">have to change it first</a>.', 'capsman-enhanced'), 
