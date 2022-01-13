@@ -26,7 +26,7 @@ function _cme_new_blog( $new_blog_id ) {
 		
 		if ( defined('PRESSPERMIT_ACTIVE') )
 			$main_pp_only = (array) pp_capabilities_get_permissions_option( 'supplemental_role_defs' );
-			//$pp_only[]= $newrole;
+
 	
 		foreach( $autocreate_roles as $role_name ) {
 			if ( $role = get_role( $role_name ) ) {
