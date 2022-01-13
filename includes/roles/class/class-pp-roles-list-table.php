@@ -59,7 +59,7 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
     {
         $class = ['roles-tr'];
 
-        echo sprintf('<tr id="%s" class="%s">', 'role-' . md5($item['role']), implode(' ', $class));
+        echo sprintf('<tr id="%s" class="%s">', 'role-' . esc_attr(md5($item['role'])), esc_attr(implode(' ', $class)));
         $this->single_row_columns($item);
         echo '</tr>';
     }
