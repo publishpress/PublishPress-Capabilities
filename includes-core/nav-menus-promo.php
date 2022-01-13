@@ -56,8 +56,8 @@ $default_role = $capsman->current;
                         <div id="pp-capability-menu-wrapper" class="postbox" style="box-shadow: none;">
                             <div class="pp-capability-menus-promo">
                                 <div class="pp-capability-menus-promo-inner">
-                                    <img src="<?php echo plugin_dir_url(CME_FILE) . 'includes-core/pp-capabilities-nav-menus-desktop.jpg';?>" class="pp-capability-desktop" />
-                                    <img src="<?php echo plugin_dir_url(CME_FILE) . 'includes-core/pp-capabilities-nav-menus-mobile.jpg';?>" class="pp-capability-mobile" />
+                                    <img src="<?php echo esc_url_raw(plugin_dir_url(CME_FILE) . 'includes-core/pp-capabilities-nav-menus-desktop.jpg');?>" class="pp-capability-desktop" />
+                                    <img src="<?php echo esc_url_raw(plugin_dir_url(CME_FILE) . 'includes-core/pp-capabilities-nav-menus-mobile.jpg');?>" class="pp-capability-mobile" />
                                     <div class="pp-capability-menus-promo-content">
                                         <p>
                                             <?php esc_html_e('You can restrict access to navigation menus. This feature is available in PublishPress Capabilities Pro', 'capsman-enhanced'); ?>
