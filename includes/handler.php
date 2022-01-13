@@ -23,6 +23,7 @@ class CapsmanHandler
 	
 	function processAdminGeneral() {
 		global $wp_roles;
+		check_admin_referer('capsman-general-manager');
 		
 		if ( empty ($_POST['caps']) ) {
 		    $_POST['caps'] = array();

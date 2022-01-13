@@ -765,6 +765,8 @@ class CapabilityManager
 	 */
 	private function processAdminGeneral ()
 	{
+		check_admin_referer('capsman-general-manager');
+
 		if (! isset($_POST['action']) || 'update' != $_POST['action'] ) {
 		    // TODO: Implement exceptions. This must be a fatal error.
 			ak_admin_error(__('Bad form Received', 'capsman-enhanced'));
