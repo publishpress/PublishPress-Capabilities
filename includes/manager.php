@@ -465,7 +465,7 @@ class CapabilityManager
 			$this->current = array_shift($roles);
 		}
 
-		if ('POST' == $_SERVER['REQUEST_METHOD'] && isset($_POST['ppc-editor-features-role'])) {
+		if (!empty($_SERVER['REQUEST_METHOD']) && ('POST' == $_SERVER['REQUEST_METHOD']) && isset($_POST['ppc-editor-features-role']) && !empty($_REQUEST['_wpnonce'])) {
 			if (!check_admin_referer('pp-capabilities-editor-features')) {
 				wp_die('<strong>' . esc_html__('You do not have permission to manage editor features.', 'capabilities-pro') . '</strong>');
 			} else {
@@ -525,7 +525,7 @@ class CapabilityManager
 			$this->current = array_shift($roles);
 		}
 
-		if ('POST' == $_SERVER['REQUEST_METHOD'] && isset($_POST['ppc-admin-features-role'])) {
+		if (!empty($_SERVER['REQUEST_METHOD']) && ('POST' == $_SERVER['REQUEST_METHOD']) && isset($_POST['ppc-admin-features-role']) && !empty($_REQUEST['_wpnonce'])) {
 			if (!check_admin_referer('pp-capabilities-admin-features')) {
 				wp_die('<strong>' . esc_html__('You do not have permission to manage admin features.', 'capabilities-pro') . '</strong>');
 			} else {
@@ -643,7 +643,7 @@ class CapabilityManager
 	}
 
 	function processRoleUpdate() {
-		if ( 'POST' == $_SERVER['REQUEST_METHOD'] && ( ! empty($_REQUEST['SaveRole']) || ! empty($_REQUEST['AddCap']) ) ) {
+		if (!empty($_SERVER['REQUEST_METHOD']) && ('POST' == $_SERVER['REQUEST_METHOD']) && ( ! empty($_REQUEST['SaveRole']) || ! empty($_REQUEST['AddCap']) ) ) {
 			check_admin_referer('capsman-general-manager');
 			
 			if ((!is_multisite() || !is_super_admin()) && !current_user_can('administrator') && !current_user_can('manage_capabilities')) {
@@ -677,7 +677,7 @@ class CapabilityManager
 			}
 		}
 
-		if ( 'POST' == $_SERVER['REQUEST_METHOD'] && ( ! empty($_REQUEST['RenameRole']) ) ) {
+		if (!empty($_SERVER['REQUEST_METHOD']) && ('POST' == $_SERVER['REQUEST_METHOD']) && ( ! empty($_REQUEST['RenameRole']) ) ) {
 			check_admin_referer('capsman-general-manager');
 			
 			if ((!is_multisite() || !is_super_admin()) && !current_user_can('administrator') && !current_user_can('manage_capabilities')) {
@@ -703,7 +703,7 @@ class CapabilityManager
 		    wp_die('<strong>' . esc_html__('You do not have permission to manage capabilities.', 'capsman-enhanced') . '</strong>');
 		}
 
-		if ( 'POST' == $_SERVER['REQUEST_METHOD'] ) {
+		if (!empty($_SERVER['REQUEST_METHOD']) && ('POST' == $_SERVER['REQUEST_METHOD'])) {
 			if ( empty($_REQUEST['SaveRole']) && empty($_REQUEST['AddCap']) && empty($_REQUEST['RenameRole']) ) {
 				check_admin_referer('capsman-general-manager');
 				$this->processAdminGeneral();
@@ -766,9 +766,9 @@ class CapabilityManager
 		}
 
 		// Select a new role.
-		if ( ! empty($post['LoadRole']) ) {
+		if ( ! empty($post['LoadRole']) && !empty($_POST['role']) ) {
 			$this->set_current_role(sanitize_key($_POST['role']));
-		} else {
+		} elseif (!empty($_POST['current'])) {
 			$this->set_current_role(sanitize_key($_POST['current']));
 
 			require_once( dirname(__FILE__).'/handler.php' );
@@ -879,7 +879,7 @@ class CapabilityManager
 			wp_die('<strong>' . esc_html__('You do not have permission to restore roles.', 'capsman-enhanced') . '</strong>');
 		}
 
-		if ( 'POST' == $_SERVER['REQUEST_METHOD'] ) {
+		if (!empty($_SERVER['REQUEST_METHOD']) && ('POST' == $_SERVER['REQUEST_METHOD'])) {
 			require_once( dirname(__FILE__).'/backup-handler.php' );
 			$cme_backup_handler = new Capsman_BackupHandler( $this );
 			$cme_backup_handler->processBackupTool();
