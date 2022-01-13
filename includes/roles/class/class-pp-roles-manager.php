@@ -19,7 +19,7 @@ class Pp_Roles_Manager
      */
     public function get_roles_for_list_table()
     {
-        $roles = wp_roles()->roles; // get_editable_roles();
+        $roles = wp_roles()->roles;
         $count = count_users();
         $res = [];
         foreach ($roles as $role => $detail) {
@@ -147,11 +147,14 @@ class Pp_Roles_Manager
 
 		$like = '%' . $wpdb->esc_like( $role ) . '%';
 
-		$query = $wpdb->prepare( "SELECT ID FROM {$wpdb->usermeta} INNER JOIN {$wpdb->users} "
-			. "ON {$wpdb->usermeta}.user_id = {$wpdb->users}.ID "
-			. "WHERE meta_key='{$wpdb->prefix}capabilities' AND meta_value LIKE %s", $like );
+		$users = $wpdb->get_results($wpdb->prepare( 
+                "SELECT ID FROM $wpdb->usermeta INNER JOIN $wpdb->users "
+                . "ON $wpdb->usermeta.user_id = $wpdb->users.ID "
+                . "WHERE meta_key='{$wpdb->prefix}capabilities' AND meta_value LIKE %s", 
 
-		$users = $wpdb->get_results($query);
+                $like
+            )
+        );
 
 		// Array of all roles except the one being deleted, for use below
 		$role_names = array_diff_key( $wp_roles->role_names, [$role => true] );

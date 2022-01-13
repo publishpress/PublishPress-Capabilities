@@ -38,7 +38,7 @@ class PP_Capabilities_Admin_UI {
         if (is_admin() && (isset($_REQUEST['page']) && (in_array($_REQUEST['page'], ['pp-capabilities', 'pp-capabilities-backup', 'pp-capabilities-roles', 'pp-capabilities-admin-menus', 'pp-capabilities-editor-features', 'pp-capabilities-nav-menus', 'pp-capabilities-settings', 'pp-capabilities-admin-features']))
 
         || (!empty($_REQUEST['action']) && in_array($_REQUEST['action'], ['pp-roles-add-role', 'pp-roles-delete-role', 'pp-roles-hide-role', 'pp-roles-unhide-role']))
-        || ( ! empty($_SERVER['SCRIPT_NAME']) && strpos( $_SERVER['SCRIPT_NAME'], 'p-admin/plugins.php' ) && ! empty($_REQUEST['action'] ) ) 
+        || ( ! empty($_SERVER['SCRIPT_NAME']) && strpos(sanitize_text_field($_SERVER['SCRIPT_NAME']), 'p-admin/plugins.php' ) && ! empty($_REQUEST['action'] ) ) 
         || ( isset($_GET['action']) && 'reset-defaults' == $_GET['action'] )
         || in_array( $pagenow, array( 'users.php', 'user-edit.php', 'profile.php', 'user-new.php' ) )
         ) ) {
@@ -58,7 +58,7 @@ class PP_Capabilities_Admin_UI {
             global $pagenow;
 
             if ((($pagenow == 'admin.php') && isset($_GET['page']) && in_array($_GET['page'], ['pp-capabilities', 'pp-capabilities-roles', 'pp-capabilities-backup'])) // @todo: CSS for button alignment in Editor Features, Admin Features
-            || (defined('DOING_AJAX') && DOING_AJAX && !empty($_REQUEST['action']) && (false !== strpos($_REQUEST['action'], 'capability-manager-enhanced')))
+            || (defined('DOING_AJAX') && DOING_AJAX && !empty($_REQUEST['action']) && (false !== strpos(sanitize_key($_REQUEST['action']), 'capability-manager-enhanced')))
             ) {
                 if (!class_exists('\PublishPress\WordPressReviews\ReviewsController')) {
                     include_once PUBLISHPRESS_CAPS_ABSPATH . '/vendor/publishpress/wordpress-reviews/ReviewsController.php';
@@ -158,7 +158,7 @@ class PP_Capabilities_Admin_UI {
                 // Check if we are on the user's profile page
                 wp_enqueue_script(
                     'pp-capabilities-chosen-js',
-                    plugin_dir_url(CME_FILE) . 'common/libs/chosen-v1.8.3/chosen.jquery.js',
+                    plugin_dir_url(CME_FILE) . 'common/libs/chosen-v1.8.7/chosen.jquery.js',
                     ['jquery'],
                     CAPSMAN_VERSION
                 );
@@ -172,7 +172,7 @@ class PP_Capabilities_Admin_UI {
 
                 wp_enqueue_style(
                     'pp-capabilities-chosen-css',
-                    plugin_dir_url(CME_FILE) . 'common/libs/chosen-v1.8.3/chosen.css',
+                    plugin_dir_url(CME_FILE) . 'common/libs/chosen-v1.8.7/chosen.css',
                     false,
                     CAPSMAN_VERSION
                 );
@@ -183,7 +183,7 @@ class PP_Capabilities_Admin_UI {
                     CAPSMAN_VERSION
                 );
 
-                $roles = !empty($_GET['user_id']) ?$this->getUsersRoles($_GET['user_id']) : [];
+                $roles = !empty($_GET['user_id']) ? $this->getUsersRoles((int) $_GET['user_id']) : [];
 
                 if (empty($roles)) {
                     $roles = (array) get_option('default_role');
@@ -237,11 +237,11 @@ class PP_Capabilities_Admin_UI {
     public function action_profile_update($userId, $oldUserData = [])
     {
         // Check if we need to update the user's roles, allowing to set multiple roles.
-        if (isset($_POST['pp_roles']) && current_user_can('promote_users')) {
+        if (!empty($_REQUEST['_wpnonce']) && wp_verify_nonce(sanitize_key($_REQUEST['_wpnonce']), 'update-user_' . $userId) && isset($_POST['pp_roles']) && current_user_can('promote_users')) {
             // Remove the user's roles
             $user = get_user_by('ID', $userId);
 
-            $newRoles     = $_POST['pp_roles'];
+            $newRoles     = array_map('sanitize_key', $_POST['pp_roles']);
             $currentRoles = $user->roles;
 
             if (empty($newRoles) || !is_array($newRoles)) {

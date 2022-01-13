@@ -136,9 +136,6 @@ class CME_Cap_Helper {
 				continue;
 			}
 
-			// Default plural slug
-			//$plural_type = "{$cap_base}s";
-			
 			$plural_type = _cme_get_plural( $post_type, $wp_post_types[$post_type] );
 			
 			if ( "{$cap_base}s" != $plural_type ) {
@@ -188,8 +185,6 @@ class CME_Cap_Helper {
 			$type_caps = array_diff_key( (array) $wp_post_types[$post_type]->cap, $core_meta_caps );
 
 			$wp_post_types[$post_type]->cap = (object) array_merge( (array) $wp_post_types[$post_type]->cap, $type_caps );
-			
-			//$this->all_type_caps = array_merge( $this->all_type_caps, array_fill_keys( $type_caps, true ) );
 			
 			foreach( array_unique( (array) $wp_post_types[$post_type]->cap ) as $cap_name ) {
 				if ( ! isset( $this->all_type_caps[$cap_name] ) ) {
@@ -241,7 +236,6 @@ class CME_Cap_Helper {
 		
 		// count the number of taxonomies that use each capability
 		foreach( $wp_taxonomies as $taxonomy => $tx_obj ) {
-			//$this_tx_caps = array_unique( (array) $tx_obj->cap );
 			$this_tx_caps = (array) $tx_obj->cap;
 
 			foreach( $this_tx_caps as $cap_name ) {
@@ -267,9 +261,6 @@ class CME_Cap_Helper {
 				continue;
 
 			if ( ! in_array( $taxonomy, $core_taxonomies ) ) {
-				// Default plural slug
-				//$plural_type = "{$taxonomy}s";
-				
 				$plural_type = _cme_get_plural( $taxonomy, $wp_taxonomies[$taxonomy] );
 
 				if ( "{$taxonomy}s" != $plural_type ) {
@@ -380,7 +371,6 @@ class CME_Cap_Helper {
 		}
 		
 		// make sure Nav Menu Managers can also add menu items
-		global $wp_taxonomies;
 		$wp_taxonomies['nav_menu']->cap->assign_terms = 'manage_nav_menus';
 		
 		$this->processed_taxonomies = array_merge( $this->processed_taxonomies, $use_taxonomies );

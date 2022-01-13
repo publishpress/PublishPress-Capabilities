@@ -59,11 +59,11 @@ class Pp_Roles_Admin
         }
 
         if (isset($_REQUEST['action']) && -1 != $_REQUEST['action']) {
-            return $_REQUEST['action'];
+            return sanitize_key($_REQUEST['action']);
         }
 
         if (isset($_REQUEST['action2']) && -1 != $_REQUEST['action2']) {
-            return $_REQUEST['action2'];
+            return sanitize_key($_REQUEST['action2']);
         }
 
         return false;
@@ -94,7 +94,7 @@ class Pp_Roles_Admin
      */
     public function admin_notices()
     {
-        echo pp_capabilities_roles()->notify->display();
+        pp_capabilities_roles()->notify->display();
     }
 
     /**

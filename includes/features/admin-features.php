@@ -34,7 +34,7 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
 
     <div class="wrap publishpress-caps-manage pressshack-admin-wrapper pp-capability-menus-wrapper">
         <div id="icon-capsman-admin" class="icon32"></div>
-        <h2><?php _e('Admin Feature Restrictions', 'capabilities-pro'); ?></h2>
+        <h2><?php esc_html_e('Admin Feature Restrictions', 'capabilities-pro'); ?></h2>
 
         <form method="post" id="ppc-admin-features-form" action="admin.php?page=pp-capabilities-admin-features">
             <?php wp_nonce_field('pp-capabilities-admin-features'); ?>
@@ -50,7 +50,7 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                                     <span class="cme-subtext">
                                     <span class='pp-capability-role-caption'>
                                     <?php
-                                    _e('Note: You are only restricting access to admin features screens. Some plugins may also add features to other areas of WordPress.',
+                                    esc_html_e('Note: You are only restricting access to admin features screens. Some plugins may also add features to other areas of WordPress.',
                                         'capabilities-pro');
                                     ?>
                                     </span>
@@ -59,21 +59,21 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                                     <div class="publishpress-filters">
                                         <select name="ppc-admin-features-role" class="ppc-admin-features-role">
                                             <?php
-                                            foreach ($roles as $role => $name) :
+                                            foreach ($roles as $role_name => $name) :
                                                 $name = translate_user_role($name);
                                                 ?>
-                                                <option value="<?php echo $role; ?>" <?php selected($default_role,
-                                                    $role); ?>><?php echo $name; ?></option>
+                                                <option value="<?php echo esc_attr($role_name); ?>" <?php selected($default_role,
+                                                    $role_name); ?>><?php echo esc_html($name); ?></option>
                                             <?php
                                             endforeach;
                                             ?>
                                         </select> &nbsp;
 
-                                        <img class="loading" src="<?php echo $capsman->mod_url; ?>/images/wpspin_light.gif"
+                                        <img class="loading" src="<?php echo esc_url_raw($capsman->mod_url); ?>/images/wpspin_light.gif"
                                              style="display: none">
 
                                         <input type="submit" name="admin-features-submit"
-                                               value="<?php _e('Save Changes', 'capabilities-pro') ?>"
+                                               value="<?php esc_attr_e('Save Changes', 'capabilities-pro') ?>"
                                                class="button-primary ppc-admin-features-submit" style="float:right"/>
                                     </div>
 
@@ -112,28 +112,28 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                                                             $icon_name    = isset($icon_list[$section_slug]) ? $icon_list[$section_slug] : '&mdash;';
                                                             ?>
 
-                                                            <tr class="ppc-menu-row parent-menu">
+                                                            <tr class="ppc-menu-row parent-menu <?php echo esc_attr($section_slug); ?>">
 		                                                        <?php if ($section_slug === 'admintoolbar') :
 		                                                            $restrict_value = 'ppc_adminbar||admintoolbar';
 		                                                       	?>
 		                                                        <td class="features-section-header restrict-column ppc-menu-checkbox" style="text-align: left;" colspan="2">
 		                                                            <input
-		                                                                    id="check-item-<?php echo $sn; ?>"
+		                                                                    id="check-item-<?php echo (int) $sn; ?>"
 		                                                                    class="check-item" type="checkbox"
 		                                                                    name="capsman_disabled_admin_features[]"
-		                                                                    value="<?php echo $restrict_value; ?>"
+		                                                                    value="<?php echo esc_attr($restrict_value); ?>"
 		                                                                    <?php echo (in_array($restrict_value, $disabled_admin_items)) ? 'checked' : ''; ?>/>
-		                                                                    <label for="check-item-<?php echo $sn; ?>">
+		                                                                    <label for="check-item-<?php echo (int) $sn; ?>">
 		                                                            <strong class="menu-column ppc-menu-item menu-item-link<?php echo (in_array($restrict_value,
 		                                                                            $disabled_admin_items)) ? ' restricted' : ''; ?>">
-		                                                                <i class="dashicons dashicons-<?php echo $icon_name ?>"></i> <?php echo $section_title; ?>
+		                                                                <i class="dashicons dashicons-<?php echo esc_attr($icon_name) ?>"></i> <?php echo esc_html($section_title); ?>
 		                                                            </strong>
 		                                                        </label>
 		                                                        </td>
 		                                                        <?php else : ?>
 		                                                                <td class="features-section-header" colspan="2">
 		                                                                    <strong><i
-		                                                                            class="dashicons dashicons-<?php echo $icon_name ?>"></i> <?php echo $section_title; ?>
+		                                                                            class="dashicons dashicons-<?php echo esc_attr($icon_name) ?>"></i> <?php echo esc_html($section_title); ?>
 		                                                                    </strong>
 		                                                                </td>
 		                                                        <?php endif; ?>
@@ -154,19 +154,19 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                                                                 }
                                                                 ?>
 
-                                                                <tr class="ppc-menu-row child-menu">
+                                                                <tr class="ppc-menu-row child-menu <?php echo esc_attr($section_slug); ?>">
 
                                                                     <td class="restrict-column ppc-menu-checkbox">
                                                                         <input
-                                                                            id="check-item-<?php echo $sn; ?>"
+                                                                            id="check-item-<?php echo (int) $sn; ?>"
                                                                             class="check-item" type="checkbox"
                                                                             name="capsman_disabled_admin_features[]"
-                                                                            value="<?php echo $restrict_value; ?>"
+                                                                            value="<?php echo esc_attr($restrict_value); ?>"
                                                                             <?php echo (in_array($restrict_value, $disabled_admin_items)) ? 'checked' : ''; ?>/>
                                                                     </td>
                                                             		<td class="menu-column ppc-menu-item">
 
-                                                                        <label for="check-item-<?php echo $sn; ?>">
+                                                                        <label for="check-item-<?php echo (int) $sn; ?>">
                                                                             <span
                                                                                 class="menu-item-link<?php echo (in_array($restrict_value,
                                                                                     $disabled_admin_items)) ? ' restricted' : ''; ?>">
@@ -174,17 +174,24 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                                                                                 <?php
                                                                                 if ((isset($section_array['step']) && $section_array['step'] > 0) && isset($section_array['parent']) && !empty($section_array['parent'])) {
                                                                                     $step_margin = $section_array['step'] * 20;
-                                                                                    echo '<span style="margin-left: ' . $step_margin . 'px;"></span>';
+                                                                                    echo '<span style="margin-left: ' . (int) $step_margin . 'px;"></span>';
                                                                             echo ' &mdash; ';
                                                                                 } else {
                                                                                     if (isset($icon_list[$section_id])) {
-                                                                                        echo '<i class="dashicons dashicons-' . $icon_list[$section_id] . '"></i>';
+                                                                                        echo '<i class="dashicons dashicons-' . esc_attr($icon_list[$section_id]) . '"></i>';
                                                                                     } else {
                                                                                         echo '&mdash;';
                                                                                     }
                                                                                 }
                                                                                 ?>
-                                                                                <?php echo $item_name; ?>
+                                                                                <?php 
+                                                                                if(isset($section_array['custom_element']) && ($section_array['custom_element'] === true)){
+                                                                                    echo esc_html($section_array['element_label']) . ' <small class="entry">(' . esc_html($section_array['element_items']). ')</small> &nbsp; ' 
+                                                                                    . '<span class="' . esc_attr($section_array['button_class'])  . '" data-id="' . esc_attr($section_array['button_data_id'])  . '"><small>(' . esc_html__('Delete', 'capabilities-pro') . ')</small></span>' . '';
+                                                                                }else{
+                                                                                    echo esc_html($item_name);
+                                                                                }
+                                                                                ?>
                                                                             </strong></span>
                                                                         </label>
                                                                     </td>
@@ -205,7 +212,7 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                                         </div>
                                     </div>
                                     <input type="submit" name="admin-features-submit"
-                                           value="<?php _e('Save Changes', 'capabilities-pro') ?>"
+                                           value="<?php esc_attr_e('Save Changes', 'capabilities-pro') ?>"
                                            class="button-primary ppc-admin-features-submit"/>
                                 </td>
                             </tr>
@@ -218,15 +225,15 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                         <?php
                         $banners = new PublishPress\WordPressBanners\BannersMain;
                         $banners->pp_display_banner(
-                            __( 'Recommendations for you', 'capsman-enhanced' ),
-                            __( 'Control permissions for individual posts and pages', 'capsman-enhanced' ),
+                            esc_html__( 'Recommendations for you', 'capsman-enhanced' ),
+                            esc_html__( 'Control permissions for individual posts and pages', 'capsman-enhanced' ),
                             array(
-                                __( 'Choose who can read and edit each post.', 'capsman-enhanced' ),
-                                __( 'Allow specific user roles or users to manage each post.', 'capsman-enhanced' ),
-                                __( 'PublishPress Permissions is 100% free to install.', 'capsman-enhanced' )
+                                esc_html__( 'Choose who can read and edit each post.', 'capsman-enhanced' ),
+                                esc_html__( 'Allow specific user roles or users to manage each post.', 'capsman-enhanced' ),
+                                esc_html__( 'PublishPress Permissions is 100% free to install.', 'capsman-enhanced' )
                             ),
                             admin_url( 'plugin-install.php?s=publishpress-ppcore-install&tab=search&type=term' ),
-                            __( 'Click here to install PublishPress Permissions', 'capsman-enhanced' ),
+                            esc_html__( 'Click here to install PublishPress Permissions', 'capsman-enhanced' ),
                             'install-permissions.jpg'
                         );
                         ?>
@@ -243,13 +250,13 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                 //   reload page for instant reflection if user is updating own role
                 // -------------------------------------------------------------
                 <?php if(!empty($ppc_page_reload) && (int)$ppc_page_reload === 1){ ?>
-                window.location = '<?php echo admin_url('admin.php?page=pp-capabilities-admin-features&role=' . $default_role . ''); ?>'
+                window.location = '<?php echo esc_url_raw(admin_url('admin.php?page=pp-capabilities-admin-features&role=' . $default_role . '')); ?>'
                 <?php } ?>
 
                 // -------------------------------------------------------------
                 //   Set form action attribute to include role
                 // -------------------------------------------------------------
-                $('#ppc-admin-features-form').attr('action', '<?php echo admin_url('admin.php?page=pp-capabilities-admin-features&role=' . $default_role . ''); ?>')
+                $('#ppc-admin-features-form').attr('action', '<?php echo esc_url_raw(admin_url('admin.php?page=pp-capabilities-admin-features&role=' . $default_role . '')); ?>')
 
                 // -------------------------------------------------------------
                 //   Instant restricted item class
@@ -302,7 +309,7 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                     $('div.publishpress-caps-manage img.loading').show()
 
                     //go to url
-                    window.location = '<?php echo admin_url('admin.php?page=pp-capabilities-admin-features&role='); ?>' + $(this).val() + ''
+                    window.location = '<?php echo esc_url_raw(admin_url('admin.php?page=pp-capabilities-admin-features&role=')); ?>' + $(this).val() + ''
 
                 })
             })

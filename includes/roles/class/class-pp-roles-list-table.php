@@ -27,9 +27,6 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
     {
         global $status, $page;
 
-        //$screen = get_current_screen();
-        //add_filter("manage_{$screen->id}_columns", [$this, 'get_columns']);
-
         //Set parent defaults
         parent::__construct([
             'singular' => 'role',     //singular name of the listed records
@@ -61,9 +58,8 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
     public function single_row($item)
     {
         $class = ['roles-tr'];
-        $id = 'role-' . md5($item['role']);
 
-        echo sprintf('<tr id="%s" class="%s">', $id, implode(' ', $class));
+        echo sprintf('<tr id="%s" class="%s">', 'role-' . esc_attr(md5($item['role'])), esc_attr(implode(' ', $class)));
         $this->single_row_columns($item);
         echo '</tr>';
     }
@@ -77,9 +73,9 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
     {
         $columns = [
             'cb' => '<input type="checkbox"/>', //Render a checkbox instead of text
-            'name' => __('Role Name', 'capsman-enhanced'),
-            'role' => __('Role', 'capsman-enhanced'),
-            'count' => __('Users', 'capsman-enhanced'),
+            'name' => esc_html__('Role Name', 'capsman-enhanced'),
+            'role' => esc_html__('Role', 'capsman-enhanced'),
+            'count' => esc_html__('Users', 'capsman-enhanced'),
         ];
 
         return $columns;
@@ -113,6 +109,8 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
      */
     protected function handle_row_actions($item, $column_name, $primary)
     {
+        static $pp_only;
+
         //Build row actions
         if (pp_capabilities_is_editable_role($item['role'])) {
             $actions = [
@@ -122,17 +120,15 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
                         ['page' => 'pp-capabilities', 'role' => esc_attr($item['role'])], 
                         admin_url('admin.php')
                     ),
-                    __('Capabilities', 'capsman-enhanced')
+                    esc_html__('Capabilities', 'capsman-enhanced')
                 ),
             ];
         } else {
             $actions = [
-                'edit' => '<span class="pp-caps-action-note">' . __('(non-editable role)', 'capsman-enhanced') . '</span>',
+                'edit' => '<span class="pp-caps-action-note">' . esc_html__('(non-editable role)', 'capsman-enhanced') . '</span>',
             ];
 
             if (defined("PRESSPERMIT_ACTIVE")) {
-                static $pp_only;
-
                 if (!isset($pp_only)) {
                     $pp_only = (array) pp_capabilities_get_permissions_option('supplemental_role_defs');
                 }
@@ -147,7 +143,7 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
                             '_wpnonce' => wp_create_nonce('bulk-roles')
                         ], 
                         admin_url('admin.php')),
-                        __('Unhide', 'capsman-enhanced')
+                        esc_html__('Unhide', 'capsman-enhanced')
                     );
                 }
             }
@@ -165,13 +161,11 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
                         '_wpnonce' => wp_create_nonce('bulk-roles')
                     ], 
                     admin_url('admin.php')),
-                    __('Delete', 'capsman-enhanced')
+                    esc_html__('Delete', 'capsman-enhanced')
                 ),
             ]);
 
             if (defined("PRESSPERMIT_ACTIVE")) {
-                static $pp_only;
-
                 if (!isset($pp_only)) {
                     $pp_only = (array) pp_capabilities_get_permissions_option('supplemental_role_defs');
                 }
@@ -186,7 +180,7 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
                             '_wpnonce' => wp_create_nonce('bulk-roles')
                         ], 
                         admin_url('admin.php')),
-                        __('Hide', 'capsman-enhanced')
+                        esc_html__('Hide', 'capsman-enhanced')
                     );
                 }
             }
@@ -304,7 +298,7 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
     protected function get_bulk_actions()
     {
         $actions = [
-            'pp-roles-delete-role' => __('Delete', 'capsman-enhanced')
+            'pp-roles-delete-role' => esc_html__('Delete', 'capsman-enhanced')
         ];
 
         return $actions;
@@ -318,7 +312,7 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
 
         $query_arg = '_wpnonce';
         $action = 'bulk-' . $this->_args['plural'];
-        $checked = $result = isset($_REQUEST[$query_arg]) ? wp_verify_nonce($_REQUEST[$query_arg], $action) : false;
+        $checked = $result = isset($_REQUEST[$query_arg]) ? wp_verify_nonce(sanitize_key($_REQUEST[$query_arg]), $action) : false;
 
         if (!$checked) {
             return;
@@ -372,17 +366,17 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
         $input_id = $input_id . '-search-input';
 
         if (!empty($_REQUEST['orderby'])) {
-            echo '<input type="hidden" name="orderby" value="' . esc_attr($_REQUEST['orderby']) . '" />';
+            echo '<input type="hidden" name="orderby" value="' . esc_attr(sanitize_text_field($_REQUEST['orderby'])) . '" />';
         }
         if (!empty($_REQUEST['order'])) {
-            echo '<input type="hidden" name="order" value="' . esc_attr($_REQUEST['order']) . '" />';
+            echo '<input type="hidden" name="order" value="' . esc_attr(sanitize_key($_REQUEST['order'])) . '" />';
         }
         if (!empty($_REQUEST['page'])) {
-            echo '<input type="hidden" name="page" value="' . esc_attr($_REQUEST['page']) . '" />';
+            echo '<input type="hidden" name="page" value="' . (int) $_REQUEST['page'] . '" />';
         }
         ?>
         <p class="search-box">
-            <label class="screen-reader-text" for="<?php echo esc_attr($input_id); ?>"><?php echo $text; ?>:</label>
+            <label class="screen-reader-text" for="<?php echo esc_attr($input_id); ?>"><?php echo esc_html($text); ?>:</label>
             <input type="search" id="<?php echo esc_attr($input_id); ?>" name="s"
                    value="<?php _admin_search_query(); ?>"/>
             <?php submit_button($text, '', '', false, ['id' => 'search-submit']); ?>
@@ -413,7 +407,7 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
         /**
          * Handle search
          */
-        if ((!empty($_REQUEST['s'])) && $search = $_REQUEST['s']) {
+        if ((!empty($_REQUEST['s'])) && $search = sanitize_text_field($_REQUEST['s'])) {
             $data_filtered = [];
             foreach ($data as $item) {
                 if ($this->str_contains($item['role'], $search, false) || $this->str_contains($item['name'], $search, false)) {
@@ -429,7 +423,7 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
         function usort_reorder($a, $b)
         {
             $orderby = (!empty($_REQUEST['orderby'])) ? sanitize_text_field($_REQUEST['orderby']) : 'role'; //If no sort, default to role
-            $order = (!empty($_REQUEST['order'])) ? sanitize_text_field($_REQUEST['order']) : 'asc'; //If no order, default to asc
+            $order = (!empty($_REQUEST['order'])) ? sanitize_key($_REQUEST['order']) : 'asc'; //If no order, default to asc
             $result = strnatcasecmp($a[$orderby], $b[$orderby]); //Determine sort order, case insensitive, natural order
 
             return ($order === 'asc') ? $result : -$result; //Send final sort direction to usort

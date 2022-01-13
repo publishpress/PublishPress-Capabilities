@@ -50,7 +50,7 @@ class CoreAdmin {
 
 		<script type="text/javascript">
             jQuery(document).ready(function($) {
-                $('#toplevel_page_pp-capabilities ul li:last a').attr('href', '<?php echo $url;?>').attr('target', '_blank').css('font-weight', 'bold').css('color', '#FEB123');
+                $('#toplevel_page_pp-capabilities ul li:last a').attr('href', '<?php echo esc_url_raw($url);?>').attr('target', '_blank').css('font-weight', 'bold').css('color', '#FEB123');
             });
         </script>
 		<?php
@@ -59,8 +59,8 @@ class CoreAdmin {
     function actCapabilitiesSubmenus() {
         $cap_name = (is_multisite() && is_super_admin()) ? 'read' : 'manage_capabilities';
         
-        add_submenu_page('pp-capabilities',  __('Admin Menus', 'capsman-enhanced'), __('Admin Menus', 'capsman-enhanced'), $cap_name, 'pp-capabilities-admin-menus', [$this, 'AdminMenusPromo']);
-        add_submenu_page('pp-capabilities',  __('Nav Menus', 'capsman-enhanced'), __('Nav Menus', 'capsman-enhanced'), $cap_name, 'pp-capabilities-nav-menus', [$this, 'NavMenusPromo']);
+        add_submenu_page('pp-capabilities',  esc_html__('Admin Menus', 'capsman-enhanced'), esc_html__('Admin Menus', 'capsman-enhanced'), $cap_name, 'pp-capabilities-admin-menus', [$this, 'AdminMenusPromo']);
+        add_submenu_page('pp-capabilities',  esc_html__('Nav Menus', 'capsman-enhanced'), esc_html__('Nav Menus', 'capsman-enhanced'), $cap_name, 'pp-capabilities-nav-menus', [$this, 'NavMenusPromo']);
     }
 
     function AdminMenusPromo() {

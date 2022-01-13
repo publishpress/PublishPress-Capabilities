@@ -12,7 +12,7 @@ class Capsman_BackupHandler
 
 	function __construct( $manager_obj ) {
 		if ((!is_multisite() || !is_super_admin()) && !current_user_can('administrator') && !current_user_can('restore_roles'))
-			wp_die( __( 'You do not have permission to restore roles.', 'capsman-enhanced' ) );
+			wp_die( esc_html__( 'You do not have permission to restore roles.', 'capsman-enhanced' ) );
 	
 		$this->cm = $manager_obj;
 	}
@@ -24,10 +24,11 @@ class Capsman_BackupHandler
 	 */
 	function processBackupTool ()
 	{
+		global $wpdb;
+
         if (isset($_POST['save_backup'])) {
 			check_admin_referer('pp-capabilities-backup');
 		
-			global $wpdb;
 			$wp_roles = $wpdb->prefix . 'user_roles';
 			$cm_roles = $this->cm->ID . '_backup';
 			$cm_roles_initial = $this->cm->ID . '_backup_initial';
@@ -49,10 +50,9 @@ class Capsman_BackupHandler
 				
         }
 
-        if (isset($_POST['restore_backup'])) {
+        if (isset($_POST['restore_backup']) && !empty($_POST['select_restore'])) {
             check_admin_referer('pp-capabilities-backup');
 
-            global $wpdb;
             $wp_roles = $wpdb->prefix . 'user_roles';
             $cm_roles = $this->cm->ID . '_backup';
             $cm_roles_initial = $this->cm->ID . '_backup_initial';
@@ -77,7 +77,7 @@ class Capsman_BackupHandler
 					break;
 
 				default:
-                    if ($roles = get_option($_POST['select_restore'])) {
+                    if ($roles = get_option(sanitize_key($_POST['select_restore']))) {
 						update_option($wp_roles, $roles);
 						ak_admin_notify(__('Roles and Capabilities restored from selected auto-backup.', 'capsman-enhanced'));
 					} else {
@@ -112,7 +112,7 @@ class Capsman_BackupHandler
 		populate_roles();
 		$this->cm->setAdminCapability();
 
-		$msg = __('Roles and Capabilities reset to WordPress defaults', 'capsman-enhanced');
+		$msg = esc_html__('Roles and Capabilities reset to WordPress defaults', 'capsman-enhanced');
 		
 		if ( function_exists( 'pp_populate_roles' ) ) {
 			pp_populate_roles();

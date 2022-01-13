@@ -33,10 +33,10 @@ class PP_Capabilities_Notices
          * Read cookie if exist
          */
         if (isset($_COOKIE[$this->cookie])) {
-            $messages = $_COOKIE[$this->cookie];
+            $messages = sanitize_text_field($_COOKIE[$this->cookie]);
             $messages = @json_decode($messages, true);
             if (is_array($messages)) {
-                $this->messages = $messages;
+                $this->messages = array_map('esc_html', $messages);
             }
 
             /**
@@ -59,12 +59,10 @@ class PP_Capabilities_Notices
             $messages = $this->get($type);
             foreach ($messages as $message) {
                 if (is_string($message)) {
-                    $html .= sprintf('<div class="notice notice-%s is-dismissible"><p>%s</p></div>', $type, urldecode($message));
+                    printf('<div class="notice notice-%s is-dismissible"><p>%s</p></div>', esc_attr($type), urldecode($message));
                 }
             }
         }
-
-        return $html;
     }
 
     /**
