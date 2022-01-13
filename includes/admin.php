@@ -273,7 +273,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 				<div class="ppc-capabilities-tabs">
 					<ul>
 						<?php
-						$active_tab_slug = (!empty($_REQUEST['pp_caps_tab'])) ? esc_attr($_REQUEST['pp_caps_tab']) : 'edit';
+						$active_tab_slug = (!empty($_REQUEST['pp_caps_tab'])) ? sanitize_key($_REQUEST['pp_caps_tab']) : 'edit';
 						$active_tab_id = "cme-cap-type-tables-{$active_tab_slug}";
 
 						$ppc_tab_active = 'ppc-capabilities-tab-active';
