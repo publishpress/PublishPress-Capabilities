@@ -190,7 +190,7 @@ class Pp_Roles_Actions
         if (!empty($role['error']) && ('invalid_name' == $role['error'])) {
             $out = sprintf(
                 __('Invalid role name entry: %s', 'capsman-enhanced'), 
-                "<strong>" . esc_attr($role['name']) . "</strong>"
+                "<strong>" . esc_html($role['name']) . "</strong>"
             );
             $this->notify($out);
         }
@@ -202,7 +202,7 @@ class Pp_Roles_Actions
             //this role already exist
             $out = sprintf(
                 __('The role "%s" already exists. Please choose a different name.', 'capsman-enhanced'),
-                "<strong>" . esc_attr($role['name']) . "</strong>"
+                "<strong>" . esc_html($role['name']) . "</strong>"
             );
 
             $this->notify($out);
