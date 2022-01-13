@@ -173,7 +173,7 @@ $classic_editor = pp_capabilities_is_classic_editor_available();
         // -------------------------------------------------------------
         //   Set form action attribute to include role
         // -------------------------------------------------------------
-        $('#ppc-editor-features-form').attr('action', '<?php echo admin_url('admin.php?page=pp-capabilities-editor-features&role=' . $default_role . ''); ?>');
+        $('#ppc-editor-features-form').attr('action', '<?php echo esc_url_raw(admin_url('admin.php?page=pp-capabilities-editor-features&role=' . $default_role . '')); ?>');
 
         // -------------------------------------------------------------
         //   Instant restricted item class
@@ -235,7 +235,7 @@ $classic_editor = pp_capabilities_is_classic_editor_available();
             $('div.publishpress-caps-manage img.loading').show();
 
             //go to url
-            window.location = '<?php echo admin_url('admin.php?page=pp-capabilities-editor-features&role='); ?>' + $(this).val() + '';
+            window.location = '<?php echo esc_url_raw(admin_url('admin.php?page=pp-capabilities-editor-features&role=')); ?>' + $(this).val() + '';
 
         });
 
