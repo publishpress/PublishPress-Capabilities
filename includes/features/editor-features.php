@@ -63,10 +63,10 @@ $classic_editor = pp_capabilities_is_classic_editor_available();
                                     ?>
                                 </select> &nbsp;
 
-                                <img class="loading" src="<?php echo esc_url($capsman->mod_url); ?>/images/wpspin_light.gif" style="display: none">
+                                <img class="loading" src="<?php echo esc_url_raw($capsman->mod_url); ?>/images/wpspin_light.gif" style="display: none">
 
                                 <input type="submit" name="editor-features-submit"
-                                    value="<?php esc_html_e('Save Changes', 'capabilities-pro') ?>"
+                                    value="<?php esc_attr_e('Save Changes', 'capabilities-pro') ?>"
                                     class="button-primary ppc-editor-features-submit" style="float:right" />
 
                                 <input type="hidden" name="ppc-tab" value="<?php echo (!empty($_REQUEST['ppc-tab'])) ? sanitize_key($_REQUEST['ppc-tab']) : 'gutenberg';?>" />
@@ -119,7 +119,7 @@ $classic_editor = pp_capabilities_is_classic_editor_available();
                             </div>
 
                             <input type="submit" name="editor-features-submit"
-                                    value="<?php esc_html_e('Save Changes', 'capsman-enhanced') ?>"
+                                    value="<?php esc_attr_e('Save Changes', 'capsman-enhanced') ?>"
                                     class="button-primary ppc-editor-features-submit"/> &nbsp;
 
 
