@@ -160,7 +160,8 @@ $auto_backups = $wpdb->get_results("SELECT option_name, option_value FROM $wpdb-
                                                 <?php
                                                     global $wp_roles;
 
-                                                    $initial_caption = ($backup_datestamp = get_option('capsman_backup_initial_datestamp')) ? sprintf(esc_html__('Initial Backup - %s', 'capsman-enhanced'), date('j M Y, g:i a', $backup_datestamp)) : esc_html__('Initial Backup', 'capsman-enhanced');
+                                                    $backup_datestamp = get_option('capsman_backup_initial_datestamp');
+                                                    $initial_caption = ($backup_datestamp) ? sprintf(esc_html__('Initial Backup - %s', 'capsman-enhanced'), date('j M Y, g:i a', $backup_datestamp)) : esc_html__('Initial Backup', 'capsman-enhanced');
 
                                                     $backups = array(
                                                         'capsman_backup_initial' => $initial_caption,
