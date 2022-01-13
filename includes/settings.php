@@ -26,24 +26,24 @@ $all_options = [];
             <?php $_url = "plugin-install.php?tab=plugin-information&plugin=publishpress&TB_iframe=true&width=640&height=678";
             $url = ( is_multisite() ) ? network_admin_url($_url) : admin_url($_url);
             ?>
-            <li><a class="thickbox" href="<?php echo (esc_url($url));?>"><?php esc_html_e('PublishPress', 'capsman-enhanced');?></a></li>
+            <li><a class="thickbox" href="<?php echo (esc_url_raw($url));?>"><?php esc_html_e('PublishPress', 'capsman-enhanced');?></a></li>
 
             <?php $_url = "plugin-install.php?tab=plugin-information&plugin=publishpress-authors&TB_iframe=true&width=640&height=678";
             $url = ( is_multisite() ) ? network_admin_url($_url) : admin_url($_url);
             ?>
-            <li><a class="thickbox" href="<?php echo (esc_url($url));?>"><?php esc_html_e('PublishPress Authors', 'capsman-enhanced');?></a></li>
+            <li><a class="thickbox" href="<?php echo (esc_url_raw($url));?>"><?php esc_html_e('PublishPress Authors', 'capsman-enhanced');?></a></li>
             </li>
             
             <?php $_url = "plugin-install.php?tab=plugin-information&plugin=press-permit-core&TB_iframe=true&width=640&height=678";
             $url = ( is_multisite() ) ? network_admin_url($_url) : admin_url($_url);
             ?>
-            <li><a class="thickbox" href="<?php echo (esc_url($url));?>"><?php esc_html_e('PublishPress Permissions', 'capsman-enhanced');?></a></li>
+            <li><a class="thickbox" href="<?php echo (esc_url_raw($url));?>"><?php esc_html_e('PublishPress Permissions', 'capsman-enhanced');?></a></li>
             </li>
             
             <?php $_url = "plugin-install.php?tab=plugin-information&plugin=revisionary&TB_iframe=true&width=640&height=678";
             $url = ( is_multisite() ) ? network_admin_url($_url) : admin_url($_url);
             ?>
-            <li><a class="thickbox" href="<?php echo (esc_url($url));?>"><?php esc_html_e('PublishPress Revisions', 'capsman-enhanced');?></a></li>
+            <li><a class="thickbox" href="<?php echo (esc_url_raw($url));?>"><?php esc_html_e('PublishPress Revisions', 'capsman-enhanced');?></a></li>
 
             <li class="publishpress-contact"><a href="https://publishpress.com/contact" target="_blank"><?php esc_html_e('Help / Contact Form', 'capsman-enhanced');?></a></li>
         </ul>
@@ -53,7 +53,7 @@ $all_options = [];
         echo "<input type='hidden' name='all_options' value='" . implode(',', array_map('esc_attr', $all_options)) . "' />";
         ?>
 
-        <input type="submit" name="submit" id="submit" class="button button-primary" value="<?php esc_html_e('Save Changes', 'capsman-enhanced');?>">
+        <input type="submit" name="submit" id="submit" class="button button-primary" value="<?php esc_attr_e('Save Changes', 'capsman-enhanced');?>">
     </form>
 
 	<?php if (!defined('PUBLISHPRESS_CAPS_PRO_VERSION') || get_option('cme_display_branding')) {
