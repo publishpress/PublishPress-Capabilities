@@ -94,7 +94,19 @@ function _pp_capabilities_is_block_editor_active($post_type = '', $args = [])
                 }
             } else {
                 $use_block = ('block' == get_user_meta($current_user->ID, 'wp_classic-editor-settings'));
-                return $use_block && apply_filters('use_block_editor_for_post_type', $use_block, $post_type, PHP_INT_MAX);
+
+                if (version_compare($wp_version, '5.9-beta', '>=')) {
+                    remove_action('use_block_editor_for_post_type', '_disable_block_editor_for_navigation_post_type', 10, 2);
+                    remove_filter('use_block_editor_for_post_type', '_disable_block_editor_for_navigation_post_type', 10, 2);
+                }
+
+                $use_block = $use_block && apply_filters('use_block_editor_for_post_type', $use_block, $post_type, PHP_INT_MAX);
+
+                if (defined('PP_CAPABILITIES_RESTORE_NAV_TYPE_BLOCK_EDITOR_DISABLE') && version_compare($wp_version, '5.9-beta', '>=')) {
+                    add_filter('use_block_editor_for_post_type', '_disable_block_editor_for_navigation_post_type', 10, 2 );
+                }
+
+                return $use_block;
             }
         }
     }
@@ -115,6 +127,12 @@ function _pp_capabilities_is_block_editor_active($post_type = '', $args = [])
      * Classic editor either disabled or enabled (either via an option or with GET argument).
      * It's a hairy conditional :(
      */
+
+    if (version_compare($wp_version, '5.9-beta', '>=')) {
+        remove_action('use_block_editor_for_post_type', '_disable_block_editor_for_navigation_post_type', 10, 2);
+        remove_filter('use_block_editor_for_post_type', '_disable_block_editor_for_navigation_post_type', 10, 2);
+    }
+
     // phpcs:ignore WordPress.VIP.SuperGlobalInputUsage.AccessDetected, WordPress.Security.NonceVerification.NoNonceVerification
     $conditions[] = (version_compare($wp_version, '5.0', '>=') || $pluginsState['gutenberg'])
                     && ! $pluginsState['classic-editor']
@@ -133,6 +151,10 @@ function _pp_capabilities_is_block_editor_active($post_type = '', $args = [])
 
     $conditions[] = $pluginsState['gutenberg-ramp'] 
                     && apply_filters('use_block_editor_for_post', true, get_post(pp_capabilities_get_post_id()), PHP_INT_MAX);
+
+    if (defined('PP_CAPABILITIES_RESTORE_NAV_TYPE_BLOCK_EDITOR_DISABLE') && version_compare($wp_version, '5.9-beta', '>=')) {
+        add_filter('use_block_editor_for_post_type', '_disable_block_editor_for_navigation_post_type', 10, 2 );
+    }
 
     // Returns true if at least one condition is true.
     $result = count(
