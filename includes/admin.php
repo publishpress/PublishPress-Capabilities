@@ -776,7 +776,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 										if ( apply_filters( 'pp_caps_lock_capability', true, 'read', $default ) ) {
 											$lock_capability = true;
 											$class .= ' cap-locked';
-											$disabled = 'disabled';
+											$disabled = ' disabled ';
 											if ( 'administrator' != $this->current ) {
 												$cap_title = __('Lockout Prevention: To remove read capability, first remove WordPress admin / editing capabilities, or add "dashboard_lockout_ok" capability', 'capsman-enhanced' );
 											}
@@ -1120,7 +1120,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 								} elseif ( 'administrator' == $default ) {
 									$class .= ' cap-locked';
 									$lock_manage_caps_capability = true;
-									$disabled = 'disabled';
+									$disabled = ' disabled ';
 								}
 							}
 						?>

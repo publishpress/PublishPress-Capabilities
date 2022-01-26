@@ -3,7 +3,7 @@
  * Plugin Name: PublishPress Capabilities
  * Plugin URI: https://publishpress.com/capability-manager/
  * Description: Manage WordPress role definitions, per-site or network-wide. Organizes post capabilities by post type and operation.
- * Version: 2.3.3
+ * Version: 2.3.4
  * Author: PublishPress
  * Author URI: https://publishpress.com/
  * Text Domain: capsman-enhanced
@@ -12,7 +12,7 @@
  * Requires PHP: 5.6.20
  * License: GPLv3
  *
- * Copyright (c) 2021 PublishPress
+ * Copyright (c) 2022 PublishPress
  *
  * ------------------------------------------------------------------------------
  * Based on Capability Manager
@@ -22,16 +22,16 @@
  *
  * @package 	capability-manager-enhanced
  * @author		PublishPress
- * @copyright   Copyright (C) 2009, 2010 Jordi Canals; modifications Copyright (C) 2020 PublishPress
+ * @copyright   Copyright (C) 2009, 2010 Jordi Canals; modifications Copyright (C) 2022 PublishPress
  * @license		GNU General Public License version 3
  * @link		https://publishpress.com/
- * @version 	2.3.3
+ * @version 	2.3.4
  */
 
 if (!defined('CAPSMAN_VERSION')) {
-	define('CAPSMAN_VERSION', 			'2.3.3');
-	define('CAPSMAN_ENH_VERSION', 		'2.3.3');
-	define('PUBLISHPRESS_CAPS_VERSION', '2.3.3');
+	define('CAPSMAN_VERSION', 			'2.3.4');
+	define('CAPSMAN_ENH_VERSION', 		'2.3.4');
+	define('PUBLISHPRESS_CAPS_VERSION', '2.3.4');
 }
 
 foreach (get_option('active_plugins') as $plugin_file) {
