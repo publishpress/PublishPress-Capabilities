@@ -118,8 +118,7 @@ function _pp_capabilities_is_block_editor_active($post_type = '', $args = [])
     // phpcs:ignore WordPress.VIP.SuperGlobalInputUsage.AccessDetected, WordPress.Security.NonceVerification.NoNonceVerification
     $conditions[] = (version_compare($wp_version, '5.0', '>=') || $pluginsState['gutenberg'])
                     && ! $pluginsState['classic-editor']
-                    && ! $pluginsState['gutenberg-ramp']
-                    && apply_filters('use_block_editor_for_post_type', true, $post_type, PHP_INT_MAX);
+                    && ! $pluginsState['gutenberg-ramp'];
 
     $conditions[] = version_compare($wp_version, '5.0', '>=')
                     && $pluginsState['classic-editor']
