@@ -409,6 +409,9 @@ Fixed : Security issue. Please update.
 
 == Changelog ==
 
+= 2.3.4 - 26 Jan 2022 =
+  * Compat : WordPress 5.9 - failure adding / editing posts under some Editor Features configurations (work around WP hooking late-defined function _disable_block_editor_for_navigation_post_type)
+
 = 2.3.3 - 13 Jan 2022 =
   * Fixed : Capability names with dashes could not be added
   * Fixed : After role rename, title in dropdown does not refresh
