@@ -36,7 +36,7 @@ $auto_backups = $wpdb->get_results("SELECT option_name, option_value FROM $wpdb-
 
 <div class="wrap publishpress-caps-manage publishpress-caps-backup pressshack-admin-wrapper">
     <div id="icon-capsman-admin" class="icon32"></div>
-    <h2><?php printf(esc_html__('Backup Tool for %1$sPublishPress Capabilities%2$s', 'capsman-enhanced'), '<a href="admin.php?page=pp-capabilities">', '</a>'); ?></h2>
+    <h2><?php esc_html_e('Backup Tool for PublishPress Capabilities', 'capsman-enhanced');?></h2>
 
 
     <form method="post" action="admin.php?page=pp-capabilities-backup" enctype="multipart/form-data">
