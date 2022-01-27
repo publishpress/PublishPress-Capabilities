@@ -152,7 +152,6 @@ class Capsman_BackupHandler
             }
 
             // Setup internal vars.
-            $cei_error	 = false;
             $overrides   = array( 'test_form' => false, 'test_type' => false, 'mimes' => array('json' => 'application/json') );
             $file         = wp_handle_upload( $_FILES['import_file'], $overrides );
 
@@ -180,20 +179,46 @@ class Capsman_BackupHandler
                 return;
             }
 
+            $backup_sections = pp_capabilities_backup_sections();
+            $restored_backup = [];
+
             foreach ( $data as $option_key => $option_value ) {
                 if($option_key === 'user_roles'){
+                    $restored_backup[] = 'Roles and Capabilities';
                     $section_data = $this->santize_import_role($option_value);
                     update_option($wpdb->prefix . 'user_roles', $section_data);
                 }else{
+                    $restored_backup[] = $this->get_import_option_section($option_key, $backup_sections);
                     $section_data = $this->santize_import_data($option_value);
                     update_option($option_key, $section_data);
                 }
 			}
-            
-            ak_admin_notify(__('Uploaded data imported successfully', 'capsman-enhanced'));
+
+            $restored_backup = array_unique($restored_backup);
+
+            ak_admin_notify(sprintf(__('%s successfully imported from uploaded data.', 'capsman-enhanced'), implode(', ', $restored_backup)));
 
 		}
 	}
+
+	/**
+	 * Sanitize role data before import.
+	 *
+	 * @return array
+	 */
+    function get_import_option_section($option_key, $backup_sections)
+    {
+        $option_section = '';
+
+        foreach($backup_sections as $backup_section){
+            $section_options = $backup_section['options'];
+            if(is_array($section_options) && in_array($option_key, $section_options)){
+                $option_section= $backup_section['label'];
+            }
+        }
+
+        return $option_section;
+    }
 
 	/**
 	 * Sanitize role data before import.
@@ -223,17 +248,21 @@ class Capsman_BackupHandler
 	/**
 	 * Sanitize other data before import.
 	 *
-	 * @return array
+	 * @return mixed
 	 */
     function santize_import_data($data){
 
         $sanitized_data = [];
 
-        foreach($data as $data_key => $data_content){
-            $new_key           = sanitize_key($data_key);
-            $new_content       = is_array($data_content) ? array_map('sanitize_text_field', $data_content) : sanitize_text_field($data_content);            
-            //return sanitized data                   
-            $sanitized_data[$new_key] = $new_content;
+        if (is_array($data)) {
+            foreach ($data as $data_key => $data_content) {
+                $new_key           = sanitize_key($data_key);
+                $new_content       = is_array($data_content) ? array_map('sanitize_text_field', $data_content) : sanitize_text_field($data_content);
+                //return sanitized data
+                $sanitized_data[$new_key] = $new_content;
+            }
+        }else{
+            $sanitized_data = sanitize_text_field($data);
         }
 
         return $sanitized_data;
