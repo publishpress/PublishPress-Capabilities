@@ -33,6 +33,8 @@ class Capsman_BackupHandler
 			$cm_roles = $this->cm->ID . '_backup';
 			$cm_roles_initial = $this->cm->ID . '_backup_initial';
 
+            $backup_sections = pp_capabilities_backup_sections();
+
 			if ( ! get_option( $cm_roles_initial ) ) {
 				if ( $current_backup = get_option( $cm_roles ) ) {
 					update_option( $cm_roles_initial, $current_backup, false );
@@ -43,8 +45,30 @@ class Capsman_BackupHandler
 				}
 			}
 
+            $active_backup = ['Roles and Capabilities'];
+
+            //role backup
 			$roles = get_option($wp_roles);
 			update_option($cm_roles, $roles, false);
+
+            //other backup
+            foreach($backup_sections as $backup_section){
+                $section_options = $backup_section['options'];
+                if(is_array($section_options) && !empty($section_options)){
+                    foreach($section_options as $section_option){
+                        $active_backup[] = $backup_section['label'];
+                        $current_option = get_option($section_option);
+                        update_option($section_option.'_backup', $current_option, false);
+                    }
+                }
+            }
+
+            $active_backup = array_unique($active_backup);
+
+            //update last backup
+            update_option($this->cm->ID . '_last_backup', implode(', ', $active_backup));
+
+            //backup datestamp and response
 			update_option($this->cm->ID . '_backup_datestamp', current_time( 'timestamp' ), false );
 			ak_admin_notify(__('New backup saved.', 'capsman-enhanced'));
 				
@@ -56,6 +80,8 @@ class Capsman_BackupHandler
             $wp_roles = $wpdb->prefix . 'user_roles';
             $cm_roles = $this->cm->ID . '_backup';
             $cm_roles_initial = $this->cm->ID . '_backup_initial';
+
+            $backup_sections = pp_capabilities_backup_sections();
 
             switch ($_POST['select_restore']) {
 				case 'restore_initial':
@@ -69,8 +95,28 @@ class Capsman_BackupHandler
 
 				case 'restore':
 					if ($roles = get_option($cm_roles)) {
+
+                        $restored_backup = ['Roles and Capabilities'];
+
+                        //restore role backup
 						update_option($wp_roles, $roles);
-						ak_admin_notify(__('Roles and Capabilities restored from last backup.', 'capsman-enhanced'));
+
+                        //restore other backup
+                        foreach($backup_sections as $backup_section){
+                            $section_options = $backup_section['options'];
+                            if(is_array($section_options) && !empty($section_options)){
+                                foreach($section_options as $section_option){
+                                    $backup_option = get_option($section_option.'_backup');
+                                    if ($backup_option) {
+                                        $restored_backup[] = $backup_section['label'];
+                                        update_option($section_option, $backup_option);
+                                    }
+                                }
+                            }
+                        }
+
+                        $restored_backup = array_unique($restored_backup);
+						ak_admin_notify(sprintf(__('%s restored from last backup.', 'capsman-enhanced'), implode(', ', $restored_backup)));
 					} else {
 						ak_admin_error(__('Restore failed. No backup found.', 'capsman-enhanced'));
 					}
@@ -85,7 +131,113 @@ class Capsman_BackupHandler
 					}
 			}
 		}
+
+        if (isset($_POST['import_backup'])) {
+
+            check_admin_referer('pp-capabilities-backup');
+
+            if (empty($_FILES['import_file']['tmp_name'])) {
+                ak_admin_error(__( 'Please upload a file to import', 'capsman-enhanced'));
+                return;
+            }
+
+            if (pathinfo($_FILES['import_file']['name'], PATHINFO_EXTENSION) !== 'json') {
+                ak_admin_error(__( 'Please upload a valid .json file', 'capsman-enhanced'));
+                return;
+            }
+
+            // Make sure WordPress upload support is loaded.
+            if ( ! function_exists( 'wp_handle_upload' ) ) {
+                require_once( ABSPATH . 'wp-admin/includes/file.php' );
+            }
+
+            // Setup internal vars.
+            $cei_error	 = false;
+            $overrides   = array( 'test_form' => false, 'test_type' => false, 'mimes' => array('json' => 'application/json') );
+            $file         = wp_handle_upload( $_FILES['import_file'], $overrides );
+
+            // Make sure we have an uploaded file.
+            if (isset($file['error'])) {
+                ak_admin_error($file['error']);
+                return;
+            }
+
+            if ( ! file_exists( $file['file'] ) ) {
+                ak_admin_error(__( 'Error importing settings! Please try again.', 'capsman-enhanced'));
+                return;
+            }
+
+            // Get the upload data.
+            $raw  = file_get_contents( $file['file'] );
+            $data = @unserialize( $raw );
+            
+            // Remove the uploaded file.
+            unlink( $file['file'] );
+
+            // Data checks.
+            if ( 'array' != gettype( $data ) ) {
+                ak_admin_error(__( 'Error importing settings! Please check that you uploaded a valid json file.', 'capsman-enhanced'));
+                return;
+            }
+
+            foreach ( $data as $option_key => $option_value ) {
+                if($option_key === 'user_roles'){
+                    $section_data = $this->santize_import_role($option_value);
+                    update_option($wpdb->prefix . 'user_roles', $section_data);
+                }else{
+                    $section_data = $this->santize_import_data($option_value);
+                    update_option($option_key, $section_data);
+                }
+			}
+            
+            ak_admin_notify(__('Uploaded data imported successfully', 'capsman-enhanced'));
+
+		}
 	}
+
+	/**
+	 * Sanitize role data before import.
+	 *
+	 * @return array
+	 */
+    function santize_import_role($role){
+
+        $sanitized_role = [];
+
+        foreach($role as $role_key => $role_data){
+            $role_key           = sanitize_key($role_key);
+            $role_name          = sanitize_text_field($role_data['name']);
+            $capabilities       = $role_data['capabilities'];
+            $role_capabilities  = array_combine(
+                                    array_map('sanitize_key', array_keys($capabilities)), 
+                                    array_map('sanitize_text_field', array_values($capabilities))
+                                );
+            
+            //return sanitized data                   
+            $sanitized_role[$role_key] = ['name' => $role_name, 'capabilities' => $role_capabilities];
+        }
+
+        return $sanitized_role;
+    }
+
+	/**
+	 * Sanitize other data before import.
+	 *
+	 * @return array
+	 */
+    function santize_import_data($data){
+
+        $sanitized_data = [];
+
+        foreach($data as $data_key => $data_content){
+            $new_key           = sanitize_key($data_key);
+            $new_content       = is_array($data_content) ? array_map('sanitize_text_field', $data_content) : sanitize_text_field($data_content);            
+            //return sanitized data                   
+            $sanitized_data[$new_key] = $new_content;
+        }
+
+        return $sanitized_data;
+    }
 	
 	/**
 	 * Resets roles to WordPress defaults.
