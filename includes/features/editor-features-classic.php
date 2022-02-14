@@ -3,7 +3,7 @@
     <<?php echo esc_attr($tag_name);?>>
     <tr>
         <th class="menu-column">
-            <?php if ('thead' == $tag_name) { 
+            <?php if ('thead' == $tag_name || !defined('PUBLISHPRESS_CAPS_PRO_VERSION')) { 
                 echo sprintf( esc_html__('Classic Editor %s Restrict', 'capsman-enhanced'), $type_obj->labels->singular_name); 
                 }
             ?>
