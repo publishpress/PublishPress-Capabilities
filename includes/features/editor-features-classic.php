@@ -4,7 +4,7 @@
     <tr>
         <th class="menu-column">
             <?php if ('thead' == $tag_name || !defined('PUBLISHPRESS_CAPS_PRO_VERSION')) { 
-                echo sprintf( esc_html__('Classic Editor %s Restrict', 'capsman-enhanced'), $type_obj->labels->singular_name); 
+                echo sprintf( esc_html__('Classic Editor %s Restrict', 'capsman-enhanced'), esc_html__($type_obj->labels->singular_name)); 
                 }
             ?>
         </th>

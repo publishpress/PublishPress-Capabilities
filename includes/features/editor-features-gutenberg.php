@@ -4,7 +4,7 @@
     <tr>
         <th class="menu-column">
             <?php if ('thead' == $tag_name) { 
-                echo sprintf( esc_html__('Gutenberg Editor %s Restrict', 'capsman-enhanced'), $type_obj->labels->singular_name); 
+                echo sprintf( esc_html__('Gutenberg Editor %s Restrict', 'capsman-enhanced'), esc_html__($type_obj->labels->singular_name)); 
                 }
             ?>
         </th>
