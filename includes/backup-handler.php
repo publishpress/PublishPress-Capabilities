@@ -136,12 +136,12 @@ class Capsman_BackupHandler
 
             check_admin_referer('pp-capabilities-backup');
 
-            if (empty($_FILES['import_file']['tmp_name'])) {
+            if (empty($_FILES['import_file']['tmp_name']) || empty($_FILES['import_file']['name'])) {
                 ak_admin_error(__( 'Please upload a file to import', 'capsman-enhanced'));
                 return;
             }
-
-            if (pathinfo($_FILES['import_file']['name'], PATHINFO_EXTENSION) !== 'json') {
+            
+            if (pathinfo(sanitize_text_field($_FILES['import_file']['name']), PATHINFO_EXTENSION) !== 'json') {
                 ak_admin_error(__( 'Please upload a valid .json file', 'capsman-enhanced'));
                 return;
             }
