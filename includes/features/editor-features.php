@@ -336,7 +336,10 @@ $active_tab_slug = (!empty($_REQUEST['pp_caps_tab'])) ? sanitize_key($_REQUEST['
             $('.editor-features-tab').removeClass('nav-tab-active');
             $(this).addClass('nav-tab-active');
             $('.pp-capability-menus-select').hide();
+            $('.editor-features-classic-show').hide();
+            $('.editor-features-gutenberg-show').hide();
             $($(this).attr('data-tab')).show();
+            $($(this).attr('data-tab')+'-show').show();
         });
 
     });

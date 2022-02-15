@@ -1,13 +1,9 @@
+<h3 class="editor-features-gutenberg-show" <?php if (!empty($_REQUEST['ppc-tab']) && ('gutenberg' != $_REQUEST['ppc-tab'])) echo 'style="display:none;"';?> data-post_type="<?php echo esc_attr($type_obj->name); ?>"><?php echo sprintf( esc_html__('Gutenberg Editor %s Restriction', 'capsman-enhanced'), esc_html__($type_obj->labels->singular_name)); ; ?></h3>
 <table class="wp-list-table widefat fixed striped pp-capability-menus-select editor-features-gutenberg" <?php if (!empty($_REQUEST['ppc-tab']) && ('gutenberg' != $_REQUEST['ppc-tab'])) echo 'style="display:none;"';?> data-post_type="<?php echo esc_attr($type_obj->name); ?>">
     <?php foreach(['thead', 'tfoot'] as $tag_name):?>
     <<?php echo esc_attr($tag_name);?>>
     <tr>
-        <th class="menu-column">
-            <?php if ('thead' == $tag_name) { 
-                echo sprintf( esc_html__('Gutenberg Editor %s Restrict', 'capsman-enhanced'), esc_html__($type_obj->labels->singular_name)); 
-                }
-            ?>
-        </th>
+        <th class="menu-column"></th>
 
         <th class="restrict-column ppc-menu-row"> 
             <input class="check-item gutenberg check-all-menu-item" type="checkbox" data-pp_type="<?php echo esc_attr($type_obj->name);?>" />
