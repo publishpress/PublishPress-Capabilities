@@ -83,8 +83,11 @@ class PP_Capabilities_Admin_UI {
     }
 
     public function fltEditorFeaturesPostTypes($def_post_types) {
-        $type_args = defined('PP_CAPABILITIES_PRIVATE_TYPES') ? [] : ['public' => true];
-        $def_post_types = array_merge($def_post_types, get_post_types($type_args));
+        if(defined('PP_CAPABILITIES_PRIVATE_TYPES')){
+            $def_post_types = array_merge($def_post_types, get_post_types(['show_ui' => true], 'names', 'or'));
+        }else{
+            $def_post_types = array_merge($def_post_types, get_post_types(['public' => true, 'show_ui' => true], 'names', 'or'));
+        }
 
         unset($def_post_types['attachment']);
 
