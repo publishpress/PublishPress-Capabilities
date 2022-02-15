@@ -76,7 +76,7 @@ class PP_Capabilities_Post_Features {
         
         foreach (get_taxonomies(['show_ui' => true], 'object') as $taxonomy => $tx_obj) {
             if (!in_array($taxonomy, ['category', 'post_tag', 'link_category'])) {
-                $elements[$k]["#{$tx_obj->name}div"] = ['label' => $tx_obj->label];
+                $elements[$k]["#{$tx_obj->name}div, #tagsdiv-{$tx_obj->name}"] = ['label' => $tx_obj->label];
             }
         }
 
