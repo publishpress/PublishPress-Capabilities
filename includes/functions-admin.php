@@ -198,7 +198,7 @@ function pp_capabilities_backup_sections()
    $backup_sections = [];
 
    //Editor Features
-   $backup_sections[$cms_id . '_editor_features_backup']['label']    = __('Editor Feature', 'capsman-enhanced');
+   $backup_sections[$cms_id . '_editor_features_backup']['label']    = esc_html__('Editor Feature', 'capsman-enhanced');
    $classic_editor = pp_capabilities_is_classic_editor_available();
    $def_post_types = array_unique(apply_filters('pp_capabilities_feature_post_types', ['post', 'page']));
    foreach ($def_post_types as $post_type) {
@@ -209,7 +209,7 @@ function pp_capabilities_backup_sections()
    }
 
    //Admin Features
-   $backup_sections[$cms_id . '_admin_features_backup']['label']     = __('Admin Feature', 'capsman-enhanced');
+   $backup_sections[$cms_id . '_admin_features_backup']['label']     = esc_html__('Admin Feature', 'capsman-enhanced');
    $backup_sections[$cms_id . '_admin_features_backup']['options'][] = "capsman_disabled_admin_features";
 
    return apply_filters('pp_capabilities_backup_sections', $backup_sections);
