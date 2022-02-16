@@ -83,10 +83,12 @@ class PP_Capabilities_Admin_UI {
     }
 
     public function fltEditorFeaturesPostTypes($def_post_types) {
-        if(defined('PP_CAPABILITIES_PRIVATE_TYPES')){
-            $def_post_types = array_merge($def_post_types, get_post_types(['show_ui' => true], 'names', 'or'));
+        if((int)get_option('cme_editor_features_private_post_type') > 0 || defined('PP_CAPABILITIES_PRIVATE_TYPES')){
+            $private_cpt = get_post_types(['public' => true, 'show_ui' => true], 'names', 'or');
+            $public_cpt  = get_post_types(['public' => true, 'show_ui' => true], 'names', 'or');
+            $def_post_types =  array_unique(array_merge($def_post_types, $private_cpt, $public_cpt));
         }else{
-            $def_post_types = array_merge($def_post_types, get_post_types(['public' => true, 'show_ui' => true], 'names', 'or'));
+            $def_post_types = array_merge($def_post_types, get_post_types(['public' => true], 'names'));
         }
 
         unset($def_post_types['attachment']);
