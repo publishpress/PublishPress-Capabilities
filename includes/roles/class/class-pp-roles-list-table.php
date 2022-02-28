@@ -82,51 +82,27 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
         $views     = array();
         $current   = ' class="current"';
  
-        $this->role_views['all'] = array(
-            'label_count' => _n_noop('All %s', 'All %s', 'capsman-enhanced'),
-            'roles'       => $this->manager->get_roles_for_list_table('all')
-        );
-        
-        $this->role_views['mine'] = array(
-            'label_count' => _n_noop('Mine %s', 'Mine %s', 'capsman-enhanced'),
-            'roles'       => $this->manager->get_roles_for_list_table('mine')
-        );
+        $role_view_filters = [
+            'all'       => _n_noop('All %s', 'All %s', 'capsman-enhanced'),
+            'mine'      => _n_noop('Mine %s', 'Mine %s', 'capsman-enhanced'),
+            'active'    => _n_noop('Has Users %s', 'Has Users %s', 'capsman-enhanced'),
+            'inactive'  => _n_noop('No Users %s', 'No Users %s', 'capsman-enhanced'),
+            'editable'  => _n_noop('Editable %s', 'Editable %s', 'capsman-enhanced'),
+            'uneditable'=> _n_noop('Uneditable %s', 'Uneditable %s', 'capsman-enhanced'),
+            'system'    => _n_noop('System %s', 'System %s', 'capsman-enhanced'),
+        ];
 
-        $this->role_views['active'] = array(
-            'label_count' => _n_noop('Has Users %s', 'Has Users %s', 'capsman-enhanced'),
-            'roles'       => $this->manager->get_roles_for_list_table('active')
-        );
+        foreach($role_view_filters as $view => $noop){
+            $view_roles = $this->manager->get_roles_for_list_table($view);
+            //add role view
+            $this->role_views[$view] = ['roles' => $view_roles];
 
-        $this->role_views['inactive'] = array(
-            'label_count' => _n_noop('No Users %s', 'No Users %s', 'capsman-enhanced'),
-            'roles'       => $this->manager->get_roles_for_list_table('inactive')
-        );
-
-        $this->role_views['editable'] = array(
-            'label_count' => _n_noop('Editable %s', 'Editable %s', 'capsman-enhanced'),
-            'roles'       => $this->manager->get_roles_for_list_table('editable')
-        );
-
-        $this->role_views['uneditable'] = array(
-            'label_count' => _n_noop('Uneditable %s', 'Uneditable %s', 'capsman-enhanced'),
-            'roles'       => $this->manager->get_roles_for_list_table('uneditable')
-        );
-
-        $this->role_views['system'] = array(
-            'label_count' => _n_noop('System %s', 'System %s', 'capsman-enhanced'),
-            'roles'       => $this->manager->get_roles_for_list_table('system')
-        );
-
-        foreach ($this->role_views as $view => $args) {
-
-            $count = count($args['roles']);
+            $count = count($view_roles);
 
             // Skip any views with 0 roles.
             if ((int)$count === 0) {
                 continue;
             }
-
-            $noop = $args['label_count'];
 
             // Add the view link.
             $views[ $view ] = sprintf(
