@@ -14,15 +14,51 @@ class Pp_Roles_Manager
     /**
      * Returns an array of all the available roles.
      * This method is used to show the roles list table.
+     * 
+     * @param $view string
      *
      * @return array[]
      */
-    public function get_roles_for_list_table()
+    public function get_roles_for_list_table($view = 'all')
     {
+        global $wp_roles;
+
         $roles = wp_roles()->roles;
+        $current_user = wp_get_current_user();
+        $editable = function_exists('get_editable_roles') ? 
+                        array_keys(get_editable_roles()) : 
+                        array_keys(apply_filters('editable_roles', $roles));
         $count = count_users();
         $res = [];
+
         foreach ($roles as $role => $detail) {
+
+            //mine role filter
+            if ($view === 'mine' && !in_array($role, $current_user->roles)) {
+                continue;
+                //active role filter
+            } elseif ($view === 'active'
+                && (!isset($count['avail_roles'][$role])
+                || (isset($count['avail_roles'][$role]) && (int)isset($count['avail_roles'][$role]) === 0))
+            ) {
+                continue;
+                //inactive role filter
+            } elseif ($view === 'inactive'
+                && (isset($count['avail_roles'][$role])
+                && (isset($count['avail_roles'][$role]) && (int)isset($count['avail_roles'][$role]) > 0))
+            ) {
+                continue;
+                //editable role filter
+            } elseif ($view === 'editable' && !in_array($role, $editable)) {
+                continue;
+                //uneditable role filter
+            } elseif ($view === 'uneditable' && in_array($role, $editable)) {
+                continue;
+                //system role filter
+            } elseif ($view === 'system' && !$this->is_system_role($role)) {
+                continue;
+            }
+
             $res[] = [
                 'role' => $role,
                 'name' => $detail['name'],
