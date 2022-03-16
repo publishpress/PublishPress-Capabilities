@@ -5,9 +5,9 @@ class PP_Capabilities_Notices
 
     /**
      *
-     * Cookie name to use
+     * Notification name to use
      */
-    protected $cookie = 'pp_roles_notification';
+    protected $notification = 'pp_roles_notification';
 
     /**
      * All types of notifications allowed
@@ -30,20 +30,20 @@ class PP_Capabilities_Notices
     public function __construct()
     {
         /**
-         * Read cookie if exist
+         * Read notification if exist
          */
-        if (isset($_COOKIE[$this->cookie])) {
-            $messages = sanitize_text_field($_COOKIE[$this->cookie]);
+        if (get_option($this->notification)) {
+            $messages = get_option($this->notification);
             $messages = @json_decode($messages, true);
             if (is_array($messages)) {
                 $this->messages = array_map('esc_html', $messages);
             }
 
             /**
-             * Delete the cookie by setting an expiration time before current time
+             * Delete the notification
              */
             if (!headers_sent()) {
-                @setcookie($this->cookie, '', strtotime("-1 month"), '/; samesite=strict');
+                delete_option($this->notification);
             }
         }
     }
@@ -103,10 +103,9 @@ class PP_Capabilities_Notices
 
         if (!headers_sent()) {
             /**
-             * Set the cookie to read in the next call
-             * Expiration time is set to a long number to avoid timezone differences
+             * Set the notification to read in the next call
              */
-            @setcookie($this->cookie, json_encode($this->messages), strtotime('+1 month'), '/; samesite=strict');
+            update_option($this->notification, json_encode($this->messages));
         }
 
         return true;
