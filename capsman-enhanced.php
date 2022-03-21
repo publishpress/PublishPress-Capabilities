@@ -37,7 +37,7 @@ if (!defined('CAPSMAN_VERSION')) {
 foreach (get_option('active_plugins') as $plugin_file) {
 	if ( false !== strpos($plugin_file, 'capsman.php') ) {
 		add_action('admin_notices', function() {
-			echo '<div id="message" class="error fade" style="color: black">' . esc_html__( '<strong>Error:</strong> PublishPress Capabilities cannot function because another copy of Capability Manager is active.', 'capsman-enhanced' ) . '</div>';
+			echo '<div id="message" class="error fade" style="color: black">' . sprintf(esc_html__('%1s Error: %2s  PublishPress Capabilities cannot function because another copy of Capability Manager is active.', 'capsman-enhanced'), '<strong>', '</strong>') . '</div>';
 		});
 		return;
 	}
@@ -67,7 +67,7 @@ if ($pro_active) {
         function($links, $file)
         {
             if ($file == plugin_basename(__FILE__)) {
-                $links[]= esc_html__('<strong>This plugin can be deleted.</strong>', 'press-permit-core');
+                $links[]= '<strong>' . esc_html__('This plugin can be deleted.', 'capsman-enhanced') . '</strong>';
             }
 
             return $links;
