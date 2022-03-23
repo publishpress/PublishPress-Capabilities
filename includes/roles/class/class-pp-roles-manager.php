@@ -16,10 +16,11 @@ class Pp_Roles_Manager
      * This method is used to show the roles list table.
      * 
      * @param $view string
+     * @param $capabilities bool whether to add capabilities to result or not
      *
      * @return array[]
      */
-    public function get_roles_for_list_table($view = 'all')
+    public function get_roles_for_list_table($view = 'all', $capabilities = false)
     {
         global $wp_roles;
 
@@ -39,13 +40,13 @@ class Pp_Roles_Manager
                 //active role filter
             } elseif ($view === 'active'
                 && (!isset($count['avail_roles'][$role])
-                || (isset($count['avail_roles'][$role]) && (int)isset($count['avail_roles'][$role]) === 0))
+                || (isset($count['avail_roles'][$role]) && (int)$count['avail_roles'][$role] === 0))
             ) {
                 continue;
                 //inactive role filter
             } elseif ($view === 'inactive'
                 && (isset($count['avail_roles'][$role])
-                && (isset($count['avail_roles'][$role]) && (int)isset($count['avail_roles'][$role]) > 0))
+                && (isset($count['avail_roles'][$role]) && (int)$count['avail_roles'][$role] > 0))
             ) {
                 continue;
                 //editable role filter
@@ -63,7 +64,8 @@ class Pp_Roles_Manager
                 'role' => $role,
                 'name' => $detail['name'],
                 'count' => isset($count['avail_roles'][$role]) ? $count['avail_roles'][$role] : 0,
-                'is_system' => $this->is_system_role($role)
+                'is_system' => $this->is_system_role($role),
+                'capabilities' => ($capabilities) ? $detail['capabilities'] : [],
             ];
         }
 

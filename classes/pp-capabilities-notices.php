@@ -4,8 +4,8 @@ class PP_Capabilities_Notices
 {
 
     /**
-     *
      * Notification name to use
+     * 
      */
     protected $notification = 'pp_roles_notification';
 
@@ -36,14 +36,10 @@ class PP_Capabilities_Notices
             $messages = get_option($this->notification);
             $messages = @json_decode($messages, true);
             if (is_array($messages)) {
-                $this->messages = array_map('esc_html', $messages);
-            }
-
-            /**
-             * Delete the notification
-             */
-            if (!headers_sent()) {
-                delete_option($this->notification);
+                $this->messages = [];
+                foreach($messages as $message_type => $message_content){
+                    $this->messages[$message_type] = array_map('esc_html', $message_content);
+                }
             }
         }
     }
@@ -59,10 +55,15 @@ class PP_Capabilities_Notices
             $messages = $this->get($type);
             foreach ($messages as $message) {
                 if (is_string($message)) {
-                    printf('<div class="notice notice-%s is-dismissible"><p>%s</p></div>', esc_attr($type), urldecode($message));
+                    printf('<div class="notice notice-%s is-dismissible"><p>%s</p></div>', esc_attr($type), esc_html($message));
                 }
             }
         }
+
+        /**
+         * Delete the notification after display
+         */
+        delete_option($this->notification);
     }
 
     /**
@@ -101,12 +102,7 @@ class PP_Capabilities_Notices
         //Update the messages
         $this->messages[$type] = $messages;
 
-        if (!headers_sent()) {
-            /**
-             * Set the notification to read in the next call
-             */
-            update_option($this->notification, json_encode($this->messages));
-        }
+        update_option($this->notification, json_encode($this->messages));
 
         return true;
     }

@@ -218,7 +218,7 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
                 '<a href="%s">%s</a>',
                 esc_url(
                     add_query_arg(
-                        ['page' => 'pp-capabilities', 'role' => esc_attr($item['role'])],
+                        ['page' => 'pp-capabilities-roles', 'add' => 'new_item', 'role_action' => 'edit', 'role' => esc_attr($item['role'])],
                         admin_url('admin.php')
                     )
                 ),
@@ -229,7 +229,7 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
                 '<a href="%s">%s</a>',
                 esc_url(
                     add_query_arg(
-                        ['page' => 'pp-capabilities', 'role' => esc_attr($item['role'])],
+                        ['page' => 'pp-capabilities-roles', 'add' => 'new_item', 'role_action' => 'copy', 'role' => esc_attr($item['role'])],
                         admin_url('admin.php')
                     )
                 ),
@@ -365,7 +365,7 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
             $out = sprintf(
                 '<a href="%1$s"><strong><span class="row-title">%2$s</span>%3$s</strong></a>', 
                 add_query_arg(
-                    ['page' => 'pp-capabilities', 'role' => esc_attr($item['role'])], 
+                    ['page' => 'pp-capabilities-roles', 'add' => 'new_item', 'role_action' => 'edit', 'role' => esc_attr($item['role'])], 
                     admin_url('admin.php')
                 ), 
                 esc_html($item['name']), 
