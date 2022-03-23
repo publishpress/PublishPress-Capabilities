@@ -1,9 +1,13 @@
 <div class="wrap publishpress-caps-manage pressshack-admin-wrapper pp-capability-roles-wrapper">
 
+    <?php
+    if (isset($_GET['add']) && $_GET['add'] === 'new_item') {
+        pp_capabilities_roles()->admin->get_roles_edit_ui();
+     }else{ ?>
     <div class="wrap">
         <h1 class="wp-heading-inline"><?php esc_html_e('Roles', 'capsman-enhanced') ?> </h1>
-        <a href="<?php echo esc_url(admin_url('admin.php?page=pp-capabilities-roles')); ?>" class="page-title-action">
-            <?php esc_html_e('Add New', 'simple-tags'); ?>
+        <a href="<?php echo esc_url(admin_url('admin.php?page=pp-capabilities-roles&add=new_item')); ?>" class="page-title-action">
+            <?php esc_html_e('Add New', 'capsman-enhanced'); ?>
         </a>
         <?php
         if (isset($_REQUEST['s']) && $search_str = esc_attr(wp_unslash(sanitize_text_field($_REQUEST['s'])))) {
@@ -36,6 +40,7 @@
         </form>
 
     </div>
+    <?php } ?>
 
 
     <?php if (!defined('PUBLISHPRESS_CAPS_PRO_VERSION') || get_option('cme_display_branding')) {
