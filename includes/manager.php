@@ -157,6 +157,9 @@ class CapabilityManager
 			add_action('wp_ajax_pp-roles-hide-role', [$this, 'handleRolesAjax']);
 			add_action('wp_ajax_pp-roles-unhide-role', [$this, 'handleRolesAjax']);
 		}
+
+        //process export
+        add_action( 'admin_init', [$this, 'processExport']);
 	}
 
     /**
@@ -892,6 +895,68 @@ class CapabilityManager
 
 		include ( dirname(CME_FILE) . '/includes/backup.php' );
 	}
+
+	
+	/**
+	 * Processes export.
+     * 
+     * This function need to run in admin init
+     * to enable clean download.
+	 *
+	 * @return void
+	 */
+	function processExport()
+	{
+        global  $wpdb;
+
+		if ((!is_multisite() || !is_super_admin()) && !current_user_can('administrator') && !current_user_can('restore_roles')) {
+		    // TODO: Implement exceptions.
+			wp_die('<strong>' . esc_html__('You do not have permission to perform this action.', 'capsman-enhanced') . '</strong>');
+		}
+
+        if ( isset($_POST['export_backup']) && isset($_POST['pp_capabilities_export_section']) && !empty($_POST['pp_capabilities_export_section'])) {
+            check_admin_referer('pp-capabilities-backup');
+
+
+            $export_option   = array_map('sanitize_text_field', $_POST['pp_capabilities_export_section']);
+            $backup_sections = pp_capabilities_backup_sections();
+            $charset	     = get_option( 'blog_charset' );
+            $data		     = [];
+            
+            //add role
+            if(in_array('user_roles', $export_option)){
+                $data['user_roles'] = get_option($wpdb->prefix . 'user_roles');
+            }
+
+            //other section
+            foreach($backup_sections as $backup_key => $backup_section){
+
+                if(!in_array($backup_key, $export_option)){
+                    continue;
+                }
+                $section_options = $backup_section['options'];
+                if(is_array($section_options) && !empty($section_options)){
+                    foreach($section_options as $section_option){
+                        $active_backup[] = $backup_section['label'];
+                        $data[$section_option] = get_option($section_option);
+                    }
+                }
+            }
+
+            // Set the download headers.
+            nocache_headers();
+            header( 'Content-Type: application/json; charset=' . $charset );
+            header( 'Content-Disposition: attachment; filename=capabilities-export-' . current_time('Y-m-d_g-i-s_a') . '.json' );
+            header( "Expires: 0" );
+
+            // Serialize the export data.
+            echo serialize( $data );
+
+            // Start the download.
+            die();
+
+		}
+    }
 
 	function settingsPage() {
 		include ( dirname(CME_FILE) . '/includes/settings.php' );

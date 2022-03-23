@@ -36,10 +36,10 @@ $auto_backups = $wpdb->get_results("SELECT option_name, option_value FROM $wpdb-
 
 <div class="wrap publishpress-caps-manage publishpress-caps-backup pressshack-admin-wrapper">
     <div id="icon-capsman-admin" class="icon32"></div>
-    <h2><?php printf(esc_html__('Backup Tool for %1$sPublishPress Capabilities%2$s', 'capsman-enhanced'), '<a href="admin.php?page=pp-capabilities">', '</a>'); ?></h2>
+    <h2><?php esc_html_e('Backup Tool for PublishPress Capabilities', 'capsman-enhanced');?></h2>
 
 
-    <form method="post" action="admin.php?page=pp-capabilities-backup">
+    <form method="post" action="admin.php?page=pp-capabilities-backup" enctype="multipart/form-data">
         <?php wp_nonce_field('pp-capabilities-backup'); ?>
 
         <div class="pp-columns-wrapper<?php echo defined('CAPSMAN_PERMISSIONS_INSTALLED') && !CAPSMAN_PERMISSIONS_INSTALLED ? ' pp-enable-sidebar' : '' ?>">
@@ -48,6 +48,7 @@ $auto_backups = $wpdb->get_results("SELECT option_name, option_value FROM $wpdb-
                     <li class="nav-tab nav-tab-active"><a href="#ppcb-tab-restore"><?php esc_html_e('Restore', 'capsman-enhanced');?></a></li>
                     <li class="nav-tab"><a href="#ppcb-tab-backup"><?php esc_html_e('Backup', 'capsman-enhanced');?></a></li>
                     <li class="nav-tab"><a href="#ppcb-tab-reset"><?php esc_html_e('Reset Roles', 'capsman-enhanced');?></a></li>
+                    <li class="nav-tab"><a href="#ppcb-tab-import-export"><?php esc_html_e('Export / Import', 'capsman-enhanced');?></a></li>
                 </ul>
 
                 <fieldset>
@@ -108,10 +109,14 @@ $auto_backups = $wpdb->get_results("SELECT option_name, option_value FROM $wpdb-
 
                                                             if (!$listed_manual_backup && ($backup_datestamp > strtotime($date_caption))) :
                                                                 $manual_date_caption = date('Y-m-d, g:i a', $backup_datestamp);
+                                                                $last_backup = get_option('capsman_last_backup');
+                                                                if(!$last_backup){
+                                                                    $last_backup = __('all roles', 'capsman-enhanced');
+                                                                }
                                                             ?>
                                                                 <li>
                                                                 <input type="radio" name="select_restore" value="restore" id="cme_restore_manual">
-                                                                <label for="cme_restore_manual"><?php printf(esc_html__('Manual backup of all roles (%s)', 'capsman-enhanced'), esc_html($manual_date_caption)); ?></label>
+                                                                <label for="cme_restore_manual"><?php printf(esc_html__('Manual backup of %s (%s)', 'capsman-enhanced'), esc_html($last_backup), esc_html($manual_date_caption)); ?></label>
                                                                 </li>
                                                                 <?php
                                                                 $listed_manual_backup = true;
@@ -294,6 +299,67 @@ $auto_backups = $wpdb->get_results("SELECT option_name, option_value FROM $wpdb-
                                                                          title="<?php echo esc_attr__('Reset Roles and Capabilities to WordPress defaults', 'capsman-enhanced') ?>"
                                                                          href="<?php echo esc_url_raw(wp_nonce_url("admin.php?page=pp-capabilities-backup&amp;action=reset-defaults", 'capsman-reset-defaults')); ?>"
                                                                          onclick="if ( confirm('<?php echo esc_js(__("You are about to reset Roles and Capabilities to WordPress defaults.\n 'Cancel' to stop, 'OK' to reset.", 'capsman-enhanced')); ?>') ) { return true;}return false;"><?php esc_html_e('Reset to WordPress defaults', 'capsman-enhanced') ?></a>
+
+                                    </dd>
+                                </dl>
+
+
+                                <dl id="ppcb-tab-import-export" style="display:none;">
+                                    <dt><?php 
+                                    esc_html_e('Export / Import', 'capsman-enhanced'); ?></dt>
+                                    <dd>
+
+                                        <div class="metabox-holder">
+                                            <div class="postbox">
+                                                <h3><span><?php esc_html_e('Export Settings', 'capsman-enhanced'); ?></span></h3>
+                                                <div class="inside">
+                                                    <p><?php esc_html_e('Export the plugin settings for this site as a .json file. This allows you to easily import the configuration into another site.', 'capsman-enhanced'); ?></p>
+                                                    <p><?php esc_html_e('You can select the part you want to export or leave all checked to export all settings.', 'capsman-enhanced'); ?></p>
+                                                    <ul>
+                                                        <li>
+                                                            <input id="pp_capabilities_export_roles" name="pp_capabilities_export_section[]" type="checkbox" value="user_roles" checked /> 
+                                                            <label for="pp_capabilities_export_roles"> 
+                                                                <?php esc_html_e('Roles and Capabilities', 'capsman-enhanced'); ?> 
+                                                            </label> 
+                                                        </li>
+                                                        <?php 
+                                                            $backup_sections = pp_capabilities_backup_sections(); 
+                                                            foreach($backup_sections as $backup_key => $backup_section){
+                                                                ?>
+                                                                <li>
+                                                                    <input id="pp_capabilities_export_<?php echo esc_attr($backup_key); ?>" name="pp_capabilities_export_section[]" type="checkbox" value="<?php echo esc_attr($backup_key); ?>" checked /> 
+                                                                    <label for="pp_capabilities_export_<?php echo esc_attr($backup_key); ?>"> <?php esc_html_e($backup_section['label']); ?> </label> 
+                                                                </li>
+                                                                <?php
+                                                            }
+                                                        ?>
+                                                    </ul>
+                                                        <p>
+                                                        <input type="submit" name="export_backup"
+                                                                value="<?php esc_attr_e('Export', 'capsman-enhanced') ?>"
+                                                                class="button-primary"/>
+                                                        </p>
+                                                </div>
+                                            </div>
+
+                                            <div class="postbox">
+                                                <h3><span><?php esc_html_e('Import Settings', 'capsman-enhanced'); ?></span></h3>
+                                                <div class="inside">
+                                                    <p><strong><span class="pp-caps-warning"><?php esc_html_e('WARNING:', 'capsman-enhanced'); ?></span> <?php esc_html_e('Please make a \'Manual Backup\' in the backup tab to enable backup restore incase anything go wrong.', 'capsman-enhanced'); ?></p>
+                                                    
+                                                    <p><?php esc_html_e('Import the plugin settings from a .json file. This file can be obtained by exporting the settings on another site using the form above.', 'capsman-enhanced'); ?></p>
+                                                    
+                                                    <p>
+                                                            <input type="file" name="import_file"/>
+                                                    </p>
+                                                    <p>
+                                                        <input type="submit" name="import_backup"
+                                                                value="<?php esc_attr_e('Import', 'capsman-enhanced') ?>"
+                                                                class="button-primary"/>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
 
                                     </dd>
                                 </dl>

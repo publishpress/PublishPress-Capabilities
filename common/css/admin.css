@@ -329,12 +329,10 @@ overflow:auto;
 padding:0;
 background-color: #eee;
 padding: 5px;
-width: min-content;
 text-indent:10px;
 }
 div.publishpress-caps-backup #cme_select_restore li {
 padding: 7px 15px 7px 7px;
-white-space: nowrap;
 background-color: #f4f4f4;
 margin: 0;
 line-height:25px;
@@ -426,7 +424,7 @@ div.publishpress-caps-backup td.cme-backup-info .cme-negate {
   text-align:center;
 }
 
-#ppcb-tab-reset span.pp-caps-warning {
+.publishpress-caps-backup span.pp-caps-warning {
   color:red;
 }
 
