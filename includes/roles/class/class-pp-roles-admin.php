@@ -24,6 +24,10 @@ class Pp_Roles_Admin
      */
     public function __construct()
     {
+        global $hook_suffix;    //avoid warning outputs
+        if (!isset($hook_suffix)) {
+            $hook_suffix = '';
+        }
 
         $this->roles_list_table = null;
         $this->get_roles_list_table();
