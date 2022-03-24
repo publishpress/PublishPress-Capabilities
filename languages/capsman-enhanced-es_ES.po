@@ -2,17 +2,17 @@
 # This file is distributed under the same license as the Plugins - PublishPress Capabilities &#8211; User Role Access, Editor Permissions, Admin Menus - Stable Readme (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-12-03 21:32+0100\n"
+"Project-Id-Version: Plugins - PublishPress Capabilities &#8211; User Role Access, Editor Permissions, Admin Menus - Stable Readme (latest release)\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2022-02-28 11:30+0100\n"
+"Last-Translator: \n"
+"Language-Team: Angelo Giammarresi - info@wocmultimedia.com\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 3.0\n"
-"Language: es\n"
-"Project-Id-Version: Plugins - PublishPress Capabilities &#8211; User Role Access, Editor Permissions, Admin Menus - Stable Readme (latest release)\n"
-"POT-Creation-Date: \n"
-"Last-Translator: \n"
-"Language-Team: Angelo Giammarresi - info@wocmultimedia.com\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. Plugin name.
 msgid "PublishPress Capabilities - User Role Access, Editor Permissions, Admin Menus"
@@ -236,7 +236,7 @@ msgstr "Estado del sistema"
 
 #. Found in faq list item.
 msgid "Add-ons"
-msgstr "Extensiónes"
+msgstr "Extensiones"
 
 #. Found in faq list item.
 msgid "Import/Export"
@@ -688,7 +688,7 @@ msgstr "<strong>Ocultar características del editor</strong>: decide qué ven lo
 
 #. Found in description list item.
 msgid "<strong>Multisite support</strong>: Manage permissions on a single site or across your whole network."
-msgstr "<Compatibilidad con multisitio>: gestiona los permisos en un solo sitio o en toda tu red."
+msgstr "<strong>Es compatible con multisitio</strong>: gestiona los permisos en un solo sitio o en toda tu red."
 
 #. Found in description list item.
 msgid "<strong>WooCommerce permissions</strong>: Control access to WooCommerce products, orders, coupons and more."
@@ -736,7 +736,7 @@ msgstr "Las principales características de PublishPress Capabilities"
 
 #. Found in description paragraph.
 msgid "<a href=\"https://publishpress.com/knowledge-base/multisite-network/\">Click here to learn about multisite permissions</a>."
-msgstr "<a href=\"https://publishpress.com/knowledge-base/multisite-network/\" >Haz clic aquí para saber más sobre los permisos del multisitio</a>."
+msgstr "<a href=\"https://publishpress.com/knowledge-base/multisite-network/\">Haz clic aquí para saber más sobre los permisos del multisitio</a>."
 
 #. Found in description paragraph.
 msgid "PublishPress Capabilities allows you to control permissions on a single site or across your whole network. Every time you update permissions in PublishPress Capabilities, you can choose to sync those changes across your multisite network."
@@ -905,6 +905,66 @@ msgstr "7. Copia de seguridad y restauración de los perfiles y capacidades de l
 #. Found in description header.
 msgid "2. Capabilities for any Post Type"
 msgstr "2. Capacidades para cualquier tipo de contenido"
+
+#. Found in changelog list item.
+msgid "Compat : WordPress 5.9 - failure adding / editing posts under some Editor Features configurations (work around WP hooking late-defined function _disable_block_editor_for_navigation_post_type)"
+msgstr "Compatibilidad: WordPress 5.9 - Fallo en la adición/edición de entradas en algunas configuraciones de las características del editor (trabajar en torno al enganche de WP `late-defined function _disable_block_editor_for_navigation_post_type`)"
+
+#. Found in changelog list item.
+msgid "Fixed : CSRF vulnerability"
+msgstr "Corregido: Vulnerabilidad CSRF"
+
+#. Found in changelog list item.
+msgid "Change : Capabilities screen - Tab for PublishPress Capabilities #220"
+msgstr "Cambiado: Pantalla de Capacidades - pestaña por PublishPress Capabilities #220"
+
+#. Found in changelog list item.
+msgid "Change : Admin Features - Captions use dashes, not numbers #229"
+msgstr "Cambiado: Características de administración - Los leyendas utilizan guiones, no números #229"
+
+#. Found in changelog list item.
+msgid "Feature : Admin Features - More items available for restriction #240"
+msgstr "Característica: Características de administración - Más elementos disponibles para la restricción #240"
+
+#. Found in changelog list item.
+msgid "Feature : Admin Features - Restrict Admin Bar or individual Admin Bar elements"
+msgstr "Característica: Características de administración - Restringir la barra de administración o los elementos individuales de la barra de administración"
+
+#. Found in changelog list item.
+msgid "Feature : Editor Features - Restrict editor elements for custom post types"
+msgstr "Característica: Características del editor - Restringir los elementos del editor por los tipos de contenido personalizados"
+
+#. Found in changelog list item.
+msgid "Feature : Filter Capabilities display by post type or text entry"
+msgstr "Característica: Filtrar las capacidades de visualización por tipo de contenido o por entrada de texto"
+
+#. Found in changelog list item.
+msgid "Lang : Spanish, French, Italian"
+msgstr "Idiomas: Español, Francés, Italiano"
+
+#. Found in changelog list item.
+msgid "Fixed : Escape output variables"
+msgstr "Corregido: Escape de variables de salida"
+
+#. Found in changelog list item.
+msgid "Fixed : Input sanitization consistency"
+msgstr "Corregido: Coherencia en el saneamiento de las entradas"
+
+#. Found in changelog list item.
+msgid "Fixed : After role rename, title in dropdown does not refresh"
+msgstr "Corregido: Después de cambiar el nombre del perfil, el título en el menú desplegable no se actualiza."
+
+#. Found in changelog list item.
+msgid "Fixed : Capability names with dashes could not be added"
+msgstr "Corregido: Nombres de capacidades con guiones no se podían añadir"
+
+#. Found in changelog list item.
+msgid "Fixed : PHP Notice on Capabilities screen"
+msgstr "Corregido: Aviso de PHP en la pantalla de las capacidades"
+
+#. Found in changelog list item.
+msgid "Fixed : Security issue"
+msgstr "Corregido: Fallo de seguridad"
 
 #. Found in changelog list item.
 msgid "Feature : New \"Admin Features\" screen #200"
