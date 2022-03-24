@@ -341,8 +341,8 @@ class PP_Capabilities_Admin_Features
 	 */
     public static function disableDashboardBarBackend()
     {
-        echo '<style>html.wp-toolbar { padding-top:0!important; }</style>';
-        echo '<style>#wpadminbar { display:none!important }</style>';
+        //add inline styles
+        ppc_add_inline_style('html.wp-toolbar { padding-top:0!important; } #wpadminbar {display:none !important;}');
     }
 
 	/**
