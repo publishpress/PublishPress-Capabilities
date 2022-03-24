@@ -1273,7 +1273,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 			/* ]]> */
 			</script>
 
-			<div style="display:inline-block; float:right;">
+			<div style="display:none; float:right;">
 			<?php
 			$level = ak_caps2level($rcaps);
 			?>
@@ -1302,10 +1302,6 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 			$save_caption = (in_array(sanitize_key(get_locale()), ['en_EN', 'en_US'])) ? 'Save Capabilities' : __('Save Changes', 'capsman-enhanced');
 			?>
 			<input type="submit" name="SaveRole" value="<?php echo esc_attr($save_caption);?>" class="button-primary" /> &nbsp;
-
-			<?php if ( current_user_can('administrator') && 'administrator' != $default ) : ?>
-				<a class="ak-delete" title="<?php echo esc_attr__('Delete this role', 'capsman-enhanced') ?>" href="<?php echo esc_url_raw(wp_nonce_url("admin.php?page={$this->ID}&amp;action=delete&amp;role={$default}", 'delete-role_' . $default)); ?>" onclick="if ( confirm('<?php echo esc_js(sprintf(__("You are about to delete the %s role.\n\n 'Cancel' to stop, 'OK' to delete.", 'capsman-enhanced'), $roles[$default])); ?>') ) { return true;}return false;"><?php esc_html_e('Delete Role', 'capsman-enhanced')?></a>
-			<?php endif; ?>
 		</p>
 
 		</div><!-- .pp-column-left -->
@@ -1341,32 +1337,6 @@ restore an earlier version of your roles and capabilities.', 'capsman-enhanced' 
 				do_action('publishpress-caps_sidebar_bottom');
 			?>
 
-			<dl>
-				<dt><?php (!in_array(get_locale(), ['en_EN', 'en_US'])) ? esc_html_e('Copy this role to', 'capsman-enhanced') : printf('Copy %s Role', esc_html(translate_user_role($roles[$default]))); ?></dt>
-				<dd style="text-align:center;">
-					<?php $class = ( $support_pp_only_roles ) ? 'tight-text' : 'regular-text'; ?>
-					<p><input type="text" name="copy-name"  class="<?php echo esc_attr($class);?>" placeholder="<?php esc_attr_e('Role Name', 'capsman-enhanced') ?>" />
-
-					<?php if( $support_pp_only_roles ) : ?>
-					<label for="copy_role_pp_only" title="<?php esc_attr_e('Make role available for supplemental assignment to Permission Groups only', 'capsman-enhanced');?>"> <input type="checkbox" name="copy_role_pp_only" id="copy_role_pp_only" autocomplete="off" value="1"> <?php esc_html_e('hidden', 'capsman-enhanced'); ?> </label>
-					<?php endif; ?>
-
-					<br />
-					<input type="submit" name="CopyRole" value="<?php esc_attr_e('Copy', 'capsman-enhanced') ?>" class="button" />
-					</p>
-				</dd>
-			</dl>
-
-			<dl>
-				<dt><?php esc_html_e('Rename Role', 'capsman-enhanced'); ?></dt>
-				<dd style="text-align:center;">
-					<p><input type="text" name="rename-name" class="regular-text" placeholder="<?php esc_attr_e('New Role Name', 'capsman-enhanced') ?>" />
-
-					<br />
-					<input type="submit" name="RenameRole" value="<?php esc_attr_e('Rename', 'capsman-enhanced') ?>" class="button" />
-					</p>
-				</dd>
-			</dl>
 		</div><!-- .pp-column-right -->
 	</div><!-- .pp-columns-wrapper -->
 	</td></tr></table> <!-- .akmin -->

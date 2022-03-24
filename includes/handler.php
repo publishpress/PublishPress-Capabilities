@@ -51,36 +51,7 @@ class CapsmanHandler
 					ak_admin_error(__('Error: Failed creating the new role.', 'capsman-enhanced'));
 			}
 
-		// rename role
-		} elseif (!empty($_POST['RenameRole']) && !empty($_POST['rename-name']) && !empty($_POST['current'])) {
-			$current = get_role(sanitize_key($_POST['current']));
-			$new_title = sanitize_text_field($_POST['rename-name']);
-
-			if ($current && isset($wp_roles->roles[$current->name]) && $new_title) {
-				$old_title = $wp_roles->roles[$current->name]['name'];
-				$wp_roles->roles[$current->name]['name'] = $new_title;
-				update_option($wp_roles->role_key, $wp_roles->roles);
-
-				$this->cm->set_current_role($current->name);
-
-				$url = admin_url('admin.php?page=pp-capabilities&role=' . sanitize_key($current->name));
-				wp_redirect($url);
-				exit;
-			}
-		// Copy current role to a new one.
-		} elseif (!empty($_POST['CopyRole']) && !empty($_POST['copy-name']) && !empty($_POST['current'])) {
-			$current = get_role(sanitize_key($_POST['current']));
-			if ( $newrole = $this->createRole(sanitize_text_field($_POST['copy-name']), $current->capabilities) ) {
-				ak_admin_notify(__('New role created.', 'capsman-enhanced'));
-				$this->cm->set_current_role($newrole);
-			} else {
-				if ( empty($_POST['copy-name']) && in_array(get_locale(), ['en_EN', 'en_US']) )
-					ak_admin_error('Error: No role name specified.');
-				else
-					ak_admin_error(__('Error: Failed creating the new role.', 'capsman-enhanced'));
-			}
-
-		// Save role changes. Already saved at start with self::saveRoleCapabilities().
+		// Save role changes. Already saved at start with self::saveRoleCapabilities()
 		} elseif ( ! empty($_POST['SaveRole']) && !empty($_POST['current'])) {
 			if ( MULTISITE ) {
 				( method_exists( $wp_roles, 'for_site' ) ) ? $wp_roles->for_site() : $wp_roles->reinit();
@@ -398,33 +369,6 @@ class CapsmanHandler
 		} // endif multisite installation with super admin editing a main site role
 
 		pp_capabilities_autobackup();
-	}
-	
-	/**
-	 * Deletes a role.
-	 * The role comes from the $_GET['role'] var and the nonce has already been checked.
-	 * Default WordPress role cannot be deleted and if trying to do it, throws an error.
-	 * Users with the deleted role, are moved to the WordPress default role.
-	 *
-	 * @return void
-	 */
-	function adminDeleteRole ()
-	{
-		if (!empty($_GET['role'])) {
-			$role_name = sanitize_key($_GET['role']);
-			check_admin_referer('delete-role_' . $role_name);
-			
-			$this->cm->current = $role_name;
-	
-			if (!pp_capabilities_is_editable_role($role_name)) {
-				ak_admin_error(__('The selected role is not editable.', 'capsman-enhanced'));
-			}
-	
-			if (false !== pp_capabilities_roles()->actions->delete_role($role_name, ['allow_system_role_deletion' => true, 'nonce_check' => false])) {
-				unset($this->cm->roles[$role_name]);
-				$this->cm->current = get_option('default_role');
-			}
-		}
 	}
 }
 

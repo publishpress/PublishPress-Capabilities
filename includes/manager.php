@@ -724,12 +724,6 @@ class CapabilityManager
 		$this->generateNames();
 		$roles = array_keys($this->roles);
 
-		if ( isset($_GET['action']) && 'delete' == $_GET['action']) {
-			require_once( dirname(__FILE__).'/handler.php' );
-			$capsman_modify = new CapsmanHandler( $this );
-			$capsman_modify->adminDeleteRole();
-		}
-
 		if ( ! isset($this->current) ) { // By default, we manage the default role
 			if (empty($_POST) && !empty($_REQUEST['role'])) {
 				$role = sanitize_key($_REQUEST['role']);
