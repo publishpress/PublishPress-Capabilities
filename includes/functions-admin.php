@@ -214,3 +214,20 @@ function pp_capabilities_backup_sections()
 
    return apply_filters('pp_capabilities_backup_sections', $backup_sections);
 }
+
+/**
+ * Register and add inline styles.
+ *
+ * @param string $custom_css
+ * @param string $handle
+ *
+ * @return string
+ *
+ * @since 2.3.5
+ */
+function ppc_add_inline_style($custom_css, $handle = 'ppc-dummy-css-handle')
+{
+    wp_register_style(esc_attr($handle), false);
+    wp_enqueue_style(esc_attr($handle));
+    wp_add_inline_style(esc_attr($handle), esc_attr($custom_css));
+}
