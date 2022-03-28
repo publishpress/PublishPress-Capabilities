@@ -317,18 +317,27 @@ class Pp_Roles_Admin
         $fields       = apply_filters('pp_roles_fields', self::get_fields($current, $role_edit, $role_copy), $current, $role_edit, $role_copy);
 
         if ($role_copy) {
-            pp_capabilities_roles()->notify->add('info', sprintf( esc_html__('%s role copied to editor. Modify and save to add the role', 'capsman-enhanced'), $current['name']));
+            pp_capabilities_roles()->notify->add('info', sprintf( esc_html__('%s role copied to editor. Please click the "Create Role" button to create this new role.', 'capsman-enhanced'), $current['name']));
             //update new name and remove slug
             $current['role'] = $current['role'] . '_copy';
             $current['name'] = $current['name'] . ' Copy';
         }
 
-        $save_button_text = ($role_edit) ? esc_html__('Update Role', 'capsman-enhanced') : esc_html__('Add Role', 'capsman-enhanced');
+        $save_button_text = ($role_edit) ? esc_html__('Update Role', 'capsman-enhanced') : esc_html__('Create Role', 'capsman-enhanced');
 
         pp_capabilities_roles()->notify->display();
         ?>
         <div class="wrap pp-role-edit-wrap <?php echo esc_attr($tab_class); ?>">
-            <h1><?php echo esc_html__('Manage Roles', 'capsman-enhanced'); ?>
+            <h1>
+            <?php 
+            if ($role_edit) {
+                esc_html_e('Edit Role', 'capsman-enhanced');
+            } elseif ($role_copy) {
+                esc_html_e('Copy Role', 'capsman-enhanced');
+            } else {
+                esc_html_e('Create New Role', 'capsman-enhanced');
+            }
+            ?>
             <a href="<?php echo esc_url(admin_url('admin.php?page=pp-capabilities-roles')); ?>" class="page-title-action">
                 <?php esc_html_e('All Roles', 'capsman-enhanced'); ?>
             </a>
@@ -348,19 +357,6 @@ class Pp_Roles_Admin
                     <div id="post-body" class="metabox-holder columns-2">
                         <div id="post-body-content">
                             <div class="ppc-roles-section postbox">
-                                <div class="postbox-header">
-                                    <h2 class="hndle ui-sortable-handle">
-                                    <?php 
-                                    if ($role_edit) {
-                                        esc_html_e('Editing role', 'capsman-enhanced');
-                                    } elseif ($role_copy) {
-                                        esc_html_e('Editing copied role', 'capsman-enhanced');
-                                    } else {
-                                        esc_html_e('Add new role', 'capsman-enhanced'); 
-                                    }
-                                    ?>
-                                    </h2>
-                                </div>
                                 
                                 <div class="inside">
                                     <div class="main">
@@ -403,9 +399,6 @@ class Pp_Roles_Admin
         
                         <div id="postbox-container-1" class="postbox-container ppc-roles-sidebar">
                             <div id="submitdiv" class="postbox">
-                                <div class="postbox-header">
-                                    <h2 class="hndle ui-sortable-handle"><?php echo esc_html__('Role settings', 'capsman-enhanced'); ?></h2>
-                                </div>
                                 <div class="inside">
                                     <div id="minor-publishing">
                                         <div id="misc-publishing-actions">
@@ -420,12 +413,12 @@ class Pp_Roles_Admin
                                         
                                         <div id="major-publishing-actions">
                                             <div id="publishing-action">
-                                                <h1><?php esc_html_e('Capabilities', 'capsman-enhanced'); ?></h1>
+                                                <h2 class="roles-capabilities-title"><?php esc_html_e('Capabilities', 'capsman-enhanced'); ?></h2>
                                                 <p class="description">
                                                 <?php 
                                                     printf(
                                                         esc_html__(
-                                                            'Capabilities can be edited on %1s Capabilities screen %2s', 
+                                                            'These can be edited on the %1s Capabilities screen %2s', 
                                                             'capsman-enhanced'
                                                         ),
                                                         '<a href="' . esc_url(add_query_arg(['page' => 'pp-capabilities'], admin_url('admin.php'))) .'">',
@@ -443,14 +436,14 @@ class Pp_Roles_Admin
                                                             continue;
                                                         }
                                                         $sn++;
-                                                        $style = ($sn > 4) ? 'display:none;' : '';
+                                                        $style = ($sn > 6) ? 'display:none;' : '';
                                                         ?>
                                                         <li style="<?php echo esc_attr($style);?>">
                                                             &nbsp; <?php echo esc_html($cap_name);?>
                                                         </li>
                                                     <?php endforeach; ?>
 
-                                                    <?php if ($sn > 0) :?>
+                                                    <?php if ($sn > 6) :?>
                                                     <div class="roles-capabilities-load-more">
                                                         <?php echo esc_html__('Load More', 'capsman-enhanced'); ?>
                                                     </div>

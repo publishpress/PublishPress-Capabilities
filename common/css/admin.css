@@ -581,6 +581,10 @@ body.capabilities_page_pp-capabilities-admin-features .pp-capability-menus-selec
 
 /* Roles screen */
 
+.roles-capabilities-title {
+    font-weight: bold !important;
+    padding-left: 0 !important;
+}
 .pp-role-edit-wrap #publishing-action {
     text-align: unset !important;
     float: unset !important;
@@ -621,7 +625,7 @@ ul.ppc-roles-tab {
     background-color: #fafafa;
     border-right: 1px solid #eee;
     box-sizing: border-box;
-    min-height: 320px;
+    min-height: 363px;
 }
 .ppc-roles-tab-content {
     float: left;
