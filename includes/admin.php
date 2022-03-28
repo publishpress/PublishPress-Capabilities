@@ -1305,13 +1305,13 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 		</p>
 
 		</div><!-- .pp-column-left -->
-		<div class="pp-column-right">
+		<div class="pp-column-right capabilities-sidebar">
 			<?php
 			do_action('publishpress-caps_sidebar_top');
 
 			$banners = new PublishPress\WordPressBanners\BannersMain;
 			$banners->pp_display_banner(
-			    __( 'Recommendations for you', 'capsman-enhanced' ),
+			    '',
 			    __( 'PublishPress Capabilities is safe to use', 'capsman-enhanced' ),
 			    array(
 			        __( 'This plugin automatically creates a backup whenever you save changes. You can use these backups to
