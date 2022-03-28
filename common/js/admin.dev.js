@@ -203,7 +203,7 @@ jQuery(document).ready( function($) {
     
       $('ul.pp-roles-capabilities li').hide();
 
-      $('ul.pp-roles-capabilities').children().slice(0, 4).show();
+      $('ul.pp-roles-capabilities').children().slice(0, 6).show();
 
       window.scrollTo({ top: 0, behavior: 'smooth' });
    });
