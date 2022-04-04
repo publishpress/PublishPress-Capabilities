@@ -1,9 +1,22 @@
 .pp-capability-roles-wrapper table th.column-count, 
 .pp-capability-roles-wrapper table td.column-count {
     width: 74px;
-    text-align: center;
 }
 
+.pp-capability-roles-wrapper table td.column-count a {
+    margin-left: 12px;
+}
+
+.pp-capability-roles-wrapper table td.column-nav_menus a {
+    margin-left: 20px;
+}
+
+.pp-capability-roles-wrapper table td.column-editor_features a,
+.pp-capability-roles-wrapper table td.column-admin_features a,
+.pp-capability-roles-wrapper table td.column-admin_menus a,
+.pp-capability-roles-wrapper table td.column-nav_menus a {
+    margin-left: 40px;
+}
 .pp-capability-roles-wrapper .role-state,
 .pp-capability-roles-wrapper .role-title-divider {
     color: #555;
