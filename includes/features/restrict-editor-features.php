@@ -317,6 +317,7 @@ class PP_Capabilities_Post_Features {
 
             esc_html__('Document Panel', 'capabilities-pro') => [
                 'status_visibility' => ['label' => esc_html__('Status & visibility', 'capsman-enhanced'),   'elements' => 'post-status'],
+                'template'          => ['label' => esc_html__('Template', 'capsman-enhanced'),              'elements' => 'template'],
                 'permalink' =>         ['label' => esc_html__('Permalink', 'capsman-enhanced'),             'elements' => 'post-link'],
                 'categories' =>        ['label' => esc_html__('Categories', 'capsman-enhanced'),            'elements' => 'taxonomy-panel-category'],
                 'tags' =>              ['label' => esc_html__('Tags', 'capsman-enhanced'),                  'elements' => 'taxonomy-panel-post_tag'],
