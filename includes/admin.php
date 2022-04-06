@@ -734,6 +734,15 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 						$checks_per_row = get_option( 'cme_form-rows', 1 );
 						$i = 0; $first_row = true;
 
+                        ?>
+						<tr class="cme-bulk-select">
+                            <td colspan="<?php echo (int) $checks_per_row;?>">
+                                <input type="checkbox" class="cme-check-all" autocomplete="off" title="<?php esc_attr_e('check/uncheck all', 'capsman-enhanced');?>">
+                                </span>
+                            </td>
+                        </tr>
+
+                        <?php
 						$core_caps = _cme_core_caps();
 						foreach( array_keys($core_caps) as $cap_name ) {
 							$cap_name = sanitize_key($cap_name);
@@ -859,6 +868,13 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 						$checks_per_row = get_option( 'cme_form-rows', 1 );
 						$i = 0; $first_row = true;
 
+                        ?>
+						<tr class="cme-bulk-select">
+                            <td colspan="<?php echo (int) $checks_per_row;?>">
+                                <input type="checkbox" class="cme-check-all" title="<?php esc_attr_e('check/uncheck all', 'capsman-enhanced');?>">
+                            </td>
+                        </tr>
+                        <?php
 						foreach( array_keys($_plugin_caps) as $cap_name ) {
 							$cap_name = sanitize_key($cap_name);
 
@@ -1048,6 +1064,13 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 						echo '<div class="ppc-filter-no-results" style="display:none;">' . esc_html__( 'No results found. Please try again with a different word.', 'capsman-enhanced' ) . '</div>';
 						?>
 						<table class="widefat fixed striped form-table cme-checklist">
+
+						<tr class="cme-bulk-select">
+                            <td colspan="<?php echo (int) $checks_per_row;?>">
+                                <input type="checkbox" class="cme-check-all" title="<?php esc_attr_e('check/uncheck all', 'capsman-enhanced');?>">
+                            </td>
+                        </tr>
+
 						<?php
 						$centinel_ = true;
 						$i = 0; $first_row = true;
