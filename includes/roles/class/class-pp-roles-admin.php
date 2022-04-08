@@ -156,7 +156,7 @@ class Pp_Roles_Admin
                 'value_key' => 'role',
                 'tab'       => 'general',
                 'editable'  => ($role_edit) ? false : true,
-                'required'  => true,
+                'required'  => false,
             ],
             'role_level'     => [
                 'label'     => esc_html__('Role Level', 'capsman-enhanced'),

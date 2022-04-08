@@ -179,8 +179,20 @@ class Pp_Roles_Actions
          */
         $this->check_nonce('add-role');
 
-        if (empty($_REQUEST['role_slug']) || empty($_REQUEST['role_name'])) {
+        if (empty($_REQUEST['role_name'])) {
             $this->notify(esc_html__('Missing parameters, refresh the page and try again.', 'capsman-enhanced'));
+        }
+
+        if (empty($_REQUEST['role_slug'])) {
+            $role_slug = str_replace(
+                [' ', '(', ')', '&', '#', '@', '+', ','], 
+                '_', 
+                strtolower(sanitize_text_field($_REQUEST['role_name']))
+            );
+
+            $role_slug = preg_replace('/[^0-9a-zA-Z\-\_]/', '', $role_slug);
+        } else {
+            $role_slug = sanitize_key($_REQUEST['role_slug']);
         }
 
         /**
