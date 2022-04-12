@@ -116,7 +116,6 @@ class Pp_Roles_Actions
             //enqueue message
             pp_capabilities_roles()->notify->add($type, $message);
 
-            // @todo: migrate Capabilities screen notice display method
             if (!empty($_REQUEST['page']) && ('pp-capabilities' == $_REQUEST['page'])) {
                 $redirect = false;
             }
