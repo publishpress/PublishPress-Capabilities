@@ -737,10 +737,12 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
                         ?>
 						<tr class="cme-bulk-select">
                             <td colspan="<?php echo (int) $checks_per_row;?>">
-                                <input type="checkbox" class="cme-check-all" autocomplete="off" title="<?php esc_attr_e('check/uncheck all', 'capsman-enhanced');?>">
-                                </span>
-                            </td>
-                        </tr>
+                                <input type="checkbox" class="cme-check-all" autocomplete="off" title="<?php esc_attr_e('check / uncheck all', 'capsman-enhanced');?>"> <span><?php _e('Capability Name', 'capability-manager-enhanced');?></span>
+								<span style="float:right">
+								&nbsp;&nbsp;<a class="cme-neg-all" href="#" title="<?php esc_attr_e('negate all (storing as disabled capabilities)', 'capsman-enhanced');?>">X</a> <a class="cme-switch-all" href="#" title="<?php esc_attr_e('negate none (add/remove all capabilities normally)', 'capsman-enhanced');?>">X</a>
+								</span>
+							</td>
+						</tr>
 
                         <?php
 						$core_caps = _cme_core_caps();
@@ -828,11 +830,13 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 						?>
 
 						<tr class="cme-bulk-select">
-						<td colspan="<?php echo (int) $checks_per_row;?>">
-						<span style="float:right">
-						<input type="checkbox" class="cme-check-all" autocomplete="off" title="<?php esc_attr_e('check/uncheck all', 'capsman-enhanced');?>">&nbsp;&nbsp;<a class="cme-neg-all" href="#" title="<?php esc_attr_e('negate all (storing as disabled capabilities)', 'capsman-enhanced');?>">X</a> <a class="cme-switch-all" href="#" title="<?php esc_attr_e('negate none (add/remove all capabilities normally)', 'capsman-enhanced');?>">X</a>
-						</span>
-						</td></tr>
+							<td colspan="<?php echo (int) $checks_per_row;?>">
+								<input type="checkbox" class="cme-check-all" autocomplete="off" title="<?php esc_attr_e('check / uncheck all', 'capsman-enhanced');?>"> <span><?php _e('Capability Name', 'capability-manager-enhanced');?></span>
+								<span style="float:right">
+								&nbsp;&nbsp;<a class="cme-neg-all" href="#" title="<?php esc_attr_e('negate all (storing as disabled capabilities)', 'capsman-enhanced');?>">X</a> <a class="cme-switch-all" href="#" title="<?php esc_attr_e('negate none (add/remove all capabilities normally)', 'capsman-enhanced');?>">X</a>
+								</span>
+							</td>
+						</tr>
 
 						</table>
 					</div>
@@ -871,9 +875,12 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
                         ?>
 						<tr class="cme-bulk-select">
                             <td colspan="<?php echo (int) $checks_per_row;?>">
-                                <input type="checkbox" class="cme-check-all" title="<?php esc_attr_e('check/uncheck all', 'capsman-enhanced');?>">
-                            </td>
-                        </tr>
+                                <input type="checkbox" class="cme-check-all" title="<?php esc_attr_e('check / uncheck all', 'capsman-enhanced');?>"> <span><?php _e('Capability Name', 'capability-manager-enhanced');?></span>
+								<span style="float:right">
+								&nbsp;&nbsp;<a class="cme-neg-all" href="#" title="<?php esc_attr_e('negate all (storing as disabled capabilities)', 'capsman-enhanced');?>">X</a> <a class="cme-switch-all" href="#" title="<?php esc_attr_e('negate none (add/remove all capabilities normally)', 'capsman-enhanced');?>">X</a>
+								</span>
+							</td>
+						</tr>
                         <?php
 						foreach( array_keys($_plugin_caps) as $cap_name ) {
 							$cap_name = sanitize_key($cap_name);
@@ -940,11 +947,13 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 						?>
 
 						<tr class="cme-bulk-select">
-						<td colspan="<?php echo (int) $checks_per_row;?>">
-						<span style="float:right">
-						<input type="checkbox" class="cme-check-all" title="<?php esc_attr_e('check/uncheck all', 'capsman-enhanced');?>">&nbsp;&nbsp;<a class="cme-neg-all" href="#" autocomplete="off" title="<?php esc_attr_e('negate all (storing as disabled capabilities)', 'capsman-enhanced');?>">X</a> <a class="cme-switch-all" href="#" title="<?php esc_attr_e('negate none (add/remove all capabilities normally)', 'capsman-enhanced');?>">X</a>
-						</span>
-						</td></tr>
+							<td colspan="<?php echo (int) $checks_per_row;?>">
+								<input type="checkbox" class="cme-check-all" autocomplete="off" title="<?php esc_attr_e('check / uncheck all', 'capsman-enhanced');?>"> <span><?php _e('Capability Name', 'capability-manager-enhanced');?></span>
+								<span style="float:right">
+								&nbsp;&nbsp;<a class="cme-neg-all" href="#" title="<?php esc_attr_e('negate all (storing as disabled capabilities)', 'capsman-enhanced');?>">X</a> <a class="cme-switch-all" href="#" title="<?php esc_attr_e('negate none (add/remove all capabilities normally)', 'capsman-enhanced');?>">X</a>
+								</span>
+							</td>
+						</tr>
 
 						</table>
 						</div>
@@ -1067,9 +1076,12 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 
 						<tr class="cme-bulk-select">
                             <td colspan="<?php echo (int) $checks_per_row;?>">
-                                <input type="checkbox" class="cme-check-all" title="<?php esc_attr_e('check/uncheck all', 'capsman-enhanced');?>">
-                            </td>
-                        </tr>
+                                <input type="checkbox" class="cme-check-all" title="<?php esc_attr_e('check / uncheck all', 'capsman-enhanced');?>"> <span><?php _e('Capability Name', 'capability-manager-enhanced');?></span>
+								<span style="float:right">
+								&nbsp;&nbsp;<a class="cme-neg-all" href="#" title="<?php esc_attr_e('negate all (storing as disabled capabilities)', 'capsman-enhanced');?>">X</a> <a class="cme-switch-all" href="#" title="<?php esc_attr_e('negate none (add/remove all capabilities normally)', 'capsman-enhanced');?>">X</a>
+								</span>
+							</td>
+						</tr>
 
 						<?php
 						$centinel_ = true;
@@ -1180,11 +1192,13 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 						?>
 
 						<tr class="cme-bulk-select">
-						<td colspan="<?php echo (int) $checks_per_row;?>">
-						<span style="float:right">
-						<input type="checkbox" class="cme-check-all" title="<?php esc_attr_e('check/uncheck all', 'capsman-enhanced');?>">&nbsp;&nbsp;<a class="cme-neg-all" href="#" autocomplete="off" title="<?php esc_attr_e('negate all (storing as disabled capabilities)', 'capsman-enhanced');?>">X</a> <a class="cme-switch-all" href="#" title="<?php esc_attr_e('negate none (add/remove all capabilities normally)', 'capsman-enhanced');?>">X</a>
-						</span>
-						</td></tr>
+							<td colspan="<?php echo (int) $checks_per_row;?>">
+								<input type="checkbox" class="cme-check-all" autocomplete="off" title="<?php esc_attr_e('check / uncheck all', 'capsman-enhanced');?>"> <span><?php _e('Capability Name', 'capability-manager-enhanced');?></span>
+								<span style="float:right">
+								&nbsp;&nbsp;<a class="cme-neg-all" href="#" title="<?php esc_attr_e('negate all (storing as disabled capabilities)', 'capsman-enhanced');?>">X</a> <a class="cme-switch-all" href="#" title="<?php esc_attr_e('negate none (add/remove all capabilities normally)', 'capsman-enhanced');?>">X</a>
+								</span>
+							</td>
+						</tr>
 
 						</table>
 					</div>
