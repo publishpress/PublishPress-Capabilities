@@ -260,6 +260,11 @@ class PP_Capabilities_Admin_Features
     public static function adminFeaturedRestriction()
     {
 		global $ppc_disabled_toolbar, $ppc_disabled_widget;
+        
+        if (is_multisite() && is_super_admin() && !defined('PP_CAPABILITIES_RESTRICT_SUPER_ADMIN')) {
+            return;
+        }
+
         // Get all user roles.
         $user_roles = wp_get_current_user()->roles;
         $disabled_features = get_option("capsman_disabled_admin_features", []);
@@ -271,6 +276,7 @@ class PP_Capabilities_Admin_Features
                 $all_disabled_elements[] = $disabled_features[$role];
             }
         }
+
 		//merge all array values incase it's more than role
         //$all_disabled_elements = array_merge(...$all_disabled_elements);  // This is a PHP 7.4 operator
         $all_disabled_elements = (is_array($all_disabled_elements) && isset($all_disabled_elements[0])) ? array_merge($all_disabled_elements[0]) : [];

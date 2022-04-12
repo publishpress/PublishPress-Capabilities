@@ -105,6 +105,10 @@ class PP_Capabilities_Admin_UI {
     private function applyFeatureRestrictions($editor = 'gutenberg') {
         global $pagenow;
 
+        if (is_multisite() && is_super_admin() && !defined('PP_CAPABILITIES_RESTRICT_SUPER_ADMIN')) {
+            return;
+        }
+
         // Return if not a post editor request
         if (!in_array($pagenow, ['post.php', 'post-new.php'])) {
             return;
