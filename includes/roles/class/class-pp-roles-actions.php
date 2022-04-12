@@ -177,7 +177,9 @@ class Pp_Roles_Actions
         /**
          * Check nonce
          */
-        $this->check_nonce('add-role');
+        if (!isset($_REQUEST['_wpnonce']) || !wp_verify_nonce(sanitize_key($_REQUEST['_wpnonce']), 'add-role')) {
+            $this->notify(esc_html__('Your link has expired, refresh the page and try again.', 'capsman-enhanced'));
+        }
 
         if (empty($_REQUEST['role_name'])) {
             $this->notify(esc_html__('Missing parameters, refresh the page and try again.', 'capsman-enhanced'));
@@ -283,8 +285,9 @@ class Pp_Roles_Actions
         /**
          * Check nonce
          */
-        $this->check_nonce('edit-role');
-
+        if (!isset($_REQUEST['_wpnonce']) || !wp_verify_nonce(sanitize_key($_REQUEST['_wpnonce']), 'edit-role')) {
+            $this->notify(esc_html__('Your link has expired, refresh the page and try again.', 'capsman-enhanced'));
+        }
 
         if (empty($_REQUEST['current_role']) || empty($_REQUEST['role_name'])) {
             $this->notify(esc_html__('Missing parameters, refresh the page and try again.', 'capsman-enhanced'));
@@ -379,8 +382,8 @@ class Pp_Roles_Actions
         /**
          * Check nonce
          */
-        if ($nonce_check) {
-            $this->check_nonce($nonce_check);
+        if (!isset($_REQUEST['_wpnonce']) || !wp_verify_nonce(sanitize_key($_REQUEST['_wpnonce']), $nonce_check)) {
+            $this->notify(esc_html__('Your link has expired, refresh the page and try again.', 'capsman-enhanced'));
         }
 
         /**
