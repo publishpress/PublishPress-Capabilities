@@ -314,7 +314,6 @@ $auto_backups = $wpdb->get_results("SELECT option_name, option_value FROM $wpdb-
                                                 <h3><span><?php esc_html_e('Export Settings', 'capsman-enhanced'); ?></span></h3>
                                                 <div class="inside">
                                                     <p><?php esc_html_e('Export the plugin settings for this site as a .json file. This allows you to easily import the configuration into another site.', 'capsman-enhanced'); ?></p>
-                                                    <p><?php esc_html_e('You can select the part you want to export or leave all checked to export all settings.', 'capsman-enhanced'); ?></p>
                                                     <ul>
                                                         <li>
                                                             <input id="pp_capabilities_export_roles" name="pp_capabilities_export_section[]" type="checkbox" value="user_roles" checked /> 
@@ -345,10 +344,14 @@ $auto_backups = $wpdb->get_results("SELECT option_name, option_value FROM $wpdb-
                                             <div class="postbox">
                                                 <h3><span><?php esc_html_e('Import Settings', 'capsman-enhanced'); ?></span></h3>
                                                 <div class="inside">
-                                                    <p><strong><span class="pp-caps-warning"><?php esc_html_e('WARNING:', 'capsman-enhanced'); ?></span> <?php esc_html_e('Please make a \'Manual Backup\' in the backup tab to enable backup restore incase anything go wrong.', 'capsman-enhanced'); ?></p>
+                                                    <p><strong><span class="pp-caps-warning"><?php esc_html_e('WARNING:', 'capsman-enhanced'); ?></span> <?php esc_html_e('Please make a \'Manual Backup\' in the backup tab to enable backup restore in case anything goes wrong.', 'capsman-enhanced'); ?></p>
                                                     
                                                     <p><?php esc_html_e('Import the plugin settings from a .json file. This file can be obtained by exporting the settings on another site using the form above.', 'capsman-enhanced'); ?></p>
                                                     
+                                                    <p><?php esc_html_e('Before importing, we recommend using the "Backup" tab to create a backup of your current settings.', 'capsman-enhanced'); ?></p>
+                                                 
+                                                    <br />
+
                                                     <p>
                                                             <input type="file" name="import_file"/>
                                                     </p>
