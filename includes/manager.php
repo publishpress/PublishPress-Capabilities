@@ -37,6 +37,8 @@ add_action( 'init', 'cme_update_pp_usage' );  // update early so resulting post 
 
 function cme_update_pp_usage() {
 	if ( ! empty($_REQUEST['update_filtered_types']) || ! empty($_REQUEST['update_filtered_taxonomies']) || ! empty($_REQUEST['update_detailed_taxonomies']) || ! empty($_REQUEST['SaveRole']) ) {
+		check_admin_referer('capsman-general-manager');
+
 		require_once( dirname(__FILE__).'/pp-handler.php' );
 		return _cme_update_pp_usage();
 	}
@@ -134,7 +136,11 @@ class CapabilityManager
 		$this->mod_url = plugins_url( '', CME_FILE );
 
 		if (is_admin() && !empty($_REQUEST['page']) && ('pp-capabilities-settings' == $_REQUEST['page']) && (!empty($_POST['all_options']) || !empty($_POST['all_options_pro']))) {
-			require_once (dirname(CME_FILE) . '/includes/settings-handler.php');
+			add_action('init', function() {
+				if (isset($_REQUEST['_wpnonce']) && wp_verify_nonce($_REQUEST['_wpnonce'], 'pp-capabilities-settings') && current_user_can('manage_capabilities')) {
+					require_once (dirname(CME_FILE) . '/includes/settings-handler.php');
+				}
+			}, 1);
 		}
 
 		$this->moduleLoad();
@@ -876,12 +882,14 @@ class CapabilityManager
 		}
 
 		if (!empty($_SERVER['REQUEST_METHOD']) && ('POST' == $_SERVER['REQUEST_METHOD'])) {
+			check_admin_referer('pp-capabilities-backup');
 			require_once( dirname(__FILE__).'/backup-handler.php' );
 			$cme_backup_handler = new Capsman_BackupHandler( $this );
 			$cme_backup_handler->processBackupTool();
 		}
 
 		if ( isset($_GET['action']) && 'reset-defaults' == $_GET['action']) {
+			check_admin_referer('capsman-reset-defaults');
 			require_once( dirname(__FILE__).'/backup-handler.php' );
 			$cme_backup_handler = new Capsman_BackupHandler( $this );
 			$cme_backup_handler->backupToolReset();
