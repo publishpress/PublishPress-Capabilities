@@ -168,6 +168,20 @@ td.cap-locked a.neg-cap {
 display: none !important;
 }
 
+tr.cme-bulk-select td {
+padding-top: 8px;
+padding-bottom: 8px;
+color: black;
+-webkit-user-select: none;  
+-moz-user-select: none;    
+-ms-user-select: none;      
+user-select: none;
+}
+
+tr.cme-bulk-select span {
+vertical-align: bottom;
+}
+
 a.type-off, a.neg-cap, a.cme-neg-all, a.neg-type-caps {
 color: #800;
 }
