@@ -78,7 +78,11 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 	<?php wp_nonce_field('capsman-general-manager'); ?>
 
 	<?php
-	$pp_tab = (!empty($_REQUEST['pp_caps_tab'])) ? sanitize_key($_REQUEST['pp_caps_tab']) : 'edit';
+	if (empty($_REQUEST['pp_caps_tab']) && !empty($_REQUEST['added'])) {
+		$pp_tab = 'additional';
+	} else {
+		$pp_tab = (!empty($_REQUEST['pp_caps_tab'])) ? sanitize_key($_REQUEST['pp_caps_tab']) : 'edit';
+	}
 	?>
 
 	<input type="hidden" name="pp_caps_tab" value="<?php echo esc_attr($pp_tab);?>" />
@@ -273,7 +277,12 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 				<div class="ppc-capabilities-tabs">
 					<ul>
 						<?php
-						$active_tab_slug = (!empty($_REQUEST['pp_caps_tab'])) ? sanitize_key($_REQUEST['pp_caps_tab']) : 'edit';
+						if (empty($_REQUEST['pp_caps_tab']) && !empty($_REQUEST['added'])) {
+							$active_tab_slug = 'additional';
+						} else {
+							$active_tab_slug = (!empty($_REQUEST['pp_caps_tab'])) ? sanitize_key($_REQUEST['pp_caps_tab']) : 'edit';
+						}
+
 						$active_tab_id = "cme-cap-type-tables-{$active_tab_slug}";
 
 						$ppc_tab_active = 'ppc-capabilities-tab-active';
