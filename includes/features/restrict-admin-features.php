@@ -229,7 +229,7 @@ class PP_Capabilities_Admin_Features
         $title = preg_replace('#(<img.*?>)#', '', $title);
 
         //strip other html tags
-        $title = strip_tags($title);
+        $title = wp_strip_all_tags($title);
 
         return $title;
     }
