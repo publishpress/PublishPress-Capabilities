@@ -78,7 +78,11 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 	<?php wp_nonce_field('capsman-general-manager'); ?>
 
 	<?php
-	$pp_tab = (!empty($_REQUEST['pp_caps_tab'])) ? sanitize_key($_REQUEST['pp_caps_tab']) : 'edit';
+	if (empty($_REQUEST['pp_caps_tab']) && !empty($_REQUEST['added'])) {
+		$pp_tab = 'additional';
+	} else {
+		$pp_tab = (!empty($_REQUEST['pp_caps_tab'])) ? sanitize_key($_REQUEST['pp_caps_tab']) : 'edit';
+	}
 	?>
 
 	<input type="hidden" name="pp_caps_tab" value="<?php echo esc_attr($pp_tab);?>" />
@@ -99,9 +103,9 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 	</p>
 
 	<fieldset>
-	<table id="akmin">
-	<tr>
-		<td class="content">
+	<table id="akmin"><tr><td>
+	<div class="pp-columns-wrapper pp-enable-sidebar">
+		<div class="pp-column-left">
 
 			<div style="float:right">
 
@@ -273,7 +277,12 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 				<div class="ppc-capabilities-tabs">
 					<ul>
 						<?php
-						$active_tab_slug = (!empty($_REQUEST['pp_caps_tab'])) ? sanitize_key($_REQUEST['pp_caps_tab']) : 'edit';
+						if (empty($_REQUEST['pp_caps_tab']) && !empty($_REQUEST['added'])) {
+							$active_tab_slug = 'additional';
+						} else {
+							$active_tab_slug = (!empty($_REQUEST['pp_caps_tab'])) ? sanitize_key($_REQUEST['pp_caps_tab']) : 'edit';
+						}
+
 						$active_tab_id = "cme-cap-type-tables-{$active_tab_slug}";
 
 						$ppc_tab_active = 'ppc-capabilities-tab-active';
@@ -734,6 +743,17 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 						$checks_per_row = get_option( 'cme_form-rows', 1 );
 						$i = 0; $first_row = true;
 
+                        ?>
+						<tr class="cme-bulk-select">
+                            <td colspan="<?php echo (int) $checks_per_row;?>">
+                                <input type="checkbox" class="cme-check-all" autocomplete="off" title="<?php esc_attr_e('check / uncheck all', 'capsman-enhanced');?>"> <span><?php _e('Capability Name', 'capability-manager-enhanced');?></span>
+								<span style="float:right">
+								&nbsp;&nbsp;<a class="cme-neg-all" href="#" title="<?php esc_attr_e('negate all (storing as disabled capabilities)', 'capsman-enhanced');?>">X</a> <a class="cme-switch-all" href="#" title="<?php esc_attr_e('negate none (add/remove all capabilities normally)', 'capsman-enhanced');?>">X</a>
+								</span>
+							</td>
+						</tr>
+
+                        <?php
 						$core_caps = _cme_core_caps();
 						foreach( array_keys($core_caps) as $cap_name ) {
 							$cap_name = sanitize_key($cap_name);
@@ -819,11 +839,13 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 						?>
 
 						<tr class="cme-bulk-select">
-						<td colspan="<?php echo (int) $checks_per_row;?>">
-						<span style="float:right">
-						<input type="checkbox" class="cme-check-all" autocomplete="off" title="<?php esc_attr_e('check/uncheck all', 'capsman-enhanced');?>">&nbsp;&nbsp;<a class="cme-neg-all" href="#" title="<?php esc_attr_e('negate all (storing as disabled capabilities)', 'capsman-enhanced');?>">X</a> <a class="cme-switch-all" href="#" title="<?php esc_attr_e('negate none (add/remove all capabilities normally)', 'capsman-enhanced');?>">X</a>
-						</span>
-						</td></tr>
+							<td colspan="<?php echo (int) $checks_per_row;?>">
+								<input type="checkbox" class="cme-check-all" autocomplete="off" title="<?php esc_attr_e('check / uncheck all', 'capsman-enhanced');?>"> <span><?php _e('Capability Name', 'capability-manager-enhanced');?></span>
+								<span style="float:right">
+								&nbsp;&nbsp;<a class="cme-neg-all" href="#" title="<?php esc_attr_e('negate all (storing as disabled capabilities)', 'capsman-enhanced');?>">X</a> <a class="cme-switch-all" href="#" title="<?php esc_attr_e('negate none (add/remove all capabilities normally)', 'capsman-enhanced');?>">X</a>
+								</span>
+							</td>
+						</tr>
 
 						</table>
 					</div>
@@ -859,6 +881,16 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 						$checks_per_row = get_option( 'cme_form-rows', 1 );
 						$i = 0; $first_row = true;
 
+                        ?>
+						<tr class="cme-bulk-select">
+                            <td colspan="<?php echo (int) $checks_per_row;?>">
+                                <input type="checkbox" class="cme-check-all" title="<?php esc_attr_e('check / uncheck all', 'capsman-enhanced');?>"> <span><?php _e('Capability Name', 'capability-manager-enhanced');?></span>
+								<span style="float:right">
+								&nbsp;&nbsp;<a class="cme-neg-all" href="#" title="<?php esc_attr_e('negate all (storing as disabled capabilities)', 'capsman-enhanced');?>">X</a> <a class="cme-switch-all" href="#" title="<?php esc_attr_e('negate none (add/remove all capabilities normally)', 'capsman-enhanced');?>">X</a>
+								</span>
+							</td>
+						</tr>
+                        <?php
 						foreach( array_keys($_plugin_caps) as $cap_name ) {
 							$cap_name = sanitize_key($cap_name);
 
@@ -924,11 +956,13 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 						?>
 
 						<tr class="cme-bulk-select">
-						<td colspan="<?php echo (int) $checks_per_row;?>">
-						<span style="float:right">
-						<input type="checkbox" class="cme-check-all" title="<?php esc_attr_e('check/uncheck all', 'capsman-enhanced');?>">&nbsp;&nbsp;<a class="cme-neg-all" href="#" autocomplete="off" title="<?php esc_attr_e('negate all (storing as disabled capabilities)', 'capsman-enhanced');?>">X</a> <a class="cme-switch-all" href="#" title="<?php esc_attr_e('negate none (add/remove all capabilities normally)', 'capsman-enhanced');?>">X</a>
-						</span>
-						</td></tr>
+							<td colspan="<?php echo (int) $checks_per_row;?>">
+								<input type="checkbox" class="cme-check-all" autocomplete="off" title="<?php esc_attr_e('check / uncheck all', 'capsman-enhanced');?>"> <span><?php _e('Capability Name', 'capability-manager-enhanced');?></span>
+								<span style="float:right">
+								&nbsp;&nbsp;<a class="cme-neg-all" href="#" title="<?php esc_attr_e('negate all (storing as disabled capabilities)', 'capsman-enhanced');?>">X</a> <a class="cme-switch-all" href="#" title="<?php esc_attr_e('negate none (add/remove all capabilities normally)', 'capsman-enhanced');?>">X</a>
+								</span>
+							</td>
+						</tr>
 
 						</table>
 						</div>
@@ -1048,6 +1082,16 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 						echo '<div class="ppc-filter-no-results" style="display:none;">' . esc_html__( 'No results found. Please try again with a different word.', 'capsman-enhanced' ) . '</div>';
 						?>
 						<table class="widefat fixed striped form-table cme-checklist">
+
+						<tr class="cme-bulk-select">
+                            <td colspan="<?php echo (int) $checks_per_row;?>">
+                                <input type="checkbox" class="cme-check-all" title="<?php esc_attr_e('check / uncheck all', 'capsman-enhanced');?>"> <span><?php _e('Capability Name', 'capability-manager-enhanced');?></span>
+								<span style="float:right">
+								&nbsp;&nbsp;<a class="cme-neg-all" href="#" title="<?php esc_attr_e('negate all (storing as disabled capabilities)', 'capsman-enhanced');?>">X</a> <a class="cme-switch-all" href="#" title="<?php esc_attr_e('negate none (add/remove all capabilities normally)', 'capsman-enhanced');?>">X</a>
+								</span>
+							</td>
+						</tr>
+
 						<?php
 						$centinel_ = true;
 						$i = 0; $first_row = true;
@@ -1157,11 +1201,13 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 						?>
 
 						<tr class="cme-bulk-select">
-						<td colspan="<?php echo (int) $checks_per_row;?>">
-						<span style="float:right">
-						<input type="checkbox" class="cme-check-all" title="<?php esc_attr_e('check/uncheck all', 'capsman-enhanced');?>">&nbsp;&nbsp;<a class="cme-neg-all" href="#" autocomplete="off" title="<?php esc_attr_e('negate all (storing as disabled capabilities)', 'capsman-enhanced');?>">X</a> <a class="cme-switch-all" href="#" title="<?php esc_attr_e('negate none (add/remove all capabilities normally)', 'capsman-enhanced');?>">X</a>
-						</span>
-						</td></tr>
+							<td colspan="<?php echo (int) $checks_per_row;?>">
+								<input type="checkbox" class="cme-check-all" autocomplete="off" title="<?php esc_attr_e('check / uncheck all', 'capsman-enhanced');?>"> <span><?php _e('Capability Name', 'capability-manager-enhanced');?></span>
+								<span style="float:right">
+								&nbsp;&nbsp;<a class="cme-neg-all" href="#" title="<?php esc_attr_e('negate all (storing as disabled capabilities)', 'capsman-enhanced');?>">X</a> <a class="cme-switch-all" href="#" title="<?php esc_attr_e('negate none (add/remove all capabilities normally)', 'capsman-enhanced');?>">X</a>
+								</span>
+							</td>
+						</tr>
 
 						</table>
 					</div>
@@ -1273,7 +1319,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 			/* ]]> */
 			</script>
 
-			<div style="display:inline-block; float:right;">
+			<div style="display:none; float:right;">
 			<?php
 			$level = ak_caps2level($rcaps);
 			?>
@@ -1302,15 +1348,25 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 			$save_caption = (in_array(sanitize_key(get_locale()), ['en_EN', 'en_US'])) ? 'Save Capabilities' : __('Save Changes', 'capsman-enhanced');
 			?>
 			<input type="submit" name="SaveRole" value="<?php echo esc_attr($save_caption);?>" class="button-primary" /> &nbsp;
-
-			<?php if ( current_user_can('administrator') && 'administrator' != $default ) : ?>
-				<a class="ak-delete" title="<?php echo esc_attr__('Delete this role', 'capsman-enhanced') ?>" href="<?php echo esc_url_raw(wp_nonce_url("admin.php?page={$this->ID}&amp;action=delete&amp;role={$default}", 'delete-role_' . $default)); ?>" onclick="if ( confirm('<?php echo esc_js(sprintf(__("You are about to delete the %s role.\n\n 'Cancel' to stop, 'OK' to delete.", 'capsman-enhanced'), $roles[$default])); ?>') ) { return true;}return false;"><?php esc_html_e('Delete Role', 'capsman-enhanced')?></a>
-			<?php endif; ?>
 		</p>
 
-		</td>
-		<td class="sidebar">
-			<?php do_action('publishpress-caps_sidebar_top');?>
+		</div><!-- .pp-column-left -->
+		<div class="pp-column-right capabilities-sidebar">
+			<?php
+			do_action('publishpress-caps_sidebar_top');
+
+			$banners = new PublishPress\WordPressBanners\BannersMain;
+			$banners->pp_display_banner(
+			    '',
+			    __( 'PublishPress Capabilities is safe to use', 'capsman-enhanced' ),
+			    array(
+			        __( 'This plugin automatically creates a backup whenever you save changes. You can use these backups to
+restore an earlier version of your roles and capabilities.', 'capsman-enhanced' )
+			    ),
+			    admin_url( 'admin.php?page=pp-capabilities-backup' ),
+			    __( 'Go to the Backup feature', 'capsman-enhanced' )
+			);
+			?>
 
 			<dl>
 				<dt><?php esc_html_e('Add Capability', 'capsman-enhanced'); ?></dt>
@@ -1327,35 +1383,9 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 				do_action('publishpress-caps_sidebar_bottom');
 			?>
 
-			<dl>
-				<dt><?php (!in_array(get_locale(), ['en_EN', 'en_US'])) ? esc_html_e('Copy this role to', 'capsman-enhanced') : printf('Copy %s Role', esc_html(translate_user_role($roles[$default]))); ?></dt>
-				<dd style="text-align:center;">
-					<?php $class = ( $support_pp_only_roles ) ? 'tight-text' : 'regular-text'; ?>
-					<p><input type="text" name="copy-name"  class="<?php echo esc_attr($class);?>" placeholder="<?php esc_attr_e('Role Name', 'capsman-enhanced') ?>" />
-
-					<?php if( $support_pp_only_roles ) : ?>
-					<label for="copy_role_pp_only" title="<?php esc_attr_e('Make role available for supplemental assignment to Permission Groups only', 'capsman-enhanced');?>"> <input type="checkbox" name="copy_role_pp_only" id="copy_role_pp_only" autocomplete="off" value="1"> <?php esc_html_e('hidden', 'capsman-enhanced'); ?> </label>
-					<?php endif; ?>
-
-					<br />
-					<input type="submit" name="CopyRole" value="<?php esc_attr_e('Copy', 'capsman-enhanced') ?>" class="button" />
-					</p>
-				</dd>
-			</dl>
-
-			<dl>
-				<dt><?php esc_html_e('Rename Role', 'capsman-enhanced'); ?></dt>
-				<dd style="text-align:center;">
-					<p><input type="text" name="rename-name" class="regular-text" placeholder="<?php esc_attr_e('New Role Name', 'capsman-enhanced') ?>" />
-
-					<br />
-					<input type="submit" name="RenameRole" value="<?php esc_attr_e('Rename', 'capsman-enhanced') ?>" class="button" />
-					</p>
-				</dd>
-			</dl>
-		</td>
-	</tr>
-	</table>
+		</div><!-- .pp-column-right -->
+	</div><!-- .pp-columns-wrapper -->
+	</td></tr></table> <!-- .akmin -->
 	</fieldset>
 	</form>
 

@@ -168,6 +168,20 @@ td.cap-locked a.neg-cap {
 display: none !important;
 }
 
+tr.cme-bulk-select td {
+padding-top: 8px;
+padding-bottom: 8px;
+color: black;
+-webkit-user-select: none;  
+-moz-user-select: none;    
+-ms-user-select: none;      
+user-select: none;
+}
+
+tr.cme-bulk-select span {
+vertical-align: bottom;
+}
+
 a.type-off, a.neg-cap, a.cme-neg-all, a.neg-type-caps {
 color: #800;
 }
@@ -219,10 +233,6 @@ div.pressshack-admin-wrapper footer {
 padding-right: 5px;
 }
 
-.toplevel_page_pp-capabilities div.pressshack-admin-wrapper footer {
-padding-right: 270px;
-}
-
 #akmin div.publishpress-headline {
   line-height:25px;
 }
@@ -242,11 +252,11 @@ padding-right: 270px;
   font-weight:bold;
 }
 
-table#akmin td.sidebar li.publishpress-contact{
+table#akmin td li.publishpress-contact{
   text-align:center;
 }
 
-table#akmin td.sidebar li.publishpress-contact a{
+table#akmin td li.publishpress-contact a{
   padding:5px 0 5px 0;
 }
 
@@ -329,12 +339,10 @@ overflow:auto;
 padding:0;
 background-color: #eee;
 padding: 5px;
-width: min-content;
 text-indent:10px;
 }
 div.publishpress-caps-backup #cme_select_restore li {
 padding: 7px 15px 7px 7px;
-white-space: nowrap;
 background-color: #f4f4f4;
 margin: 0;
 line-height:25px;
@@ -426,7 +434,7 @@ div.publishpress-caps-backup td.cme-backup-info .cme-negate {
   text-align:center;
 }
 
-#ppcb-tab-reset span.pp-caps-warning {
+.publishpress-caps-backup span.pp-caps-warning {
   color:red;
 }
 
@@ -585,6 +593,125 @@ body.capabilities_page_pp-capabilities-admin-features .pp-capability-menus-selec
   width: 70px !important;
 }
 
+.pp-column-right.capabilities-sidebar .button.button-primary {
+    color: #2271b1;
+    border-color: #2271b1;
+    background: #f6f7f7;
+}
+
+/* Roles screen */
+
+.roles-capabilities-title {
+    font-weight: bold !important;
+    padding-left: 0 !important;
+}
+.pp-role-edit-wrap #publishing-action {
+    text-align: unset !important;
+    float: unset !important;
+}
+
+.pp-roles-delete-botton {
+    color: red !important;
+    border-color: red !important;
+}
+
+.ppc-roles-section {
+    min-height: 370px;
+}
+
+#poststuff .ppc-roles-section.postbox .inside {
+    margin-left: 0 !important;
+    margin-top: 0 !important;
+    padding-left: 0 !important;
+}
+
+.ppc-roles-section input[type=text],
+.ppc-roles-section input[type=number],
+.ppc-roles-section select {
+    width: 300px;
+}
+
+.ppc-roles-section #poststuff {
+    min-height: 600px;
+}
+
+ul.ppc-roles-tab {
+    margin: 0;
+    width: 20%;
+    float: left;
+    line-height: 1em;
+    padding: 0 0 10px;
+    position: relative;
+    background-color: #fafafa;
+    border-right: 1px solid #eee;
+    box-sizing: border-box;
+    min-height: 363px;
+}
+.ppc-roles-tab-content {
+    float: left;
+    width: 80%;
+    min-height: 275px;
+    box-sizing: border-box;
+    padding-left: 10px;
+}
+
+
+ul.ppc-roles-tab li {
+    margin: 0;
+    padding: 0;
+    display: block;
+    position: relative;
+}
+ul.ppc-roles-tab li a {
+    margin: 0;
+    padding: 10px;
+    display: block;
+    box-shadow: none;
+    text-decoration: none;
+    line-height: 20px!important;
+    border-bottom: 1px solid #eee;
+}
+
+ul.ppc-roles-tab li a span {
+    margin-right: .618em;
+}
+
+ul.ppc-roles-tab li a span.dashicons {
+    margin-left: 0;
+    font-size: 15px;
+}
+ul.ppc-roles-tab li.active a {
+    color: #555;
+    position: relative;
+    background-color: #eee;
+}
+
+.ppc-roles-sidebar ul.pp-roles-capabilities li {
+    margin-bottom: 0;
+}
+
+.ppc-roles-sidebar ul.pp-roles-capabilities li::before {
+    font-family: Dashicons;
+    font-weight: 400;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    content: "\f12a";
+    font-variant: normal;
+    text-decoration: none;
+    color: green;
+}
+.roles-capabilities-load-more,
+.roles-capabilities-load-less {
+    cursor: pointer;  
+    color: #2271b1;
+    text-decoration: underline;
+}
+
+.ppc-roles-section .red-warning {
+    color: red;
+    font-weight: bold;
+}
 
 /* Filters */
 .ppc-filter-wrapper {
@@ -648,6 +775,11 @@ body.capabilities_page_pp-capabilities-admin-features .pp-capability-menus-selec
 #ppc-capabilities-wrapper .ppc-capabilities-content > div > h3 {
 	margin-top: 0;
 	display: inline-block;
+}
+
+#publishpress_caps_form table#akmin td .pp-sidebar-box p:not(:last-of-type) {
+	margin: 15px 0;
+	padding: 0;
 }
 
 @media (max-width: 1199px) {

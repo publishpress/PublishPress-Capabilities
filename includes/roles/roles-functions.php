@@ -77,3 +77,44 @@ function pp_roles_user_has_role($user_id, $roles)
 
     return false;
 }
+
+/**
+ * Check if role exist and return it data
+ *
+ * @param string $role_name
+ * @return bool|WP_Role
+ */
+function pp_roles_get_role_data($role_name)
+{
+
+    $role = false;
+    $all_roles      = pp_capabilities_roles()->manager->get_roles_for_list_table('all', true);
+
+    foreach ($all_roles as $role_data) {
+        if ($role_name === $role_data['role']) {
+            $role    = $role_data;
+            break;
+        }
+    }
+
+    return $role;
+}
+
+
+/**
+ * Remove capabilities role levels
+ *
+ * @param array $capabilities
+ * @return array
+ */
+function pp_roles_remove_capabilities_role_level($capabilities)
+{
+
+    for($i = 0; $i<=10; $i++) {
+		if (array_key_exists("level_{$i}", $capabilities)) {
+			unset($capabilities["level_{$i}"]);
+		}
+    }
+
+	return $capabilities;
+}

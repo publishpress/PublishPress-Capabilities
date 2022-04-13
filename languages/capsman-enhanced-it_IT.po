@@ -2,17 +2,17 @@
 # This file is distributed under the same license as the Plugins - PublishPress Capabilities &#8211; User Role Access, Editor Permissions, Admin Menus - Stable Readme (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-12-02 19:25+0100\n"
+"Project-Id-Version: Plugins - PublishPress Capabilities &#8211; User Role Access, Editor Permissions, Admin Menus - Stable Readme (latest release)\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2022-02-28 10:45+0100\n"
+"Last-Translator: \n"
+"Language-Team: Angelo Giammarresi - info@wocmultimedia.com\n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 3.0\n"
-"Language: it\n"
-"Project-Id-Version: Plugins - PublishPress Capabilities &#8211; User Role Access, Editor Permissions, Admin Menus - Stable Readme (latest release)\n"
-"POT-Creation-Date: \n"
-"Last-Translator: \n"
-"Language-Team: Angelo Giammarresi - info@wocmultimedia.com\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. Plugin name.
 msgid "PublishPress Capabilities - User Role Access, Editor Permissions, Admin Menus"
@@ -905,6 +905,66 @@ msgstr "7. Backup e ripristino dei ruoli utente e delle capacità"
 #. Found in description header.
 msgid "2. Capabilities for any Post Type"
 msgstr "2. Capacità per ogni tipo di articolo"
+
+#. Found in changelog list item.
+msgid "Compat : WordPress 5.9 - failure adding / editing posts under some Editor Features configurations (work around WP hooking late-defined function _disable_block_editor_for_navigation_post_type)"
+msgstr "Compatibilità: WordPress 5.9 - mancata aggiunta/modifica di articoli sotto alcune configurazioni di funzioni dell'editor (work around WP hooking late-defined function _disable_block_editor_for_navigation_post_type)"
+
+#. Found in changelog list item.
+msgid "Fixed : CSRF vulnerability"
+msgstr "Fixed : CSRF vulnerability"
+
+#. Found in changelog list item.
+msgid "Change : Capabilities screen - Tab for PublishPress Capabilities #220"
+msgstr "Change : Capabilities screen - Tab for PublishPress Capabilities #220"
+
+#. Found in changelog list item.
+msgid "Change : Admin Features - Captions use dashes, not numbers #229"
+msgstr "Change : Admin Features - Captions use dashes, not numbers #229"
+
+#. Found in changelog list item.
+msgid "Feature : Admin Features - More items available for restriction #240"
+msgstr "Feature : Admin Features - More items available for restriction #240"
+
+#. Found in changelog list item.
+msgid "Feature : Admin Features - Restrict Admin Bar or individual Admin Bar elements"
+msgstr "Feature : Admin Features - Restrict Admin Bar or individual Admin Bar elements"
+
+#. Found in changelog list item.
+msgid "Feature : Editor Features - Restrict editor elements for custom post types"
+msgstr "Feature : Editor Features - Restrict editor elements for custom post types"
+
+#. Found in changelog list item.
+msgid "Feature : Filter Capabilities display by post type or text entry"
+msgstr "Feature : Filter Capabilities display by post type or text entry"
+
+#. Found in changelog list item.
+msgid "Lang : Spanish, French, Italian"
+msgstr "Lingue: Spagnolo, Francese, Italiano"
+
+#. Found in changelog list item.
+msgid "Fixed : Escape output variables"
+msgstr "Fixed : Escape output variables"
+
+#. Found in changelog list item.
+msgid "Fixed : Input sanitization consistency"
+msgstr "Fixed : Input sanitization consistency"
+
+#. Found in changelog list item.
+msgid "Fixed : After role rename, title in dropdown does not refresh"
+msgstr "Fixed : After role rename, title in dropdown does not refresh"
+
+#. Found in changelog list item.
+msgid "Fixed : Capability names with dashes could not be added"
+msgstr "Fixed : Capability names with dashes could not be added"
+
+#. Found in changelog list item.
+msgid "Fixed : PHP Notice on Capabilities screen"
+msgstr "Fixed : PHP Notice on Capabilities screen"
+
+#. Found in changelog list item.
+msgid "Fixed : Security issue"
+msgstr "Fixed : Security issue"
 
 #. Found in changelog list item.
 msgid "Feature : New \"Admin Features\" screen #200"

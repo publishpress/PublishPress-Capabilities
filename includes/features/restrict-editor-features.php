@@ -169,7 +169,8 @@ class PP_Capabilities_Post_Features {
 
         // apply the stored restrictions by css
         if ($restrict_elements = array_unique($restrict_elements)) {
-            echo '<style>' . implode(',', array_map('esc_attr', $restrict_elements)) . ' {display:none !important;}</style>';
+            //add inline styles
+            ppc_add_inline_style('' . implode(',', array_map('esc_attr', $restrict_elements)) . ' {display:none !important;}');
         }
     }
 
@@ -259,7 +260,8 @@ class PP_Capabilities_Post_Features {
                 ['editor_script' => 'ppc-features-block-script']
             );
 
-            echo '<style>' . implode(',', array_map('esc_attr', $restrict_elements)) . ' {display:none !important;}</style>';
+            //add inline styles
+            ppc_add_inline_style('' . implode(',', array_map('esc_attr', $restrict_elements)) . ' {display:none !important;}');
         }
     }
 
@@ -315,6 +317,7 @@ class PP_Capabilities_Post_Features {
 
             esc_html__('Document Panel', 'capabilities-pro') => [
                 'status_visibility' => ['label' => esc_html__('Status & visibility', 'capsman-enhanced'),   'elements' => 'post-status'],
+                'template'          => ['label' => esc_html__('Template', 'capsman-enhanced'),              'elements' => 'template'],
                 'permalink' =>         ['label' => esc_html__('Permalink', 'capsman-enhanced'),             'elements' => 'post-link'],
                 'categories' =>        ['label' => esc_html__('Categories', 'capsman-enhanced'),            'elements' => 'taxonomy-panel-category'],
                 'tags' =>              ['label' => esc_html__('Tags', 'capsman-enhanced'),                  'elements' => 'taxonomy-panel-post_tag'],

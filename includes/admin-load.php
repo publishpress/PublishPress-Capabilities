@@ -39,7 +39,7 @@ class PP_Capabilities_Admin_UI {
 
         || (!empty($_REQUEST['action']) && in_array($_REQUEST['action'], ['pp-roles-add-role', 'pp-roles-delete-role', 'pp-roles-hide-role', 'pp-roles-unhide-role']))
         || ( ! empty($_SERVER['SCRIPT_NAME']) && strpos(sanitize_text_field($_SERVER['SCRIPT_NAME']), 'p-admin/plugins.php' ) && ! empty($_REQUEST['action'] ) ) 
-        || ( isset($_GET['action']) && 'reset-defaults' == $_GET['action'] )
+        || ( isset($_GET['action']) && ('reset-defaults' == $_GET['action']) && isset($_REQUEST['_wpnonce']) && wp_verify_nonce($_REQUEST['_wpnonce'], 'capsman-reset-defaults') )
         || in_array( $pagenow, array( 'users.php', 'user-edit.php', 'profile.php', 'user-new.php' ) )
         ) ) {
             global $capsman;
@@ -104,6 +104,10 @@ class PP_Capabilities_Admin_UI {
 
     private function applyFeatureRestrictions($editor = 'gutenberg') {
         global $pagenow;
+
+        if (is_multisite() && is_super_admin() && !defined('PP_CAPABILITIES_RESTRICT_SUPER_ADMIN')) {
+            return;
+        }
 
         // Return if not a post editor request
         if (!in_array($pagenow, ['post.php', 'post-new.php'])) {

@@ -7,7 +7,9 @@ $def_post_types = array_unique(apply_filters('pp_capabilities_feature_post_types
 
 asort($def_post_types);
 
-if (count($def_post_types) > 6) {
+$types_limit = (defined('PP_CAPABILITIES_EDITOR_FEATURES_MAX_TYPES')) ? PP_CAPABILITIES_EDITOR_FEATURES_MAX_TYPES : 12;
+
+if (count($def_post_types) > $types_limit ) {
     ?>
     <style type="text/css">
     .pp-columns-wrapper.pp-enable-sidebar .pp-column-left {width: 100% !important;}

@@ -29,4 +29,7 @@ if(ppc_features.disabled_panel){
     if(disabled_panel.includes("post-status")){
         wp.data.dispatch( 'core/edit-post').removeEditorPanel( 'post-status' ) ;// Post status
     }
+    if(disabled_panel.includes("template")){
+      wp.data.dispatch( 'core/edit-post').removeEditorPanel( 'template' ) ;// Template
+    }
 }

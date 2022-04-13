@@ -7,7 +7,7 @@ Tags: user roles, capabilities, permissions, admin menus, post editing, post typ
 Requires at least: 4.9.7
 Tested up to: 5.9
 Requires PHP: 5.6.20
-Stable tag: 2.3.4
+Stable tag: 2.3.5
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -408,6 +408,15 @@ Fixed : Non-administrators with user editing capabilities could add new Administ
 Fixed : Security issue. Please update.
 
 == Changelog ==
+
+= 2.3.5 - 13 Apr 2022 =
+  * Feature : Export / Import for new features
+  * Change : Clarify captions on Roles, Backup screens
+  * Fixed : Multisite: Don't apply Feature Restrictions to Super Administrators unless constant PP_CAPABILITIES_RESTRICT_SUPER_ADMIN is defined
+  * Fixed : Capabilities could not be updated if third party code executes too early. Now support constant PP_CAPABILITIES_COMPAT_MODE to work around conflicts.
+  * Fixed : Coding standards - WordPress VIP scan compliance improvements
+  * Compat : LoginWP - custom redirect failed
+  * Lang : New French, Italian and Spanish translations
 
 = 2.3.4 - 26 Jan 2022 =
   * Compat : WordPress 5.9 - failure adding / editing posts under some Editor Features configurations (work around WP hooking late-defined function _disable_block_editor_for_navigation_post_type)
