@@ -402,10 +402,16 @@ class CapabilityManager
 
                 function($arr) {
                     return [
-                        'cb' => '<input type="checkbox"/>',
-                        'name' => __('Name', 'capsman-enhanced'),
-                        'role' => __('Role', 'capsman-enhanced'),
-                        'count' => __('Users', 'capsman-enhanced'),
+                        'cb' 			  => '<input type="checkbox"/>',
+                        'name'            => esc_html__('Role Name', 'capsman-enhanced'),
+						'role'            => esc_html__('Role', 'capsman-enhanced'),
+						'type'            => esc_html__('Type', 'capsman-enhanced'),
+						'count'           => esc_html__('Users', 'capsman-enhanced'),
+						'capabilities'    => esc_html__('Capabilities', 'capsman-enhanced'),
+						'editor_features' => esc_html__('Editor Features', 'capsman-enhanced'),
+						'admin_features'  => esc_html__('Admin Features', 'capsman-enhanced'),
+						'admin_menus'     => esc_html__('Admin Menus', 'capsman-enhanced'),
+						'nav_menus'       => esc_html__('Nav Menus', 'capsman-enhanced'),
                     ];
                 }
             );
