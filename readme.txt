@@ -7,7 +7,7 @@ Tags: user roles, capabilities, permissions, admin menus, post editing, post typ
 Requires at least: 4.9.7
 Tested up to: 5.9
 Requires PHP: 5.6.20
-Stable tag: 2.3.5
+Stable tag: 2.3.6
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -409,10 +409,14 @@ Fixed : Security issue. Please update.
 
 == Changelog ==
 
+= 2.3.6 - 14 Apr 2022 =
+  * Fixed : Non-administrators cannot access profile screen
+  * Compat : WooCommerce - Shop Managers could not access Users
+
 = 2.3.5 - 13 Apr 2022 =
   * Feature : Export / Import for new features
   * Change : Clarify captions on Roles, Backup screens
-  * Fixed : Multisite: Don't apply Feature Restrictions to Super Administrators unless constant PP_CAPABILITIES_RESTRICT_SUPER_ADMIN is defined
+  * Fixed : Multisite: Don't apply Feature, Menu Restrictions to Super Administrators unless constant PP_CAPABILITIES_RESTRICT_SUPER_ADMIN is defined
   * Fixed : Capabilities could not be updated if third party code executes too early. Now support constant PP_CAPABILITIES_COMPAT_MODE to work around conflicts.
   * Fixed : Coding standards - WordPress VIP scan compliance improvements
   * Compat : LoginWP - custom redirect failed
