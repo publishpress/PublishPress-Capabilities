@@ -910,16 +910,15 @@ class CapabilityManager
 	 */
 	function processExport()
 	{
-        global  $wpdb;
-
-		if ((!is_multisite() || !is_super_admin()) && !current_user_can('administrator') && !current_user_can('restore_roles')) {
-		    // TODO: Implement exceptions.
-			wp_die('<strong>' . esc_html__('You do not have permission to perform this action.', 'capsman-enhanced') . '</strong>');
-		}
+        global $wpdb;
 
         if ( isset($_POST['export_backup']) && isset($_POST['pp_capabilities_export_section']) && !empty($_POST['pp_capabilities_export_section'])) {
             check_admin_referer('pp-capabilities-backup');
 
+			if ((!is_multisite() || !is_super_admin()) && !current_user_can('administrator') && !current_user_can('restore_roles')) {
+			    // TODO: Implement exceptions.
+				wp_die('<strong>' . esc_html__('You do not have permission to perform this action.', 'capsman-enhanced') . '</strong>');
+			}
 
             $export_option   = array_map('sanitize_text_field', $_POST['pp_capabilities_export_section']);
             $backup_sections = pp_capabilities_backup_sections();
