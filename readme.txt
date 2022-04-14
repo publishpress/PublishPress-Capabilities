@@ -412,6 +412,7 @@ Fixed : Security issue. Please update.
 = 2.3.6 - 14 Apr 2022 =
   * Fixed : Non-administrators cannot access profile screen
   * Compat : WooCommerce - Shop Managers could not access Users
+  * Compat : WooCommerce - Editor Feature restrictions did not hide Product Categories, Tags
 
 = 2.3.5 - 13 Apr 2022 =
   * Feature : Export / Import for new features
