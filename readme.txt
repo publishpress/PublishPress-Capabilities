@@ -409,6 +409,9 @@ Fixed : Security issue. Please update.
 
 == Changelog ==
 
+= 2.3.7 - 21 Apr 2022 =
+  * Lang : Translations were not loaded on some sites
+
 = 2.3.6 - 14 Apr 2022 =
   * Fixed : Non-administrators cannot access profile screen
   * Compat : WooCommerce - Shop Managers could not access Users
