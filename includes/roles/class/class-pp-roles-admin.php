@@ -151,7 +151,7 @@ class Pp_Roles_Admin
             ],
             'role_slug'      => [
                 'label'     => esc_html__('Role Slug', 'capsman-enhanced'),
-                'description' => esc_html__('The “slug” is the URL-friendly version of the role. It is usually all lowercase and contains only letters, numbers and underscores.', 'capsman-enhanced'),
+                'description' => esc_html__('The "slug" is the URL-friendly version of the role. It is usually all lowercase and contains only letters, numbers and underscores.', 'capsman-enhanced'),
                 'type'      => 'text',
                 'value_key' => 'role',
                 'tab'       => 'general',
