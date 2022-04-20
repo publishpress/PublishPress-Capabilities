@@ -18,10 +18,10 @@ class PP_Capabilities_Admin_UI {
          */
         require_once (dirname(CME_FILE) . '/classes/pp-capabilities-notices.php');
 
-        add_action('init', [$this, 'featureRestrictionsGutenberg']);
+        add_action('init', [$this, 'featureRestrictionsGutenberg'], PHP_INT_MAX - 1);
 
         if (is_admin()) {
-            add_action('admin_init', [$this, 'featureRestrictionsClassic']);
+            add_action('admin_init', [$this, 'featureRestrictionsClassic'], PHP_INT_MAX - 1);
         }
 
         add_action('admin_enqueue_scripts', [$this, 'adminScripts'], 100);
