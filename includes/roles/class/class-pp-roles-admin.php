@@ -160,6 +160,7 @@ class Pp_Roles_Admin
             ],
             'role_level'     => [
                 'label'     => esc_html__('Role Level', 'capsman-enhanced'),
+                'description' => esc_html__('Each user role in WordPress has a different level from 0 to 10. The lowest level is 0 and is attached to the Subscriber role by default. The highest level is 10 is attached to the Administrator role by default.', 'capsman-enhanced'),
                 'type'      => 'select',
                 'value_key' => '',
                 'tab'       => 'advanced',
@@ -255,6 +256,16 @@ class Pp_Roles_Admin
                             </option>
                         <?php } ?>
                     </select>
+                    <?php if (isset($args['description'])) : ?>
+                        <p class="description">
+                            <?php echo esc_html($args['description']); ?>
+                            <?php if ($key === 'role_level') : ?>
+                                <a href="https://publishpress.com/blog/user-role-levels/" target="blank">
+                                    <?php esc_attr_e('Read more on Role Level.',  'capsman-enhanced'); ?>
+                                </a>
+                            <?php endif; ?>
+                        </p>
+                    <?php endif; ?>
                 <?php
                 elseif ($args['type'] === 'button') :
                     ?>
