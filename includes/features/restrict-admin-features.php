@@ -229,7 +229,7 @@ class PP_Capabilities_Admin_Features
         $title = preg_replace('#(<img.*?>)#', '', $title);
 
         //strip other html tags
-        $title = strip_tags($title);
+        $title = wp_strip_all_tags($title);
 
         return $title;
     }
@@ -260,6 +260,11 @@ class PP_Capabilities_Admin_Features
     public static function adminFeaturedRestriction()
     {
 		global $ppc_disabled_toolbar, $ppc_disabled_widget;
+        
+        if (is_multisite() && is_super_admin() && !defined('PP_CAPABILITIES_RESTRICT_SUPER_ADMIN')) {
+            return;
+        }
+
         // Get all user roles.
         $user_roles = wp_get_current_user()->roles;
         $disabled_features = get_option("capsman_disabled_admin_features", []);
@@ -271,6 +276,7 @@ class PP_Capabilities_Admin_Features
                 $all_disabled_elements[] = $disabled_features[$role];
             }
         }
+
 		//merge all array values incase it's more than role
         //$all_disabled_elements = array_merge(...$all_disabled_elements);  // This is a PHP 7.4 operator
         $all_disabled_elements = (is_array($all_disabled_elements) && isset($all_disabled_elements[0])) ? array_merge($all_disabled_elements[0]) : [];
@@ -341,8 +347,8 @@ class PP_Capabilities_Admin_Features
 	 */
     public static function disableDashboardBarBackend()
     {
-        echo '<style>html.wp-toolbar { padding-top:0!important; }</style>';
-        echo '<style>#wpadminbar { display:none!important }</style>';
+        //add inline styles
+        ppc_add_inline_style('html.wp-toolbar { padding-top:0!important; } #wpadminbar {display:none !important;}');
     }
 
 	/**

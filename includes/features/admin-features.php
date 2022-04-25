@@ -312,6 +312,31 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                     window.location = '<?php echo esc_url_raw(admin_url('admin.php?page=pp-capabilities-admin-features&role=')); ?>' + $(this).val() + ''
 
                 })
+
+                // -------------------------------------------------------------
+                //   Admin Toolbar Check
+                // -------------------------------------------------------------
+                $(document).on('change', '.pp-capability-menus-wrapper .ppc-menu-row.parent-menu.admintoolbar .check-item', function() {
+
+                    if ($(this).is(':checked')) {
+                        //add class if value is checked
+                        $('.ppc-menu-row.child-menu.admintoolbar').find('.menu-item-link').addClass('restricted')
+
+                        //toggle all checkbox
+                        $('.ppc-menu-row.child-menu.admintoolbar').find("input[type='checkbox'][name='capsman_disabled_admin_features[]']").prop('checked', true)
+                        $('.ppc-menu-row.child-menu.admintoolbar').find('.menu-item-link').addClass('restricted')
+
+                    } else {
+                        //unchecked value
+                        $('.ppc-menu-row.child-menu.admintoolbar').find('.menu-item-link').removeClass('restricted')
+
+                        //toggle all checkbox
+                        $('.ppc-menu-row.child-menu.admintoolbar').find("input[type='checkbox'][name='capsman_disabled_admin_features[]']").prop('checked', false)
+                        $('.ppc-menu-row.child-menu.admintoolbar').find('.menu-item-link').removeClass('restricted')
+
+                    }
+
+                })
             })
             /* ]]> */
         </script>

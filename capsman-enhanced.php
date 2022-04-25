@@ -3,7 +3,7 @@
  * Plugin Name: PublishPress Capabilities
  * Plugin URI: https://publishpress.com/capability-manager/
  * Description: Manage WordPress role definitions, per-site or network-wide. Organizes post capabilities by post type and operation.
- * Version: 2.3.4
+ * Version: 2.3.6
  * Author: PublishPress
  * Author URI: https://publishpress.com/
  * Text Domain: capsman-enhanced
@@ -25,19 +25,19 @@
  * @copyright   Copyright (C) 2009, 2010 Jordi Canals; modifications Copyright (C) 2022 PublishPress
  * @license		GNU General Public License version 3
  * @link		https://publishpress.com/
- * @version 	2.3.4
+ * @version 	2.3.6
  */
 
 if (!defined('CAPSMAN_VERSION')) {
-	define('CAPSMAN_VERSION', 			'2.3.4');
-	define('CAPSMAN_ENH_VERSION', 		'2.3.4');
-	define('PUBLISHPRESS_CAPS_VERSION', '2.3.4');
+	define('CAPSMAN_VERSION', 			'2.3.6');
+	define('CAPSMAN_ENH_VERSION', 		'2.3.6');
+	define('PUBLISHPRESS_CAPS_VERSION', '2.3.6');
 }
 
 foreach (get_option('active_plugins') as $plugin_file) {
 	if ( false !== strpos($plugin_file, 'capsman.php') ) {
 		add_action('admin_notices', function() {
-			echo '<div id="message" class="error fade" style="color: black">' . esc_html__( '<strong>Error:</strong> PublishPress Capabilities cannot function because another copy of Capability Manager is active.', 'capsman-enhanced' ) . '</div>';
+			echo '<div id="message" class="error fade" style="color: black">' . sprintf(esc_html__('%1s Error: %2s  PublishPress Capabilities cannot function because another copy of Capability Manager is active.', 'capsman-enhanced'), '<strong>', '</strong>') . '</div>';
 		});
 		return;
 	}
@@ -67,7 +67,7 @@ if ($pro_active) {
         function($links, $file)
         {
             if ($file == plugin_basename(__FILE__)) {
-                $links[]= esc_html__('<strong>This plugin can be deleted.</strong>', 'press-permit-core');
+                $links[]= '<strong>' . esc_html__('This plugin can be deleted.', 'capsman-enhanced') . '</strong>';
             }
 
             return $links;
@@ -144,11 +144,6 @@ if ( is_multisite() )
 // Check if Permissions is installed
 if (!cme_is_plugin_active('press-permit-core.php') && !cme_is_plugin_active('presspermit-pro.php')) {
 	define('CAPSMAN_PERMISSIONS_INSTALLED', false);
-
-	// Sidebar banners library
-	if (!defined('PP_WP_BANNERS_VERSION')) {
-	    require_once __DIR__ . '/vendor/publishpress/wordpress-banners/BannersMain.php';
-	}
 } else {
 	define('CAPSMAN_PERMISSIONS_INSTALLED', true);
 }

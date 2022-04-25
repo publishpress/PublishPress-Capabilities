@@ -157,5 +157,80 @@ jQuery(document).ready( function($) {
 	    } else {
 	        $(this).parent().siblings('.ppc-filter-no-results').hide(); // Hide "no results" message
 	    }
-	});
+  });
+
+  /**
+     * Roles tab toggle
+     */
+   $(document).on('click', '.ppc-roles-tab li', function (event) {
+      event.preventDefault();
+
+      var clicked_tab = $(this).attr('data-tab');
+
+      //remove active class from all tabs
+      $('.ppc-roles-tab li').removeClass('active');
+      //add active class to current tab
+      $(this).addClass('active');
+
+      //hide all tabs contents
+      $('.pp-roles-tab-tr').hide();
+      //show this current tab contents
+     $('.pp-roles-' + clicked_tab + '-tab').show();
+   });
+  
+   /**
+    * Roles capabilities load more button
+    */
+    $(document).on('click', '.roles-capabilities-load-more', function (event) {
+       event.preventDefault();
+ 
+      $('.roles-capabilities-load-more').hide();
+     
+      $('.roles-capabilities-load-less').show();
+    
+      $('ul.pp-roles-capabilities li').show();
+   });
+  
+   /**
+    * Roles capabilities load less button
+    */
+    $(document).on('click', '.roles-capabilities-load-less', function (event) {
+       event.preventDefault();
+ 
+      $('.roles-capabilities-load-less').hide();
+     
+      $('.roles-capabilities-load-more').show();
+    
+      $('ul.pp-roles-capabilities li').hide();
+
+      $('ul.pp-roles-capabilities').children().slice(0, 6).show();
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+   });
+  
+  /**
+   * Capabilities role slug validation
+   */
+  $('.ppc-roles-tab-content input[name="role_slug"]').on('keyup', function (e) {
+    is_role_slug_exist();
+  });
+
+  if ($('#pp-role-slug-exists').length > 0) {
+    is_role_slug_exist();
+  }
+
+  function is_role_slug_exist() {
+    if ($('.ppc-roles-tab-content input[name="role_slug"]').attr('readonly') !== 'readonly') {
+      var value = $('.ppc-roles-tab-content input[name="role_slug"]').val();
+      var slugexists = $('#pp-role-slug-exists')
+      var all_roles = $('.ppc-roles-all-roles').val();
+      var role_array = all_roles.split(',');
+      if (role_array.includes(value)) {
+        slugexists.show();
+      } else {
+        slugexists.hide();
+      }
+    }
+  }
+
 });

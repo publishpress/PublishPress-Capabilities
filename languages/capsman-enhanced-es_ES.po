@@ -1,1695 +1,1838 @@
-# Translation of Plugins - PublishPress Capabilities &#8211; User Role Access, Editor Permissions, Admin Menus - Stable Readme (latest release) in Spanish (Spain)
-# This file is distributed under the same license as the Plugins - PublishPress Capabilities &#8211; User Role Access, Editor Permissions, Admin Menus - Stable Readme (latest release) package.
+# Translation of Plugins - PublishPress Capabilities &#8211; User Role Access, Editor Permissions, Admin Menus - Stable (latest release) in Spanish (Spain)
+# This file is distributed under the same license as the Plugins - PublishPress Capabilities &#8211; User Role Access, Editor Permissions, Admin Menus - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-12-03 21:32+0100\n"
+"Project-Id-Version: Plugins - PublishPress Capabilities &#8211; User Role "
+"Access, Editor Permissions, Admin Menus - Stable (latest release)\n"
+"POT-Creation-Date: 2022-04-21 11:08-0400\n"
+"PO-Revision-Date: 2022-04-21 11:08-0400\n"
+"Last-Translator: Kevin Behrens <kevin@publishpress.com>\n"
+"Language-Team: \n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 3.0\n"
-"Language: es\n"
-"Project-Id-Version: Plugins - PublishPress Capabilities &#8211; User Role Access, Editor Permissions, Admin Menus - Stable Readme (latest release)\n"
-"POT-Creation-Date: \n"
-"Last-Translator: \n"
-"Language-Team: Angelo Giammarresi - info@wocmultimedia.com\n"
+"X-Generator: Poedit 3.0.1\n"
+"X-Poedit-KeywordsList: __;_e;_c;_n;_x;_ex;__ngettext;esc_html__;esc_html_e\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPath-1: classes\n"
+"X-Poedit-SearchPath-2: includes\n"
+"X-Poedit-SearchPath-3: includes-core\n"
 
-#. Plugin name.
-msgid "PublishPress Capabilities - User Role Access, Editor Permissions, Admin Menus"
-msgstr "PublishPress Capabilities - Perfil de acceso de los usuarios, permisos de edición, menús de administración"
-
-#. Short description.
-msgid "The best permissions plugin allows you to customize user roles, editor features and admin menus. You control who has access to your WordPress site."
-msgstr "El mejor plugin de permisos, que te permite personalizar los perfiles de los usuarios, las características de los editores y los menús de los administradores. Tú controlas quién puede acceder a tu sitio de WordPress."
-
-#. Found in description paragraph.
-msgid "<a href=\"https://publishpress.com/knowledge-base/how-to-use-admin-features/\">Click here to learn about removing toolbar items and dashboard widgets</a>."
-msgstr "<a href=\"https://publishpress.com/knowledge-base/how-to-use-admin-features/\">Haz clic aquí para saber cómo eliminar los elementos de la barra de herramientas y los widgets del escritorio.</a>."
-
-#. Found in description paragraph.
-msgid "“Admin Features” allows you to hide features in the WordPress admin area and toolbar. You can decide what users see in your WordPress dashboard. You can use this option to hide all the links in the toolbar including \"About WordPress\", \"Visit Site\" and more. You can also hide dashboard widgets such as \"At a Glance\", \"Quick Draft\", and \"WordPress Events and News\"."
-msgstr "«Admin Features» te permite ocultar características en el área de administración de WordPress y en la barra de herramientas. Puedes decidir lo que los usuarios ven en tu escritorio de WordPress. Puedes usar esta opción para ocultar todos los enlaces de la barra de herramientas, incluyendo «Acerca de WordPress», «Visitar el sitio» y más. También puede ocultar los widgets del escritorio como «De un vistazo», «Borrador rápido» y «Eventos y noticias de WordPress»."
-
-#. Found in description list item.
-msgid "<strong>Hide admin area features</strong>: Remove items from the WordPress toolbar, plus dashboard widgets."
-msgstr "<strong>Ocultar características del área de administración</strong>: quitar elementos de la barra de herramientas de WordPress, además de los widgets del escritorio."
-
-#. Found in description header.
-msgid "4. Hide Toolbar Link and Dashboard Widgets"
-msgstr "4. Ocultar el enlace de la barra de herramientas y los widgets del escritorio"
-
-#. Screenshot description.
-msgid "Admin Feature Restriction: PublishPress Capabilities enables you remove items from the WordPress toolbar, plus dashboard widgets."
-msgstr "Restricción de características de administración: PublishPress Capabilities te permite quitar elementos de la barra de herramientas de WordPress, además de los widgets del escritorio."
-
-#. Found in description header.
-msgid "PublishPress Capabilities Pro"
-msgstr "PublishPress Capabilities Pro"
-
-#. Found in description paragraph.
-msgid "<a href=\"https://publishpress.com/knowledge-base/hide-metaboxes-in-wordpress-posts/\">Click here to learn about hiding metaboxes</a>."
-msgstr "<a href=\"https://publishpress.com/knowledge-base/hide-metaboxes-in-wordpress-posts/\">Haz clic aquí para saber cómo ocultar las cajas meta.</a>."
-
-#. Found in description paragraph.
-msgid "WordPress has a feature called “metaboxes”. This is a strange name, but you have seen them often if you use WordPress. When a user edits a post, the edit screen has several default boxes: Status &amp; visibility, Featured image, Categories, Tags, etc. These boxes are metaboxes. Plugins can add also add their own metaboxes. The Pro version of the PublishPress Capabilities plugin allows you to hide metaboxes for specific user roles."
-msgstr "WordPress tiene una función llamada «metaboxes». Es un nombre extraño, pero los habrás visto a menudo si utilizas WordPress. Cuando un usuario edita una entrada, la pantalla de edición tiene varias cajas por defecto: Estado y visibilidad, Imagen destacada, Categorías, Etiquetas, etc. Estas cajas son metaboxes o cajas meta. Los plugins pueden añadir también sus propios cajas meta. La versión Pro del plugin PublishPress Capabilities permite ocultar las cajas meta para determinados perfiles de usuario."
-
-#. Found in description paragraph.
+#: capsman-enhanced.php:40
+#, php-format
 msgid ""
-"<strong>Upgrade to Capabilities Pro</strong><br />\n"
-"  This plugin is the free version of PublishPress Capabilities. The Pro version of Capabilities has all the features you need to control permissions for your WordPress users. With Capabilities Pro you can manage access to posts, pages, media and custom post types. <a href=\"https://publishpress.com/capabilities\" title=\"Capabilities Pro\">Click here to control access to your WordPress site with Capabilities Pro!</a>"
+"%1s Error: %2s  PublishPress Capabilities cannot function because another "
+"copy of Capability Manager is active."
 msgstr ""
-"<strong>Actualizar a Capabilities Pro</strong><br />\n"
-"  Este plugin es la versión gratuita de PublishPress Capabilities. La versión Pro de Capabilities tiene todas las características que necesitas para controlar los permisos de tus usuarios de WordPress. Con Capabilities Pro puedes gestionar el acceso a entradas, páginas, medios y tipos de contenido personalizado. <a href=\"https://publishpress.com/capabilities\" title=\"Capabilities Pro\">Haz clic aquí para controlar el acceso a tu sitio de WordPress con ¡Capabilities Pro!</a>"
+"%1s Error: %2s PublishPress Capabilities no puede funcionar porque hay otra "
+"copia de Capability Manager activa."
 
-#. Found in description list item.
-msgid "<strong>Hide editor metaboxes (Pro version)</strong>: You can hide metaboxes on the post editing screen. "
-msgstr "<strong>Ocultar las cajas meta del editor (versión Pro)</strong>: puedes ocultar las cajas meta en la pantalla de edición de la entrada. "
+#: capsman-enhanced.php:70
+msgid "This plugin can be deleted."
+msgstr "Este plugin puede ser borrado."
 
-#. Found in description header.
-msgid "6. Hide Metaboxes in WordPress Posts"
-msgstr "6. Ocultar las cajas meta en las entradas de WordPress"
+#: capsman-enhanced.php:97
+msgid "Warning:"
+msgstr "Advertencia:"
 
-#. Screenshot description.
-msgid "Editor Feature Restriction: PublishPress Capabilities enables you to decide what users see when they're writing posts."
-msgstr "Restricción de características del editor: PublishPress Capabilities te permite decidir qué ven los usuarios cuando escriben las entradas."
+#: capsman-enhanced.php:98
+#, php-format
+msgid "The active plugin %s is not compatible with your PHP version."
+msgstr "El plugin activo %s no es compatible con tu versión de PHP."
 
-#. Screenshot description.
-msgid "Admin Menu Restrictions: With PublishPress Capabilities you can restrict access to admin menu screens by user roles."
-msgstr "Restricciones del menú de administración: con PublishPress Capabilities puedes restringir el acceso a las pantallas del menú de administración por perfiles de usuario."
+#: capsman-enhanced.php:100
+#, php-format
+msgid "%s is required for this plugin."
+msgstr "Se necesita %s para utilizar este plugin."
 
-#. Screenshot description.
-msgid "Navigation Menu Restrictions: PublishPress Capabilities enables you to restrict access to navigation menus by roles, logged in and logged out users."
-msgstr "Restricciones de los menús de navegación: PublishPress Capabilities te permite restringir el acceso a los menús de navegación por perfiles, usuarios conectados y desconectados."
+#: framework/lib/formating.php:40
+msgid "Settings saved."
+msgstr "Ajustes guardados."
 
-#. Screenshot description.
-msgid "WooCommerce Permissions: With PublishPress Capabilities you can control permissions for WooCommerce products, orders and coupons."
-msgstr "Permisos de WooCommerce: con PublishPress Capabilities puedes controlar los permisos de los productos, pedidos y cupones de WooCommerce."
+#: includes-core/CoreAdmin.php:62 includes/admin-load.php:311
+msgid "Admin Menus"
+msgstr "Menú de administración"
 
-#. Screenshot description.
-msgid "Media Library Permissions: PublishPress Capabilities enables you to decide who can upload, edit and delete files from your site’s Media Library."
-msgstr "Permisos de la biblioteca de medios: PublishPress Capabilities te permite decidir quién puede subir, editar y eliminar archivos de la biblioteca multimedia de tu sitio."
+#: includes-core/CoreAdmin.php:63 includes/admin-load.php:312
+msgid "Nav Menus"
+msgstr "Menú de navegación"
 
-#. Screenshot description.
-msgid "Permission backups: Every time you change your permissions, the PublishPress Capabilities plugin will automatically create a backup."
-msgstr "Copias de seguridad de los permisos: cada vez que cambias tus permisos, el plugin PublishPress Capabilities creará automáticamente una copia de seguridad."
+#: includes-core/admin-features-promo.php:74
+msgid ""
+"You can block pages by URL or hide Admin elements by entering a CSS class or "
+"ID. This feature is available in PublishPress Capabilities Pro."
+msgstr ""
+"Puedes bloquear páginas por URL u ocultar elementos de administración "
+"introduciendo una clase CSS o ID. Esta característica está disponible en "
+"PublishPress Capabilities Pro."
 
-#. Screenshot description.
-msgid "Enforce Taxonomy-Specific Capabilities: You can give “Manage”, “Edit” and “Assign” permissions for all your taxonomies."
-msgstr "Aplica las capacidades específicas de la taxonomía: puedes dar permisos de «Gestión», «Edición» y «Asignación» para todas tus taxonomías."
+#: includes-core/admin-features-promo.php:79
+#: includes-core/admin-menus-promo.php:62
+#: includes-core/editor-features-promo.php:91
+#: includes-core/nav-menus-promo.php:67 includes/admin-load.php:322
+#: includes/admin-load.php:323 includes/manager.php:388
+#: includes/manager.php:389
+msgid "Upgrade to Pro"
+msgstr "Actualiza a Pro"
 
-#. Screenshot description.
-msgid "Custom Statuses: With Capabilities Pro, you can decide which user roles are able to send posts to each status."
-msgstr "Estados personalizados: con Capabilities Pro, puedes decidir qué perfiles de usuario pueden enviar entradas a cada estado."
+#: includes-core/admin-menus-promo.php:29
+msgid "Admin Menu Restrictions"
+msgstr "Restricciones al menú de administrador"
 
-#. Screenshot description.
-msgid "Multi-site support: Capabilities can control permissions on a single site or across your whole network."
-msgstr "Compatibilidad con multisitio: capabilities puede controlar los permisos en un solo sitio o en toda tu red."
+#: includes-core/admin-menus-promo.php:58
+msgid ""
+"You can restrict access to admin menu screens. This feature is available in "
+"PublishPress Capabilities Pro"
+msgstr ""
+"Puedes restringir el acceso a las pantallas del menú de administración. Esta "
+"característica está disponible en PublishPress Capabilities Pro"
 
-#. Screenshot description.
-msgid "Content permissions: With Capabilities, you can choose who can Publish, Read, Edit and Delete content."
-msgstr "Permisos de contenido: con Capabilities, puedes elegir quién puede publicar, leer, editar y eliminar contenido."
+#: includes-core/editor-features-promo.php:24
+msgid "Metaboxes"
+msgstr "Cajas meta"
 
-#. Screenshot description.
-msgid "Create and copy user roles: With PublishPress Capabilities you can create or copy any existing WordPress user role."
-msgstr "Crear y copiar perfiles de usuario: con PublishPress Capabilities puedes crear o copiar cualquier perfil de usuario de WordPress existente."
+#: includes-core/editor-features-promo.php:32
+msgid "Checklist"
+msgstr "Lista de comprobación"
 
-#. Screenshot description.
-msgid "Control user permissions: You can customize all the user roles on your site, from Administrator to Subscriber."
-msgstr "Controla los permisos de los usuarios: puedes personalizar todos los perfiles de usuario de tu sitio, desde el de administrador hasta el de suscriptor."
+#: includes-core/editor-features-promo.php:45
+msgid "Editorial Comments"
+msgstr "Comentarios editoriales"
 
-#. Found in description list item.
-msgid "<a href=\"https://publishpress.com/blocks\">PublishPress Blocks Pro</a> has everything you need to build professional websites with the WordPress block editor."
-msgstr "<a href=\"https://publishpress.com/blocks\">PublishPress Blocks Pro</a> tiene todo lo que necesitas para construir sitios web profesionales con el editor de bloques de WordPress."
+#: includes-core/editor-features-promo.php:58
+msgid "Notifications"
+msgstr "Avisos"
 
-#. Found in description list item.
-msgid "<a href=\"https://publishpress.com/series\">PublishPress Series Pro</a> enables you to group content together into a series "
-msgstr "<a href=\"https://publishpress.com/series\">PublishPress Series Pro</a> te permite agrupar contenidos en una serie "
+#: includes-core/editor-features-promo.php:71
+msgid "TaxoPress - Settings"
+msgstr "TaxoPress - Ajustes"
 
-#. Found in faq paragraph.
-msgid "Jetpack is a plugin built by Automattic, the company behind WordPress.com. This plugin offers many different services including backups, spam blocking, analytics, malware scans, contact forms, and more. PublishPress Capabilities can help you manage Jetpack permissisons."
-msgstr "Jetpack es un plugin creado por Automattic, la compañía detrás de WordPress.com. Este plugin ofrece muchos servicios diferentes, incluyendo copias de seguridad, bloqueo de spam, análisis, escaneo de malware, formularios de contacto y más. PublishPress Capabilities puede ayudarte a gestionar los permisos de Jetpack."
+#: includes-core/editor-features-promo.php:86
+msgid ""
+"You can hide plugin metaboxes. You can also hide specific items by entering "
+"their CSS class or ID. This feature is available in PublishPress "
+"Capabilities Pro."
+msgstr ""
+"Puedes ocultar las cajas meta del plugin. También puedes ocultar elementos "
+"específicos introduciendo su clase CSS o su ID. Esta característica está "
+"disponible en PublishPress Capabilities Pro."
 
-#. Found in faq paragraph.
-msgid "The Elementor plugin is one of the most popular drag-and-drop page builders. With Elementor, you’re editing the site live, and simultaneously see exactly how it looks like. Elementor designs are full-responsive and come with over 40 powerful widgets. PublishPress Capabilities can help you manage Elementor permissisons."
-msgstr "El plugin Elementor es uno de los más populares constructores de páginas de arrastrar y soltar. Con Elementor, editarás el sitio en vivo y simultáneamente verás cómo queda exactamente. Los diseños de Elementor son totalmente adaptables y vienen con más de 40 potentes widgets. PublishPress Capabilities te puede ayudarte a gestionar los permisos de Elementor."
+#: includes-core/editor-features-promo.php:101
+msgid "Custom Items"
+msgstr "Elementos personalizados"
 
-#. Found in faq paragraph.
-msgid "<a href=\"https://publishpress.com/knowledge-base/control-access-gravity-forms-admin-menus/\">Click here to learn about Gravity Forms menu permissions</a>."
-msgstr "<a href=\"https://publishpress.com/knowledge-base/control-access-gravity-forms-admin-menus/\">Haz clic aquí para aprender sobre los permisos del menú de Gravity Forms</a>."
+#: includes-core/editor-features-promo.php:107
+msgid "Custom item one"
+msgstr "Elemento personalizado uno"
 
-#. Found in faq paragraph.
-msgid "This approach works for the core Gravity Forms plugin and can also be used for add-on plugins from the official site, or third-party sites."
-msgstr "Este método funciona para el núcleo del plugin Gravity Forms y también puede utilizarse para extensiones del sitio oficial o de terceros."
+#: includes-core/editor-features-promo.php:108
+#: includes-core/editor-features-promo.php:122
+#: includes-core/editor-features-promo.php:135
+#: includes/features/admin-features.php:190
+#: includes/features/editor-features-classic.php:80
+#: includes/features/editor-features-gutenberg.php:79
+#: includes/roles/class/class-pp-roles-admin.php:116
+#: includes/roles/class/class-pp-roles-list-table.php:277
+#: includes/roles/class/class-pp-roles-list-table.php:414
+msgid "Delete"
+msgstr "Borrar"
 
-#. Found in faq paragraph.
-msgid "It is possible to control who can access these links by using the PublishPress Capabilities Pro plugin. After installing PublishPress Capabilities Pro, go to “Capabilities”, then “Admin Menus” in your WordPress admin area. In the top-left corner of this screen, choose the role that you want to edit. For example, you can restrict access for the “Editor” role. By default, Editors aren't given access to Gravity Forms, but site administrators often do they give them some access. Scroll down and you can enter a red X for any Gravity Forms menu link that you don't want users in the Editor role to access. Now when an Editor logs in to your site, they will not be able to see the blocked Gravity Forms menu links."
-msgstr "Es posible controlar quién puede acceder a estos enlaces utilizando el plugin PublishPress Capabilities Pro. Después de instalar PublishPress Capabilities Pro, ve a «Permisos» y luego a «Admin Menus» en tu área de administración de WordPress. En la esquina superior izquierda de esta pantalla, elige el perfil que quieres editar. Por ejemplo, puedes restringir el acceso para el perfil de «Editor». Por defecto, los editores no tienen acceso a Gravity Forms, pero los administradores del sitio a menudo les dan algún acceso. Desplázate hacia abajo y puedes introducir una X roja para cualquier enlace del menú de Gravity Forms al que no quieres que accedan los usuarios con el perfil de editor. Ahora, cuando un editor inicie sesión en tu sitio, no podrá ver los enlaces del menú de Gravity Forms bloqueados."
+#: includes-core/editor-features-promo.php:121
+msgid "Permalink: Descriptive Caption"
+msgstr "Enlace permanente: Leyenda descriptiva"
 
-#. Found in faq paragraph.
-msgid "When you first install Gravity Forms, you'll see one top-level menu link, plus eight sub-menus."
-msgstr "Cuando instale por primera vez Gravity Forms, verá un enlace de menú de nivel superior, además de ocho submenús."
+#: includes-core/editor-features-promo.php:135
+msgid "Page Attributes: Order"
+msgstr "Atributos de la página: Orden"
 
-#. Found in faq paragraph.
-msgid "Gravity Forms is perhaps the most popular contact form plugin for WordPress. You can build and publish your WordPress forms in just minutes. Choose your fields, configure your options and easily embed forms on your WordPress-powered site. Gravity Forms allows you to easily integrate with third party services such as PayPal, Mailchimp, and Zapier."
-msgstr "Gravity Forms es quizás el plugin de formularios de contacto más popular para WordPress. Puedes construir y publicar tus formularios de WordPress en cuestión de minutos. Elige tus campos, configura tus opciones e incrusta fácilmente los formularios en tu sitio web impulsado por WordPress. Gravity Forms te permite integrar fácilmente con servicios de terceros como PayPal, Mailchimp y Zapier."
+#: includes-core/nav-menus-promo.php:29
+msgid "Navigation Menu Restrictions"
+msgstr "Restricciones del menú de navegación"
 
-#. Found in faq paragraph.
-msgid "The Pro version of PublishPress Capabilities allows you to block access to admin menu links in the Gravity Forms plugin. This is useful because Gravity Forms has limited options for controlling who can access the admin screens."
-msgstr "La versión Pro de PublishPress Capabilities le permite bloquear el acceso a los enlaces del menú de administración en el plugin Gravity Forms. Esto es útil porque Gravity Forms tiene opciones limitadas para controlar quién puede acceder a las pantallas de administración."
+#: includes-core/nav-menus-promo.php:63
+msgid ""
+"You can restrict access to navigation menus. This feature is available in "
+"PublishPress Capabilities Pro"
+msgstr ""
+"Puedes restringir el acceso a los menús de navegación. Esta característica "
+"está disponible en PublishPress Capabilities Pro"
 
-#. Found in faq paragraph.
-msgid "<a href=\"https://publishpress.com/knowledge-base/control-access-the-events-calendar-admin-menus/\">Click here to learn about The Events Calendar menu permissions</a>."
-msgstr "<a href=\"https://publishpress.com/knowledge-base/control-access-the-events-calendar-admin-menus/\">Haz clic aquí para aprender sobre los permisos del menú de The Events Calendar</a>."
+#: includes/admin-load.php:286 includes/manager.php:339
+#: includes/roles/class/class-pp-roles-admin.php:416
+#: includes/roles/class/class-pp-roles-list-table.php:213
+msgid "Capabilities"
+msgstr "Capacidades"
 
-#. Found in faq paragraph.
-msgid "This approach works for the core The Events Calendar plugin and can also be used for add-on plugins such as Virtual Events, Events Tickets, and more."
-msgstr "Este método funciona para el núcleo del plugin The Events Calendar y también puede utilizarse para extensiones como Virtual Events, Events Tickets y otros."
+#: includes/admin-load.php:308 includes/manager.php:361
+#: includes/roles/roles.php:8
+msgid "Roles"
+msgstr "Perfiles"
 
-#. Found in faq paragraph.
-msgid "It is possible to control who can access these The Events Calendar plugin links by using the PublishPress Capabilities Pro plugin. After installing PublishPress Capabilities Pro, go to “Capabilities”, then “Admin Menus” in your WordPress admin area. In the top-left corner of this screen, choose the role that you want to edit. For example, you can restrict The Events Calendar access for the “Editor” role. Scroll down and you can enter a red X for any The Events Calendar menu link that you don't want users in the Editor role to access. Now when an Administrator logs in to your site, they will not be able to see the Events Calendar menu links that you have blocked:"
-msgstr "Es posible controlar quién puede acceder a estos enlaces del plugin The Events Calendar utilizando el plugin PublishPress Capabilities Pro. Después de instalar PublishPress Capabilities Pro, ve a «Permisos» y luego a «Admin Menus» en tu área de administración de WordPress. En la esquina superior izquierda de esta pantalla, elige el perfil que quieres editar. Por ejemplo, puedes restringir el acceso a The Events Calendar para el perfil de «Editor». Desplázate hacia abajo y puedes introducir una X roja para cualquier enlace del menú de The Events Calendar al que no quieres que accedan los usuarios con el perfil de editor. Ahora, cuando un editor inicie sesión en tu sitio, no podrá ver los enlaces del menú de The Events Calendar bloqueados:"
+#: includes/admin-load.php:309 includes/manager.php:373
+msgid "Editor Features"
+msgstr "Características del editor"
 
-#. Found in faq paragraph.
-msgid "When you first install the The Events Calendar plugin, you'll see one top-level menu link, plus at least 10 sub-menus:"
-msgstr "Cuando instale por primera vez el plugin The Events Calendar, verá un enlace de menú de nivel superior, además de diez submenús:"
+#: includes/admin-load.php:310 includes/manager.php:375
+msgid "Admin Features"
+msgstr "Características de administración"
 
-#. Found in faq paragraph.
-msgid "With The Events Calendar, you can easily create and manage an events calendar on your WordPress site. The plugin supports both in-person and virtual events. There are also many ways to extend the plugin for recurring events, ticket sales, user-submitted events and more."
-msgstr "Con The Events Calendar, puedes crear y gestionar fácilmente un calendario de eventos en tu sitio de WordPress. El plugin soporta tanto eventos presenciales como virtuales. También hay muchas formas de ampliar el plugin para eventos recurrentes, venta de entradas, eventos enviados por los usuarios y mucho más."
+#: includes/admin-load.php:313 includes/backup.php:49 includes/manager.php:379
+msgid "Backup"
+msgstr "Copia de seguridad"
 
-#. Found in faq paragraph.
-msgid "The Pro version of PublishPress Capabilities allows you to block access to admin menu links in The Events Calendar plugin. This is useful because The Events Calendar has limited options for managing who can access the admin screens and important features."
-msgstr "La versión Pro de PublishPress Capabilities le permite bloquear el acceso a los enlaces del menú de administración en el plugin The Events Calendar. Esto es útil porque The Events Calendar tiene opciones limitadas para controlar quién puede acceder a las pantallas de administración."
+#: includes/admin-load.php:316
+#: includes/features/restrict-editor-features.php:309 includes/manager.php:382
+msgid "Settings"
+msgstr "Ajustes "
 
-#. Found in faq paragraph.
-msgid "<a href=\"https://publishpress.com/knowledge-base/control-access-wpforms-admin-menus/\">Click here to learn about WPForms menu permissions</a>."
-msgstr "<a href=\"https://publishpress.com/knowledge-base/control-access-wpforms-admin-menus/\">Haz clic aquí para aprender sobre los permisos del menú de WPForms</a>."
+#: includes/admin.php:40
+#, php-format
+msgid ""
+"Warning: This role cannot access the dashboard without the read capability. "
+"%1$sClick here to fix this now%2$s."
+msgstr ""
+"Advertencia: Este perfil no puede acceder al escritorio sin la capacidad de "
+"lectura. %1$sHaz clic aquí para corregir esto ahora%2$s."
 
-#. Found in faq paragraph.
-msgid "This approach works for the core WPForms plugin and can also be used for add-on plugins such as Form Abandonment, Form Locker, Offline Forms, and more."
-msgstr "Este método funciona para el núcleo del plugin WPForms y también puede utilizarse para extensiones como Form Abandonment, Form Locker, Offline Forms y otros."
+#: includes/admin.php:59
+msgid "Role Capabilities"
+msgstr "Capacidades del perfil"
 
-#. Found in faq paragraph.
-msgid "Scroll down and you can enter a red X for any WPForms menu link that you don't want users in the Administrator role to access. Now when an Administrator logs in to your site, they will not be able to see the WPForms menu links that you have blocked."
-msgstr "Desplázate hacia abajo y podrás introducir una X roja para cualquier enlace del menú WPForms al que no quieras que accedan los usuarios con el perfil de Administrador. Ahora, cuando un administrador inicie sesión en tu sitio, no podrá ver los enlaces del menú WPForms que has bloqueado."
+#: includes/admin.php:113 includes/admin.php:1348
+msgid "Save Changes"
+msgstr "Guardar los cambios"
 
-#. Found in faq paragraph.
-msgid "It is possible to control who can access these WPForms plugin links by using the PublishPress Capabilities Pro plugin. After installing PublishPress Capabilities Pro, go to “Capabilities”, then “Admin Menus” in your WordPress admin area. In the top-left corner of this screen, choose the role that you want to edit. For example, you can restrict WPForms access for the “Administrator” role. If you do this, I would recommend making a copy of the Administrator role so that one role still has full WPForms access."
-msgstr "Es posible controlar quién puede acceder a estos enlaces del plugin WPForms utilizando el plugin PublishPress Capabilities Pro. Después de instalar PublishPress Capabilities Pro, ve a «Permisos» y luego a «Admin Menus» en tu área de administración de WordPress. En la esquina superior izquierda de esta pantalla, elige el perfil que quieres editar. Por ejemplo, puedes restringir el acceso a WPForms para el perfil de «Administrador». Si haces esto, te recomendaría hacer una copia del perfil de Administrador para que un perfil siga teniendo acceso completo a WPForms."
+#: includes/admin.php:132
+#, php-format
+msgid ""
+"<strong>Note:</strong> Capability changes <strong>remain in the database</"
+"strong> after plugin deactivation. You can also configure this role as a "
+"%sPermission Group%s."
+msgstr ""
+"<strong>Ten en cuenta:</strong> los cambios de capacidad <strong>permanecen "
+"en la base de datos</strong> después de la desactivación del plugin. También "
+"puedes configurar este perfil como %sGrupo de permisos%s."
 
-#. Found in faq paragraph.
-msgid "When you first install the WPForms plugin, you'll see one top-level menu link, plus at least 10 sub-menus:"
-msgstr "Cuando instale por primera vez el plugin WPForms, verá un enlace de menú de nivel superior, además de diez submenús:"
+#: includes/admin.php:140
+msgid ""
+"<strong>Note:</strong> Capability changes <strong>remain in the database</"
+"strong> after plugin deactivation."
+msgstr ""
+"<strong>Nota:</strong> Los cambios en las capacidades <strong>permanecen en "
+"la base de datos</strong> tras la desactivación del plugin."
 
-#. Found in faq paragraph.
-msgid "WPForms is one of the most popular WordPress contact form plugin with millions of active installs. WPForms allows you to create beautiful contact forms, feedback forms, subscription forms, payment forms, and more."
-msgstr "WPForms es uno de los más populares plugins de formularios de contacto de WordPress con millones de instalaciones activas. WPForms te permite crear hermosos formularios de contacto, formularios de comentarios, formularios de suscripción, formularios de pago y mucho más."
+#: includes/admin.php:221
+msgid "&nbsp;"
+msgstr "&nbsp;"
 
-#. Found in faq paragraph.
-msgid "The Pro version of PublishPress Capabilities allows you to block access to admin menu links in the WP Forms plugin. This is useful because WPForms has limited options for managing who can access the admin screens and important features."
-msgstr "La versión Pro de PublishPress Capabilities le permite bloquear el acceso a los enlaces del menú de administración en el plugin WP Forms. Esto es útil porque WP Forms tiene opciones limitadas para controlar quién puede acceder a las pantallas de administración."
+#: includes/admin.php:222
+msgid "Reading"
+msgstr "Lectura"
 
-#. Found in faq paragraph.
-msgid "<a href=\"https://publishpress.com/knowledge-base/control-access-jetpack-admin-menus/\">Click here to learn about Jetpack permissions</a>."
-msgstr "<a href=\"https://publishpress.com/knowledge-base/control-access-jetpack-admin-menus/\">Haz clic aquí para aprender sobre los permisos del menú de Jetpack</a>."
+#: includes/admin.php:223
+msgid "Editing"
+msgstr "Edición"
 
-#. Found in faq paragraph.
-msgid "<a href=\"https://publishpress.com/knowledge-base/control-access-elementor-admin-menus/\">Click here to learn about Elementor menu permissions</a>."
-msgstr "<a href=\"https://publishpress.com/knowledge-base/control-access-elementor-admin-menus/\">Haz clic aquí para aprender sobre los permisos del menú de Elementor</a>."
+#: includes/admin.php:224
+msgid "Deletion"
+msgstr "Borrado"
 
-#. Found in faq paragraph.
-msgid "<a href=\"https://publishpress.com/knowledge-base/control-access-yoast-seo-admin-menus/\">Click here to learn about Yoast SEO menu permissions</a>."
-msgstr "<a href=\"https://publishpress.com/knowledge-base/control-access-yoast-seo-admin-menus/\">Haz clic aquí para aprender sobre los permisos del menú de Yoast SEO</a>."
+#: includes/admin.php:316
+msgid "WordPress Core"
+msgstr "Núcleo de WordPress"
 
-#. Found in faq paragraph.
-msgid "<a href=\"https://publishpress.com/knowledge-base/control-access-contact-form-7-admin-menus/\">Click here to learn about Contact Form 7 menu permissions</a>."
-msgstr "<a href=\"https://publishpress.com/knowledge-base/control-access-contact-form-7-admin-menus/\">Haz clic aquí para aprender sobre los permisos del menú de Contact Form 7</a>."
+#: includes/admin.php:490 includes/admin.php:978
+msgid "Invalid Capabilities"
+msgstr "Capacidades no válidas"
 
-#. Found in faq paragraph.
-msgid "<a href=\"https://publishpress.com/knowledge-base/control-access-woocommerce-admin-menus/\">Click here to learn about WooCommerce menu permissions</a>."
-msgstr "<a href=\"https://publishpress.com/knowledge-base/control-access-woocommerce-admin-menus/\">Haz clic aquí para aprender sobre los permisos del menú de WooCommerce</a>."
+#: includes/admin.php:495
+msgid "Additional"
+msgstr "Adicional"
 
-#. Found in faq list item.
-msgid "System Status"
-msgstr "Estado del sistema"
+#: includes/admin.php:539
+#, php-format
+msgid "Term %s Capabilities"
+msgstr "Capacidades del término %s"
 
-#. Found in faq list item.
-msgid "Add-ons"
-msgstr "Extensiónes"
+#: includes/admin.php:539
+#, php-format
+msgid "Post %s Capabilities"
+msgstr "Capacidades del contenido %s"
 
-#. Found in faq list item.
-msgid "Import/Export"
-msgstr "Importar/Exportar"
+#: includes/admin.php:545
+msgid "Filter by taxonomy"
+msgstr "Filtrar por taxonomía"
 
-#. Found in faq list item.
-msgid "New Form"
-msgstr "Nuevo formulario"
+#: includes/admin.php:545
+msgid "Filter by post type"
+msgstr "Filtrar por tipo de contenido"
 
-#. Found in faq list item.
-msgid "Forms"
-msgstr "Formularios"
+#: includes/admin.php:548 includes/admin.php:736 includes/admin.php:874
+#: includes/admin.php:1080
+msgid "Clear"
+msgstr "Vaciar"
 
-#. Found in faq list item.
-msgid "Event Add-Ons"
-msgstr "Extensiónes para eventos"
+#: includes/admin.php:640 includes/admin.php:782 includes/admin.php:922
+#: includes/admin.php:1153
+#, php-format
+msgid "%s: assigned by Permission Group"
+msgstr "%s: asignada por el «Grupo de permisos»"
 
-#. Found in faq list item.
+#: includes/admin.php:652
+#, php-format
+msgid "shared capability: %s"
+msgstr "capacidad compartida: %s"
+
+#: includes/admin.php:732
+msgid "WordPress Core Capabilities"
+msgstr "Capacidades del núcleo de WordPress"
+
+#: includes/admin.php:738 includes/admin.php:876 includes/admin.php:1082
+msgid "No results found. Please try again with a different word."
+msgstr ""
+"No se han encontrado resultados. Por favor, inténtalo de nuevo con una "
+"palabra diferente."
+
+#: includes/admin.php:749 includes/admin.php:843 includes/admin.php:887
+#: includes/admin.php:960 includes/admin.php:1088 includes/admin.php:1205
+msgid "Capability Name"
+msgstr "Nombre de la capacidad"
+
+#: includes/admin.php:801
+msgid ""
+"Lockout Prevention: To remove read capability, first remove WordPress "
+"admin / editing capabilities, or add \"dashboard_lockout_ok\" capability"
+msgstr ""
+"Prevención de bloqueo: para eliminar la capacidad de lectura, primero "
+"elimina las capacidades de gestión y edición de WordPress, o añade la "
+"capacidad «dashboard_lockout_ok»."
+
+#: includes/admin.php:870
+#, php-format
+msgid "Plugin Capabilities &ndash; %s"
+msgstr "Capacidades del plugin &ndash; %s"
+
+#: includes/admin.php:991
+msgid ""
+"The following entries have no effect. Please assign desired capabilities in "
+"the Read / Edit / Delete grid above."
+msgstr ""
+"Los siguientes registros no tienen efecto. Por favor, asigna las capacidades "
+"deseadas en la cuadrícula anterior de lectura/edición/borrado."
+
+#: includes/admin.php:1076
+msgid "Additional Capabilities"
+msgstr "Capacidades adicionales"
+
+#: includes/admin.php:1237
+msgid ""
+"Automatically define type-specific capabilities for your custom post types "
+"and taxonomies"
+msgstr ""
+"Definir automáticamente las capacidades específicas del tipo para tus tipos "
+"de contenido y taxonomías personalizadas"
+
+#: includes/admin.php:1241
+msgid "Assign standard WP roles supplementally for a specific post type"
+msgstr ""
+"Asignar perfiles de WP estándar de forma suplementaria para un tipo de "
+"contenido específico"
+
+#: includes/admin.php:1245
+msgid ""
+"Assign custom WP roles supplementally for a specific post type <em>(Pro)</em>"
+msgstr ""
+"Asignar perfiles de WP personalizados de forma suplementaria para un tipo de "
+"contenido específico <em>(Pro)</em>"
+
+#: includes/admin.php:1249
+msgid "Customize reading permissions per-category or per-post"
+msgstr ""
+"Personalizar los permisos de lectura por categoría o por tipo de contenido"
+
+#: includes/admin.php:1253
+msgid "Customize editing permissions per-category or per-post <em>(Pro)</em>"
+msgstr ""
+"Personalizar los permisos de edición por categoría o por tipo de contenido "
+"<em>(Pro)</em>"
+
+#: includes/admin.php:1257
+msgid ""
+"Custom Post Visibility statuses, fully implemented throughout wp-admin "
+"<em>(Pro)</em>"
+msgstr ""
+"Estados de Custom Post Visibility, totalmente implementados en todo el "
+"escritorio <em>(Pro)</em>"
+
+#: includes/admin.php:1261
+msgid ""
+"Custom Moderation statuses for access-controlled, multi-step publishing "
+"workflow <em>(Pro)</em>"
+msgstr ""
+"Estados de moderación personalizados para el flujo de trabajo de publicación "
+"multipaso y de acceso controlado <em>(Pro)</em>"
+
+#: includes/admin.php:1265
+msgid "Regulate permissions for Edit Flow post statuses <em>(Pro)</em>"
+msgstr ""
+"Regular los permisos de los estados de las entradas de Edit Flow <em>(Pro)</"
+"em>"
+
+#: includes/admin.php:1269
+msgid ""
+"Customize the moderated editing of published content with Revisionary or "
+"Post Forking <em>(Pro)</em>"
+msgstr ""
+"Personalizar la edición moderada de los contenidos publicados con "
+"Revisionary o Post Forking <em>(Pro)</em>"
+
+#: includes/admin.php:1273
+msgid ""
+"Grant Spectator, Participant or Moderator access to specific bbPress forums "
+"<em>(Pro)</em>"
+msgstr ""
+"Otorgar al espectador, participante o moderador acceso a foros específicos "
+"de bbPress <em>(Pro)</em>"
+
+#: includes/admin.php:1277
+msgid ""
+"Grant supplemental content permissions to a BuddyPress group <em>(Pro)</em>"
+msgstr ""
+"Otorgar permisos de contenido suplementario a un grupo de BuddyPress "
+"<em>(Pro)</em>"
+
+#: includes/admin.php:1281
+msgid "WPML integration to mirror permissions to translations <em>(Pro)</em>"
+msgstr ""
+"Integración de WPML para replicar los permisos a las traducciones <em>(Pro)</"
+"em>"
+
+#: includes/admin.php:1285
+msgid "Member support forum"
+msgstr "Foro de soporte de miembros"
+
+#: includes/admin.php:1292
+#, php-format
+msgid "%1$sgrab%2$s %3$s"
+msgstr "%1$sobtener%2$s %3$s"
+
+#: includes/admin.php:1294
+#, php-format
+msgid "%1$sbuy%2$s %3$s"
+msgstr "%1$scomprar%2$s %3$s"
+
+#: includes/admin.php:1328
+msgid "Level:"
+msgstr "Nivel:"
+
+#: includes/admin.php:1361
+msgid "PublishPress Capabilities is safe to use"
+msgstr "PublishPress Capabilities es seguro de usar"
+
+#: includes/admin.php:1363
+msgid ""
+"This plugin automatically creates a backup whenever you save changes. You "
+"can use these backups to\n"
+"restore an earlier version of your roles and capabilities."
+msgstr ""
+"Este plugin crea automáticamente una copia de seguridad cada vez que se "
+"guardan los cambios. Puedes utilizar estas copias de seguridad para\n"
+"restaurar una versión anterior de sus funciones y capacidades."
+
+#: includes/admin.php:1367
+msgid "Go to the Backup feature"
+msgstr "Ir a la característica de copia de seguridad"
+
+#: includes/admin.php:1372
+msgid "Add Capability"
+msgstr "Añadir capacidad"
+
+#: includes/admin.php:1411
+msgid "include in new sites"
+msgstr "incluir en los nuevos sitios"
+
+#: includes/admin.php:1414
+msgid "sync role to all sites now"
+msgstr "sincronizar perfil a todos los sitios ahora"
+
+#: includes/admin.php:1417
+msgid "sync options to all sites now"
+msgstr "sincronizar opciones a todos los sitios ahora"
+
+#: includes/backup-handler.php:15 includes/manager.php:882
+msgid "You do not have permission to restore roles."
+msgstr "No tienes permisos para restaurar perfiles."
+
+#: includes/backup-handler.php:73
+msgid "New backup saved."
+msgstr "Se ha guardado una nueva copia de seguridad."
+
+#: includes/backup-handler.php:90
+msgid "Roles and Capabilities restored from initial backup."
+msgstr ""
+"Los perfiles y capacidades se han restaurado desde la copia de seguridad "
+"inicial."
+
+#: includes/backup-handler.php:92 includes/backup-handler.php:121
+#: includes/backup-handler.php:130
+msgid "Restore failed. No backup found."
+msgstr ""
+"Ha fallado la restauración. No se ha encontrado ninguna copia de seguridad."
+
+#: includes/backup-handler.php:119
+#, php-format
+msgid "%s restored from last backup."
+msgstr "%s restaurado a partir de la última copia de seguridad."
+
+#: includes/backup-handler.php:128
+msgid "Roles and Capabilities restored from selected auto-backup."
+msgstr ""
+"Los perfiles y capacidades se han restaurado desde la copia de seguridad "
+"automática seleccionada."
+
+#: includes/backup-handler.php:140
+msgid "Please upload a file to import"
+msgstr "Por favor, sube un archivo para importar"
+
+#: includes/backup-handler.php:145
+msgid "Please upload a valid .json file"
+msgstr "Por favor, sube un archivo .json válido"
+
+#: includes/backup-handler.php:165
+msgid "Error importing settings! Please try again."
+msgstr "¡Error al importar los ajustes! Por favor, inténtalo de nuevo."
+
+#: includes/backup-handler.php:178
+msgid ""
+"Error importing settings! Please check that you uploaded a valid json file."
+msgstr ""
+"¡Error al importar los ajustes! Por favor, comprueba que has subido un "
+"archivo json válido."
+
+#: includes/backup-handler.php:199
+#, php-format
+msgid "%s successfully imported from uploaded data."
+msgstr "%s correctamente importado desde los datos subidos."
+
+#: includes/backup-handler.php:283
+msgid "Needed function to create default roles not found!"
+msgstr ""
+"¡No se ha encontrado la función necesaria para crear los perfiles por "
+"defecto!"
+
+#: includes/backup-handler.php:296
+msgid "Roles and Capabilities reset to WordPress defaults"
+msgstr ""
+"Se han restablecido los perfiles y capacidades a los valores por defecto de "
+"WordPress"
+
+#: includes/backup.php:39
+msgid "Backup Tool for PublishPress Capabilities"
+msgstr "Herramienta de copia para PublishPress Capabilities"
+
+#: includes/backup.php:48
+msgid "Restore"
+msgstr "Restaurar"
+
+#: includes/backup.php:50
+msgid "Reset Roles"
+msgstr "Reestablecer perfiles"
+
+#: includes/backup.php:51 includes/backup.php:309
+msgid "Export / Import"
+msgstr "Exportar / Importar"
+
+#: includes/backup.php:60
+msgid "Backup Roles and Capabilities"
+msgstr "Copia de seguridad de los perfiles y capacidades"
+
+#: includes/backup.php:65
+#, php-format
+msgid ""
+"PublishPress Capabilities automatically creates a backup on installation and "
+"whenever you save changes. The initial backup and last %d auto-backups are "
+"kept."
+msgstr ""
+"PublishPress Capabilities crea automáticamente una copia de seguridad en la "
+"instalación y cada vez que se guardan los cambios. Se mantiene la copia de "
+"seguridad inicial y las últimas %d copias de seguridad automáticas."
+
+#: includes/backup.php:70
+msgid ""
+"A backup created on this screen replaces any previous manual backups, but is "
+"never automatically replaced."
+msgstr ""
+"Una copia de seguridad creada en esta pantalla reemplaza cualquier copia de "
+"seguridad manual anterior, pero nunca es reemplazada automáticamente."
+
+#: includes/backup.php:85
+#, php-format
+msgid "Last Manual Backup - %s"
+msgstr "Última copia de seguridad manual: %s"
+
+#: includes/backup.php:85
+msgid "Last Backup"
+msgstr "Última copia de seguridad"
+
+#: includes/backup.php:89
+msgid "Restore Previous Roles and Capabilities"
+msgstr "Restaurar los perfiles y capacidades anteriores"
+
+#: includes/backup.php:92
+msgid ""
+"PublishPress Capabilities automatically creates a backup on installation and "
+"whenever you save changes."
+msgstr ""
+"PublishPress Capabilities crea automáticamente una copia de seguridad en la "
+"instalación y cada vez que se guardan los cambios."
+
+#: includes/backup.php:96
+msgid ""
+"On this screen, you can restore an earlier version of your roles and "
+"capabilities."
+msgstr ""
+"En esta pantalla, puedes restaurar una versión anterior de tus perfiles y "
+"capacidades."
+
+#: includes/backup.php:101
+msgid "Available Backups:"
+msgstr "Copias de seguridad disponibles:"
+
+#: includes/backup.php:114
+msgid "all roles"
+msgstr "todos los perfiles"
+
+#: includes/backup.php:119
+#, php-format
+msgid "Manual backup of %s (%s)"
+msgstr "Copia de seguridad manual de %s (%s)"
+
+#: includes/backup.php:134
+#, php-format
+msgid "Auto-backup of all roles (%s)"
+msgstr "Copia de seguridad automática de todos los perfiles (%s)"
+
+#: includes/backup.php:142
+msgid "Initial backup of all roles"
+msgstr "Copia de seguridad inicial de todos los perfiles"
+
+#: includes/backup.php:162
+msgid "Show changes from current roles only"
+msgstr "Mostrar solo los cambios de los perfiles actuales"
+
+#: includes/backup.php:169
+#, php-format
+msgid "Initial Backup - %s"
+msgstr "Copia de seguridad inicial: %s"
+
+#: includes/backup.php:169
+msgid "Initial Backup"
+msgstr "Copia de seguridad inicial"
+
+#: includes/backup.php:196
+#, php-format
+msgid "%s (%s roles)"
+msgstr "%s (%s perfiles)"
+
+#: includes/backup.php:203
+msgid "(this role will be removed if you restore backup)"
+msgstr "(este perfil será eliminado si restauras la copia de seguridad)"
+
+#: includes/backup.php:232
+#, php-format
+msgid "%s (level %s)"
+msgstr "%s (nivel %s)"
+
+#: includes/backup.php:272
+msgid "No changes"
+msgstr "Sin cambios"
+
+#: includes/backup.php:288
+msgid "Reset WordPress Defaults"
+msgstr "Restaurar a los valores por defecto de WordPress"
+
+#: includes/backup.php:290 includes/backup.php:347
+msgid "WARNING:"
+msgstr "ADVERTENCIA:"
+
+#: includes/backup.php:290
+msgid ""
+"Reseting default Roles and Capabilities will set them to the WordPress "
+"install defaults."
+msgstr ""
+"Al restablecer los perfiles y capacidades por defecto, los establecerá a los "
+"valores por defecto de la instalación de WordPress."
+
+#: includes/backup.php:294
+msgid ""
+"If you have installed any plugin that adds new roles or capabilities, these "
+"will be lost."
+msgstr ""
+"Si has instalado algún plugin que añade nuevos perfiles o capacidades, estos "
+"se perderán."
+
+#: includes/backup.php:296
+msgid "It is recommended to use this only as a last resource!"
+msgstr "¡Se recomienda usar esta opción solo como último recurso!"
+
+#: includes/backup.php:301
+msgid ""
+"You are about to reset Roles and Capabilities to WordPress defaults.\n"
+" 'Cancel' to stop, 'OK' to reset."
+msgstr ""
+"Estás a intentando restablecer los perfiles y capacidades a los valores por "
+"defecto de WordPress.\n"
+"«Cancelar» para detener, «Aceptar» para restablecer."
+
+#: includes/backup.php:301
+msgid "Reset to WordPress defaults"
+msgstr "Restablecer a los valores por defecto de WordPress"
+
+#: includes/backup.php:314
+msgid "Export Settings"
+msgstr "Exportar ajustes"
+
+#: includes/backup.php:316
+msgid ""
+"Export the plugin settings for this site as a .json file. This allows you to "
+"easily import the configuration into another site."
+msgstr ""
+"Exporta la configuración del plugin para este sitio como un archivo .json. "
+"Esto te permite importar fácilmente la configuración en otro sitio."
+
+#: includes/backup.php:321
+msgid "Roles and Capabilities"
+msgstr "Roles y Permisos"
+
+#: includes/backup.php:345
+msgid "Import Settings"
+msgstr "Importar ajustes"
+
+#: includes/backup.php:347
+msgid ""
+"Please make a 'Manual Backup' in the backup tab to enable backup restore in "
+"case anything goes wrong."
+msgstr ""
+"Por favor, haz una «Copia de seguridad manual» en la pestaña de copias de "
+"seguridad para permitir la restauración de la copia de seguridad en caso de "
+"que algo vaya mal."
+
+#: includes/backup.php:349
+msgid ""
+"Import the plugin settings from a .json file. This file can be obtained by "
+"exporting the settings on another site using the form above."
+msgstr ""
+"Importar los ajustes del plugin desde un archivo .json. Este archivo se "
+"puede obtener mediante la exportación de los ajustes en otro sitio usando el "
+"formulario de arriba."
+
+#: includes/backup.php:351
+msgid ""
+"Before importing, we recommend using the \"Backup\" tab to create a backup "
+"of your current settings."
+msgstr ""
+"Antes de importar, se recomienda utilizar la pestaña «Copia de seguridad» "
+"para crear una copia de seguridad de los ajustes actuales."
+
+#: includes/backup.php:381 includes/features/admin-features.php:228
+#: includes/features/editor-features.php:135
+msgid "Recommendations for you"
+msgstr "Recomendaciones para ti"
+
+#: includes/backup.php:382 includes/features/admin-features.php:229
+#: includes/features/editor-features.php:136
+msgid "Control permissions for individual posts and pages"
+msgstr "Controla los permisos para entradas y páginas individuales"
+
+#: includes/backup.php:384 includes/features/admin-features.php:231
+#: includes/features/editor-features.php:138
+msgid "Choose who can read and edit each post."
+msgstr "Elige quién puede leer y editar cada entrada."
+
+#: includes/backup.php:385 includes/features/admin-features.php:232
+#: includes/features/editor-features.php:139
+msgid "Allow specific user roles or users to manage each post."
+msgstr "Permite a perfiles o usuarios específicos gestionar cada entrada."
+
+#: includes/backup.php:386 includes/features/admin-features.php:233
+#: includes/features/editor-features.php:140
+#, fuzzy, php-format
+#| msgid "PublishPress Permissions is 100% free to install."
+msgid "PublishPress Permissions is 100% free to install."
+msgstr "La instalación de PublishPress Permissions es 100 % gratis."
+
+#: includes/backup.php:389 includes/features/admin-features.php:236
+#: includes/features/editor-features.php:143
+msgid "Click here to install PublishPress Permissions"
+msgstr "Haz clic aquí para instalar PublishPress Permissions"
+
+#: includes/features/admin-features.php:37
+msgid "Admin Feature Restrictions"
+msgstr "Restricciones de características de administración"
+
+#: includes/features/admin-features.php:53
+msgid ""
+"Note: You are only restricting access to admin features screens. Some "
+"plugins may also add features to other areas of WordPress."
+msgstr ""
+"Nota: Solo estás restringiendo el acceso a las pantallas de características "
+"de administración. Algunos plugins podrían también añadir características a "
+"otras áreas de WordPress."
+
+#: includes/features/editor-features-classic.php:31
+msgid "Classic Editor Screen"
+msgstr "Pantalla del editor clásico"
+
+#: includes/features/editor-features-classic.php:36
+#: includes/features/editor-features-gutenberg.php:36
+#, php-format
+msgid "%s Restrict"
+msgstr "Restricción de %s"
+
+#: includes/features/editor-features-gutenberg.php:31
+msgid "Gutenberg Screen"
+msgstr "Pantalla de Gutenberg"
+
+#: includes/features/editor-features.php:32
+msgid "Editor Feature Restriction"
+msgstr "Restricción de la característica del editor"
+
+#: includes/features/editor-features.php:48
+msgid ""
+"Select editor features to remove. Note that this screen cannot be used to "
+"grant additional features to any role."
+msgstr ""
+"Selecciona las características del editor a eliminar. Ten en cuenta que esta "
+"pantalla no se puede usar para conceder características adicionales a ningún "
+"perfil."
+
+#: includes/features/editor-features.php:92
+msgid "Gutenberg"
+msgstr "Gutenberg"
+
+#: includes/features/editor-features.php:95
+msgid "Classic"
+msgstr "Clásico"
+
+#: includes/features/restrict-admin-features.php:16
+msgid "Header and Footer"
+msgstr "Cabecera y pie de página"
+
+#: includes/features/restrict-admin-features.php:19
+msgid "Admin Toolbar"
+msgstr "Barra de herramientas de administración"
+
+#: includes/features/restrict-admin-features.php:22
+msgid "Dashboard widgets"
+msgstr "Widgets del escritorio"
+
+#: includes/features/restrict-admin-features.php:59
+msgid "Mobile Menu Toggle"
+msgstr "Alternar menú móvil"
+
+#: includes/features/restrict-admin-features.php:60
+msgid "WordPress Logo"
+msgstr "Logotipo de WordPress"
+
+#: includes/features/restrict-admin-features.php:61
+msgid "WordPress External Links"
+msgstr "Enlaces externos de WordPress"
+
+#: includes/features/restrict-admin-features.php:62
+msgid "Updates"
+msgstr "Actualizaciones"
+
+#: includes/features/restrict-admin-features.php:63
+msgid "Comments"
+msgstr "Comentarios"
+
+#: includes/features/restrict-admin-features.php:64
+msgid "Right bar"
+msgstr "Barra derecha"
+
+#: includes/features/restrict-admin-features.php:65
+msgid "User actions"
+msgstr "Acciones del usuario"
+
+#: includes/features/restrict-admin-features.php:66
+#: includes/features/restrict-admin-features.php:67
+msgid "New"
+msgstr "Nuevo"
+
+#: includes/features/restrict-admin-features.php:68
+msgid "User Display Name"
+msgstr "Nombre del usuario a mostrar"
+
+#: includes/features/restrict-admin-features.php:69
+msgid "Yoast SEO"
+msgstr "Yoast SEO"
+
+#: includes/features/restrict-admin-features.php:81
+#: includes/features/restrict-editor-features.php:42
+msgid "Screen Options"
+msgstr "Opciones de pantalla"
+
+#: includes/features/restrict-admin-features.php:82
+#: includes/features/restrict-editor-features.php:41
 msgid "Help"
 msgstr "Ayuda"
 
-#. Found in faq list item.
-msgid "Import"
-msgstr "Importar"
+#: includes/features/restrict-admin-features.php:83
+msgid "Thank you for creating with WordPress"
+msgstr "Gracias por crear con WordPress"
 
-#. Found in faq list item.
-msgid "Organizers"
-msgstr "Organizadores"
+#: includes/features/restrict-admin-features.php:84
+#, php-format
+msgid "Version %s"
+msgstr "Versión %s"
 
-#. Found in faq list item.
-msgid "Venues"
-msgstr "Ubicaciones"
+#: includes/features/restrict-admin-features.php:133
+msgid "Welcome panel"
+msgstr "Panel de bienvenida"
 
-#. Found in faq list item.
-msgid "Events Categories"
-msgstr "Categorías de eventos"
+#: includes/features/restrict-editor-features.php:40
+msgid "Top Tabs"
+msgstr "Pestañas superiores"
 
-#. Found in faq list item.
-msgid "Tag"
-msgstr "Etiqueta"
+#: includes/features/restrict-editor-features.php:45
+#: includes/features/restrict-editor-features.php:48
+msgid "Editor"
+msgstr "Editor"
 
-#. Found in faq list item.
-msgid "Events"
-msgstr "Eventos"
+#: includes/features/restrict-editor-features.php:46
+#: includes/filters-woocommerce.php:33 includes/roles/roles.php:10
+msgid "Add New"
+msgstr "Añadir nuevo"
 
-#. Found in faq list item.
-msgid "Community"
-msgstr "Comunidad"
+#: includes/features/restrict-editor-features.php:47
+msgid "Title"
+msgstr "Título"
 
-#. Found in faq list item.
-msgid "About Us"
-msgstr "Sobre nosotros"
+#: includes/features/restrict-editor-features.php:49
+#: includes/features/restrict-editor-features.php:321
+msgid "Permalink"
+msgstr "Enlace permanente"
 
-#. Found in faq list item.
-msgid "SMTP"
-msgstr "SMTP"
+#: includes/features/restrict-editor-features.php:50
+msgid "Media Buttons (all)"
+msgstr "Botones de medios (todos)"
 
-#. Found in faq list item.
-msgid "Addons"
-msgstr "Extensiónes"
+#: includes/features/restrict-editor-features.php:51
+msgid "HTML Editor Button"
+msgstr "Botón del editor HTML"
 
-#. Found in faq list item.
-msgid "Entries"
-msgstr "Registros"
+#: includes/features/restrict-editor-features.php:52
+msgid "Word count"
+msgstr "Recuento de palabras"
 
-#. Found in faq list item.
-msgid "All Forms"
-msgstr "Todos los formularios"
+#: includes/features/restrict-editor-features.php:55
+#: includes/features/restrict-editor-features.php:56
+msgid "Publish Box"
+msgstr "Caja de la publicación"
 
-#. Found in faq header.
-msgid "How Do I Control The Gravity Forms User Roles and Permissions?"
-msgstr "¿Cómo puedo controlar los perfiles y permisos de los usuarios de Gravity Forms?"
+#: includes/features/restrict-editor-features.php:57
+#: includes/features/restrict-editor-features.php:305
+msgid "Save Draft"
+msgstr "Guardar el borrador"
 
-#. Found in faq header.
-msgid "How Do I Control The Events Calendar User Roles and Permissions?"
-msgstr "¿Cómo puedo controlar los perfiles y permisos de los usuarios de The Events Calendar?"
+#: includes/features/restrict-editor-features.php:58
+#: includes/features/restrict-editor-features.php:307
+msgid "Preview"
+msgstr "Previsualizar"
 
-#. Found in faq header.
-msgid "How Do I Control WPForms User Roles and Permissions?"
-msgstr "¿Cómo puedo controlar los perfiles y permisos de los usuarios de WPForms?"
+#: includes/features/restrict-editor-features.php:59
+msgid "Publish Status "
+msgstr "Estado de la publicación"
 
-#. Found in faq header.
-msgid "How Do I Control WooCommerce Menu Link Permissions?"
-msgstr "¿Cómo puedo controlar los permisos de los enlaces del menú de WooCommerce?"
+#: includes/features/restrict-editor-features.php:60
+msgid "Publish Visibility"
+msgstr "Visibilidad de la publicación"
 
-#. Found in faq paragraph.
-msgid "It is possible to control who can access these Jetpack links by using the PublishPress Capabilities Pro plugin. After installing PublishPress Capabilities Pro, go to “Capabilities”, then “Admin Menus” in your WordPress admin area. In the top-left corner of this screen, choose the role that you want to edit. For example, you can restrict Jetpack access for the “Administrator” role. If you do this, I would recommend making a copy of the Administrator role so that one role still has full Jetpack access. Scroll down and you can enter a red X for any Jetpack menu link that you don't want users in the Administrator role to access. Now when an Administrator logs in to your site, they will not be able to see the Jetpack menu links that you have blocked. This approach works for the core Jetpack plugin and can also be used for add-on plugins such as Jetpack CRM and others."
-msgstr "Es posible controlar quién puede acceder a estos enlaces de Jetpack utilizando el plugin PublishPress Capabilities Pro. Después de instalar PublishPress Capabilities Pro, ve a «Permisos» y luego a «Admin Menus» en tu área de administración de WordPress. En la esquina superior izquierda de esta pantalla, elige el perfil que quieres editar. Por ejemplo, puedes restringir el acceso a Jetpack para el perfil de «Administrador». Si haces esto, te recomiendo que hagas una copia del perfil de Administrador para que un perfil siga teniendo acceso completo a Jetpack. Desplázate hacia abajo y podrás introducir una X roja en cualquier enlace del menú de Jetpack al que no quieras que accedan los usuarios con el perfil de Administrador. Ahora, cuando un administrador inicie sesión en tu sitio, no podrá ver los enlaces del menú de Jetpack que has bloqueado. Este método funciona para el núcleo del plugin de Jetpack y también se puede utilizar para extensiones como Jetpack CRM y otros."
+#: includes/features/restrict-editor-features.php:61
+msgid "Password Protect This Post"
+msgstr "Proteger esta entrada con contraseña"
 
-#. Found in faq paragraph.
-msgid "When you first install the Jetpack plugin, you'll see one top-level menu link, plus at least 2 sub-menus:"
-msgstr "Cuando instalas por primera vez el plugin Jetpack, verás un enlace de menú de nivel superior, además de al menos 2 submenús:"
+#: includes/features/restrict-editor-features.php:62
+msgid "Publish Actions"
+msgstr "Acciones de la publicación"
 
-#. Found in faq paragraph.
-msgid "The Pro version of PublishPress Capabilities allows you to block access to admin menu links in the Jetpack plugin. This is useful because Jetpack has limited options for managing who can access the admin screens and important features."
-msgstr "La versión Pro de PublishPress Capabilities te permite bloquear el acceso a los enlaces del menú de administración en el plugin Jetpack. Esto es útil porque Jetpack tiene opciones limitadas para gestionar quién puede acceder a las pantallas de administración y a las características importantes."
+#: includes/features/restrict-editor-features.php:63
+msgid "Publish Schedule"
+msgstr "Programar la publicación"
 
-#. Found in faq paragraph.
-msgid "This approach works for the core Elementor plugin and can also be used for add-on plugins such as Essential Addons, Premium Addons, and others."
-msgstr "Este método funciona para el plugin principal de Elementor y también puede utilizarse para extensiones como Essential Addons, Premium Addons y otras."
+#: includes/features/restrict-editor-features.php:64
+msgid "Date"
+msgstr "Fecha"
 
-#. Found in faq paragraph.
-msgid "In the top-left corner of this screen, choose the role that you want to edit. For example, you can restrict Elementor access for the “Administrator” role. If you do this, I would recommend making a copy of the Administrator role so that one role still has full Elementor access. Scroll down and you can enter a red X for any Elementor menu link that you don't want users in the Administrator role to access."
-msgstr "En la esquina superior izquierda de esta pantalla, elige el perfil que quieres editar. Por ejemplo, puedes restringir el acceso a Elementor para el perfil de «Administrador». Si haces esto, te recomendaría hacer una copia del perfil de Administrador para que un perfil siga teniendo acceso completo a Elementor. Desplázate hacia abajo y puedes introducir una X roja para cualquier enlace del menú de Elementor al que no quieres que accedan los usuarios con el perfil de Administrador."
+#: includes/features/restrict-editor-features.php:65
+msgid "Publish"
+msgstr "Publicar"
 
-#. Found in faq paragraph.
-msgid "It is possible to control who can access Elementor menu links by using the PublishPress Capabilities Pro plugin. After installing PublishPress Capabilities Pro, go to “Capabilities”, then “Admin Menus” in your WordPress admin area."
-msgstr "Es posible controlar quién puede acceder a los enlaces del menú de Elementor utilizando el plugin PublishPress Capabilities Pro. Después de instalar PublishPress Capabilities Pro, ve a «Permisos» y luego a «Admin Menus» en tu área de administración de WordPress."
+#: includes/features/restrict-editor-features.php:68
+msgid "Taxonomy Boxes"
+msgstr "Cajas de taxonomía"
 
-#. Found in faq paragraph.
-msgid "When you first install Elementor, you'll see one top-level menu link, plus at least 9 sub-menus:"
-msgstr "Cuando instalas por primera vez el plugin Elementor, verás un enlace de menú de nivel superior, además de al menos 9 submenús:"
+#: includes/features/restrict-editor-features.php:69
+#: includes/features/restrict-editor-features.php:322
+msgid "Categories"
+msgstr "Categorías"
 
-#. Found in faq paragraph.
-msgid "The Pro version of PublishPress Capabilities allows you to block access to admin menu links in the Elementor plugin. This is useful because Elementor has limited options for managing who can access the admin screens and important features."
-msgstr "La versión Pro de PublishPress Capabilities te permite bloquear el acceso a los enlaces del menú de administración en el plugin Elementor. Esto es útil porque Elementor tiene opciones limitadas para gestionar quién puede acceder a las pantallas de administración y a las características importantes."
+#: includes/features/restrict-editor-features.php:70
+msgid "Add New Category"
+msgstr "Añadir una nueva categoría"
 
-#. Found in faq paragraph.
-msgid "This approach works for the core Yoast SEO plugin and can also be used for add-on plugins such as Local SEO, WooCommerce SEO, Google News, and more."
-msgstr "Este método funciona para el plugin principal de Yoast SEO y también puede utilizarse para extensiones como Local SEO, WooCommerce SEO, Google News y otras."
+#: includes/features/restrict-editor-features.php:71
+#: includes/features/restrict-editor-features.php:323
+msgid "Tags"
+msgstr "Etiquetas"
 
-#. Found in faq paragraph.
-msgid "It is possible to control who can access these Yoast SEO links by using the PublishPress Capabilities Pro plugin. After installing PublishPress Capabilities Pro, go to “Capabilities”, then “Admin Menus” in your WordPress admin area. In the top-left corner of this screen, choose the role that you want to edit. For example, you can restrict Yoast SEO access for the “SEO Manager” role. Scroll down and you can enter a red X for any menu link that you don't want users in the SEO Manager role to access."
-msgstr "Es posible controlar quién puede acceder a estos enlaces de Yoast SEO utilizando el plugin PublishPress Capabilities Pro. Después de instalar PublishPress Capabilities Pro, ve a «Permisos» y luego a «Admin Menus» en tu área de administración de WordPress. En la esquina superior izquierda de esta pantalla, elige el perfil que quieres editar. Por ejemplo, puedes restringir el acceso a Yoast SEO para el perfil de «Gestor SEO». Desplázate hacia abajo y puedes introducir una X roja para cualquier enlace del menú de Yoast SEO al que no quieres que accedan los usuarios con el perfil de Gestor SEO."
+#: includes/features/restrict-editor-features.php:83
+msgid "Page Boxes"
+msgstr "Cajas de página"
 
-#. Found in faq paragraph.
-msgid "When you first install Yoast SEO, you'll see one top-level menu link, plus at least 5 sub-menus:"
-msgstr "Cuando instalas por primera vez el plugin Yoast SEO, verás un enlace de menú de nivel superior, además de al menos 5 submenús:"
+#: includes/features/restrict-editor-features.php:84
+msgid "Page Attributes"
+msgstr "Atributos de la página"
 
-#. Found in faq paragraph.
-msgid "Yoast SEO is the most popular WordPress SEO plugin and contains everything that you need to manage your SEO. Yoast SEO is packed full of feature that help search engines to find and understand your website."
-msgstr "Yoast SEO es el plugin de SEO para WordPress más popular y contiene todo lo que necesitas para gestionar tu SEO. Yoast SEO está repleto de características que ayudan a los motores de búsqueda a encontrar y entender tu sitio web."
+#: includes/features/restrict-editor-features.php:85
+msgid "Parent"
+msgstr "Principal"
 
-#. Found in faq paragraph.
-msgid "The Pro version of PublishPress Capabilities allows you to block access to admin menu links in the Yoast SEO plugin. This is useful because Yoast SEO has limited options for managing who can access the admin screens and important features."
-msgstr "La versión Pro de PublishPress Capabilities te permite bloquear el acceso a los enlaces del menú de administración en el plugin Yoast SEO. Esto es útil porque Yoast SEO tiene opciones limitadas para gestionar quién puede acceder a las pantallas de administración y a las características importantes."
+#: includes/features/restrict-editor-features.php:86
+msgid "Page Template"
+msgstr "Plantilla de la página"
 
-#. Found in faq paragraph.
-msgid "It is possible to control who can access these links by using the PublishPress Capabilities Pro plugin. After installing PublishPress Capabilities Pro, go to “Capabilities”, then “Admin Menus” in your WordPress admin area. In the top-left corner of this screen, choose the role that you want to edit. Scroll down and you can enter a red X for any menu link that you don't want users in the Editor role to access. This approach works for the core Contact Form 7 plugin and can also be used for add-on plugins such as Flamingo which records entries for Contact Form 7 forms."
-msgstr "Es posible controlar quién puede acceder a estos enlaces utilizando el plugin PublishPress Capabilities Pro. Después de instalar PublishPress Capabilities Pro, ve a «Permisos» y luego a «Admin Menus» en tu área de administración de WordPress. En la esquina superior izquierda de esta pantalla, elige el perfil que quieres editar. Desplázate hacia abajo y podrás introducir una X roja en cualquier enlace del menú al que no quieras que accedan los usuarios con el perfil de Editor. Este método funciona para el núcleo del plugin de Contact Form 7 y también se puede utilizar para extensiones como Flamingo, que registra las entradas de los formularios Contact Form 7."
+#: includes/features/restrict-editor-features.php:87
+msgid "Order"
+msgstr "Orden"
 
-#. Found in faq paragraph.
-msgid "When you first install Contact Form 7, you'll see one top-level menu link, plus three sub-menus. All of these links are available to users in the Administrator role:"
-msgstr "Cuando instalas por primera vez el plugin Contact Form 7, verás un enlace de menú de nivel superior, además de al menos 3 submenús. Todos estos enlaces están disponibles para los usuarios con perfil de administrador:"
+#: includes/features/restrict-editor-features.php:90
+msgid "Other Boxes"
+msgstr "Otras cajas"
 
-#. Found in faq paragraph.
-msgid "Contact Form 7 is the most popular contact form plugin for WordPress. You can manage multiple contact forms, and easily customize each form and the emails it sends. Contact Form 7 supports Ajax-powered submitting, CAPTCHA, Akismet spam filtering and much more."
-msgstr "Contact Form 7 es el plugin de formularios de contacto más popular para WordPress. Puedes gestionar múltiples formularios de contacto y personalizar fácilmente cada formulario y los correos electrónicos que envía. Contact Form 7 es compatible con el envío mediante Ajax, CAPTCHA, filtro de spam Akismet y mucho más."
+#: includes/features/restrict-editor-features.php:91
+msgid "Featured Image"
+msgstr "Imagen destacada"
 
-#. Found in faq paragraph.
-msgid "The Pro version of PublishPress Capabilities allows you to block access to admin menu links in the Contact Form 7 plugin. This is useful because Contact Form 7 has very limited options for controlling who can access the admin screens."
-msgstr "La versión Pro de PublishPress Capabilities te permite bloquear el acceso a los enlaces del menú de administración en el plugin Contact Form 7. Esto es útil porque Contact Form 7 tiene opciones limitadas para gestionar quién puede acceder a las pantallas de administración."
+#: includes/features/restrict-editor-features.php:92
+msgid "Post Slug"
+msgstr "Slug de la entrada"
 
-#. Found in faq paragraph.
-msgid "It is possible to control who can access these links by using the PublishPress Capabilities Pro plugin. After installing PublishPress Capabilities Pro, go to “Capabilities”, then “Admin Menus” in your WordPress admin area. n the top-left corner of this screen, choose the role that you want to edit. Scroll down and you can enter a red X for any menu link that you don't want users in that role to access. This is a great way to customize a WooCommerce role such as Shop Manager. This approach works for the core WooCommerce plugin and can also be used for WooCommerce add-on plugins such as WooCommerce Subscriptions, WooCommerce Shipping, and WooCommerce Bookings. PublishPress Capabilities can help you manage WooCommerce permissisons."
-msgstr "Es posible controlar quién puede acceder a estos enlaces utilizando el plugin PublishPress Capabilities Pro. Después de instalar PublishPress Capabilities Pro, ve a «Permisos» y luego a «Admin Menus» en tu área de administración de WordPress. En la esquina superior izquierda de esta pantalla, elige el perfil que quieres editar. Desplázate hacia abajo y podrás introducir una X roja en cualquier enlace del menú al que no quieras que accedan los usuarios con ese perfil. Esta es una muy buena manera de personalizar un perfil de WooCommerce como el de Gerente de la Tienda. Este método funciona para el núcleo del plugin de WooCommerce y también se puede utilizar para las extensiones de WooCommerce como WooCommerce Subscriptions, WooCommerce Shipping, and WooCommerce Bookings. PublishPress Capabilities puede ayudarte a gestionar los permisos de WooCommerce."
+#: includes/features/restrict-editor-features.php:93
+#: includes/features/restrict-editor-features.php:339
+msgid "Discussion"
+msgstr "Discusión"
 
-#. Found in faq paragraph.
-msgid "The Pro version of PublishPress Capabilities allows you to block access to admin menu links in WooCommerce. This is useful because WooCommerce has very limited options for controlling who can access the admin screens. When you first install WooCommerce, you'll see four top-level menu links, plus sub-menus. All of these links are available to users in the Administrator and Shop Manager roles:"
-msgstr "La versión Pro de PublishPress Capabilities te permite bloquear el acceso a los enlaces del menú de administración en WooCommerce. Esto es útil porque WooCommerce tiene opciones limitadas para gestionar quién puede acceder a las pantallas de administración. Cuando instalas por primera vez el plugin WooCommerce, verás cuatro enlaces de menú de nivel superior, además de unos submenús. Todos estos enlaces están disponibles para los usuarios con perfil de administrador y gerente de la tienda:"
+#: includes/features/restrict-editor-features.php:295
+msgid "Top Bar - Left"
+msgstr "Barra superior - Izquierda"
 
-#. Found in faq paragraph.
-msgid "In the right sidebar, you can also enable permissions for WooCommerce taxonomies. Check the boxes for Product categories, Product tags, and Product shipping classes. After you check those boxes and refresh your screen, you will see Manager, Edit, Assign and Delete options for Product categories, Product tags, and Product shipping classes."
-msgstr "En la barra lateral derecha, también puedes habilitar los permisos para las taxonomías de WooCommerce. Marque las casillas de categorías de productos, etiquetas de productos y clases de envío de productos. Después de marcar esas casillas y actualizar la pantalla, verás las opciones de administrar, editar, asignar y eliminar las categorías de productos, las etiquetas de productos y las clases de envío de productos."
+#: includes/features/restrict-editor-features.php:296
+msgid "Add block"
+msgstr "Añadir un bloque"
 
-#. Found in faq paragraph.
-msgid "The PublishPress Capabilities plugin enables you to control permissions for the WooCommerce plugin and also WooCommerce user roles. You can use this plugin as a WooCommerce user role editor. Go to the “Capabilities” link in your WordPress admin menu. In the main area of your screen will see options for WooCommerce Products, Orders and Coupons. These permissions cover editing, deleting and reading."
-msgstr "El plugin PublishPress Capabilities te permite controlar los permisos del plugin WooCommerce y también los perfiles de usuario de WooCommerce. Puedes usar este plugin como un editor de perfiles de usuario de WooCommerce. Ve al enlace «Permisos» en el menú de administración de tu WordPress. En el área principal de tu pantalla verás las opciones para productos, pedidos y cupones de WooCommerce. Estos permisos cubren la edición, el borrado y la lectura."
+#: includes/features/restrict-editor-features.php:297
+msgid "Modes"
+msgstr "Modos"
 
-#. Found in faq paragraph.
-msgid "WooCommerce is the most popular WordPress eCommerce plugin. You can create beautiful store with themes customized to your brand and industry and you'll find 1,000's of tools and popular integrations."
-msgstr "WooCommerce es el plugin de comercio electrónico más popular de WordPress. Puedes crear hermosas tiendas con temas personalizados para tu marca y tu industria y encontrarás 1.000 de herramientas e integraciones populares."
+#: includes/features/restrict-editor-features.php:298
+msgid "Undo"
+msgstr "Deshacer"
 
-#. Found in faq list item.
-msgid "Dashboard"
-msgstr "Escritorio"
+#: includes/features/restrict-editor-features.php:299
+msgid "Redo"
+msgstr "Rehacer"
 
-#. Found in faq list item.
-msgid "Go Pro"
-msgstr "Hazte Pro"
+#: includes/features/restrict-editor-features.php:300
+msgid "Details"
+msgstr "Detalles"
 
-#. Found in faq list item.
-msgid "Custom Icons"
-msgstr "Iconos personalizados"
+#: includes/features/restrict-editor-features.php:301
+msgid "Outline"
+msgstr "Contorno"
 
-#. Found in faq list item.
-msgid "Custom Fonts"
-msgstr "Fuentes personalizadas"
+#: includes/features/restrict-editor-features.php:304
+msgid "Top Bar - Right"
+msgstr "Barra superior - Derecha"
 
-#. Found in faq list item.
-msgid "Get Help"
-msgstr "Obtener ayuda"
+#: includes/features/restrict-editor-features.php:306
+msgid "Switch to draft"
+msgstr "Cambiar a borrador"
 
-#. Found in faq list item.
-msgid "Getting Started"
-msgstr "Primeros pasos"
+#: includes/features/restrict-editor-features.php:308
+msgid "Publish / Update"
+msgstr "Publicar / Actualizar"
 
-#. Found in faq list item.
-msgid "System Info"
-msgstr "Información del sistema"
+#: includes/features/restrict-editor-features.php:310
+msgid "Options"
+msgstr "Opciones"
 
-#. Found in faq list item.
-msgid "Role Manager"
-msgstr "Gestor de perfiles"
+#: includes/features/restrict-editor-features.php:313
+msgid "Body"
+msgstr "Cuerpo"
 
-#. Found in faq list item.
-msgid "Settings"
-msgstr "Ajustes"
+#: includes/features/restrict-editor-features.php:314
+msgid "Edit title"
+msgstr "Editar el título"
 
-#. Found in faq list item.
-msgid "Premium"
-msgstr "Premium"
+#: includes/features/restrict-editor-features.php:315
+msgid "Content"
+msgstr "Contenido"
 
-#. Found in faq list item.
-msgid "Tools"
-msgstr "Herramientas"
+#: includes/features/restrict-editor-features.php:318
+msgid "Document Panel"
+msgstr "Paneles de documentos"
 
-#. Found in faq list item.
-msgid "Social"
-msgstr "Social"
+#: includes/features/restrict-editor-features.php:319
+msgid "Status & visibility"
+msgstr "Estado y visibilidad"
 
-#. Found in faq list item.
-msgid "Search Appearance"
-msgstr "Apariencia en el buscador"
+#: includes/features/restrict-editor-features.php:320
+msgid "Template"
+msgstr "Plantilla"
 
-#. Found in faq list item.
+#: includes/features/restrict-editor-features.php:337
+msgid "Featured image"
+msgstr "Imagen destacada"
+
+#: includes/features/restrict-editor-features.php:338
+msgid "Excerpt"
+msgstr "Extracto"
+
+#: includes/features/restrict-editor-features.php:340
+msgid "Post Attributes"
+msgstr "Atributos de la entrada"
+
+#: includes/features/restrict-editor-features.php:343
+#: includes/features/restrict-editor-features.php:344
+msgid "Block Panel"
+msgstr "Panel de bloques"
+
+#: includes/features/restrict-editor-features.php:345
+msgid "Paragraph"
+msgstr "Párrafo"
+
+#: includes/features/restrict-editor-features.php:346
+msgid "Typography"
+msgstr "Tipografía"
+
+#: includes/features/restrict-editor-features.php:347
+msgid "Color settings"
+msgstr "Ajustes del color"
+
+#: includes/features/restrict-editor-features.php:348
+msgid "Text settings"
+msgstr "Ajustes del texto"
+
+#: includes/filters-woocommerce.php:32
+#, fuzzy, php-format
+#| msgid "All %s"
+#| msgid_plural "All %s"
+msgid "All %s"
+msgstr "Todo el %s"
+
+#: includes/filters.php:254
+msgid "Edit Roles"
+msgstr "Editar perfiles"
+
+#: includes/functions-admin.php:201
+msgid "Editor Feature"
+msgstr "Característica del editor"
+
+#: includes/functions-admin.php:212
+msgid "Admin Feature"
+msgstr "Característica de administración"
+
+#: includes/handler.php:45
+msgid "New role created."
+msgstr "Se ha creado un nuevo perfil."
+
+#: includes/handler.php:51
+msgid "Error: Failed creating the new role."
+msgstr "Error: no se ha podido crear el nuevo perfil."
+
+#: includes/handler.php:61 includes/handler.php:89 includes/manager.php:739
+msgid "The selected role is not editable."
+msgstr "El perfil seleccionado no es editable."
+
+#: includes/handler.php:119
+msgid "Incorrect capability name."
+msgstr "Nombre incorrecto de la capacidad."
+
+#: includes/handler.php:124
+msgid "Type / Taxonomy settings saved."
+msgstr "Los ajustes de tipo/taxonomía se han guardados."
+
+#: includes/handler.php:127
+msgid "Bad form received."
+msgstr "Se ha recibido un formulario incorrecto."
+
+#: includes/handler.php:250
+msgid "You cannot remove Manage Capabilities from Administrators"
+msgstr "No se puede quitar «Gestionar capacidades» a los administradores"
+
+#: includes/manager.php:201
+msgid "Explicity negate this capability by storing as disabled"
+msgstr "Niega explícitamente esta capacidad almacenándola como desactivada"
+
+#: includes/manager.php:202
+msgid "Explicitly negate these capabilities by storing as disabled"
+msgstr ""
+"Niega explícitamente estas capacidades almacenándolas como desactivadas"
+
+#: includes/manager.php:203
+msgid "Post type registration does not define this capability distinctly"
+msgstr "El registro del tipo de contenido no define claramente esta capacidad"
+
+#: includes/manager.php:204
+msgid "This capability is explicitly negated. Click to add/remove normally."
+msgstr ""
+"Esta capacidad está explícitamente negada. Haz clic para añadir/quitar "
+"normalmente."
+
+#: includes/manager.php:205
+msgid "Add or remove this capability from the WordPress role"
+msgstr "Añadir o quitar esta capacidad del perfil de WordPress"
+
+#: includes/manager.php:206
+msgid "Add or remove capability from the role normally"
+msgstr "Añadir o quitar capacidades del perfil normalmente"
+
+#: includes/manager.php:207
+msgid "Are you sure you want to delete this item ?"
+msgstr "¿Seguro que quieres borrar este elemento?"
+
+#: includes/manager.php:208
+msgid "Add or clear custom item entry before saving changes."
+msgstr ""
+"Añade o vacía el registro del elemento personalizado antes de guardar los "
+"cambios."
+
+#: includes/manager.php:406
+msgid "Name"
+msgstr "Nombre"
+
+#: includes/manager.php:407
+#: includes/roles/class/class-pp-roles-list-table.php:165
+msgid "Role"
+msgstr "Perfil"
+
+#: includes/manager.php:408
+#: includes/roles/class/class-pp-roles-list-table.php:166
+msgid "Users"
+msgstr "Usuarios"
+
+#: includes/manager.php:435
+msgid "You do not have permission to manage roles."
+msgstr "No tienes permisos para gestionar perfiles."
+
+#: includes/manager.php:458 includes/manager.php:480
+msgid "You do not have permission to manage editor features."
+msgstr "No tienes permisos para gestionar las características del editor."
+
+#: includes/manager.php:502 includes/manager.php:556
+msgid "Settings updated."
+msgstr "Ajustes actualizados."
+
+#: includes/manager.php:518 includes/manager.php:540
+msgid "You do not have permission to manage admin features."
+msgstr "No tienes permisos para gestionar características de administración."
+
+#: includes/manager.php:661 includes/manager.php:695 includes/manager.php:713
+msgid "You do not have permission to manage capabilities."
+msgstr "No tienes permisos para gestionar capacidades."
+
+#: includes/manager.php:727
+msgid "New capability added to role."
+msgstr "Se han añadido nuevas capacidades al perfil."
+
+#: includes/manager.php:768
+msgid "Bad form Received"
+msgstr "Se ha recibido un formulario incorrecto"
+
+#: includes/manager.php:920
+msgid "You do not have permission to perform this action."
+msgstr "No tiene permisos para realizar esta acción."
+
+#: includes/manager.php:975
+#, php-format
+msgid "If you like %s, please leave us a %s rating. Thank you!"
+msgstr "Si te gusta %s, por favor déjanos una valoración de %s. ¡Gracias!"
+
+#: includes/manager.php:986
+msgid "About"
+msgstr "Acerca de"
+
+#: includes/manager.php:988
+msgid "Documentation"
+msgstr "Documentación"
+
+#: includes/manager.php:990
+msgid "Contact"
+msgstr "Contacto"
+
+#: includes/pp-ui.php:58
+#, php-format
+msgid "see %1$sRole Usage%2$s: \"Pattern Roles\""
+msgstr "consulta %1$sUso de perfiles%2$s: «Perfiles de patrones»"
+
+#: includes/pp-ui.php:60
+#, php-format
+msgid "activate %1$sAdvanced settings%2$s, see Role Usage"
+msgstr "activar los %1$sajustes avanzados%2$s, consulta Uso de perfiles"
+
+#: includes/pp-ui.php:65
+#, php-format
+msgid ""
+"\"Posts\" capabilities selected here also define type-specific role "
+"assignment for Permission Groups%s."
+msgstr ""
+"Las capacidades de «posts» seleccionadas aquí también definen la asignación "
+"de perfiles específicos para los grupos de permisos%s."
+
+#: includes/pp-ui.php:67
+#, php-format
+msgid ""
+"\"Posts\" capabilities selected here also define type-specific role "
+"assignment for Permit Groups%s."
+msgstr ""
+"Las capacidades de «posts» seleccionadas aquí también definen la asignación "
+"de perfiles específicos para los grupos permitidos%s."
+
+#: includes/pp-ui.php:75
+#, php-format
+msgid ""
+"Capabilities for custom statuses can be manually added here. (See "
+"%sPermissions > Post Statuses%s for applicable names). %sSupplemental status-"
+"specific roles%s are usually more convenient, though."
+msgstr ""
+"Las capacidades para los estados personalizados pueden ser añadidas "
+"manualmente aquí. (Ver %sPermisos > Estados de las entradas%s para los "
+"nombres aplicables). Sin embargo, los %sperfiles específicos de estado "
+"suplementarios%s suelen ser más convenientes."
+
+#: includes/pp-ui.php:77
+msgid ""
+"Capabilities for custom statuses can be manually added here. Or activate the "
+"PP Custom Post Statuses extension to assign status-specific supplemental "
+"roles."
+msgstr ""
+"Las capacidades para los estados personalizados pueden añadirse manualmente "
+"aquí. O bien activar la extensión PP Custom Post Statuses para asignar "
+"perfiles suplementarios específicos de estados."
+
+#: includes/pp-ui.php:80
+msgid ""
+"Capabilities for custom statuses can be manually added to a role here (see "
+"Conditions > Status > Capability Mapping for applicable names). However, it "
+"is usually more convenient to use Permit Groups to assign a supplemental "
+"status-specific role."
+msgstr ""
+"Las capacidades para los estados personalizados pueden añadirse manualmente "
+"a un perfil aquí (consulta Condiciones > Estado > Asignación de capacidades "
+"para los nombres aplicables). Sin embargo, suele ser más conveniente "
+"utilizar los «Grupos permitidos» para asignar perfiles suplementarios "
+"específicos de estados."
+
+#: includes/pp-ui.php:93
+msgid "Type-Specific Capabilities"
+msgstr "Capacidades específicas de tipos de contenido"
+
+#: includes/pp-ui.php:96
+msgid "Ensure permissions can be controlled separately from other post types."
+msgstr ""
+"Se asegura de que los permisos puedan ser controlados por separado de otros "
+"tipos de contenido."
+
+#: includes/pp-ui.php:159
+msgid "Use create_posts capability"
+msgstr "Usar la capacidad create_posts"
+
+#: includes/pp-ui.php:177
+msgid "Taxonomy-Specific Capabilities"
+msgstr "Capacidades específicas de la taxonomía"
+
+#: includes/pp-ui.php:180
+msgid "Ensure permissions can be controlled separately from other taxonomies."
+msgstr ""
+"Se asegura de que los permisos puedan ser controlados por separado de otras "
+"taxonomías."
+
+#: includes/pp-ui.php:236
+msgid "Detailed Taxonomy Capabilities"
+msgstr "Capacidades de taxonomías detalladas"
+
+#: includes/pp-ui.php:239
+msgid ""
+"Enforce Edit, Delete and Assign capabilities separately from Management "
+"capability."
+msgstr ""
+"Forzar las capacidades de edición, eliminación y asignación por separado de "
+"la capacidad de gestión."
+
+#: includes/roles/class/class-pp-roles-actions.php:148
+msgid "You do not have sufficient permissions to perform this action."
+msgstr "No tienes permisos suficientes para realizar esta acción."
+
+#: includes/roles/class/class-pp-roles-actions.php:162
+#: includes/roles/class/class-pp-roles-actions.php:180
+#: includes/roles/class/class-pp-roles-actions.php:288
+#: includes/roles/class/class-pp-roles-actions.php:385
+msgid "Your link has expired, refresh the page and try again."
+msgstr "Tu enlace caducó, actualiza la página e intentalo de nuevo."
+
+#: includes/roles/class/class-pp-roles-actions.php:184
+#: includes/roles/class/class-pp-roles-actions.php:292
+#: includes/roles/class/class-pp-roles-actions.php:409
+#: includes/roles/class/class-pp-roles-actions.php:534
+#: includes/roles/class/class-pp-roles-actions.php:595
+msgid "Missing parameters, refresh the page and try again."
+msgstr "Faltan parámetros, actualiza la página e inténtalo de nuevo."
+
+#: includes/roles/class/class-pp-roles-actions.php:211
+#, php-format
+msgid "Invalid role name entry: %s"
+msgstr "Registro de nombre de perfil no válido: %s"
+
+#: includes/roles/class/class-pp-roles-actions.php:223
+#, php-format
+msgid "The role \"%s\" already exists. Please choose a different name."
+msgstr "El perfil «%s» ya existe. Por favor, elige un nombre diferente."
+
+#: includes/roles/class/class-pp-roles-actions.php:247
+msgid ""
+"Something went wrong, the system wasn't able to create the role, refresh the "
+"page and try again."
+msgstr ""
+"Algo salió mal, el sistema no fue capaz de crear el perfil, actualiza la "
+"página e intentalo de nuevo."
+
+#: includes/roles/class/class-pp-roles-actions.php:255
+#, php-format
+msgid "The new role %s was created successfully."
+msgstr "El nuevo perfil %s se ha creado correctamente."
+
+#: includes/roles/class/class-pp-roles-actions.php:344
+#, php-format
+msgid "%s role updated successfully."
+msgstr "El perfil de %s se ha actualizado correctamente."
+
+#: includes/roles/class/class-pp-roles-actions.php:417
+#, php-format
+msgid ""
+"Cannot delete default role. You <a href=\"%s\">have to change it first</a>."
+msgstr ""
+"No se ha podido eliminar el perfil por defecto. <a href=\"%s\">Debes "
+"cambiarlo antes</a>."
+
+#: includes/roles/class/class-pp-roles-actions.php:436
+msgid "Deleting a system role is not allowed."
+msgstr "No se permite borrar un perfil del sistema."
+
+#: includes/roles/class/class-pp-roles-actions.php:458
+#, php-format
+msgid "%1$d users moved to default role %2$s."
+msgstr "%1$d  usuarios movidos al perfil por defecto %2$s."
+
+#: includes/roles/class/class-pp-roles-actions.php:463
+#, php-format
+msgid "The role %1$s was successfully deleted. %2$s"
+msgstr "El perfil %1$s fue borrado correctamente. %2$s"
+
+#: includes/roles/class/class-pp-roles-actions.php:469
+#, php-format
+msgid "The selected %1$s roles were successfully deleted. %2$s"
+msgstr "Los perfiles %1$s seleccionados se borraron correctamente. %2$s"
+
+#: includes/roles/class/class-pp-roles-actions.php:491
+msgid "The role could not be deleted."
+msgstr "No se ha podido borrar el perfil."
+
+#: includes/roles/class/class-pp-roles-actions.php:545
+#, php-format
+msgid "The role %1$s was successfully hidden."
+msgstr "El perfil %1$s se ha ocultado correctamente."
+
+#: includes/roles/class/class-pp-roles-actions.php:605
+#, php-format
+msgid "The role %1$s was successfully unhidden."
+msgstr "El perfil %1$s se ha vuelto a mostrar correctamente."
+
+#: includes/roles/class/class-pp-roles-admin.php:105
 msgid "General"
 msgstr "General"
 
-#. Found in faq list item.
-msgid "Integration"
-msgstr "Integración"
-
-#. Found in faq list item.
-msgid "Add New"
-msgstr "Añadir nueva"
-
-#. Found in faq list item.
-msgid "Contact Forms"
-msgstr "Formularios de contacto"
-
-#. Found in faq list item.
-msgid "Marketing"
-msgstr "Marketing"
-
-#. Found in faq list item.
-msgid "Analytics"
-msgstr "Analytics"
-
-#. Found in faq list item.
-msgid "Products"
-msgstr "Productos"
-
-#. Found in faq list item.
-msgid "WooCommerce"
-msgstr "WooCommerce"
-
-#. Found in faq header.
-msgid "How Do I Control Jetpack User Roles and Permissions?"
-msgstr "¿Cómo puedo controlar los perfiles y permisos de los usuarios de Jetpack?"
-
-#. Found in faq header.
-msgid "How Do I Control Elementor User Roles and Permissions?"
-msgstr "¿Cómo puedo controlar los perfiles y permisos de los usuarios de Elementor?"
-
-#. Found in faq header.
-msgid "How Do I Control Yoast SEO User Roles and Permissions?"
-msgstr "¿Cómo puedo controlar los perfiles y permisos de los usuarios de Yoast SEO?"
-
-#. Found in faq header.
-msgid "How Do I Control Contact Form 7 Permissions?"
-msgstr "¿Cómo puedo controlar los perfiles y permisos de los usuarios de Contact Form 7?"
-
-#. Found in faq paragraph.
-msgid "Common and incorrect typos include Capabilitise, Cpabilities, Capabiliites, Cspabilities, Capsbilities, Caoabilities, Calabilities."
-msgstr "Las erratas más comunes e incorrectas son Capabilitise, Cpabilities, Capabiliites, Cspabilities, Capsbilities, Caoabilities, Calabilities."
-
-#. Found in faq paragraph.
-msgid "PublishPress is the official brandname. When writing about this user role editor plugin, please make sure to uppercase the Ps."
-msgstr "PublishPress es la marca oficial. Cuando escribas sobre este plugin de edición de perfiles de usuario, por favor, asegúrate de poner las letras P en mayúsculas."
-
-#. Found in faq paragraph.
-msgid "Here's another comparison:"
-msgstr "Aquí tienes otra comparación:"
-
-#. Found in faq paragraph.
-msgid "Here's an contrasting example when it comes to Post:"
-msgstr "Aquí hay un ejemplo contrastado cuando se trata de Publicar:"
-
-#. Found in faq paragraph.
-msgid "OK, that's maybe too simple, so here's more detail:"
-msgstr "OK, eso puede ser demasiado simple, así que aquí tienes más detalles:"
-
-#. Found in faq paragraph.
-msgid "We provide two plugins that allow you to control who can access what on your WordPress site. This is simple way to understand the difference:"
-msgstr "Ofrecemos dos plugins que te permiten controlar quién puede acceder a qué en tu sitio de WordPress. Esta es una forma sencilla de entender la diferencia:"
-
-#. Found in faq paragraph.
-msgid "If you want to proceed, click the “Reset to WordPress defaults” link. PublishPress Capabilities will ask you if you're really sure you want to do this. Click “OK” to continue. Once the process is complete, you'll see the message, “Roles and Capabilities reset to WordPress defaults”."
-msgstr "Si quieres continuar, haz clic en el enlace «Restablecer los valores por defecto de WordPress». PublishPress Capabilities te preguntará si estás realmente seguro de querer hacerlo. Haz clic en «Aceptar» para continuar. Una vez completado el proceso, aparecerá el mensaje «Perfiles y permisos restablecidos a los valores por defecto de WordPress»."
-
-#. Found in faq paragraph.
-msgid "“WARNING: This will delete and/or modify stored role definitions. If you have installed any plugin that adds new roles or capabilities, these will be lost. It is recommended to use this only as a last resort!”"
-msgstr "» Advertencia: esto borrará y/o modificará las definiciones de los perfiles almacenados. Si has instalado algún plugin que añada nuevos perfiles o permisos, estos se perderán. Recomendamos usar esto sólo como último recurso»."
-
-#. Found in faq paragraph.
-msgid "If you really need to clean up and refresh your site, PublishPress Capabilities does allow you to restore the default WordPress permissions. Go to Capabilities &gt; Backup and dlick the “Reset Roles” tab. Before you take next step, make sure to read this warning:"
-msgstr "Si realmente necesitas limpiar y refrescar tu sitio, PublishPress Capabilities te permite restaurar los permisos por defecto de WordPress. Ve a permisos &gt; Copia de seguridad y haz clic en la pestaña «Restablecer perfiles». Antes de dar el siguiente paso, asegúrate de leer esta advertencia:"
-
-#. Found in faq paragraph.
-msgid "Whenever you choose a backup, the plugin will show all the permissions in that backup. Important changes in permissions are highlighted:"
-msgstr "Cada vez que eliges una copia de seguridad, el plugin mostrará todos los permisos de esa copia de seguridad. Los cambios importantes en los permisos se resaltan:"
-
-#. Found in faq paragraph.
-msgid "Click the yellow “Restore Selected Roles” button and you'll be able to roll back to a previous version."
-msgstr "Haz clic en el botón amarillo «Restaurar los perfiles seleccionados» y podrás volver a una versión anterior."
-
-#. Found in faq paragraph.
-msgid "Every time you change your permissions, the PublishPress Capabilities plugin will automatically create a backup. If you make a mistake, go to the “Backup” menu link and click the “Restore” tab. Here you can browse through the most recent 20 automatic backups. The plugin also saves a backup from you first installed PublishPress Capabilities. And you can click the “Backup” tab to manually create backups."
-msgstr "Cada vez que cambias tus permisos, el plugin PublishPress Capabilities creará automáticamente una copia de seguridad. Si te equivocas, ve al enlace del menú «Copia de seguridad» y haz clic en la pestaña «Restaurar». Aquí puedes navegar por las 20 copias de seguridad automáticas más recientes. El plugin también guarda una copia de seguridad desde la primera vez que instalaste PublishPress Capabilities. Y puedes hacer clic en la pestaña «Copia de seguridad» para crear copias de seguridad manualmente."
-
-#. Found in faq paragraph.
-msgid "Changing permissions in WordPress can be a tricky task. It's possible to lock yourself or others out of some important features. So, we've built a way to keep your site safe."
-msgstr "Cambiar los permisos en WordPress puede ser una tarea complicada. Es posible que te bloquees a ti mismo o a otros fuera de algunas características importantes. Por eso, hemos creado una forma de mantener tu sitio seguro."
-
-#. Found in faq paragraph.
-msgid "PublishPress Capabilities is a user role editor that offers you the ability to backup and restore your WordPress user permissions. This feature is very helpful if you want to test out changes on your site, or you've installed a new plugin that has changed your site's permissions."
-msgstr "PublishPress Capabilities es un editor de perfiles de usuario que te ofrece la posibilidad de hacer una copia de seguridad y restaurar tus permisos de usuario de WordPress. Esta función es muy útil si deseas probar los cambios en tu sitio, o si has instalado un nuevo plugin que ha cambiado los permisos de tu sitio."
-
-#. Found in faq list item.
-msgid "publish press cpabilities (incorrect)"
-msgstr "publish press cpabilities (incorrecto)"
-
-#. Found in faq list item.
-msgid "publishpress capabilities (incorrect)"
-msgstr "publishpress capabilities (incorrecto)"
-
-#. Found in faq list item.
-msgid "Publish Press Capabilities (incorrect)"
-msgstr "Publish Press Capabilities (incorrecto)"
-
-#. Found in faq list item.
-msgid "PublishPress Capabilities (correct)"
-msgstr "PublishPress Capabilities (correcto)"
-
-#. Found in faq list item.
-msgid "PublishPress Permissions allows you to control who can read Pages with a specific Status, Category or Tag, or even Pages with a particular parent Page."
-msgstr "PublishPress Permissions permite controlar quién puede leer las páginas con un estado, una categoría o una etiqueta específicos, o incluso las páginas con una página principal específica."
-
-#. Found in faq list item.
-msgid "PublishPress Capabilities allows you to control who can read all your Pages."
-msgstr "PublishPress Capabilities te permite controlar quién puede leer todas tus páginas."
-
-#. Found in faq list item.
-msgid "PublishPress Permissions allows you to control who can publish Posts with a particular Status, Category or Tag, or even Posts without a specific Category or Tag."
-msgstr "PublishPress Permissions te permite controlar quién puede publicar entradas con un estado, una categoría o una etiqueta específicos, o incluso entradas sin una categoría o una etiqueta específicas."
-
-#. Found in faq list item.
-msgid "PublishPress Capabilities allows you to control who can publish all your Posts."
-msgstr "PublishPress Capabilities te permite controlar quién puede publicar todas tus entradas."
-
-#. Found in faq list item.
-msgid "PublishPress Permissions allows you to customize advanced permissions that go far beyond the scope of the WordPress core."
-msgstr "PublishPress Permissions le permite personalizar los permisos avanzados que van más allá del alcance del núcleo de WordPress."
-
-#. Found in faq list item.
-msgid "PublishPress Permissions allows you to customize the default WordPress permissions."
-msgstr "PublishPress Permissions le permite personalizar los permisos por defecto de WordPress."
-
-#. Found in faq list item.
-msgid "PublishPress Permissions: Advanced."
-msgstr "PublishPress Permissions: avanzado."
-
-#. Found in faq list item.
-msgid "PublishPress Capabilities: Easy."
-msgstr "PublishPress Capabilities: fácil."
-
-#. Found in faq list item.
-msgid "A stuck-through capability is set in the current role, but not the role backup."
-msgstr "Se ha establecido un permiso de bloqueo en el perfil actual, pero no en la copia de seguridad del perfil."
-
-#. Found in faq list item.
-msgid "A green capability is set in the role backup, but not the current role."
-msgstr "Se ha establecido un permiso verde en la copia de seguridad del perfil, pero no en el perfil actual."
-
-#. Found in faq list item.
-msgid "A green role title means the role does not exist in your current set.  "
-msgstr "Un título de perfil verde significa que el perfil no existe en el conjunto actual.  "
-
-#. Found in faq header.
-msgid "What's the correct way to spell PublishPress Capabilities?"
-msgstr "¿Cuál es la forma correcta de escribir PublishPress Capabilities?"
-
-#. Found in faq header.
-msgid "What’s the Difference Between PublishPress Capabilities and PublishPress Permissions?"
-msgstr "¿Cuál es la diferencia entre PublishPress Capabilities y PublishPress Permissions?"
-
-#. Found in faq header.
-msgid "How Do I Restore Permissions to the WordPress Defaults?"
-msgstr "¿Cómo puedo restaurar los permisos a los valores por defecto de WordPress?"
-
-#. Found in faq header.
-msgid "How do I Backup and Restore WordPress User Permissions?"
-msgstr "¿Cómo puedo hacer una copia de seguridad y restaurar los permisos de usuario de WordPress?"
-
-#. Found in description paragraph.
-msgid "PublishPress Capabilities gives you detailed control over all the permission levelsss on your WordPress site. You can edit user roles on your site, from Administrator and Editor to Contributor and Subscriber."
-msgstr "PublishPress Capabilities te permite un control detallado de todos los niveles de permisos en tu sitio de WordPress. Puedes editar los perfiles de los usuarios en tu sitio, desde administrador y editor hasta colaborador y suscriptor."
-
-#. Found in description paragraph.
-msgid "The Pro version of PublishPress Capabilities enables you to stop users from accessing any admin menu link and any frontend menu link."
-msgstr "La versión Pro de PublishPress Capabilities te permite impedir que los usuarios accedan a cualquier enlace del menú de administración y a cualquier enlace del menú de la vista pública."
-
-#. Found in description header.
-msgid "10. WordPress Admin Menu Restrictions (Pro version)"
-msgstr "10. Restricciones del menú de administración de WordPress (versión Pro)"
-
-#. Found in description header.
-msgid "8. Create New User Roles or Copy User Roles"
-msgstr "8. Crear nuevos perfiles de usuario o copiar perfiles de usuario"
-
-#. Found in description header.
-msgid "5. Hide Gutenberg and Classic Editor Features"
-msgstr "5. Ocultar las funciones de Gutenberg y del editor clásico"
-
-#. Found in description header.
-msgid "3. Capabilities for any WordPress Taxonomy"
-msgstr "3. Capacidades para cualquier taxonomía de WordPress"
-
-#. Found in description header.
-msgid "1. WordPress User Role Editor"
-msgstr "1. Editor de perfiles de usuario de WordPress"
-
-#. Found in description paragraph.
-msgid "<a href=\"https://publishpress.com/knowledge-base/editor-features/\">Click here to learn about hiding editor features</a>."
-msgstr "<a href=\"https://publishpress.com/knowledge-base/editor-features/\">Haz clic aquí para conocer cómo ocultar las características del editor</a>."
-
-#. Found in description paragraph.
-msgid "PublishPress Capabilities has an option called \"Editor Features\" allows you to clean up the post editing screen. You can decide what users see when they're writing posts. You can hide anything on the Gutenberg or Classic Editor screens. You can hide boxes inside the sidebadd such Tags, Categories, or Excerpt. You can the \"Publish\" button. You can even hide the post title, body, or permalink. This is a great alternative to plugins such as Adminimize."
-msgstr "PublishPress Capabilities tiene una opción llamada «Editor Features» que te permite limpiar la pantalla de edición de entradas. Puedes decidir lo que los usuarios ven cuando están escribiendo las entradas. Puedes ocultar cualquier cosa en las pantallas del Editor Gutenberg o Clásico. Puedes ocultar las casillas dentro de la barra lateral como etiquetas, categorías o extracto. Puedes ocultar el botón «Publicar». Incluso puedes ocultar el título del post, el cuerpo o el enlace permanente. Esta es una excelente alternativa a plugins como Adminimize."
-
-#. Found in description paragraph.
-msgid "You can use PublishPress Capabilities to clean up the post editing screen. You can decide what authors see when they're writing posts. You can <strong>hide any features on the Gutenberg or Classic Editor screens</strong>."
-msgstr "Puedes usar PublishPress Capabilities para limpiar la pantalla de edición de las entradas. Puedes decidir qué ven los autores cuando escriben las publicaciones. Puedes <strong>ocultar cualquier característica en las pantallas de Gutenberg o del editor clásico</strong>."
-
-#. Found in description list item.
-msgid "<strong>Hide editor features</strong>: Decide what users see when they're writing posts in Gutenberg or the Classic Editor."
-msgstr "<strong>Ocultar características del editor</strong>: decide qué ven los usuarios cuando escriben entradas en Gutenberg o en el editor clásico."
-
-#. Found in description list item.
-msgid "<strong>Multisite support</strong>: Manage permissions on a single site or across your whole network."
-msgstr "<Compatibilidad con multisitio>: gestiona los permisos en un solo sitio o en toda tu red."
-
-#. Found in description list item.
-msgid "<strong>WooCommerce permissions</strong>: Control access to WooCommerce products, orders, coupons and more."
-msgstr "<strong>Permisos de WooCommerce</strong>: controla el acceso a los productos de WooCommerce, los pedidos, los cupones y mucho más."
-
-#. Found in description list item.
-msgid "<strong>Media library permissions</strong>: Decide who can upload, edit and delete files."
-msgstr "<strong>Permisos de la biblioteca de medios</strong>: decide quién puede subir, editar y eliminar archivos."
-
-#. Found in description list item.
-msgid "<strong>Admin menus (Pro version)</strong>: Stop users from accessing any admin menu link."
-msgstr "<strong>Menús de administración (versión Pro)</strong>: impide que los usuarios accedan a cualquier enlace del menú de administración."
-
-#. Found in description list item.
-msgid "<strong>Frontend menus (Pro version)</strong>: Stop users from accessing any frontend menu link."
-msgstr "<strong>Menús de la portada (versión Pro)</strong>: impide que los usuarios accedan a cualquier enlace del menú de la portada."
-
-#. Found in description list item.
-msgid "<strong>Create or copy user roles</strong>: Add new roles, or clone existing roles."
-msgstr "<strong>Crear o copiar perfiles de usuario</strong>: añade nuevos perfiles o clona los existentes."
-
-#. Found in description list item.
-msgid "<strong>Safe backups</strong>: Every time you change your permissions, PublishPress Capabilities saves a backup."
-msgstr "<strong>Copias de seguridad</strong>: cada vez que cambias tus permisos, PublishPress Capabilities guarda una copia de seguridad."
-
-#. Found in description list item.
-msgid "<strong>Works for all taxonomies</strong>: Choose who can Manage, Edit and Assign terms in any taxonomy."
-msgstr "<strong>Funciona para todas las taxonomías</strong>: elige quién puede gestionar, editar y asignar términos en cualquier taxonomía."
-
-#. Found in description list item.
-msgid "<strong>Works for all post types</strong>: Choose who can Publish, Read, Edit and Delete content for any post type."
-msgstr "<strong>Funciona para todos los tipos de contenido</strong>: elige quién puede publicar, leer, editar y eliminar contenido para cualquier tipo de contenido."
-
-#. Found in description list item.
-msgid "<strong>User role editor</strong>: You can change the capabilities for any role."
-msgstr "<strong>Editor de perfiles de usuario</strong>: puede cambiar las capacidades de cualquier perfil."
-
-#. Found in description header.
-msgid "9. Frontend Menu Restrictions (Pro version)"
-msgstr "9. Restricciones del menú de la portada (versión Pro)"
-
-#. Found in description header.
-msgid "The Key Features of PublishPress Capabilities"
-msgstr "Las principales características de PublishPress Capabilities"
-
-#. Found in description paragraph.
-msgid "<a href=\"https://publishpress.com/knowledge-base/multisite-network/\">Click here to learn about multisite permissions</a>."
-msgstr "<a href=\"https://publishpress.com/knowledge-base/multisite-network/\" >Haz clic aquí para saber más sobre los permisos del multisitio</a>."
-
-#. Found in description paragraph.
-msgid "PublishPress Capabilities allows you to control permissions on a single site or across your whole network. Every time you update permissions in PublishPress Capabilities, you can choose to sync those changes across your multisite network."
-msgstr "PublishPress Capabilities te permite controlar los permisos en un solo sitio o en toda tu red. Cada vez que actualices los permisos en PublishPress Capabilities, puedes elegir sincronizar esos cambios en toda tu red multisitio."
-
-#. Found in description paragraph.
-msgid "<a href=\"https://publishpress.com/knowledge-base/woocommerce-permissons/\">Click here to learn about WooCommerce permissions</a>."
-msgstr "<a href=\"https://publishpress.com/knowledge-base/woocommerce-permissons/\">Haz clic aquí para saber más sobre los permisos de WooCommerce</a>."
-
-#. Found in description paragraph.
-msgid "We mentioned earlier that PublishPress Capabilities has special support for WooCommerce taxonomies. This is true for the rest of WooCommerce also. With PublishPress Capabilities you can control permissions for WooCommerce products, orders and coupons."
-msgstr "Hemos mencionado anteriormente que PublishPress Capabilities tiene un compatibilidad especial con las taxonomías de WooCommerce. Esto es cierto para el resto de WooCommerce también. Con PublishPress Capabilities puedes controlar los permisos de los productos, pedidos y cupones de WooCommerce."
-
-#. Found in description paragraph.
-msgid "<a href=\"https://publishpress.com/knowledge-base/control-media-library-access/\">Click here to learn about Media Library permissions</a>."
-msgstr "<a href=\"https://publishpress.com/knowledge-base/control-media-library-access/\">Haz clic aquí para aprender sobre los permisos de la biblioteca de medios</a>."
-
-#. Found in description paragraph.
-msgid "PublishPress Capabilities enables you to decide who can upload, edit and delete files from your site's Media Library. By default, only Administrators are able to delete files in your Media Library. Subscribers and Contributors are not even allowed to upload files. You can customize these permissions for the Media Library and also the Featured Image box."
-msgstr "PublishPress Capabilities te permite decidir quién puede subir, editar y eliminar archivos de la biblioteca de medios de tu sitio. Por defecto, sólo los administradores pueden eliminar archivos de tu biblioteca de medios. Los suscriptores y colaboradores no pueden ni siquiera subir archivos. Puedes personalizar estos permisos para la biblioteca de medios y también para la caja de imágenes destacadas."
-
-#. Found in description paragraph.
-msgid "<a href=\"https://publishpress.com/knowledge-base/admin-menus/\">Click to see how to block Admin menu access</a>."
-msgstr "<a href=\"https://publishpress.com/knowledge-base/admin-menus/\">Haz clic para ver cómo bloquear el acceso al menú de administración</a>."
-
-#. Found in description paragraph.
-msgid "With PublishPress Capabilities you can restrict access to admin menu screens by user roles. This is useful because many plugin do not have any way to control who can access their admin screens."
-msgstr "Con PublishPress Capabilities puedes restringir el acceso a las pantallas del menú de administración por perfiles de usuario. Esto es útil porque muchos plugins no tienen ninguna manera de controlar quién puede acceder a las pantallas de administración."
-
-#. Found in description paragraph.
-msgid "<a href=\"https://publishpress.com/knowledge-base/nav-menus/\">Click to see how to block frontend menu access</a>."
-msgstr "<a href=\"https://publishpress.com/knowledge-base/nav-menus/\">Haz clic para ver cómo bloquear el acceso al menú de la vista pública</a>."
-
-#. Found in description paragraph.
-msgid "PublishPress Capabilities enables you to restrict access to navigation menus by roles, logged in and logged out users. This is useful because a default WordPress site does not give you way to control the visibility of your links."
-msgstr "PublishPress Capabilities te permite restringir el acceso a los menús de navegación por perfiles, usuarios conectados y desconectados. Esto es útil porque un sitio de WordPress por defecto no te da forma de controlar la visibilidad de tus enlaces."
-
-#. Found in description paragraph.
-msgid "<a href=\"https://publishpress.com/knowledge-base/create-or-copy-user-roles/\">Click here to see how to create or copy user roles</a>."
-msgstr "<a href=\"https://publishpress.com/knowledge-base/create-or-copy-user-roles/\">Haz clic aquí para ver cómo crear o copiar perfiles de usuario</a>."
-
-#. Found in description paragraph.
-msgid "With PublishPress Capabilities you can create or copy any existing WordPress user role. These roles can be customized in exactly the same way as the default WordPress roles. These new roles can be added to single sites or to an entire multisite network."
-msgstr "Con PublishPress Capabilities puedes crear o copiar cualquier perfil de usuario de WordPress existente. Estos perfiles se pueden personalizar exactamente igual que los perfiles por defecto de WordPress. Estos nuevos perfiles pueden añadirse a sitios individuales o a toda una red multisitio."
-
-#. Found in description paragraph.
-msgid "<a href=\"https://publishpress.com/knowledge-base/backup-restore-permissions/\">Click here to see how to backup permissions</a>."
-msgstr "<a href=\"https://publishpress.com/knowledge-base/backup-restore-permissions/\">Haz clic aquí para ver cómo hacer una copia de seguridad de los permisos</a>."
-
-#. Found in description paragraph.
-msgid "Every time you change your permissions, the PublishPress Capabilities plugin will now automatically create a backup. If you make a mistake, go to the \"Backup\" menu link and you'll be able to roll back to a previous version."
-msgstr "Cada vez que cambias tus permisos, el plugin PublishPress Capabilities ahora creará automáticamente una copia de seguridad. Si cometes un error, ve al enlace del menú «Copia de seguridad» y podrás volver a una versión anterior."
-
-#. Found in description paragraph.
-msgid "<a href=\"https://publishpress.com/knowledge-base/taxonomy-specific-capabilities/\">Click here to learn about taxonomy permissions</a>."
-msgstr "<a href=\"https://publishpress.com/knowledge-base/taxonomy-specific-capabilities/\">Haz clic aquí para aprender sobre los permisos de taxonomía</a>."
-
-#. Found in description paragraph.
-msgid "PublishPress Capabilities enables you to add extra permissions to the taxonomies on your site. This feature includes the default Categories and Tags, but also applies to other taxonomies. For example, in WooCommerce you can apply custom permissions to Product categories, Product tags, and Product shipping classes. You can enforce and assign \"Manage\", \"Edit\" and \"Assign\" distinct capabilities for all your taxonomies."
-msgstr "PublishPress Capabilities te permite añadir permisos adicionales a las taxonomías de tu sitio. Esta característica incluye las categorías y etiquetas por defecto, pero también se aplica a otras taxonomías. Por ejemplo, en WooCommerce puede aplicar permisos personalizados a las categorías de productos, etiquetas de productos y clases de envío de productos. Puedes aplicar y asignar capacidades distintas de «Gestionar», «Editar» y «Asignar» para todas tus taxonomías."
-
-#. Found in description paragraph.
-msgid "<a href=\"https://publishpress.com/knowledge-base/custom-post-types-capability/\">Click here to see how to control post type permissions</a>."
-msgstr "<a href=\"https://publishpress.com/knowledge-base/custom-post-types-capability/\">Haz clic aquí para ver cómo controlar los permisos del tipo de contenido</a>."
-
-#. Found in description paragraph.
-msgid "Many WordPress users have sites with custom post types. This can be done using custom code, a theme, or with a plugin. No matter how your post type is created, PublishPress Capabilities lets you enforce and assign distinct capabilities for your post type."
-msgstr "Muchos usuarios de WordPress tienen sitios con tipos de contenido personalizados. Esto puede hacerse utilizando código personalizado, un tema o con un plugin. Independientemente de cómo haya sido creado tu tipo de contenido, PublishPress Capabilities te permite establecer y asignar distintas capacidades para tu tipo de contenido."
-
-#. Found in description paragraph.
-msgid "<a href=\"https://publishpress.com/knowledge-base/permissions-start/\">Click here for your quick start guide to PublishPress Capabilities</a>."
-msgstr "<a href=\"https://publishpress.com/knowledge-base/permissions-start/\">Haz clic aquí para ver la guía de inicio rápido de PublishPress Capabilities</a>."
-
-#. Found in description paragraph.
-msgid "With the Capabilities plugin, you can choose who can Publish, Read, Edit and Delete content. You can choose permissions for posts, pages, custom content types, categories, tags, and more."
-msgstr "Con el plugin Capabilities, puedes elegir quién puede publicar, leer, editar y eliminar contenido. Puedes elegir los permisos para las entradas, las páginas, los tipos de contenido personalizados, las categorías, las etiquetas y mucho más."
-
-#. Found in description paragraph.
-msgid "You can <strong>customize all your WordPress user roles</strong>, from Administrators and Editors to Authors, Contributors, Subscribers and custom roles. Each use role can have the exact permissions that your site needs."
-msgstr "Puedes <strong>personalizar todos tus perfiles de usuario de WordPress</strong>, desde administradores y editores hasta autores, colaboradores, suscriptores y perfiles personalizados. Cada perfil de usuario puede tener los permisos exactos que tu sitio necesita."
-
-#. Found in description paragraph.
-msgid "<a href=\"https://publishpress.com/capabilities/\">PublishPress Capabilities</a> gives you control over all the permissions on your WordPress site. We built this user role editor plugin so you have an EASY and POWERFUL way to manage users."
-msgstr "<a href=\"https://publishpress.com/capabilities/\">PublishPress Capabilities</a> te da el control sobre todos los permisos en tu sitio de WordPress. Hemos creado este plugin de edición de perfiles de usuario para que tengas una forma fácil y potente de gestionar los usuarios."
-
-#. Found in description paragraph.
-msgid "Follow PublishPress on <a href=\"https://www.facebook.com/publishpress\">Facebook</a>, <a href=\"https://www.twitter.com/publishpresscom\">Twitter</a> and <a href=\"https://www.youtube.com/publishpress\">YouTube</a>."
-msgstr "Follow PublishPress on <a href=\"https://www.facebook.com/publishpress\">Facebook</a>, <a href=\"https://www.twitter.com/publishpresscom\">Twitter</a> y <a href=\"https://www.youtube.com/publishpress\">YouTube</a>."
-
-#. Found in description paragraph.
-msgid "Bug reports for PublishPress Capabilities are welcomed in our <a href=\"https://github.com/publishpress/publishpress-capabilities\">repository on GitHub</a>. Please note that GitHub is not a support forum, and that issues that aren't properly qualified as bugs will be closed."
-msgstr "Los informes de errores para PublishPress Capabilities son bienvenidos en nuestro <a href=\"https://github.com/publishpress/publishpress-capabilities\">repositorio en GitHub</a>. Por favor, ten en cuenta que GitHub no es un foro de soporte, y que los problemas que no estén debidamente calificados como fallos serán cerrados."
-
-#. Found in description paragraph.
-msgid "Together, these plugins are a suite of powerful publishing tools for WordPress. If you need to create a professional workflow in WordPress, with moderation, revisions, permissions and more... then you should try PublishPress."
-msgstr "Juntos, estos plugins son un conjunto de potentes herramientas de publicación para WordPress. Si necesitas crear un flujo de trabajo profesional en WordPress, con moderación, revisiones, permisos y más... entonces debes probar PublishPress."
-
-#. Found in description paragraph.
-msgid "Join PublishPress and you'll get access to these Pro plugins:"
-msgstr "Suscríbete a PublishPress y tendrás acceso a estos plugins Pro:"
-
-#. Found in description paragraph.
-msgid "The Pro versions of the PublishPress plugins are well worth your investment. The Pro versions have extra features and faster support. <a href=\"https://publishpress.com/pricing/\">Click here to join PublishPress</a>."
-msgstr "Las versiones Pro de los plugins de PublishPress bien valen tu inversión. Las versiones Pro tienen características extra y un soporte más rápido. <a href=\"https://publishpress.com/pricing/\">Haz clic aquí para inscribirte en PublishPress</a>."
-
-#. Found in description paragraph.
-msgid "PublishPress Capabilities offers you the ability to back up and restore your permissions. This feature is very helpful if you want to test out changes on your site, or if you've installed a new plugin that has changed your site's permissions."
-msgstr "PublishPress Capabilities te ofrece la posibilidad de hacer una copia de seguridad y restaurar tus permisos. Esta función es muy útil si quieres probar los cambios en tu sitio, o si has instalado un nuevo plugin que ha cambiado los permisos de tu sitio."
-
-#. Found in description paragraph.
-msgid "PublishPress Capabilities is <strong>safe to use</strong>. Every time you change your site's permissions, this plugin will take a backup that you can restore if anything goes wrong. You can use these backups to migrate your roles and permissions from one site to another."
-msgstr "PublishPress Capabilities es <strong>seguro de usar</strong>. Cada vez que cambias los permisos de tu sitio, este plugin hará una copia de seguridad que podrás restaurar si algo va mal. Puedes utilizar estas copias de seguridad para migrar tus perfiles y permisos de un sitio a otro."
-
-#. Found in description list item.
-msgid "<a href=\"https://publishpress.com/revisions\">PublishPress Revisions Pro</a> allows you to update your published pages with teamwork and precision."
-msgstr "<a href=\"https://publishpress.com/revisions\">PublishPress Revisions Pro</a> te permite actualizar tus páginas publicadas con trabajo en equipo y precisión."
-
-#. Found in description list item.
-msgid "<a href=\"https://publishpress.com/publishpress\">PublishPress Pro</a> is the plugin for managing and scheduling WordPress content."
-msgstr "<a href=\"https://publishpress.com/publishpress\">PublishPress Pro</a> es el plugin para gestionar y programar el contenido de WordPress."
-
-#. Found in description list item.
-msgid "<a href=\"https://publishpress.com/permissions\">PublishPress Permissions Pro</a>  is the plugin for advanced WordPress permissions."
-msgstr "<a href=\"https://publishpress.com/permissions\">PublishPress Permissions Pro</a>  es el plugin para los permisos avanzados de WordPress."
-
-#. Found in description list item.
-msgid "<a href=\"https://publishpress.com/checklists\">PublishPress Checklists Pro</a> enables you to define tasks that must be completed before content is published."
-msgstr "<a href=\"https://publishpress.com/checklists\">PublishPress Checklists Pro</a> te permite definir las tareas que deben completarse antes de publicar el contenido."
-
-#. Found in description list item.
-msgid "<a href=\"https://publishpress.com/capabilities\">PublishPress Capabilities Pro</a> is the plugin to manage your WordPress user roles, permissions, and capabilities."
-msgstr "<a href=\"https://publishpress.com/capabilities\">PublishPress Capabilities Pro</a> es el plugin para gestionar los perfiles, permisos y capacidades de tus usuarios de WordPress."
-
-#. Found in description list item.
-msgid "<a href=\"https://publishpress.com/authors\">PublishPress Authors Pro</a> allows you to add multiple authors and guest authors to WordPress posts."
-msgstr "<a href=\"https://publishpress.com/authors\">PublishPress Authors Pro</a> te permite añadir múltiples autores y autores invitados a las entradas de WordPress."
-
-#. Found in description header.
-msgid "Follow the PublishPress team"
-msgstr "Sigue al equipo de PublishPress"
-
-#. Found in description header.
-msgid "Bug Reports"
-msgstr "Informes de fallos"
-
-#. Found in description header.
-msgid "Join PublishPress and get the Pro plugins"
-msgstr "Suscríbete a PublishPress y obtén los plugins Pro"
-
-#. Found in description header.
-msgid "13. WordPress Multisite support"
-msgstr "13. Compatibilidad con WordPress multisitio"
-
-#. Found in description header.
-msgid "12. Support for WooCommerce Permissions"
-msgstr "12. Compatibilidad con los permisos de WooCommerce"
-
-#. Found in description header.
-msgid "11. Support for Media Library Permissions"
-msgstr "11. Compatibilidad con los permisos de la biblioteca de medios"
-
-#. Found in description header.
-msgid "7. Backup and Restore User Roles and Capabilities"
-msgstr "7. Copia de seguridad y restauración de los perfiles y capacidades de los usuarios"
-
-#. Found in description header.
-msgid "2. Capabilities for any Post Type"
-msgstr "2. Capacidades para cualquier tipo de contenido"
-
-#. Found in changelog list item.
-msgid "Feature : New \"Admin Features\" screen #200"
-msgstr "Característica: nueva pantalla «Admin Features» #200"
-
-#. Found in changelog list item.
-msgid "Change : Role Capabilities screen uses tabs"
-msgstr "Cambio: la pantalla de capacidades de los perfiles utiliza pestañas"
-
-#. Found in changelog list item.
-msgid "Fixed : Some security scans flagged an unused file in external library \"chosen\". That file (and other developer documentation files) has been removed"
-msgstr "Corregido: algunos escaneos de seguridad marcaban un archivo no utilizado en la biblioteca externa «chosen». Ese archivo (y otros archivos de documentación para desarrolladores) ha sido eliminado"
-
-#. Found in changelog list item.
-msgid "Perf : Sync role to all sites - Operation timed out on networks with ~100 sites "
-msgstr "Rendimiento: sincronizar el perfil a todos los sitios - La operación se ha agotado en redes con ~100 sitios "
-
-#. Found in changelog list item.
-msgid "Feature : Retain last role selection for Capabilities, Editor Features screens"
-msgstr "Característica: mantener la última selección de perfil para las pantallas capacidades, características del editor"
-
-#. Found in changelog list item.
-msgid "Fixed : PHP Warning if a role is stored without a valid capabilities array"
-msgstr "Corregido: PHP Warning si se almacena un perfil sin una matriz de capacidades válida"
-
-#. Found in changelog list item.
-msgid "Fixed : If Media \"Create\" capability is negated or un-negated, the corresponding upload_files checkbox (in Other WP Core Capabilities section) is not toggled, leading to an apparant update failure "
-msgstr "Corregido: si la capacidad «Crear» de los medios está negada o no, la casilla correspondiente de `upload_files` (en la sección de otras capacidades del núcleo de WP) no está activada, lo que lleva a un aparente fallo de actualización "
-
-#. Found in changelog list item.
-msgid "Fixed : If Media \"Create\" capability is selected / unselected by clicking Media caption or Create caption, the corresponding upload_files checkbox (in Other WP Core Capabilities section) is not toggled, leading to an apparant update failure"
-msgstr "Corregido: si se selecciona/deselecciona la capacidad «Crear» de los medios de comunicación haciendo clic en el título de los medios de comunicación o en el título de la creación, la casilla de verificación `upload_files` correspondiente (en la sección de otras capacidades del núcleo de WP) no se activa, lo que lleva a un aparente fallo de actualización"
-
-#. Found in changelog list item.
-msgid "Feature : Editor Features restriction (new screen to block editor elements per-role)"
-msgstr "Característica: restricción de las características del editor (nueva pantalla para bloquear los elementos del editor por perfil)"
-
-#. Found in changelog list item.
-msgid "Change : Permissions - Hide / Unhide Role setting moved to Roles screen row actions"
-msgstr "Cambio: Permissions - Ocultar/Desocultar la configuración de los perfiles se ha movido a las acciones de la fila de la pantalla de los perfiles"
-
-#. Found in changelog list item.
-msgid "Compat : PublishPress - Authors without publish capability could directly publish on the Calendar screen"
-msgstr "Compatibilidad: PublishPress - Los autores sin capacidad de publicación podrían publicar directamente en la pantalla del Calendario"
-
-#. Found in changelog list item.
-msgid "Fixed : Add New User - couldn't display password entry"
-msgstr "Corregido: añadir nuevo usuario - no podía mostrar la entrada de la contraseña"
-
-#. Found in changelog list item.
-msgid "Fixed : Fatal error on Capabilities screen if another plugin calls get_editable_roles() too early"
-msgstr "Corregido: error fatal en la pantalla de capabilidades si otro plugin llama a `get_editable_roles()` demasiado pronto"
-
-#. Found in changelog list item.
-msgid "Fixed : Multisite - \"sync role to all sites\" did not work if main site ID is not 1"
-msgstr "Corregido: multisitio - «sincronizar el perfil a todos los sitios» no funcionaba si el ID del sitio principal no es 1"
-
-#. Found in changelog list item.
-msgid "Feature : Multisite - \"sync options to all sites\" checkbox. Copies \"use create_posts capability\", Type-Specific Capabilities, Taxonomy-Specific Capabilities, Detailed Taxonomy Capabilities settings "
-msgstr "Característica: multisitio - Casilla de verificación «sincronizar opciones a todos los sitios». Copia las opciones «use `create_posts` capability», Type-Specific Capabilities, Taxonomy-Specific Capabilities, Detailed Taxonomy Capabilities "
-
-#. Found in changelog list item.
-msgid "Fixed : Fatal error on plugin load if Administrator role does not exist"
-msgstr "Corregido: error fatal en la carga del plugin si el perfil de administrador no existe"
-
-#. Found in changelog list item.
-msgid "Feature : Rename Role sidebar box on Capabilities screen"
-msgstr "Característica: renombrar el cuadro de la barra lateral del perfil en la pantalla de capacidades"
-
-#. Found in changelog list item.
-msgid "Change : Add New Role retains capitalization as entered for role title (otherwise applies proper case)"
-msgstr "Cambio: añadir nuevo perfil mantiene las mayúsculas tal y como se han introducido en el título del perfil (por lo demás, aplica las mayúsculas y minúsculas)"
-
-#. Found in changelog list item.
-msgid "Compat : PublishPress Permissions - \"Type-Specific Capabilities\" setting was not properly synchronized with Permissions &gt; Settings &gt; Core &gt; Filtered Post Types"
-msgstr "Compatibilidad: PublishPress Capabilities - El ajuste «Type-Specific Capabilities» no se ha sincronizado correctamente con Permissions &gt; Settings &gt; Core &gt; Filtered Post Types"
-
-#. Found in changelog list item.
-msgid "Fixed : PublishPress Permissions - Type / Taxonomy settings incorrectly synchronized under some conditions"
-msgstr "Corregido: PublishPress Permissions - Ajustes de tipo / taxonomía incorrectamente sincronizados bajo algunas condiciones"
-
-#. Found in changelog list item.
-msgid "Fixed : Upgrade menu links were not displayed"
-msgstr "Corregido: los enlaces del menú de actualización no se mostraban"
-
-#. Found in changelog list item.
-msgid "Fixed : Fatal error due to missing vendor library folder"
-msgstr "Corregido: error fatal debido a la falta de la carpeta de la biblioteca del proveedor"
-
-#. Found in changelog list item.
-msgid "Fixed : Language file load failure if plugin directory structure is non-standard"
-msgstr "Corregido: fallo en la carga de archivos de idioma si la estructura del directorio del plugin no es estándar"
-
-#. Found in changelog list item.
-msgid "Fixed : Multisite - Incorrect menu display on sites where main site ID is not 1"
-msgstr "Corregido: multisitio - Visualización incorrecta del menú en los sitios donde el ID del sitio principal no fuera 1"
-
-#. Found in changelog list item.
-msgid "Fixed : Media Create / upload_files capability could not be removed from role"
-msgstr "Corregido: la capacidad de crear medios/subir archivos no podía ser eliminada del perfil"
-
-#. Found in changelog list item.
-msgid "Compat : Advanced Gutenberg - include AG Profile capabilities in Editing, Deletion, Reading capabilities grid"
-msgstr "Compat: Gutenberg avanzado - incluye las capacidades del perfil AG en la parrilla de capacidades de edición, borrado y lectura"
-
-#. Found in changelog list item.
-msgid "Feature : Backup &gt; Restore - filter to display only modified capabilities"
-msgstr "Característica: Copia de seguridad &gt; Restauración - filtro para mostrar sólo las capacidades modificadas"
-
-#. Found in changelog list item.
-msgid "Feature : Improved design and styling for Backup and Restore"
-msgstr "Característica: diseño y estilo mejorados para la copia de seguridad y la restauración"
-
-#. Found in changelog list item.
-msgid "Fixed : Review of role backup contents does not show name of current roles which would be removed by restoring backup"
-msgstr "Corregido: la revisión del contenido de la copia de seguridad de los perfiles no muestra el nombre de los perfiles actuales que serían eliminados al restaurar la copia de seguridad"
-
-#. Found in changelog list item.
-msgid "Fixed : Type-Specific Capabilities options included some non-public WordPress post types that don't support capability customization "
-msgstr "Corregido: las opciones de Type-Specific Capabilities incluyeron algunos tipos de publicaciones no públicas de WordPress que no soportan la personalización de capacidades "
-
-#. Found in changelog list item.
-msgid "Change : Backup &gt; Restore - Preview displays \"No changes\" below role name where appropriate "
-msgstr "Cambio: Copia de seguridad &gt; Restaurar - La vista previa muestra «Sin cambios» debajo del nombre del perfil donde corresponda "
-
-#. Found in changelog list item.
-msgid "Fixed : Backup &gt; Restore - Clicking label for Initial Backup jumped selection to Last Manual Backup"
-msgstr "Corregido: Copia de seguridad &gt; Restauración - Al hacer clic en la etiqueta para la copia de seguridad inicial saltaba la selección a la última copia de seguridad manual"
-
-#. Found in changelog list item.
-msgid "Fixed : Backup &gt; Restore - Negated capabilities were not displayed correctly in restore preview"
-msgstr "Corregido: Copia de seguridad &gt; Restauración - Las capacidades negadas no se mostraban correctamente en la vista previa de la restauración"
-
-#. Found in changelog list item.
-msgid "Fixed : PHP warning for invalid foreach argument, on sites with no active_plugins option stored"
-msgstr "Corregido: advertencia de PHP por argumento inválido de foreach, en sitios sin la opción `active_plugins` almacenada"
-
-#. Found in changelog list item.
-msgid "Fixed : Invalid Capabilities - Brief explanatory caption; avoid false positives for post types with map_meta_cap disabled"
-msgstr "Corregido: capacidades no válidas - breve leyenda explicativa; evita falsos positivos para los tipos de contenido con `map_meta_cap` desactivado"
-
-#. Found in changelog list item.
-msgid "Fixed : uneditable bbPress roles could be opened for editing (require Capabilities Pro)"
-msgstr "Corregido: los perfiles no editables de bbPress podían abrirse para ser editados (requiere Capabilities Pro)"
-
-#. Found in changelog list item.
-msgid "Compat : bbPress - Forum, Topic and Reply capabilities were not displayed in Editing Capabilities grid"
-msgstr "Compatibilidad: bbPress - las capacidades de foro, tema y respuesta no se mostraban en la cuadrícula de capacidades de edición"
-
-#. Found in changelog list item.
-msgid "Change : Adjust some captions, variable names, more selective code execution"
-msgstr "Cambio: ajustar algunas leyendas, nombres de variables, ejecución de código más selectiva"
-
-#. Found in changelog list item.
-msgid "Change : Capabilities screen - move some sidebar items to Settings screen"
-msgstr "Cambio: pantalla de capacidades - mover algunos elementos de la barra lateral a la pantalla de ajustes"
-
-#. Found in changelog list item.
-msgid "Change : Capabilities screen - move role selector to top left, eliminate load button"
-msgstr "Cambio: pantalla de capacidades - mover el selector de perfiles a la parte superior izquierda, eliminación del botón de carga"
-
-#. Found in changelog list item.
-msgid "Lang : Fixed handling, activated partial translations in German, Italian, Russian, Spanish, Swedish, Belarusian, Catalan"
-msgstr "Idioma: manipulación fija, activación de traducciones parciales en alemán, italiano, ruso, español, sueco, bielorruso, catalán"
-
-#. Found in changelog list item.
-msgid "Feature : Multiple role assignment on Add / Edit User screen"
-msgstr "Característica: asignación de perfiles múltiples en la pantalla de Añadir / Editar usuario"
-
-#. Found in changelog list item.
-msgid "Feature : Roles screen"
-msgstr "Característica: Perfiles"
-
-#. Found in changelog list item.
-msgid "Fixed : Capabilities menu was displayed to non-Administrators with no items except \"Upgrade to Pro\""
-msgstr "Corregido: el menú capacidades se mostraba a los no administradores sin ningún elemento excepto «Actualizar a Pro»."
-
-#. Found in changelog list item.
-msgid "Compat : PublishPress Permissions - Post Type selections for \"Type-Specific Capabilities\" were not synchronized with PublishPress Permissions under some conditions"
-msgstr "Compatibilidad: PublishPress Permissions - las selecciones de tipos de contenido para «Type-Specific Capabilities» no se sincronizaban con PublishPress Permissions en algunas condiciones"
-
-#. Found in changelog list item.
-msgid "Fixed : Fatal error loading Capabilities screen on a small percentage of installations"
-msgstr "Corregido: error fatal al cargar la pantalla de Capabilities en un pequeño porcentaje de instalaciones"
-
-#. Found in changelog list item.
-msgid "Change : Apply workaround filters for WordPress edit_published_posts / publish_posts handling only for users who have edit_published_posts capability for current post type"
-msgstr "Cambio: aplicar filtros de solución para el manejo de WordPress `edit_published_posts` / `publish_posts` sólo para los usuarios que tienen la capacidad `edit_published_posts` para el tipo de contenido actual"
-
-#. Found in changelog list item.
-msgid "Change : Reinstate WordPress edit_published_posts workaround with correct status filtering behavior"
-msgstr "Cambio: restablecer la solución de WordPress `edit_published_posts` con el comportamiento correcto de filtrado de estado"
-
-#. Found in changelog list item.
-msgid "Fixed : Checkbox bulk selection on Role Capabilities screen was incorrect under some conditions"
-msgstr "Corregido: la selección masiva de casillas en la pantalla de capacidades de los perfiles era incorrecta en algunas condiciones"
-
-#. Found in changelog list item.
-msgid "Fixed : Role name captions on Role Capabilities and Backup Tool screens could not be translated"
-msgstr "Corregido: los subtítulos de los nombres de los perfiles en las pantallas de capacidades de los perfiles y de la herramienta de copia de seguridad no podían ser traducidos"
-
-#. Found in changelog list item.
-msgid "Fixed : Multisite - On sub-sites, Role Capabilities screen did not display PublishPress Capabilities section to Super Administrators who don't have a role on the site"
-msgstr "Corregido: multisitio - en los subsitios, la pantalla de capacidades de perfil no mostraba la sección de PublishPress Capabilities a los superadministradores que no tienen un perfil en el sitio"
-
-#. Found in changelog list item.
-msgid "Fixed : Term Assign or Delete capabilities were not effective due to WordPress core forcing default capability requirement"
-msgstr "Corregido: las capacidades de asignar o eliminar términos no eran efectivas debido a que el núcleo de WordPress forzaba el requisito de la capacidad por defecto"
-
-#. Found in changelog list item.
-msgid "Fixed : Category Assign or Delete capabilities were not effective due to WordPress core forcing default capability requirement"
-msgstr "Corregido: las capacidades de asignar o eliminar categorías no eran efectivas debido a que el núcleo de WordPress forzaba el requisito de la capacidad por defecto"
-
-#. Found in changelog list item.
-msgid "Fixed : Add Capability sidebar added custom capability to role immediately, but capability checkbox did not display as checked until reload"
-msgstr "Corregido: la barra lateral de añadir capacidad añadía la capacidad personalizada al perfil inmediatamente, pero la casilla de verificación de la capacidad no se mostraba como marcada hasta que se recargaba"
-
-#. Found in changelog list item.
-msgid "Fixed : Browser reload caused Role Capabilities screen to display default role "
-msgstr "Corregido: la recarga del navegador provocaba que la pantalla de capacidades de perfil mostrase el perfil por defecto "
-
-#. Found in changelog list item.
-msgid "Feature : Role Capabilities screen links to PublishPress &gt; Roles for member management"
-msgstr "Característica: la pantalla de capacidades de los perfiles enlaza con PublishPress &gt; Perfiles para la gestión de los miembros"
-
-#. Found in changelog list item.
-msgid "Feature : Capabilities link on PublishPress &gt; Roles row opens Role Capabilities screen"
-msgstr "Característica: el enlace de capacidades en la fila PublishPress &gt; Perfiles abre la pantalla de capacidades de los perfiles"
-
-#. Found in changelog list item.
-msgid "Change : Renamed to PublishPress Capabilities"
-msgstr "Cambio: se ha cambiado el nombre a PublishPress Capabilities"
-
-#. Found in changelog list item.
-msgid "Fixed : Create Role, Copy Role, and Add Capability sidebar functions did not work with ENTER keypress (caused screen reload without applying operation)"
-msgstr "Corregido: las funciones de la barra lateral de Crear perfil, Copiar perfil y Añadir capacidades no funcionaban al pulsar la tecla Entrar (provocaba la recarga de la pantalla sin aplicar la operación)."
-
-#. Found in changelog list item.
-msgid "Fixed : Capability Negation (Denial) bulk unselect link was ambiguous due to missing strikethrough"
-msgstr "Corregido: el enlace de negación de capacidad (denegación) en lotes era ambiguo debido a que faltaba el tachado"
-
-#. Found in changelog list item.
-msgid "Fixed : Plugin capability sections - pp_set_notification_channel and pp_manage_roles were included in both PublishPress and PublishPress Permissions sections"
-msgstr "Corregido: secciones de capacidad del plugin - `pp_set_notification_channel` y `pp_manage_roles` estaban incluidas en las secciones de PublishPress y PublishPress Permissions"
-
-#. Found in changelog list item.
-msgid "Change : Third Party Plugin Capabilities - always display checkboxes even if capabilities not present in Administrator role"
-msgstr "Cambio: capacidades de plugins de terceros - mostrar siempre las casillas de verificación incluso si las capacidades no están presentes en el perfil de administrador"
-
-#. Found in changelog list item.
-msgid "Fixed : First-time installation: Capabilities menu item not displayed until after Plugins or Users menu clicked "
-msgstr "Corregido: primera instalación: la opción de menú de capacidades no se muestra hasta después de hacer clic en el menú de plugins o usuarios "
-
-#. Found in changelog list item.
-msgid "Feature : Auto-backup role and capabilities on each update (and on update to this version)"
-msgstr "Característica: copia de seguridad automática de perfiles y capacidades en cada actualización (y en la actualización de esta versión)"
-
-#. Found in changelog list item.
-msgid "Change : Clarify some messages for plugin access denial"
-msgstr "Cambio: aclarar algunos mensajes de denegación de acceso al plugin"
-
-#. Found in changelog list item.
-msgid "Fixed : Some functions were not accessible to network Super Administrators without a role on the site"
-msgstr "Corregido: algunas funciones no eran accesibles para los superadministradores de la red sin un perfil en el sitio"
-
-#. Found in changelog list item.
-msgid "Fixed : Capabilities screen was not accessible to non-Administrators who have \"manage_capabilities\" capability"
-msgstr "Corregido: la pantalla de Capabilities no era accesible para los no administradores que tienen la capacidad «manage_capabilities»"
-
-#. Found in changelog list item.
-msgid "Fixed : Automatic publication of blank auto-drafts, WooCommerce posts save with incorrect post status (since 1.8)"
-msgstr "Corregido: publicación automática de auto-borradores en blanco, las entradas de WooCommerce se guardan con un estado de entrada incorrecto (desde 1.8)"
-
-#. Found in changelog list item.
-msgid "Fixed : Users' inclusion or non-inclusion in Authors dropdown was not updated based on role edit"
-msgstr "Corregido: la inclusión o no inclusión de usuarios en el desplegable de Autores no se actualizaba en función de la edición del perfil"
-
-#. Found in changelog list item.
-msgid "Change : PublishPress icon, footer on Roles and Capabilities screen"
-msgstr "Cambio: icono de PublishPress, pie de página en la pantalla de perfiles y capacidades"
-
-#. Found in changelog list item.
-msgid "Change : Edit Roles link in CME row of Plugins list"
-msgstr "Cambio: enlace de edición de perfiles en la fila CME de la lista de plugins"
-
-#. Found in changelog list item.
-msgid "Change : Move Role Capabilities menu item to Permissions menu if PressPermit plugin is active (restoring previous behavior with Press Permit Core)"
-msgstr "Cambio: mover el elemento de menú de las capacidades de los perfiles al menú de los permisos si el plugin PressPermit está activo (restaurando el comportamiento anterior con Press Permit Core)"
-
-#. Found in changelog list item.
-msgid "Fixed : PHP 5.x : Notice for undefined constant PHP_INT_MIN on wp-admin Posts / Pages listing"
-msgstr "Corregido: PHP 5.x: aviso para la constante indefinida `PHP_INT_MIN` en el listado de wp-admin Entradas/Páginas"
-
-#. Found in changelog list item.
-msgid "Fixed : HTML validation errors on Manage Capabilities screen"
-msgstr "Corregido: errores de validación HTML en la pantalla de gestión de capacidades"
-
-#. Found in changelog list item.
-msgid "Fixed : PHP Notices on Role Capabilities screen for undefined index, under some configurations "
-msgstr "Corregido: avisos de PHP en la pantalla de capacidades de perfiles para un índice indefinido, bajo algunas configuraciones "
-
-#. Found in changelog list item.
-msgid "Fixed : Removed add_users from the Core WordPress Capabilities section because it is was replaced by promote_users"
-msgstr "Corregido: se ha eliminado `add_users` de la sección Core WordPress Capabilities porque se ha sustituido por `promote_users`"
-
-#. Found in changelog list item.
-msgid "Fixed : If a unique edit/delete capability is already defined, don't change the definition"
-msgstr "Corregido: si una capacidad de edición/borrado única ya está definida, no cambie la definición"
-
-#. Found in changelog list item.
-msgid "Feature : Work around WordPress issue allowing users with edit_published_posts (but not publish_posts) to unpublish published posts"
-msgstr "Característica: solucionar el problema de WordPress que permite a los usuarios con `edit_published_posts` (pero no `publish_posts`) anular la publicación de las entradas publicadas"
-
-#. Found in changelog list item.
-msgid "Feature : Work around WordPress issue preventing users with edit_published_posts (but not publish_posts) capability from updating published posts (https://core.trac.wordpress.org/ticket/47443)"
-msgstr "Característica: solucionar un problema de WordPress que impide a los usuarios con capacidad de `edit_published_posts` (pero no de `publish_posts`) actualizar las entradas publicadas (https://core.trac.wordpress.org/ticket/47443)"
-
-#. Found in changelog list item.
-msgid "Feature : Plugin API - plugins can hook into \"cme_plugin_capabilities\" filter to register their capabilities "
-msgstr "Característica: API de plugins - los plugins pueden engancharse al filtro «cme_plugin_capabilities» para registrar sus capacidades "
-
-#. Found in changelog list item.
-msgid "Feature : WooCommerce, PublishPress, PressPermit capabilities grouped in sections on role editor screen"
-msgstr "Característica: capacidades de WooCommerce, PublishPress, PressPermit agrupadas en secciones en la pantalla del editor de perfiles"
-
-#. Found in changelog list item.
-msgid "Fixed : Correct some irregularities in CME admin menu item display"
-msgstr "Corregido: corregir algunas irregularidades en la visualización de los elementos del menú de administración del CME"
-
-#. Found in changelog list item.
-msgid "Change : Revert menu captions to previous behavior (\"Permissions &gt; Role Capabilities\" if Press Permit Core is active, otherwise \"Users &gt; Capabilities\")"
-msgstr "Cambio: revertir los títulos de los menús al comportamiento anterior («Permisos &gt; Capacidades de los perfiles» si Press Permit Core está activo, en caso contrario «Usuarios &gt; Capacidades»)"
-
-#. Found in changelog list item.
-msgid "Change : Don't allow non-Administrator to edit Administrators, even if Administrator role level is set to 0"
-msgstr "Cambio: no permitir que los no administradores editen a los administradores, incluso si el nivel de perfil de administrador se establece en 0"
-
-#. Found in changelog list item.
-msgid "Fixed : PHP warning for deprecated function WP_Roles::reinit"
-msgstr "Corregido: PHP warning para la función obsoleta `WP_Roles::reinit`"
-
-#. Found in changelog list item.
-msgid "Fixed : Potential vulnerability in wp-admin (but exposure was only to users with role editing capability)"
-msgstr "Corregido: vulnerabilidad potencial en wp-admin (pero la exposición era solo para usuarios con capacidades de edición de perfiles)"
-
-#. Found in changelog list item.
-msgid "Compat : PHP 7.2 - warning for deprecated function if a second copy of CME is activated"
-msgstr "Compatibilidad: PHP 7.2 - aviso de función obsoleta si se activa una segunda copia de CME"
-
-#. Found in changelog list item.
-msgid "Fixed : Back button caused mismatching role dropdown selection"
-msgstr "Corregido: el botón de retroceso provocaba la selección errónea de perfiles en el menú desplegable"
-
-#. Found in changelog list item.
-msgid "Feature : Backup Tool can also display contents of role backups"
-msgstr "Característica: la herramienta de copia de seguridad también puede mostrar el contenido de las copias de seguridad de los perfiles"
-
-#. Found in changelog list item.
-msgid "Feature : When roles are manually backed up, also retain initial role backup"
-msgstr "Característica: cuando se hace una copia de seguridad manual de los perfiles, también se conserva la copia de seguridad inicial de los perfiles"
-
-#. Found in changelog list item.
-msgid "Feature : Automatically save backup of WP roles on plugin activation or update"
-msgstr "Característica: guardar automáticamente la copia de seguridad de los perfiles de WP en la activación o actualización del plugin"
-
-#. Found in changelog list item.
-msgid "Change : Links to Related Permissions Plugins in sidebar on Roles and Capabilities screen"
-msgstr "Cambio: enlaces a plugins de permisos relacionados en la barra lateral de la pantalla de perfiles y capacidades"
-
-#. Found in changelog list item.
-msgid "Change : Copyrights, onscreen link for PublishPress ownership"
-msgstr "Cambio: derechos de autor, enlace en pantalla para la propiedad de PublishPress"
-
-#. Found in changelog list item.
-msgid "Change : Minor code cleanup and refactor"
-msgstr "Cambio: limpieza y refactorización menor del código"
-
-#. Found in changelog list item.
-msgid "Feature : Link to Roles and Capabilities screen from Backup Tool"
-msgstr "Característica: enlace a la pantalla de perfiles y capacidades desde la herramienta de copia de seguridad"
-
-#. Found in changelog list item.
-msgid "Feature : Link to Backup Tool from sidebar of Roles and Capabilities screen"
-msgstr "Característica: enlace a la herramienta de copia de seguridad desde la barra lateral de la pantalla de perfiles y capacidades"
-
-#. Found in changelog list item.
-msgid "Feature : WooCommerce - If current user has duplicate_products capability, make Woo honor it"
-msgstr "Característica: WooCommerce - si el usuario actual tiene capacidad de `duplicate_products`, haga que Woo lo respete"
-
-#. Found in changelog list item.
-msgid "Change : Thickbox popups for related plugins"
-msgstr "Cambio: ventanas emergentes de Thickbox para plugins relacionados"
-
-#. Found in changelog list item.
-msgid "Change : Reinstate Press Permit description link  "
-msgstr "Cambio: restablecer el enlace de la descripción de Press Permit  "
-
-#. Found in changelog list item.
-msgid "Feature : Additional save button at top of Roles and Capabilities screen!"
-msgstr "Característica: ¡botón adicional para guardar en la parte superior de la pantalla de perfiles y capacidades!"
-
-#. Found in changelog list item.
-msgid "Feature : If read capability is missing from a standard role, display warning and instant fix link "
-msgstr "Característica: si falta la capacidad de lectura de un perfil estándar, se muestra una advertencia y un enlace de solución instantánea "
-
-#. Found in changelog list item.
-msgid "Feature : Prevent read capability from being removed from a standard role"
-msgstr "Característica: evitar que se quite la capacidad de lectura de un perfil estándar"
-
-#. Found in changelog list item.
-msgid "Compat : Press Permit: new plugin page slugs in Press Permit Core 2.7"
-msgstr "Compatibilidad: Press Permit: nuevo plugin page slugs in Press Permit Core 2.7"
-
-#. Found in changelog list item.
-msgid "Change : Lockout safeguard (preventing read capability removal) is bypassed if role has no WP admin / edit capabilities, or if it has \"dashboard_lockout_ok\" capability"
-msgstr "Cambio: la protección de bloqueo (que impide la eliminación de la capacidad de lectura) se omite si el perfil no tiene capacidades de administración/edición de WP, o si tiene la capacidad «dashboard_lockout_ok»"
-
-#. Found in changelog list item.
-msgid "Feature : WooCommerce - Ensure orders can be edited or added based on edit_shop_orders / create_shop_orders capability"
-msgstr "Característica: WooCommerce - asegúrese de que los pedidos pueden ser editados o añadidos sobre la base de la capacidad `edit_shop_orders` / `create_shop_orders`"
-
-#. Found in changelog list item.
-msgid "Feature : New right sidebar setting: \"Detailed Taxonomy Capabilities\" causes term assign, edit and deletion capabilities to be required and credited separate from management capability"
-msgstr "Característica: nuevo ajuste en la barra lateral derecha: «Capacidades detalladas de la taxonomía» hace que las capacidades de asignación, edición y eliminación de términos sean necesarias y se acrediten por separado de la capacidad de gestión"
-
-#. Found in changelog list item.
-msgid "Feature : New right sidebar setting: \"Taxonomy-Specific Capabilities\" ensures a distinct manage capability for selected taxonomies"
-msgstr "Característica: nuevo ajuste en la barra lateral derecha: «Capacidades específicas de la taxonomía» garantiza una capacidad de gestión distinta para las taxonomías seleccionadas"
-
-#. Found in changelog list item.
-msgid "Feature : New right sidebar setting: \"Type-Specific Capabilities\" for selected post types (without activating Press Permit Core)."
-msgstr "Característica: nuevo ajuste de la barra lateral derecha: «Type-Specific Capabilities» para los tipos de contenido seleccionados (sin activar el núcleo de Press Permit)."
-
-#. Found in changelog list item.
-msgid "Fixed : Press Permit integration - cannot load Permissions &gt; Role Capabilities with Press Permit Core &lt; 2.7"
-msgstr "Corregido: integración de Press Permit - no puede cargar Permissions &gt; Capacidades de perfil con Press Permit Core &lt; 2.7"
-
-#. Found in changelog list item.
-msgid "Compat : WooCommerce integration - Users lacking access to the \"Add New Order\" submenu could not access Posts, Pages, Products or any other Post Type listing. This occurred if \"use create_posts\" option enabled and user lacks the create capability for Orders. "
-msgstr "Compatibilidad: integración con WooCommerce - los usuarios que no tienen acceso al submenú «Añadir nuevo pedido» no pueden acceder a las entradas, páginas, productos o cualquier otro tipo de entrada. Esto ocurría si la opción «use `create_posts`» estaba activada y el usuario carecía de la capacidad de crear pedidos. "
-
-#. Found in changelog list item.
-msgid "Fixed : PHP Notices on Roles and Capabilities screen for non-Administrator with WooCommerce active"
-msgstr "Corregido: avisos de PHP en la pantalla de Perfiles y Capacidades para los no administradores con WooCommerce activo"
-
-#. Found in changelog list item.
-msgid "Fixed : Work around WP quirk of completely blocking admin page access for a post type if user lacks create capability for the post type and there are no other accessible items on the menu."
-msgstr "Corregido: se ha solucionado la peculiaridad de WP de bloquear completamente el acceso a la página de administración para un tipo de contenido si el usuario carece de capacidad de creación para el tipo de contenido y no hay otros elementos accesibles en el menú."
-
-#. Found in changelog list item.
-msgid "Fixed : Negative role capabilities could not be directly unset (had to be checked, saved, then unchecked)."
-msgstr "Corregido: las capacidades negativas de los perfiles no se podían desmarcar directamente (había que marcarlas, guardarlas y luego desmarcarlas)."
-
-#. Found in changelog list item.
-msgid "Fixed : On some sites, capabilities added dynamically by other code were forced into stored role definition (and could not be removed)."
-msgstr "Corregido: en algunos sitios, las capacidades añadidas dinámicamente por otro código eran forzadas en la definición de perfiles almacenados (y no podían ser eliminadas)."
-
-#. Found in changelog list item.
-msgid "Fixed : User editing was improperly blocked in some cases"
-msgstr "Corregido: la edición de los usuarios se bloqueaba indebidamente en algunos casos"
-
-#. Found in changelog list item.
-msgid "First public version."
-msgstr "Primera versión pública."
-
-#. Found in changelog list item.
-msgid "Updated Alkivia Framework."
-msgstr "Framework Alkivia actualizado."
-
-#. Found in changelog list item.
-msgid "Some code improvements."
-msgstr "Algunas mejoras en el código."
-
-#. Found in changelog list item.
-msgid "Role deletion added."
-msgstr "Se ha añadido la eliminación de perfiles."
-
-#. Found in changelog list item.
-msgid "Added backup/restore tool."
-msgstr "Se ha añadido una herramienta de copia de seguridad/restauración."
-
-#. Found in changelog list item.
-msgid "Updated Framework."
-msgstr "Framework actualizado."
-
-#. Found in changelog list item.
-msgid "Corrected internal links."
-msgstr "Enlaces internos corregidos."
-
-#. Found in changelog list item.
-msgid "Coding Standards."
-msgstr "Estándares de codificación."
-
-#. Found in changelog list item.
-msgid "Added Russian translation."
-msgstr "Se ha añadido la traducción al ruso."
-
-#. Found in changelog list item.
-msgid "Added German and Belorussian translations."
-msgstr "Se han añadido traducciones al alemán y al bielorruso."
-
-#. Found in changelog list item.
-msgid "Added Italian translation."
-msgstr "Se ha añadido la traducción al italiano."
-
-#. Found in changelog list item.
-msgid "Tested up to WP 2.9.1."
-msgstr "Probado hasta WP 2.9.1."
-
-#. Found in changelog list item.
-msgid "Changed license to GPL version 2."
-msgstr "Se ha cambiado la licencia a la versión 2 de la GPL."
-
-#. Found in changelog list item.
-msgid "Migrated to the new Alkivia Framework."
-msgstr "Migrado al nuevo Alkivia Framework."
-
-#. Found in changelog list item.
-msgid "Solved an incompatibility with Chameleon theme."
-msgstr "Se ha resuelto una incompatibilidad con el tema Camaleón."
-
-#. Found in changelog list item.
-msgid "Cannot assign to users a role with more capabilities than current user."
-msgstr "No se puede asignar a los usuarios un perfil con más capacidades que el usuario actual."
-
-#. Found in changelog list item.
-msgid "Cannot edit users with more capabilities than current user."
-msgstr "No se pueden editar usuarios con más capacidades que el usuario actual."
-
-#. Found in changelog list item.
-msgid "Fixed a bug where administrators could not create or manage other administrators."
-msgstr "Se ha corregido un error por el que los administradores no podían crear o gestionar otros administradores."
-
-#. Found in changelog list item.
-msgid "Added Swedish translation."
-msgstr "Se ha añadido la traducción al sueco."
-
-#. Found in changelog list item.
-msgid "Reduce memory usage by loading framework and plugin code only when needed"
-msgstr "Reducir el uso de la memoria cargando el código del framework y del plugin sólo cuando sea necesario"
-
-#. Found in changelog list item.
-msgid "Show capabilities which Press Permit adds to the role by supplemental type-specific role assignment"
-msgstr "Muestra las capacidades que Press Permit añade al perfil mediante la asignación de un perfil específico de tipo suplementario"
-
-#. Found in changelog list item.
-msgid "Press Permit integration: externally (dis)enable Post Types, Taxonomies for PP filtering (which forces type-specific capability definitions)"
-msgstr "Integración de Press Permit: (des)habilitar externamente tipos de contenido, taxonomías para el filtrado de PP (lo que obliga a definiciones de capacidades específicas del tipo)"
-
-#. Found in changelog list item.
-msgid "Fixed : PHP Warnings for unchecked capabilities"
-msgstr "Corregido: advertencias de PHP para las capacidades no comprobadas"
-
-#. Found in changelog list item.
-msgid "Don't allow a non-Administrator to add or remove a capability they don't have"
-msgstr "No permita que una persona que no sea administradora añada o elimine capacidades que no tiene"
-
-#. Found in changelog list item.
-msgid "Clarified sidebar captions"
-msgstr "Aclaración de los títulos de las barras laterales"
-
-#. Found in changelog list item.
-msgid "Editing UI separates WP core capabilities and 3rd party capabilities"
-msgstr "La interfaz de edición separa las capacidades del núcleo de WP y las de terceros"
-
-#. Found in changelog list item.
-msgid "Organized capabilities UI by post type and operation"
-msgstr "Capacidades organizadas por tipo de contenido y operación"
-
-#. Found in changelog list item.
-msgid "Press Permit integration: if role definitions are reset to WP defaults, also repopulate PP capabilities (pp_manage_settings, etc.)"
-msgstr "Integración de Press Permit: si las definiciones de perfiles se restablecen a los valores predeterminados de WP, también se repoblarán las capacidades de PP (`pp_manage_settings`, etc.)"
-
-#. Found in changelog list item.
-msgid "https compatibility: use content_url(), plugins_url()"
-msgstr "compatibilidad con https: utilice `content_url()`, `plugins_url()`"
-
-#. Found in changelog list item.
-msgid "Press Permit integration: roles can be marked for supplemental assignment only (and suppressed from WP role assignment dropdown, requires PP 1.0-beta1.4)"
-msgstr "Integración de Press Permit: los perfiles pueden marcarse sólo para la asignación suplementaria (y suprimirse del desplegable de asignación de perfiles de WP, requiere PP 1.0-beta1.4)"
-
-#. Found in changelog list item.
-msgid "Language: updated .pot file"
-msgstr "Idioma: archivo .pot actualizado"
-
-#. Found in changelog list item.
-msgid "Press Permit integration: automatically store a backup copy of each role's last saved capability set so they can be reinstated if necessary (currently for bbPress)"
-msgstr "Integración de Press Permit: almacena automáticamente una copia de seguridad del último conjunto de capacidades guardadas de cada perfil para que puedan ser restablecidas si es necesario (actualmente para bbPress)"
-
-#. Found in changelog list item.
-msgid "Fixed : Separate checkbox was displayed for cap-&gt;edit_published_posts even if it was defined to the be same as cap-&gt;edit_posts"
-msgstr "Corregido: se mostraba una casilla separada para `cap-&gt;edit_published_posts` aunque estuviera definida igual que `cap-&gt;edit_posts`"
-
-#. Found in changelog list item.
-msgid "Fixed : Menu item change to \"Role Capabilities\" broke existing translations"
-msgstr "Corregido: el cambio del menú a «Capacidades del perfil» rompió las traducciones existentes"
-
-#. Found in changelog list item.
-msgid "Fixed : On translated sites, roles could not be edited"
-msgstr "Corregido: en los sitios traducidos, los perfiles no podían ser editados"
-
-#. Found in changelog list item.
-msgid "Press Permit integration: If capability is granted by the role's Permit Group, highlight it as green with a descriptive caption title, but leave checkbox enabled for display/editing of role defintion setting (previous behavior caused capability to be stripped out of WP role definition under some PP configurations)"
-msgstr "Press Permit integration: si la capacidad es concedida por el grupo de permisos del perfil, resáltela en verde con un título descriptivo, pero deje activada la casilla de verificación para mostrar/editar la configuración de la definición del perfil (el comportamiento anterior hacía que la capacidad fuera eliminada de la definición del perfil de WP en algunas configuraciones de PP)"
-
-#. Found in changelog list item.
-msgid "Fixed : Capability labels in \"Other WordPress\" section did not toggle checkbox selection"
-msgstr "Corregido: las etiquetas de capacidad en la sección «Otros de WordPress» no activaban la selección de la casilla de verificación"
-
-#. Found in changelog list item.
-msgid "Fixed : Capabilities were needlessly re-saved on role load"
-msgstr "Corregido: las capacidades se guardaban innecesariamente al cargar el perfil"
-
-#. Found in changelog list item.
-msgid "Fixed : Role update and copy failed if currently stored capability array is corrupted"
-msgstr "Corregido: la actualización y la copia de perfiles fallan si la matriz de capacidades almacenada actualmente está dañada"
-
-#. Found in changelog list item.
-msgid "Compat : Press Permit + bbPress - customized role capabilities were not properly maintained on bbPress activation / deactivation, in some scenarios"
-msgstr "Compatibilida: Press Permit + bbPress - las capacidades de los perfiles personalizados no se mantenían correctamente en la activación/desactivación de bbPress, en algunos escenarios"
-
-#. Found in changelog list item.
-msgid "Compat : bbPress 2.2 (supports customization of dynamic forum role capabilities)"
-msgstr "Compatibilidad: bbPress 2.2 (admite la personalización de las funciones dinámicas del foro)"
-
-#. Found in changelog list item.
-msgid "Compat : Press Permit - flagging of roles as \"supplemental assignment only\" was not saved"
-msgstr "Compatibilidad: Press Permit - no se ha guardado el marcado de los perfiles como «asignación suplementaria»"
-
-#. Found in changelog list item.
-msgid "Compat : bbPress + Press Permit - \"Add Capability\" form failed when used on a bbPress role, caused creation of an invalid role"
-msgstr "Compatibilidad: bbPress + Press Permit - el formulario «Añadir capacidad» fallaba cuando se utilizaba en un perfil de bbPress, lo que provocaba la creación de un perfil no válido"
-
-#. Found in changelog list item.
-msgid "Compat : Press Permit - \"supplemental only\" option was always enabled for newly created and copied roles, regardless of checkbox setting near Create/Copy button"
-msgstr "Compatibilidad: Press Permit - la opción «sólo suplementario» siempre estaba activada para los perfiles recién creados y copiados, independientemente de la configuración de la casilla de verificación cerca del botón Crear/Copiar"
-
-#. Found in changelog list item.
-msgid "Compat : bbPress + Press Permit - Adding a capability via the \"Add Cap\" textbox caused the checkbox to be available but not selected"
-msgstr "Compatibilidad: bbPress + Press Permit - añadir una capacidad a través de la caja de texto «Añadir Cap» hacía que la casilla estuviera disponible pero no seleccionada"
-
-#. Found in changelog list item.
-msgid "Compat : bbPress + Press Permit - Modified bbPress role capabilities were not redisplayed following save, required reload"
-msgstr "Compatibilidad: bbPress + Press Permit - las capacidades modificadas de los perfiles de bbPress no se muestran después de guardar, es necesario volver a cargar"
-
-#. Found in changelog list item.
-msgid "Feature : \"Use create_posts capability\" checkbox in sidebar auto-defines create_posts capabilities (requires Press Permit)"
-msgstr "Característica: la casilla «Usar la capacidad de `create_posts`» en la barra lateral define automáticamente las capacidades de `create_posts` (requiere Press Permit)"
-
-#. Found in changelog list item.
-msgid "Feature : If create_posts capabilities are defined, organize checkboxes into a column alongside edit_posts"
-msgstr "Característica: si se definen las capacidades de `create_posts`, organizar las casillas de verificación en una columna junto a `edit_posts`"
-
-#. Found in changelog list item.
-msgid "Fixed : Role capabilities were not updated / refreshed properly on multisite installations"
-msgstr "Corregido: las capacidades de los perfiles no se actualizaban/refrescaban correctamente en las instalaciones multisitio"
-
-#. Found in changelog list item.
-msgid "Change : Reduced download size by moving screenshots to assets folder of project folder"
-msgstr "Cambio: se ha reducido el tamaño de la descarga moviendo las capturas de pantalla a la carpeta de activos de la carpeta del proyecto"
-
-#. Found in changelog list item.
-msgid "Maint  : Stop using $GLOBALS superglobal"
-msgstr "Mantenimiento: dejar de usar el superglobal $GLOBALS"
-
-#. Found in changelog list item.
-msgid "Compat : Press Permit - green background around capabilities which "
-msgstr "Compatibilidad: Press Permit - fondo verde alrededor de las capacidades que "
-
-#. Found in changelog list item.
-msgid "Compat : Press Permit - \"supplemental only\" option stored redundant entries"
-msgstr "Compatibilidad: Press Permit - la opción «sólo suplemento» almacena las entradas redundantes"
-
-#. Found in changelog list item.
-msgid "Compat : Press Permit - PHP Warning on \"Force Type-Specific Capabilities\" settings update"
-msgstr "Compatibilidad: Press Permit - PHP Warning en la actualización de la configuración «Force Type-Specific Capabilities»"
-
-#. Found in changelog list item.
-msgid "Compat : Press Permit - PHP Warning on role save"
-msgstr "Compatibilidad: Press Permit - PHP warning al guardar el perfil"
-
-#. Found in changelog list item.
-msgid "Fixed : Failure to save capability changes, on some versions of PHP"
-msgstr "Corregido: fallo al guardar los cambios de capacidad, en algunas versiones de PHP"
-
-#. Found in changelog list item.
-msgid "Perf :  Eliminated unused framework code (reduced typical wp-admin memory usage by 0.6 MB)"
-msgstr "Perfeccionamiento:  se ha eliminado el código del framework que no se utiliza (se ha reducido el uso típico de memoria de wp-admin en 0,6 MB)"
-
-#. Found in changelog list item.
-msgid "Change : Press Permit promotional message includes link to display further info"
-msgstr "Cambio: el mensaje promocional de Press Permit incluye un enlace para mostrar más información"
-
-#. Found in changelog list item.
-msgid "Compat : Press Permit - if a role is marked as hidden, also default it for use by PP Pro as a Pattern Role (when PP Collaborative Editing is activated and Advanced Settings enabled)"
-msgstr "Compatibilidad: Press Permit - si un perfil está marcado como oculto, también por defecto para su uso por PP Pro como un perfil de patrón (cuando la edición colaborativa de PP está activada y los ajustes avanzados activados)"
-
-#. Found in changelog list item.
-msgid "Fixed : jQuery notices for deprecated methods on Edit Role screen"
-msgstr "Corregido: avisos de jQuery para métodos obsoletos en la pantalla de Editar perfil"
-
-#. Found in changelog list item.
-msgid "Fixed : Term deletion capability was not included in taxonomies grid even if defined"
-msgstr "Corregido: la capacidad de eliminación de términos no se incluía en la cuadrícula de taxonomías aunque estuviera definida"
-
-#. Found in changelog list item.
-msgid "Change : Clarified English captions on Backup Tool screen"
-msgstr "Cambio: aclaración de los subtítulos en inglés en la pantalla de la herramienta de copia de seguridad"
-
-#. Found in changelog list item.
-msgid "Fixed : Role reset to WP defaults did not work, caused a PHP error / white screen"
-msgstr "Corregido: el restablecimiento de perfiles a los valores por defecto de WP no funcionaba, provocaba un error PHP / pantalla blanca"
-
-#. Found in changelog list item.
-msgid "Feature : Backup / Restore tool requires \"restore_roles\" capability or super admin status"
-msgstr "Característica: la herramienta de copia de seguridad/restauración requiere la capacidad de «restore_roles» o el estado de superadministrador"
-
-#. Found in changelog list item.
-msgid "Feature : Multisite - Copy a role definition to new (future) sites on a network"
-msgstr "Característica: multisitio - copiar una definición de perfil a nuevos (futuros) sitios en una red"
-
-#. Found in changelog list item.
-msgid "Feature : Multisite - Copy a role definition to all current sites on a network"
-msgstr "Característica: multisitio - copiar una definición de perfil a todos los sitios actuales de una red"
-
-#. Found in changelog list item.
-msgid "Feature : Support negative capabilities (storage to wp_roles array with false value)"
-msgstr "Característica: admite capacidades negativas (almacenamiento en la matriz `wp_roles` con valor falso)"
-
-#. Found in changelog list item.
-msgid "Fixed : Non-administrators with user editing capabilities could give new users a role with a higher level than their own (including Administrator)"
-msgstr "Corregido: los no administradores con capacidad de edición de usuarios podían dar a los nuevos usuarios un perfil con un nivel superior al suyo (incluido el de administrador)"
-
-#. Found in changelog list item.
-msgid "Fixed : Network Super Administrators without an Administrator role on a particular site could not assign an Administrator role to other users of that site"
-msgstr "Corregido: los super administradores de red sin perfil de administrador en un sitio particular no podían asignar un perfil de administrador a otros usuarios de ese sitio"
-
-#. Found in changelog list item.
-msgid "Lang : Updated .pot and .po files"
-msgstr "Idioma: archivos .pot y .po actualizados"
-
-#. Found in changelog list item.
-msgid "Lang : Fixed erroneous text_domain argument for numerous strings"
-msgstr "Idioma: se ha corregido un argumento `text_domain` erróneo para numerosas cadenas"
-
-#. Found in changelog list item.
-msgid "Perf : Don't output wp-admin CSS on non-CME screens"
-msgstr "Perfeccionamiento: no mostrar el CSS de wp-admin en pantallas que no sean de CME"
-
-#. Found in changelog list item.
-msgid "Fixed : CSS caused formatting issues around wp-admin Update button on some installations"
-msgstr "Corregido: el CSS causaba problemas de formato alrededor del botón de actualización de wp-admin en algunas instalaciones"
-
-#. Found in changelog list item.
-msgid "Change : If user_level of Administrator role was cleared, non-Administrators with user editing capabilities could create/edit/delete Administrators.  Administrator role is now implicitly treated as level 10."
-msgstr "Cambio: si el `user_level` del perfil de Administrador estaba desactivado, los no Administradores con capacidades de edición de usuarios podían crear/editar/borrar Administradores.  Ahora el perfil de administrador se trata implícitamente como nivel 10."
-
-#. Found in changelog list item.
-msgid "Compat : Support third party display of available capabilities via capsman_get_capabilities or members_get_capabilities filter"
-msgstr "Compatibilidad: Permite la visualización de capacidades disponibles por parte de terceros a través del filtro `capsman_get_capabilities` o `members_get_capabilities`"
-
-#. Found in changelog list item.
-msgid "Compat : Press Permit Core - Permission Group refresh was not triggered if Press Permit Core is inactive when CME deletes a role definition"
-msgstr "Compat: núcleo de Press Permit - la actualización del Grupo de Permisos no se activaba si el núcleo de Press Permit estaba inactivo cuando el CME borraba una definición de perfil"
-
-#. Found in changelog list item.
-msgid "Fixed : Deletion of a third party plugin role could cause users to be demoted to Subscriber inappropriately"
-msgstr "Corregido: la eliminación del perfil de un plugin de terceros podía hacer que los usuarios fueran degradados a suscriptores de forma inapropiada"
-
-#. Found in changelog list item.
-msgid "Fixed : On single-site installations, non-Administrators with delete_users capability could give new users an Administrator role (since 1.5.2) "
-msgstr "Corregido: en instalaciones de un solo sitio, los no administradores con capacidad de `delete_users` podían dar a los nuevos usuarios un perfil de administrador (desde 1.5.2) "
-
-#. Found in changelog list item.
-msgid "Lang : Changed text domain for language pack conformance"
-msgstr "Idioma: se ha modificado el dominio del texto para que sea compatible con el paquete de idiomas"
-
-#. Found in changelog list item.
-msgid "Fixed : Non-administrators could not assign their role to other users (define constant CME_LEGACY_USER_EDIT_FILTER to retain previous behavior)"
-msgstr "Corregido: los no administradores no podían asignar su perfil a otros usuarios (definir la constante `CME_LEGACY_USER_EDIT_FILTER` para mantener el comportamiento anterior)"
-
-#. Found in changelog list item.
-msgid "Fixed : Non-administrators could not edit other users with their role (define constant CME_LEGACY_USER_EDIT_FILTER to retain previous behavior)"
-msgstr "Corregido: los no administradores no podían editar a otros usuarios con su perfil (definir la constante `CME_LEGACY_USER_EDIT_FILTER` para mantener el comportamiento anterior)"
-
-#. Found in changelog list item.
-msgid "Fixed : Non-administrators' user editing capabilities were blocked if Press Permit Core was also active"
-msgstr "Corregido: las capacidades de edición de los usuarios que no son administradores estaban bloqueadas si el núcleo de Press Permit estaba también activo"
+#: includes/roles/class/class-pp-roles-admin.php:109
+msgid "Advanced"
+msgstr "Avanzado"
+
+#: includes/roles/class/class-pp-roles-admin.php:145
+#: includes/roles/class/class-pp-roles-list-table.php:164
+msgid "Role Name"
+msgstr "Nombre del perfil"
+
+#: includes/roles/class/class-pp-roles-admin.php:153
+msgid "Role Slug"
+msgstr "Slug del perfil"
+
+#: includes/roles/class/class-pp-roles-admin.php:154
+#, fuzzy
+#| msgid ""
+#| "The “slug” is the URL-friendly version of the role. It is usually all "
+#| "lowercase and contains only letters, numbers and underscores."
+msgid ""
+"The \"slug\" is the URL-friendly version of the role. It is usually all "
+"lowercase and contains only letters, numbers and underscores."
+msgstr ""
+"El «slug» es la versión amigable de la URL del perfil. Suele estar en "
+"minúsculas y contener solo letras, números y guiones bajos."
+
+#: includes/roles/class/class-pp-roles-admin.php:162
+msgid "Role Level"
+msgstr "Nivel del perfil"
+
+#: includes/roles/class/class-pp-roles-admin.php:183
+msgid "Delete role"
+msgstr "Borrar perfil"
+
+#: includes/roles/class/class-pp-roles-admin.php:184
+msgid ""
+"Deleting this role will completely remove it from database and is "
+"irrecoverable."
+msgstr ""
+"El borrado de este perfil lo eliminará completamente de la base de datos y "
+"es irrecuperable."
+
+#: includes/roles/class/class-pp-roles-admin.php:240
+msgid "Slug already exists"
+msgstr "El slug ya existe"
+
+#: includes/roles/class/class-pp-roles-admin.php:320
+#, php-format
+msgid ""
+"%s role copied to editor. Please click the \"Create Role\" button to create "
+"this new role."
+msgstr ""
+"El perfil %s se ha copiado en el editor. Por favor, haz clic en el botón "
+"«Crear perfil» para crear este nuevo perfil."
+
+#: includes/roles/class/class-pp-roles-admin.php:326
+msgid "Update Role"
+msgstr "Actualizar el perfil"
+
+#: includes/roles/class/class-pp-roles-admin.php:326
+msgid "Create Role"
+msgstr "Crear perfil"
+
+#: includes/roles/class/class-pp-roles-admin.php:334
+msgid "Edit Role"
+msgstr "Editar perfil"
+
+#: includes/roles/class/class-pp-roles-admin.php:336
+msgid "Copy Role"
+msgstr "Copiar perfil"
+
+#: includes/roles/class/class-pp-roles-admin.php:338
+msgid "Create New Role"
+msgstr "Crear nuevo perfil"
+
+#: includes/roles/class/class-pp-roles-admin.php:342
+msgid "All Roles"
+msgstr "Todos los perfiles"
+
+#: includes/roles/class/class-pp-roles-admin.php:421
+#, php-format
+msgid "These can be edited on the %1s Capabilities screen %2s"
+msgstr "Se pueden editar en la pantalla de %1s Capacidades %2s"
+
+#: includes/roles/class/class-pp-roles-admin.php:448
+msgid "Load More"
+msgstr "Cargar más"
+
+#: includes/roles/class/class-pp-roles-admin.php:451
+msgid "Load Less"
+msgstr "Cargar menos"
+
+#: includes/roles/class/class-pp-roles-list-table.php:225
+msgid "Edit"
+msgstr "Editar"
+
+#: includes/roles/class/class-pp-roles-list-table.php:236
+msgid "Copy"
+msgstr "Copiar"
+
+#: includes/roles/class/class-pp-roles-list-table.php:241
+msgid "(non-editable role)"
+msgstr "(perfil no editable)"
+
+#: includes/roles/class/class-pp-roles-list-table.php:259
+msgid "Unhide"
+msgstr "Mostrar"
+
+#: includes/roles/class/class-pp-roles-list-table.php:296
+msgid "Hide"
+msgstr "ocultar"
+
+#: includes/roles/class/class-pp-roles-list-table.php:347
+msgid "Default Role"
+msgstr "Perfil por defecto"
+
+#: includes/roles/class/class-pp-roles-list-table.php:352
+msgid "Your Role"
+msgstr "Tu perfil"
+
+#: includes/roles/roles-functions.php:32
+msgid "Are you sure you want to delete this role?"
+msgstr "¿Estás seguro que quieres borrar este perfil?"
+
+#: includes/roles/roles.php:15
+#, php-format
+msgid "Search results for &#8220;%s&#8221;"
+msgstr "Resultados de la búsqueda de «%s»"
+
+#: includes/roles/roles.php:26
+msgid "Search Roles"
+msgstr "Buscar perfiles"
+
+#: includes/roles/roles.php:34
+msgid "Description here."
+msgstr "Aquí va la descipción."
+
+#: includes/settings.php:14
+msgid "Capabilities Settings"
+msgstr "Ajustes de capacidades"
+
+#: includes/settings.php:24
+msgid "Related Permissions Plugins"
+msgstr "Plugins de permisos relacionados"
+
+#: includes/settings.php:29
+msgid "PublishPress"
+msgstr "PublishPress"
+
+#: includes/settings.php:34
+msgid "PublishPress Authors"
+msgstr "PublishPress Authors"
+
+#: includes/settings.php:40
+msgid "PublishPress Permissions"
+msgstr "Permisos de PublishPress"
+
+#: includes/settings.php:46
+msgid "PublishPress Revisions"
+msgstr "PublishPress Revisions"
+
+#: includes/settings.php:48
+msgid "Help / Contact Form"
+msgstr "Ayuda / formulario de contacto"
+
+#: vendor/publishpress/wordpress-reviews/ReviewsController.php:332
+#, php-format
+msgid ""
+"Hey, you've been using %1$s for %2$s on your site. We hope the plugin has "
+"been useful. Please could you quickly leave a 5-star rating on WordPress."
+"org? It really does help to keep %1$s growing."
+msgstr ""
+
+#: vendor/publishpress/wordpress-reviews/ReviewsController.php:342
+msgid "1 week"
+msgstr ""
+
+#: vendor/publishpress/wordpress-reviews/ReviewsController.php:350
+msgid "1 month"
+msgstr ""
+
+#: vendor/publishpress/wordpress-reviews/ReviewsController.php:361
+msgid "3 months"
+msgstr ""
+
+#: vendor/publishpress/wordpress-reviews/ReviewsController.php:615
+#, php-format
+msgid "Click here to add your rating for %s"
+msgstr ""
+
+#: vendor/publishpress/wordpress-reviews/ReviewsController.php:621
+msgid "Maybe later"
+msgstr ""
+
+#: vendor/publishpress/wordpress-reviews/ReviewsController.php:626
+#, fuzzy
+#| msgid "Slug already exists"
+msgid "I already did"
+msgstr "El slug ya existe"
+
+#: vendor/publishpress/wordpress-version-notices/src/Module/MenuLink/Module.php:129
+msgid "Amazing! We are redirecting you to our site..."
+msgstr ""
+
+#~ msgid "System %s"
+#~ msgid_plural "System %s"
+#~ msgstr[0] "Sistema %s"
+#~ msgstr[1] "Sistema %s"
+
+#~ msgid "Uneditable %s"
+#~ msgid_plural "Uneditable %s"
+#~ msgstr[0] "%s no editable"
+#~ msgstr[1] "%s no editables"
+
+#~ msgid "Editable %s"
+#~ msgid_plural "Editable %s"
+#~ msgstr[0] "Editable %s"
+#~ msgstr[1] "Editables %s"
+
+#~ msgid "No Users %s"
+#~ msgid_plural "No Users %s"
+#~ msgstr[0] "No hay usuario %s"
+#~ msgstr[1] "No hay usuarios %s"
+
+#~ msgid "Has Users %s"
+#~ msgid_plural "Has Users %s"
+#~ msgstr[0] "Tiene usuarios %s"
+#~ msgstr[1] "Tiene usuarios %s"
+
+#~ msgid "Mine %s"
+#~ msgid_plural "Mine %s"
+#~ msgstr[0] "Mío %s"
+#~ msgstr[1] "Míos %s"
+
+#~ msgid "Import"
+#~ msgstr "Importar"
+
+#~ msgid "Export"
+#~ msgstr "Exportar"
+
+#~ msgid "Filter by capability"
+#~ msgstr "Filtrar por capacidad"
+
+#~ msgid "Toggle all"
+#~ msgstr "Alternar todos"
+
+#~ msgid "Copy option settings to all sites now"
+#~ msgstr "Copia los ajustes de opciones a todos los sitios ahora"
+
+#~ msgid "Restore Selected Roles"
+#~ msgstr "Restaurar los perfiles seleccionados"
+
+#~ msgid "Manual Backup"
+#~ msgstr "Copia de seguridad manual"
+
+#~ msgid "Contact the PublishPress team"
+#~ msgstr "Contacta al equipo PublishPress"
+
+#~ msgid "Capabilites Documentation"
+#~ msgstr "Documentación de capacidades"
+
+#~ msgid "About PublishPress Capabilities"
+#~ msgstr "Acerca de PublishPress Capabilities"
+
+#~ msgid ""
+#~ "Make selected post types require a different capability to add new posts."
+#~ msgstr ""
+#~ "Hacer que los tipos de contenido seleccionados necesiten una capacidad "
+#~ "diferente para añadir nuevas entradas."
+
+#~ msgid ""
+#~ "Role level is mostly deprecated. However, it still determines eligibility "
+#~ "for Post Author assignment and limits the application of user editing "
+#~ "capabilities."
+#~ msgstr ""
+#~ "El nivel de los perfiles está prácticamente obsoleto. Sin embargo, aún "
+#~ "determina la elegibilidad para la asignación del autor de la entrada y "
+#~ "limita la aplicación de las capacidades de edición del usuario."
+
+#~ msgid "https://publishpress.com/"
+#~ msgstr "https://publishpress.com/"
+
+#~ msgid "https://publishpress.com/capability-manager/"
+#~ msgstr "https://publishpress.com/capability-manager/"
+
+#~ msgid "PublishPress Capabilities"
+#~ msgstr "PublishPress Capabilities"
+
+#~ msgid ""
+#~ "Manage WordPress role definitions, per-site or network-wide. Organizes "
+#~ "post capabilities by post type and operation."
+#~ msgstr ""
+#~ "Gestiona las definiciones de los perfiles de WordPress, por sitio o en "
+#~ "toda la red. Organiza las capacidades de las entradas por tipo de "
+#~ "contenido y operación."
+
+#~ msgid "Update"
+#~ msgstr "Actualizar"
+
+#~ msgid "Reset Roles and Capabilities to WordPress defaults"
+#~ msgstr ""
+#~ "Restablecer perfiles y capacidades a los valores por defecto de WordPress"
+
+#~ msgid "Copy / update this role definition to all sites now"
+#~ msgstr ""
+#~ "Copiar/actualizar esta definición de perfil a todos los sitios ahora"
+
+#~ msgid "Create this role definition in new (future) sites"
+#~ msgstr "Crear esta definición de perfil en nuevos (futuros) sitios"
+
+#~ msgid "Add to role"
+#~ msgstr "Añadir al perfil"
+
+#~ msgid "negate none (add/remove all capabilities normally)"
+#~ msgstr "no negar ninguna (añadir/quitar todas las capacidades normalmente)"
+
+#~ msgid "negate all (storing as disabled capabilities)"
+#~ msgstr "negar todas (almacenar como capacidades desactivadas)"
+
+#~ msgid "check / uncheck all"
+#~ msgstr "marcar / desmarcar todo"
+
+#~ msgid ""
+#~ "can delete posts which are currently published with private visibility"
+#~ msgstr ""
+#~ "puede borrar entradas que estén publicadas actualmente con visibilidad "
+#~ "privada"
+
+#~ msgid "can delete posts which are currently published"
+#~ msgstr "puede borrar entradas que estén publicadas actualmente"
+
+#~ msgid "can delete posts which were created by other users"
+#~ msgstr "puede borrar entradas que hayan sido creadas por otros usuarios"
+
+#~ msgid ""
+#~ "has basic deletion capability (but may need other capabilities based on "
+#~ "post status and ownership)"
+#~ msgstr ""
+#~ "tiene una capacidad básica de eliminación (pero puede necesitar otras "
+#~ "capacidades con base al estado de la entrada y de la autoría)"
+
+#~ msgid "can make a post publicly visible"
+#~ msgstr "puede hacer que una entrada sea visible públicamente"
+
+#~ msgid "can edit posts which are currently published with private visibility"
+#~ msgstr ""
+#~ "puede editar entradas que estén publicadas actualmente con visibilidad "
+#~ "privada"
+
+#~ msgid "can edit posts which are currently published"
+#~ msgstr "puede editar entradas que estén publicadas actualmente"
+
+#~ msgid "can edit posts which were created by other users"
+#~ msgstr "puede editar entradas que hayan sido creadas por otros usuarios"
+
+#~ msgid ""
+#~ "has basic editing capability (but may need other capabilities based on "
+#~ "post status and ownership)"
+#~ msgstr ""
+#~ "tiene una capacidad básica de edición (pero puede necesitar otras "
+#~ "capacidades con base al estado de la entrada y de la autoría)"
+
+#~ msgid "can read posts which are currently published with private visibility"
+#~ msgstr ""
+#~ "puede leer las entradas que estén publicados actualmente con visibilidad "
+#~ "privada"
+
+#~ msgid "%s info/purchase"
+#~ msgstr "información/compra de %s"
+
+#~ msgid "%s (free install)"
+#~ msgstr "%s (instalación gratuita)"
