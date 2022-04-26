@@ -44,7 +44,7 @@ foreach($def_post_types as $type_name) {
 
     $_disabled = get_option("capsman_feature_restrict_{$type_name}", []);
     $gutenberg_post_disabled[$type_name] = !empty($_disabled[$default_role]) ? (array)$_disabled[$default_role] : [];
-    
+
     //classic editor cpt disabled element
     if ($classic_editor) {
         $_disabled = get_option("capsman_feature_restrict_classic_{$type_name}", []);
@@ -147,9 +147,11 @@ $active_tab_slug = (!empty($_REQUEST['pp_caps_tab'])) ? sanitize_key($_REQUEST['
 
                                                                 ?>
                                                                 <li data-slug="<?php esc_attr_e($type_name); ?>" data-content="cme-cap-type-tables-<?php esc_attr_e($type_name); ?>" class="<?php esc_attr_e($active_class); ?>">
-                                                                    <?php esc_html_e($type_obj->labels->singular_name); ?> 
+                                                                    <?php esc_html_e($type_obj->labels->singular_name); ?>
                                                                     <?php if ($disabled_count > 0) : ?>
-                                                                        <span class="pp-capabilities-feature-count"><?php echo esc_html($disabled_count); ?></span>
+                                                                        <span class="pp-capabilities-feature-count">
+                                                                            <?php echo __('Restricted:', 'capsman-enhanced') . ' ' . esc_html($disabled_count); ?>
+                                                                        </span>
                                                                     <?php endif; ?>
                                                                 </li>
                                                                 <?php
@@ -159,7 +161,7 @@ $active_tab_slug = (!empty($_REQUEST['pp_caps_tab'])) ? sanitize_key($_REQUEST['
                                                 </div>
 
                                                 <div class="ppc-capabilities-content">
-                                                    <?php 
+                                                    <?php
                                                         foreach($def_post_types as $type_name) {
                                                             $type_obj = get_post_type_object($type_name);
                                                             $active_style = ($type_name === $active_tab_slug) ? '' : 'display:none;';
@@ -178,7 +180,7 @@ $active_tab_slug = (!empty($_REQUEST['pp_caps_tab'])) ? sanitize_key($_REQUEST['
                                                     ?>
                                                 </div>
                                             </div>
-                                            
+
 
                                         </div>
                                     </div>
