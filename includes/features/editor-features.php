@@ -149,7 +149,7 @@ $active_tab_slug = (!empty($_REQUEST['pp_caps_tab'])) ? sanitize_key($_REQUEST['
                                                                 <li data-slug="<?php esc_attr_e($type_name); ?>" data-content="cme-cap-type-tables-<?php esc_attr_e($type_name); ?>" class="<?php esc_attr_e($active_class); ?>">
                                                                     <?php esc_html_e($type_obj->labels->singular_name); ?> 
                                                                     <?php if ($disabled_count > 0) : ?>
-                                                                        <span class="pp-capabilities-feature-count"><?php echo $disabled_count; ?></span>
+                                                                        <span class="pp-capabilities-feature-count"><?php echo esc_html($disabled_count); ?></span>
                                                                     <?php endif; ?>
                                                                 </li>
                                                                 <?php
