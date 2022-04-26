@@ -229,5 +229,22 @@ function ppc_add_inline_style($custom_css, $handle = 'ppc-dummy-css-handle')
 {
     wp_register_style(esc_attr($handle), false);
     wp_enqueue_style(esc_attr($handle));
-    wp_add_inline_style(esc_attr($handle), esc_attr($custom_css));
+    wp_add_inline_style(esc_attr($handle), $custom_css);
+}
+
+/**
+ * Register and add inline script.
+ *
+ * @param string $custom_script
+ * @param string $handle
+ *
+ * @return string
+ *
+ * @since 2.4.0
+ */
+function ppc_add_inline_script($custom_script, $handle = 'ppc-dummy-script-handle')
+{
+    wp_register_script(esc_attr($handle), false, ['jquery']);
+    wp_enqueue_script(esc_attr($handle), false, ['jquery']);
+    wp_add_inline_script(esc_attr($handle), $custom_script);
 }
