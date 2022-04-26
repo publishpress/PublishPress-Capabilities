@@ -33,11 +33,11 @@ asort($def_post_types);
 //gutenberg element
 $gutenberg_elements = PP_Capabilities_Post_Features::elementsLayout();
 $gutenberg_post_disabled = [];
+$ce_post_disabled = [];
 
 //classic editor element
 if ($classic_editor) {
     $ce_elements = PP_Capabilities_Post_Features::elementsLayoutClassic();
-    $ce_post_disabled = [];
 }
 
 foreach($def_post_types as $type_name) {
@@ -140,9 +140,17 @@ $active_tab_slug = (!empty($_REQUEST['pp_caps_tab'])) ? sanitize_key($_REQUEST['
                                                             foreach($def_post_types as $type_name) {
                                                                 $type_obj = get_post_type_object($type_name);
                                                                 $active_class = ($type_name === $active_tab_slug) ? 'ppc-capabilities-tab-active' : '';
+
+                                                                $disabled_count  = 0;
+                                                                $disabled_count += (is_array($gutenberg_post_disabled) && isset($gutenberg_post_disabled[$type_name])) ? count($gutenberg_post_disabled[$type_name]) : 0;
+                                                                $disabled_count += (is_array($ce_post_disabled) && isset($ce_post_disabled[$type_name])) ? count($ce_post_disabled[$type_name]) : 0;
+
                                                                 ?>
                                                                 <li data-slug="<?php esc_attr_e($type_name); ?>" data-content="cme-cap-type-tables-<?php esc_attr_e($type_name); ?>" class="<?php esc_attr_e($active_class); ?>">
-                                                                    <?php esc_html_e($type_obj->labels->singular_name); ?>
+                                                                    <?php esc_html_e($type_obj->labels->singular_name); ?> 
+                                                                    <?php if ($disabled_count > 0) : ?>
+                                                                        <span class="pp-capabilities-feature-count"><?php echo $disabled_count; ?></span>
+                                                                    <?php endif; ?>
                                                                 </li>
                                                                 <?php
                                                             }
