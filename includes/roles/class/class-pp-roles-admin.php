@@ -261,7 +261,7 @@ class Pp_Roles_Admin
                             <?php echo esc_html($args['description']); ?>
                             <?php if ($key === 'role_level') : ?>
                                 <a href="https://publishpress.com/blog/user-role-levels/" target="blank">
-                                    <?php esc_attr_e('Read more on Role Level.',  'capsman-enhanced'); ?>
+                                    <?php esc_html_e('Read more on Role Level.',  'capsman-enhanced'); ?>
                                 </a>
                             <?php endif; ?>
                         </p>
