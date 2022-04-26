@@ -150,7 +150,7 @@ $active_tab_slug = (!empty($_REQUEST['pp_caps_tab'])) ? sanitize_key($_REQUEST['
                                                                     <?php esc_html_e($type_obj->labels->singular_name); ?>
                                                                     <?php if ($disabled_count > 0) : ?>
                                                                         <span class="pp-capabilities-feature-count">
-                                                                            <?php echo __('Restricted:', 'capsman-enhanced') . ' ' . esc_html($disabled_count); ?>
+                                                                            <?php echo esc_html__('Restricted:', 'capsman-enhanced') . ' ' . esc_html($disabled_count); ?>
                                                                         </span>
                                                                     <?php endif; ?>
                                                                 </li>
