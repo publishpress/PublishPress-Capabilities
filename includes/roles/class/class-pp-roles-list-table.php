@@ -167,8 +167,6 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
         $columns = [
             'cb'              => '<input type="checkbox"/>', //Render a checkbox instead of text
             'name'            => esc_html__('Role Name', 'capsman-enhanced'),
-            'role'            => esc_html__('Role', 'capsman-enhanced'),
-            'type'            => esc_html__('Type', 'capsman-enhanced'),
             'count'           => esc_html__('Users', 'capsman-enhanced'),
             'capabilities'    => esc_html__('Capabilities', 'capsman-enhanced'),
             'editor_features' => esc_html__('Editor Features', 'capsman-enhanced'),
@@ -190,7 +188,6 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
     {
         $sortable_columns = [
             'name' => ['name', true],
-            'role' => ['role', true],
             'count' => ['count', true],
         ];
 
@@ -212,18 +209,8 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
 
         //Build row actions
         if (pp_capabilities_is_editable_role($item['role'])) {
-            $actions = [
-                'capabilities' => sprintf(
-                    '<a href="%s">%s</a>',
-                    esc_url(
-                        add_query_arg(
-                            ['page' => 'pp-capabilities', 'role' => esc_attr($item['role'])], 
-                            admin_url('admin.php')
-                        )
-                    ),
-                    esc_html__('Capabilities', 'capsman-enhanced')
-                ),
-            ];
+            
+            $actions = [];
 
             $actions['edit'] = sprintf(
                 '<a href="%s">%s</a>',
@@ -400,18 +387,6 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
     {
 
         return !empty($item['name']) ? $item['name'] : '&mdash;';
-    }
-
-    /**
-     * The action column
-     *
-     * @param $item
-     *
-     * @return string
-     */
-    protected function column_type($item)
-    {
-        return ($item['is_system']) ? esc_html__('Built-In', 'capsman-enhanced') : esc_html__('Custom', 'capsman-enhanced');
     }
 
     /**
