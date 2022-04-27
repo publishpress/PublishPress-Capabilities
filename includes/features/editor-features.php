@@ -26,7 +26,35 @@ $roles = $capsman->roles;
 $default_role = $capsman->get_last_role();
 
 $classic_editor = pp_capabilities_is_classic_editor_available();
+
+$def_post_types = array_unique(apply_filters('pp_capabilities_feature_post_types', ['post', 'page']));
+asort($def_post_types);
+
+//gutenberg element
+$gutenberg_elements = PP_Capabilities_Post_Features::elementsLayout();
+$gutenberg_post_disabled = [];
+$ce_post_disabled = [];
+
+//classic editor element
+if ($classic_editor) {
+    $ce_elements = PP_Capabilities_Post_Features::elementsLayoutClassic();
+}
+
+foreach($def_post_types as $type_name) {
+
+    $_disabled = get_option("capsman_feature_restrict_{$type_name}", []);
+    $gutenberg_post_disabled[$type_name] = !empty($_disabled[$default_role]) ? (array)$_disabled[$default_role] : [];
+
+    //classic editor cpt disabled element
+    if ($classic_editor) {
+        $_disabled = get_option("capsman_feature_restrict_classic_{$type_name}", []);
+        $ce_post_disabled[$type_name] = !empty($_disabled[$default_role]) ? (array)$_disabled[$default_role] : [];
+    }
+}
+
+$active_tab_slug = (!empty($_REQUEST['pp_caps_tab'])) ? sanitize_key($_REQUEST['pp_caps_tab']) : 'post';
 ?>
+
 <div class="wrap publishpress-caps-manage pressshack-admin-wrapper pp-capability-menus-wrapper">
     <div id="icon-capsman-admin" class="icon32"></div>
     <h2><?php esc_html_e('Editor Feature Restriction', 'capsman-enhanced'); ?></h2>
@@ -34,7 +62,7 @@ $classic_editor = pp_capabilities_is_classic_editor_available();
     <form method="post" id="ppc-editor-features-form"
             action="admin.php?page=pp-capabilities-editor-features">
         <?php wp_nonce_field('pp-capabilities-editor-features'); ?>
-
+        <input type="hidden" name="pp_caps_tab" value="<?php echo esc_attr($active_tab_slug);?>" />
         <div class="pp-columns-wrapper<?php echo defined('CAPSMAN_PERMISSIONS_INSTALLED') && !CAPSMAN_PERMISSIONS_INSTALLED ? ' pp-enable-sidebar' : '' ?>">
             <div class="pp-column-left">
                 <table id="akmin">
@@ -103,14 +131,56 @@ $classic_editor = pp_capabilities_is_classic_editor_available();
                                         <div id="pp-capability-menus-general"
                                                 class="pp-capability-menus-content editable-role"
                                                 style="display: block;">
-                                            <?php
-                                            $sn = 0;
-                                            include(dirname(__FILE__) . '/editor-features-gutenberg.php');
+                                                <div id="ppc-capabilities-wrapper" class="postbox">
 
-                                            if ($classic_editor) {
-                                                include(dirname(__FILE__) . '/editor-features-classic.php');
-                                            }
-                                            ?>
+                                                <div class="ppc-capabilities-tabs">
+                                                    <ul>
+                                                        <?php
+
+                                                            foreach($def_post_types as $type_name) {
+                                                                $type_obj = get_post_type_object($type_name);
+                                                                $active_class = ($type_name === $active_tab_slug) ? 'ppc-capabilities-tab-active' : '';
+
+                                                                $disabled_count  = 0;
+                                                                $disabled_count += (is_array($gutenberg_post_disabled) && isset($gutenberg_post_disabled[$type_name])) ? count($gutenberg_post_disabled[$type_name]) : 0;
+                                                                $disabled_count += (is_array($ce_post_disabled) && isset($ce_post_disabled[$type_name])) ? count($ce_post_disabled[$type_name]) : 0;
+
+                                                                ?>
+                                                                <li data-slug="<?php esc_attr_e($type_name); ?>" data-content="cme-cap-type-tables-<?php esc_attr_e($type_name); ?>" class="<?php esc_attr_e($active_class); ?>">
+                                                                    <?php esc_html_e($type_obj->labels->singular_name); ?>
+                                                                    <?php if ($disabled_count > 0) : ?>
+                                                                        <span class="pp-capabilities-feature-count">
+                                                                            <?php echo esc_html__('Restricted:', 'capsman-enhanced') . ' ' . esc_html($disabled_count); ?>
+                                                                        </span>
+                                                                    <?php endif; ?>
+                                                                </li>
+                                                                <?php
+                                                            }
+                                                        ?>
+                                                    </ul>
+                                                </div>
+
+                                                <div class="ppc-capabilities-content">
+                                                    <?php
+                                                        foreach($def_post_types as $type_name) {
+                                                            $type_obj = get_post_type_object($type_name);
+                                                            $active_style = ($type_name === $active_tab_slug) ? '' : 'display:none;';
+                                                            ?>
+                                                            <div id="cme-cap-type-tables-<?php esc_attr_e($type_name); ?>" style="<?php esc_attr_e($active_style); ?>">
+                                                                <?php
+                                                                include(dirname(__FILE__) . '/editor-features-gutenberg.php');
+
+                                                                if ($classic_editor) {
+                                                                    include(dirname(__FILE__) . '/editor-features-classic.php');
+                                                                }
+                                                                ?>
+                                                            </div>
+                                                            <?php
+                                                        }
+                                                    ?>
+                                                </div>
+                                            </div>
+
 
                                         </div>
                                     </div>
@@ -164,11 +234,39 @@ $classic_editor = pp_capabilities_is_classic_editor_available();
     }
 
     input.check-all-menu-item {margin-top: 5px !important;}
+
+    .pp-promo-overlay-row .pp-promo-upgrade-notice {
+        left: calc(50% - 125px) !important;
+    }
+    table#akmin .pp-capability-menus-select .restrict-column {
+        text-align: right !important;
+    }
+    table#akmin .pp-capability-menus-select tr:first-of-type {
+        border-right: 1px solid #c3c4c7;
+    }
+    table#akmin .pp-capability-menus-select tr:first-of-type th {
+        border-top: 1px solid #c3c4c7;
+    }
 </style>
 
 <script type="text/javascript">
     /* <![CDATA[ */
     jQuery(document).ready(function ($) {
+
+         // Tabs and Content display
+         $('.ppc-capabilities-tabs > ul > li').click( function() {
+            var $pp_tab = $(this).attr('data-content');
+
+            $("[name='pp_caps_tab']").val($(this).attr('data-slug'));
+
+            // Show current Content
+            $('.ppc-capabilities-content > div').hide();
+            $('#' + $pp_tab).show();
+
+            // Active current Tab
+            $('.ppc-capabilities-tabs > ul > li').removeClass('ppc-capabilities-tab-active');
+            $(this).addClass('ppc-capabilities-tab-active');
+        });
 
         // -------------------------------------------------------------
         //   Set form action attribute to include role
@@ -248,7 +346,10 @@ $classic_editor = pp_capabilities_is_classic_editor_available();
             $('.editor-features-tab').removeClass('nav-tab-active');
             $(this).addClass('nav-tab-active');
             $('.pp-capability-menus-select').hide();
+            $('.editor-features-classic-show').hide();
+            $('.editor-features-gutenberg-show').hide();
             $($(this).attr('data-tab')).show();
+            $($(this).attr('data-tab')+'-show').show();
         });
 
     });
