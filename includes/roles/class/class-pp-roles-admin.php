@@ -160,7 +160,7 @@ class Pp_Roles_Admin
             ],
             'role_level'     => [
                 'label'     => esc_html__('Role Level', 'capsman-enhanced'),
-                'description' => esc_html__('Each user role in WordPress has a different level from 0 to 10. The lowest level is 0 and is attached to the Subscriber role by default. The highest level is 10 is attached to the Administrator role by default.', 'capsman-enhanced'),
+                'description' => esc_html__('Each user role has a level from 0 to 10. The Subscriber role defaults to the lowest level (0). The Administrator role defaults to level 10.', 'capsman-enhanced'),
                 'type'      => 'select',
                 'value_key' => '',
                 'tab'       => 'advanced',
