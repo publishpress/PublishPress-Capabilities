@@ -273,6 +273,12 @@ $active_tab_text = is_object($active_tab_type_obj)
     input[name="editor-features-all-submit"].ppc-editor-features-submit {
         margin-left: 10px;
     }
+    .pp-columns-wrapper .nav-tab-wrapper {
+        border: unset;
+    }
+    .pp-capability-menus {
+        overflow: initial;
+    }
 </style>
 
 <script type="text/javascript">
