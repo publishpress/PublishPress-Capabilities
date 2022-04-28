@@ -93,7 +93,7 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
         ];
 
         foreach($role_view_filters as $view => $noop){
-            $view_roles = $this->manager->get_roles_for_list_table($view);
+            $view_roles = $this->manager->get_roles_for_list_table($view, true);
             //add role view
             $this->role_views[$view] = ['roles' => $view_roles];
 
@@ -159,11 +159,20 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
      */
     public function get_columns()
     {
+        /**
+         * Note, the table is currently using column data from
+         * initRolesAdmin() in manager.php to display the 
+         * column.
+         */
         $columns = [
-            'cb' => '<input type="checkbox"/>', //Render a checkbox instead of text
-            'name' => esc_html__('Role Name', 'capsman-enhanced'),
-            'role' => esc_html__('Role', 'capsman-enhanced'),
-            'count' => esc_html__('Users', 'capsman-enhanced'),
+            'cb'              => '<input type="checkbox"/>', //Render a checkbox instead of text
+            'name'            => esc_html__('Role Name', 'capsman-enhanced'),
+            'count'           => esc_html__('Users', 'capsman-enhanced'),
+            'capabilities'    => esc_html__('Capabilities', 'capsman-enhanced'),
+            'editor_features' => esc_html__('Editor Features', 'capsman-enhanced'),
+            'admin_features'  => esc_html__('Admin Features', 'capsman-enhanced'),
+            'admin_menus'     => esc_html__('Admin Menus', 'capsman-enhanced'),
+            'nav_menus'       => esc_html__('Nav Menus', 'capsman-enhanced'),
         ];
 
         return $columns;
@@ -179,7 +188,6 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
     {
         $sortable_columns = [
             'name' => ['name', true],
-            'role' => ['role', true],
             'count' => ['count', true],
         ];
 
@@ -201,18 +209,8 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
 
         //Build row actions
         if (pp_capabilities_is_editable_role($item['role'])) {
-            $actions = [
-                'capabilities' => sprintf(
-                    '<a href="%s">%s</a>',
-                    esc_url(
-                        add_query_arg(
-                            ['page' => 'pp-capabilities', 'role' => esc_attr($item['role'])], 
-                            admin_url('admin.php')
-                        )
-                    ),
-                    esc_html__('Capabilities', 'capsman-enhanced')
-                ),
-            ];
+            
+            $actions = [];
 
             $actions['edit'] = sprintf(
                 '<a href="%s">%s</a>',
@@ -389,6 +387,163 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
     {
 
         return !empty($item['name']) ? $item['name'] : '&mdash;';
+    }
+
+    /**
+     * The action column
+     *
+     * @param $item
+     *
+     * @return string
+     */
+    protected function column_capabilities($item)
+    {
+
+        return sprintf(
+            '<a href="%s">%s</a>',
+            esc_url(
+                add_query_arg(
+                    [
+                        'page' => 'pp-capabilities', 
+                        'role' => esc_attr($item['role'])
+                    ], 
+                    admin_url('admin.php')
+                )
+            ),
+            number_format_i18n(count((array)$item['capabilities']))
+        );
+    }
+
+    /**
+     * The action column
+     *
+     * @param $item
+     *
+     * @return string
+     */
+    protected function column_editor_features($item)
+    {
+        $role = $item['role'];
+        $def_post_types = array_unique(apply_filters('pp_capabilities_feature_post_types', ['post', 'page']));
+        $disabled_items = [];
+        foreach ($def_post_types as $type_name) {
+            $classic_disabled = get_option("capsman_feature_restrict_classic_{$type_name}", []);
+            $gutenberg_disabled = get_option("capsman_feature_restrict_{$type_name}", []);
+            if (!empty($classic_disabled[$role])) {
+                $disabled_items = array_merge($disabled_items, (array) $classic_disabled[$role]);
+            }
+            if (!empty($gutenberg_disabled[$role])) {
+                $disabled_items = array_merge($disabled_items, (array) $gutenberg_disabled[$role]);
+            }
+        }
+        $disabled_items = array_filter($disabled_items);
+
+        return sprintf(
+            '<a href="%s">%s</a>',
+            esc_url(
+                add_query_arg(
+                    [
+                        'page' => 'pp-capabilities-editor-features', 
+                        'role' => esc_attr($item['role'])
+                    ], 
+                    admin_url('admin.php')
+                )
+            ),
+            number_format_i18n(count($disabled_items))
+        );
+    }
+
+    /**
+     * The action column
+     *
+     * @param $item
+     *
+     * @return string
+     */
+    protected function column_admin_features($item)
+    {
+        $role = $item['role'];
+        $disabled_items = !empty(get_option('capsman_disabled_admin_features')) ? (array)get_option('capsman_disabled_admin_features') : [];
+        $disabled_items = array_key_exists($role, $disabled_items) ? (array)$disabled_items[$role] : [];
+        $disabled_items = array_filter($disabled_items);
+        return sprintf(
+            '<a href="%s">%s</a>',
+            esc_url(
+                add_query_arg(
+                    [
+                        'page' => 'pp-capabilities-admin-features', 
+                        'role' => esc_attr($item['role'])
+                    ], 
+                    admin_url('admin.php')
+                )
+            ),
+            number_format_i18n(count($disabled_items))
+        );
+    }
+
+    /**
+     * The action column
+     *
+     * @param $item
+     *
+     * @return string
+     */
+    protected function column_admin_menus($item)
+    {
+        $role = $item['role'];
+
+        $admin_menu_option = !empty(get_option('capsman_admin_menus')) ? get_option('capsman_admin_menus') : [];
+        $admin_menu_option = array_key_exists($role, $admin_menu_option) ? (array)$admin_menu_option[$role] : [];
+
+        $admin_child_menu_option = !empty(get_option('capsman_admin_child_menus')) ? get_option('capsman_admin_child_menus') : [];
+        $admin_child_menu_option = array_key_exists($role, $admin_child_menu_option) ? (array)$admin_child_menu_option[$role] : [];
+
+        $disabled_items = array_filter(array_merge($admin_menu_option, $admin_child_menu_option));
+
+        return sprintf(
+            '<a href="%s">%s</a>',
+            esc_url(
+                add_query_arg(
+                    [
+                        'page' => 'pp-capabilities-admin-menus', 
+                        'role' => esc_attr($item['role'])
+                    ], 
+                    admin_url('admin.php')
+                )
+            ),
+            number_format_i18n(count($disabled_items))
+        );
+    }
+
+    /**
+     * The action column
+     *
+     * @param $item
+     *
+     * @return string
+     */
+    protected function column_nav_menus($item)
+    {
+        $role = $item['role'];
+
+        $nav_menu_item_option = !empty(get_option('capsman_nav_item_menus')) ? get_option('capsman_nav_item_menus') : [];
+        $nav_menu_item_option = array_key_exists($role, $nav_menu_item_option) ? (array)$nav_menu_item_option[$role] : [];
+
+        $disabled_items = array_filter($nav_menu_item_option);
+
+        return sprintf(
+            '<a href="%s">%s</a>',
+            esc_url(
+                add_query_arg(
+                    [
+                        'page' => 'pp-capabilities-nav-menus', 
+                        'role' => esc_attr($item['role'])
+                    ], 
+                    admin_url('admin.php')
+                )
+            ),
+            number_format_i18n(count($disabled_items))
+        );
     }
 
     /**

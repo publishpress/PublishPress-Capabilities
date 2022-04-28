@@ -352,13 +352,13 @@ class CapabilityManager
 			$permissions_title,
 			$permissions_title,
 			$cap_name,
-			'pp-capabilities',
-			array($this, 'generalManager'),
+			'pp-capabilities-roles',
+			array($this, 'ManageRoles'),
 			'dashicons-admin-network',
 			$menu_order
 		);
 
-        $hook = add_submenu_page('pp-capabilities',  __('Roles', 'capsman-enhanced'), __('Roles', 'capsman-enhanced'), $cap_name, 'pp-capabilities-roles', [$this, 'ManageRoles']);
+        $hook = add_submenu_page('pp-capabilities-roles',  __('Roles', 'capsman-enhanced'), __('Roles', 'capsman-enhanced'), $cap_name, 'pp-capabilities-roles', [$this, 'ManageRoles']);
         
         if (!empty($hook)) {
             add_action( 
@@ -370,21 +370,23 @@ class CapabilityManager
             );
 		}
 
-		add_submenu_page('pp-capabilities',  __('Editor Features', 'capsman-enhanced'), __('Editor Features', 'capsman-enhanced'), $cap_name, 'pp-capabilities-editor-features', [$this, 'ManageEditorFeatures']);
+		add_submenu_page('pp-capabilities-roles',  $permissions_title, $permissions_title, $cap_name, 'pp-capabilities', [$this, 'generalManager']);
 
-		add_submenu_page('pp-capabilities',  __('Admin Features', 'capsman-enhanced'), __('Admin Features', 'capsman-enhanced'), $cap_name, 'pp-capabilities-admin-features', [$this, 'ManageAdminFeatures']);
+		add_submenu_page('pp-capabilities-roles',  __('Editor Features', 'capsman-enhanced'), __('Editor Features', 'capsman-enhanced'), $cap_name, 'pp-capabilities-editor-features', [$this, 'ManageEditorFeatures']);
+
+		add_submenu_page('pp-capabilities-roles',  __('Admin Features', 'capsman-enhanced'), __('Admin Features', 'capsman-enhanced'), $cap_name, 'pp-capabilities-admin-features', [$this, 'ManageAdminFeatures']);
 
 		do_action('pp-capabilities-admin-submenus');
 
-		add_submenu_page('pp-capabilities',  __('Backup', 'capsman-enhanced'), __('Backup', 'capsman-enhanced'), $cap_name, 'pp-capabilities-backup', array($this, 'backupTool'));
+		add_submenu_page('pp-capabilities-roles',  __('Backup', 'capsman-enhanced'), __('Backup', 'capsman-enhanced'), $cap_name, 'pp-capabilities-backup', array($this, 'backupTool'));
 
 		if (defined('PUBLISHPRESS_CAPS_PRO_VERSION')) {
-			add_submenu_page('pp-capabilities',  __('Settings', 'capsman-enhanced'), __('Settings', 'capsman-enhanced'), $cap_name, 'pp-capabilities-settings', array($this, 'settingsPage'));
+			add_submenu_page('pp-capabilities-roles',  __('Settings', 'capsman-enhanced'), __('Settings', 'capsman-enhanced'), $cap_name, 'pp-capabilities-settings', array($this, 'settingsPage'));
 		}
 
 		if (!defined('PUBLISHPRESS_CAPS_PRO_VERSION')) {
 			add_submenu_page(
-	            'pp-capabilities',
+	            'pp-capabilities-roles',
 	            __('Upgrade to Pro', 'capsman-enhanced'),
 	            __('Upgrade to Pro', 'capsman-enhanced'),
 	            'manage_capabilities',
@@ -402,10 +404,14 @@ class CapabilityManager
 
                 function($arr) {
                     return [
-                        'cb' => '<input type="checkbox"/>',
-                        'name' => __('Name', 'capsman-enhanced'),
-                        'role' => __('Role', 'capsman-enhanced'),
-                        'count' => __('Users', 'capsman-enhanced'),
+                        'cb' 			  => '<input type="checkbox"/>',
+                        'name'            => esc_html__('Role Name', 'capsman-enhanced'),
+						'count'           => esc_html__('Users', 'capsman-enhanced'),
+						'capabilities'    => esc_html__('Capabilities', 'capsman-enhanced'),
+						'editor_features' => esc_html__('Editor Features', 'capsman-enhanced'),
+						'admin_features'  => esc_html__('Admin Features', 'capsman-enhanced'),
+						'admin_menus'     => esc_html__('Admin Menus', 'capsman-enhanced'),
+						'nav_menus'       => esc_html__('Nav Menus', 'capsman-enhanced'),
                     ];
                 }
             );
@@ -485,15 +491,28 @@ class CapabilityManager
 
 				$def_post_types = array_unique(apply_filters('pp_capabilities_feature_post_types', ['post', 'page']));
 
+                $active_tab     = isset($_POST['pp_caps_tab']) ? sanitize_key($_POST['pp_caps_tab']) : 'post';
+
 				foreach ($def_post_types as $post_type) {
 					if ($classic_editor) {
-						$posted_settings = (isset($_POST["capsman_feature_restrict_classic_{$post_type}"])) ? array_map('sanitize_text_field', $_POST["capsman_feature_restrict_classic_{$post_type}"]) : [];
+
+                        if (isset($_POST['editor-features-all-submit'])){
+						    $posted_settings = (isset($_POST["capsman_feature_restrict_classic_{$active_tab}"])) ? array_map('sanitize_text_field', $_POST["capsman_feature_restrict_classic_{$active_tab}"]) : [];
+                        } else {
+                            $posted_settings = (isset($_POST["capsman_feature_restrict_classic_{$post_type}"])) ? array_map('sanitize_text_field', $_POST["capsman_feature_restrict_classic_{$post_type}"]) : [];
+                        }
+
 						$post_features_option = get_option("capsman_feature_restrict_classic_{$post_type}", []);
 						$post_features_option[sanitize_key($_POST['ppc-editor-features-role'])] = $posted_settings;
 						update_option("capsman_feature_restrict_classic_{$post_type}", $post_features_option, false);
 					}
 
-					$posted_settings = (isset($_POST["capsman_feature_restrict_{$post_type}"])) ? array_map('sanitize_text_field', $_POST["capsman_feature_restrict_{$post_type}"]) : [];
+                    if (isset($_POST['editor-features-all-submit'])){
+					    $posted_settings = (isset($_POST["capsman_feature_restrict_{$active_tab}"])) ? array_map('sanitize_text_field', $_POST["capsman_feature_restrict_{$active_tab}"]) : [];
+                    }else {
+					    $posted_settings = (isset($_POST["capsman_feature_restrict_{$post_type}"])) ? array_map('sanitize_text_field', $_POST["capsman_feature_restrict_{$post_type}"]) : [];
+                    }
+
 					$post_features_option = get_option("capsman_feature_restrict_{$post_type}", []);
 					$post_features_option[sanitize_key($_POST['ppc-editor-features-role'])] = $posted_settings;
 					update_option("capsman_feature_restrict_{$post_type}", $post_features_option, false);

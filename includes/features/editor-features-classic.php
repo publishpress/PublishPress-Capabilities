@@ -1,42 +1,13 @@
-<?php
-$ce_elements = PP_Capabilities_Post_Features::elementsLayoutClassic();
-
-$ce_post_disabled = [];
-
-$def_post_types = array_unique(apply_filters('pp_capabilities_feature_post_types', ['post', 'page']));
-
-asort($def_post_types);
-
-$types_limit = (defined('PP_CAPABILITIES_EDITOR_FEATURES_MAX_TYPES')) ? PP_CAPABILITIES_EDITOR_FEATURES_MAX_TYPES : 12;
-
-if (count($def_post_types) > $types_limit ) {
-    ?>
-    <style type="text/css">
-    .pp-columns-wrapper.pp-enable-sidebar .pp-column-left {width: 100% !important;}
-    .pp-columns-wrapper.pp-enable-sidebar .pp-column-left, .pp-columns-wrapper.pp-enable-sidebar .pp-column-right {float: none !important;}
-    </style>
-    <?php
-}
-
-foreach($def_post_types as $type_name) {
-    $_disabled = get_option("capsman_feature_restrict_classic_{$type_name}", []);
-    $ce_post_disabled[$type_name] = !empty($_disabled[$default_role]) ? (array)$_disabled[$default_role] : [];
-}
-?>
-
-<table class="wp-list-table widefat fixed striped pp-capability-menus-select editor-features-classic" <?php if (empty($_REQUEST['ppc-tab']) || ('classic' != $_REQUEST['ppc-tab'])) echo 'style="display:none;"';?>>
+<h3 class="editor-features-classic-show" <?php if (empty($_REQUEST['ppc-tab']) || (!empty($_REQUEST['ppc-tab']) && ('classic' != $_REQUEST['ppc-tab']))) echo 'style="display:none;"';?> data-post_type="<?php echo esc_attr($type_obj->name); ?>"><?php echo sprintf( esc_html__('Classic Editor %s Restriction', 'capsman-enhanced'), esc_html__($type_obj->labels->singular_name)); ?></h3>
+<table class="wp-list-table widefat fixed striped pp-capability-menus-select editor-features-classic" <?php if (empty($_REQUEST['ppc-tab']) || ('classic' != $_REQUEST['ppc-tab'])) echo 'style="display:none;"';?> data-post_type="<?php echo esc_attr($type_obj->name); ?>">
     <?php foreach(['thead', 'tfoot'] as $tag_name):?>
     <<?php echo esc_attr($tag_name);?>>
     <tr>
-        <th class="menu-column"><?php if ('thead' == $tag_name || !defined('PUBLISHPRESS_CAPS_PRO_VERSION')) {esc_html_e('Classic Editor Screen', 'capsman-enhanced');}?></th>
+        <th class="menu-column"></th>
 
-        <?php foreach($def_post_types as $type_name) :
-            $type_obj = get_post_type_object($type_name);    
-        ?>
-            <th class="restrict-column ppc-menu-row"><?php printf(esc_html__('%s Restrict', 'capsman-enhanced'), esc_html($type_obj->labels->singular_name));?><br />
-            <input class="check-item classic check-all-menu-item" type="checkbox" title="<?php esc_attr_e('Toggle all', 'capsman-enhanced');?>" data-pp_type="<?php echo esc_attr($type_name);?>" />
-            </th>
-        <?php endforeach;?>
+        <th class="restrict-column ppc-menu-row"> 
+            <input class="check-item gutenberg check-all-menu-item" type="checkbox" data-pp_type="<?php echo esc_attr($type_obj->name);?>" />
+        </th>
     </tr>
     </<?php echo esc_attr($tag_name);?>>
     <?php endforeach;?>
@@ -47,7 +18,7 @@ foreach($def_post_types as $type_name) {
         $section_slug = strtolower(ppc_remove_non_alphanumeric_space_characters($section_title));
         ?>
         <tr class="ppc-menu-row parent-menu">
-            <td colspan="<?php echo (count($def_post_types) + 1);?>">
+            <td colspan="2">
             <h4 class="ppc-menu-row-section"><?php echo esc_html($section_title);?></h4>
             <?php
             /**
@@ -72,7 +43,7 @@ foreach($def_post_types as $type_name) {
             ?>
             <tr class="ppc-menu-row parent-menu">
                 <td class="menu-column ppc-menu-item">
-                    <span class="classic menu-item-link<?php echo (in_array($feature_slug, $ce_post_disabled['post'])) ? ' restricted' : ''; ?>">
+                    <span class="classic menu-item-link<?php echo (in_array($feature_slug, $ce_post_disabled[$type_obj->name])) ? ' restricted' : ''; ?>">
                     <strong><i class="dashicons dashicons-arrow-right"></i>
                         <?php 
                         if(isset($arr_feature['custom_element']) && ($arr_feature['custom_element'] === true)){
@@ -85,13 +56,11 @@ foreach($def_post_types as $type_name) {
                     </strong></span>
                 </td>
 
-                <?php foreach($def_post_types as $type_name) :?>
-                    <td class="restrict-column ppc-menu-checkbox">
-                        <input id="cb_<?php echo esc_attr($type_name) . '-' . esc_attr(str_replace(['#', '.'], '_', $feature_slug));?>" class="check-item" type="checkbox"
-                                name="capsman_feature_restrict_classic_<?php echo esc_attr($type_name);?>[]"
-                                value="<?php echo esc_attr($feature_slug); ?>" <?php checked(in_array($feature_slug, $ce_post_disabled[$type_name]));?> />
-                    </td>
-                <?php endforeach;?>
+                <td class="restrict-column ppc-menu-checkbox">
+                    <input id="cb_<?php echo esc_attr($type_obj->name) . '-' . esc_attr(str_replace(['#', '.'], '_', $feature_slug));?>" class="check-item" type="checkbox"
+                            name="capsman_feature_restrict_classic_<?php echo esc_attr($type_obj->name);?>[]"
+                            value="<?php echo esc_attr($feature_slug); ?>" <?php checked(in_array($feature_slug, $ce_post_disabled[$type_obj->name]));?> />
+                </td>
             </tr>
             <?php
         }

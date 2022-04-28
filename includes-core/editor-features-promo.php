@@ -20,7 +20,7 @@
 ?>
     <tr class="ppc-menu-row parent-menu pp-promo-overlay-row pp-promo-blur">
 
-        <td colspan="3">
+        <td colspan="2">
             <h4 class="ppc-menu-row-section"><?php esc_html_e('Metaboxes', 'capsman-enhanced'); ?></h4>
         </td>
     </tr>
@@ -35,9 +35,6 @@
         <td class="restrict-column ppc-menu-checkbox">
             <input type="checkbox">
         </td>
-        <td class="restrict-column ppc-menu-checkbox">
-            <input type="checkbox">
-        </td>
     </tr>
     <tr class="ppc-menu-row parent-menu pp-promo-overlay-row pp-promo-blur">
         <td class="menu-column ppc-menu-item">
@@ -45,9 +42,6 @@
                 <strong><i class="dashicons dashicons-arrow-right"></i> <?php esc_html_e('Editorial Comments', 'capsman-enhanced'); ?></strong></span>
         </td>
 
-        <td class="restrict-column ppc-menu-checkbox">
-            <input type="checkbox">
-        </td>
         <td class="restrict-column ppc-menu-checkbox">
             <input type="checkbox">
         </td>
@@ -61,9 +55,6 @@
         <td class="restrict-column ppc-menu-checkbox">
             <input type="checkbox">
         </td>
-        <td class="restrict-column ppc-menu-checkbox">
-            <input type="checkbox">
-        </td>
     </tr>
     <tr class="ppc-menu-row parent-menu pp-promo-overlay-row pp-promo-blur">
         <td class="menu-column ppc-menu-item">
@@ -74,13 +65,10 @@
         <td class="restrict-column ppc-menu-checkbox">
             <input type="checkbox">
         </td>
-        <td class="restrict-column ppc-menu-checkbox">
-            <input type="checkbox">
-        </td>
     </tr>
 
     <tr class="ppc-menu-row parent-menu pp-promo-overlay-row">
-        <td colspan="3">
+        <td colspan="2">
             <div class="pp-promo-upgrade-notice">
                 <p>
                     <?php esc_html_e('You can hide plugin metaboxes. You can also hide specific items by entering their CSS class or ID. This feature is available in PublishPress Capabilities Pro.',
@@ -97,7 +85,7 @@
 
     <tr class="ppc-menu-row parent-menu pp-promo-overlay-row pp-promo-blur">
 
-        <td colspan="3">
+        <td colspan="2">
             <h4 class="ppc-menu-row-section"><?php esc_html_e('Custom Items', 'capsman-enhanced'); ?></h4>
         </td>
     </tr>
@@ -111,9 +99,6 @@
         <td class="restrict-column ppc-menu-checkbox">
            <input type="checkbox">
         </td>
-        <td class="restrict-column ppc-menu-checkbox">
-            <input type="checkbox">
-        </td>
     </tr>
     <tr class="ppc-menu-row parent-menu pp-promo-overlay-row pp-promo-blur">
         <td class="menu-column ppc-menu-item">
@@ -125,9 +110,6 @@
         <td class="restrict-column ppc-menu-checkbox">
             <input type="checkbox">
         </td>
-        <td class="restrict-column ppc-menu-checkbox">
-            <input type="checkbox">
-        </td>
     </tr>
     <tr class="ppc-menu-row parent-menu pp-promo-overlay-row pp-promo-blur">
         <td class="menu-column ppc-menu-item">
@@ -135,9 +117,6 @@
                 <strong><i class="dashicons dashicons-arrow-right"></i> <?php esc_html_e('Page Attributes: Order', 'capsman-enhanced'); ?> <small>(.editor-page-attributes__order)</small> &nbsp; <span class="ppc-custom-features-delete"><small>(<?php esc_html_e('Delete', 'capsman-enhanced'); ?>)</small></span>                </strong></span>
         </td>
 
-        <td class="restrict-column ppc-menu-checkbox">
-            <input type="checkbox">
-        </td>
         <td class="restrict-column ppc-menu-checkbox">
             <input type="checkbox">
         </td>

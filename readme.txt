@@ -7,7 +7,7 @@ Tags: user roles, capabilities, permissions, admin menus, post editing, post typ
 Requires at least: 4.9.7
 Tested up to: 5.9
 Requires PHP: 5.6.20
-Stable tag: 2.3.7
+Stable tag: 2.4.0
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -408,6 +408,19 @@ Fixed : Non-administrators with user editing capabilities could add new Administ
 Fixed : Security issue. Please update.
 
 == Changelog ==
+
+= 2.4.0 - 28 Apr 2022 =
+  * Fixed : Post title not working with editor features #370
+  * Fixed : Issue with revision metabox and some plugin metabox in Editor features. #369
+  * Fixed : Editor Features compability with taxonomies created by the "Toolset" plugin. #367
+  * Fixed : Backup Features text missing some "s" #365
+  * Update : Change import upload file delete to use WordPress function #364
+  * Update : Make sure "Copy" feature for roles works with Editor Features and more #362
+  * Update : Add short description for "Role Level" #361
+  * Update : Make "Roles" into the top menu link #326
+  * Update : Vertical tabs similar to the "Capabilities" for Editor Features #257
+  * Fixed : Can't hide the "Profile" link with "Admin Menus" #337
+  * Update : More Columns on Roles Screen #181
 
 = 2.3.7 - 21 Apr 2022 =
   * Lang : Translations were not loaded on some sites

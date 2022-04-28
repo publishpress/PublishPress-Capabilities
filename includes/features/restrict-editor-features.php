@@ -311,7 +311,7 @@ class PP_Capabilities_Post_Features {
             ],
 
             esc_html__('Body', 'capabilities-pro') => [
-                'edit_title' =>   ['label' => esc_html__('Edit title', 'capsman-enhanced'), 'elements' => '.wp-block.editor-post-title__block'],
+                'edit_title' =>   ['label' => esc_html__('Edit title', 'capsman-enhanced'), 'elements' => '.wp-block.editor-post-title__block, .wp-block.editor-post-title'],
                 'content' =>      ['label' => esc_html__('Content', 'capsman-enhanced'),    'elements' => '.block-editor-block-list__layout'],
             ],
 

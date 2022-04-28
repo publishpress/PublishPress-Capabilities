@@ -198,7 +198,7 @@ function pp_capabilities_backup_sections()
    $backup_sections = [];
 
    //Editor Features
-   $backup_sections[$cms_id . '_editor_features_backup']['label']    = esc_html__('Editor Feature', 'capsman-enhanced');
+   $backup_sections[$cms_id . '_editor_features_backup']['label']    = esc_html__('Editor Features', 'capsman-enhanced');
    $classic_editor = pp_capabilities_is_classic_editor_available();
    $def_post_types = array_unique(apply_filters('pp_capabilities_feature_post_types', ['post', 'page']));
    foreach ($def_post_types as $post_type) {
@@ -209,7 +209,7 @@ function pp_capabilities_backup_sections()
    }
 
    //Admin Features
-   $backup_sections[$cms_id . '_admin_features_backup']['label']     = esc_html__('Admin Feature', 'capsman-enhanced');
+   $backup_sections[$cms_id . '_admin_features_backup']['label']     = esc_html__('Admin Features', 'capsman-enhanced');
    $backup_sections[$cms_id . '_admin_features_backup']['options'][] = "capsman_disabled_admin_features";
 
    return apply_filters('pp_capabilities_backup_sections', $backup_sections);
@@ -229,5 +229,22 @@ function ppc_add_inline_style($custom_css, $handle = 'ppc-dummy-css-handle')
 {
     wp_register_style(esc_attr($handle), false);
     wp_enqueue_style(esc_attr($handle));
-    wp_add_inline_style(esc_attr($handle), esc_attr($custom_css));
+    wp_add_inline_style(esc_attr($handle), $custom_css);
+}
+
+/**
+ * Register and add inline script.
+ *
+ * @param string $custom_script
+ * @param string $handle
+ *
+ * @return string
+ *
+ * @since 2.4.0
+ */
+function ppc_add_inline_script($custom_script, $handle = 'ppc-dummy-script-handle')
+{
+    wp_register_script(esc_attr($handle), false, ['jquery']);
+    wp_enqueue_script(esc_attr($handle), false, ['jquery']);
+    wp_add_inline_script(esc_attr($handle), $custom_script);
 }

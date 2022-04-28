@@ -18,8 +18,8 @@ class CoreAdmin {
                     'message' => 'You\'re using PublishPress Capabilities Free. The Pro version has more features and support. %sUpgrade to Pro%s',
                     'link'    => 'https://publishpress.com/links/capabilities-banner',
                     'screens' => [
-                        ['base' => 'toplevel_page_pp-capabilities'],
-                        ['base' => 'capabilities_page_pp-capabilities-roles'],
+                        ['base' => 'toplevel_page_pp-capabilities-roles'],
+                        ['base' => 'capabilities_page_pp-capabilities'],
                         ['base' => 'capabilities_page_pp-capabilities-editor-features'],
                         ['base' => 'capabilities_page_pp-capabilities-admin-features'],
                         ['base' => 'capabilities_page_pp-capabilities-backup'],
@@ -45,12 +45,12 @@ class CoreAdmin {
         $url = 'https://publishpress.com/links/capabilities-menu';
         ?>
         <style type="text/css">
-        #toplevel_page_pp-capabilities ul li:last-of-type a {font-weight: bold !important; color: #FEB123 !important;}
+        #toplevel_page_pp-capabilities-roles ul li:last-of-type a {font-weight: bold !important; color: #FEB123 !important;}
         </style>
 
 		<script type="text/javascript">
             jQuery(document).ready(function($) {
-                $('#toplevel_page_pp-capabilities ul li:last a').attr('href', '<?php echo esc_url_raw($url);?>').attr('target', '_blank').css('font-weight', 'bold').css('color', '#FEB123');
+                $('#toplevel_page_pp-capabilities-roles ul li:last a').attr('href', '<?php echo esc_url_raw($url);?>').attr('target', '_blank').css('font-weight', 'bold').css('color', '#FEB123');
             });
         </script>
 		<?php
@@ -59,8 +59,8 @@ class CoreAdmin {
     function actCapabilitiesSubmenus() {
         $cap_name = (is_multisite() && is_super_admin()) ? 'read' : 'manage_capabilities';
         
-        add_submenu_page('pp-capabilities',  esc_html__('Admin Menus', 'capsman-enhanced'), esc_html__('Admin Menus', 'capsman-enhanced'), $cap_name, 'pp-capabilities-admin-menus', [$this, 'AdminMenusPromo']);
-        add_submenu_page('pp-capabilities',  esc_html__('Nav Menus', 'capsman-enhanced'), esc_html__('Nav Menus', 'capsman-enhanced'), $cap_name, 'pp-capabilities-nav-menus', [$this, 'NavMenusPromo']);
+        add_submenu_page('pp-capabilities-roles',  esc_html__('Admin Menus', 'capsman-enhanced'), esc_html__('Admin Menus', 'capsman-enhanced'), $cap_name, 'pp-capabilities-admin-menus', [$this, 'AdminMenusPromo']);
+        add_submenu_page('pp-capabilities-roles',  esc_html__('Nav Menus', 'capsman-enhanced'), esc_html__('Nav Menus', 'capsman-enhanced'), $cap_name, 'pp-capabilities-nav-menus', [$this, 'NavMenusPromo']);
     }
 
     function AdminMenusPromo() {

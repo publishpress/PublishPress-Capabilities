@@ -18,10 +18,10 @@ class PP_Capabilities_Admin_UI {
          */
         require_once (dirname(CME_FILE) . '/classes/pp-capabilities-notices.php');
 
-        add_action('init', [$this, 'featureRestrictionsGutenberg']);
+        add_action('init', [$this, 'featureRestrictionsGutenberg'], PHP_INT_MAX - 1);
 
         if (is_admin()) {
-            add_action('admin_init', [$this, 'featureRestrictionsClassic']);
+            add_action('admin_init', [$this, 'featureRestrictionsClassic'], PHP_INT_MAX - 1);
         }
 
         add_action('admin_enqueue_scripts', [$this, 'adminScripts'], 100);
@@ -83,8 +83,13 @@ class PP_Capabilities_Admin_UI {
     }
 
     public function fltEditorFeaturesPostTypes($def_post_types) {
-        $type_args = defined('PP_CAPABILITIES_PRIVATE_TYPES') ? [] : ['public' => true];
-        $def_post_types = array_merge($def_post_types, get_post_types($type_args));
+        if((int)get_option('cme_editor_features_private_post_type') > 0 || defined('PP_CAPABILITIES_PRIVATE_TYPES')){
+            $private_cpt = get_post_types(['public' => true, 'show_ui' => true], 'names', 'or');
+            $public_cpt  = get_post_types(['public' => true, 'show_ui' => true], 'names', 'or');
+            $def_post_types =  array_unique(array_merge($def_post_types, $private_cpt, $public_cpt));
+        }else{
+            $def_post_types = array_merge($def_post_types, get_post_types(['public' => true], 'names'));
+        }
 
         unset($def_post_types['attachment']);
 
@@ -205,10 +210,27 @@ class PP_Capabilities_Admin_UI {
     }
 
     function adminPrintScripts() {
+
+
+        /**
+         * Update capabilities top level slug from roles to capabilities
+         */
+        $menu_inline_script = "
+            jQuery(document).ready( function($) {
+                if (jQuery('li#toplevel_page_pp-capabilities-roles a.toplevel_page_pp-capabilities-roles').length > 0) {
+                    var toplevel_page = jQuery('li#toplevel_page_pp-capabilities-roles a.toplevel_page_pp-capabilities-roles');
+                    var toplevel_page_link = toplevel_page.attr('href');
+                    if (toplevel_page_link) {
+                        toplevel_page.attr('href', toplevel_page_link.replace('pp-capabilities-roles', 'pp-capabilities'));
+                    }
+                }
+            });";
+        ppc_add_inline_script($menu_inline_script);
+
         // Counteract overzealous menu icon styling in PublishPress <= 3.2.0 :)
         if (defined('PUBLISHPRESS_VERSION') && version_compare(constant('PUBLISHPRESS_VERSION'), '3.2.0', '<=') && defined('PP_CAPABILITIES_FIX_ADMIN_ICON')):?>
         <style type="text/css">
-        #toplevel_page_pp-capabilities .dashicons-before::before, #toplevel_page_pp-capabilities .wp-has-current-submenu .dashicons-before::before {
+        #toplevel_page_pp-capabilities-roles .dashicons-before::before, #toplevel_page_pp-capabilities-roles .wp-has-current-submenu .dashicons-before::before {
             background-image: inherit !important;
             content: "\f112" !important;
         }
@@ -299,26 +321,27 @@ class PP_Capabilities_Admin_UI {
             $permissions_title,
             $permissions_title,
             $cap_name,
-            'pp-capabilities',
+            'pp-capabilities-roles',
             'cme_fakefunc',
             'dashicons-admin-network',
             $menu_order
         );
 
-        add_submenu_page('pp-capabilities',  __('Roles', 'capsman-enhanced'), __('Roles', 'capsman-enhanced'), $cap_name, 'pp-capabilities-roles', 'cme_fakefunc');
-        add_submenu_page('pp-capabilities',  __('Editor Features', 'capsman-enhanced'), __('Editor Features', 'capsman-enhanced'), $cap_name, 'pp-capabilities-editor-features', 'cme_fakefunc');
-        add_submenu_page('pp-capabilities',  __('Admin Features', 'capsman-enhanced'), __('Admin Features', 'capsman-enhanced'), $cap_name, 'pp-capabilities-admin-features', 'cme_fakefunc');
-        add_submenu_page('pp-capabilities',  __('Admin Menus', 'capsman-enhanced'), __('Admin Menus', 'capsman-enhanced'), $cap_name, 'pp-capabilities-admin-menus', 'cme_fakefunc');
-        add_submenu_page('pp-capabilities',  __('Nav Menus', 'capsman-enhanced'), __('Nav Menus', 'capsman-enhanced'), $cap_name, 'pp-capabilities-nav-menus', 'cme_fakefunc');
-        add_submenu_page('pp-capabilities',  __('Backup', 'capsman-enhanced'), __('Backup', 'capsman-enhanced'), $cap_name, 'pp-capabilities-backup', 'cme_fakefunc');
+        add_submenu_page('pp-capabilities-roles',  __('Roles', 'capsman-enhanced'), __('Roles', 'capsman-enhanced'), $cap_name, 'pp-capabilities-roles', 'cme_fakefunc');
+		add_submenu_page('pp-capabilities-roles',  $permissions_title, $permissions_title, $cap_name, 'pp-capabilities', 'cme_fakefunc');
+        add_submenu_page('pp-capabilities-roles',  __('Editor Features', 'capsman-enhanced'), __('Editor Features', 'capsman-enhanced'), $cap_name, 'pp-capabilities-editor-features', 'cme_fakefunc');
+        add_submenu_page('pp-capabilities-roles',  __('Admin Features', 'capsman-enhanced'), __('Admin Features', 'capsman-enhanced'), $cap_name, 'pp-capabilities-admin-features', 'cme_fakefunc');
+        add_submenu_page('pp-capabilities-roles',  __('Admin Menus', 'capsman-enhanced'), __('Admin Menus', 'capsman-enhanced'), $cap_name, 'pp-capabilities-admin-menus', 'cme_fakefunc');
+        add_submenu_page('pp-capabilities-roles',  __('Nav Menus', 'capsman-enhanced'), __('Nav Menus', 'capsman-enhanced'), $cap_name, 'pp-capabilities-nav-menus', 'cme_fakefunc');
+        add_submenu_page('pp-capabilities-roles',  __('Backup', 'capsman-enhanced'), __('Backup', 'capsman-enhanced'), $cap_name, 'pp-capabilities-backup', 'cme_fakefunc');
         
         if (defined('PUBLISHPRESS_CAPS_PRO_VERSION')) {
-        	add_submenu_page('pp-capabilities',  __('Settings', 'capsman-enhanced'), __('Settings', 'capsman-enhanced'), $cap_name, 'pp-capabilities-settings', 'cme_fakefunc');
+        	add_submenu_page('pp-capabilities-roles',  __('Settings', 'capsman-enhanced'), __('Settings', 'capsman-enhanced'), $cap_name, 'pp-capabilities-settings', 'cme_fakefunc');
         }
 
         if (!defined('PUBLISHPRESS_CAPS_PRO_VERSION')) {
             add_submenu_page(
-                'pp-capabilities',
+                'pp-capabilities-roles',
                 __('Upgrade to Pro', 'capsman-enhanced'),
                 __('Upgrade to Pro', 'capsman-enhanced'),
                 'manage_capabilities',
