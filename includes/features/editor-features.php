@@ -273,7 +273,11 @@ $active_tab_text = is_object($active_tab_type_obj)
     input[name="editor-features-all-submit"].ppc-editor-features-submit {
         margin-left: 10px;
     }
-    .pp-columns-wrapper .nav-tab-wrapper {
+    .pp-capability-menus-wrap {
+        border: 1px solid #c3c4c7;
+    }
+    .pp-columns-wrapper .nav-tab-wrapper,
+    .pp-columns-wrapper .postbox {
         border: unset;
     }
     .pp-capability-menus {
