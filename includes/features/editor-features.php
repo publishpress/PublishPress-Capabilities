@@ -108,9 +108,9 @@ $active_tab_text = is_object($active_tab_type_obj)
                                     class="button-secondary ppc-editor-features-submit" style="float:right" />
                                     
                                 <input type="submit" name="editor-features-submit"
-                                    value="<?php esc_attr_e(sprintf(esc_html__('Save %s Features', 'capsman-enhanced'), esc_html($active_tab_text))); ?>"
+                                    value="<?php esc_attr_e(sprintf(esc_html__('Save %s Restrictions', 'capsman-enhanced'), esc_html($active_tab_text))); ?>"
                                     class="button-primary ppc-editor-features-submit" style="float:right"
-                                    data-current_cpt="<?php esc_attr_e(sprintf(esc_html__('Save %s Features', 'capsman-enhanced'), 'post_type')); ?>" />
+                                    data-current_cpt="<?php esc_attr_e(sprintf(esc_html__('Save %s Restrictions', 'capsman-enhanced'), 'post_type')); ?>" />
 
                                 <input type="hidden" name="ppc-tab" value="<?php echo (!empty($_REQUEST['ppc-tab'])) ? sanitize_key($_REQUEST['ppc-tab']) : 'gutenberg';?>" />
                             </div>
@@ -212,9 +212,9 @@ $active_tab_text = is_object($active_tab_type_obj)
                                 class="button-secondary ppc-editor-features-submit" style="float:right" />
                                 
                             <input type="submit" name="editor-features-submit"
-                                value="<?php esc_attr_e(sprintf(esc_html__('Save %s Features', 'capsman-enhanced'), esc_html($active_tab_text))); ?>"
+                                value="<?php esc_attr_e(sprintf(esc_html__('Save %s Restrictions', 'capsman-enhanced'), esc_html($active_tab_text))); ?>"
                                 class="button-primary ppc-editor-features-submit" style="float:right"
-                                data-current_cpt="<?php esc_attr_e(sprintf(esc_html__('Save %s Features', 'capsman-enhanced'), 'post_type')); ?>" />
+                                data-current_cpt="<?php esc_attr_e(sprintf(esc_html__('Save %s Restrictions', 'capsman-enhanced'), 'post_type')); ?>" />
 
                         </td>
                     </tr>
