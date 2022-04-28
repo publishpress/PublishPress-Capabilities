@@ -160,6 +160,7 @@ class Pp_Roles_Admin
             ],
             'role_level'     => [
                 'label'     => esc_html__('Role Level', 'capsman-enhanced'),
+                'description' => esc_html__('Each user role has a level from 0 to 10. The Subscriber role defaults to the lowest level (0). The Administrator role defaults to level 10.', 'capsman-enhanced'),
                 'type'      => 'select',
                 'value_key' => '',
                 'tab'       => 'advanced',
@@ -255,6 +256,16 @@ class Pp_Roles_Admin
                             </option>
                         <?php } ?>
                     </select>
+                    <?php if (isset($args['description'])) : ?>
+                        <p class="description">
+                            <?php echo esc_html($args['description']); ?>
+                            <?php if ($key === 'role_level') : ?>
+                                <a href="https://publishpress.com/blog/user-role-levels/" target="blank">
+                                    <?php esc_html_e('Read more on Role Level.',  'capsman-enhanced'); ?>
+                                </a>
+                            <?php endif; ?>
+                        </p>
+                    <?php endif; ?>
                 <?php
                 elseif ($args['type'] === 'button') :
                     ?>
