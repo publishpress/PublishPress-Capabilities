@@ -231,14 +231,17 @@ class Pp_Roles_Actions
          * Add role
          */
         $role_capabilities = [];
-
+        $copied_role       = false;
+        
         //get copied role capabilites
         if (!empty($_REQUEST['role_action']) && $_REQUEST['role_action'] === 'copy'
             && !empty($_REQUEST['role'])
             && $role_data = pp_roles_get_role_data(sanitize_key($_REQUEST['role']))
         ) {
             $role_capabilities = $role_data['capabilities'];
+            $copied_role       = sanitize_key($_REQUEST['role']);
         }
+
         if (isset($_REQUEST['role_level'])) {
             $role_capabilities = array_merge($role_capabilities, ak_level2caps(absint($_REQUEST['role_level'])));
         }
@@ -247,6 +250,47 @@ class Pp_Roles_Actions
             if ($this->notify(esc_html__('Something went wrong, the system wasn\'t able to create the role, refresh the page and try again.', 'capsman-enhanced'))) {
                 return;
             }
+        }
+
+        /**
+         * Copy all features to new role
+         */
+        if ($copied_role) {
+            $role_slug = $role['name'];
+            //Editor Features
+            $classic_editor = pp_capabilities_is_classic_editor_available();
+            $def_post_types = array_unique(apply_filters('pp_capabilities_feature_post_types', ['post', 'page']));
+            foreach ($def_post_types as $post_type) {
+                if ($classic_editor) {
+                    $post_features_option = get_option("capsman_feature_restrict_classic_{$post_type}", []);
+                    if (is_array($post_features_option) && array_key_exists($copied_role, $post_features_option)) {
+						$post_features_option[$role_slug] = $post_features_option[$copied_role];
+						update_option("capsman_feature_restrict_classic_{$post_type}", $post_features_option, false);
+                    }
+                }
+                $post_features_option = get_option("capsman_feature_restrict_{$post_type}", []);
+                if (is_array($post_features_option) && array_key_exists($copied_role, $post_features_option)) {
+                    $post_features_option[$role_slug] = $post_features_option[$copied_role];
+                    update_option("capsman_feature_restrict_{$post_type}", $post_features_option, false);
+                }
+            }
+
+           //Admin Features
+           $disabled_admin_items = !empty(get_option('capsman_disabled_admin_features')) ? (array)get_option('capsman_disabled_admin_features') : [];
+           if (is_array($disabled_admin_items) && array_key_exists($copied_role, $disabled_admin_items)) {
+               $disabled_admin_items[$role_slug] = $disabled_admin_items[$copied_role];
+               update_option('capsman_disabled_admin_features', $disabled_admin_items, false);
+           }
+
+           /**
+             * Allow other plugins to perform action after role is copied.
+             *
+             * @param string   $role_slug New role slug.
+             * @param string   $copied_role  Original role name that was copied.
+             *
+             * @since 2.4.0
+             */
+            do_action('pp_capabilities_after_role_copied', $role_slug, $copied_role);
         }
 
         /**
