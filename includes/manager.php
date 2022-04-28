@@ -404,8 +404,6 @@ class CapabilityManager
                     return [
                         'cb' 			  => '<input type="checkbox"/>',
                         'name'            => esc_html__('Role Name', 'capsman-enhanced'),
-						'role'            => esc_html__('Role', 'capsman-enhanced'),
-						'type'            => esc_html__('Type', 'capsman-enhanced'),
 						'count'           => esc_html__('Users', 'capsman-enhanced'),
 						'capabilities'    => esc_html__('Capabilities', 'capsman-enhanced'),
 						'editor_features' => esc_html__('Editor Features', 'capsman-enhanced'),
