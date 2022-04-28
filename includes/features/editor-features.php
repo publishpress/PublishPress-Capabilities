@@ -27,8 +27,9 @@ $default_role = $capsman->get_last_role();
 
 $classic_editor = pp_capabilities_is_classic_editor_available();
 
-$def_post_types = array_unique(apply_filters('pp_capabilities_feature_post_types', ['post', 'page']));
+$def_post_types = apply_filters('pp_capabilities_feature_post_types', []);
 asort($def_post_types);
+$def_post_types = array_unique(array_merge(['post', 'page'], $def_post_types));
 
 //gutenberg element
 $gutenberg_elements = PP_Capabilities_Post_Features::elementsLayout();
