@@ -491,15 +491,28 @@ class CapabilityManager
 
 				$def_post_types = array_unique(apply_filters('pp_capabilities_feature_post_types', ['post', 'page']));
 
+                $active_tab     = isset($_POST['pp_caps_tab']) ? sanitize_key($_POST['pp_caps_tab']) : 'post';
+
 				foreach ($def_post_types as $post_type) {
 					if ($classic_editor) {
-						$posted_settings = (isset($_POST["capsman_feature_restrict_classic_{$post_type}"])) ? array_map('sanitize_text_field', $_POST["capsman_feature_restrict_classic_{$post_type}"]) : [];
+
+                        if (isset($_POST['editor-features-all-submit'])){
+						    $posted_settings = (isset($_POST["capsman_feature_restrict_classic_{$active_tab}"])) ? array_map('sanitize_text_field', $_POST["capsman_feature_restrict_classic_{$active_tab}"]) : [];
+                        } else {
+                            $posted_settings = (isset($_POST["capsman_feature_restrict_classic_{$post_type}"])) ? array_map('sanitize_text_field', $_POST["capsman_feature_restrict_classic_{$post_type}"]) : [];
+                        }
+
 						$post_features_option = get_option("capsman_feature_restrict_classic_{$post_type}", []);
 						$post_features_option[sanitize_key($_POST['ppc-editor-features-role'])] = $posted_settings;
 						update_option("capsman_feature_restrict_classic_{$post_type}", $post_features_option, false);
 					}
 
-					$posted_settings = (isset($_POST["capsman_feature_restrict_{$post_type}"])) ? array_map('sanitize_text_field', $_POST["capsman_feature_restrict_{$post_type}"]) : [];
+                    if (isset($_POST['editor-features-all-submit'])){
+					    $posted_settings = (isset($_POST["capsman_feature_restrict_{$active_tab}"])) ? array_map('sanitize_text_field', $_POST["capsman_feature_restrict_{$active_tab}"]) : [];
+                    }else {
+					    $posted_settings = (isset($_POST["capsman_feature_restrict_{$post_type}"])) ? array_map('sanitize_text_field', $_POST["capsman_feature_restrict_{$post_type}"]) : [];
+                    }
+
 					$post_features_option = get_option("capsman_feature_restrict_{$post_type}", []);
 					$post_features_option[sanitize_key($_POST['ppc-editor-features-role'])] = $posted_settings;
 					update_option("capsman_feature_restrict_{$post_type}", $post_features_option, false);
