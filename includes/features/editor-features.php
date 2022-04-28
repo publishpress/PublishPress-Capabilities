@@ -54,6 +54,14 @@ foreach($def_post_types as $type_name) {
 }
 
 $active_tab_slug = (!empty($_REQUEST['pp_caps_tab'])) ? sanitize_key($_REQUEST['pp_caps_tab']) : 'post';
+
+$active_tab_type_obj = get_post_type_object($active_tab_slug);
+
+$active_tab_text = is_object($active_tab_type_obj) 
+    && isset($active_tab_type_obj->labels) 
+    && isset($active_tab_type_obj->labels->singular_name)
+    ? 
+    $active_tab_type_obj->labels->singular_name : '';
 ?>
 
 <div class="wrap publishpress-caps-manage pressshack-admin-wrapper pp-capability-menus-wrapper">
@@ -74,7 +82,7 @@ $active_tab_slug = (!empty($_REQUEST['pp_caps_tab'])) ? sanitize_key($_REQUEST['
                                 <span class="cme-subtext">
                                 <span class='pp-capability-role-caption'>
                                 <?php
-                                esc_html_e('Select editor features to remove. Note that this screen cannot be used to grant additional features to any role.', 'capabilities-pro');
+                                esc_html_e('Select editor features to remove. Note that this screen cannot be used to grant additional features to any role.', 'capsman-enhanced');
                                 ?>
                                 </span>
                                 </span>
@@ -94,9 +102,15 @@ $active_tab_slug = (!empty($_REQUEST['pp_caps_tab'])) ? sanitize_key($_REQUEST['
 
                                 <img class="loading" src="<?php echo esc_url_raw($capsman->mod_url); ?>/images/wpspin_light.gif" style="display: none">
 
+
+                                <input type="submit" name="editor-features-all-submit"
+                                    value="<?php esc_attr_e('Save for all Post Types', 'capsman-enhanced') ?>"
+                                    class="button-secondary ppc-editor-features-submit" style="float:right" />
+                                    
                                 <input type="submit" name="editor-features-submit"
-                                    value="<?php esc_attr_e('Save Changes', 'capabilities-pro') ?>"
-                                    class="button-primary ppc-editor-features-submit" style="float:right" />
+                                    value="<?php esc_attr_e(sprintf(esc_html__('Save %s Features', 'capsman-enhanced'), esc_html($active_tab_text))); ?>"
+                                    class="button-primary ppc-editor-features-submit" style="float:right"
+                                    data-current_cpt="<?php esc_attr_e(sprintf(esc_html__('Save %s Features', 'capsman-enhanced'), 'post_type')); ?>" />
 
                                 <input type="hidden" name="ppc-tab" value="<?php echo (!empty($_REQUEST['ppc-tab'])) ? sanitize_key($_REQUEST['ppc-tab']) : 'gutenberg';?>" />
                             </div>
@@ -147,7 +161,10 @@ $active_tab_slug = (!empty($_REQUEST['pp_caps_tab'])) ? sanitize_key($_REQUEST['
                                                                 $disabled_count += (is_array($ce_post_disabled) && isset($ce_post_disabled[$type_name])) ? count($ce_post_disabled[$type_name]) : 0;
 
                                                                 ?>
-                                                                <li data-slug="<?php esc_attr_e($type_name); ?>" data-content="cme-cap-type-tables-<?php esc_attr_e($type_name); ?>" class="<?php esc_attr_e($active_class); ?>">
+                                                                <li data-slug="<?php esc_attr_e($type_name); ?>" 
+                                                                    data-content="cme-cap-type-tables-<?php esc_attr_e($type_name); ?>" 
+                                                                    data-name="<?php esc_attr_e($type_obj->labels->singular_name); ?>"
+                                                                    class="<?php esc_attr_e($active_class); ?>">
                                                                     <?php esc_html_e($type_obj->labels->singular_name); ?>
                                                                     <?php if ($disabled_count > 0) : ?>
                                                                         <span class="pp-capabilities-feature-count">
@@ -189,10 +206,15 @@ $active_tab_slug = (!empty($_REQUEST['pp_caps_tab'])) ? sanitize_key($_REQUEST['
                                 </div>
                             </div>
 
-                            <input type="submit" name="editor-features-submit"
-                                    value="<?php esc_attr_e('Save Changes', 'capsman-enhanced') ?>"
-                                    class="button-primary ppc-editor-features-submit"/> &nbsp;
 
+                            <input type="submit" name="editor-features-all-submit"
+                                value="<?php esc_attr_e('Save for all Post Types', 'capsman-enhanced') ?>"
+                                class="button-secondary ppc-editor-features-submit" style="float:right" />
+                                
+                            <input type="submit" name="editor-features-submit"
+                                value="<?php esc_attr_e(sprintf(esc_html__('Save %s Features', 'capsman-enhanced'), esc_html($active_tab_text))); ?>"
+                                class="button-primary ppc-editor-features-submit" style="float:right"
+                                data-current_cpt="<?php esc_attr_e(sprintf(esc_html__('Save %s Features', 'capsman-enhanced'), 'post_type')); ?>" />
 
                         </td>
                     </tr>
@@ -248,6 +270,9 @@ $active_tab_slug = (!empty($_REQUEST['pp_caps_tab'])) ? sanitize_key($_REQUEST['
     table#akmin .pp-capability-menus-select tr:first-of-type th {
         border-top: 1px solid #c3c4c7;
     }
+    input[name="editor-features-all-submit"].ppc-editor-features-submit {
+        margin-left: 10px;
+    }
 </style>
 
 <script type="text/javascript">
@@ -257,6 +282,8 @@ $active_tab_slug = (!empty($_REQUEST['pp_caps_tab'])) ? sanitize_key($_REQUEST['
          // Tabs and Content display
          $('.ppc-capabilities-tabs > ul > li').click( function() {
             var $pp_tab = $(this).attr('data-content');
+            var $current_cpt = $('input[name="editor-features-submit"]').attr('data-current_cpt');
+            var $button_text = $current_cpt.replace("post_type", $(this).attr('data-name'));
 
             $("[name='pp_caps_tab']").val($(this).attr('data-slug'));
 
@@ -267,6 +294,10 @@ $active_tab_slug = (!empty($_REQUEST['pp_caps_tab'])) ? sanitize_key($_REQUEST['
             // Active current Tab
             $('.ppc-capabilities-tabs > ul > li').removeClass('ppc-capabilities-tab-active');
             $(this).addClass('ppc-capabilities-tab-active');
+
+            //Update button text
+            $('input[name="editor-features-submit"]').val($button_text);
+            
         });
 
         // -------------------------------------------------------------
