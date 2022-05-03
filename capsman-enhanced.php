@@ -36,8 +36,9 @@ if (file_exists(__DIR__ . '/vendor' . $includeFilebRelativePath)) {
 
 if (class_exists('PublishPressInstanceProtection\\Config')) {
     $pluginCheckerConfig = new PublishPressInstanceProtection\Config();
-    $pluginCheckerConfig->pluginSlug = 'capability-manager-enhanced';
-    $pluginCheckerConfig->pluginName = 'PublishPress Capabilities';
+    $pluginCheckerConfig->pluginSlug    = 'capsman-enhanced';
+    $pluginCheckerConfig->pluginFolder  = 'capability-manager-enhanced';
+    $pluginCheckerConfig->pluginName    = 'PublishPress Capabilities';
 
     $pluginChecker = new PublishPressInstanceProtection\InstanceChecker($pluginCheckerConfig);
 }
