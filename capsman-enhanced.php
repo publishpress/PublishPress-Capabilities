@@ -28,6 +28,20 @@
  * @version 	2.3.4
  */
 
+
+$includeFilebRelativePath = '/publishpress/publishpress-instance-protection/include.php';
+if (file_exists(__DIR__ . '/vendor' . $includeFilebRelativePath)) {
+    require_once __DIR__ . '/vendor' . $includeFilebRelativePath;
+}
+
+if (class_exists('PublishPressInstanceProtection\\Config')) {
+    $pluginCheckerConfig = new PublishPressInstanceProtection\Config();
+    $pluginCheckerConfig->pluginSlug = 'capability-manager-enhanced';
+    $pluginCheckerConfig->pluginName = 'PublishPress Capabilities';
+
+    $pluginChecker = new PublishPressInstanceProtection\InstanceChecker($pluginCheckerConfig);
+}
+
 if (!defined('CAPSMAN_VERSION')) {
 	define('CAPSMAN_VERSION', 			'2.3.4');
 	define('CAPSMAN_ENH_VERSION', 		'2.3.4');
