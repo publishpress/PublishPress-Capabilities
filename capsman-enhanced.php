@@ -30,8 +30,8 @@
 
 if (!defined('CAPSMAN_VERSION')) {
 	define('CAPSMAN_VERSION', 			'2.4.0');
-	define('CAPSMAN_ENH_VERSION', 		'2.4.0');
-	define('PUBLISHPRESS_CAPS_VERSION', '2.4.0');
+	define('CAPSMAN_ENH_VERSION', 		CAPSMAN_VERSION);
+	define('PUBLISHPRESS_CAPS_VERSION', CAPSMAN_VERSION);
 }
 
 foreach (get_option('active_plugins') as $plugin_file) {
