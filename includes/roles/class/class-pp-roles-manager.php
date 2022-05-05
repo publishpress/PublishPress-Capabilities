@@ -17,10 +17,11 @@ class Pp_Roles_Manager
      * 
      * @param $view string
      * @param $capabilities bool whether to add capabilities to result or not
+     * @param $include_features bool whether to include all features count in result
      *
      * @return array[]
      */
-    public function get_roles_for_list_table($view = 'all', $capabilities = false)
+    public function get_roles_for_list_table($view = 'all', $capabilities = false, $include_features = false)
     {
         global $wp_roles;
 
@@ -61,11 +62,15 @@ class Pp_Roles_Manager
             }
 
             $res[] = [
-                'role' => $role,
-                'name' => $detail['name'],
-                'count' => isset($count['avail_roles'][$role]) ? $count['avail_roles'][$role] : 0,
-                'is_system' => $this->is_system_role($role),
-                'capabilities' => ($capabilities) ? $detail['capabilities'] : [],
+                'role'            => $role,
+                'name'            => $detail['name'],
+                'count'           => isset($count['avail_roles'][$role]) ? $count['avail_roles'][$role] : 0,
+                'editor_features' => pp_capabilities_roles_editor_features($role, $include_features),
+                'admin_features'  => pp_capabilities_roles_admin_features($role, $include_features),
+                'admin_menus'     => pp_capabilities_roles_admin_menus($role, $include_features),
+                'nav_menus'       => pp_capabilities_roles_nav_menus($role, $include_features),
+                'is_system'       => $this->is_system_role($role),
+                'capabilities'    => ($capabilities) ? $detail['capabilities'] : [],
             ];
         }
 
