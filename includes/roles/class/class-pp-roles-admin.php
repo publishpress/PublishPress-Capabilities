@@ -105,6 +105,14 @@ class Pp_Roles_Admin
                 'label'    => esc_html__('General', 'capsman-enhanced'),
                 'icon'     => 'dashicons dashicons-admin-tools',
             ],
+            'editing'     => [
+                'label'    => esc_html__('Editing', 'capsman-enhanced'),
+                'icon'     => 'dashicons dashicons-edit-page',
+            ],
+            'redirects'     => [
+                'label'    => esc_html__('Redirects', 'capsman-enhanced'),
+                'icon'     => 'dashicons dashicons-admin-links',
+            ],
             'advanced'  => [
                 'label' => esc_html__('Advanced', 'capsman-enhanced'),
                 'icon'     => 'dashicons dashicons-admin-generic',
