@@ -432,8 +432,8 @@ class Pp_Roles_Admin
                                                             'These can be edited on the %1s Capabilities screen %2s', 
                                                             'capsman-enhanced'
                                                         ),
-                                                        '<a href="' . esc_url(add_query_arg(['page' => 'pp-capabilities'], admin_url('admin.php'))) .'">',
-                                                        '</a>'
+                                                        ($role_action === 'edit') ? '<a href="' . esc_url(add_query_arg(['page' => 'pp-capabilities', 'role' => esc_attr($current_role)], admin_url('admin.php'))) .'">' : '',
+                                                        ($role_action === 'edit') ? '</a>' : ''
                                                     );
                                                 ?>
                                                 </p>
