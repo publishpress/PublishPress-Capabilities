@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bcdf3b8996cf0596c2da4ceeebad609f",
+    "content-hash": "47c2fc72aa3b953906160101f357f68e",
     "packages": [
         {
             "name": "pimple/pimple",
@@ -112,6 +112,34 @@
                 "source": "https://github.com/php-fig/container/tree/master"
             },
             "time": "2017-02-14T16:28:37+00:00"
+        },
+        {
+            "name": "publishpress/publishpress-instance-protection",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/publishpress/publishpress-instance-protection",
+                "reference": "a2579f44ce95d7780ef7eb0ce4a8fecddce04673"
+            },
+            "require": {
+                "php": ">=5.6.20"
+            },
+            "type": "library",
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "PublishPress",
+                    "email": "help@publishpress.com"
+                }
+            ],
+            "description": "Library for protecting WordPress plugins to run twice.",
+            "homepage": "http://publishpress.com/",
+            "keywords": [
+                "wordpress plugin"
+            ],
+            "time": "2022-05-02T21:01:29+00:00"
         },
         {
             "name": "publishpress/wordpress-banners",
