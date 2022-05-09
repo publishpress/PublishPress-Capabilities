@@ -118,3 +118,96 @@ function pp_roles_remove_capabilities_role_level($capabilities)
 
 	return $capabilities;
 }
+
+/**
+ * Get editor features restriction for a role
+ *
+ * @param string $role role to check
+ * @param boolean $check whether to check database or not
+ * @return integer
+ */
+function pp_capabilities_roles_editor_features($role, $check = false)
+{
+    if ($role && $check) {
+        $def_post_types = array_unique(apply_filters('pp_capabilities_feature_post_types', ['post', 'page']));
+        $disabled_items = [];
+        foreach ($def_post_types as $type_name) {
+            $classic_disabled = get_option("capsman_feature_restrict_classic_{$type_name}", []);
+            $gutenberg_disabled = get_option("capsman_feature_restrict_{$type_name}", []);
+            if (!empty($classic_disabled[$role])) {
+                $disabled_items = array_merge($disabled_items, (array) $classic_disabled[$role]);
+            }
+            if (!empty($gutenberg_disabled[$role])) {
+                $disabled_items = array_merge($disabled_items, (array) $gutenberg_disabled[$role]);
+            }
+        }
+        $disabled_items = array_filter($disabled_items);
+
+        return count($disabled_items);
+    } else {
+        return 0;
+    }
+}
+
+/**
+ * Get admin features restriction for a role
+ *
+ * @param string $role role to check
+ * @param boolean $check whether to check database or not
+ * @return integer
+ */
+function pp_capabilities_roles_admin_features($role, $check = false)
+{
+    if ($role && $check) {
+        $disabled_items = !empty(get_option('capsman_disabled_admin_features')) ? (array)get_option('capsman_disabled_admin_features') : [];
+        $disabled_items = array_key_exists($role, $disabled_items) ? (array)$disabled_items[$role] : [];
+        $disabled_items = array_filter($disabled_items);
+        return count($disabled_items);
+    } else {
+        return 0;
+    }
+}
+
+/**
+ * Get admin menus restriction for a role
+ *
+ * @param string $role role to check
+ * @param boolean $check whether to check database or not
+ * @return integer
+ */
+function pp_capabilities_roles_admin_menus($role, $check = false)
+{
+    if ($role && $check) {
+        $nav_menu_item_option = !empty(get_option('capsman_nav_item_menus')) ? get_option('capsman_nav_item_menus') : [];
+        $nav_menu_item_option = array_key_exists($role, $nav_menu_item_option) ? (array)$nav_menu_item_option[$role] : [];
+    
+        $disabled_items = array_filter($nav_menu_item_option);
+    
+        return count($disabled_items);
+    } else {
+        return 0;
+    }
+}
+
+/**
+ * Get nav menus restriction for a role
+ *
+ * @param string $role role to check
+ * @param boolean $check whether to check database or not
+ * @return integer
+ */
+function pp_capabilities_roles_nav_menus($role, $check = false)
+{
+    if ($role && $check) {
+        $nav_menu_item_option = !empty(get_option('capsman_nav_item_menus')) ? get_option('capsman_nav_item_menus') : [];
+        $nav_menu_item_option = array_key_exists($role, $nav_menu_item_option) ? (array)$nav_menu_item_option[$role] : [];
+
+        $disabled_items = array_filter($nav_menu_item_option);
+
+        return count($disabled_items);
+    } else {
+        return 0;
+    }
+}
+
+

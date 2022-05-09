@@ -251,7 +251,7 @@ function ppc_admin_feature_restrictions() {
     require_once ( dirname(CME_FILE) . '/includes/features/restrict-admin-features.php' );    
     PP_Capabilities_Admin_Features::adminFeaturedRestriction();
 }
-add_action('plugins_loaded', 'ppc_admin_feature_restrictions');
+add_action('init', 'ppc_admin_feature_restrictions', 999);
 
 /**
  * List of capabilities admin pages
