@@ -1,15 +1,12 @@
-.pp-capability-roles-wrapper table th.column-capabilities,
-.pp-capability-roles-wrapper table th.column-editor_features,
-.pp-capability-roles-wrapper table th.column-admin_features,
-.pp-capability-roles-wrapper table th.column-admin_menus,
-.pp-capability-roles-wrapper table th.column-nav_menus,
+.pp-capability-roles-wrapper table td.column-capabilities a {
+    margin-left: 15px;
+}
 
-.pp-capability-roles-wrapper table td.column-capabilities,
-.pp-capability-roles-wrapper table td.column-editor_features,
-.pp-capability-roles-wrapper table td.column-admin_features,
-.pp-capability-roles-wrapper table td.column-admin_menus,
-.pp-capability-roles-wrapper table td.column-nav_menus {
-    text-align: center;
+.pp-capability-roles-wrapper table td.column-editor_features a,
+.pp-capability-roles-wrapper table td.column-admin_features a,
+.pp-capability-roles-wrapper table td.column-admin_menus a,
+.pp-capability-roles-wrapper table td.column-nav_menus a {
+    margin-left: 33px;
 }
 
 .pp-capability-roles-wrapper table th.column-count, 
