@@ -7,7 +7,7 @@ Tags: user roles, capabilities, permissions, admin menus, post editing, post typ
 Requires at least: 4.9.7
 Tested up to: 5.9
 Requires PHP: 5.6.20
-Stable tag: 2.4.0
+Stable tag: 2.4.1
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -408,6 +408,14 @@ Fixed : Non-administrators with user editing capabilities could add new Administ
 Fixed : Security issue. Please update.
 
 == Changelog ==
+
+= 2.4.1 - 09 May 2022 =
+  * Fixed : Small bug with Capabilities search #340
+  * Update : Add sorting for more table columns in "Roles" #388
+  * Fixed : Edit Role screen: Right sidebar links to Capabilities screen without role argument #407
+  * Fixed : Admin Features issue with JetPack #412
+  * Update : Stop Free and Pro from being enabled together #323
+  * Update : Add PublishPress Building Package for Capabilities #400
 
 = 2.4.0 - 28 Apr 2022 =
   * Fixed : Post title not working with editor features #370
