@@ -27,5 +27,12 @@
         "type": "git",
         "url": "https://github.com/publishpress/publishpress-instance-protection"
       }
-    ]
-  }
+    ],
+    "require-dev": {
+        "publishpress/publishpress-plugin-builder": "^1.4"
+    },
+    "scripts": {
+      "build": "vendor/bin/robo build --ansi",
+      "build-unpacked": "vendor/bin/robo build:unpacked --ansi"
+    }
+}
