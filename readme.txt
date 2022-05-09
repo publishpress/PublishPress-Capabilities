@@ -409,6 +409,14 @@ Fixed : Security issue. Please update.
 
 == Changelog ==
 
+= 2.4.1 - 09 May 2022 =
+  * Fixed : Small bug with Capabilities search #340
+  * Update : Add sorting for more table columns in "Roles" #388
+  * Fixed : Edit Role screen: Right sidebar links to Capabilities screen without role argument #407
+  * Fixed : Admin Features issue with JetPack #412
+  * Update : Stop Free and Pro from being enabled together #323
+  * Update : Add PublishPress Building Package for Capabilities #400
+
 = 2.4.0 - 28 Apr 2022 =
   * Fixed : Post title not working with editor features #370
   * Fixed : Issue with revision metabox and some plugin metabox in Editor features. #369
