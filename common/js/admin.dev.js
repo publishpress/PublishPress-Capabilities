@@ -144,9 +144,12 @@ jQuery(document).ready( function($) {
 	    $(this).parent().siblings('table').find('tr').show(); // Show all the table rows
 		$(this).parent().siblings('.ppc-filter-no-results').hide(); // Hide "no results" message
 	});
+
 	$('.ppc-filter-text').keyup(function(){
+      	var search_text = $(this).val();
+      	var search_class = search_text.trim().replace(/\s+/g, '_');
 	    $(this).parent().siblings('table').find('tr').hide();
-	    $(this).parent().siblings('table').find('tr[class*="' + $(this).val() + '"]').show(); // Show only the filtered row
+	    $(this).parent().siblings('table').find('tr[class*="' + search_class + '"]').show(); // Show only the filtered row
 	    $(this).parent().siblings('table').find('tr.cme-bulk-select').hide(); // Hide bulk row
 	    if($(this).val().length === 0){
 	        $(this).parent().siblings('table').find('tr').show(); // Show all the table rows
