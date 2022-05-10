@@ -271,6 +271,13 @@ function ppc_roles_login_redirect($redirect_to, $request, $user) {
                 $redirect_to = esc_url_raw($role_option['login_redirect']);
                 break;
             }
+            if (is_array($role_option) && !empty($role_option) 
+                && !empty($role_option['referer_redirect']) && (int)$role_option['referer_redirect'] > 0
+                && wp_get_referer()
+            ) {
+                $redirect_to = esc_url_raw(wp_get_referer());
+                break;
+            }
         }
     }
 

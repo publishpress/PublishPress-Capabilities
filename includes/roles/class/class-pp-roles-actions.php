@@ -255,8 +255,9 @@ class Pp_Roles_Actions
 
         //update role options
         $role_option    = [];
-        $role_option['login_redirect']  = !empty($_REQUEST['login_redirect']) ? sanitize_url($_REQUEST['login_redirect']) : '';
-        $role_option['logout_redirect'] = !empty($_REQUEST['logout_redirect']) ? sanitize_url($_REQUEST['logout_redirect']) : '';
+        $role_option['login_redirect']   = !empty($_REQUEST['login_redirect']) ? sanitize_url($_REQUEST['login_redirect']) : '';
+        $role_option['logout_redirect']  = !empty($_REQUEST['logout_redirect']) ? sanitize_url($_REQUEST['logout_redirect']) : '';
+        $role_option['referer_redirect'] = !empty($_REQUEST['referer_redirect']) ? (int) $_REQUEST['referer_redirect'] : 0;
         update_option('pp_capabilities_' . $role['name'] . '_role_option', $role_option);
 
         /**
@@ -390,8 +391,9 @@ class Pp_Roles_Actions
 
         //update role options
         $role_option    = [];
-        $role_option['login_redirect']  = !empty($_REQUEST['login_redirect']) ? sanitize_url($_REQUEST['login_redirect']) : '';
-        $role_option['logout_redirect'] = !empty($_REQUEST['logout_redirect']) ? sanitize_url($_REQUEST['logout_redirect']) : '';
+        $role_option['login_redirect']   = !empty($_REQUEST['login_redirect']) ? sanitize_url($_REQUEST['login_redirect']) : '';
+        $role_option['logout_redirect']  = !empty($_REQUEST['logout_redirect']) ? sanitize_url($_REQUEST['logout_redirect']) : '';
+        $role_option['referer_redirect'] = !empty($_REQUEST['referer_redirect']) ? (int) $_REQUEST['referer_redirect'] : 0;
         update_option('pp_capabilities_' . sanitize_key($_REQUEST['current_role']) . '_role_option', $role_option);
 
         /**

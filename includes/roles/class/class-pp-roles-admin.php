@@ -205,6 +205,15 @@ class Pp_Roles_Admin
                 'editable'  => true,
                 'required'  => false,
             ],
+            'referer_redirect'      => [
+                'label'     => esc_html__('Login referer redirect', 'capsman-enhanced'),
+                'description' => esc_html__('Redirect users to original page after login.', 'capsman-enhanced'),
+                'type'      => 'checkbox',
+                'value_key' => 'referer_redirect',
+                'tab'       => 'redirects',
+                'editable'  => true,
+                'required'  => false,
+            ],
             'logout_redirect'      => [
                 'label'     => esc_html__('Logout redirect', 'capsman-enhanced'),
                 'description' => esc_html__('Enter full URL users in this role should be redirected to after logout.', 'capsman-enhanced'),
@@ -272,7 +281,10 @@ class Pp_Roles_Admin
             <td>
                 <?php 
                 if ($args['type'] === 'select') : ?>
-                    <select name="<?php echo esc_attr($key); ?>" <?php echo ($args['required'] ? 'required="true"' : '');?>>
+                    <select 
+                        name="<?php echo esc_attr($key); ?>"
+                        id="<?php echo esc_attr($key); ?>"
+                        <?php echo ($args['required'] ? 'required="true"' : '');?>>
                         <?php
                         foreach ($args['options'] as $select_key => $select_label) {
                             ?>
@@ -296,23 +308,38 @@ class Pp_Roles_Admin
                 elseif ($args['type'] === 'button') :
                     ?>
                     <input type="submit" 
-                            class="button-secondary pp-roles-delete-botton" 
-                            name="<?php echo esc_attr($key); ?>"
-                            value="<?php echo esc_attr($args['label']); ?>"
-                            onclick="return confirm('<?php esc_attr_e('Are you sure you want to delete this role?',  'capsman-enhanced'); ?>');"
-                             />
+                        class="button-secondary pp-roles-delete-botton" 
+                        id="<?php echo esc_attr($key); ?>"
+                        name="<?php echo esc_attr($key); ?>"
+                        value="<?php echo esc_attr($args['label']); ?>"
+                        onclick="return confirm('<?php esc_attr_e('Are you sure you want to delete this role?',  'capsman-enhanced'); ?>');"
+                         />
                         <?php if (isset($args['description'])) : ?>
                             <p class="description" style="color: red;"><?php echo esc_html($args['description']); ?></p>
                         <?php endif; ?>
+                <?php
+                elseif ($args['type'] === 'checkbox') :
+                    ?>
+                    <input name="<?php echo esc_attr($key); ?>" 
+                        id="<?php echo esc_attr($key); ?>" 
+                        type="<?php echo esc_attr($args['type']); ?>"
+                        value="1"
+                        <?php checked(1, (int)$args['value']); ?>
+                        <?php echo ($args['required'] ? 'required="true"' : '');?> 
+                        <?php echo (!$args['editable'] ? 'readonly="readonly"' : ''); ?>/>
+                        <?php if (isset($args['description'])) : ?>
+                            <span class="description"><?php echo esc_html($args['description']); ?></span>
+                        <?php endif; ?>
                 <?php else : ?>
-                    <input name="<?php echo esc_attr($key); ?>" type="<?php echo esc_attr($args['type']); ?>"
-                           value="<?php echo esc_attr($args['value']); ?>"
-                           <?php echo ($args['required'] ? 'required="true"' : '');?> 
-                           <?php echo (!$args['editable'] ? 'readonly="readonly"' : ''); ?>/>
-
-                           <?php if (isset($args['description'])) : ?>
-                                <p class="description"><?php echo esc_html($args['description']); ?></p>
-                            <?php endif; ?>
+                    <input name="<?php echo esc_attr($key); ?>" 
+                        id="<?php echo esc_attr($key); ?>"
+                        type="<?php echo esc_attr($args['type']); ?>"
+                        value="<?php echo esc_attr($args['value']); ?>"
+                       <?php echo ($args['required'] ? 'required="true"' : '');?> 
+                       <?php echo (!$args['editable'] ? 'readonly="readonly"' : ''); ?>/>
+                        <?php if (isset($args['description'])) : ?>
+                            <p class="description"><?php echo esc_html($args['description']); ?></p>
+                        <?php endif; ?>
                 <?php endif; ?>
             </td>
         </tr>
