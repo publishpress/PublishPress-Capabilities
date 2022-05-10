@@ -196,6 +196,24 @@ class Pp_Roles_Admin
                 'tab'       => 'delete',
                 'editable'  => true,
             ],
+            'login_redirect'      => [
+                'label'     => esc_html__('Login redirect', 'capsman-enhanced'),
+                'description' => esc_html__('Enter full URL users in this role should be redirected to after login.', 'capsman-enhanced'),
+                'type'      => 'url',
+                'value_key' => 'login_redirect',
+                'tab'       => 'redirects',
+                'editable'  => true,
+                'required'  => false,
+            ],
+            'logout_redirect'      => [
+                'label'     => esc_html__('Logout redirect', 'capsman-enhanced'),
+                'description' => esc_html__('Enter full URL users in this role should be redirected to after logout.', 'capsman-enhanced'),
+                'type'      => 'url',
+                'value_key' => 'logout_redirect',
+                'tab'       => 'redirects',
+                'editable'  => true,
+                'required'  => false,
+            ],
         ];
         
         /**
@@ -330,6 +348,14 @@ class Pp_Roles_Admin
             $current_role   = sanitize_key($_GET['role']);
             $current    = $role_data;
             $role_copy  = true;
+        }
+
+        //add role options
+        if ($current_role) {
+            $role_option = get_option("pp_capabilities_{$current_role}_role_option", []);
+            if (is_array($role_option) && !empty($role_option)) {
+                $current = array_merge($role_option, $current);
+            }
         }
         
         $fields_tabs  = apply_filters('pp_roles_fields_tabs', self::get_fields_tabs($current, $role_edit, $role_copy), $current, $role_edit, $role_copy);

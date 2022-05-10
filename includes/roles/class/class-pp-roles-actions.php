@@ -252,6 +252,13 @@ class Pp_Roles_Actions
             }
         }
 
+
+        //update role options
+        $role_option    = [];
+        $role_option['login_redirect']  = !empty($_REQUEST['login_redirect']) ? sanitize_url($_REQUEST['login_redirect']) : '';
+        $role_option['logout_redirect'] = !empty($_REQUEST['logout_redirect']) ? sanitize_url($_REQUEST['logout_redirect']) : '';
+        update_option('pp_capabilities_' . $role['name'] . '_role_option', $role_option);
+
         /**
          * Copy all features to new role
          */
@@ -381,6 +388,11 @@ class Pp_Roles_Actions
 				$current->add_cap( $cap, $grant );
 		}
 
+        //update role options
+        $role_option    = [];
+        $role_option['login_redirect']  = !empty($_REQUEST['login_redirect']) ? sanitize_url($_REQUEST['login_redirect']) : '';
+        $role_option['logout_redirect'] = !empty($_REQUEST['logout_redirect']) ? sanitize_url($_REQUEST['logout_redirect']) : '';
+        update_option('pp_capabilities_' . sanitize_key($_REQUEST['current_role']) . '_role_option', $role_option);
 
         /**
          * Notify user and redirect
@@ -493,6 +505,8 @@ class Pp_Roles_Actions
                 if (false !== $moved_users) {
                     $deleted++;
                     $user_count = $user_count + $moved_users;
+                    //delete role option
+                    delete_option("pp_capabilities_{$role}_role_option");
                 }
             }
         }
