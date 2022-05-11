@@ -382,6 +382,31 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 							);
 						}
 
+						if (defined('GF_PLUGIN_DIR_PATH')) {
+							$plugin_caps['Gravity Forms'] = apply_filters('cme_gravityforms_capabilities',
+								array(
+								    'gravityforms_create_form',
+                                    'gravityforms_delete_forms',
+                                    'gravityforms_edit_forms',
+                                    'gravityforms_preview_forms',
+                                    'gravityforms_view_entries',
+                                    'gravityforms_edit_entries',
+                                    'gravityforms_delete_entries',
+                                    'gravityforms_view_entry_notes',
+                                    'gravityforms_edit_entry_notes',
+                                    'gravityforms_export_entries',
+                                    'gravityforms_view_settings',
+                                    'gravityforms_edit_settings',
+                                    'gravityforms_view_updates',
+                                    'gravityforms_view_addons',
+                                    'gravityforms_system_status',
+                                    'gravityforms_uninstall',
+                                    'gravityforms_logging',
+                                    'gravityforms_api_settings',
+								)
+							);
+						}
+
 						if (defined('WC_PLUGIN_FILE')) {
 							$plugin_caps['WooCommerce'] = apply_filters('cme_woocommerce_capabilities',
 								array(
