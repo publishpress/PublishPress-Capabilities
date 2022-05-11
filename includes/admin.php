@@ -382,6 +382,28 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 							);
 						}
 
+						if (defined('WPML_PLUGIN_FILE')) {
+							$plugin_caps['WPML'] = apply_filters('cme_wpml_capabilities',
+								array(
+								    'wpml_manage_translation_management',
+                                    'wpml_manage_languages',
+                                    'wpml_manage_translation_options',
+                                    'wpml_manage_troubleshooting',
+                                    'wpml_manage_taxonomy_translation',
+                                    'wpml_manage_wp_menus_sync',
+                                    'wpml_manage_translation_analytics',
+                                    'wpml_manage_string_translation',
+                                    'wpml_manage_sticky_links',
+                                    'wpml_manage_navigation',
+                                    'wpml_manage_theme_and_plugin_localization',
+                                    'wpml_manage_media_translation',
+                                    'wpml_manage_support',
+                                    'wpml_manage_woocommerce_multilingual',
+                                    'wpml_operate_woocommerce_multilingual',
+								)
+							);
+						}
+
 						if (defined('WC_PLUGIN_FILE')) {
 							$plugin_caps['WooCommerce'] = apply_filters('cme_woocommerce_capabilities',
 								array(
