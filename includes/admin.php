@@ -382,6 +382,25 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 							);
 						}
 
+						if (defined('WS_FORM_VERSION')) {
+							$plugin_caps['WS Form'] = apply_filters('cme_wsform_capabilities',
+								array(
+								    'create_form',
+                                    'delete_form',
+                                    'edit_form',
+                                    'export_form',
+                                    'import_form',
+                                    'publish_form',
+                                    'read_form',
+                                    'delete_submission',
+                                    'edit_submission',
+                                    'export_submission',
+                                    'read_submission',
+                                    'manage_options_wsform',
+								)
+							);
+						}
+
 						if (defined('WC_PLUGIN_FILE')) {
 							$plugin_caps['WooCommerce'] = apply_filters('cme_woocommerce_capabilities',
 								array(
