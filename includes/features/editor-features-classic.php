@@ -50,6 +50,10 @@
                     if (!in_array($arr_feature['support_key'], get_object_taxonomies($type_obj->name))) {
                         continue;
                     }
+                } elseif (isset($arr_feature['support_type']) && $arr_feature['support_type'] === 'metabox') {
+                    if (!in_array($type_obj->name, $arr_feature['support_key'])) {
+                        continue;
+                    }
                 } else {
                     if (!post_type_supports($type_obj->name, $arr_feature['support_key'])) {
                         continue;
