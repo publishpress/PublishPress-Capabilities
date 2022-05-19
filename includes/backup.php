@@ -64,9 +64,6 @@ $auto_backups = $wpdb->get_results("SELECT option_name, option_value FROM $wpdb-
                                         $max_auto_backups = (defined('CME_AUTOBACKUPS')) ? (int) CME_AUTOBACKUPS : 20;
                                         printf(esc_html__('PublishPress Capabilities automatically creates a backup on installation and whenever you save changes. The initial backup and last %d auto-backups are kept.', 'capsman-enhanced'), esc_attr($max_auto_backups));
                                         ?>
-                                        </p>
-
-                                        <p class="description">
                                         <?php esc_html_e('A backup created on this screen replaces any previous manual backups, but is never automatically replaced.', 'capsman-enhanced');?>
                                         </p>
 
@@ -90,9 +87,6 @@ $auto_backups = $wpdb->get_results("SELECT option_name, option_value FROM $wpdb-
                                     <div>
                                         <p class="description">
                                         <?php esc_html_e('PublishPress Capabilities automatically creates a backup on installation and whenever you save changes.', 'capsman-enhanced');?>
-                                        </p>
-
-                                        <p class="description">
                                         <?php esc_html_e('On this screen, you can restore an earlier version of your roles and capabilities.', 'capsman-enhanced');?>
                                         </p>
 
@@ -286,12 +280,10 @@ $auto_backups = $wpdb->get_results("SELECT option_name, option_value FROM $wpdb-
                                 <div id="ppcb-tab-reset" class="postbox ppc-postbox" style="display:none;">
                                     <h2><?php if (!in_array(get_locale(), ['en_EN', 'en_US'])) esc_html_e('Reset WordPress Defaults', 'capsman-enhanced'); else echo 'Reset Roles to WordPress Defaults'; ?></h2>
                                     <div>
-                                        <p><strong><span class="pp-caps-warning"><?php esc_html_e('WARNING:', 'capsman-enhanced'); ?></span> <?php if (!in_array(get_locale(), ['en_EN', 'en_US'])) esc_html_e('Reseting default Roles and Capabilities will set them to the WordPress install defaults.', 'capsman-enhanced'); else echo 'This will delete and/or modify stored role definitions.'; ?>
-                                            </strong><br/>
-                                            <br/>
+                                        <p><span class="pp-caps-warning"><?php esc_html_e('Warning:', 'capsman-enhanced'); ?></span> <?php if (!in_array(get_locale(), ['en_EN', 'en_US'])) esc_html_e('Reseting default Roles and Capabilities will set them to the WordPress install defaults.', 'capsman-enhanced'); else echo 'This will delete and/or modify stored role definitions.'; ?>
                                             <?php
                                             esc_html_e('If you have installed any plugin that adds new roles or capabilities, these will be lost.', 'capsman-enhanced') ?>
-                                            <strong><?php if (!in_array(get_locale(), ['en_EN', 'en_US'])) esc_html_e('It is recommended to use this only as a last resource!', 'capsman-enhanced'); else echo('It is recommended to use this only as a last resort!'); ?></strong>
+                                            <?php if (!in_array(get_locale(), ['en_EN', 'en_US'])) esc_html_e('It is recommended to use this only as a last resource!', 'capsman-enhanced'); else echo('It is recommended to use this only as a last resort!'); ?>
                                         </p>
                                         <p><a class="ak-delete button-primary"
                                                                          title="<?php echo esc_attr__('Reset Roles and Capabilities to WordPress defaults', 'capsman-enhanced') ?>"
@@ -335,14 +327,9 @@ $auto_backups = $wpdb->get_results("SELECT option_name, option_value FROM $wpdb-
                                     </div>
                                     <div class="postbox ppc-postbox">
                                         <h2><?php esc_html_e('Import Settings', 'capsman-enhanced'); ?></h2>
-                                        <p><strong><span class="pp-caps-warning"><?php esc_html_e('WARNING:', 'capsman-enhanced'); ?></span> <?php esc_html_e('Please make a \'Manual Backup\' in the backup tab to enable backup restore in case anything goes wrong.', 'capsman-enhanced'); ?></p>
-
-                                        <p><?php esc_html_e('Import the plugin settings from a .json file. This file can be obtained by exporting the settings on another site using the form above.', 'capsman-enhanced'); ?></p>
-
-                                        <p><?php esc_html_e('Before importing, we recommend using the "Backup" tab to create a backup of your current settings.', 'capsman-enhanced'); ?></p>
-
-                                        <br />
-
+                                        <p><span class="pp-caps-warning"><?php esc_html_e('Warning:', 'capsman-enhanced'); ?></span> <?php esc_html_e('Please make a \'Manual Backup\' in the backup tab to enable backup restore in case anything goes wrong.', 'capsman-enhanced'); ?>
+                                        <?php esc_html_e('Import the plugin settings from a .json file. This file can be obtained by exporting the settings on another site using the form above.', 'capsman-enhanced'); ?>
+                                        <?php esc_html_e('Before importing, we recommend using the "Backup" tab to create a backup of your current settings.', 'capsman-enhanced'); ?></p>
                                         <p>
                                                 <input type="file" name="import_file"/>
                                         </p>
