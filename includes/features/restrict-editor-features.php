@@ -319,9 +319,9 @@ class PP_Capabilities_Post_Features {
                 'status_visibility' => ['label' => esc_html__('Status & visibility', 'capsman-enhanced'),   'elements' => 'post-status'],
                 'template'          => ['label' => esc_html__('Template', 'capsman-enhanced'),              'elements' => 'template'],
                 'revisions'         => ['label' => esc_html__('Revisions', 'capsman-enhanced'),             'elements' => '.editor-post-last-revision__title'],
-                'permalink'         => ['label' => esc_html__('Permalink', 'capsman-enhanced'),             'elements' => 'post-link'],
-                'categories'        => ['label' => esc_html__('Categories', 'capsman-enhanced'),            'elements' => 'taxonomy-panel-category'],
-                'tags'              => ['label' => esc_html__('Tags', 'capsman-enhanced'),                  'elements' => 'taxonomy-panel-post_tag'],
+                'permalink' =>         ['label' => esc_html__('Permalink', 'capsman-enhanced'),             'elements' => 'post-link'],
+                'categories' =>        ['label' => esc_html__('Categories', 'capsman-enhanced'),            'elements' => 'taxonomy-panel-category'],
+                'tags' =>              ['label' => esc_html__('Tags', 'capsman-enhanced'),                  'elements' => 'taxonomy-panel-post_tag'],
             ]
         ];
         
@@ -341,7 +341,7 @@ class PP_Capabilities_Post_Features {
             'post_attributes' => ['label' => esc_html__('Post Attributes', 'capsman-enhanced'), 'elements'  => 'page-attributes'],
         ]);
 
-        $elements[esc_html__('Block Panel', 'capsman-enhanced')] = [
+        $elements[esc_html__('Block Panel', 'capabilities-pro')] = [
             'block_panel' =>   ['label' => esc_html__('Block Panel', 'capsman-enhanced'),       'elements' => '.block-editor-block-inspector'],
             'paragraph' =>     ['label' => esc_html__('Paragraph', 'capsman-enhanced'),         'elements' => '.block-editor-block-card'],
             'typography' =>    ['label' => esc_html__('Typography', 'capsman-enhanced'),        'elements' => '.block-editor-block-inspector .components-panel__body:first-of-type'],
