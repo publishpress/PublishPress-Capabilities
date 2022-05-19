@@ -96,7 +96,29 @@
         }
          //add class to remove row list
          if (isset($empty_post_type_feature[$type_obj->name][$section_slug])) {
-            $empty_post_type_feature_class[] = '.editor-features-classic .parent-menu.' . $type_obj->name . '.' . $section_slug . '';
+            if ($section_slug === 'metaboxes') {
+                //we want to leave metabox header with message
+                ?>
+                <tr class="ppc-menu-row parent-menu">
+                    <td class="menu-column ppc-menu-item" colspan="2">
+                    <p class="cme-subtext">
+                        <?php printf(
+                            esc_html__(
+                                'No metabox found for %1s. %2s Click here %3s to visit the %4s screen and refresh this page after to load new metabox',
+                                'capsman-enhanced'
+                            ), 
+                            esc_html($type_obj->labels->singular_name), 
+                            '<a href="'. esc_url(admin_url('post-new.php?post_type='.$type_obj->name)) .'">', 
+                            '</a>',
+                            esc_html($type_obj->labels->singular_name), 
+                        ); ?>
+                    </p>
+                    </td>
+                </tr>
+                <?php
+            } else {
+                $empty_post_type_feature_class[] = '.editor-features-classic .parent-menu.' . $type_obj->name . '.' . $section_slug . '';
+            }
          }
     }
 
