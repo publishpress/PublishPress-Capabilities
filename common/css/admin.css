@@ -328,8 +328,6 @@ div.publishpress-caps-backup th {
   width: 140px;
 }
 
-div.publishpress-caps-backup p.description {max-width:620px !important;}
-
 div.publishpress-caps-backup #cme_select_restore_div {height:250px;}
 div.publishpress-caps-backup #cme_select_restore {
 list-style:none;
