@@ -291,7 +291,6 @@ $auto_backups = $wpdb->get_results("SELECT option_name, option_value FROM $wpdb-
                                             <br/>
                                             <?php
                                             esc_html_e('If you have installed any plugin that adds new roles or capabilities, these will be lost.', 'capsman-enhanced') ?>
-                                            <br/>
                                             <strong><?php if (!in_array(get_locale(), ['en_EN', 'en_US'])) esc_html_e('It is recommended to use this only as a last resource!', 'capsman-enhanced'); else echo('It is recommended to use this only as a last resort!'); ?></strong>
                                         </p>
                                         <p><a class="ak-delete button-primary"
