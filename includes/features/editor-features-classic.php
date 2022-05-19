@@ -80,7 +80,7 @@
                             echo esc_html($arr_feature['element_label']) . ' <small class="entry">(' . esc_html($arr_feature['element_items']). ')</small> &nbsp; ' 
                             . '<span class="' . esc_attr($arr_feature['button_class'])  . '" data-id="' . esc_attr($arr_feature['button_data_id'])  . '" data-parent="' . esc_attr($arr_feature['button_data_parent'])  . '"><small>(' . esc_html__('Delete', 'capsman-enhanced') . ')</small></span>';
                         }else{
-                            echo esc_html($arr_feature['label']);
+                            echo esc_html(wp_strip_all_tags($arr_feature['label']));
                         }
                         ?>
                     </strong></span>
