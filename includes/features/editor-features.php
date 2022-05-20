@@ -180,6 +180,9 @@ $active_tab_text = is_object($active_tab_type_obj)
 
                                                 <div class="ppc-capabilities-content">
                                                     <?php
+                                                        //we want to remove empty header for row without feature for post typr
+                                                        $empty_post_type_feature       = [];
+                                                        $empty_post_type_feature_class = [];
                                                         foreach($def_post_types as $type_name) {
                                                             $type_obj = get_post_type_object($type_name);
                                                             $active_style = ($type_name === $active_tab_slug) ? '' : 'display:none;';
@@ -249,6 +252,12 @@ $active_tab_text = is_object($active_tab_type_obj)
 </div>
 
 <style>
+    <?php 
+        if (!empty($empty_post_type_feature_class)) {
+            echo esc_html(implode(', ', $empty_post_type_feature_class));
+            echo esc_html('{display: none !important}');
+        }
+    ?>
     span.menu-item-link {
         webkit-user-select: none; /* Safari */
         -moz-user-select: none; /* Firefox */
