@@ -375,6 +375,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 							);
 						}
 
+
 						if (defined('WPML_PLUGIN_FILE')) {
 							$plugin_caps['WPML'] = apply_filters('cme_wpml_capabilities',
 								array(
@@ -393,6 +394,25 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
                                     'wpml_manage_support',
                                     'wpml_manage_woocommerce_multilingual',
                                     'wpml_operate_woocommerce_multilingual',
+								)
+							);
+						}
+            
+						if (defined('WS_FORM_VERSION')) {
+							$plugin_caps['WS Form'] = apply_filters('cme_wsform_capabilities',
+								array(
+								    'create_form',
+                                    'delete_form',
+                                    'edit_form',
+                                    'export_form',
+                                    'import_form',
+                                    'publish_form',
+                                    'read_form',
+                                    'delete_submission',
+                                    'edit_submission',
+                                    'export_submission',
+                                    'read_submission',
+                                    'manage_options_wsform',
 								)
 							);
 						}
