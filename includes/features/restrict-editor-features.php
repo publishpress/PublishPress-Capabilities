@@ -361,7 +361,7 @@ class PP_Capabilities_Post_Features {
     public static function elementsLayout()
     {
         $elements = [
-            esc_html__('Top Bar - Left', 'capabilities-pro') => [
+            esc_html__('Top Bar - Left', 'capsman-enhanced') => [
                 'add_block' => ['label' => esc_html__('Add block', 'capsman-enhanced'), 'elements' => '.edit-post-header-toolbar .edit-post-header-toolbar__inserter-toggle.has-icon'],
                 'modes' =>     ['label' => esc_html__('Modes', 'capsman-enhanced'),     'elements' => '.edit-post-header-toolbar .components-dropdown:first-of-type'],
                 'undo' =>      ['label' => esc_html__('Undo', 'capsman-enhanced'),      'elements' => '.edit-post-header-toolbar .editor-history__undo'],
@@ -370,7 +370,7 @@ class PP_Capabilities_Post_Features {
                 'outline' =>   ['label' => esc_html__('Outline', 'capsman-enhanced'),   'elements' => '.edit-post-header__toolbar .edit-post-header-toolbar__list-view-toggle'],
             ],
 
-            esc_html__('Top Bar - Right', 'capabilities-pro') => [
+            esc_html__('Top Bar - Right', 'capsman-enhanced') => [
                 'save_draft' =>       ['label' => esc_html__('Save Draft', 'capsman-enhanced'),       'elements' => '.edit-post-header__settings .components-button.editor-post-save-draft'],
                 'switch_to_draft' =>  ['label' => esc_html__('Switch to draft', 'capsman-enhanced'),  'elements' => '.edit-post-header__settings .components-button.editor-post-switch-to-draft'],
                 'preview' =>          ['label' => esc_html__('Preview', 'capsman-enhanced'),          'elements' => '.edit-post-header__settings .block-editor-post-preview__dropdown'],
@@ -379,7 +379,7 @@ class PP_Capabilities_Post_Features {
                 'options' =>          ['label' => esc_html__('Options', 'capsman-enhanced'),          'elements' => '.edit-post-header__settings .edit-post-more-menu .components-button'],
             ],
 
-            esc_html__('Body', 'capabilities-pro') => [
+            esc_html__('Body', 'capsman-enhanced') => [
                 'edit_title' =>   [
                     'label'       => esc_html__('Edit title', 'capsman-enhanced'), 
                     'elements'    => '.wp-block.editor-post-title__block, .wp-block.editor-post-title',
@@ -396,7 +396,7 @@ class PP_Capabilities_Post_Features {
                 ],
             ],
 
-            esc_html__('Document Panel', 'capabilities-pro') => [
+            esc_html__('Document Panel', 'capsman-enhanced') => [
                 'status_visibility' => ['label' => esc_html__('Status & visibility', 'capsman-enhanced'),   'elements' => 'post-status'],
                 'template'          => [
                     'label'       => esc_html__('Template', 'capsman-enhanced'),
@@ -457,7 +457,7 @@ class PP_Capabilities_Post_Features {
             ],
         ]);
 
-        $elements[esc_html__('Block Panel', 'capabilities-pro')] = [
+        $elements[esc_html__('Block Panel', 'capsman-enhanced')] = [
             'block_panel' =>   ['label' => esc_html__('Block Panel', 'capsman-enhanced'),       'elements' => '.block-editor-block-inspector'],
             'paragraph' =>     ['label' => esc_html__('Paragraph', 'capsman-enhanced'),         'elements' => '.block-editor-block-card'],
             'typography' =>    ['label' => esc_html__('Typography', 'capsman-enhanced'),        'elements' => '.block-editor-block-inspector .components-panel__body:first-of-type'],
