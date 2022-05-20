@@ -461,7 +461,7 @@ class CapabilityManager
 	public function ManageEditorFeatures() {
 		if ((!is_multisite() || !is_super_admin()) && !current_user_can('administrator') && !current_user_can('manage_capabilities')) {
             // TODO: Implement exceptions.
-		    wp_die('<strong>' . esc_html__('You do not have permission to manage editor features.', 'capabilities-pro') . '</strong>');
+		    wp_die('<strong>' . esc_html__('You do not have permission to manage editor features.', 'capsman-enhanced') . '</strong>');
 		}
 
 		$this->generateNames();
@@ -483,7 +483,7 @@ class CapabilityManager
 
 		if (!empty($_SERVER['REQUEST_METHOD']) && ('POST' == $_SERVER['REQUEST_METHOD']) && isset($_POST['ppc-editor-features-role']) && !empty($_REQUEST['_wpnonce'])) {
 			if (!wp_verify_nonce(sanitize_key($_REQUEST['_wpnonce']), 'pp-capabilities-editor-features')) {
-				wp_die('<strong>' . esc_html__('You do not have permission to manage editor features.', 'capabilities-pro') . '</strong>');
+				wp_die('<strong>' . esc_html__('You do not have permission to manage editor features.', 'capsman-enhanced') . '</strong>');
 			} else {
 				$this->set_current_role(sanitize_key($_POST['ppc-editor-features-role']));
 
@@ -518,7 +518,7 @@ class CapabilityManager
 					update_option("capsman_feature_restrict_{$post_type}", $post_features_option, false);
 				}
 
-				ak_admin_notify(__('Settings updated.', 'capabilities-pro'));
+				ak_admin_notify(__('Settings updated.', 'capsman-enhanced'));
 			}
 		}
 
@@ -534,7 +534,7 @@ class CapabilityManager
 	public function ManageAdminFeatures() {
 		if ((!is_multisite() || !is_super_admin()) && !current_user_can('administrator') && !current_user_can('manage_capabilities')) {
             // TODO: Implement exceptions.
-		    wp_die('<strong>' . esc_html__('You do not have permission to manage admin features.', 'capabilities-pro') . '</strong>');
+		    wp_die('<strong>' . esc_html__('You do not have permission to manage admin features.', 'capsman-enhanced') . '</strong>');
 		}
 
 		$this->generateNames();
@@ -556,7 +556,7 @@ class CapabilityManager
 
 		if (!empty($_SERVER['REQUEST_METHOD']) && ('POST' == $_SERVER['REQUEST_METHOD']) && isset($_POST['ppc-admin-features-role']) && !empty($_REQUEST['_wpnonce'])) {
 			if (!wp_verify_nonce(sanitize_key($_REQUEST['_wpnonce']), 'pp-capabilities-admin-features')) {
-				wp_die('<strong>' . esc_html__('You do not have permission to manage admin features.', 'capabilities-pro') . '</strong>');
+				wp_die('<strong>' . esc_html__('You do not have permission to manage admin features.', 'capsman-enhanced') . '</strong>');
 			} else {
 				$features_role = sanitize_key($_POST['ppc-admin-features-role']);
 				
@@ -572,7 +572,7 @@ class CapabilityManager
 					$ppc_page_reload = '1';
 				}
 				
-	            ak_admin_notify(__('Settings updated.', 'capabilities-pro'));
+	            ak_admin_notify(__('Settings updated.', 'capsman-enhanced'));
 			}
 		}
 
