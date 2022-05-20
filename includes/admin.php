@@ -199,29 +199,22 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 			$cap_properties['edit']['type'][]= 'edit_others_posts';
 			$cap_properties['edit']['type'] = array_merge( $cap_properties['edit']['type'], array( 'publish_posts', 'edit_published_posts', 'edit_private_posts' ) );
 
-			$cap_properties['edit']['taxonomy'] = array( 'manage_terms' );
-
-			if ( ! defined( 'OLD_PRESSPERMIT_ACTIVE' ) )
-				$cap_properties['edit']['taxonomy'] = array_merge( $cap_properties['edit']['taxonomy'], array( 'edit_terms', 'assign_terms' ) );
-
 			$cap_properties['delete']['type'] = array( 'delete_posts', 'delete_others_posts' );
 			$cap_properties['delete']['type'] = array_merge( $cap_properties['delete']['type'], array( 'delete_published_posts', 'delete_private_posts' ) );
 
-			if ( ! defined( 'OLD_PRESSPERMIT_ACTIVE' ) )
-				$cap_properties['delete']['taxonomy'] = array( 'delete_terms' );
-			else
-				$cap_properties['delete']['taxonomy'] = array();
 
 			$cap_properties['read']['type'] = array( 'read_private_posts' );
-			$cap_properties['read']['taxonomy'] = array();
 
+            $cap_properties['taxonomies']['taxonomy'] =  array( 'manage_terms', 'edit_terms', 'assign_terms', 'delete_terms' );
+            
 			$stati = get_post_stati( array( 'internal' => false ) );
 
 			$cap_type_names = array(
 				'' => __( '&nbsp;', 'capsman-enhanced' ),
 				'read' => __( 'Reading', 'capsman-enhanced' ),
 				'edit' => __( 'Editing', 'capsman-enhanced' ),
-				'delete' => __( 'Deletion', 'capsman-enhanced' )
+				'delete' => __( 'Deletion', 'capsman-enhanced' ),
+                'taxonomies' => __( 'Taxonomies', 'capsman-enhanced' ),
 			);
 
 			$cap_tips = array(
@@ -407,6 +400,47 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 							);
 						}
 
+						if (defined('WPML_PLUGIN_FILE')) {
+							$plugin_caps['WPML'] = apply_filters('cme_wpml_capabilities',
+								array(
+								    'wpml_manage_translation_management',
+                                    'wpml_manage_languages',
+                                    'wpml_manage_translation_options',
+                                    'wpml_manage_troubleshooting',
+                                    'wpml_manage_taxonomy_translation',
+                                    'wpml_manage_wp_menus_sync',
+                                    'wpml_manage_translation_analytics',
+                                    'wpml_manage_string_translation',
+                                    'wpml_manage_sticky_links',
+                                    'wpml_manage_navigation',
+                                    'wpml_manage_theme_and_plugin_localization',
+                                    'wpml_manage_media_translation',
+                                    'wpml_manage_support',
+                                    'wpml_manage_woocommerce_multilingual',
+                                    'wpml_operate_woocommerce_multilingual',
+								)
+							);
+						}
+            
+						if (defined('WS_FORM_VERSION')) {
+							$plugin_caps['WS Form'] = apply_filters('cme_wsform_capabilities',
+								array(
+								    'create_form',
+                                    'delete_form',
+                                    'edit_form',
+                                    'export_form',
+                                    'import_form',
+                                    'publish_form',
+                                    'read_form',
+                                    'delete_submission',
+                                    'edit_submission',
+                                    'export_submission',
+                                    'read_submission',
+                                    'manage_options_wsform',
+								)
+							);
+						}
+
 						if (defined('WC_PLUGIN_FILE')) {
 							$plugin_caps['WooCommerce'] = apply_filters('cme_woocommerce_capabilities',
 								array(
@@ -528,23 +562,11 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 					foreach( array_keys($cap_properties) as $cap_type ) {
 
 						foreach( array_keys($defined) as $item_type ) {
-							if ( ( 'delete' == $cap_type ) && ( 'taxonomy' == $item_type ) ) {
-								if ( defined('OLD_PRESSPERMIT_ACTIVE') ) {
-									continue;
-								}
+                            
 
-								$any_term_deletion_caps = false;
-								foreach( array_keys($defined['taxonomy']) as $_tax ) {
-									if ( isset( $defined['taxonomy'][$_tax]->cap->delete_terms ) && ( 'manage_categories' != $defined['taxonomy'][$_tax]->cap->delete_terms ) && ! in_array( $_tax, $unfiltered['taxonomy'] ) ) {
-										$any_term_deletion_caps = true;
-										break;
-									}
-								}
-
-								if ( ! $any_term_deletion_caps )
-									continue;
-							}
-
+                            if (!isset($cap_properties[$cap_type][$item_type])) {
+                                continue;
+                            }
 							if ( ! count( $cap_properties[$cap_type][$item_type] ) )
 								continue;
 
