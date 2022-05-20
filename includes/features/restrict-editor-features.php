@@ -390,6 +390,10 @@ class PP_Capabilities_Post_Features {
                     'elements'    => '.block-editor-block-list__layout',
                     'support_key' => 'editor'
                 ],
+                'add_new_block' => [
+                  'label'         => esc_html__('Add new block', 'capsman-enhanced'), 
+                  'elements'      => '.block-editor-inserter__toggle'
+                ],
             ],
 
             esc_html__('Document Panel', 'capabilities-pro') => [
@@ -399,6 +403,7 @@ class PP_Capabilities_Post_Features {
                     'elements'    => 'template',
                     'support_key' => 'page-attributes'
                 ],
+                'revisions'         => ['label' => esc_html__('Revisions', 'capsman-enhanced'),             'elements' => '.editor-post-last-revision__title'],
                 'permalink' =>         ['label' => esc_html__('Permalink', 'capsman-enhanced'),             'elements' => 'post-link'],
                 'categories' =>        [
                     'label'        => esc_html__('Categories', 'capsman-enhanced'), 
