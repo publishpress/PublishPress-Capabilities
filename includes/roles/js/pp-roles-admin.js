@@ -111,4 +111,13 @@ jQuery(document).ready(function ($) {
         return false;
     });
 
+  /**
+   * Role screen select input
+   */
+  if ($('.pp-capabilities-role-choosen').length > 0) {
+    $('.pp-capabilities-role-choosen').chosen({
+      'width': '25em'
+    });
+  }
+
 });

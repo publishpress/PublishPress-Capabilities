@@ -148,6 +148,13 @@ class Pp_Roles_Admin
      */
     public static function get_fields($current, $role_edit, $role_copy)
     {
+        $editor_options = [];
+
+        $editor_options['block_editor']       = esc_html__('Gutenberg editor', 'capsman-enhanced');
+        if (class_exists('Classic_Editor')) {
+            $editor_options['classic_editor'] = esc_html__('Classic editor', 'capsman-enhanced');
+        }
+
         $fields = [
             'role_name'      => [
                 'label'     => esc_html__('Role Name', 'capsman-enhanced'),
@@ -170,7 +177,7 @@ class Pp_Roles_Admin
                 'label'     => esc_html__('Role Level', 'capsman-enhanced'),
                 'description' => esc_html__('Each user role has a level from 0 to 10. The Subscriber role defaults to the lowest level (0). The Administrator role defaults to level 10.', 'capsman-enhanced'),
                 'type'      => 'select',
-                'value_key' => '',
+                'value_key' => 'role_level',
                 'tab'       => 'advanced',
                 'editable'  => true,
                 'options'   => [
@@ -186,7 +193,6 @@ class Pp_Roles_Admin
                     '1' => '1',
                     '0' => '0',
                 ],
-                'selected'  => (is_array($current) && isset($current['capabilities'])) ? ak_caps2level($current['capabilities']) : '0',
             ],
             'delete_role'     => [
                 'label'       => esc_html__('Delete role', 'capsman-enhanced'),
@@ -223,6 +229,16 @@ class Pp_Roles_Admin
                 'editable'  => true,
                 'required'  => false,
             ],
+            'role_editor'     => [
+                'label'       => esc_html__('Editor', 'capsman-enhanced'),
+                'description' => esc_html__('Select editor option(s) for user in this role.', 'capsman-enhanced'),
+                'type'        => 'select',
+                'multiple'    => true,
+                'value_key'   => 'role_editor',
+                'tab'         => 'editing',
+                'editable'    => true,
+                'options'     => $editor_options,
+            ],
         ];
         
         /**
@@ -249,9 +265,9 @@ class Pp_Roles_Admin
             'tab'         => 'general',
             'editable'    => true,
             'required'    => false,
+            'multiple'    => false,
             'value'       => '',
             'options'     => [],
-            'selected'    => '',
             'label'       => '',
         ];
         $args      = array_merge($defaults, $args);
@@ -282,14 +298,22 @@ class Pp_Roles_Admin
                 <?php 
                 if ($args['type'] === 'select') : ?>
                     <select 
-                        name="<?php echo esc_attr($key); ?>"
+                        name="<?php echo esc_attr($key); ?><?php echo $args['multiple'] ? '[]' : '';?>"
                         id="<?php echo esc_attr($key); ?>"
+                        class="pp-capabilities-role-choosen"
+                        data-placeholder="<?php printf(esc_html__('Select %s', 'capsman-enhanced'), esc_html(strtolower($args['label']))); ?>"
+                        <?php echo ($args['multiple'] ? 'multiple' : '');?>>
                         <?php echo ($args['required'] ? 'required="true"' : '');?>>
                         <?php
                         foreach ($args['options'] as $select_key => $select_label) {
+                            if ($args['multiple']) {
+                                $selected_option = (isset($args['value']) && is_array($args['value']) && in_array($select_key, $args['value'])) ? true : false;
+                            } else {
+                                $selected_option = (isset($args['value']) && $select_key == $args['value']) ? true : false;
+                            }
                             ?>
                             <option value="<?php esc_attr_e($select_key); ?>"
-                                    <?php selected($select_key, $args['selected']); ?>>
+                                    <?php selected(true, $selected_option); ?>>
                                     <?php echo esc_html($select_label); ?>
                             </option>
                         <?php } ?>
@@ -377,12 +401,14 @@ class Pp_Roles_Admin
             $role_copy  = true;
         }
 
-        //add role options
         if ($current_role) {
+            //add role options
             $role_option = get_option("pp_capabilities_{$current_role}_role_option", []);
             if (is_array($role_option) && !empty($role_option)) {
                 $current = array_merge($role_option, $current);
             }
+            //add role level
+            $current['role_level'] = (is_array($current) && isset($current['capabilities'])) ? ak_caps2level($current['capabilities']) : '0';
         }
         
         $fields_tabs  = apply_filters('pp_roles_fields_tabs', self::get_fields_tabs($current, $role_edit, $role_copy), $current, $role_edit, $role_copy);
@@ -494,7 +520,7 @@ class Pp_Roles_Admin
                                                             'capsman-enhanced'
                                                         ),
                                                         ($role_action === 'edit') ? '<a href="' . esc_url(add_query_arg(['page' => 'pp-capabilities', 'role' => esc_attr($current_role)], admin_url('admin.php'))) .'">' : '',
-                                                        ($role_action === 'edit') ? '</a>' : ''
+                                                        (esc_html($role_action) === 'edit') ? '</a>' : ''
                                                     );
                                                 ?>
                                                 </p>
