@@ -196,6 +196,33 @@ class Pp_Roles_Admin
                 'tab'       => 'delete',
                 'editable'  => true,
             ],
+            'login_redirect'      => [
+                'label'     => esc_html__('Login redirect', 'capsman-enhanced'),
+                'description' => esc_html__('Enter full URL users in this role should be redirected to after login.', 'capsman-enhanced'),
+                'type'      => 'url',
+                'value_key' => 'login_redirect',
+                'tab'       => 'redirects',
+                'editable'  => true,
+                'required'  => false,
+            ],
+            'referer_redirect'      => [
+                'label'     => esc_html__('Login referer redirect', 'capsman-enhanced'),
+                'description' => esc_html__('Redirect users to original page after login.', 'capsman-enhanced'),
+                'type'      => 'checkbox',
+                'value_key' => 'referer_redirect',
+                'tab'       => 'redirects',
+                'editable'  => true,
+                'required'  => false,
+            ],
+            'logout_redirect'      => [
+                'label'     => esc_html__('Logout redirect', 'capsman-enhanced'),
+                'description' => esc_html__('Enter full URL users in this role should be redirected to after logout.', 'capsman-enhanced'),
+                'type'      => 'url',
+                'value_key' => 'logout_redirect',
+                'tab'       => 'redirects',
+                'editable'  => true,
+                'required'  => false,
+            ],
         ];
         
         /**
@@ -254,7 +281,10 @@ class Pp_Roles_Admin
             <td>
                 <?php 
                 if ($args['type'] === 'select') : ?>
-                    <select name="<?php echo esc_attr($key); ?>" <?php echo ($args['required'] ? 'required="true"' : '');?>>
+                    <select 
+                        name="<?php echo esc_attr($key); ?>"
+                        id="<?php echo esc_attr($key); ?>"
+                        <?php echo ($args['required'] ? 'required="true"' : '');?>>
                         <?php
                         foreach ($args['options'] as $select_key => $select_label) {
                             ?>
@@ -278,23 +308,38 @@ class Pp_Roles_Admin
                 elseif ($args['type'] === 'button') :
                     ?>
                     <input type="submit" 
-                            class="button-secondary pp-roles-delete-botton" 
-                            name="<?php echo esc_attr($key); ?>"
-                            value="<?php echo esc_attr($args['label']); ?>"
-                            onclick="return confirm('<?php esc_attr_e('Are you sure you want to delete this role?',  'capsman-enhanced'); ?>');"
-                             />
+                        class="button-secondary pp-roles-delete-botton" 
+                        id="<?php echo esc_attr($key); ?>"
+                        name="<?php echo esc_attr($key); ?>"
+                        value="<?php echo esc_attr($args['label']); ?>"
+                        onclick="return confirm('<?php esc_attr_e('Are you sure you want to delete this role?',  'capsman-enhanced'); ?>');"
+                         />
                         <?php if (isset($args['description'])) : ?>
                             <p class="description" style="color: red;"><?php echo esc_html($args['description']); ?></p>
                         <?php endif; ?>
+                <?php
+                elseif ($args['type'] === 'checkbox') :
+                    ?>
+                    <input name="<?php echo esc_attr($key); ?>" 
+                        id="<?php echo esc_attr($key); ?>" 
+                        type="<?php echo esc_attr($args['type']); ?>"
+                        value="1"
+                        <?php checked(1, (int)$args['value']); ?>
+                        <?php echo ($args['required'] ? 'required="true"' : '');?> 
+                        <?php echo (!$args['editable'] ? 'readonly="readonly"' : ''); ?>/>
+                        <?php if (isset($args['description'])) : ?>
+                            <span class="description"><?php echo esc_html($args['description']); ?></span>
+                        <?php endif; ?>
                 <?php else : ?>
-                    <input name="<?php echo esc_attr($key); ?>" type="<?php echo esc_attr($args['type']); ?>"
-                           value="<?php echo esc_attr($args['value']); ?>"
-                           <?php echo ($args['required'] ? 'required="true"' : '');?> 
-                           <?php echo (!$args['editable'] ? 'readonly="readonly"' : ''); ?>/>
-
-                           <?php if (isset($args['description'])) : ?>
-                                <p class="description"><?php echo esc_html($args['description']); ?></p>
-                            <?php endif; ?>
+                    <input name="<?php echo esc_attr($key); ?>" 
+                        id="<?php echo esc_attr($key); ?>"
+                        type="<?php echo esc_attr($args['type']); ?>"
+                        value="<?php echo esc_attr($args['value']); ?>"
+                       <?php echo ($args['required'] ? 'required="true"' : '');?> 
+                       <?php echo (!$args['editable'] ? 'readonly="readonly"' : ''); ?>/>
+                        <?php if (isset($args['description'])) : ?>
+                            <p class="description"><?php echo esc_html($args['description']); ?></p>
+                        <?php endif; ?>
                 <?php endif; ?>
             </td>
         </tr>
@@ -330,6 +375,14 @@ class Pp_Roles_Admin
             $current_role   = sanitize_key($_GET['role']);
             $current    = $role_data;
             $role_copy  = true;
+        }
+
+        //add role options
+        if ($current_role) {
+            $role_option = get_option("pp_capabilities_{$current_role}_role_option", []);
+            if (is_array($role_option) && !empty($role_option)) {
+                $current = array_merge($role_option, $current);
+            }
         }
         
         $fields_tabs  = apply_filters('pp_roles_fields_tabs', self::get_fields_tabs($current, $role_edit, $role_copy), $current, $role_edit, $role_copy);
