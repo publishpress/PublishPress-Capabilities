@@ -223,6 +223,15 @@ class Pp_Roles_Admin
                 'editable'  => true,
                 'required'  => false,
             ],
+            'disable_code_editor'      => [
+                'label'        => esc_html__('Disable Code Editor', 'capsman-enhanced'),
+                'description'  => esc_html__('Disable gutenberg code editor for user in this role.', 'capsman-enhanced'),
+                'type'         => 'checkbox',
+                'value_key'    => 'disable_code_editor',
+                'tab'          => 'editing',
+                'editable'     => true,
+                'required'     => false,
+            ],
         ];
         
         /**
