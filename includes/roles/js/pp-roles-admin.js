@@ -111,4 +111,11 @@ jQuery(document).ready(function ($) {
         return false;
     });
 
+  /**
+   * Role active tab
+   */
+  $(document).on('click', 'ul.ppc-roles-tab li', function () {
+      $('.ppc-roles-active-tab').val($(this).attr('data-tab'));
+  });
+
 });
