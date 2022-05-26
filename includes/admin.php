@@ -631,6 +631,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 
 									$row .= "<td><a class='cap_type' href='#toggle_type_caps'>" . esc_html($type_label) . '</a>';
 									$row .= '<a href="#" class="neg-type-caps">&nbsp;x&nbsp;</a>';
+									$row .= '&nbsp; <input type="checkbox" class="pp-row-action-rotate rotate-blank excluded-input">';
 									$row .= '</td>';
 
 									$display_row = ! empty($force_distinct_ui);
