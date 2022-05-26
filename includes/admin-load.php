@@ -274,21 +274,19 @@ class PP_Capabilities_Admin_UI {
                 return;
             }
 
-            // Remove unselected roles
+            // Remove all roles
             foreach ($currentRoles as $role) {
                 // Check if it is a bbPress rule. If so, don't remove it.
                 $isBBPressRole = preg_match('/^bbp_/', $role);
 
-                if (!in_array($role, $newRoles) && !$isBBPressRole) {
+                if (!$isBBPressRole) {
                     $user->remove_role($role);
                 }
             }
 
-            // Add new roles
+            // Add new roles in order
             foreach ($newRoles as $role) {
-                if (!in_array($role, $currentRoles)) {
-                    $user->add_role($role);
-                }
+                $user->add_role($role);
             }
         }
     }
