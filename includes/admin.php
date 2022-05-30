@@ -261,6 +261,9 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 					// Active current Tab
 					$('.ppc-capabilities-tabs > ul > li').removeClass('ppc-capabilities-tab-active');
 					$(this).addClass('ppc-capabilities-tab-active');
+
+                    //scroll to top since we may have a longer tab
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
 				});
 			});
 			/* ]]> */
@@ -309,6 +312,93 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 						$tab_caption = esc_html__( 'WordPress Core', 'capsman-enhanced' );
 
 						echo '<li data-slug="other" data-content="' . esc_attr($tab_id) . '" class="' . esc_attr($tab_active) . '">' . esc_html($tab_caption) . '</li>';
+
+                        //grouped capabilities
+                        $grouped_caps       = [];
+                        $grouped_caps_lists = [];
+
+                        //add plugin related caps
+                        $grouped_caps['Plugins Capabilities'] = array(
+                            'activate_plugins',
+                            'delete_plugins',
+                            'edit_plugins',
+                            'install_plugins',
+                            'update_plugins',
+                        );
+                        $grouped_caps_lists = array_merge($grouped_caps_lists, $grouped_caps['Plugins Capabilities']);
+
+                        //add users related caps
+                        $grouped_caps['Users Capabilities'] = array(
+                            'add_users',
+                            'create_users',
+                            'delete_users',
+                            'edit_users',
+                            'list_users',
+                            'promote_users',
+                            'remove_users',
+                        );
+                        $grouped_caps_lists = array_merge($grouped_caps_lists, $grouped_caps['Users Capabilities']);
+
+                        //add themes related caps
+                        $grouped_caps['Themes Capabilities'] = array(
+                            'delete_themes',
+                            'edit_themes',
+                            'install_themes',
+                            'switch_themes',
+                            'update_themes',
+                            'edit_theme_options',
+                        );
+                        $grouped_caps_lists = array_merge($grouped_caps_lists, $grouped_caps['Themes Capabilities']);
+
+                        //add media related caps
+                        $grouped_caps['Media Capabilities'] = array(
+                            'edit_files',
+                            'upload_files',
+                            'unfiltered_upload',
+                        );
+                        $grouped_caps_lists = array_merge($grouped_caps_lists, $grouped_caps['Media Capabilities']);
+
+                        //add links related caps
+                        $grouped_caps['Links Capabilities'] = array(
+                            'manage_links',
+                        );
+                        $grouped_caps_lists = array_merge($grouped_caps_lists, $grouped_caps['Links Capabilities']);
+
+                        //add import and export related caps
+                        $grouped_caps['Import and Export Capabilities'] = array(
+                            'export',
+                            'import',
+                        );
+                        $grouped_caps_lists = array_merge($grouped_caps_lists, $grouped_caps['Import and Export Capabilities']);
+
+                        //add comments related caps
+                        $grouped_caps['Comments Capabilities'] = array(
+                            'moderate_comments',
+                            'edit_comment',
+                        );
+                        $grouped_caps_lists = array_merge($grouped_caps_lists, $grouped_caps['Comments Capabilities']);
+
+                        //add admin options related caps
+                        $grouped_caps['Admin Options Capabilities'] = array(
+                            'manage_options',
+                            'update_core',
+                            'unfiltered_html',
+                        );
+                        $grouped_caps_lists = array_merge($grouped_caps_lists, $grouped_caps['Admin Options Capabilities']);
+
+						$grouped_caps = apply_filters('cme_grouped_capabilities', $grouped_caps);
+
+						foreach($grouped_caps as $grouped_title => $__grouped_caps) {
+							$grouped_title = esc_html($grouped_title);
+
+							$tab_slug = str_replace(' ', '-', strtolower(sanitize_title($grouped_title)));
+							$tab_id = 'cme-cap-type-tables-' . $tab_slug;
+							$tab_active = ($tab_id == $active_tab_id) ? $ppc_tab_active : '';
+
+							echo '<li data-slug="' . esc_attr($tab_slug) . '" data-content="' . esc_attr($tab_id) . '" class="' . esc_attr($tab_active) . '">'
+								. esc_html(str_replace('_', ' ', $grouped_title)) .
+							'</li>';
+						}
 
 						// caps: plugins
 						$plugin_caps = [];
@@ -768,6 +858,122 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 					$type_caps = apply_filters('publishpress_caps_manager_typecaps', $type_caps);
 
 					// clicking on post type name toggles corresponding checkbox selections
+
+					// caps: grouped
+					$grouped_caps = apply_filters('cme_grouped_capabilities', $grouped_caps);
+
+					foreach($grouped_caps as $grouped_title => $__grouped_caps) {
+						$grouped_title = esc_html($grouped_title);
+
+						$_grouped_caps = array_fill_keys($__grouped_caps, true);
+
+						$tab_id = 'cme-cap-type-tables-' . esc_attr(str_replace( ' ', '-', strtolower($grouped_title)));
+						$div_display = ($tab_id == $active_tab_id) ? 'block' : 'none';
+
+						echo '<div id="' . esc_attr($tab_id) . '" style="display:' . esc_attr($div_display) . '">';
+
+						echo '<h3 class="cme-cap-section">' . esc_html(str_replace('_', ' ', $grouped_title)) . '</h3>';
+
+						echo '<div class="ppc-filter-wrapper">';
+							echo '<input type="text" class="regular-text ppc-filter-text" placeholder="' . esc_attr__('Filter by capability', 'capsman-enhanced') . '">';
+							echo ' <button class="button secondary-button ppc-filter-text-reset" type="button">' . esc_html__('Clear', 'capsman-enhanced') . '</button>';
+						echo '</div>';
+						echo '<div class="ppc-filter-no-results" style="display:none;">' . esc_html__( 'No results found. Please try again with a different word.', 'capsman-enhanced' ) . '</div>';
+
+						echo '<table class="widefat fixed striped form-table cme-checklist">';
+
+						$centinel_ = true;
+						$checks_per_row = get_option( 'cme_form-rows', 1 );
+						$i = 0; $first_row = true;
+
+                        ?>
+						<tr class="cme-bulk-select">
+                            <td colspan="<?php echo (int) $checks_per_row;?>">
+                                <input type="checkbox" class="cme-check-all" title="<?php esc_attr_e('check / uncheck all', 'capsman-enhanced');?>"> <span><?php _e('Capability Name', 'capsman-enhanced');?></span>
+								<span style="float:right">
+								&nbsp;&nbsp;<a class="cme-neg-all" href="#" title="<?php esc_attr_e('negate all (storing as disabled capabilities)', 'capsman-enhanced');?>">X</a> <a class="cme-switch-all" href="#" title="<?php esc_attr_e('negate none (add/remove all capabilities normally)', 'capsman-enhanced');?>">X</a>
+								</span>
+							</td>
+						</tr>
+                        <?php
+						foreach( array_keys($_grouped_caps) as $cap_name ) {
+							$cap_name = sanitize_key($cap_name);
+
+							if ( isset( $type_caps[$cap_name] ) || isset($core_caps[$cap_name]) || isset($type_metacaps[$cap_name]) ) {
+								continue;
+							}
+
+							if ( ! $is_administrator && ! current_user_can($cap_name) )
+								continue;
+
+							// Output first <tr>
+							if ( $centinel_ == true ) {
+								echo '<tr class="' . esc_attr($cap_name) . '">';
+								$centinel_ = false;
+							}
+
+							if ( $i == $checks_per_row ) {
+								echo '</tr><tr class="' . esc_attr($cap_name) . '">';
+								$i = 0;
+							}
+
+							if ( ! isset( $rcaps[$cap_name] ) )
+								$class = 'cap-no';
+							else
+								$class = ( $rcaps[$cap_name] ) ? 'cap-yes' : 'cap-neg';
+
+							if ( ! empty($pp_metagroup_caps[$cap_name]) ) {
+								$class .= ' cap-metagroup';
+								$title_text = sprintf( __( '%s: assigned by Permission Group', 'capsman-enhanced' ), $cap_name );
+							} else {
+								$title_text = $cap_name;
+							}
+
+							$disabled = '';
+							$checked = checked(1, ! empty($rcaps[$cap_name]), false );
+							$cap_title = $title_text;
+							?>
+							<td class="<?php echo esc_attr($class); ?>"><span class="cap-x">X</span><label title="<?php echo esc_attr($cap_title);?>"><input type="checkbox" name="caps[<?php echo esc_attr($cap_name); ?>]" autocomplete="off" value="1" <?php echo esc_attr($checked) . esc_attr($disabled);?> />
+							<span>
+							<?php
+							echo esc_html(str_replace( '_', ' ', $cap_name));
+							?>
+							</span></label><a href="#" class="neg-cap">&nbsp;x&nbsp;</a>
+							<?php if ( false !== strpos( $class, 'cap-neg' ) ) :?>
+								<input type="hidden" class="cme-negation-input" name="caps[<?php echo esc_attr($cap_name); ?>]" value="" />
+							<?php endif; ?>
+							</td>
+
+							<?php
+							++$i;
+						}
+
+						if ( $i == $checks_per_row ) {
+							echo '</tr>';
+							$i = 0;
+						} elseif ( ! $first_row ) {
+							// Now close a wellformed table
+							for ( $i; $i < $checks_per_row; $i++ ){
+								echo '<td>&nbsp;</td>';
+							}
+							echo '</tr>';
+						}
+						?>
+
+						<tr class="cme-bulk-select">
+							<td colspan="<?php echo (int) $checks_per_row;?>">
+								<input type="checkbox" class="cme-check-all" autocomplete="off" title="<?php esc_attr_e('check / uncheck all', 'capsman-enhanced');?>"> <span><?php _e('Capability Name', 'capsman-enhanced');?></span>
+								<span style="float:right">
+								&nbsp;&nbsp;<a class="cme-neg-all" href="#" title="<?php esc_attr_e('negate all (storing as disabled capabilities)', 'capsman-enhanced');?>">X</a> <a class="cme-switch-all" href="#" title="<?php esc_attr_e('negate none (add/remove all capabilities normally)', 'capsman-enhanced');?>">X</a>
+								</span>
+							</td>
+						</tr>
+
+						</table>
+						</div>
+					<?php
+					}
+
 					// caps: other
 
 					$tab_id = "cme-cap-type-tables-other";
@@ -805,6 +1011,10 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 						foreach( array_keys($core_caps) as $cap_name ) {
 							$cap_name = sanitize_key($cap_name);
 
+							if (in_array($cap_name, $grouped_caps_lists)) {
+								continue;
+							}
+                            
 							if ( ! $is_administrator && ! current_user_can($cap_name) )
 								continue;
 
