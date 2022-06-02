@@ -80,6 +80,7 @@ class PP_Capabilities_Admin_UI {
 
 
         add_filter('pp_capabilities_feature_post_types', [$this, 'fltEditorFeaturesPostTypes'], 5);
+        add_filter('block_editor_settings_all', [$this, 'filterCodeEditingStatus'], 999);
         add_filter('classic_editor_enabled_editors_for_post_type', [$this, 'filterRolePostTypeEditor'], 10, 2);
         add_filter('classic_editor_plugin_settings', [$this, 'filterRoleEditorSettings']);
     }
@@ -87,58 +88,75 @@ class PP_Capabilities_Admin_UI {
     /**
      * Filters the editors that are enabled for the post type.
      *
-	 * @param array $editors    Associative array of the editors and whether they are enabled for the post type.
-	 * @param string $post_type The post type.
-	 */
-    public function filterRolePostTypeEditor($editors, $post_type) {
-        $user = wp_get_current_user();
-
-        if (is_object($user) && isset($user->roles)) {
-            $current_user_editors = [];
-            foreach ($user->roles as $user_role) {
-                //get role option
-                $role_option = get_option("pp_capabilities_{$user_role}_role_option", []);
-                if (is_array($role_option) && !empty($role_option) && !empty($role_option['role_editor'])) {
-                    $current_user_editors = array_merge($current_user_editors, $role_option['role_editor']);
-                }
-            }
-            
-            if (!empty($current_user_editors)) {
-                $current_user_editors = array_unique($current_user_editors);
-                $editors = array(
-                    'classic_editor' => in_array('classic_editor', $current_user_editors) ? true : false,
-                    'block_editor'   => in_array('block_editor', $current_user_editors) ? true : false,
-                );
-            }
-        }
-
-        return $editors;
-    }
-
-    /**
-     * Override the classic editor plugin's settings.
-     *
-     * @param bool $settings
-     * @return mixed
+     * @param array $editors    Associative array of the editors and whether they are enabled for the post type.
+     * @param string $post_type The post type.
      */
-    public function filterRoleEditorSettings($settings) {
+    public function filterRolePostTypeEditor($editors, $post_type) {
+      $user = wp_get_current_user();
+
+      if (is_object($user) && isset($user->roles)) {
+          $current_user_editors = [];
+          foreach ($user->roles as $user_role) {
+              //get role option
+              $role_option = get_option("pp_capabilities_{$user_role}_role_option", []);
+              if (is_array($role_option) && !empty($role_option) && !empty($role_option['role_editor'])) {
+                  $current_user_editors = array_merge($current_user_editors, $role_option['role_editor']);
+              }
+          }
+
+          if (!empty($current_user_editors)) {
+              $current_user_editors = array_unique($current_user_editors);
+              $editors = array(
+                  'classic_editor' => in_array('classic_editor', $current_user_editors) ? true : false,
+                  'block_editor'   => in_array('block_editor', $current_user_editors) ? true : false,
+              );
+          }
+      }
+
+      return $editors;
+  }
+
+  /**
+   * Override the classic editor plugin's settings.
+   *
+   * @param bool $settings
+   * @return mixed
+   */
+  public function filterRoleEditorSettings($settings) {
+      $user = wp_get_current_user();
+
+      if (is_object($user) && isset($user->roles)) {
+          $current_user_editors = [];
+          foreach ($user->roles as $user_role) {
+              //get role option
+              $role_option = get_option("pp_capabilities_{$user_role}_role_option", []);
+              if (is_array($role_option) && !empty($role_option) && !empty($role_option['role_editor'])) {
+                  $current_user_editors = array_merge($current_user_editors, $role_option['role_editor']);
+              }
+          }
+
+          if (!empty($current_user_editors)) {
+              $current_user_editors = array_unique($current_user_editors);
+              $settings = [];
+              $settings['editor'] = ($current_user_editors[0] === 'classic_editor') ? 'classic' : 'block';
+              $settings['allow-users'] = count($current_user_editors) > 1 ? true : false;
+          }
+      }
+
+      return $settings;
+  }
+
+    public function filterCodeEditingStatus($settings) {
         $user = wp_get_current_user();
-        
+
         if (is_object($user) && isset($user->roles)) {
-            $current_user_editors = [];
             foreach ($user->roles as $user_role) {
                 //get role option
                 $role_option = get_option("pp_capabilities_{$user_role}_role_option", []);
-                if (is_array($role_option) && !empty($role_option) && !empty($role_option['role_editor'])) {
-                    $current_user_editors = array_merge($current_user_editors, $role_option['role_editor']);
+                if (is_array($role_option) && !empty($role_option) && !empty($role_option['disable_code_editor']) && (int)$role_option['disable_code_editor'] > 0) {
+                    $settings['codeEditingEnabled'] = false;
+                    break;
                 }
-            }
-            
-            if (!empty($current_user_editors)) {
-                $current_user_editors = array_unique($current_user_editors);
-                $settings = [];
-                $settings['editor'] = ($current_user_editors[0] === 'classic_editor') ? 'classic' : 'block';
-                $settings['allow-users'] = count($current_user_editors) > 1 ? true : false;
             }
         }
 

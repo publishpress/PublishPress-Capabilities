@@ -255,10 +255,11 @@ class Pp_Roles_Actions
 
         //update role options
         $role_option    = [];
-        $role_option['login_redirect']   = !empty($_REQUEST['login_redirect']) ? sanitize_text_field($_REQUEST['login_redirect']) : '';
-        $role_option['logout_redirect']  = !empty($_REQUEST['logout_redirect']) ? sanitize_text_field($_REQUEST['logout_redirect']) : '';
-        $role_option['referer_redirect'] = !empty($_REQUEST['referer_redirect']) ? (int) $_REQUEST['referer_redirect'] : 0;
-        $role_option['role_editor']      = (!empty($_REQUEST['role_editor']) && is_array(($_REQUEST['role_editor']))) ? array_map('sanitize_text_field', $_REQUEST['role_editor']) : [];
+        $role_option['role_editor']         = (!empty($_REQUEST['role_editor']) && is_array(($_REQUEST['role_editor']))) ? array_map('sanitize_text_field', $_REQUEST['role_editor']) : [];
+        $role_option['login_redirect']      = !empty($_REQUEST['login_redirect']) ? sanitize_url($_REQUEST['login_redirect']) : '';
+        $role_option['logout_redirect']     = !empty($_REQUEST['logout_redirect']) ? sanitize_url($_REQUEST['logout_redirect']) : '';
+        $role_option['referer_redirect']    = !empty($_REQUEST['referer_redirect']) ? (int) $_REQUEST['referer_redirect'] : 0;
+        $role_option['disable_code_editor'] = !empty($_REQUEST['disable_code_editor']) ? (int) $_REQUEST['disable_code_editor'] : 0;
         update_option('pp_capabilities_' . $role['name'] . '_role_option', $role_option);
 
         /**
@@ -313,6 +314,7 @@ class Pp_Roles_Actions
                     'page' => 'pp-capabilities-roles', 
                     'add' => 'new_item', 
                     'role_action' => 'edit', 
+                    'active_tab' =>  !empty($_REQUEST['active_tab']) ? sanitize_key($_REQUEST['active_tab']) : 'general',
                     'role' => esc_attr($role['name'])
                  ],
                 admin_url('admin.php')
@@ -392,10 +394,11 @@ class Pp_Roles_Actions
 
         //update role options
         $role_option    = [];
-        $role_option['login_redirect']   = !empty($_REQUEST['login_redirect']) ? sanitize_text_field($_REQUEST['login_redirect']) : '';
-        $role_option['logout_redirect']  = !empty($_REQUEST['logout_redirect']) ? sanitize_text_field($_REQUEST['logout_redirect']) : '';
-        $role_option['referer_redirect'] = !empty($_REQUEST['referer_redirect']) ? (int) $_REQUEST['referer_redirect'] : 0;
-        $role_option['role_editor']      = (!empty($_REQUEST['role_editor']) && is_array(($_REQUEST['role_editor']))) ? array_map('sanitize_text_field', $_REQUEST['role_editor']) : [];
+        $role_option['role_editor']         = (!empty($_REQUEST['role_editor']) && is_array(($_REQUEST['role_editor']))) ? array_map('sanitize_text_field', $_REQUEST['role_editor']) : [];
+        $role_option['login_redirect']      = !empty($_REQUEST['login_redirect']) ? sanitize_url($_REQUEST['login_redirect']) : '';
+        $role_option['logout_redirect']     = !empty($_REQUEST['logout_redirect']) ? sanitize_url($_REQUEST['logout_redirect']) : '';
+        $role_option['referer_redirect']    = !empty($_REQUEST['referer_redirect']) ? (int) $_REQUEST['referer_redirect'] : 0;
+        $role_option['disable_code_editor'] = !empty($_REQUEST['disable_code_editor']) ? (int) $_REQUEST['disable_code_editor'] : 0;
         update_option('pp_capabilities_' . sanitize_key($_REQUEST['current_role']) . '_role_option', $role_option);
 
         /**
@@ -409,6 +412,7 @@ class Pp_Roles_Actions
                     'page' => 'pp-capabilities-roles', 
                     'add' => 'new_item', 
                     'role_action' => 'edit', 
+                    'active_tab' =>  !empty($_REQUEST['active_tab']) ? sanitize_key($_REQUEST['active_tab']) : 'general', 
                     'role' => esc_attr(sanitize_key($_REQUEST['current_role']))
                  ],
                 admin_url('admin.php')
