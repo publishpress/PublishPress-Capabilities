@@ -13,7 +13,8 @@ jQuery(function ($) {
     $field.hide();
 
     // Convert the roles field into multiselect
-    $newField.prop('multiple', true);
+  $newField.prop('multiple', true);
+  $newField.after('<p class="description">' + ppCapabilitiesProfileData.role_description + '</p>');
 
     // $newField.attr('name', 'role[]');
 
@@ -27,8 +28,55 @@ jQuery(function ($) {
             }
         });
     });
+  
+  /**
+   * loop role options and change selected role position
+   */
+   $.each(ppCapabilitiesProfileData.selected_roles.reverse(), function (i, role) {
+     var options = $('#pp_roles option');
+     var position = $("#pp_roles option[value='" + role + "']").index();
+     $(options[position]).insertBefore(options.eq(0));
+   });
 
+    //add hidden option as first option to enable sorting selection
+  $("#pp_roles").prepend('<option style="display:none;"></option>');
+  
+  //init chosen.js
     $newField.chosen({
         'width': '25em'
     });
+  
+  /**
+   * Make role sortable
+   */
+  $(".user-role-wrap .chosen-choices").sortable();
+  
+  /**
+   * Force role option re-order before profile form submission
+   */
+  $('form#your-profile').submit(function () {
+    var options = $('#pp_roles option');
+    $(".user-role-wrap .chosen-choices .search-choice .search-choice-close").each(function () {
+      var select_position = $(this).attr('data-option-array-index');
+      $(options[select_position]).insertBefore(options.eq(0));
+    });
+  });
+
+  /**
+   * Add class to chosen container on chouce click
+   */
+	$(document).on( 'mousedown', '.user-role-wrap .chosen-choices .search-choice', function() {
+    $(this).closest('.chosen-container').addClass('chosen-choice-click');
+   });
+  
+  /**
+   * Remove chosen container class on click inside input
+   */
+  
+	$(document).on( 'mousedown', '.user-role-wrap .chosen-choices', function(e) {
+    if (!e.target.parentElement.classList.contains('search-choice')) {
+      $(this).closest('.chosen-container').removeClass('chosen-choice-click');
+    }
+   });
+    
 });
