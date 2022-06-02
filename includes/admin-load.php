@@ -80,6 +80,24 @@ class PP_Capabilities_Admin_UI {
 
 
         add_filter('pp_capabilities_feature_post_types', [$this, 'fltEditorFeaturesPostTypes'], 5);
+        add_filter('block_editor_settings_all', [$this, 'filterCodeEditingStatus'], 999);
+    }
+
+    public function filterCodeEditingStatus($settings) {
+        $user = wp_get_current_user();
+
+        if (is_object($user) && isset($user->roles)) {
+            foreach ($user->roles as $user_role) {
+                //get role option
+                $role_option = get_option("pp_capabilities_{$user_role}_role_option", []);
+                if (is_array($role_option) && !empty($role_option) && !empty($role_option['disable_code_editor']) && (int)$role_option['disable_code_editor'] > 0) {
+                    $settings['codeEditingEnabled'] = false;
+                    break;
+                }
+            }
+        }
+
+        return $settings;
     }
 
     public function fltEditorFeaturesPostTypes($def_post_types) {
