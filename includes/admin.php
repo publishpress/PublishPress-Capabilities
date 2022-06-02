@@ -306,29 +306,27 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 							}
 						}
 
-						// caps: other
-						$tab_id = "cme-cap-type-tables-other";
-						$tab_active = ($tab_id == $active_tab_id) ? $ppc_tab_active : '';
-						$tab_caption = esc_html__( 'WordPress Core', 'capsman-enhanced' );
-
-						echo '<li data-slug="other" data-content="' . esc_attr($tab_id) . '" class="' . esc_attr($tab_active) . '">' . esc_html($tab_caption) . '</li>';
-
                         //grouped capabilities
                         $grouped_caps       = [];
                         $grouped_caps_lists = [];
 
-                        //add plugin related caps
-                        $grouped_caps['Plugins Capabilities'] = array(
-                            'activate_plugins',
-                            'delete_plugins',
-                            'edit_plugins',
-                            'install_plugins',
-                            'update_plugins',
+                        //add media related caps
+                        $grouped_caps['Media'] = array(
+                            'edit_files',
+                            'upload_files',
+                            'unfiltered_upload',
                         );
-                        $grouped_caps_lists = array_merge($grouped_caps_lists, $grouped_caps['Plugins Capabilities']);
+                        $grouped_caps_lists = array_merge($grouped_caps_lists, $grouped_caps['Media']);
+
+                        //add comments related caps
+                        $grouped_caps['Comments'] = array(
+                            'moderate_comments',
+                            'edit_comment',
+                        );
+                        $grouped_caps_lists = array_merge($grouped_caps_lists, $grouped_caps['Comments']);
 
                         //add users related caps
-                        $grouped_caps['Users Capabilities'] = array(
+                        $grouped_caps['Users'] = array(
                             'add_users',
                             'create_users',
                             'delete_users',
@@ -337,10 +335,22 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
                             'promote_users',
                             'remove_users',
                         );
-                        $grouped_caps_lists = array_merge($grouped_caps_lists, $grouped_caps['Users Capabilities']);
+                        $grouped_caps_lists = array_merge($grouped_caps_lists, $grouped_caps['Users']);
+
+                        //add admin options related caps
+                        $grouped_caps['Admin'] = array(
+                            'manage_options',
+                            'edit_dashboard',
+                            'export',
+                            'import',
+                            'read',
+                            'update_core',
+                            'unfiltered_html',
+                        );
+                        $grouped_caps_lists = array_merge($grouped_caps_lists, $grouped_caps['Admin']);
 
                         //add themes related caps
-                        $grouped_caps['Themes Capabilities'] = array(
+                        $grouped_caps['Themes'] = array(
                             'delete_themes',
                             'edit_themes',
                             'install_themes',
@@ -348,43 +358,17 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
                             'update_themes',
                             'edit_theme_options',
                         );
-                        $grouped_caps_lists = array_merge($grouped_caps_lists, $grouped_caps['Themes Capabilities']);
+                        $grouped_caps_lists = array_merge($grouped_caps_lists, $grouped_caps['Themes']);
 
-                        //add media related caps
-                        $grouped_caps['Media Capabilities'] = array(
-                            'edit_files',
-                            'upload_files',
-                            'unfiltered_upload',
+                        //add plugin related caps
+                        $grouped_caps['Plugins'] = array(
+                            'activate_plugins',
+                            'delete_plugins',
+                            'edit_plugins',
+                            'install_plugins',
+                            'update_plugins',
                         );
-                        $grouped_caps_lists = array_merge($grouped_caps_lists, $grouped_caps['Media Capabilities']);
-
-                        //add links related caps
-                        $grouped_caps['Links Capabilities'] = array(
-                            'manage_links',
-                        );
-                        $grouped_caps_lists = array_merge($grouped_caps_lists, $grouped_caps['Links Capabilities']);
-
-                        //add import and export related caps
-                        $grouped_caps['Import and Export Capabilities'] = array(
-                            'export',
-                            'import',
-                        );
-                        $grouped_caps_lists = array_merge($grouped_caps_lists, $grouped_caps['Import and Export Capabilities']);
-
-                        //add comments related caps
-                        $grouped_caps['Comments Capabilities'] = array(
-                            'moderate_comments',
-                            'edit_comment',
-                        );
-                        $grouped_caps_lists = array_merge($grouped_caps_lists, $grouped_caps['Comments Capabilities']);
-
-                        //add admin options related caps
-                        $grouped_caps['Admin Options Capabilities'] = array(
-                            'manage_options',
-                            'update_core',
-                            'unfiltered_html',
-                        );
-                        $grouped_caps_lists = array_merge($grouped_caps_lists, $grouped_caps['Admin Options Capabilities']);
+                        $grouped_caps_lists = array_merge($grouped_caps_lists, $grouped_caps['Plugins']);
 
 						$grouped_caps = apply_filters('cme_grouped_capabilities', $grouped_caps);
 
@@ -400,8 +384,23 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 							'</li>';
 						}
 
+						// caps: other
+						$tab_id = "cme-cap-type-tables-other";
+						$tab_active = ($tab_id == $active_tab_id) ? $ppc_tab_active : '';
+						$tab_caption = esc_html__( 'WordPress Core', 'capsman-enhanced' );
+
+						echo '<li data-slug="other" data-content="' . esc_attr($tab_id) . '" class="' . esc_attr($tab_active) . '">' . esc_html($tab_caption) . '</li>';
+
 						// caps: plugins
 						$plugin_caps = [];
+
+						//PublishPress Capabilities Capabilities
+						$plugin_caps['PublishPress Capabilities'] = apply_filters('cme_publishpress_capabilities_capabilities',
+							array(
+							'manage_capabilities',
+							)
+						);
+                        
 						if (defined('PUBLISHPRESS_VERSION')) {
 							$plugin_caps['PublishPress'] = apply_filters('cme_publishpress_capabilities',
 								array(
@@ -414,13 +413,6 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 								)
 							);
 						}
-
-						//PublishPress Capabilities Capabilities
-						$plugin_caps['PublishPress Capabilities'] = apply_filters('cme_publishpress_capabilities_capabilities',
-							array(
-							'manage_capabilities',
-							)
-						);
 
 						if (defined('PUBLISHPRESS_MULTIPLE_AUTHORS_VERSION')) {
 							if ($_caps = apply_filters('cme_multiple_authors_capabilities', array())) {
