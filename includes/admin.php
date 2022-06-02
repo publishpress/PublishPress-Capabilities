@@ -261,9 +261,6 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 					// Active current Tab
 					$('.ppc-capabilities-tabs > ul > li').removeClass('ppc-capabilities-tab-active');
 					$(this).addClass('ppc-capabilities-tab-active');
-
-                    //scroll to top since we may have a longer tab
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
 				});
 			});
 			/* ]]> */
@@ -357,6 +354,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
                             'switch_themes',
                             'update_themes',
                             'edit_theme_options',
+                            'manage_links',
                         );
                         $grouped_caps_lists = array_merge($grouped_caps_lists, $grouped_caps['Themes']);
 
@@ -383,13 +381,6 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 								. esc_html(str_replace('_', ' ', $grouped_title)) .
 							'</li>';
 						}
-
-						// caps: other
-						$tab_id = "cme-cap-type-tables-other";
-						$tab_active = ($tab_id == $active_tab_id) ? $ppc_tab_active : '';
-						$tab_caption = esc_html__( 'WordPress Core', 'capsman-enhanced' );
-
-						echo '<li data-slug="other" data-content="' . esc_attr($tab_id) . '" class="' . esc_attr($tab_active) . '">' . esc_html($tab_caption) . '</li>';
 
 						// caps: plugins
 						$plugin_caps = [];
@@ -997,95 +988,6 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 								</span>
 							</td>
 						</tr>
-
-                        <?php
-						$core_caps = _cme_core_caps();
-						foreach( array_keys($core_caps) as $cap_name ) {
-							$cap_name = sanitize_key($cap_name);
-
-							if (in_array($cap_name, $grouped_caps_lists)) {
-								continue;
-							}
-                            
-							if ( ! $is_administrator && ! current_user_can($cap_name) )
-								continue;
-
-							// Output first <tr>
-							if ( $centinel_ == true ) {
-								echo '<tr class="' . esc_attr($cap_name) . '">';
-								$centinel_ = false;
-							}
-
-							if ( $i == $checks_per_row ) {
-								echo '</tr><tr class="' . esc_attr($cap_name) . '">';
-								$i = 0;
-							}
-
-							if ( ! isset( $rcaps[$cap_name] ) )
-								$class = 'cap-no';
-							else
-								$class = ( $rcaps[$cap_name] ) ? 'cap-yes' : 'cap-neg';
-
-							if ( ! empty($pp_metagroup_caps[$cap_name]) ) {
-								$class .= ' cap-metagroup';
-								$title_text = sprintf( __( '%s: assigned by Permission Group', 'capsman-enhanced' ), $cap_name );
-							} else {
-								$title_text = $cap_name;
-							}
-
-							$disabled = '';
-							$checked = checked(1, ! empty($rcaps[$cap_name]), false );
-							$lock_capability = false;
-							$cap_title = $title_text;
-
-							if ( 'read' == $cap_name ) {
-								if ( ! empty( $block_read_removal ) ) {
-									// prevent the read capability from being removed from a core role, but don't force it to be added
-									if ( $checked || apply_filters( 'pp_caps_force_capability_storage', false, 'read', $default ) ) {
-										if ( apply_filters( 'pp_caps_lock_capability', true, 'read', $default ) ) {
-											$lock_capability = true;
-											$class .= ' cap-locked';
-											$disabled = ' disabled ';
-											if ( 'administrator' != $this->current ) {
-												$cap_title = __('Lockout Prevention: To remove read capability, first remove WordPress admin / editing capabilities, or add "dashboard_lockout_ok" capability', 'capsman-enhanced' );
-											}
-										}
-									}
-								}
-							}
-
-							?>
-							<td class="<?php echo esc_attr($class); ?>"><span class="cap-x">X</span><label title="<?php echo esc_attr($cap_title);?>"><input type="checkbox" name="caps[<?php echo esc_attr($cap_name); ?>]" autocomplete="off" value="1" <?php echo esc_attr($checked) . esc_attr($disabled);?> />
-							<span>
-							<?php
-							echo esc_html(str_replace( '_', ' ', $cap_name));
-							?>
-							</span></label><a href="#" class="neg-cap">&nbsp;x&nbsp;</a>
-							<?php if ( false !== strpos( $class, 'cap-neg' ) ) :?>
-								<input type="hidden" class="cme-negation-input" name="caps[<?php echo esc_attr($cap_name); ?>]" value="" />
-							<?php endif; ?>
-							</td>
-
-							<?php
-
-							if ( $lock_capability ) {
-								echo '<input type="hidden" name="caps[' . esc_attr($cap_name) . ']" value="1" />';
-							}
-
-							++$i;
-						}
-
-						if ( $i == $checks_per_row ) {
-							echo '</tr>';
-							$i = 0;
-						} elseif ( ! $first_row ) {
-							// Now close a wellformed table
-							for ( $i; $i < $checks_per_row; $i++ ){
-								echo '<td>&nbsp;</td>';
-							}
-							echo '</tr>';
-						}
-						?>
 
 						<tr class="cme-bulk-select">
 							<td colspan="<?php echo (int) $checks_per_row;?>">
