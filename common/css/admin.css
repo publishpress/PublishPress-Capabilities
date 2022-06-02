@@ -144,7 +144,7 @@ td.cap-neg label span {
 color: red;
 }
 
-td.cap-neg input {
+td.cap-neg input:not(.excluded-input) {
 display:none;
 }
 
