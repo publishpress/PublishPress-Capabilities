@@ -117,5 +117,14 @@ jQuery(document).ready(function ($) {
   $(document).on('click', 'ul.ppc-roles-tab li', function () {
       $('.ppc-roles-active-tab').val($(this).attr('data-tab'));
   });
+  
+  /**
+   * Role screen select input
+   */
+  if ($('.pp-capabilities-role-choosen').length > 0) {
+    $('.pp-capabilities-role-choosen').chosen({
+      'width': '25em'
+    });
+  }
 
 });
