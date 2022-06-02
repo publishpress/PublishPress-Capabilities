@@ -13,7 +13,8 @@ jQuery(function ($) {
     $field.hide();
 
     // Convert the roles field into multiselect
-    $newField.prop('multiple', true);
+  $newField.prop('multiple', true);
+  $newField.after('<p class="description">' + ppCapabilitiesProfileData.role_description + '</p>');
 
     // $newField.attr('name', 'role[]');
 
@@ -60,5 +61,22 @@ jQuery(function ($) {
       $(options[select_position]).insertBefore(options.eq(0));
     });
   });
+
+  /**
+   * Add class to chosen container on chouce click
+   */
+	$(document).on( 'mousedown', '.user-role-wrap .chosen-choices .search-choice', function() {
+    $(this).closest('.chosen-container').addClass('chosen-choice-click');
+   });
+  
+  /**
+   * Remove chosen container class on click inside input
+   */
+  
+	$(document).on( 'mousedown', '.user-role-wrap .chosen-choices', function(e) {
+    if (!e.target.parentElement.classList.contains('search-choice')) {
+      $(this).closest('.chosen-container').removeClass('chosen-choice-click');
+    }
+   });
     
 });

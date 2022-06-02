@@ -202,7 +202,8 @@ class PP_Capabilities_Admin_UI {
                     'pp-capabilities-roles-profile-js',
                     'ppCapabilitiesProfileData',
                     [
-                        'selected_roles' => $roles
+                        'role_description' => esc_html__('Drag multiple roles selection to change order.', 'capsman-enhanced'),
+                        'selected_roles'   => $roles
                     ]
                 );
             }
