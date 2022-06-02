@@ -313,6 +313,7 @@ class Pp_Roles_Actions
                     'page' => 'pp-capabilities-roles', 
                     'add' => 'new_item', 
                     'role_action' => 'edit', 
+                    'active_tab' =>  !empty($_REQUEST['active_tab']) ? sanitize_key($_REQUEST['active_tab']) : 'general',
                     'role' => esc_attr($role['name'])
                  ],
                 admin_url('admin.php')
@@ -409,6 +410,7 @@ class Pp_Roles_Actions
                     'page' => 'pp-capabilities-roles', 
                     'add' => 'new_item', 
                     'role_action' => 'edit', 
+                    'active_tab' =>  !empty($_REQUEST['active_tab']) ? sanitize_key($_REQUEST['active_tab']) : 'general', 
                     'role' => esc_attr(sanitize_key($_REQUEST['current_role']))
                  ],
                 admin_url('admin.php')
