@@ -206,7 +206,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 			$cap_properties['read']['type'] = array( 'read_private_posts' );
 
             $cap_properties['taxonomies']['taxonomy'] =  array( 'manage_terms', 'edit_terms', 'assign_terms', 'delete_terms' );
-            
+
 			$stati = get_post_stati( array( 'internal' => false ) );
 
 			$cap_type_names = array(
@@ -293,7 +293,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 						if ($extra_tabs = apply_filters('pp_capabilities_extra_post_capability_tabs', [])) {
 							foreach($extra_tabs as $tab_slug => $tab_caption) {
 								$tab_slug = esc_attr($tab_slug);
-								
+
 								$tab_id = "cme-cap-type-tables-{$tab_slug}";
 								$tab_active = ($tab_id == $active_tab_id) ? $ppc_tab_active : '';
 
@@ -391,7 +391,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 							'manage_capabilities',
 							)
 						);
-                        
+
 						if (defined('PUBLISHPRESS_VERSION')) {
 							$plugin_caps['PublishPress'] = apply_filters('cme_publishpress_capabilities',
 								array(
@@ -494,7 +494,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 								)
 							);
 						}
-            
+
 						if (defined('WS_FORM_VERSION')) {
 							$plugin_caps['WS Form'] = apply_filters('cme_wsform_capabilities',
 								array(
@@ -635,7 +635,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 					foreach( array_keys($cap_properties) as $cap_type ) {
 
 						foreach( array_keys($defined) as $item_type ) {
-                            
+
 
                             if (!isset($cap_properties[$cap_type][$item_type])) {
                                 continue;
@@ -1260,7 +1260,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 
 						foreach ($additional_caps as $cap_name => $cap) :
 							$cap_name = sanitize_key($cap_name);
-							
+
 
 							if ((isset($type_caps[$cap_name]) && !isset($type_metacaps[$cap_name]))
 							|| isset($core_caps[$cap_name])
@@ -1497,7 +1497,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 			<input type="hidden" name="action" value="update" />
 			<input type="hidden" name="current" value="<?php echo esc_attr($default); ?>" />
 
-			<?php 
+			<?php
 			$save_caption = (in_array(sanitize_key(get_locale()), ['en_EN', 'en_US'])) ? 'Save Capabilities' : __('Save Changes', 'capsman-enhanced');
 			?>
 			<input type="submit" name="SaveRole" value="<?php echo esc_attr($save_caption);?>" class="button-primary" /> &nbsp;
@@ -1517,7 +1517,9 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 restore an earlier version of your roles and capabilities.', 'capsman-enhanced' )
 			    ),
 			    admin_url( 'admin.php?page=pp-capabilities-backup' ),
-			    __( 'Go to the Backup feature', 'capsman-enhanced' )
+			    __( 'Go to the Backup feature', 'capsman-enhanced' ),
+				'',
+				'button'
 			);
 			?>
 
