@@ -794,7 +794,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 									}
 
 									if ('taxonomy' == $item_type) {
-										for ($i = $col_count; $i < 3; $i++) {
+										for ($i = $col_count; $i < 4; $i++) {
 											$row .= "<td></td>";
 										}
 									}
