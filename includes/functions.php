@@ -267,14 +267,18 @@ function ppc_roles_login_redirect($redirect_to, $request, $user) {
         foreach ($user->roles as $user_role) {
             //get role option
             $role_option = get_option("pp_capabilities_{$user_role}_role_option", []);
-            if (is_array($role_option) && !empty($role_option) && !empty($role_option['login_redirect'])) {
+
+            if (is_array($role_option) && !empty($role_option) 
+                && !empty($role_option['custom_redirect']) && (int)$role_option['custom_redirect'] > 0
+            ) {
+                //custom url redirect
                 $redirect_to = esc_url_raw($role_option['login_redirect']);
                 break;
-            }
-            if (is_array($role_option) && !empty($role_option) 
+            } else if (is_array($role_option) && !empty($role_option) 
                 && !empty($role_option['referer_redirect']) && (int)$role_option['referer_redirect'] > 0
                 && wp_get_referer()
             ) {
+                //referer url redirect
                 $redirect_to = esc_url_raw(wp_get_referer());
                 break;
             }

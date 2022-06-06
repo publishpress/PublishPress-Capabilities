@@ -299,6 +299,26 @@ jQuery(document).ready( function($) {
       window.scrollTo({ top: 0, behavior: 'smooth' });
    });
   
+   /**
+    * Roles login redirect options
+    */
+    $(document).on('change', '.login-redirect-option #referer_redirect', function () {
+      $('.login-redirect-option .custom-url-wrapper').hide();
+      $('.login-redirect-option #custom_redirect').prop('checked', false);
+   });
+  
+   /**
+    * Roles login redirect options
+    */
+    $(document).on('change', '.login-redirect-option #custom_redirect', function (event) {
+      if ($(this).prop('checked')) {
+        $('.login-redirect-option .custom-url-wrapper').show();
+      } else {
+        $('.login-redirect-option .custom-url-wrapper').hide();
+      }
+      $('.login-redirect-option #referer_redirect').prop('checked', false);
+   });
+  
   /**
    * Capabilities role slug validation
    */
