@@ -247,7 +247,7 @@ class Pp_Roles_Admin
         //add disable_code_editor
         $fields['disable_code_editor'] = [
             'label'        => esc_html__('Disable Code Editor', 'capsman-enhanced'),
-            'description'  => esc_html__('Disable gutenberg code editor for user in this role.', 'capsman-enhanced'),
+            'description'  => esc_html__('Disable the "Code editor" option for the Gutenberg block editor.', 'capsman-enhanced'),
             'type'         => 'checkbox',
             'value_key'    => 'disable_code_editor',
             'tab'          => 'editing',
