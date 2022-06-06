@@ -199,26 +199,43 @@ jQuery(document).ready( function($) {
     */
     $(document).on('click', '.pp-row-action-rotate', function (event) {
       event.preventDefault();
-      let clicked_box = $(this);
-      if (clicked_box.hasClass('rotate-blank')) {
-        //remove all states class
-        clicked_box.removeClass('rotate-x rotate-checkmark rotate-blank');
-        //perform X action if state is blank
-        clicked_box.closest('tr').find('td[class!="cap-neg"]').filter('td[class!="cap-unreg"]').each(function () {
-          $(this).addClass('cap-neg');
-    
-          var cap_name_attr = $(this).find('input[type="checkbox"]').attr('name');
-          $(this).append('<input type="hidden" class="cme-negation-input" name="'+cap_name_attr+'" value="" />');
-    
-          $('input[name="' + cap_name_attr + '"]').parent().next('a.neg-cap:visible').click();
-        });
-        //add current state action class
-        clicked_box.addClass('rotate-x');
+      let clicked_box       = $(this);
+      var checked_fields     = false;
+      var unchecked_fields   = false;
+      var all_checkbox      = 0;
+      var negative_checkbox = 0;
 
-      } else if ($(this).hasClass('rotate-x')) {
-        //remove all states class
-        $(this).removeClass('rotate-x rotate-checkmark rotate-blank');
-        //perform checked action if state is X
+      //determine if we should check or uncheck based on current input state
+      clicked_box.closest('tr').find('input[type="checkbox"]').each(function () {
+        if (!$(this).hasClass('excluded-input') && !$(this).prop('checked')) {
+          all_checkbox++;
+          unchecked_fields = true;
+        } else if (!$(this).hasClass('excluded-input') && $(this).prop('checked')) {
+          all_checkbox++;
+          checked_fields = true;
+        }
+        if ($(this).closest('td').hasClass('cap-neg')) {
+          negative_checkbox++;
+        }
+      });
+
+      if ((checked_fields && unchecked_fields) || (negative_checkbox >= all_checkbox)) {
+        checked_fields   = true;
+        unchecked_fields = false;
+      } else if (!checked_fields && unchecked_fields && !clicked_box.hasClass('interacted')) {
+        checked_fields   = true;
+        unchecked_fields = false;
+      } else if (checked_fields && !unchecked_fields) {
+        checked_fields   = false;
+        unchecked_fields = true;
+      } else {
+        checked_fields   = false;
+        unchecked_fields = false;
+      }
+
+
+      if (checked_fields) {
+        //perform checked action
         clicked_box.closest('tr').find('td').filter('td[class!="cap-unreg"]').each(function () {
           $(this).closest('td').removeClass('cap-neg').removeClass('cap-yes').addClass('cap-no');
           $(this).parent().find('input[type="checkbox"]').prop('checked',true);
@@ -233,11 +250,7 @@ jQuery(document).ready( function($) {
           $('input[name="' + cap_name_attr + '"]').parent().closest('td').removeClass('cap-neg').removeClass('cap-yes').addClass('cap-no');
           $('input[name="' + cap_name_attr + '"]').prop('checked',false).parent().find('input.cme-negation-input').remove();
         });
-        //add current state action class
-        clicked_box.addClass('rotate-checkmark');
-      } else if ($(this).hasClass('rotate-checkmark')) {
-        //remove all states class
-        $(this).removeClass('rotate-x rotate-checkmark rotate-blank');
+      } else if (unchecked_fields) {
         //perform blank action if state is checked
         clicked_box.closest('tr').find('td').filter('td[class!="cap-unreg"]').each(function () {
           $(this).closest('td').removeClass('cap-neg').removeClass('cap-yes').addClass('cap-no');
@@ -253,9 +266,19 @@ jQuery(document).ready( function($) {
           $('input[name="' + cap_name_attr + '"]').parent().closest('td').removeClass('cap-neg').removeClass('cap-yes').addClass('cap-no');
           $('input[name="' + cap_name_attr + '"]').prop('checked',false).parent().find('input.cme-negation-input').remove();
         });
-        //add current state action class
-        clicked_box.addClass('rotate-blank');
+      } else {
+        //perform X action if state is blank
+        clicked_box.closest('tr').find('td[class!="cap-neg"]').filter('td[class!="cap-unreg"]').each(function () {
+          $(this).addClass('cap-neg');
+    
+          var cap_name_attr = $(this).find('input[type="checkbox"]').attr('name');
+          $(this).append('<input type="hidden" class="cme-negation-input" name="'+cap_name_attr+'" value="" />');
+    
+          $('input[name="' + cap_name_attr + '"]').parent().next('a.neg-cap:visible').click();
+        });
       }
+
+      clicked_box.addClass('interacted');
 
    });
   
