@@ -213,7 +213,7 @@ class Pp_Roles_Admin
 
         //add login_redirect
         $fields['login_redirect'] = [
-            'label'     => esc_html__('Login redirect', 'capsman-enhanced'),
+            'label'     => esc_html__('Login Redirect', 'capsman-enhanced'),
             'description' => esc_html__('Enter full URL users in this role should be redirected to after login.', 'capsman-enhanced'),
             'type'      => 'url',
             'value_key' => 'login_redirect',
@@ -224,8 +224,8 @@ class Pp_Roles_Admin
 
         //add referer_redirect
         $fields['referer_redirect'] = [
-            'label'     => esc_html__('Login referer redirect', 'capsman-enhanced'),
-            'description' => esc_html__('Redirect users to original page after login.', 'capsman-enhanced'),
+            'label'     => esc_html__('Original URL Redirect', 'capsman-enhanced'),
+            'description' => esc_html__('After login, redirect users to the URL they were viewing.', 'capsman-enhanced'),
             'type'      => 'checkbox',
             'value_key' => 'referer_redirect',
             'tab'       => 'redirects',
@@ -235,7 +235,7 @@ class Pp_Roles_Admin
 
         //add logout_redirect
         $fields['logout_redirect'] = [
-            'label'     => esc_html__('Logout redirect', 'capsman-enhanced'),
+            'label'     => esc_html__('Logout Redirect', 'capsman-enhanced'),
             'description' => esc_html__('Enter full URL users in this role should be redirected to after logout.', 'capsman-enhanced'),
             'type'      => 'url',
             'value_key' => 'logout_redirect',
