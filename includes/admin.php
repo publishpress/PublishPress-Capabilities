@@ -620,7 +620,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 						$tab_id = "cme-cap-type-tables-invalid";
 						$tab_active = ($tab_id == $active_tab_id) ? $ppc_tab_active : '';
 						$tab_caption = esc_html__( 'Invalid Capabilities', 'capsman-enhanced' );
-						echo '<li id="cme_tab_invalid_caps" data-slug="invalid" data-content="cme-cap-type-tables-' . esc_attr($tab_id) . '" class="' . esc_attr($tab_active) . '" style="display:none;">' . esc_html($tab_caption) . '</li>';
+						echo '<li id="cme_tab_invalid_caps" data-slug="invalid" data-content="' . esc_attr($tab_id) . '" class="' . esc_attr($tab_active) . '" style="display:none;">' . esc_html($tab_caption) . '</li>';
 
 						$tab_id = "cme-cap-type-tables-additional";
 						$tab_active = ($tab_id == $active_tab_id) ? $ppc_tab_active : '';
@@ -1261,12 +1261,15 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 						foreach ($additional_caps as $cap_name => $cap) :
 							$cap_name = sanitize_key($cap_name);
 
-
 							if ((isset($type_caps[$cap_name]) && !isset($type_metacaps[$cap_name]))
 							|| isset($core_caps[$cap_name])
 							|| (isset($type_metacaps[$cap_name]) && !empty($rcaps[$cap_name])) ) {
 								continue;
 							}
+
+                            if (in_array($cap_name, $grouped_caps_lists)) {
+                                continue;
+                            }
 
 							if (!isset($type_metacaps[$cap_name]) || !empty($rcaps[$cap_name])) {
 								foreach(array_keys($plugin_caps) as $plugin_title) {
