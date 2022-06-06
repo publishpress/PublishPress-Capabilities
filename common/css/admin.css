@@ -653,8 +653,6 @@ ul.ppc-roles-tab {
     box-sizing: border-box;
     padding-left: 10px;
 }
-
-
 ul.ppc-roles-tab li {
     margin: 0;
     padding: 0;
@@ -710,6 +708,14 @@ ul.ppc-roles-tab li.active a {
 .ppc-roles-section .red-warning {
     color: red;
     font-weight: bold;
+}
+
+.ppc-roles-tab-content .login-redirect-option {
+    margin-bottom: 10px;
+}
+
+.ppc-roles-tab-content .custom-url-wrapper {
+    margin-top: 10px;
 }
 
 /* Filters */
