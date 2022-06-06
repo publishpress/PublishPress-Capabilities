@@ -258,8 +258,8 @@ class Pp_Roles_Admin
         if (count($editor_options) > 1) {
             //add role_editor
             $fields['role_editor'] = [
-                'label'       => esc_html__('Editor', 'capsman-enhanced'),
-                'description' => esc_html__('Select editor option(s) for user in this role.', 'capsman-enhanced'),
+                'label'       => esc_html__('Allowed Editors', 'capsman-enhanced'),
+                'description' => esc_html__('Select the allowed editor options for users in this role.', 'capsman-enhanced'),
                 'type'        => 'select',
                 'multiple'    => true,
                 'value_key'   => 'role_editor',
