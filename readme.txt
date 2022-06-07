@@ -409,7 +409,7 @@ Fixed : Security issue. Please update.
 
 == Changelog ==
 
-= 2.4.2 - 02 Jun 2022 =
+= 2.4.2 - 07 Jun 2022 =
   * Fixed : Correct match of post types and Editor Features boxes #427
   * Update : Changes to user role selection UI and make role draggable for re-ordering #443
   * Added : Two new role tabs (Redirects and Editing) #403
