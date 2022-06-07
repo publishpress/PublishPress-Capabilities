@@ -705,7 +705,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 									$row .= "<td>";
 									$row .= '<input type="checkbox" class="pp-row-action-rotate excluded-input"> &nbsp;';
 									$row .= "<a class='cap_type' href='#toggle_type_caps'>" . esc_html($type_label) . '</a>';
-									$row .= '<a href="#" class="neg-type-caps">&nbsp;x&nbsp;</a>';
+									$row .= '<a style="display: none;" href="#" class="neg-type-caps">&nbsp;x&nbsp;</a>';
 									$row .= '</td>';
 
 									$display_row = ! empty($force_distinct_ui);
@@ -780,6 +780,8 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 										} else {
 											$td_classes []= "cap-unreg";
 										}
+
+                                        $td_classes[] = 'capability-checkbox-rotate';
 
 										$td_class = ( $td_classes ) ? implode(' ', $td_classes) : '';
 
