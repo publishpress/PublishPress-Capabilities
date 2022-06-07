@@ -33,6 +33,9 @@ jQuery(document).ready( function($) {
 		$('input[name="' + cap_name_attr + '"]').parent().closest('td').removeClass('cap-neg').removeClass('cap-yes').addClass('cap-no');
 		$('input[name="' + cap_name_attr + '"]').prop('checked',false).parent().find('input.cme-negation-input').remove();
 
+    if ($(this).closest('td').hasClass('capability-checkbox-rotate')) {
+      $(this).closest('td').find('input[type="checkbox"]').prop('checked', true);
+    }
 		return false;
 	});
 
@@ -192,6 +195,44 @@ jQuery(document).ready( function($) {
       $('.roles-capabilities-load-less').show();
     
       $('ul.pp-roles-capabilities li').show();
+   });
+  
+   /**
+    * Capabilities single box click
+    */
+    $(document).on('change', '.capability-checkbox-rotate input[type="checkbox"]', function (event) {
+     
+      let clicked_box           = $(this);
+      let mark_box_as_x         = false;
+      let mark_box_as_checked   = false;
+      let mark_box_as_unchecked = false;
+
+      if (!clicked_box.prop('checked')) {
+        mark_box_as_unchecked   = true;
+      } else if (clicked_box.prop('checked')) {
+        mark_box_as_checked   = true;
+      }
+
+      if (mark_box_as_checked && clicked_box.hasClass('interacted')) {
+        mark_box_as_checked   = false;
+        mark_box_as_unchecked = false;
+        mark_box_as_x         = true;
+      }
+
+      if (mark_box_as_unchecked) {
+        clicked_box.prop('checked', false);
+      } else if (mark_box_as_checked) {
+        clicked_box.prop('checked', true);
+      } else if (mark_box_as_x) {
+        clicked_box.prop('checked', false);
+        //perform X action if state is blank
+        var box_parent = clicked_box.closest('td');
+        box_parent.addClass('cap-neg');
+        var cap_name_attr = box_parent.find('input[type="checkbox"]').attr('name');
+        box_parent.append('<input type="hidden" class="cme-negation-input" name="'+cap_name_attr+'" value="" />');
+        $('input[name="' + cap_name_attr + '"]').parent().next('a.neg-cap:visible').click();
+      }
+      clicked_box.addClass('interacted');
    });
   
    /**
