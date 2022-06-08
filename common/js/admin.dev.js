@@ -13,6 +13,12 @@ jQuery(document).ready( function($) {
 		$(this).after('<input type="hidden" class="cme-negation-input" name="'+cap_name_attr+'" value="" />');
 
 		$('input[name="' + cap_name_attr + '"]').closest('td').removeClass('cap-yes').removeClass('cap-no').addClass('cap-neg');
+    
+    if ($(this).closest('tr').hasClass('unfiltered_upload')) { 
+      $('input[name="caps[upload_files]"]').closest('td').addClass('cap-neg');
+      $('input[name="caps[upload_files]"]').closest('td').append('<input type="hidden" class="cme-negation-input" name="caps[upload_files]" value="" />');
+      $('input[name="caps[upload_files]"]').parent().next('a.neg-cap:visible').click();
+    }
 
 		return false;
 	});
@@ -35,6 +41,19 @@ jQuery(document).ready( function($) {
 
     if ($(this).closest('td').hasClass('capability-checkbox-rotate')) {
       $(this).closest('td').find('input[type="checkbox"]').prop('checked', true);
+
+      if ($(this).closest('td').hasClass('upload_files')) {
+        $('tr.unfiltered_upload').find('td').removeClass('cap-neg').removeClass('cap-yes').addClass('cap-no');
+		    $('tr.unfiltered_upload').find('input[type="checkbox"]').prop('checked',false);
+        $('tr.unfiltered_upload').find('input.cme-negation-input').remove();
+        $('input[name="caps[unfiltered_upload]"]').parent().closest('td').removeClass('cap-neg').removeClass('cap-yes').addClass('cap-no');
+		    $('input[name="caps[unfiltered_upload]"]').prop('checked', true).parent().find('input.cme-negation-input').remove();
+      }
+    } 
+
+    if ($(this).closest('tr').hasClass('unfiltered_upload')) {
+      $('input[name="caps[upload_files]"]').parent().closest('td').removeClass('cap-neg').removeClass('cap-yes').addClass('cap-no');
+      $('input[name="caps[upload_files]"]').prop('checked', false).parent().find('input.cme-negation-input').remove();
     }
 		return false;
 	});
@@ -221,9 +240,23 @@ jQuery(document).ready( function($) {
 
       if (mark_box_as_unchecked) {
         clicked_box.prop('checked', false);
+        if (clicked_box.closest('td').hasClass('upload_files')) {
+          $('tr.unfiltered_upload').find('input[name="caps[unfiltered_upload]"]').prop('checked', false);
+        }
       } else if (mark_box_as_checked) {
         clicked_box.prop('checked', true);
+        if (clicked_box.closest('td').hasClass('upload_files')) {
+          $('tr.unfiltered_upload').find('td').removeClass('cap-neg').removeClass('cap-yes').addClass('cap-no');
+          $('tr.unfiltered_upload').find('input[type="checkbox"]').prop('checked',false);
+          $('tr.unfiltered_upload').find('input.cme-negation-input').remove();
+          $('input[name="caps[unfiltered_upload]"]').parent().closest('td').removeClass('cap-neg').removeClass('cap-yes').addClass('cap-no');
+          $('input[name="caps[unfiltered_upload]"]').prop('checked', true).parent().find('input.cme-negation-input').remove();
+          $('tr.unfiltered_upload').find('input[name="caps[unfiltered_upload]"]').prop('checked', true);
+        }
       } else if (mark_box_as_x) {
+        if (clicked_box.closest('td').hasClass('upload_files')) {
+          $('tr.unfiltered_upload').find('a.neg-cap').trigger('click');
+        }
         clicked_box.prop('checked', false);
         //perform X action if state is blank
         var box_parent = clicked_box.closest('td');
@@ -234,7 +267,7 @@ jQuery(document).ready( function($) {
       }
       clicked_box.addClass('interacted');
    });
-  
+
    /**
     * Capabilities checkmark rotate
     */
@@ -289,7 +322,15 @@ jQuery(document).ready( function($) {
           }
       
           $('input[name="' + cap_name_attr + '"]').parent().closest('td').removeClass('cap-neg').removeClass('cap-yes').addClass('cap-no');
-          $('input[name="' + cap_name_attr + '"]').prop('checked',false).parent().find('input.cme-negation-input').remove();
+          $('input[name="' + cap_name_attr + '"]').prop('checked', true).parent().find('input.cme-negation-input').remove();
+          if ($(this).closest('td').hasClass('upload_files')) {
+            $('tr.unfiltered_upload').find('td').removeClass('cap-neg').removeClass('cap-yes').addClass('cap-no');
+            $('tr.unfiltered_upload').find('input[type="checkbox"]').prop('checked',false);
+            $('tr.unfiltered_upload').find('input.cme-negation-input').remove();
+            $('input[name="caps[unfiltered_upload]"]').parent().closest('td').removeClass('cap-neg').removeClass('cap-yes').addClass('cap-no');
+            $('input[name="caps[unfiltered_upload]"]').prop('checked', true).parent().find('input.cme-negation-input').remove();
+            $('tr.unfiltered_upload').find('input[name="caps[unfiltered_upload]"]').prop('checked', true);
+          }
         });
       } else if (unchecked_fields) {
         //perform blank action if state is checked
@@ -305,7 +346,10 @@ jQuery(document).ready( function($) {
           }
       
           $('input[name="' + cap_name_attr + '"]').parent().closest('td').removeClass('cap-neg').removeClass('cap-yes').addClass('cap-no');
-          $('input[name="' + cap_name_attr + '"]').prop('checked',false).parent().find('input.cme-negation-input').remove();
+          $('input[name="' + cap_name_attr + '"]').prop('checked', false).parent().find('input.cme-negation-input').remove();
+          if ($(this).closest('td').hasClass('upload_files')) {
+            $('tr.unfiltered_upload').find('input[name="caps[unfiltered_upload]"]').prop('checked', false);
+          }
         });
       } else {
         //perform X action if state is blank
@@ -316,12 +360,33 @@ jQuery(document).ready( function($) {
           $(this).append('<input type="hidden" class="cme-negation-input" name="'+cap_name_attr+'" value="" />');
     
           $('input[name="' + cap_name_attr + '"]').parent().next('a.neg-cap:visible').click();
+          if ($(this).closest('td').hasClass('upload_files')) {
+            $('tr.unfiltered_upload').find('a.neg-cap').trigger('click');
+          }
         });
       }
 
       clicked_box.addClass('interacted');
 
    });
+  
+  
+   /**
+    * unfiltered_upload change sync
+    */
+    $(document).on('change', 'tr.unfiltered_upload input[name="caps[unfiltered_upload]"]', function (event) {
+     
+      let clicked_box           = $(this);
+
+      if (clicked_box.prop('checked')) {
+        $('input[name="caps[upload_files]"]').parent().closest('td').removeClass('cap-neg').removeClass('cap-yes').addClass('cap-no');
+        $('input[name="caps[upload_files]"]').prop('checked', true).parent().find('input.cme-negation-input').remove();
+      } else if (!clicked_box.prop('checked')) {
+        $('input[name="caps[upload_files]"]').parent().closest('td').removeClass('cap-neg').removeClass('cap-yes').addClass('cap-no');
+        $('input[name="caps[upload_files]"]').prop('checked', false).parent().find('input.cme-negation-input').remove();
+      }
+      
+    });
   
    /**
     * Roles capabilities load less button
