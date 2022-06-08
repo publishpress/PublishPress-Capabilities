@@ -488,7 +488,7 @@ class Pp_Roles_Admin
             <h1>
             <?php 
             if ($role_edit) {
-                esc_html_e('Edit Role', 'capsman-enhanced');
+                printf( esc_html__('Edit Role: %s', 'capsman-enhanced'), $current['name']);
             } elseif ($role_copy) {
                 esc_html_e('Copy Role', 'capsman-enhanced');
             } else {
