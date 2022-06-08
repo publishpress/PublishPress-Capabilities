@@ -424,6 +424,19 @@ jQuery(document).ready( function($) {
       }
       $('.login-redirect-option #referer_redirect').prop('checked', false);
    });
+   
+    /**
+    * Role submit required field validation
+    */
+   $('.pp-capability-roles-wrapper .submit-role-form').on('click', function (e) {
+
+     $('.role-submit-response').html('');
+     if ($('#custom_redirect').prop('checked') && isEmptyOrSpaces($('#login_redirect').val())) {
+       e.preventDefault();
+       $('.role-submit-response').html($('#login_redirect').attr('data-message'));
+     }
+
+   });
   
   /**
    * Capabilities role slug validation
@@ -434,6 +447,10 @@ jQuery(document).ready( function($) {
 
   if ($('#pp-role-slug-exists').length > 0) {
     is_role_slug_exist();
+  }
+
+  function isEmptyOrSpaces(str) {
+    return str === null || str.match(/^ *$/) !== null;
   }
 
   function is_role_slug_exist() {
