@@ -317,9 +317,11 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 
                         //add comments related caps
                         $grouped_caps['Comments'] = array(
-                            'moderate_comments',
-                            'edit_comment',
+                            'moderate_comments'
                         );
+                        if (isset($rcaps['edit_comment'])) {
+                            $type_metacaps['edit_comment'] = 1;
+                        }
                         $grouped_caps_lists = array_merge($grouped_caps_lists, $grouped_caps['Comments']);
 
                         //add users related caps
