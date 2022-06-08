@@ -404,6 +404,7 @@ class Pp_Roles_Admin
                         <div class="custom-url-wrapper" style="<?php esc_attr_e($custom_style); ?>">
                             <input name="<?php echo esc_attr($key); ?>" 
                             id="<?php echo esc_attr($key); ?>"
+                            data-message="<?php esc_attr_e('You must enter the URL for Login Redirect.',  'capsman-enhanced'); ?>"
                             type="url"
                             value="<?php echo esc_attr($args['value']); ?>"
                         <?php echo ($args['required'] ? 'required="true"' : '');?> 
@@ -562,8 +563,9 @@ class Pp_Roles_Admin
                                             <div class="misc-pub-section misc-pub-section-last" style="margin:0;">
                                                 <p>
                                                     <input type="submit" 
-                                                        value="<?php echo esc_attr($save_button_text); ?>" class="button-primary" id="publish" name="publish">
+                                                        value="<?php echo esc_attr($save_button_text); ?>" class="submit-role-form button-primary" id="publish" name="publish">
                                                 </p>
+                                                <p class="role-submit-response"></p>
                                             </div>
                                         </div>
 

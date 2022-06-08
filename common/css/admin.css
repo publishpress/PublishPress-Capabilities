@@ -710,6 +710,10 @@ ul.ppc-roles-tab li.active a {
     font-weight: bold;
 }
 
+.role-submit-response {
+    color: red;
+}
+
 .ppc-roles-tab-content .login-redirect-option {
     margin-bottom: 10px;
 }

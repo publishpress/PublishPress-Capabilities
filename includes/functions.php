@@ -270,6 +270,7 @@ function ppc_roles_login_redirect($redirect_to, $request, $user) {
 
             if (is_array($role_option) && !empty($role_option) 
                 && !empty($role_option['custom_redirect']) && (int)$role_option['custom_redirect'] > 0
+                && !empty($role_option['login_redirect'])
             ) {
                 //custom url redirect
                 $redirect_to = esc_url_raw($role_option['login_redirect']);
