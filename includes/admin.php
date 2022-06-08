@@ -784,6 +784,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 										}
 
                                         $td_classes[] = 'capability-checkbox-rotate';
+                                        $td_classes[] = $cap_name;
 
 										$td_class = ( $td_classes ) ? implode(' ', $td_classes) : '';
 
