@@ -1146,7 +1146,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 
 						<div>
 						<span class="cme-subtext">
-							<?php esc_html_e('The following entries have no effect. Please assign desired capabilities in the Read / Edit / Delete grid above.', 'capsman-enhanced');?>
+							<?php esc_html_e('The following entries have no effect. Please assign desired capabilities on the Editing / Deletion / Reading tabs.', 'capsman-enhanced');?>
 						</span>
 						</div>
 
