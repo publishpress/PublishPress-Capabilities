@@ -410,7 +410,7 @@ class Pp_Roles_Admin
                         <div class="custom-url-wrapper" style="<?php esc_attr_e($custom_style); ?>">
                             <div class="pp-roles-internal-links-wrapper activated">
                                 <div class="base-url">
-                                    <a href="<?php echo esc_url(home_url()); ?>"><?php esc_html_e(home_url()); ?></a>
+                                    <?php esc_html_e(home_url()); ?>
                                 </div>
                                 <div class="base-input">
                                     <input name="<?php echo esc_attr($key); ?>" 
@@ -443,7 +443,7 @@ class Pp_Roles_Admin
                     ?>
                     <div class="pp-roles-internal-links-wrapper activated">
                         <div class="base-url">
-                            <a href="<?php echo esc_url(home_url()); ?>"><?php esc_html_e(home_url()); ?></a>
+                            <?php esc_html_e(home_url()); ?>
                         </div>
                         <div class="base-input">
                             <input name="<?php echo esc_attr($key); ?>" 
