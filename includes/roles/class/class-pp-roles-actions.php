@@ -256,8 +256,8 @@ class Pp_Roles_Actions
         //update role options
         $role_option    = [];
         $role_option['role_editor']         = (!empty($_REQUEST['role_editor']) && is_array(($_REQUEST['role_editor']))) ? array_map('sanitize_text_field', $_REQUEST['role_editor']) : [];
-        $role_option['login_redirect']      = !empty($_REQUEST['login_redirect']) ? sanitize_url($_REQUEST['login_redirect']) : '';
-        $role_option['logout_redirect']     = !empty($_REQUEST['logout_redirect']) ? sanitize_url($_REQUEST['logout_redirect']) : '';
+        $role_option['login_redirect']      = !empty($_REQUEST['login_redirect']) ? home_url(str_replace(home_url(), '', sanitize_text_field($_REQUEST['login_redirect']))) : '';
+        $role_option['logout_redirect']     = !empty($_REQUEST['logout_redirect']) ? home_url(str_replace(home_url(), '', sanitize_text_field($_REQUEST['logout_redirect']))) : '';
         $role_option['referer_redirect']    = !empty($_REQUEST['referer_redirect']) ? (int) $_REQUEST['referer_redirect'] : 0;
         $role_option['custom_redirect']     = !empty($_REQUEST['custom_redirect']) ? (int) $_REQUEST['custom_redirect'] : 0;
         $role_option['disable_code_editor'] = !empty($_REQUEST['disable_code_editor']) ? (int) $_REQUEST['disable_code_editor'] : 0;
@@ -396,8 +396,8 @@ class Pp_Roles_Actions
         //update role options
         $role_option    = [];
         $role_option['role_editor']         = (!empty($_REQUEST['role_editor']) && is_array(($_REQUEST['role_editor']))) ? array_map('sanitize_text_field', $_REQUEST['role_editor']) : [];
-        $role_option['login_redirect']      = !empty($_REQUEST['login_redirect']) ? sanitize_url($_REQUEST['login_redirect']) : '';
-        $role_option['logout_redirect']     = !empty($_REQUEST['logout_redirect']) ? sanitize_url($_REQUEST['logout_redirect']) : '';
+        $role_option['login_redirect']      = !empty($_REQUEST['login_redirect']) ? home_url(str_replace(home_url(), '', sanitize_text_field($_REQUEST['login_redirect']))) : '';
+        $role_option['logout_redirect']     = !empty($_REQUEST['logout_redirect']) ? home_url(str_replace(home_url(), '', sanitize_text_field($_REQUEST['logout_redirect']))) : '';
         $role_option['referer_redirect']    = !empty($_REQUEST['referer_redirect']) ? (int) $_REQUEST['referer_redirect'] : 0;
         $role_option['custom_redirect']     = !empty($_REQUEST['custom_redirect']) ? (int) $_REQUEST['custom_redirect'] : 0;
         $role_option['disable_code_editor'] = !empty($_REQUEST['disable_code_editor']) ? (int) $_REQUEST['disable_code_editor'] : 0;
