@@ -409,7 +409,7 @@ Fixed : Security issue. Please update.
 
 == Changelog ==
 
-= 2.4.2 - 07 Jun 2022 =
+= 2.4.2 - 09 Jun 2022 =
   * Fixed : Correct match of post types and Editor Features boxes #427
   * Update : Changes to user role selection UI and make role draggable for re-ordering #443
   * Added : Two new role tabs (Redirects and Editing) #403
@@ -429,6 +429,7 @@ Fixed : Security issue. Please update.
   * Update : More categorization for capabilities #303
   * Update : Force user roles to use specific editors in role settings #276
   * Added : Add a setting to show private taxonomies on the "Capabilities" screen #314
+  * Added: Extend admin features "hide by css" to include plugin list #488
 
 = 2.4.1 - 09 May 2022 =
   * Fixed : Small bug with Capabilities search #340
