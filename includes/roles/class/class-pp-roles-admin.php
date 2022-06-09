@@ -408,7 +408,7 @@ class Pp_Roles_Admin
                             <span class="description"><?php echo esc_html__('Redirect users to a specified URL.',  'capsman-enhanced'); ?></span>
                         </label>
                         <div class="custom-url-wrapper" style="<?php esc_attr_e($custom_style); ?>">
-                            <div class="pp-roles-internal-links-wrapper">
+                            <div class="pp-roles-internal-links-wrapper activated">
                                 <div class="base-url">
                                     <a href="<?php echo esc_url(home_url()); ?>"><?php esc_html_e(home_url()); ?></a>
                                 </div>
@@ -416,19 +416,17 @@ class Pp_Roles_Admin
                                     <input name="<?php echo esc_attr($key); ?>" 
                                     id="<?php echo esc_attr($key); ?>"
                                     type="text"
-                                    value="<?php echo esc_attr($form_url); ?>"
+                                    value="<?php echo esc_attr($base_url); ?>"
                                     data-original_base="<?php echo esc_attr($base_url); ?>"
                                     data-base="<?php echo esc_attr($base_url); ?>"
                                     data-entry="<?php echo esc_attr($form_url); ?>"
                                     data-home_url="<?php echo esc_url(home_url()); ?>"
-                                    data-message="<?php esc_attr_e('Enter the relative path only for login redirect.',  'capsman-enhanced'); ?>"
+                                    data-message="<?php esc_attr_e('Enter the relative path only without domain for login redirect.',  'capsman-enhanced'); ?>"
                                     data-required_message="<?php esc_attr_e('You must enter the Login Redirect URL.',  'capsman-enhanced'); ?>"
                                     autocomplete="off"
                                 <?php echo ($args['required'] ? 'required="true"' : '');?> 
                                 <?php echo (!$args['editable'] ? 'readonly="readonly"' : ''); ?>/>
                                 </div>
-                                <button type="button" class="button button-small cancel-edit"><?php esc_html_e('Cancel',  'capsman-enhanced'); ?></button>
-                                <button type="button" class="button button-small delete-entry"><?php esc_html_e('Delete',  'capsman-enhanced'); ?></button>
                             </div>
                             <?php if (isset($args['description'])) : ?>
                                 <p class="description"><?php echo esc_html($args['description']); ?></p>
@@ -443,7 +441,7 @@ class Pp_Roles_Admin
                             $base_url = str_replace(home_url(), '', $form_url);
                         }
                     ?>
-                    <div class="pp-roles-internal-links-wrapper">
+                    <div class="pp-roles-internal-links-wrapper activated">
                         <div class="base-url">
                             <a href="<?php echo esc_url(home_url()); ?>"><?php esc_html_e(home_url()); ?></a>
                         </div>
@@ -451,18 +449,16 @@ class Pp_Roles_Admin
                             <input name="<?php echo esc_attr($key); ?>" 
                             id="<?php echo esc_attr($key); ?>"
                             type="text"
-                            value="<?php echo esc_attr($form_url); ?>"
+                            value="<?php echo esc_attr($base_url); ?>"
                             data-original_base="<?php echo esc_attr($base_url); ?>"
                             data-base="<?php echo esc_attr($base_url); ?>"
                             data-entry="<?php echo esc_attr($form_url); ?>"
                             data-home_url="<?php echo esc_url(home_url()); ?>"
-                            data-message="<?php esc_attr_e('Enter the relative path only for logout redirect.',  'capsman-enhanced'); ?>"
+                            data-message="<?php esc_attr_e('Enter the relative path only without domain for logout redirect.',  'capsman-enhanced'); ?>"
                             autocomplete="off"
                         <?php echo ($args['required'] ? 'required="true"' : '');?> 
                         <?php echo (!$args['editable'] ? 'readonly="readonly"' : ''); ?>/>
                         </div>
-                        <button type="button" class="button button-small cancel-edit"><?php esc_html_e('Cancel',  'capsman-enhanced'); ?></button>
-                        <button type="button" class="button button-small delete-entry"><?php esc_html_e('Delete',  'capsman-enhanced'); ?></button>
                     </div>
                             <?php if (isset($args['description'])) : ?>
                                 <p class="description"><?php echo esc_html($args['description']); ?></p>

@@ -207,17 +207,6 @@ jQuery(document).ready(function ($) {
 
   });
  
- /**
-  * Role custom url field focus
-  */
-  $('.pp-roles-internal-links-wrapper .base-input input').on('focus', function (e) {
-    var current_input = $(this);
-    var current_wrapper = current_input.closest('.pp-roles-internal-links-wrapper');
-
-    current_wrapper.addClass('activated');
-    current_wrapper.find('.base-input input').val(current_wrapper.find('.base-input input').attr('data-base'));
-  });
- 
   /**
    * Role custom url change syc
    */
@@ -230,35 +219,6 @@ jQuery(document).ready(function ($) {
        .attr('data-base', current_entry)
        .attr('data-entry', current_wrapper.find('.base-input input').attr('data-home_url') + current_entry);
   });
- 
-  /**
-   * Role custom url cancel
-   */
-   $('.pp-roles-internal-links-wrapper .cancel-edit').on('click', function (e) {
-    var current_input   = $(this);
-    var current_wrapper = current_input.closest('.pp-roles-internal-links-wrapper');
-    var entry_field      = current_wrapper.find('.base-input input');
-    var current_entry   = entry_field.attr('data-original_base');
-
-    entry_field.attr('data-base', current_entry)
-    .attr('data-entry', entry_field.attr('data-home_url') + current_entry)
-    .val(entry_field.attr('data-home_url') + current_entry);
-     
-     current_wrapper.removeClass('activated');
-  });
- 
-  /**
-   * Role custom url delete
-   */
-   $('.pp-roles-internal-links-wrapper .delete-entry').on('click', function (e) {
-    var current_input   = $(this);
-    var current_wrapper = current_input.closest('.pp-roles-internal-links-wrapper');
-    var entry_field      = current_wrapper.find('.base-input input');
-
-    entry_field.attr('data-base', '').attr('data-entry', '').val('');
-    current_wrapper.removeClass('activated');
-   });
-  
   /**
    * Prevent click on custom url base link
    */
