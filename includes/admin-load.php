@@ -39,7 +39,7 @@ class PP_Capabilities_Admin_UI {
 
         || (!empty($_REQUEST['action']) && in_array($_REQUEST['action'], ['pp-roles-add-role', 'pp-roles-delete-role', 'pp-roles-hide-role', 'pp-roles-unhide-role']))
         || ( ! empty($_SERVER['SCRIPT_NAME']) && strpos(sanitize_text_field($_SERVER['SCRIPT_NAME']), 'p-admin/plugins.php' ) && ! empty($_REQUEST['action'] ) ) 
-        || ( isset($_GET['action']) && ('reset-defaults' == $_GET['action']) && isset($_REQUEST['_wpnonce']) && wp_verify_nonce($_REQUEST['_wpnonce'], 'capsman-reset-defaults') )
+        || ( isset($_GET['action']) && ('reset-defaults' == $_GET['action']) && isset($_REQUEST['_wpnonce']) && wp_verify_nonce(sanitize_key($_REQUEST['_wpnonce']), 'capsman-reset-defaults') )
         || in_array( $pagenow, array( 'users.php', 'user-edit.php', 'profile.php', 'user-new.php' ) )
         ) ) {
             global $capsman;
@@ -80,6 +80,87 @@ class PP_Capabilities_Admin_UI {
 
 
         add_filter('pp_capabilities_feature_post_types', [$this, 'fltEditorFeaturesPostTypes'], 5);
+        add_filter('block_editor_settings_all', [$this, 'filterCodeEditingStatus'], 999);
+        add_filter('classic_editor_enabled_editors_for_post_type', [$this, 'filterRolePostTypeEditor'], 10, 2);
+        add_filter('classic_editor_plugin_settings', [$this, 'filterRoleEditorSettings']);
+    }
+
+    /**
+     * Filters the editors that are enabled for the post type.
+     *
+     * @param array $editors    Associative array of the editors and whether they are enabled for the post type.
+     * @param string $post_type The post type.
+     */
+    public function filterRolePostTypeEditor($editors, $post_type) {
+      $user = wp_get_current_user();
+
+      if (is_object($user) && isset($user->roles)) {
+          $current_user_editors = [];
+          foreach ($user->roles as $user_role) {
+              //get role option
+              $role_option = get_option("pp_capabilities_{$user_role}_role_option", []);
+              if (is_array($role_option) && !empty($role_option) && !empty($role_option['role_editor'])) {
+                  $current_user_editors = array_merge($current_user_editors, $role_option['role_editor']);
+              }
+          }
+
+          if (!empty($current_user_editors)) {
+              $current_user_editors = array_unique($current_user_editors);
+              $editors = array(
+                  'classic_editor' => in_array('classic_editor', $current_user_editors) ? true : false,
+                  'block_editor'   => in_array('block_editor', $current_user_editors) ? true : false,
+              );
+          }
+      }
+
+      return $editors;
+  }
+
+  /**
+   * Override the classic editor plugin's settings.
+   *
+   * @param bool $settings
+   * @return mixed
+   */
+  public function filterRoleEditorSettings($settings) {
+      $user = wp_get_current_user();
+
+      if (is_object($user) && isset($user->roles)) {
+          $current_user_editors = [];
+          foreach ($user->roles as $user_role) {
+              //get role option
+              $role_option = get_option("pp_capabilities_{$user_role}_role_option", []);
+              if (is_array($role_option) && !empty($role_option) && !empty($role_option['role_editor'])) {
+                  $current_user_editors = array_merge($current_user_editors, $role_option['role_editor']);
+              }
+          }
+
+          if (!empty($current_user_editors)) {
+              $current_user_editors = array_unique($current_user_editors);
+              $settings = [];
+              $settings['editor'] = ($current_user_editors[0] === 'classic_editor') ? 'classic' : 'block';
+              $settings['allow-users'] = count($current_user_editors) > 1 ? true : false;
+          }
+      }
+
+      return $settings;
+  }
+
+    public function filterCodeEditingStatus($settings) {
+        $user = wp_get_current_user();
+
+        if (is_object($user) && isset($user->roles)) {
+            foreach ($user->roles as $user_role) {
+                //get role option
+                $role_option = get_option("pp_capabilities_{$user_role}_role_option", []);
+                if (is_array($role_option) && !empty($role_option) && !empty($role_option['disable_code_editor']) && (int)$role_option['disable_code_editor'] > 0) {
+                    $settings['codeEditingEnabled'] = false;
+                    break;
+                }
+            }
+        }
+
+        return $settings;
     }
 
     public function fltEditorFeaturesPostTypes($def_post_types) {
@@ -173,6 +254,13 @@ class PP_Capabilities_Admin_UI {
                 );
 
                 wp_enqueue_script(
+                    'pp-capabilities-jquery-ui',
+                    plugin_dir_url(CME_FILE) . 'common/libs/jquery/jquery-ui.js',
+                    ['jquery'],
+                    CAPSMAN_VERSION
+                );
+
+                wp_enqueue_script(
                     'pp-capabilities-roles-profile-js',
                     plugin_dir_url(CME_FILE) . 'common/js/profile.js',
                     ['jquery', 'pp-capabilities-chosen-js'],
@@ -202,7 +290,8 @@ class PP_Capabilities_Admin_UI {
                     'pp-capabilities-roles-profile-js',
                     'ppCapabilitiesProfileData',
                     [
-                        'selected_roles' => $roles
+                        'role_description' => esc_html__('Drag multiple roles selection to change order.', 'capsman-enhanced'),
+                        'selected_roles'   => $roles
                     ]
                 );
             }
@@ -274,21 +363,19 @@ class PP_Capabilities_Admin_UI {
                 return;
             }
 
-            // Remove unselected roles
+            // Remove all roles
             foreach ($currentRoles as $role) {
                 // Check if it is a bbPress rule. If so, don't remove it.
                 $isBBPressRole = preg_match('/^bbp_/', $role);
 
-                if (!in_array($role, $newRoles) && !$isBBPressRole) {
+                if (!$isBBPressRole) {
                     $user->remove_role($role);
                 }
             }
 
-            // Add new roles
+            // Add new roles in order
             foreach ($newRoles as $role) {
-                if (!in_array($role, $currentRoles)) {
-                    $user->add_role($role);
-                }
+                $user->add_role($role);
             }
         }
     }

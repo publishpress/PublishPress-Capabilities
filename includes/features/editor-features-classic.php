@@ -14,10 +14,13 @@
 
     <tbody>
     <?php
+
     foreach ($ce_elements as $section_title => $arr) {
         $section_slug = strtolower(ppc_remove_non_alphanumeric_space_characters($section_title));
+        //set empty feature value as true
+        $empty_post_type_feature[$type_obj->name][$section_slug] = 1;
         ?>
-        <tr class="ppc-menu-row parent-menu">
+        <tr class="ppc-menu-row parent-menu <?php esc_attr_e($type_obj->name); ?> <?php esc_attr_e($section_slug); ?>">
             <td colspan="2">
             <h4 class="ppc-menu-row-section"><?php echo esc_html($section_title);?></h4>
             <?php
@@ -40,6 +43,33 @@
             if (!$feature_slug) {
                 continue;
             }
+
+            //check if post type support feature
+            if (isset($arr_feature['support_key'])) {
+                if (isset($arr_feature['support_type']) && $arr_feature['support_type'] === 'taxonomy') {
+                    if (!in_array($arr_feature['support_key'], get_object_taxonomies($type_obj->name))) {
+                        continue;
+                    }
+                } elseif (isset($arr_feature['support_type']) && $arr_feature['support_type'] === 'metabox') {
+                    if (!in_array($type_obj->name, $arr_feature['support_key'])) {
+                        continue;
+                    }
+                } else {
+                    if (!post_type_supports($type_obj->name, $arr_feature['support_key'])) {
+                        continue;
+                    }
+                }
+            }
+
+            //unset if it has feature support
+            if (isset($empty_post_type_feature[$type_obj->name][$section_slug])) {
+                /**
+                 * add phpcs ignore due to false alarm 
+                 * as the variable is defined in main page
+                 */
+                // phpcs:ignore WordPressVIPMinimum.Variables.VariableAnalysis.UndefinedUnsetVariable
+                unset($empty_post_type_feature[$type_obj->name][$section_slug]);
+            }
             ?>
             <tr class="ppc-menu-row parent-menu">
                 <td class="menu-column ppc-menu-item">
@@ -50,7 +80,7 @@
                             echo esc_html($arr_feature['element_label']) . ' <small class="entry">(' . esc_html($arr_feature['element_items']). ')</small> &nbsp; ' 
                             . '<span class="' . esc_attr($arr_feature['button_class'])  . '" data-id="' . esc_attr($arr_feature['button_data_id'])  . '" data-parent="' . esc_attr($arr_feature['button_data_parent'])  . '"><small>(' . esc_html__('Delete', 'capsman-enhanced') . ')</small></span>';
                         }else{
-                            echo esc_html($arr_feature['label']);
+                            echo esc_html(wp_strip_all_tags($arr_feature['label']));
                         }
                         ?>
                     </strong></span>
@@ -64,6 +94,32 @@
             </tr>
             <?php
         }
+         //add class to remove row list
+         if (isset($empty_post_type_feature[$type_obj->name][$section_slug])) {
+            if ($section_slug === 'metaboxes') {
+                //we want to leave metabox header with message
+                ?>
+                <tr class="ppc-menu-row parent-menu">
+                    <td class="menu-column ppc-menu-item" colspan="2">
+                    <p class="cme-subtext">
+                        <?php printf(
+                            esc_html__(
+                                'No metabox found for %1s. %2s Click here %3s to visit the %4s screen and refresh this page after to load new metabox',
+                                'capsman-enhanced'
+                            ), 
+                            esc_html($type_obj->labels->singular_name), 
+                            '<a href="'. esc_url(admin_url('post-new.php?post_type='.$type_obj->name)) .'">', 
+                            '</a>',
+                            esc_html($type_obj->labels->singular_name)
+                        ); ?>
+                    </p>
+                    </td>
+                </tr>
+                <?php
+            } else {
+                $empty_post_type_feature_class[] = '.editor-features-classic .parent-menu.' . $type_obj->name . '.' . $section_slug . '';
+            }
+         }
     }
 
     do_action('pp_capabilities_features_classic_after_table_tr');

@@ -34,7 +34,7 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
 
     <div class="wrap publishpress-caps-manage pressshack-admin-wrapper pp-capability-menus-wrapper">
         <div id="icon-capsman-admin" class="icon32"></div>
-        <h2><?php esc_html_e('Admin Feature Restrictions', 'capabilities-pro'); ?></h2>
+        <h2><?php esc_html_e('Admin Feature Restrictions', 'capsman-enhanced'); ?></h2>
 
         <form method="post" id="ppc-admin-features-form" action="admin.php?page=pp-capabilities-admin-features">
             <?php wp_nonce_field('pp-capabilities-admin-features'); ?>
@@ -51,7 +51,7 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                                     <span class='pp-capability-role-caption'>
                                     <?php
                                     esc_html_e('Note: You are only restricting access to admin features screens. Some plugins may also add features to other areas of WordPress.',
-                                        'capabilities-pro');
+                                        'capsman-enhanced');
                                     ?>
                                     </span>
                                     </span>
@@ -73,7 +73,7 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                                              style="display: none">
 
                                         <input type="submit" name="admin-features-submit"
-                                               value="<?php esc_attr_e('Save Changes', 'capabilities-pro') ?>"
+                                               value="<?php esc_attr_e('Save Changes', 'capsman-enhanced') ?>"
                                                class="button-primary ppc-admin-features-submit" style="float:right"/>
                                     </div>
 
@@ -187,7 +187,7 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                                                                                 <?php 
                                                                                 if(isset($section_array['custom_element']) && ($section_array['custom_element'] === true)){
                                                                                     echo esc_html($section_array['element_label']) . ' <small class="entry">(' . esc_html($section_array['element_items']). ')</small> &nbsp; ' 
-                                                                                    . '<span class="' . esc_attr($section_array['button_class'])  . '" data-id="' . esc_attr($section_array['button_data_id'])  . '"><small>(' . esc_html__('Delete', 'capabilities-pro') . ')</small></span>' . '';
+                                                                                    . '<span class="' . esc_attr($section_array['button_class'])  . '" data-id="' . esc_attr($section_array['button_data_id'])  . '"><small>(' . esc_html__('Delete', 'capsman-enhanced') . ')</small></span>' . '';
                                                                                 }else{
                                                                                     echo esc_html($item_name);
                                                                                 }
@@ -212,7 +212,7 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                                         </div>
                                     </div>
                                     <input type="submit" name="admin-features-submit"
-                                           value="<?php esc_attr_e('Save Changes', 'capabilities-pro') ?>"
+                                           value="<?php esc_attr_e('Save Changes', 'capsman-enhanced') ?>"
                                            class="button-primary ppc-admin-features-submit"/>
                                 </td>
                             </tr>

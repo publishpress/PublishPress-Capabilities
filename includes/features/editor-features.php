@@ -64,7 +64,7 @@ $active_tab_text = is_object($active_tab_type_obj)
     $active_tab_type_obj->labels->singular_name : '';
 ?>
 
-<div class="wrap publishpress-caps-manage pressshack-admin-wrapper pp-capability-menus-wrapper">
+<div class="wrap publishpress-caps-manage pressshack-admin-wrapper pp-capability-menus-wrapper editor-features">
     <div id="icon-capsman-admin" class="icon32"></div>
     <h2><?php esc_html_e('Editor Feature Restriction', 'capsman-enhanced'); ?></h2>
 
@@ -180,6 +180,9 @@ $active_tab_text = is_object($active_tab_type_obj)
 
                                                 <div class="ppc-capabilities-content">
                                                     <?php
+                                                        //we want to remove empty header for row without feature for post typr
+                                                        $empty_post_type_feature       = [];
+                                                        $empty_post_type_feature_class = [];
                                                         foreach($def_post_types as $type_name) {
                                                             $type_obj = get_post_type_object($type_name);
                                                             $active_style = ($type_name === $active_tab_slug) ? '' : 'display:none;';
@@ -207,14 +210,16 @@ $active_tab_text = is_object($active_tab_type_obj)
                             </div>
 
 
-                            <input type="submit" name="editor-features-all-submit"
-                                value="<?php esc_attr_e('Save for all Post Types', 'capsman-enhanced') ?>"
-                                class="button-secondary ppc-editor-features-submit" style="float:right" />
+                            <div class="editor-features-footer-meta">
+                                <input type="submit" name="editor-features-all-submit"
+                                    value="<?php esc_attr_e('Save for all Post Types', 'capsman-enhanced') ?>"
+                                    class="button-secondary ppc-editor-features-submit" style="float:right" />
                                 
-                            <input type="submit" name="editor-features-submit"
-                                value="<?php esc_attr_e(sprintf(esc_html__('Save %s Restrictions', 'capsman-enhanced'), esc_html($active_tab_text))); ?>"
-                                class="button-primary ppc-editor-features-submit" style="float:right"
-                                data-current_cpt="<?php esc_attr_e(sprintf(esc_html__('Save %s Restrictions', 'capsman-enhanced'), 'post_type')); ?>" />
+                                <input type="submit" name="editor-features-submit"
+                                    value="<?php esc_attr_e(sprintf(esc_html__('Save %s Restrictions', 'capsman-enhanced'), esc_html($active_tab_text))); ?>"
+                                    class="button-primary ppc-editor-features-submit" style="float:right"
+                                    data-current_cpt="<?php esc_attr_e(sprintf(esc_html__('Save %s Restrictions', 'capsman-enhanced'), 'post_type')); ?>" />
+                            </div
 
                         </td>
                     </tr>
@@ -249,6 +254,12 @@ $active_tab_text = is_object($active_tab_type_obj)
 </div>
 
 <style>
+    <?php 
+        if (!empty($empty_post_type_feature_class)) {
+            echo esc_html(implode(', ', $empty_post_type_feature_class));
+            echo esc_html('{display: none !important}');
+        }
+    ?>
     span.menu-item-link {
         webkit-user-select: none; /* Safari */
         -moz-user-select: none; /* Firefox */
@@ -273,15 +284,18 @@ $active_tab_text = is_object($active_tab_type_obj)
     input[name="editor-features-all-submit"].ppc-editor-features-submit {
         margin-left: 10px;
     }
-    .pp-capability-menus-wrap {
-        border: 1px solid #c3c4c7;
-    }
     .pp-columns-wrapper .nav-tab-wrapper,
     .pp-columns-wrapper .postbox {
         border: unset;
     }
     .pp-capability-menus {
         overflow: initial;
+    }
+    .pp-capability-menus-wrapper.editor-features #pp-capability-menus-general #ppc-capabilities-wrapper {
+        border: 1px solid #c3c4c7;
+    }
+    .pp-capability-menus-wrapper.editor-features #ppc-capabilities-wrapper .ppc-capabilities-content > div {
+        padding-bottom: 0 !important;
     }
 </style>
 

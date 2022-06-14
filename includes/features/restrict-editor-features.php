@@ -43,13 +43,35 @@ class PP_Capabilities_Post_Features {
         ];
 
         $elements[esc_html__('Editor', 'capsman-enhanced')] = [
-            '.page-title-action' => ['label' => esc_html__('Add New', 'capsman-enhanced')],
-            '#title' => ['label' => esc_html__('Title', 'capsman-enhanced'),                          'elements' => '#titlediv, #title, #titlewrap'],
-            '#postdivrich' => ['label' => esc_html__('Editor', 'capsman-enhanced')],
-            '#pageslugdiv' => ['label' => esc_html__('Permalink', 'capsman-enhanced')],
-            '#media_buttons' => ['label' => esc_html__('Media Buttons (all)', 'capsman-enhanced'),    'elements' => '#media-buttons, #wp-content-media-buttons'],
-            '#html_editor_button' => ['label' => esc_html__('HTML Editor Button', 'capsman-enhanced'),'elements' => '#editor-toolbar #edButtonHTML, #quicktags, #content-html, .wp-switch-editor.switch-html'],
-            '#wp-word-count' => ['label' => esc_html__('Word count', 'capsman-enhanced')],
+            '.page-title-action' => [
+                'label' => esc_html__('Add New', 'capsman-enhanced')
+            ],
+            '#title' => [
+                'label'       => esc_html__('Title', 'capsman-enhanced'), 
+                'elements'    => '#titlediv, #title, #titlewrap', 
+                'support_key' => 'title'
+            ],
+            '#postdivrich' => [
+                'label'       => esc_html__('Editor', 'capsman-enhanced'), 
+                'support_key' => 'editor'
+            ],
+            '#pageslugdiv' => [
+                'label' => esc_html__('Permalink', 'capsman-enhanced')
+            ],
+            '#media_buttons' => [
+                'label'       => esc_html__('Media Buttons (all)', 'capsman-enhanced'), 
+                'elements'    => '#media-buttons, #wp-content-media-buttons', 
+                'support_key' => 'editor'
+            ],
+            '#html_editor_button' => [
+                'label'       => esc_html__('HTML Editor Button', 'capsman-enhanced'), 
+                'elements'    => '#editor-toolbar #edButtonHTML, #quicktags, #content-html, .wp-switch-editor.switch-html',
+                'support_key' => 'editor'
+            ],
+            '#wp-word-count' => [
+                'label'       => esc_html__('Word count', 'capsman-enhanced'),
+                'support_key' => 'editor'
+            ],
         ];
 
         $elements[esc_html__('Publish Box', 'capsman-enhanced')] = [
@@ -66,9 +88,24 @@ class PP_Capabilities_Post_Features {
         ];
 
         $elements[esc_html__('Taxonomy Boxes', 'capsman-enhanced')] = [
-            '#category' => ['label' => esc_html__('Categories', 'capsman-enhanced'),                  'elements' => '#categories, #categorydiv, #categorydivsb, th.column-categories, td.categories'],
-            '#category-add-toggle' => ['label' => esc_html__('Add New Category', 'capsman-enhanced')],
-            '#post_tag' => ['label' => esc_html__('Tags', 'capsman-enhanced'),                        'elements' => '#tags, #tagsdiv,#tagsdivsb,#tagsdiv-post_tag, th.column-tags, td.tags'],
+            '#category' => [
+                'label'        => esc_html__('Categories', 'capsman-enhanced'),
+                'elements'     => '#categories, #categorydiv, #categorydivsb, th.column-categories, td.categories',
+                'support_key'  => 'category',
+                'support_type' => 'taxonomy'
+            ],
+            '#category-add-toggle' => [
+                'label'        => esc_html__('Add New Category', 'capsman-enhanced'),
+                'elements'     => '#category-add-toggle',
+                'support_key'  => 'category',
+                'support_type' => 'taxonomy'
+            ],
+            '#post_tag' => [
+                'label'       => esc_html__('Tags', 'capsman-enhanced'), 
+                'elements'    => '#tags, #tagsdiv,#tagsdivsb,#tagsdiv-post_tag, th.column-tags, td.tags',
+                'support_key' => 'post_tag',
+                'support_type' => 'taxonomy'
+            ],
         ];
 
         end($elements);
@@ -76,21 +113,52 @@ class PP_Capabilities_Post_Features {
         
         foreach (get_taxonomies(['show_ui' => true], 'object') as $taxonomy => $tx_obj) {
             if (!in_array($taxonomy, ['category', 'post_tag', 'link_category'])) {
-                $elements[$k]["#{$tx_obj->name}div"] = ['label' => $tx_obj->label,'elements'=>"#{$tx_obj->name}, #{$tx_obj->name}div,#{$tx_obj->name}divsb,#tagsdiv-{$tx_obj->name}, th.column-{$tx_obj->name}, td.{$tx_obj->name}"];
+                $elements[$k]["#{$tx_obj->name}div"] = [
+                    'label'        => $tx_obj->label,
+                    'elements'     => "#{$tx_obj->name}, #{$tx_obj->name}div,#{$tx_obj->name}divsb,#tagsdiv-{$tx_obj->name}, th.column-{$tx_obj->name}, td.{$tx_obj->name}",
+                    'support_key'  => $tx_obj->name,
+                    'support_type' => 'taxonomy'
+                ];
             }
         }
 
         $elements[esc_html__('Page Boxes', 'capsman-enhanced')] = [
-            '#pageparentdiv' => ['label' => esc_html__('Page Attributes', 'capsman-enhanced')],
-            '#parent_id' => ['label' => esc_html__('Parent', 'capsman-enhanced'),                     'elements' => 'p.parent-id-label-wrapper, #parent_id'],
-            '#page_template' => ['label' => esc_html__('Page Template', 'capsman-enhanced')],
-            'p.menu-order-label-wrapper' => ['label' => esc_html__('Order', 'capsman-enhanced')],
+            '#pageparentdiv' => [
+                'label'       => esc_html__('Page Attributes', 'capsman-enhanced'),
+                'support_key' => 'page-attributes'
+            ],
+            '#parent_id' => [
+                'label'       => esc_html__('Parent', 'capsman-enhanced'), 
+                'elements'    => 'p.parent-id-label-wrapper, #parent_id',
+                'support_key' => 'page-attributes'
+            ],
+            '#page_template' => [
+                'label' => esc_html__('Page Template', 'capsman-enhanced'),
+                'elements'    => '#page_template',
+                'support_key' => 'page-attributes'
+            ],
+            'p.menu-order-label-wrapper' => [
+                'label'       => esc_html__('Order', 'capsman-enhanced'),
+                'elements'    => 'p.menu-order-label-wrapper',
+                'support_key' => 'page-attributes'
+            ],
         ];
 
         $elements[esc_html__('Other Boxes', 'capsman-enhanced')] = [
-            '#postimagediv' => ['label' => esc_html__('Featured Image', 'capsman-enhanced')],
-            '#slug' => ['label' => esc_html__('Post Slug', 'capsman-enhanced'),                       'elements' => '#slugdiv,#edit-slug-box'],
-            '#commentstatusdiv' => ['label' => esc_html__('Discussion', 'capsman-enhanced')],
+            '#postimagediv' => [
+                'label'       => esc_html__('Featured Image', 'capsman-enhanced'),
+                'elements'    => '#postimagediv',
+                'support_key' => 'thumbnail'
+            ],
+            '#slug' => [
+                'label' => esc_html__('Post Slug', 'capsman-enhanced'),
+                'elements' => '#slugdiv,#edit-slug-box'
+            ],
+            '#commentstatusdiv' => [
+                'label' => esc_html__('Discussion', 'capsman-enhanced'),
+                'elements'    => '#commentstatusdiv',
+                'support_key' => 'comments'
+            ],
         ];
 
         end($elements);
@@ -134,11 +202,12 @@ class PP_Capabilities_Post_Features {
             }
 
             $elements[$k][$feature] = [
-                'label' => $label, 
+                'label'    => $label, 
                 'elements' => '#' . $id
                 . ', #' . $id . 'div'
                 . ', th.column-' . $id
-                . ', td.' . $id
+                . ', td.' . $id,
+                'support_key' => $feature
             ]; //th and td for raw in edit screen
         }
 
@@ -292,7 +361,7 @@ class PP_Capabilities_Post_Features {
     public static function elementsLayout()
     {
         $elements = [
-            esc_html__('Top Bar - Left', 'capabilities-pro') => [
+            esc_html__('Top Bar - Left', 'capsman-enhanced') => [
                 'add_block' => ['label' => esc_html__('Add block', 'capsman-enhanced'), 'elements' => '.edit-post-header-toolbar .edit-post-header-toolbar__inserter-toggle.has-icon'],
                 'modes' =>     ['label' => esc_html__('Modes', 'capsman-enhanced'),     'elements' => '.edit-post-header-toolbar .components-dropdown:first-of-type'],
                 'undo' =>      ['label' => esc_html__('Undo', 'capsman-enhanced'),      'elements' => '.edit-post-header-toolbar .editor-history__undo'],
@@ -301,7 +370,7 @@ class PP_Capabilities_Post_Features {
                 'outline' =>   ['label' => esc_html__('Outline', 'capsman-enhanced'),   'elements' => '.edit-post-header__toolbar .edit-post-header-toolbar__list-view-toggle'],
             ],
 
-            esc_html__('Top Bar - Right', 'capabilities-pro') => [
+            esc_html__('Top Bar - Right', 'capsman-enhanced') => [
                 'save_draft' =>       ['label' => esc_html__('Save Draft', 'capsman-enhanced'),       'elements' => '.edit-post-header__settings .components-button.editor-post-save-draft'],
                 'switch_to_draft' =>  ['label' => esc_html__('Switch to draft', 'capsman-enhanced'),  'elements' => '.edit-post-header__settings .components-button.editor-post-switch-to-draft'],
                 'preview' =>          ['label' => esc_html__('Preview', 'capsman-enhanced'),          'elements' => '.edit-post-header__settings .block-editor-post-preview__dropdown'],
@@ -310,17 +379,44 @@ class PP_Capabilities_Post_Features {
                 'options' =>          ['label' => esc_html__('Options', 'capsman-enhanced'),          'elements' => '.edit-post-header__settings .edit-post-more-menu .components-button'],
             ],
 
-            esc_html__('Body', 'capabilities-pro') => [
-                'edit_title' =>   ['label' => esc_html__('Edit title', 'capsman-enhanced'), 'elements' => '.wp-block.editor-post-title__block, .wp-block.editor-post-title'],
-                'content' =>      ['label' => esc_html__('Content', 'capsman-enhanced'),    'elements' => '.block-editor-block-list__layout'],
+            esc_html__('Body', 'capsman-enhanced') => [
+                'edit_title' =>   [
+                    'label'       => esc_html__('Edit title', 'capsman-enhanced'), 
+                    'elements'    => '.wp-block.editor-post-title__block, .wp-block.editor-post-title',
+                    'support_key' => 'title'
+                ],
+                'content' =>      [
+                    'label'       => esc_html__('Content', 'capsman-enhanced'), 
+                    'elements'    => '.block-editor-block-list__layout',
+                    'support_key' => 'editor'
+                ],
+                'add_new_block' => [
+                  'label'         => esc_html__('Add new block', 'capsman-enhanced'), 
+                  'elements'      => '.block-editor-inserter__toggle'
+                ],
             ],
 
-            esc_html__('Document Panel', 'capabilities-pro') => [
+            esc_html__('Document Panel', 'capsman-enhanced') => [
                 'status_visibility' => ['label' => esc_html__('Status & visibility', 'capsman-enhanced'),   'elements' => 'post-status'],
-                'template'          => ['label' => esc_html__('Template', 'capsman-enhanced'),              'elements' => 'template'],
+                'template'          => [
+                    'label'       => esc_html__('Template', 'capsman-enhanced'),
+                    'elements'    => 'template',
+                    'support_key' => 'page-attributes'
+                ],
+                'revisions'         => ['label' => esc_html__('Revisions', 'capsman-enhanced'),             'elements' => '.editor-post-last-revision__title'],
                 'permalink' =>         ['label' => esc_html__('Permalink', 'capsman-enhanced'),             'elements' => 'post-link'],
-                'categories' =>        ['label' => esc_html__('Categories', 'capsman-enhanced'),            'elements' => 'taxonomy-panel-category'],
-                'tags' =>              ['label' => esc_html__('Tags', 'capsman-enhanced'),                  'elements' => 'taxonomy-panel-post_tag'],
+                'categories' =>        [
+                    'label'        => esc_html__('Categories', 'capsman-enhanced'), 
+                    'elements'     => 'taxonomy-panel-category',
+                    'support_key'  => 'category',
+                    'support_type' => 'taxonomy'
+                ],
+                'tags' =>              [
+                    'label'        => esc_html__('Tags', 'capsman-enhanced'),
+                    'elements'     => 'taxonomy-panel-post_tag',
+                    'support_key'  => 'post_tag',
+                    'support_type' => 'taxonomy'
+                ],
             ]
         ];
         
@@ -329,18 +425,39 @@ class PP_Capabilities_Post_Features {
 
         foreach (get_taxonomies(['show_ui' => true], 'object') as $taxonomy => $tx_obj) {
             if (!in_array($taxonomy, ['category', 'post_tag', 'link_category'])) {
-                $elements[$k][$tx_obj->name] = ['label' => $tx_obj->label, 'elements' => "taxonomy-panel-$taxonomy"];
+                $elements[$k][$tx_obj->name] = [
+                    'label'        => $tx_obj->label, 
+                    'elements'     => "taxonomy-panel-$taxonomy",
+                    'support_key'  => $tx_obj->name,
+                    'support_type' => 'taxonomy'
+                ];
             }
         }
 
         $elements[$k] = array_merge($elements[$k], [
-            'featured_image'  => ['label' => esc_html__('Featured image', 'capsman-enhanced'),  'elements'  => 'featured-image'],
-            'excerpt'         => ['label' => esc_html__('Excerpt', 'capsman-enhanced'),         'elements'  => 'post-excerpt'],
-            'discussion'      => ['label' => esc_html__('Discussion', 'capsman-enhanced'),      'elements'  => 'discussion-panel'],
-            'post_attributes' => ['label' => esc_html__('Post Attributes', 'capsman-enhanced'), 'elements'  => 'page-attributes'],
+            'featured_image'  => [
+                'label'       => esc_html__('Featured image', 'capsman-enhanced'),
+                'elements'    => 'featured-image',
+                'support_key' => 'thumbnail'
+            ],
+            'excerpt'         => [
+                'label'       => esc_html__('Excerpt', 'capsman-enhanced'),
+                'elements'    => 'post-excerpt',
+                'support_key' => 'excerpt'
+            ],
+            'discussion'      => [
+                'label'       => esc_html__('Discussion', 'capsman-enhanced'), 
+                'elements'    => 'discussion-panel',
+                'support_key' => 'comments'
+            ],
+            'post_attributes' => [
+                'label'       => esc_html__('Post Attributes', 'capsman-enhanced'), 
+                'elements'    => 'page-attributes',
+                'support_key' => 'page-attributes'
+            ],
         ]);
 
-        $elements[esc_html__('Block Panel', 'capabilities-pro')] = [
+        $elements[esc_html__('Block Panel', 'capsman-enhanced')] = [
             'block_panel' =>   ['label' => esc_html__('Block Panel', 'capsman-enhanced'),       'elements' => '.block-editor-block-inspector'],
             'paragraph' =>     ['label' => esc_html__('Paragraph', 'capsman-enhanced'),         'elements' => '.block-editor-block-card'],
             'typography' =>    ['label' => esc_html__('Typography', 'capsman-enhanced'),        'elements' => '.block-editor-block-inspector .components-panel__body:first-of-type'],
