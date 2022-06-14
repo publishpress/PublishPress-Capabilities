@@ -24,6 +24,16 @@ class RoboFile extends \PublishPressBuilder\PackageBuilderTasks
                 'vendor/publishpress/wordpress-version-notices/codeception.dist.yml',
                 'vendor/publishpress/wordpress-version-notices/codeception.yml',
                 'vendor/publishpress/wordpress-version-notices/tests',
+                'psalm.xml',
+                'jest.config.ts',
+                '.phpcs.xml',
+                'builder.yml.dist',
+                'vendor/publishpress/wordpress-reviews/phpcs.xml.dist',
+                '.distignore',
+                '.env.testing.mac.dist',
+                '.env.testing.linux.dist',
+                '.gitattributes',
+                'phpcs.xml',
             ]
         );
 

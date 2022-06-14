@@ -206,7 +206,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 			$cap_properties['read']['type'] = array( 'read_private_posts' );
 
             $cap_properties['taxonomies']['taxonomy'] =  array( 'manage_terms', 'edit_terms', 'assign_terms', 'delete_terms' );
-            
+
 			$stati = get_post_stati( array( 'internal' => false ) );
 
 			$cap_type_names = array(
@@ -293,7 +293,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 						if ($extra_tabs = apply_filters('pp_capabilities_extra_post_capability_tabs', [])) {
 							foreach($extra_tabs as $tab_slug => $tab_caption) {
 								$tab_slug = esc_attr($tab_slug);
-								
+
 								$tab_id = "cme-cap-type-tables-{$tab_slug}";
 								$tab_active = ($tab_id == $active_tab_id) ? $ppc_tab_active : '';
 
@@ -317,9 +317,11 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 
                         //add comments related caps
                         $grouped_caps['Comments'] = array(
-                            'moderate_comments',
-                            'edit_comment',
+                            'moderate_comments'
                         );
+                        if (isset($rcaps['edit_comment'])) {
+                            $type_metacaps['edit_comment'] = 1;
+                        }
                         $grouped_caps_lists = array_merge($grouped_caps_lists, $grouped_caps['Comments']);
 
                         //add users related caps
@@ -391,7 +393,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 							'manage_capabilities',
 							)
 						);
-                        
+
 						if (defined('PUBLISHPRESS_VERSION')) {
 							$plugin_caps['PublishPress'] = apply_filters('cme_publishpress_capabilities',
 								array(
@@ -494,7 +496,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 								)
 							);
 						}
-            
+
 						if (defined('WS_FORM_VERSION')) {
 							$plugin_caps['WS Form'] = apply_filters('cme_wsform_capabilities',
 								array(
@@ -620,7 +622,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 						$tab_id = "cme-cap-type-tables-invalid";
 						$tab_active = ($tab_id == $active_tab_id) ? $ppc_tab_active : '';
 						$tab_caption = esc_html__( 'Invalid Capabilities', 'capsman-enhanced' );
-						echo '<li id="cme_tab_invalid_caps" data-slug="invalid" data-content="cme-cap-type-tables-' . esc_attr($tab_id) . '" class="' . esc_attr($tab_active) . '" style="display:none;">' . esc_html($tab_caption) . '</li>';
+						echo '<li id="cme_tab_invalid_caps" data-slug="invalid" data-content="' . esc_attr($tab_id) . '" class="' . esc_attr($tab_active) . '" style="display:none;">' . esc_html($tab_caption) . '</li>';
 
 						$tab_id = "cme-cap-type-tables-additional";
 						$tab_active = ($tab_id == $active_tab_id) ? $ppc_tab_active : '';
@@ -635,7 +637,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 					foreach( array_keys($cap_properties) as $cap_type ) {
 
 						foreach( array_keys($defined) as $item_type ) {
-                            
+
 
                             if (!isset($cap_properties[$cap_type][$item_type])) {
                                 continue;
@@ -703,9 +705,9 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 									$type_label = (defined('CME_LEGACY_MENU_NAME_LABEL') && !empty($type_obj->labels->menu_name)) ? $type_obj->labels->menu_name : $type_obj->labels->name;
 
 									$row .= "<td>";
-									$row .= '<input type="checkbox" class="pp-row-action-rotate rotate-blank excluded-input"> &nbsp;';
+									$row .= '<input type="checkbox" class="pp-row-action-rotate excluded-input"> &nbsp;';
 									$row .= "<a class='cap_type' href='#toggle_type_caps'>" . esc_html($type_label) . '</a>';
-									$row .= '<a href="#" class="neg-type-caps">&nbsp;x&nbsp;</a>';
+									$row .= '<a style="display: none;" href="#" class="neg-type-caps">&nbsp;x&nbsp;</a>';
 									$row .= '</td>';
 
 									$display_row = ! empty($force_distinct_ui);
@@ -781,6 +783,9 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 											$td_classes []= "cap-unreg";
 										}
 
+                                        $td_classes[] = 'capability-checkbox-rotate';
+                                        $td_classes[] = $cap_name;
+
 										$td_class = ( $td_classes ) ? implode(' ', $td_classes) : '';
 
 										$row .= '<td class="' . esc_attr($td_class) . '" title="' . esc_attr($cap_title) . '"' . "><span class='cap-x'>X</span>$checkbox";
@@ -794,7 +799,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 									}
 
 									if ('taxonomy' == $item_type) {
-										for ($i = $col_count; $i < 3; $i++) {
+										for ($i = $col_count; $i < 4; $i++) {
 											$row .= "<td></td>";
 										}
 									}
@@ -1141,7 +1146,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 
 						<div>
 						<span class="cme-subtext">
-							<?php esc_html_e('The following entries have no effect. Please assign desired capabilities in the Read / Edit / Delete grid above.', 'capsman-enhanced');?>
+							<?php esc_html_e('The following entries have no effect. Please assign desired capabilities on the Editing / Deletion / Reading tabs.', 'capsman-enhanced');?>
 						</span>
 						</div>
 
@@ -1260,13 +1265,16 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 
 						foreach ($additional_caps as $cap_name => $cap) :
 							$cap_name = sanitize_key($cap_name);
-							
 
 							if ((isset($type_caps[$cap_name]) && !isset($type_metacaps[$cap_name]))
 							|| isset($core_caps[$cap_name])
 							|| (isset($type_metacaps[$cap_name]) && !empty($rcaps[$cap_name])) ) {
 								continue;
 							}
+
+                            if (in_array($cap_name, $grouped_caps_lists)) {
+                                continue;
+                            }
 
 							if (!isset($type_metacaps[$cap_name]) || !empty($rcaps[$cap_name])) {
 								foreach(array_keys($plugin_caps) as $plugin_title) {
@@ -1497,7 +1505,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 			<input type="hidden" name="action" value="update" />
 			<input type="hidden" name="current" value="<?php echo esc_attr($default); ?>" />
 
-			<?php 
+			<?php
 			$save_caption = (in_array(sanitize_key(get_locale()), ['en_EN', 'en_US'])) ? 'Save Capabilities' : __('Save Changes', 'capsman-enhanced');
 			?>
 			<input type="submit" name="SaveRole" value="<?php echo esc_attr($save_caption);?>" class="button-primary" /> &nbsp;
@@ -1517,7 +1525,9 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 restore an earlier version of your roles and capabilities.', 'capsman-enhanced' )
 			    ),
 			    admin_url( 'admin.php?page=pp-capabilities-backup' ),
-			    __( 'Go to the Backup feature', 'capsman-enhanced' )
+			    __( 'Go to the Backup feature', 'capsman-enhanced' ),
+				'',
+				'button'
 			);
 			?>
 

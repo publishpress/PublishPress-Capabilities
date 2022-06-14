@@ -254,6 +254,13 @@ class PP_Capabilities_Admin_UI {
                 );
 
                 wp_enqueue_script(
+                    'pp-capabilities-jquery-ui',
+                    plugin_dir_url(CME_FILE) . 'common/libs/jquery/jquery-ui.js',
+                    ['jquery'],
+                    CAPSMAN_VERSION
+                );
+
+                wp_enqueue_script(
                     'pp-capabilities-roles-profile-js',
                     plugin_dir_url(CME_FILE) . 'common/js/profile.js',
                     ['jquery', 'pp-capabilities-chosen-js'],

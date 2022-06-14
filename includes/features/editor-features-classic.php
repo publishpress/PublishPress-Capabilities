@@ -110,7 +110,7 @@
                             esc_html($type_obj->labels->singular_name), 
                             '<a href="'. esc_url(admin_url('post-new.php?post_type='.$type_obj->name)) .'">', 
                             '</a>',
-                            esc_html($type_obj->labels->singular_name), 
+                            esc_html($type_obj->labels->singular_name)
                         ); ?>
                     </p>
                     </td>

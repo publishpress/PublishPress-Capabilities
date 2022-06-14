@@ -213,8 +213,8 @@ class Pp_Roles_Admin
 
         //add login_redirect
         $fields['login_redirect'] = [
-            'label'     => esc_html__('Login redirect', 'capsman-enhanced'),
-            'description' => esc_html__('Enter full URL users in this role should be redirected to after login.', 'capsman-enhanced'),
+            'label'     => esc_html__('Login Redirect', 'capsman-enhanced'),
+            'description' => esc_html__('Enter the URL users in this role should be redirected to after login.', 'capsman-enhanced'),
             'type'      => 'url',
             'value_key' => 'login_redirect',
             'tab'       => 'redirects',
@@ -222,21 +222,10 @@ class Pp_Roles_Admin
             'required'  => false,
         ];
 
-        //add referer_redirect
-        $fields['referer_redirect'] = [
-            'label'     => esc_html__('Login referer redirect', 'capsman-enhanced'),
-            'description' => esc_html__('Redirect users to original page after login.', 'capsman-enhanced'),
-            'type'      => 'checkbox',
-            'value_key' => 'referer_redirect',
-            'tab'       => 'redirects',
-            'editable'  => true,
-            'required'  => false,
-        ];
-
         //add logout_redirect
         $fields['logout_redirect'] = [
-            'label'     => esc_html__('Logout redirect', 'capsman-enhanced'),
-            'description' => esc_html__('Enter full URL users in this role should be redirected to after logout.', 'capsman-enhanced'),
+            'label'     => esc_html__('Logout Redirect', 'capsman-enhanced'),
+            'description' => esc_html__('Enter the URL users in this role should be redirected to after logout.', 'capsman-enhanced'),
             'type'      => 'url',
             'value_key' => 'logout_redirect',
             'tab'       => 'redirects',
@@ -247,7 +236,7 @@ class Pp_Roles_Admin
         //add disable_code_editor
         $fields['disable_code_editor'] = [
             'label'        => esc_html__('Disable Code Editor', 'capsman-enhanced'),
-            'description'  => esc_html__('Disable gutenberg code editor for user in this role.', 'capsman-enhanced'),
+            'description'  => esc_html__('Disable the "Code editor" option for the Gutenberg block editor.', 'capsman-enhanced'),
             'type'         => 'checkbox',
             'value_key'    => 'disable_code_editor',
             'tab'          => 'editing',
@@ -258,8 +247,8 @@ class Pp_Roles_Admin
         if (count($editor_options) > 1) {
             //add role_editor
             $fields['role_editor'] = [
-                'label'       => esc_html__('Editor', 'capsman-enhanced'),
-                'description' => esc_html__('Select editor option(s) for user in this role.', 'capsman-enhanced'),
+                'label'       => esc_html__('Allowed Editors', 'capsman-enhanced'),
+                'description' => esc_html__('Select the allowed editor options for users in this role.', 'capsman-enhanced'),
                 'type'        => 'select',
                 'multiple'    => true,
                 'value_key'   => 'role_editor',
@@ -284,8 +273,9 @@ class Pp_Roles_Admin
      * Get a rendered field partial
      *
      * @param array $args Arguments to render in the partial.
+     * @param array $current current form data.
      */
-    private static function get_rendered_role_partial($args)
+    private static function get_rendered_role_partial($args, $current)
     {
         $defaults = [
             'description' => '',
@@ -300,8 +290,9 @@ class Pp_Roles_Admin
         ];
         $args      = array_merge($defaults, $args);
         $key       = $args['key'];
+        $default_tab  = (!empty($_GET) && !empty($_GET['active_tab'])) ? sanitize_key($_GET['active_tab']) : 'general';
         $tab_class = 'pp-roles-tab-tr pp-roles-' . $args['tab'] . '-tab';
-        $tab_style = ($args['tab'] === 'general') ? '' : 'display:none;';
+        $tab_style = ($args['tab'] === $default_tab) ? '' : 'display:none;';
         ?>
         <tr valign="top" 
             class="<?php echo esc_attr('form-field role-' . $key . '-wrap '. $tab_class); ?>"
@@ -369,7 +360,7 @@ class Pp_Roles_Admin
                         <?php if (isset($args['description'])) : ?>
                             <p class="description" style="color: red;"><?php echo esc_html($args['description']); ?></p>
                         <?php endif; ?>
-                <?php
+                        <?php
                 elseif ($args['type'] === 'checkbox') :
                     ?>
                     <input name="<?php echo esc_attr($key); ?>" 
@@ -382,6 +373,97 @@ class Pp_Roles_Admin
                         <?php if (isset($args['description'])) : ?>
                             <span class="description"><?php echo esc_html($args['description']); ?></span>
                         <?php endif; ?>
+                <?php  elseif ($args['key'] === 'login_redirect') :
+                        $referer_redirect = (is_array($current) && isset($current['referer_redirect']) && (int)$current['referer_redirect'] > 0) ? true : false;
+                        $custom_redirect = (is_array($current) && isset($current['custom_redirect']) && (int)$current['custom_redirect'] > 0) ? true : false;
+                        $custom_style    = (!$custom_redirect) ? 'display:none;' : '';
+
+                        $form_url = $args['value'];
+                        $base_url = '';
+                        if (!empty($form_url)) {
+                            $base_url = str_replace(home_url(), '', $form_url);
+                        }
+                    ?>
+                    <div class="login-redirect-option">
+                        <label>
+                            <input name="referer_redirect" 
+                            id="referer_redirect" 
+                            type="checkbox"
+                            value="1"
+                            <?php checked(true, $referer_redirect); ?>
+                            <?php echo ($args['required'] ? 'required="true"' : '');?> 
+                            <?php echo (!$args['editable'] ? 'readonly="readonly"' : ''); ?>/>
+                            <span class="description"><?php echo esc_html__('Redirect users to the URL they were viewing before login.',  'capsman-enhanced'); ?></span>
+                        </label>
+                    </div>
+                    <div class="login-redirect-option">
+                        <label>
+                            <input name="custom_redirect" 
+                            id="custom_redirect" 
+                            type="checkbox"
+                            value="1"
+                            <?php checked(true, $custom_redirect); ?>
+                            <?php echo ($args['required'] ? 'required="true"' : '');?> 
+                            <?php echo (!$args['editable'] ? 'readonly="readonly"' : ''); ?>/>
+                            <span class="description"><?php echo esc_html__('Redirect users to a specified URL.',  'capsman-enhanced'); ?></span>
+                        </label>
+                        <div class="custom-url-wrapper" style="<?php esc_attr_e($custom_style); ?>">
+                            <div class="pp-roles-internal-links-wrapper activated">
+                                <div class="base-url">
+                                    <?php esc_html_e(home_url()); ?>
+                                </div>
+                                <div class="base-input">
+                                    <input name="<?php echo esc_attr($key); ?>" 
+                                    id="<?php echo esc_attr($key); ?>"
+                                    type="text"
+                                    value="<?php echo esc_attr($base_url); ?>"
+                                    data-original_base="<?php echo esc_attr($base_url); ?>"
+                                    data-base="<?php echo esc_attr($base_url); ?>"
+                                    data-entry="<?php echo esc_attr($form_url); ?>"
+                                    data-home_url="<?php echo esc_url(home_url()); ?>"
+                                    data-message="<?php esc_attr_e('Enter the relative path only without domain for login redirect.',  'capsman-enhanced'); ?>"
+                                    data-required_message="<?php esc_attr_e('You must enter the Login Redirect URL.',  'capsman-enhanced'); ?>"
+                                    autocomplete="off"
+                                <?php echo ($args['required'] ? 'required="true"' : '');?> 
+                                <?php echo (!$args['editable'] ? 'readonly="readonly"' : ''); ?>/>
+                                </div>
+                            </div>
+                            <?php if (isset($args['description'])) : ?>
+                                <p class="description"><?php echo esc_html($args['description']); ?></p>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                <?php  elseif ($args['key'] === 'logout_redirect') : ?>
+                    <?php 
+                        $form_url = $args['value'];
+                        $base_url = '';
+                        if (!empty($form_url)) {
+                            $base_url = str_replace(home_url(), '', $form_url);
+                        }
+                    ?>
+                    <div class="pp-roles-internal-links-wrapper activated">
+                        <div class="base-url">
+                            <?php esc_html_e(home_url()); ?>
+                        </div>
+                        <div class="base-input">
+                            <input name="<?php echo esc_attr($key); ?>" 
+                            id="<?php echo esc_attr($key); ?>"
+                            type="text"
+                            value="<?php echo esc_attr($base_url); ?>"
+                            data-original_base="<?php echo esc_attr($base_url); ?>"
+                            data-base="<?php echo esc_attr($base_url); ?>"
+                            data-entry="<?php echo esc_attr($form_url); ?>"
+                            data-home_url="<?php echo esc_url(home_url()); ?>"
+                            data-message="<?php esc_attr_e('Enter the relative path only without domain for logout redirect.',  'capsman-enhanced'); ?>"
+                            autocomplete="off"
+                        <?php echo ($args['required'] ? 'required="true"' : '');?> 
+                        <?php echo (!$args['editable'] ? 'readonly="readonly"' : ''); ?>/>
+                        </div>
+                    </div>
+                            <?php if (isset($args['description'])) : ?>
+                                <p class="description"><?php echo esc_html($args['description']); ?></p>
+                            <?php endif; ?>
+                    </div>
                 <?php else : ?>
                     <input name="<?php echo esc_attr($key); ?>" 
                         id="<?php echo esc_attr($key); ?>"
@@ -457,7 +539,7 @@ class Pp_Roles_Admin
             <h1>
             <?php 
             if ($role_edit) {
-                esc_html_e('Edit Role', 'capsman-enhanced');
+                printf( esc_html__('Edit Role: %s', 'capsman-enhanced'), esc_html($current['name']));
             } elseif ($role_copy) {
                 esc_html_e('Copy Role', 'capsman-enhanced');
             } else {
@@ -470,7 +552,7 @@ class Pp_Roles_Admin
             </h1>
             <div class="wp-clearfix"></div>
 
-            <form method="post" action=""> 
+            <form method="post" action="" onkeydown="return event.key != 'Enter';"> 
                 <input type="hidden" name="active_tab" class="ppc-roles-active-tab" value="<?php echo esc_attr($default_tab); ?>">
                 <input type="hidden" name="role_action" value="<?php echo esc_attr($role_action); ?>">
                 <input type="hidden" name="action" value="<?php echo ($role_action === 'edit' ? 'pp-roles-edit-role' : 'pp-roles-add-role'); ?>">
@@ -512,7 +594,7 @@ class Pp_Roles_Admin
                                                     $args['key']   = $key;
                                                     $args['value'] = (is_array($current) && isset($current[$args['value_key']])) ? $current[$args['value_key']] : '';
 
-                                                    self::get_rendered_role_partial($args);
+                                                    self::get_rendered_role_partial($args, $current);
                                                 }
                                                 ?>
                                             </table>
@@ -531,8 +613,9 @@ class Pp_Roles_Admin
                                             <div class="misc-pub-section misc-pub-section-last" style="margin:0;">
                                                 <p>
                                                     <input type="submit" 
-                                                        value="<?php echo esc_attr($save_button_text); ?>" class="button-primary" id="publish" name="publish">
+                                                        value="<?php echo esc_attr($save_button_text); ?>" class="submit-role-form button-primary" id="publish" name="publish">
                                                 </p>
+                                                <p class="role-submit-response"></p>
                                             </div>
                                         </div>
 
