@@ -247,9 +247,9 @@ class Pp_Roles_Admin
         if (count($editor_options) > 1) {
             //add role_editor
             $fields['role_editor'] = [
-                'label'       => esc_html__('Allowed Editors', 'capsman-enhanced'),
-                'description' => esc_html__('Select the allowed editor options for users in this role.', 'capsman-enhanced'),
-                'type'        => 'select',
+                'label'       => esc_html__('Control which editors are available to users in this role', 'capsman-enhanced'),
+                'description' => '',
+                'type'        => 'checkbox',
                 'multiple'    => true,
                 'value_key'   => 'role_editor',
                 'tab'         => 'editing',
@@ -362,17 +362,35 @@ class Pp_Roles_Admin
                         <?php endif; ?>
                         <?php
                 elseif ($args['type'] === 'checkbox') :
-                    ?>
-                    <input name="<?php echo esc_attr($key); ?>" 
-                        id="<?php echo esc_attr($key); ?>" 
-                        type="<?php echo esc_attr($args['type']); ?>"
-                        value="1"
-                        <?php checked(1, (int)$args['value']); ?>
-                        <?php echo ($args['required'] ? 'required="true"' : '');?> 
-                        <?php echo (!$args['editable'] ? 'readonly="readonly"' : ''); ?>/>
-                        <?php if (isset($args['description'])) : ?>
-                            <span class="description"><?php echo esc_html($args['description']); ?></span>
-                        <?php endif; ?>
+                    if ($args['multiple']) :
+                        foreach ($args['options'] as $option_key => $option_label) :
+                            $checked_option = (isset($args['value']) && is_array($args['value']) && in_array($option_key, $args['value'])) ? true : false;
+                            ?>
+                            <label>
+                                <input name="<?php echo esc_attr($key); ?>[]" 
+                                id="<?php echo esc_attr($key.'_'.$option_key); ?>" 
+                                type="<?php echo esc_attr($args['type']); ?>"
+                                value="<?php echo esc_attr($option_key); ?>"
+                                <?php checked(true, $checked_option); ?>
+                                <?php echo ($args['required'] ? 'required="true"' : '');?> 
+                                <?php echo (!$args['editable'] ? 'readonly="readonly"' : ''); ?>/>
+                                <?php echo esc_html($option_label); ?>
+                                <br /><br />
+                            </label>
+                        <?php endforeach;
+                    else :
+                        ?>
+                        <input name="<?php echo esc_attr($key); ?>" 
+                            id="<?php echo esc_attr($key); ?>" 
+                            type="<?php echo esc_attr($args['type']); ?>"
+                            value="1"
+                            <?php checked(1, (int)$args['value']); ?>
+                            <?php echo ($args['required'] ? 'required="true"' : '');?> 
+                            <?php echo (!$args['editable'] ? 'readonly="readonly"' : ''); ?>/>
+                            <?php if (isset($args['description'])) : ?>
+                                <span class="description"><?php echo esc_html($args['description']); ?></span>
+                            <?php endif; ?>
+                    <?php endif; ?>
                 <?php  elseif ($args['key'] === 'login_redirect') :
                         $referer_redirect = (is_array($current) && isset($current['referer_redirect']) && (int)$current['referer_redirect'] > 0) ? true : false;
                         $custom_redirect = (is_array($current) && isset($current['custom_redirect']) && (int)$current['custom_redirect'] > 0) ? true : false;
