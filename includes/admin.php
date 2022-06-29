@@ -516,6 +516,15 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 							);
 						}
 
+						if (defined('STAGS_VERSION')) {
+							$plugin_caps['TaxoPress'] = apply_filters('cme_taxopress_capabilities',
+								array(
+								    'simple_tags',
+                                    'admin_simple_tags'
+								)
+							);
+						}
+
 						if (defined('WC_PLUGIN_FILE')) {
 							$plugin_caps['WooCommerce'] = apply_filters('cme_woocommerce_capabilities',
 								array(
