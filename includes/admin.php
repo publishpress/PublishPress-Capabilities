@@ -923,12 +923,12 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 							$checked = checked(1, ! empty($rcaps[$cap_name]), false );
 							$cap_title = $title_text;
 							?>
-							<td class="<?php echo esc_attr($class); ?>"><span class="cap-x">X</span><label title="<?php echo esc_attr($cap_title);?>"><input type="checkbox" name="caps[<?php echo esc_attr($cap_name); ?>]" autocomplete="off" value="1" <?php echo esc_attr($checked) . esc_attr($disabled);?> />
+							<td class="<?php echo esc_attr($class); ?>"><span class="cap-x">X</span><label title="<?php echo esc_attr($cap_title);?>"><input type="checkbox" name="caps[<?php echo esc_attr($cap_name); ?>]" class="pp-single-action-rotate" autocomplete="off" value="1" <?php echo esc_attr($checked) . esc_attr($disabled);?> />
 							<span>
 							<?php
 							echo esc_html(str_replace( '_', ' ', $cap_name));
 							?>
-							</span></label><a href="#" class="neg-cap">&nbsp;x&nbsp;</a>
+							</span></label><a href="#" class="neg-cap" style="visibility: hidden;">&nbsp;x&nbsp;</a>
 							<?php if ( false !== strpos( $class, 'cap-neg' ) ) :?>
 								<input type="hidden" class="cme-negation-input" name="caps[<?php echo esc_attr($cap_name); ?>]" value="" />
 							<?php endif; ?>
@@ -1086,12 +1086,12 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 							$checked = checked(1, ! empty($rcaps[$cap_name]), false );
 							$cap_title = $title_text;
 							?>
-							<td class="<?php echo esc_attr($class); ?>"><span class="cap-x">X</span><label title="<?php echo esc_attr($cap_title);?>"><input type="checkbox" name="caps[<?php echo esc_attr($cap_name); ?>]" autocomplete="off" value="1" <?php echo esc_attr($checked) . esc_attr($disabled);?> />
+							<td class="<?php echo esc_attr($class); ?>"><span class="cap-x">X</span><label title="<?php echo esc_attr($cap_title);?>"><input type="checkbox" name="caps[<?php echo esc_attr($cap_name); ?>]" class="pp-single-action-rotate" autocomplete="off" value="1" <?php echo esc_attr($checked) . esc_attr($disabled);?> />
 							<span>
 							<?php
 							echo esc_html(str_replace( '_', ' ', $cap_name));
 							?>
-							</span></label><a href="#" class="neg-cap">&nbsp;x&nbsp;</a>
+							</span></label><a href="#" class="neg-cap" style="visibility: hidden;">&nbsp;x&nbsp;</a>
 							<?php if ( false !== strpos( $class, 'cap-neg' ) ) :?>
 								<input type="hidden" class="cme-negation-input" name="caps[<?php echo esc_attr($cap_name); ?>]" value="" />
 							<?php endif; ?>
@@ -1188,12 +1188,12 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 							$disabled = '';
 							$checked = checked(1, ! empty($rcaps[$cap_name]), false );
 						?>
-							<td class="<?php echo esc_attr($class); ?>"><span class="cap-x">X</span><label title="<?php echo esc_attr($title_text);?>"><input type="checkbox" name="caps[<?php echo esc_attr($cap_name); ?>]" autocomplete="off" value="1" <?php echo esc_attr($checked) . esc_attr($disabled);?> />
+							<td class="<?php echo esc_attr($class); ?>"><span class="cap-x">X</span><label title="<?php echo esc_attr($title_text);?>"><input type="checkbox" name="caps[<?php echo esc_attr($cap_name); ?>]" class="pp-single-action-rotate" autocomplete="off" value="1" <?php echo esc_attr($checked) . esc_attr($disabled);?> />
 							<span>
 							<?php
 							echo esc_html(str_replace( '_', ' ', $cap ));
 							?>
-							</span></label><a href="#" class="neg-cap">&nbsp;x&nbsp;</a>
+							</span></label><a href="#" class="neg-cap" style="visibility: hidden;">&nbsp;x&nbsp;</a>
 							<?php if ( false !== strpos( $class, 'cap-neg' ) ) :?>
 								<input type="hidden" class="cme-negation-input" name="caps[<?php echo esc_attr($cap_name); ?>]" value="" />
 							<?php endif; ?>
@@ -1329,12 +1329,12 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 								}
 							}
 						?>
-							<td class="<?php echo esc_attr($class); ?>"><span class="cap-x">X</span><label title="<?php echo esc_attr($title_text);?>"><input type="checkbox" name="caps[<?php echo esc_attr($cap_name); ?>]" autocomplete="off" value="1" <?php echo esc_attr($checked) . ' ' . esc_attr($disabled);?> />
+							<td class="<?php echo esc_attr($class); ?>"><span class="cap-x">X</span><label title="<?php echo esc_attr($title_text);?>"><input type="checkbox" name="caps[<?php echo esc_attr($cap_name); ?>]" class="pp-single-action-rotate" autocomplete="off" value="1" <?php echo esc_attr($checked) . ' ' . esc_attr($disabled);?> />
 							<span>
 							<?php
 							echo esc_html(str_replace( '_', ' ', $cap ));
 							?>
-							</span></label><a href="#" class="neg-cap">&nbsp;x&nbsp;</a>
+							</span></label><a href="#" class="neg-cap" style="visibility: hidden;">&nbsp;x&nbsp;</a>
 							<?php if ( false !== strpos( $class, 'cap-neg' ) ) :?>
 								<input type="hidden" class="cme-negation-input" name="caps[<?php echo esc_attr($cap_name); ?>]" value="" />
 							<?php endif; ?>
