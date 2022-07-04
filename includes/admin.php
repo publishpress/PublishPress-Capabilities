@@ -870,7 +870,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 						echo '</div>';
 						echo '<div class="ppc-filter-no-results" style="display:none;">' . esc_html__( 'No results found. Please try again with a different word.', 'capsman-enhanced' ) . '</div>';
 
-						echo '<table class="widefat fixed striped form-table cme-checklist">';
+						echo '<table class="widefat fixed striped form-table cme-checklist single-checkbox-table">';
 
 						$centinel_ = true;
 						$checks_per_row = get_option( 'cme_form-rows', 1 );
@@ -1033,7 +1033,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 						echo '</div>';
 						echo '<div class="ppc-filter-no-results" style="display:none;">' . esc_html__( 'No results found. Please try again with a different word.', 'capsman-enhanced' ) . '</div>';
 
-						echo '<table class="widefat fixed striped form-table cme-checklist">';
+						echo '<table class="widefat fixed striped form-table cme-checklist single-checkbox-table">';
 
 						$centinel_ = true;
 						$checks_per_row = get_option( 'cme_form-rows', 1 );
@@ -1150,7 +1150,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 						</span>
 						</div>
 
-						<table class="widefat fixed striped form-table cme-checklist">
+						<table class="widefat fixed striped form-table cme-checklist single-checkbox-table">
 						<tr>
 						<?php
 						$i = 0; $first_row = true;
@@ -1239,7 +1239,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 						echo '</div>';
 						echo '<div class="ppc-filter-no-results" style="display:none;">' . esc_html__( 'No results found. Please try again with a different word.', 'capsman-enhanced' ) . '</div>';
 						?>
-						<table class="widefat fixed striped form-table cme-checklist">
+						<table class="widefat fixed striped form-table cme-checklist single-checkbox-table">
 
 						<tr class="cme-bulk-select">
                             <td colspan="<?php echo (int) $checks_per_row;?>">

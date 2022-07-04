@@ -116,11 +116,23 @@ text-decoration: none;
 }
 
 span.cap-x, a.cme-neg-all {
-color: red;
-font-size: 1.5em;
-padding-left: 1px;
-padding-right: 1px;
-vertical-align: middle;
+    color: red;
+    font-size: 1.5em;
+    padding-left: 1px;
+    padding-right: 1px;
+    vertical-align: middle;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
+.single-checkbox-table span.cap-x {
+    line-height: 0.7;
+    margin-right: 10.5px;
 }
 
 a.cme-switch-all {
