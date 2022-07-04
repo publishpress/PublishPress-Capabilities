@@ -175,6 +175,19 @@ jQuery(document).ready(function ($) {
      }
      $('.login-redirect-option #referer_redirect').prop('checked', false);
   });
+ 
+  /**
+   * Roles allowed editor manage toggle
+   */
+   $(document).on('change', '.allowed-editor-toggle', function () {
+     if ($(this).prop('checked')) {
+       $('.role-editor-select-box').show();
+     } else {
+       $('.role-editor-select-box').hide();
+       $('#role_editor-select option').prop('selected', false);
+       $('#role_editor-select').trigger('chosen:updated');
+     }
+  });
   
    /**
    * Role submit required field validation
@@ -198,7 +211,13 @@ jQuery(document).ready(function ($) {
         error_report = true;
         error_message += '- ' + $(this).attr('data-message') + '<br />';
       }
-	  });
+    });
+    
+    //add allowed editor option validation
+    if ($('.allowed-editor-toggle').prop('checked') && $('#role_editor-select').val().length === 0) {
+      error_report = true;
+      error_message += '- ' + $('#role_editor-select').attr('data-message') + '<br />';
+    }
 
     if (error_report) {
       e.preventDefault();

@@ -247,7 +247,7 @@ class Pp_Roles_Admin
         if (count($editor_options) > 1) {
             //add role_editor
             $fields['role_editor'] = [
-                'label'       => esc_html__('Allowed Editors', 'capsman-enhanced'),
+                'label'       => esc_html__('Control Allowed Editors', 'capsman-enhanced'),
                 'description' => esc_html__('Select the allowed editor options for users in this role.', 'capsman-enhanced'),
                 'type'        => 'select',
                 'multiple'    => true,
@@ -315,13 +315,57 @@ class Pp_Roles_Admin
             </th>
             <td>
                 <?php 
-                if ($args['type'] === 'select') : ?>
+                if ($key === 'role_editor') : ?>
+                    <?php 
+                    $allowed_editor = (isset($args['value']) && is_array($args['value']) && !empty($args['value'])) ? true : false;             
+                    $select_style   = ($allowed_editor) ? '' : 'display:none;';
+                    ?>
+                    <div class="role-editor-toggle-box">
+                        <input name="<?php echo esc_attr($key.'-toggle'); ?>" 
+                            id="<?php echo esc_attr($key); ?>" 
+                            class="allowed-editor-toggle"
+                            type="checkbox"
+                            value="1"
+                            <?php checked(true, $allowed_editor); ?>/>
+                    </div>
+
+                    <div class="role-editor-select-box" style="<?php echo esc_attr($select_style); ?>">
+                        <select 
+                            name="<?php echo esc_attr($key); ?><?php echo $args['multiple'] ? '[]' : '';?>"
+                            id="<?php echo esc_attr($key.'-select'); ?>"
+                            class="pp-capabilities-role-choosen"
+                            data-placeholder="<?php esc_html_e('Select allowed editor', 'capsman-enhanced'); ?>"
+                            data-message="<?php esc_attr_e('You must select at least one editor for the role when managing allowed editor.',  'capsman-enhanced'); ?>"
+                            <?php echo ($args['multiple'] ? 'multiple' : '');?>
+                            <?php echo ($args['required'] ? 'required="true"' : '');?>>
+                            <?php
+                            foreach ($args['options'] as $select_key => $select_label) {
+                                if ($args['multiple']) {
+                                    $selected_option = (isset($args['value']) && is_array($args['value']) && in_array($select_key, $args['value'])) ? true : false;
+                                } else {
+                                    $selected_option = (isset($args['value']) && $select_key == $args['value']) ? true : false;
+                                }
+                                ?>
+                                <option value="<?php esc_attr_e($select_key); ?>"
+                                        <?php selected(true, $selected_option); ?>>
+                                        <?php echo esc_html($select_label); ?>
+                                </option>
+                            <?php } ?>
+                        </select>
+                        <?php if (isset($args['description'])) : ?>
+                            <p class="description">
+                                <?php echo esc_html($args['description']); ?>
+                            </p>
+                        <?php endif; ?>
+                        </div>
+                <?php 
+                elseif ($args['type'] === 'select') : ?>
                     <select 
                         name="<?php echo esc_attr($key); ?><?php echo $args['multiple'] ? '[]' : '';?>"
                         id="<?php echo esc_attr($key); ?>"
                         class="pp-capabilities-role-choosen"
                         data-placeholder="<?php printf(esc_html__('Select %s', 'capsman-enhanced'), esc_html(strtolower($args['label']))); ?>"
-                        <?php echo ($args['multiple'] ? 'multiple' : '');?>>
+                        <?php echo ($args['multiple'] ? 'multiple' : '');?>
                         <?php echo ($args['required'] ? 'required="true"' : '');?>>
                         <?php
                         foreach ($args['options'] as $select_key => $select_label) {

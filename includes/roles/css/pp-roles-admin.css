@@ -170,6 +170,9 @@ ul.ppc-roles-tab li.active a {
     display: none !important;
 }
 
+.role-editor-toggle-box {
+    margin-bottom: 10px;
+}
 
 @media only screen and (max-width: 1024px) {
  .pp-roles-internal-links-wrapper.activated {
