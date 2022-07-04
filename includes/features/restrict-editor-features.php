@@ -226,6 +226,10 @@ class PP_Capabilities_Post_Features {
             return;
         }
 
+        if (!is_array(get_option("capsman_feature_restrict_classic_{$post_type}", []))) {
+            return;
+        }
+
         // Only restrictions associated with this user's role(s) will be applied
         $role_restrictions = array_intersect_key(
             get_option("capsman_feature_restrict_classic_{$post_type}", []), 
@@ -292,6 +296,11 @@ class PP_Capabilities_Post_Features {
     public static function applyRestrictions($post_type)
     {
         $restrict_elements = [];
+
+
+        if (!is_array(get_option("capsman_feature_restrict_{$post_type}", []))) {
+            return;
+        }
 
         // Only restrictions associated with this user's role(s) will be applied
         $role_restrictions = array_intersect_key(
