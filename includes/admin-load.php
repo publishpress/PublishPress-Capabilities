@@ -353,7 +353,6 @@ class PP_Capabilities_Admin_UI {
     {
         // Check if we need to update the user's roles, allowing to set multiple roles.
         if (!empty($_REQUEST['_wpnonce']) && wp_verify_nonce(sanitize_key($_REQUEST['_wpnonce']), 'update-user_' . $userId) && isset($_POST['pp_roles']) && current_user_can('promote_users')) {
-
             // Remove the user's roles
             $user = get_user_by('ID', $userId);
 
