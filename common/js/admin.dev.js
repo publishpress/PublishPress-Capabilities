@@ -51,9 +51,13 @@ jQuery(document).ready( function($) {
       }
     } 
 
+    if ($(this).closest('td').find('input[type="checkbox"]').hasClass('pp-single-action-rotate')) {
+      $(this).closest('td').find('input[type="checkbox"]').prop('checked', true);
+    }
+
     if ($(this).closest('tr').hasClass('unfiltered_upload')) {
       $('input[name="caps[upload_files]"]').parent().closest('td').removeClass('cap-neg').removeClass('cap-yes').addClass('cap-no');
-      $('input[name="caps[upload_files]"]').prop('checked', false).parent().find('input.cme-negation-input').remove();
+      $('input[name="caps[upload_files]"]').prop('checked', true).parent().find('input.cme-negation-input').remove();
     }
 		return false;
 	});
@@ -386,6 +390,50 @@ jQuery(document).ready( function($) {
         $('input[name="caps[upload_files]"]').prop('checked', false).parent().find('input.cme-negation-input').remove();
       }
       
+    });
+
+    /**
+     * Other capabilities checkmark rotate
+     */
+     $(document).on('click', '.pp-single-action-rotate', function (event) {
+       
+       let clicked_input     = $(this);
+       var checked_fields     = false;
+       var unchecked_fields   = false;
+ 
+       //determine if we should check or uncheck based on current input state
+        if (clicked_input.prop('checked')) {
+           unchecked_fields = true;
+        } else if (!clicked_input.prop('checked')) {
+          checked_fields = true;
+        }
+ 
+       if ((checked_fields && unchecked_fields)) {
+         checked_fields   = true;
+         unchecked_fields = false;
+       } else if (!checked_fields && unchecked_fields && !clicked_input.hasClass('interacted')) {
+         checked_fields   = true;
+         unchecked_fields = false;
+       } else if (checked_fields && !unchecked_fields) {
+         checked_fields   = false;
+         unchecked_fields = true;
+       } else {
+         checked_fields   = false;
+         unchecked_fields = false;
+       }
+ 
+ 
+       if (!checked_fields && !unchecked_fields) {
+         //perform X action if state is blank
+         event.preventDefault();
+         clicked_input.closest('td').find('a.neg-cap').click();
+       }
+ 
+       clicked_input.addClass('interacted');
+ 
+       if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
+         document.getSelection().empty();
+       }
     });
 
 });
