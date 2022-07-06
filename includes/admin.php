@@ -1153,14 +1153,6 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 						echo '<h3 class="cme-cap-section">' . esc_html__( 'Invalid Capabilities', 'capsman-enhanced' ) . '</h3>';
 						?>
 
-						<script type="text/javascript">
-						/* <![CDATA[ */
-						jQuery(document).ready( function($) {
-							$('#cme_tab_invalid_caps').show();
-						});
-						/* ]]> */
-						</script>
-
 						<div>
 						<span class="cme-subtext">
 							<?php esc_html_e('The following entries have no effect. Please assign desired capabilities on the Editing / Deletion / Reading tabs.', 'capsman-enhanced');?>
@@ -1171,7 +1163,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 						<tr>
 						<?php
 						$i = 0; $first_row = true;
-
+                        $invalid_caps_capabilities = [];
 						foreach( $all_capabilities as $cap_name ) {
 							if ( ! isset($this->capabilities[$cap_name]) )
 								$this->capabilities[$cap_name] = str_replace( '_', ' ', $cap_name );
@@ -1204,6 +1196,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 
 							$disabled = '';
 							$checked = checked(1, ! empty($rcaps[$cap_name]), false );
+                            $invalid_caps_capabilities[] = $cap_name;
 						?>
 							<td class="<?php echo esc_attr($class); ?>"><span class="cap-x">X</span><label title="<?php echo esc_attr($title_text);?>"><input type="checkbox" name="caps[<?php echo esc_attr($cap_name); ?>]" class="pp-single-action-rotate" autocomplete="off" value="1" <?php echo esc_attr($checked) . esc_attr($disabled);?> />
 							<span>
@@ -1236,6 +1229,16 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 							}
 						}
 						?>
+
+                        <?php if (!empty($invalid_caps_capabilities)) : ?>
+                            <script type="text/javascript">
+                            /* <![CDATA[ */
+                            jQuery(document).ready( function($) {
+                                $('#cme_tab_invalid_caps').show();
+                            });
+                            /* ]]> */
+                            </script>
+                        <?php endif; ?>
 
 					</table>
 					</div>
