@@ -104,7 +104,8 @@ cursor: pointer;
 }
 
 table.cme-checklist tr td input[type="checkbox"] {
-	margin-right: 10px !important;
+margin-right: 10px !important;
+vertical-align: bottom;
 }
 
 h3.cme-cap-section {
@@ -119,7 +120,7 @@ span.cap-x, a.cme-neg-all {
     color: red;
     font-size: 1.5em;
     padding-left: 1px;
-    padding-right: 1px;
+    padding-right: 2px;
     vertical-align: middle;
     -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */
