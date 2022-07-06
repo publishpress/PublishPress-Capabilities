@@ -431,6 +431,9 @@ jQuery(document).ready( function($) {
  
        clicked_input.addClass('interacted');
  
+       if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
+         document.getSelection().empty();
+       }
     });
 
 });
