@@ -244,7 +244,7 @@ class PP_Capabilities_Admin_UI {
         if (function_exists('get_current_screen') && (!defined('PUBLISHPRESS_VERSION') || empty($publishpress) || empty($publishpress->modules) || empty($publishpress->modules->roles))) {
             $screen = get_current_screen();
 
-            if ('user-edit' === $screen->base || ('user' === $screen->base && 'add' === $screen->action && defined('PP_CAPABILITIES_ADD_USER_MULTI_ROLES'))) {
+            if ('user-edit' === $screen->base || ('user' === $screen->base && 'add' === $screen->action)) {
                 // Check if we are on the user's profile page
                 wp_enqueue_script(
                     'pp-capabilities-chosen-js',
@@ -352,7 +352,10 @@ class PP_Capabilities_Admin_UI {
     public function action_profile_update($userId, $oldUserData = [])
     {
         // Check if we need to update the user's roles, allowing to set multiple roles.
-        if (!empty($_REQUEST['_wpnonce']) && wp_verify_nonce(sanitize_key($_REQUEST['_wpnonce']), 'update-user_' . $userId) && isset($_POST['pp_roles']) && current_user_can('promote_users')) {
+        if ((!empty($_REQUEST['_wpnonce']) && wp_verify_nonce(sanitize_key($_REQUEST['_wpnonce']), 'update-user_' . $userId) 
+            || !empty($_REQUEST['_wpnonce_create-user']) && wp_verify_nonce(sanitize_key($_REQUEST['_wpnonce_create-user']), 'create-user')) 
+            && isset($_POST['pp_roles']) && current_user_can('promote_users')) {
+
             // Remove the user's roles
             $user = get_user_by('ID', $userId);
 
