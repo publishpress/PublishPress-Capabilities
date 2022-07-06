@@ -49,23 +49,23 @@ jQuery(function ($) {
   /**
    * Make role sortable
    */
-  $(".user-role-wrap .chosen-choices").sortable();
+  $(".user-role-wrap .chosen-choices, #createuser .chosen-choices").sortable();
   
   /**
    * Force role option re-order before profile form submission
    */
-  $('form#your-profile').submit(function () {
+  $('form#your-profile, form#createuser').submit(function () {
     var options = $('#pp_roles option');
-    $(".user-role-wrap .chosen-choices .search-choice .search-choice-close").each(function () {
+    $(".user-role-wrap .chosen-choices .search-choice .search-choice-close, #createuser .chosen-choices .search-choice .search-choice-close").each(function () {
       var select_position = $(this).attr('data-option-array-index');
       $(options[select_position]).insertBefore(options.eq(0));
     });
   });
 
   /**
-   * Add class to chosen container on chouce click
+   * Add class to chosen container on choice click
    */
-	$(document).on( 'mousedown', '.user-role-wrap .chosen-choices .search-choice', function() {
+	$(document).on( 'mousedown', '.user-role-wrap .chosen-choices .search-choice, #createuser .chosen-choices .search-choice', function() {
     $(this).closest('.chosen-container').addClass('chosen-choice-click');
    });
   
@@ -73,7 +73,7 @@ jQuery(function ($) {
    * Remove chosen container class on click inside input
    */
   
-	$(document).on( 'mousedown', '.user-role-wrap .chosen-choices', function(e) {
+	$(document).on( 'mousedown', '.user-role-wrap .chosen-choices, #createuser .chosen-choices', function(e) {
     if (!e.target.parentElement.classList.contains('search-choice')) {
       $(this).closest('.chosen-container').removeClass('chosen-choice-click');
     }
