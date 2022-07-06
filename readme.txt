@@ -409,6 +409,15 @@ Fixed : Security issue. Please update.
 
 == Changelog ==
 
+= 2.4.3 - 06 Jul 2022 =
+  * Fixed : Capabilities conflict with Advanced Custom Fields #494
+  * Fixed : Issue with editor features when options is not array #495
+  * Update : Add checkbox for the "Allowed Editors" feature #498
+  * Update : Add support for TaxoPress on the Capabilities screen #500
+  * Update : Use 3 clicks approach for all boxes in Capabilities #497
+  * Fixed : Uncaught TypeError: in_array(): Argument #2 ($haystack) must be of type array, null given. #513
+  * Fixed : Hide Invalid Capabilities if empty #490
+
 = 2.4.2 - 14 Jun 2022 =
   * Fixed : Correct match of post types and Editor Features boxes #427
   * Update : Changes to user role selection UI and make role draggable for re-ordering #443
