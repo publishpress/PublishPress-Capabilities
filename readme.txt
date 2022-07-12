@@ -409,7 +409,7 @@ Fixed : Security issue. Please update.
 
 == Changelog ==
 
-= 2.4.3 - 06 Jul 2022 =
+= 2.4.3 - 12 Jul 2022 =
   * Fixed : Capabilities conflict with Advanced Custom Fields #494
   * Fixed : Issue with editor features when options is not array #495
   * Update : Add checkbox for the "Allowed Editors" feature #498
