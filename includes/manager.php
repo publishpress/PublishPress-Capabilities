@@ -135,7 +135,7 @@ class CapabilityManager
 		$this->ID = 'capsman';
 		$this->mod_url = plugins_url( '', CME_FILE );
 
-		if (is_admin() && !empty($_REQUEST['page']) && ('pp-capabilities-settings' == $_REQUEST['page']) && (!empty($_POST['all_options']) || !empty($_POST['all_options_pro']))) {
+		if (is_admin() && !empty($_REQUEST['page']) && ('pp-capabilities-settings' == $_REQUEST['page']) && !empty($_POST['all_options'])) {
 			add_action('init', function() {
 				if (isset($_REQUEST['_wpnonce']) && wp_verify_nonce($_REQUEST['_wpnonce'], 'pp-capabilities-settings') && current_user_can('manage_capabilities')) {
 					require_once (dirname(CME_FILE) . '/includes/settings-handler.php');

@@ -7,7 +7,6 @@
  */
 
 global $wpdb;
-$all_options = [];
 ?>
 
 <div class="wrap publishpress-caps-manage publishpress-caps-settings pressshack-admin-wrapper">
@@ -48,10 +47,6 @@ $all_options = [];
             <li class="publishpress-contact"><a href="https://publishpress.com/contact" target="_blank"><?php esc_html_e('Help / Contact Form', 'capsman-enhanced');?></a></li>
         </ul>
         <?php */ endif;?>
-        
-        <?php
-        echo "<input type='hidden' name='all_options' value='" . implode(',', array_map('esc_attr', $all_options)) . "' />";
-        ?>
 
         <input type="submit" name="submit" id="submit" class="button button-primary" value="<?php esc_attr_e('Save Changes', 'capsman-enhanced');?>">
     </form>
