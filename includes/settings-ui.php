@@ -126,6 +126,6 @@ class Capabilities_Settings_UI {
         </script>
 
     <?php
-        echo "<input type='hidden' name='all_options_pro' value='" . implode(',', array_map('esc_attr', $all_options)) . "' />";
+        echo "<input type='hidden' name='all_options' value='" . implode(',', array_map('esc_attr', $all_options)) . "' />";
     }
 } // end class
