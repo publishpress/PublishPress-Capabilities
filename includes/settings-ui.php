@@ -37,7 +37,7 @@ class Capabilities_Settings_UI {
                             <?php
                                 $checked = checked(!empty(get_option('cme_capabilities_show_private_taxonomies', 0)), true, false);
                             ?>
-                            <th scope="row"> <?php esc_html_e('Show Private Taxonomies', 'capabilities-pro'); ?></th>
+                            <th scope="row"> <?php esc_html_e('Show Private Taxonomies', 'capsman-enhanced'); ?></th>
                             <td>
                                 <label> 
                                 <input type="checkbox" name="cme_capabilities_show_private_taxonomies" id="cme_capabilities_show_private_taxonomies" autocomplete="off" value="1" <?php echo esc_attr($checked);?>>
@@ -52,9 +52,9 @@ class Capabilities_Settings_UI {
                             if (defined('PUBLISHPRESS_VERSION') && class_exists('PP_Custom_Status')):
                                 $checked = checked(!empty(get_option('cme_custom_status_control')), true, false);
                             ?>
-                            <th scope="row"><?php esc_html_e('Control Custom Statuses', 'capabilities-pro'); ?></th>
+                            <th scope="row"><?php esc_html_e('Control Custom Statuses', 'capsman-enhanced'); ?></th>
                             <td>
-                        <label for="" title="<?php esc_attr_e('Control selection of custom post statuses.', 'capabilities-pro');?>"> 
+                        <label for="" title="<?php esc_attr_e('Control selection of custom post statuses.', 'capsman-enhanced');?>"> 
                                 <input type="checkbox" name="cme_custom_status_control" id="cme_custom_status_control" autocomplete="off" value="1" <?php echo esc_attr($checked);?>>
                                 </label>
                                 <br>
@@ -70,15 +70,15 @@ class Capabilities_Settings_UI {
                         <?php
                             $checked = checked(!empty(get_option('cme_admin_menus_restriction_priority', 1)), true, false);
                         ?>
-                        <th scope="row"> <?php esc_html_e('Admin Menu Restrictions', 'capabilities-pro'); ?></th>
+                        <th scope="row"> <?php esc_html_e('Admin Menu Restrictions', 'capsman-enhanced'); ?></th>
                         <td>
-                    <label for="" title="<?php esc_attr_e('Admin Menus: treatment of multiple roles', 'capabilities-pro');?>"> 
+                    <label for="" title="<?php esc_attr_e('Admin Menus: treatment of multiple roles', 'capsman-enhanced');?>"> 
                             <select name="cme_admin_menus_restriction_priority" id="cme_admin_menus_restriction_priority" autocomplete="off">
-                            <option value="0"<?php echo (esc_attr($checked)) ? '' : ' selected';?>><?php esc_html_e('Any non-restricted user role allows access', 'capabilities-pro');?></option>
-                            <option value="1"<?php echo (esc_attr($checked)) ? ' selected' : '';?>><?php esc_html_e('Any restricted user role prevents access', 'capabilities-pro');?></option>
+                            <option value="0"<?php echo (esc_attr($checked)) ? '' : ' selected';?>><?php esc_html_e('Any non-restricted user role allows access', 'capsman-enhanced');?></option>
+                            <option value="1"<?php echo (esc_attr($checked)) ? ' selected' : '';?>><?php esc_html_e('Any restricted user role prevents access', 'capsman-enhanced');?></option>
                             </select>
                             <div class='cme-subtext'>
-                            <?php esc_html_e('How are restrictions applied when a user has multiple roles?', 'capabilities-pro');?>
+                            <?php esc_html_e('How are restrictions applied when a user has multiple roles?', 'capsman-enhanced');?>
                             </div>
                             </label>
                             <br>
@@ -94,7 +94,7 @@ class Capabilities_Settings_UI {
                             <?php
                                 $checked = checked(!empty(get_option('cme_editor_features_private_post_type', 0)), true, false);
                             ?>
-                            <th scope="row"> <?php esc_html_e('Support for Private Post Types', 'capabilities-pro'); ?></th>
+                            <th scope="row"> <?php esc_html_e('Support for Private Post Types', 'capsman-enhanced'); ?></th>
                             <td>
                                 <label> 
                                 <input type="checkbox" name="cme_editor_features_private_post_type" id="cme_editor_features_private_post_type" autocomplete="off" value="1" <?php echo esc_attr($checked);?>>
