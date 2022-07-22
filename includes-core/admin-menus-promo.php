@@ -80,13 +80,6 @@ $default_role = $capsman->current;
         jQuery(document).ready(function ($) {
 
             // -------------------------------------------------------------
-            //   reload page for instant reflection if user is updating own role
-            // -------------------------------------------------------------
-            <?php if((int)$ppc_admin_menu_reload === 1){ ?>
-                window.location = '<?php echo esc_url_raw(admin_url('admin.php?page=pp-capabilities-admin-menus&role=' . $default_role . '')); ?>';
-            <?php } ?>
-
-            // -------------------------------------------------------------
             //   Set form action attribute to include role
             // -------------------------------------------------------------
             $('#ppc-admin-menu-form').attr('action', '<?php echo esc_url_raw(admin_url('admin.php?page=pp-capabilities-admin-menus&role=' . $default_role . '')); ?>');
