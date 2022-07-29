@@ -685,7 +685,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 							echo '<h3>' .  sprintf($caption_pattern, esc_html($cap_type_names[$cap_type])) . '</h3>';
 
                             if ($cap_type === 'list' && defined('PRESSPERMIT_ACTIVE')) {
-                                echo '<p class="description"> '. esc_html__('These capabilities function as a subset of the edit capabilities and are applied only if the user does not satisfy the corresponding edit requirement. If the corresponding edit capability is assigned, revoking or negating the list capability will have no effect.', 'capsman-enhanced') .' </p>';
+                                echo '<p class="description"> '. esc_html__('Admin listing access is normally provided by the "Edit" capabilities. "List" capabilities apply if the corresponding "Edit" capability is missing, but otherwise have no effect.', 'capsman-enhanced') .' </p>';
                             }
 
 							echo '<div class="ppc-filter-wrapper">';
