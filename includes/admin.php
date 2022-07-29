@@ -202,6 +202,10 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 			$cap_properties['delete']['type'] = array( 'delete_posts', 'delete_others_posts' );
 			$cap_properties['delete']['type'] = array_merge( $cap_properties['delete']['type'], array( 'delete_published_posts', 'delete_private_posts' ) );
 
+            if (defined('PRESSPERMIT_ACTIVE')) {
+                $cap_properties['list']['type'] = ['list_posts', 'list_others_posts', 'list_published_posts', 'list_private_posts'];
+            }
+
 
 			$cap_properties['read']['type'] = array( 'read_private_posts' );
 
@@ -216,6 +220,10 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 				'delete' => __( 'Deletion', 'capsman-enhanced' ),
                 'taxonomies' => __( 'Taxonomies', 'capsman-enhanced' ),
 			);
+
+            if (defined('PRESSPERMIT_ACTIVE')) {
+                $cap_type_names['list'] = __('Listing', 'capsman-enhanced');
+            }
 
 			$cap_tips = array(
 				'read_private' => esc_attr__( 'can read posts which are currently published with private visibility', 'capsman-enhanced' ),
@@ -234,6 +242,11 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 								   'read_private_pages', 'edit_pages', 'edit_others_pages', 'edit_published_pages', 'edit_private_pages', 'publish_pages', 'delete_pages', 'delete_others_pages', 'delete_published_pages', 'delete_private_pages',
 								   'manage_categories'
 								   );
+
+            if (defined('PRESSPERMIT_ACTIVE')) {
+                $default_caps = array_merge($default_caps, ['list_posts', 'list_others_posts', 'list_published_posts', 'list_private_posts', 'list_pages', 'list_others_pages', 'list_published_pages', 'list_private_pages']);
+            }
+
 			$type_caps = array();
 			$type_metacaps = array();
 
@@ -671,6 +684,10 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 
 							echo '<h3>' .  sprintf($caption_pattern, esc_html($cap_type_names[$cap_type])) . '</h3>';
 
+                            if ($cap_type === 'list' && defined('PRESSPERMIT_ACTIVE')) {
+                                echo '<p class="description"> '. esc_html__('Admin listing access is normally provided by the "Edit" capabilities. "List" capabilities apply if the corresponding "Edit" capability is missing, but otherwise have no effect.', 'capsman-enhanced') .' </p>';
+                            }
+
 							echo '<div class="ppc-filter-wrapper">';
 								echo '<select class="ppc-filter-select">';
 									$filter_caption = ('taxonomy' == $item_type) ? __('Filter by taxonomy', 'capsman-enhanced') : __('Filter by post type', 'capsman-enhanced');
@@ -708,8 +725,26 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 								$row = "<tr class='cme_type_" . esc_attr($key) . "'>";
 
 								if ( $cap_type ) {
-									if ( empty($force_distinct_ui) && empty( $cap_properties[$cap_type][$item_type] ) )
-										continue;
+
+                                    if (empty($force_distinct_ui) && empty($cap_properties[$cap_type][$item_type])) {
+                                        continue;
+                                    }
+
+                                    if (defined('PRESSPERMIT_ACTIVE')) {
+                                        //add list capabilities
+                                        if (isset($type_obj->cap->edit_posts) && !isset($type_obj->cap->list_posts)) {
+                                            $type_obj->cap->list_posts = str_replace('edit_', 'list_', $type_obj->cap->edit_posts);
+                                        }
+                                        if (isset($type_obj->cap->edit_others_posts) && !isset($type_obj->cap->list_others_posts)) {
+                                            $type_obj->cap->list_others_posts = str_replace('edit_', 'list_', $type_obj->cap->edit_others_posts);
+                                        }
+                                        if (isset($type_obj->cap->edit_published_posts) && !isset($type_obj->cap->list_published_posts)) {
+                                            $type_obj->cap->list_published_posts = str_replace('edit_', 'list_', $type_obj->cap->edit_published_posts);
+                                        }
+                                        if (isset($type_obj->cap->edit_private_posts) && !isset($type_obj->cap->list_private_posts)) {
+                                            $type_obj->cap->list_private_posts = str_replace('edit_', 'list_', $type_obj->cap->edit_private_posts);
+                                        }
+                                    }
 
 									$type_label = (defined('CME_LEGACY_MENU_NAME_LABEL') && !empty($type_obj->labels->menu_name)) ? $type_obj->labels->menu_name : $type_obj->labels->name;
 
