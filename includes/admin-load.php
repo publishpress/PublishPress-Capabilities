@@ -83,6 +83,9 @@ class PP_Capabilities_Admin_UI {
         add_filter('block_editor_settings_all', [$this, 'filterCodeEditingStatus'], 999);
         add_filter('classic_editor_enabled_editors_for_post_type', [$this, 'filterRolePostTypeEditor'], 10, 2);
         add_filter('classic_editor_plugin_settings', [$this, 'filterRoleEditorSettings']);
+
+        //capabilities settings
+        add_action('pp-capabilities-settings-ui', [$this, 'settingsUI']);
     }
 
     /**
@@ -423,10 +426,7 @@ class PP_Capabilities_Admin_UI {
         add_submenu_page('pp-capabilities-roles',  __('Admin Menus', 'capsman-enhanced'), __('Admin Menus', 'capsman-enhanced'), $cap_name, 'pp-capabilities-admin-menus', 'cme_fakefunc');
         add_submenu_page('pp-capabilities-roles',  __('Nav Menus', 'capsman-enhanced'), __('Nav Menus', 'capsman-enhanced'), $cap_name, 'pp-capabilities-nav-menus', 'cme_fakefunc');
         add_submenu_page('pp-capabilities-roles',  __('Backup', 'capsman-enhanced'), __('Backup', 'capsman-enhanced'), $cap_name, 'pp-capabilities-backup', 'cme_fakefunc');
-        
-        if (defined('PUBLISHPRESS_CAPS_PRO_VERSION')) {
-        	add_submenu_page('pp-capabilities-roles',  __('Settings', 'capsman-enhanced'), __('Settings', 'capsman-enhanced'), $cap_name, 'pp-capabilities-settings', 'cme_fakefunc');
-        }
+        add_submenu_page('pp-capabilities-roles',  __('Settings', 'capsman-enhanced'), __('Settings', 'capsman-enhanced'), $cap_name, 'pp-capabilities-settings', 'cme_fakefunc');
 
         if (!defined('PUBLISHPRESS_CAPS_PRO_VERSION')) {
             add_submenu_page(
@@ -438,5 +438,11 @@ class PP_Capabilities_Admin_UI {
                 'cme_fakefunc'
             );
         }
+    }
+
+
+    public function settingsUI() {
+        require_once(dirname(__FILE__).'/settings-ui.php');
+        new Capabilities_Settings_UI();
     }
 }

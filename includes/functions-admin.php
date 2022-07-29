@@ -248,3 +248,12 @@ function ppc_add_inline_script($custom_script, $handle = 'ppc-dummy-script-handl
     wp_enqueue_script(esc_attr($handle), false, ['jquery']);
     wp_add_inline_script(esc_attr($handle), $custom_script);
 }
+
+function pp_capabilities_settings_options() {
+   $settings_options = [
+       'cme_editor_features_private_post_type',
+       'cme_capabilities_show_private_taxonomies'
+   ];
+
+   return apply_filters('pp_capabilities_settings_options', $settings_options);
+}
