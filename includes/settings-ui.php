@@ -46,21 +46,8 @@ class Capabilities_Settings_UI {
                             </td>
                         </tr>
 
-                        <tr>
-                            <?php
-
-                            if (defined('PUBLISHPRESS_VERSION') && class_exists('PP_Custom_Status')):
-                                $checked = checked(!empty(get_option('cme_custom_status_control')), true, false);
-                            ?>
-                            <th scope="row"><?php esc_html_e('Control Custom Statuses', 'capsman-enhanced'); ?></th>
-                            <td>
-                        <label for="" title="<?php esc_attr_e('Control selection of custom post statuses.', 'capsman-enhanced');?>"> 
-                                <input type="checkbox" name="cme_custom_status_control" id="cme_custom_status_control" autocomplete="off" value="1" <?php echo esc_attr($checked);?>>
-                                </label>
-                                <br>
-                            </td>
-                            <?php endif;?>
-                        </tr>
+                        <?php do_action('pp_capabilities_settings_after_capabilities_content'); ?>
+                        
                         </tbody>
                     </table>
 
