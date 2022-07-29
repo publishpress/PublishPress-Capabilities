@@ -51,29 +51,6 @@ class Capabilities_Settings_UI {
                         </tbody>
                     </table>
 
-                    <table class="form-table" role="presentation" id="ppcs-tab-admin-menus" style="display:none;">
-                        <tbody>
-                        <tr>
-                        <?php
-                            $checked = checked(!empty(get_option('cme_admin_menus_restriction_priority', 1)), true, false);
-                        ?>
-                        <th scope="row"> <?php esc_html_e('Admin Menu Restrictions', 'capsman-enhanced'); ?></th>
-                        <td>
-                    <label for="" title="<?php esc_attr_e('Admin Menus: treatment of multiple roles', 'capsman-enhanced');?>"> 
-                            <select name="cme_admin_menus_restriction_priority" id="cme_admin_menus_restriction_priority" autocomplete="off">
-                            <option value="0"<?php echo (esc_attr($checked)) ? '' : ' selected';?>><?php esc_html_e('Any non-restricted user role allows access', 'capsman-enhanced');?></option>
-                            <option value="1"<?php echo (esc_attr($checked)) ? ' selected' : '';?>><?php esc_html_e('Any restricted user role prevents access', 'capsman-enhanced');?></option>
-                            </select>
-                            <div class='cme-subtext'>
-                            <?php esc_html_e('How are restrictions applied when a user has multiple roles?', 'capsman-enhanced');?>
-                            </div>
-                            </label>
-                            <br>
-                        </td>
-                    </tr>
-                        </tbody>
-                    </table>
-
                     <table class="form-table" role="presentation" id="ppcs-tab-editor-features" style="display:none;">
                         <tbody>
 
