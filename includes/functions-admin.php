@@ -251,9 +251,6 @@ function ppc_add_inline_script($custom_script, $handle = 'ppc-dummy-script-handl
 
 function pp_capabilities_settings_options() {
    $settings_options = [
-       'cme_display_branding',
-       'cme_custom_status_control',
-       'cme_admin_menus_restriction_priority',
        'cme_editor_features_private_post_type',
        'cme_capabilities_show_private_taxonomies'
    ];
