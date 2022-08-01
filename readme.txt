@@ -7,7 +7,7 @@ Tags: user roles, capabilities, permissions, admin menus, post editing, post typ
 Requires at least: 4.9.7
 Tested up to: 6.0
 Requires PHP: 5.6.20
-Stable tag: 2.4.2
+Stable tag: 2.4.3
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -408,6 +408,15 @@ Fixed : Non-administrators with user editing capabilities could add new Administ
 Fixed : Security issue. Please update.
 
 == Changelog ==
+
+= 2.4.3 - 12 Jul 2022 =
+  * Fixed : Capabilities conflict with Advanced Custom Fields #494
+  * Fixed : Issue with editor features when options is not array #495
+  * Update : Add checkbox for the "Allowed Editors" feature #498
+  * Update : Add support for TaxoPress on the Capabilities screen #500
+  * Update : Use 3 clicks approach for all boxes in Capabilities #497
+  * Fixed : Uncaught TypeError: in_array(): Argument #2 ($haystack) must be of type array, null given. #513
+  * Fixed : Hide Invalid Capabilities if empty #490
 
 = 2.4.2 - 14 Jun 2022 =
   * Fixed : Correct match of post types and Editor Features boxes #427

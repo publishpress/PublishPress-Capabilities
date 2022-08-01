@@ -7,7 +7,6 @@
  */
 
 global $wpdb;
-$all_options = [];
 ?>
 
 <div class="wrap publishpress-caps-manage publishpress-caps-settings pressshack-admin-wrapper">
@@ -20,7 +19,7 @@ $all_options = [];
 
         <?php do_action('pp-capabilities-settings-ui');?>
 
-        <?php if (!defined('PUBLISHPRESS_CAPS_PRO_VERSION')) :?>
+        <?php if (!defined('PUBLISHPRESS_CAPS_PRO_VERSION')) : /*?>
         <h3><?php esc_html_e('Related Permissions Plugins', 'capsman-enhanced');?></h3>
         <ul>
             <?php $_url = "plugin-install.php?tab=plugin-information&plugin=publishpress&TB_iframe=true&width=640&height=678";
@@ -47,11 +46,7 @@ $all_options = [];
 
             <li class="publishpress-contact"><a href="https://publishpress.com/contact" target="_blank"><?php esc_html_e('Help / Contact Form', 'capsman-enhanced');?></a></li>
         </ul>
-        <?php endif;?>
-        
-        <?php
-        echo "<input type='hidden' name='all_options' value='" . implode(',', array_map('esc_attr', $all_options)) . "' />";
-        ?>
+        <?php */ endif;?>
 
         <input type="submit" name="submit" id="submit" class="button button-primary" value="<?php esc_attr_e('Save Changes', 'capsman-enhanced');?>">
     </form>
