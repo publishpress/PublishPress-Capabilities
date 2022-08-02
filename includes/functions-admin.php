@@ -252,7 +252,8 @@ function ppc_add_inline_script($custom_script, $handle = 'ppc-dummy-script-handl
 function pp_capabilities_settings_options() {
    $settings_options = [
        'cme_editor_features_private_post_type',
-       'cme_capabilities_show_private_taxonomies'
+       'cme_capabilities_show_private_taxonomies',
+       'cme_capabilities_add_user_multi_roles'
    ];
 
    return apply_filters('pp_capabilities_settings_options', $settings_options);
