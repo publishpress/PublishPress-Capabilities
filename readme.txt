@@ -7,7 +7,7 @@ Tags: user roles, capabilities, permissions, admin menus, post editing, post typ
 Requires at least: 4.9.7
 Tested up to: 6.0
 Requires PHP: 5.6.20
-Stable tag: 2.4.3
+Stable tag: 2.4.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -408,6 +408,17 @@ Fixed : Non-administrators with user editing capabilities could add new Administ
 Fixed : Security issue. Please update.
 
 == Changelog ==
+
+= 2.4.4 - 02 Aug 2022 =
+  * Added : Add "list" capabilities to display #206
+  * Added : Add a Settings screen to Free version #520
+  * Added : Add settings to allow users to select multiple roles when creating users #462
+  * Fixed : Multiple role when creating user doesn’t work #515
+  * Fixed : Admin Menus issue with Yoast #493
+  * Fixed : It's possible to get lockout of admin menus when all items are checked #527
+  * Update : Limit "Control Custom Statuses" option to settings screens alone #528
+  * Update : French and Italian Translations updates #524
+  * Fixed : PHP Warning on viewing Admin Menus #525
 
 = 2.4.3 - 12 Jul 2022 =
   * Fixed : Capabilities conflict with Advanced Custom Fields #494
