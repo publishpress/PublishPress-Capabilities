@@ -712,6 +712,10 @@ body.capabilities_page_pp-capabilities-admin-features .pp-capability-menus-selec
     float: right;
 }
 
+body.capabilities_page_pp-capabilities-settings .publishpress-caps-settings .form-table th {
+    width: 300px;
+}
+
 @media (max-width: 1199px) {
 
 	#ppc-capabilities-wrapper {
