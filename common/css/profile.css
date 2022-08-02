@@ -1,7 +1,9 @@
-tr.user-role-wrap #pp_roles_chosen li.search-choice {
+tr.user-role-wrap #pp_roles_chosen li.search-choice,
+#createuser #pp_roles_chosen li.search-choice {
     cursor: move !important;
 }
 
-tr.user-role-wrap .chosen-choice-click .chosen-drop {
+tr.user-role-wrap .chosen-choice-click .chosen-drop,
+#createuser .chosen-choice-click .chosen-drop {
     display: none !important;
 }

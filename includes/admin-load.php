@@ -83,6 +83,9 @@ class PP_Capabilities_Admin_UI {
         add_filter('block_editor_settings_all', [$this, 'filterCodeEditingStatus'], 999);
         add_filter('classic_editor_enabled_editors_for_post_type', [$this, 'filterRolePostTypeEditor'], 10, 2);
         add_filter('classic_editor_plugin_settings', [$this, 'filterRoleEditorSettings']);
+
+        //capabilities settings
+        add_action('pp-capabilities-settings-ui', [$this, 'settingsUI']);
     }
 
     /**
@@ -244,7 +247,7 @@ class PP_Capabilities_Admin_UI {
         if (function_exists('get_current_screen') && (!defined('PUBLISHPRESS_VERSION') || empty($publishpress) || empty($publishpress->modules) || empty($publishpress->modules->roles))) {
             $screen = get_current_screen();
 
-            if ('user-edit' === $screen->base || ('user' === $screen->base && 'add' === $screen->action && defined('PP_CAPABILITIES_ADD_USER_MULTI_ROLES'))) {
+            if ('user-edit' === $screen->base || ('user' === $screen->base && 'add' === $screen->action && (defined('PP_CAPABILITIES_ADD_USER_MULTI_ROLES') || get_option('cme_capabilities_add_user_multi_roles')))) {
                 // Check if we are on the user's profile page
                 wp_enqueue_script(
                     'pp-capabilities-chosen-js',
@@ -352,7 +355,9 @@ class PP_Capabilities_Admin_UI {
     public function action_profile_update($userId, $oldUserData = [])
     {
         // Check if we need to update the user's roles, allowing to set multiple roles.
-        if (!empty($_REQUEST['_wpnonce']) && wp_verify_nonce(sanitize_key($_REQUEST['_wpnonce']), 'update-user_' . $userId) && isset($_POST['pp_roles']) && current_user_can('promote_users')) {
+        if ((!empty($_REQUEST['_wpnonce']) && wp_verify_nonce(sanitize_key($_REQUEST['_wpnonce']), 'update-user_' . $userId) 
+            || !empty($_REQUEST['_wpnonce_create-user']) && wp_verify_nonce(sanitize_key($_REQUEST['_wpnonce_create-user']), 'create-user'))
+            && isset($_POST['pp_roles']) && current_user_can('promote_users')) {
             // Remove the user's roles
             $user = get_user_by('ID', $userId);
 
@@ -421,10 +426,7 @@ class PP_Capabilities_Admin_UI {
         add_submenu_page('pp-capabilities-roles',  __('Admin Menus', 'capsman-enhanced'), __('Admin Menus', 'capsman-enhanced'), $cap_name, 'pp-capabilities-admin-menus', 'cme_fakefunc');
         add_submenu_page('pp-capabilities-roles',  __('Nav Menus', 'capsman-enhanced'), __('Nav Menus', 'capsman-enhanced'), $cap_name, 'pp-capabilities-nav-menus', 'cme_fakefunc');
         add_submenu_page('pp-capabilities-roles',  __('Backup', 'capsman-enhanced'), __('Backup', 'capsman-enhanced'), $cap_name, 'pp-capabilities-backup', 'cme_fakefunc');
-        
-        if (defined('PUBLISHPRESS_CAPS_PRO_VERSION')) {
-        	add_submenu_page('pp-capabilities-roles',  __('Settings', 'capsman-enhanced'), __('Settings', 'capsman-enhanced'), $cap_name, 'pp-capabilities-settings', 'cme_fakefunc');
-        }
+        add_submenu_page('pp-capabilities-roles',  __('Settings', 'capsman-enhanced'), __('Settings', 'capsman-enhanced'), $cap_name, 'pp-capabilities-settings', 'cme_fakefunc');
 
         if (!defined('PUBLISHPRESS_CAPS_PRO_VERSION')) {
             add_submenu_page(
@@ -436,5 +438,11 @@ class PP_Capabilities_Admin_UI {
                 'cme_fakefunc'
             );
         }
+    }
+
+
+    public function settingsUI() {
+        require_once(dirname(__FILE__).'/settings-ui.php');
+        new Capabilities_Settings_UI();
     }
 }
