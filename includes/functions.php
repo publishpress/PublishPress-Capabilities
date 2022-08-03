@@ -215,6 +215,7 @@ function pp_capabilities_is_classic_editor_available()
         || version_compare($wp_version, '5.0', '<')
         || class_exists('WooCommerce')
         || (defined('PP_CAPABILITIES_CONFIGURE_CLASSIC_EDITOR') && PP_CAPABILITIES_CONFIGURE_CLASSIC_EDITOR)
+        || !empty(get_option('cme_editor_features_classic_editor_tab'))
         || (function_exists('et_get_option') && 'on' === et_get_option('et_enable_classic_editor', 'off'));
 }
 

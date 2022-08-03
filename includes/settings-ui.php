@@ -85,6 +85,20 @@ class Capabilities_Settings_UI {
                                 <br>
                             </td>
                         </tr>
+
+                            <tr>
+                            <?php
+                                $checked = checked(!empty(get_option('cme_editor_features_classic_editor_tab', 0)), true, false);
+                            ?>
+                            <th scope="row"> <?php esc_html_e('Enable Classic Editor Tab', 'capsman-enhanced'); ?></th>
+                            <td>
+                                <label> 
+                                <input type="checkbox" name="cme_editor_features_classic_editor_tab" id="cme_editor_features_classic_editor_tab" autocomplete="off" value="1" <?php echo esc_attr($checked);?>>
+                                </label>
+                                <br>
+                            </td>
+                        </tr>
+
                         </tbody>
                     </table>
 
