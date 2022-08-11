@@ -211,6 +211,12 @@ $active_tab_text = is_object($active_tab_type_obj)
 
 
                             <div class="editor-features-footer-meta">
+                                <?php if (!$classic_editor) : ?>
+                                <input type="submit" name="editor-features-classic-editor-toggle"
+                                    value="<?php esc_attr_e('show Classic Editor controls', 'capsman-enhanced') ?>"
+                                    class="button-secondary ppc-editor-classic-toggle-button" />
+                                <?php endif; ?>
+
                                 <input type="submit" name="editor-features-all-submit"
                                     value="<?php esc_attr_e('Save for all Post Types', 'capsman-enhanced') ?>"
                                     class="button-secondary ppc-editor-features-submit" style="float:right" />
