@@ -13,12 +13,18 @@ class Capabilities_Settings_UI {
 
     public function settingsUI() {
         $all_options        = pp_capabilities_settings_options();
-        $first_table_display = defined('PUBLISHPRESS_CAPS_PRO_VERSION') ? 'display:none;' : '';
+        if (defined('PUBLISHPRESS_CAPS_PRO_VERSION')) {
+            $first_table_display = 'display:none;';
+            $first_active_tab    = '';
+        } else {
+            $first_table_display = '';
+            $first_active_tab    = 'nav-tab-active';
+        }
         ?>
 
         <ul id="publishpress-capability-settings-tabs" class="nav-tab-wrapper">
             <?php do_action('pp_capabilities_settings_before_menu_list'); ?>
-            <li class="nav-tab"><a href="#ppcs-tab-roles"><?php esc_html_e('Roles', 'capsman-enhanced');?></a></li>
+            <li class="<?php echo esc_attr('nav-tab ' . $first_active_tab); ?>"><a href="#ppcs-tab-roles"><?php esc_html_e('Roles', 'capsman-enhanced');?></a></li>
             <li class="nav-tab"><a href="#ppcs-tab-capabilities"><?php esc_html_e('Capabilities', 'capsman-enhanced');?></a></li>
             <li class="nav-tab"><a href="#ppcs-tab-editor-features"><?php esc_html_e('Editor Features', 'capsman-enhanced');?></a></li>
             <?php do_action('pp_capabilities_settings_after_menu_list'); ?>
