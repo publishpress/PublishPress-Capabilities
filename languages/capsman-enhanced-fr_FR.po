@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Plugins - PublishPress Capabilities &#8211; User Role Access, Editor Permissions, Admin Menus - Stable (latest release)\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2022-07-20 15:18-0500\n"
+"PO-Revision-Date: 2022-08-05 12:13-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -14,9 +14,29 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
 "X-Generator: Poedit 3.0.1\n"
 
+#: includes/settings-ui.php:80
+msgid "Support for Private Post Types"
+msgstr "Prise en charge des types de publication privés"
+
+#: includes/settings-ui.php:59
+msgid "Show Private Taxonomies"
+msgstr "Afficher les taxonomies privées"
+
+#: includes/settings-ui.php:41
+msgid "Enable Multiple Roles When Creating Users"
+msgstr "Activer les rôles multiples lors de la création d’utilisateurs et utilisatrices"
+
+#: includes/admin.php:688
+msgid "Admin listing access is normally provided by the \"Edit\" capabilities. \"List\" capabilities apply if the corresponding \"Edit\" capability is missing, but otherwise have no effect."
+msgstr "L’accès à la liste des administrateurs et administratrices est normalement fourni par les permissions de « Modifier ». Les permissions « Lister » s’appliquent si la permission « Modifier » correspondante est absente, mais n’ont aucun effet dans les autres cas."
+
+#: includes/admin.php:225
+msgid "Listing"
+msgstr "Liste"
+
 #: includes/roles/class/class-pp-roles-admin.php:338
 msgid "You must select at least one editor for the role when managing allowed editor."
-msgstr "Vous devez sélectionner au moins un éditeur/éditrice pour le rôle lors de la gestion des éditeurs/éditrices autorisés."
+msgstr "Vous devez sélectionner au moins un éditeur ou une éditrice pour le rôle lors de la gestion des éditeurs et éditrices autorisés."
 
 #: includes/roles/class/class-pp-roles-admin.php:337
 msgid "Select allowed editor"
@@ -107,15 +127,15 @@ msgstr "Ajouter un bloc"
 msgid "No metabox found for %1s. %2s Click here %3s to visit the %4s screen and refresh this page after to load new metabox"
 msgstr "Aucune boîte méta trouvée pour %1s. %2s Cliquez ici %3s pour visiter l’écran %4s et rafraîchissez cette page après pour charger la nouvelle boîte méta."
 
-#: includes/admin.php:1158
+#: includes/admin.php:1193
 msgid "The following entries have no effect. Please assign desired capabilities on the Editing / Deletion / Reading tabs."
 msgstr "Les entrées suivantes n’ont aucun effet. Veuillez attribuer les permissions souhaitées dans les onglets Édition/Suppression/Lecture."
 
-#: includes/admin.php:217
+#: includes/admin.php:221
 msgid "Taxonomies"
 msgstr "Taxonomies"
 
-#: includes/admin-load.php:293
+#: includes/admin-load.php:296
 msgid "Drag multiple roles selection to change order."
 msgstr "Faites glisser la sélection de plusieurs rôles pour en modifier l’ordre."
 
@@ -251,7 +271,7 @@ msgstr "Général"
 msgid "%s role updated successfully."
 msgstr "Le rôle de %s a bien été mis à jour."
 
-#: includes/manager.php:939
+#: includes/manager.php:937
 msgid "You do not have permission to perform this action."
 msgstr "Vous n’avez pas les droits nécessaires pour effectuer cette action."
 
@@ -327,11 +347,11 @@ msgstr "Veuillez téléverser un fichier à importer"
 msgid "%s restored from last backup."
 msgstr "%s restauré à partir de la dernière sauvegarde."
 
-#: includes/admin.php:1544
+#: includes/admin.php:1579
 msgid "Go to the Backup feature"
 msgstr "Accédez à la fonctionnalité de sauvegarde"
 
-#: includes/admin.php:1540
+#: includes/admin.php:1575
 msgid ""
 "This plugin automatically creates a backup whenever you save changes. You can use these backups to\n"
 "restore an earlier version of your roles and capabilities."
@@ -339,7 +359,7 @@ msgstr ""
 "Cette extension crée automatiquement une sauvegarde à chaque fois que vous enregistrez des modifications. Vous pouvez utiliser ces sauvegardes pour\n"
 "restaurer une version antérieure de vos rôles et permissions."
 
-#: includes/admin.php:1538
+#: includes/admin.php:1573
 msgid "PublishPress Capabilities is safe to use"
 msgstr "PublishPress Capabilities est sûr à utiliser"
 
@@ -359,7 +379,7 @@ msgstr "Le rôle « %s » existe déjà. Veuillez choisir un autre nom."
 msgid "Invalid role name entry: %s"
 msgstr "Entrée de nom de rôle invalide : %s"
 
-#: includes/manager.php:537 includes/manager.php:559
+#: includes/manager.php:535 includes/manager.php:557
 msgid "You do not have permission to manage admin features."
 msgstr "Vous n’avez pas le droit de gérer les fonctionnalités d’administration."
 
@@ -466,59 +486,59 @@ msgstr "Contrôlez les autorisations pour les publications et les pages individu
 msgid "Recommendations for you"
 msgstr "Des recommandations pour vous"
 
-#: includes/admin.php:1045
+#: includes/admin.php:1080
 msgid "Plugin Capabilities &ndash; %s"
 msgstr "Extension Permissions &ndash; %s"
 
-#: includes/admin.php:888 includes/admin.php:998 includes/admin.php:1051
-#: includes/admin.php:1260
+#: includes/admin.php:923 includes/admin.php:1033 includes/admin.php:1086
+#: includes/admin.php:1295
 msgid "No results found. Please try again with a different word."
 msgstr "Aucun résultat trouvé. Veuillez réessayer avec un autre mot."
 
-#: includes/admin.php:885 includes/admin.php:995 includes/admin.php:1048
-#: includes/admin.php:1257
+#: includes/admin.php:920 includes/admin.php:1030 includes/admin.php:1083
+#: includes/admin.php:1292
 msgid "Filter by capability"
 msgstr "Filtrer par permission"
 
-#: includes/admin.php:992
+#: includes/admin.php:1027
 msgid "WordPress Core Capabilities"
 msgstr "Permissions natives de WordPress"
 
-#: includes/admin.php:679 includes/admin.php:886 includes/admin.php:996
-#: includes/admin.php:1049 includes/admin.php:1258
+#: includes/admin.php:696 includes/admin.php:921 includes/admin.php:1031
+#: includes/admin.php:1084 includes/admin.php:1293
 msgid "Clear"
 msgstr "Effacer"
 
-#: includes/admin.php:676
+#: includes/admin.php:693
 msgid "Filter by post type"
 msgstr "Filtrer par type de publication"
 
-#: includes/admin.php:676
+#: includes/admin.php:693
 msgid "Filter by taxonomy"
 msgstr "Filtrer par taxonomie"
 
-#: includes/admin.php:670
+#: includes/admin.php:683
 msgid "Post %s Capabilities"
 msgstr "Permissions de la publication %s"
 
-#: includes/admin.php:670
+#: includes/admin.php:683
 msgid "Term %s Capabilities"
 msgstr "Permissions de le terme %s"
 
-#: includes/admin.php:638
+#: includes/admin.php:651
 msgid "Additional"
 msgstr "Additionnel"
 
-#: includes/admin.php:216
+#: includes/admin.php:220
 msgid "Deletion"
 msgstr "Suppression"
 
-#: includes/admin.php:215 includes/roles/class/class-pp-roles-admin.php:109
+#: includes/admin.php:219 includes/roles/class/class-pp-roles-admin.php:109
 msgid "Editing"
 msgstr "Édition"
 
-#: includes/admin-load.php:420 includes/functions-admin.php:212
-#: includes/manager.php:377 includes/manager.php:412
+#: includes/admin-load.php:425 includes/functions-admin.php:212
+#: includes/manager.php:377 includes/manager.php:410
 #: includes/roles/class/class-pp-roles-list-table.php:174
 msgid "Admin Features"
 msgstr "Fonctionnalités administratives"
@@ -575,17 +595,18 @@ msgstr "Liste de contrôle"
 msgid "Metaboxes"
 msgstr "Boîtes méta"
 
-#: includes/manager.php:521 includes/manager.php:575
+#: includes/manager.php:519 includes/manager.php:573
 msgid "Settings updated."
 msgstr "Réglages mis à jour."
 
-#: includes/manager.php:464 includes/manager.php:486
+#: includes/manager.php:462 includes/manager.php:484
 msgid "You do not have permission to manage editor features."
 msgstr "Vous n’êtes pas autorisé à gérer les fonctionnalités de l’éditeur."
 
-#: includes/admin-load.php:419 includes/functions-admin.php:201
-#: includes/manager.php:375 includes/manager.php:411
+#: includes/admin-load.php:424 includes/functions-admin.php:201
+#: includes/manager.php:375 includes/manager.php:409
 #: includes/roles/class/class-pp-roles-list-table.php:173
+#: includes/settings-ui.php:23
 msgid "Editor Features"
 msgstr "Fonctionnalités de l’éditeur"
 
@@ -840,19 +861,19 @@ msgstr "Sélectionnez les fonctions d’éditeur à supprimer. Notez que cet éc
 msgid "Editor Feature Restriction"
 msgstr "Restriction des fonctionnalités de l’éditeur"
 
-#: includes/admin.php:1596
+#: includes/admin.php:1631
 msgid "sync options to all sites now"
 msgstr "synchroniser les options sur tous les sites maintenant"
 
-#: includes/admin.php:1596
+#: includes/admin.php:1631
 msgid "Copy option settings to all sites now"
 msgstr "Copiez les réglages des options sur tous les sites maintenant"
 
-#: includes/handler.php:61 includes/handler.php:89 includes/manager.php:758
+#: includes/handler.php:61 includes/handler.php:89 includes/manager.php:756
 msgid "The selected role is not editable."
 msgstr "Le rôle sélectionné n’est pas modifiable."
 
-#: includes/manager.php:441
+#: includes/manager.php:439
 msgid "You do not have permission to manage roles."
 msgstr "Vous n’êtes pas autorisé à gérer les rôles."
 
@@ -916,8 +937,8 @@ msgstr "Réinitialiser les rôles"
 msgid "Restore"
 msgstr "Restaurer"
 
-#: includes/admin-load.php:426
-#: includes/features/restrict-editor-features.php:387 includes/manager.php:384
+#: includes/admin-load.php:429
+#: includes/features/restrict-editor-features.php:387 includes/manager.php:383
 msgid "Settings"
 msgstr "Réglages"
 
@@ -934,8 +955,8 @@ msgstr "Recherche de rôles"
 msgid "Search results for &#8220;%s&#8221;"
 msgstr "Résultats de la recherche pour &#171; %s &#187;"
 
-#: includes/admin-load.php:417 includes/manager.php:361
-#: includes/roles/roles.php:8
+#: includes/admin-load.php:422 includes/manager.php:361
+#: includes/roles/roles.php:8 includes/settings-ui.php:21
 msgid "Roles"
 msgstr "Rôles"
 
@@ -971,7 +992,7 @@ msgstr "Afficher"
 msgid "(non-editable role)"
 msgstr "(rôle non modifiable)"
 
-#: includes/manager.php:409
+#: includes/manager.php:407
 #: includes/roles/class/class-pp-roles-list-table.php:171
 msgid "Users"
 msgstr "Utilisateurs"
@@ -1032,22 +1053,18 @@ msgstr "Vous n’avez pas les droits suffisants pour effectuer cette action."
 msgid "Are you sure you want to delete this role?"
 msgstr "Confirmez-vous la suppression de ce rôle ?"
 
-#: includes/settings.php:34
-msgid "PublishPress Authors"
-msgstr "PublishPress Authors"
-
-#: includes/settings.php:14
+#: includes/settings.php:13
 msgid "Capabilities Settings"
 msgstr "Réglages des permissions"
 
-#: includes-core/CoreAdmin.php:63 includes/admin-load.php:422
-#: includes/manager.php:414
+#: includes-core/CoreAdmin.php:63 includes/admin-load.php:427
+#: includes/manager.php:412
 #: includes/roles/class/class-pp-roles-list-table.php:176
 msgid "Nav Menus"
 msgstr "Menus de navigation"
 
-#: includes-core/CoreAdmin.php:62 includes/admin-load.php:421
-#: includes/manager.php:413
+#: includes-core/CoreAdmin.php:62 includes/admin-load.php:426
+#: includes/manager.php:411
 #: includes/roles/class/class-pp-roles-list-table.php:175
 msgid "Admin Menus"
 msgstr "Menus d’administration"
@@ -1080,44 +1097,44 @@ msgid_plural "All %s"
 msgstr[0] "Tous les %s"
 msgstr[1] "Tous les %s"
 
-#: includes/manager.php:1009
+#: includes/manager.php:1007
 msgid "Contact"
 msgstr "Contact"
 
-#: includes/manager.php:1009
+#: includes/manager.php:1007
 msgid "Contact the PublishPress team"
 msgstr "Contact de l’équipe de PublishPress"
 
-#: includes/manager.php:1007
+#: includes/manager.php:1005
 msgid "Capabilites Documentation"
 msgstr "Documentation de Capabilities"
 
-#: includes/manager.php:1005
+#: includes/manager.php:1003
 msgid "About"
 msgstr "À propos"
 
-#: includes/manager.php:1005
+#: includes/manager.php:1003
 msgid "About PublishPress Capabilities"
 msgstr "À propos de PublishPress Capabilities"
 
-#: includes/manager.php:994
+#: includes/manager.php:992
 msgid "If you like %s, please leave us a %s rating. Thank you!"
 msgstr "Si vous appréciez %s, veuillez nous laisser une note de %s. Merci !"
 
-#: includes/manager.php:680 includes/manager.php:714 includes/manager.php:732
+#: includes/manager.php:678 includes/manager.php:712 includes/manager.php:730
 msgid "You do not have permission to manage capabilities."
 msgstr "Vous n’avez pas le droit de gérer les permissions."
 
 #: includes-core/admin-features-promo.php:79
 #: includes-core/admin-menus-promo.php:62
 #: includes-core/editor-features-promo.php:79
-#: includes-core/nav-menus-promo.php:67 includes/admin-load.php:432
-#: includes/admin-load.php:433 includes/manager.php:390
-#: includes/manager.php:391
+#: includes-core/nav-menus-promo.php:67 includes/admin-load.php:434
+#: includes/admin-load.php:435 includes/manager.php:388
+#: includes/manager.php:389
 msgid "Upgrade to Pro"
 msgstr "Mettre à niveau en Pro"
 
-#: includes/admin-load.php:423 includes/backup.php:49 includes/manager.php:381
+#: includes/admin-load.php:428 includes/backup.php:49 includes/manager.php:381
 msgid "Backup"
 msgstr "Sauvegarde"
 
@@ -1165,19 +1182,7 @@ msgstr "Permissions spécifiques par type"
 msgid "Capabilities for custom statuses can be manually added here. (See %sPermissions > Post Statuses%s for applicable names). %sSupplemental status-specific roles%s are usually more convenient, though."
 msgstr "Les permissions pour les états personnalisés peuvent être ajoutées manuellement ici. (Voir %sPermissions > Afficher les états%s pour les noms applicables). Cependant, les %sRôles supplémentaires spécifiques aux états %s sont généralement plus pratiques, cependant."
 
-#: includes/settings.php:48
-msgid "Help / Contact Form"
-msgstr "Aide/Formulaire de contact"
-
-#: includes/settings.php:46
-msgid "PublishPress Revisions"
-msgstr "PublishPress Revisions"
-
-#: includes/settings.php:24
-msgid "Related Permissions Plugins"
-msgstr "Extensions de droits similaires"
-
-#: includes/manager.php:408 includes/roles/class/class-pp-roles-admin.php:162
+#: includes/manager.php:406 includes/roles/class/class-pp-roles-admin.php:162
 #: includes/roles/class/class-pp-roles-list-table.php:170
 msgid "Role Name"
 msgstr "Nom du rôle"
@@ -1186,19 +1191,19 @@ msgstr "Nom du rôle"
 msgid "Role Level"
 msgstr "Niveau du rôle"
 
-#: includes/admin.php:1503
+#: includes/admin.php:1538
 msgid "Role level is mostly deprecated. However, it still determines eligibility for Post Author assignment and limits the application of user editing capabilities."
 msgstr "Le niveau de rôle est généralement obsolète. Cependant, il détermine toujours l’éligibilité à l’affectation d’auteur de publication et limite l’application des permissions de modification par l’utilisateur/utilisatrice."
 
-#: includes/admin.php:633 includes/admin.php:1153
+#: includes/admin.php:646 includes/admin.php:1188
 msgid "Invalid Capabilities"
 msgstr "Permissions invalides"
 
-#: includes/admin.php:785
+#: includes/admin.php:820
 msgid "shared capability: %s"
 msgstr "permission partagée : %s"
 
-#: includes/admin.php:1412 includes/settings.php:40
+#: includes/admin.php:1447
 msgid "PublishPress Permissions"
 msgstr "PublishPress Permissions"
 
@@ -1251,7 +1256,6 @@ msgid "https://publishpress.com/"
 msgstr "https://publishpress.com/"
 
 #. Author of the plugin
-#: includes/settings.php:29
 msgid "PublishPress"
 msgstr "PublishPress"
 
@@ -1299,7 +1303,7 @@ msgstr "activer %1$sRéglages avancées%2$s, voir Utilisation des rôles"
 msgid "see %1$sRole Usage%2$s: \"Pattern Roles\""
 msgstr "voir %1$sUtilisation des rôles%2$s : « Modèle de rôle »."
 
-#: includes/manager.php:787
+#: includes/manager.php:785
 msgid "Bad form Received"
 msgstr "Formulaire reçu incorrect"
 
@@ -1319,7 +1323,7 @@ msgstr "Formulaire reçu incorrect."
 msgid "Incorrect capability name."
 msgstr "Nom de permission incorrect."
 
-#: includes/manager.php:746
+#: includes/manager.php:744
 msgid "New capability added to role."
 msgstr "Nouvelle permission ajouté au rôle."
 
@@ -1384,37 +1388,37 @@ msgstr "Echec de la restauration. Aucune sauvegarde trouvée."
 msgid "New backup saved."
 msgstr "Nouvelle sauvegarde enregistrée."
 
-#: includes/backup-handler.php:15 includes/manager.php:901
+#: includes/backup-handler.php:15 includes/manager.php:899
 msgid "You do not have permission to restore roles."
 msgstr "Vous n’avez pas la permission de restaurer les rôles."
 
-#: includes/admin.php:1593
+#: includes/admin.php:1628
 msgid "sync role to all sites now"
 msgstr "synchroniser le rôle avec tous les sites maintenant"
 
-#: includes/admin.php:1593
+#: includes/admin.php:1628
 msgid "Copy / update this role definition to all sites now"
 msgstr "Copiez/mettez à jour cette définition de rôle sur tous les sites maintenant"
 
-#: includes/admin.php:1590
+#: includes/admin.php:1625
 msgid "include in new sites"
 msgstr "inclure dans les nouveaux sites"
 
-#: includes/admin.php:1590
+#: includes/admin.php:1625
 msgid "Create this role definition in new (future) sites"
 msgstr "Créer cette définition de rôle dans les nouveaux (futurs) sites"
 
-#: includes/admin.php:1554
+#: includes/admin.php:1589
 msgid "Add to role"
 msgstr "Ajouter au rôle"
 
-#: includes/admin.php:899 includes/admin.php:972 includes/admin.php:1009
-#: includes/admin.php:1018 includes/admin.php:1062 includes/admin.php:1135
-#: includes/admin.php:1266 includes/admin.php:1382
+#: includes/admin.php:934 includes/admin.php:1007 includes/admin.php:1044
+#: includes/admin.php:1053 includes/admin.php:1097 includes/admin.php:1170
+#: includes/admin.php:1301 includes/admin.php:1417
 msgid "Capability Name"
 msgstr "Nom de la permission"
 
-#: includes/admin.php:1551
+#: includes/admin.php:1586
 msgid "Add Capability"
 msgstr "Ajouter une permission"
 
@@ -1431,156 +1435,156 @@ msgid "Delete role"
 msgstr "Supprimer le rôle"
 
 #: includes-core/admin-menus-promo.php:48 includes-core/nav-menus-promo.php:52
-#: includes/admin.php:113 includes/admin.php:1525
+#: includes/admin.php:113 includes/admin.php:1560
 #: includes/features/admin-features.php:76
-#: includes/features/admin-features.php:215 includes/settings.php:56
+#: includes/features/admin-features.php:215 includes/settings.php:51
 msgid "Save Changes"
 msgstr "Enregistrer les modifications"
 
-#: includes/admin.php:1505
+#: includes/admin.php:1540
 msgid "Level:"
 msgstr "Niveau :"
 
-#: includes/admin.php:1254
+#: includes/admin.php:1289
 msgid "Additional Capabilities"
 msgstr "Permissions supplémentaires"
 
-#: includes/admin.php:901 includes/admin.php:974 includes/admin.php:1011
-#: includes/admin.php:1020 includes/admin.php:1064 includes/admin.php:1137
-#: includes/admin.php:1268 includes/admin.php:1384
+#: includes/admin.php:936 includes/admin.php:1009 includes/admin.php:1046
+#: includes/admin.php:1055 includes/admin.php:1099 includes/admin.php:1172
+#: includes/admin.php:1303 includes/admin.php:1419
 msgid "negate none (add/remove all capabilities normally)"
 msgstr "ne rien nier (ajouter/supprimer les permissions normalement)"
 
-#: includes/admin.php:901 includes/admin.php:974 includes/admin.php:1011
-#: includes/admin.php:1020 includes/admin.php:1064 includes/admin.php:1137
-#: includes/admin.php:1268 includes/admin.php:1384
+#: includes/admin.php:936 includes/admin.php:1009 includes/admin.php:1046
+#: includes/admin.php:1055 includes/admin.php:1099 includes/admin.php:1172
+#: includes/admin.php:1303 includes/admin.php:1419
 msgid "negate all (storing as disabled capabilities)"
 msgstr "nier tout (stockage en tant que permissions désactivées)"
 
-#: includes/admin.php:899 includes/admin.php:972 includes/admin.php:1009
-#: includes/admin.php:1018 includes/admin.php:1062 includes/admin.php:1135
-#: includes/admin.php:1266 includes/admin.php:1382
+#: includes/admin.php:934 includes/admin.php:1007 includes/admin.php:1044
+#: includes/admin.php:1053 includes/admin.php:1097 includes/admin.php:1170
+#: includes/admin.php:1301 includes/admin.php:1417
 msgid "check / uncheck all"
 msgstr "tout cocher/décocher"
 
-#: includes/admin.php:773 includes/admin.php:934 includes/admin.php:1097
-#: includes/admin.php:1330
+#: includes/admin.php:808 includes/admin.php:969 includes/admin.php:1132
+#: includes/admin.php:1365
 msgid "%s: assigned by Permission Group"
 msgstr "%s : attribué par le groupe de permission"
 
-#: includes/admin.php:230
+#: includes/admin.php:238
 msgid "can delete posts which are currently published with private visibility"
 msgstr "peut supprimer les publications publiées avec une visibilité privée"
 
-#: includes/admin.php:229
+#: includes/admin.php:237
 msgid "can delete posts which are currently published"
 msgstr "peut supprimer les publications publiées"
 
-#: includes/admin.php:228
+#: includes/admin.php:236
 msgid "can delete posts which were created by other users"
 msgstr "peut supprimer les publications créés par d’autres utilisateurs/utilisatrices"
 
-#: includes/admin.php:227
+#: includes/admin.php:235
 msgid "has basic deletion capability (but may need other capabilities based on post status and ownership)"
 msgstr "possède la permission de supprimer de base (mais peut nécessiter d’autres permissions basées sur le état ou la propriété de la publication)"
 
-#: includes/admin.php:226
+#: includes/admin.php:234
 msgid "can make a post publicly visible"
 msgstr "peut modifier la visibilité d’une publication"
 
-#: includes/admin.php:225
+#: includes/admin.php:233
 msgid "can edit posts which are currently published with private visibility"
 msgstr "peut modifier les articles publiés avec la visibilité privée"
 
-#: includes/admin.php:224
+#: includes/admin.php:232
 msgid "can edit posts which are currently published"
 msgstr "peut modifier les articles publiés"
 
-#: includes/admin.php:223
+#: includes/admin.php:231
 msgid "can edit posts which were created by other users"
 msgstr "peut modifier les publications créés par d’autres utilisateurs/utilisatrices"
 
-#: includes/admin.php:222
+#: includes/admin.php:230
 msgid "has basic editing capability (but may need other capabilities based on post status and ownership)"
 msgstr "possède la permission de modifier de base (mais peut nécessiter d’autres permissions basées sur le état ou la propriété de la publication)"
 
-#: includes/admin.php:221
+#: includes/admin.php:229
 msgid "can read posts which are currently published with private visibility"
 msgstr "peut lire les articles publiés avec la visibilité privée"
 
-#: includes/admin.php:214
+#: includes/admin.php:218
 msgid "Reading"
 msgstr "Lecture"
 
-#: includes/admin.php:213
+#: includes/admin.php:217
 msgid "&nbsp;"
 msgstr "&nbsp;"
 
-#: includes/admin.php:1471
+#: includes/admin.php:1506
 msgid "%s info/purchase"
 msgstr "%s infos/achat"
 
-#: includes/admin.php:1471
+#: includes/admin.php:1506
 msgid "%1$sbuy%2$s %3$s"
 msgstr "%1$sacheter%2$s %3$s"
 
-#: includes/admin.php:1469
+#: includes/admin.php:1504
 msgid "%s (free install)"
 msgstr "%s (installation gratuite)"
 
-#: includes/admin.php:1469
+#: includes/admin.php:1504
 msgid "%1$sgrab%2$s %3$s"
 msgstr "%1$sprendre%2$s %3$s"
 
-#: includes/admin.php:1462
+#: includes/admin.php:1497
 msgid "Member support forum"
 msgstr "Forum d’assistance aux membres"
 
-#: includes/admin.php:1458
+#: includes/admin.php:1493
 msgid "WPML integration to mirror permissions to translations <em>(Pro)</em>"
 msgstr "Intégration WPML pour refléter les droits dans les traductions <em> (Pro)</em>"
 
-#: includes/admin.php:1454
+#: includes/admin.php:1489
 msgid "Grant supplemental content permissions to a BuddyPress group <em>(Pro)</em>"
 msgstr "Autorisez les droits de contenu supplémentaire au groupe BuddyPress <em> (Pro)</em>"
 
-#: includes/admin.php:1450
+#: includes/admin.php:1485
 msgid "Grant Spectator, Participant or Moderator access to specific bbPress forums <em>(Pro)</em>"
 msgstr "Autorisez les visiteurs, participants ou modérateurs à accéder aux forums bbPress <em> (Pro)</em>"
 
-#: includes/admin.php:1446
+#: includes/admin.php:1481
 msgid "Customize the moderated editing of published content with Revisionary or Post Forking <em>(Pro)</em>"
 msgstr "Personnaliser la modification modérée de la publication publié avec Revisionary ou Post Forking <em> (Pro)</em>"
 
-#: includes/admin.php:1442
+#: includes/admin.php:1477
 msgid "Regulate permissions for Edit Flow post statuses <em>(Pro)</em>"
 msgstr "Réglementez les droits pour modifier les états de publication Edit Flow <em> (Pro)</em>"
 
-#: includes/admin.php:1438
+#: includes/admin.php:1473
 msgid "Custom Moderation statuses for access-controlled, multi-step publishing workflow <em>(Pro)</em>"
 msgstr "États de modération personnalisés pour un flux de publication à accès contrôlé et à plusieurs étapes <em> (Pro)</em>"
 
-#: includes/admin.php:1434
+#: includes/admin.php:1469
 msgid "Custom Post Visibility statuses, fully implemented throughout wp-admin <em>(Pro)</em>"
 msgstr "États de visibilité de publication personnalisés, entièrement mis en œuvre dans wp-admin. <em> (Pro)</em>"
 
-#: includes/admin.php:1430
+#: includes/admin.php:1465
 msgid "Customize editing permissions per-category or per-post <em>(Pro)</em>"
 msgstr "Personnalisez les droits de modification par catégorie ou par publication <em> (Pro)</em>"
 
-#: includes/admin.php:1426
+#: includes/admin.php:1461
 msgid "Customize reading permissions per-category or per-post"
 msgstr "Personnalisez les droits de lecture par catégorie ou par article"
 
-#: includes/admin.php:1422
+#: includes/admin.php:1457
 msgid "Assign custom WP roles supplementally for a specific post type <em>(Pro)</em>"
 msgstr "Assignez des rôles WP personnalisés de manière complémentaire pour un type de publication spécifique <em> (Pro)</em>"
 
-#: includes/admin.php:1418
+#: includes/admin.php:1453
 msgid "Assign standard WP roles supplementally for a specific post type"
 msgstr "Assignez des rôles WP standard de manière complémentaire pour un type de publication spécifique"
 
-#: includes/admin.php:1414
+#: includes/admin.php:1449
 msgid "Automatically define type-specific capabilities for your custom post types and taxonomies"
 msgstr "Définissez automatiquement les permissions spécifiques à vos types de publication et taxonomies personnalisés"
 
@@ -1588,7 +1592,7 @@ msgstr "Définissez automatiquement les permissions spécifiques à vos types de
 msgid "Roles and Capabilities"
 msgstr "Rôles et capacités"
 
-#: includes/manager.php:1007
+#: includes/manager.php:1005
 msgid "Documentation"
 msgstr "Documentation"
 
@@ -1620,9 +1624,10 @@ msgstr "Annulez explicitement ces permissions en les stockant comme désactivée
 msgid "Explicity negate this capability by storing as disabled"
 msgstr "Annulez explicitement cette permission en la stockant comme désactivée"
 
-#: includes/admin-load.php:395 includes/manager.php:339
-#: includes/manager.php:410 includes/roles/class/class-pp-roles-admin.php:669
+#: includes/admin-load.php:400 includes/manager.php:339
+#: includes/manager.php:408 includes/roles/class/class-pp-roles-admin.php:669
 #: includes/roles/class/class-pp-roles-list-table.php:172
+#: includes/settings-ui.php:22
 msgid "Capabilities"
 msgstr "Permissions"
 
