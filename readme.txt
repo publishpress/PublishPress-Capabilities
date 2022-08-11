@@ -409,6 +409,13 @@ Fixed : Security issue. Please update.
 
 == Changelog ==
 
+= 2.5.0 - 11 Aug 2022 =
+  * Update : Admin Features UI design consistency #466
+  * Fixed : Support WordPress API for Editor features Classic Editor disable / enable #531
+  * Fixed : Woocommerce order metabox Illegal offset type in isset or empty warning #538
+  * Added : Added woocommerce coupon description to editor features #299
+  * Update : ES-FR-IT-Capability-Translations-Update-August2022 #540
+
 = 2.4.4 - 02 Aug 2022 =
   * Added : Add "list" capabilities to display #206
   * Added : Add a Settings screen to Free version #520
