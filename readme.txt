@@ -7,7 +7,7 @@ Tags: user roles, capabilities, permissions, admin menus, post editing, post typ
 Requires at least: 4.9.7
 Tested up to: 6.0
 Requires PHP: 5.6.20
-Stable tag: 2.4.4
+Stable tag: 2.5.0
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -408,6 +408,13 @@ Fixed : Non-administrators with user editing capabilities could add new Administ
 Fixed : Security issue. Please update.
 
 == Changelog ==
+
+= 2.5.0 - 11 Aug 2022 =
+  * Update : Admin Features UI design consistency #466
+  * Fixed : Support WordPress API for Editor features Classic Editor disable / enable #531
+  * Fixed : Woocommerce order metabox Illegal offset type in isset or empty warning #538
+  * Added : Added woocommerce coupon description to editor features #299
+  * Update : ES-FR-IT-Capability-Translations-Update-August2022 #540
 
 = 2.4.4 - 02 Aug 2022 =
   * Added : Add "list" capabilities to display #206

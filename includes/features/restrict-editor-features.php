@@ -159,6 +159,12 @@ class PP_Capabilities_Post_Features {
                 'elements'    => '#commentstatusdiv',
                 'support_key' => 'comments'
             ],
+            '#woocommerce-coupon-description' => [
+                'label'        => esc_html__('Coupon Description', 'capsman-enhanced'),
+                'elements'     => '#woocommerce-coupon-description',
+                'support_type' => 'metabox',
+                'support_key'  => ['shop_coupon']
+            ],
         ];
 
         end($elements);
