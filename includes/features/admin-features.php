@@ -139,7 +139,7 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
 		                                                        <?php endif; ?>
 
                                                             </tr>
-
+                                                            <?php do_action("pp_capabilities_admin_features_{$section_slug}_before_subsection_tr"); ?>
                                                             <?php
                                                             foreach ($section_elements as $section_id => $section_array) :
                                                                 $sn++;
