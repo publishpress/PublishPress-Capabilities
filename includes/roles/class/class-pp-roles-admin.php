@@ -569,7 +569,7 @@ class Pp_Roles_Admin
         $fields       = apply_filters('pp_roles_fields', self::get_fields($current, $role_edit, $role_copy), $current, $role_edit, $role_copy);
 
         if ($role_copy) {
-            pp_capabilities_roles()->notify->add('info', sprintf( esc_html__('%s role copied to editor. Please click the "Create Role" button to create this new role.', 'capsman-enhanced'), $current['name']));
+            pp_capabilities_roles()->notify->add('info', sprintf( esc_html__('%s role copied. Please click the "Create Role" button to create this new role.', 'capsman-enhanced'), $current['name']));
             //update new name and remove slug
             $current['role'] = $current['role'] . '_copy';
             $current['name'] = $current['name'] . ' Copy';
