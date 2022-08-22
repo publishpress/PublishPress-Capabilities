@@ -254,6 +254,20 @@ function ppc_admin_feature_restrictions() {
 }
 add_action('init', 'ppc_admin_feature_restrictions', 999);
 
+
+/**
+ * Implement test user feature
+ *
+ * @return void
+ */
+function ppc_test_user_init () {
+    require_once (dirname(CME_FILE) . '/includes/test-user.php');
+    
+    PP_Capabilities_Test_User::init();
+}
+add_action('init', 'ppc_test_user_init');
+
+
 /**
  * Redirect user to configured role login redirect
  *
