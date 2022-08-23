@@ -247,7 +247,15 @@ class PP_Capabilities_Admin_UI {
         if (function_exists('get_current_screen') && (!defined('PUBLISHPRESS_VERSION') || empty($publishpress) || empty($publishpress->modules) || empty($publishpress->modules->roles))) {
             $screen = get_current_screen();
 
-            if ('user-edit' === $screen->base || ('user' === $screen->base && 'add' === $screen->action && (defined('PP_CAPABILITIES_ADD_USER_MULTI_ROLES') || get_option('cme_capabilities_add_user_multi_roles')))) {
+            if ('user-edit' === $screen->base 
+                || ('user' === $screen->base 
+                    && 'add' === $screen->action 
+                    && (defined('PP_CAPABILITIES_ADD_USER_MULTI_ROLES') || get_option('cme_capabilities_add_user_multi_roles'))
+                  )
+                || (isset($_GET['page']) && $_GET['page'] === 'pp-capabilities-settings')
+            ) {
+                $settings_page = (isset($_GET['page']) && $_GET['page'] === 'pp-capabilities-settings') ? true : false;
+
                 // Check if we are on the user's profile page
                 wp_enqueue_script(
                     'pp-capabilities-chosen-js',
@@ -263,12 +271,14 @@ class PP_Capabilities_Admin_UI {
                     CAPSMAN_VERSION
                 );
 
-                wp_enqueue_script(
-                    'pp-capabilities-roles-profile-js',
-                    plugin_dir_url(CME_FILE) . 'common/js/profile.js',
-                    ['jquery', 'pp-capabilities-chosen-js'],
-                    CAPSMAN_VERSION
-                );
+                if (!$settings_page) {
+                    wp_enqueue_script(
+                        'pp-capabilities-roles-profile-js',
+                        plugin_dir_url(CME_FILE) . 'common/js/profile.js',
+                        ['jquery', 'pp-capabilities-chosen-js'],
+                        CAPSMAN_VERSION
+                    );
+                }
 
                 wp_enqueue_style(
                     'pp-capabilities-chosen-css',
@@ -283,20 +293,24 @@ class PP_Capabilities_Admin_UI {
                     CAPSMAN_VERSION
                 );
 
-                $roles = !empty($_GET['user_id']) ? $this->getUsersRoles((int) $_GET['user_id']) : [];
 
-                if (empty($roles)) {
-                    $roles = (array) get_option('default_role');
-                }
+                if (!$settings_page) {
+                    $roles = !empty($_GET['user_id']) ? $this->getUsersRoles((int) $_GET['user_id']) : [];
 
-                wp_localize_script(
-                    'pp-capabilities-roles-profile-js',
-                    'ppCapabilitiesProfileData',
-                    [
+                    if (empty($roles)) {
+                        $roles = (array) get_option('cme_roles_additional_default_roles', []);
+                        $roles[] = get_option('default_role');
+                    }
+
+                    wp_localize_script(
+                        'pp-capabilities-roles-profile-js',
+                        'ppCapabilitiesProfileData',
+                        [
                         'role_description' => esc_html__('Drag multiple roles selection to change order.', 'capsman-enhanced'),
                         'selected_roles'   => $roles
                     ]
-                );
+                    );
+                }
             }
         }
     }
@@ -381,6 +395,19 @@ class PP_Capabilities_Admin_UI {
             // Add new roles in order
             foreach ($newRoles as $role) {
                 $user->add_role($role);
+            }
+        } else {
+            //update default roles for user registered outside wordpress UI
+            $selected_default_roles = (array) get_option('cme_roles_additional_default_roles', []);
+            $selected_default_roles = array_filter($selected_default_roles);
+
+            if (!empty($selected_default_roles)) {
+                $user = get_user_by('ID', $userId);
+                foreach ($selected_default_roles as $selected_default_role) {
+                    if (!isset($user->caps[$selected_default_role])) {
+                        $user->add_role($selected_default_role);
+                    }
+                }
             }
         }
     }

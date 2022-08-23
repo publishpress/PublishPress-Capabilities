@@ -52,6 +52,51 @@ class Capabilities_Settings_UI {
                                 <br>
                             </td>
                         </tr>
+
+                            <tr>
+                            <?php
+                                $all_roles = wp_roles()->roles;
+                                $default_role = get_option('default_role');
+                            ?>
+                            <th scope="row"> <?php esc_html_e('Primary default role', 'capsman-enhanced'); ?></th>
+                            <td>
+                                <label>
+                                <select class="settings-chosen-select" name="default_role" id="default_role">
+                                    <?php foreach ($all_roles as $role_name => $role_data) : ?>
+                                        <option value="<?php echo esc_attr($role_name); ?>" <?php selected($role_name, $default_role); ?>>
+                                            <?php echo esc_html($role_data['name']) ?> (<?php echo esc_html($role_name) ?>)
+                                        </option>
+                                    <?php endforeach; ?>
+                                </select>
+                                </label>
+                                <br>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <?php
+                                $selected_default_roles = (array) get_option('cme_roles_additional_default_roles', []);
+                            ?>
+                            <th scope="row"> <?php esc_html_e('Additional default roles for new user', 'capsman-enhanced'); ?></th>
+                            <td>
+                                <label>
+                                <select class="settings-chosen-select" 
+                                    name="cme_roles_additional_default_roles[]" 
+                                    id="cme_roles_additional_default_roles" 
+                                    data-placeholder="<?php esc_attr_e('Select additional roles...', 'capsman-enhanced'); ?>"
+                                    multiple>
+                                    <?php foreach ($all_roles as $role_name => $role_data) : ?>
+                                        <?php if ($role_name === get_option('default_role')) continue; ?>
+                                        <option value="<?php echo esc_attr($role_name); ?>" <?php selected(in_array($role_name, $selected_default_roles)); ?>>
+                                            <?php echo esc_html($role_data['name']) ?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                </select>
+                                </label>
+                                <br>
+                            </td>
+                        </tr>
+
                         </tbody>
                     </table>
 
@@ -123,6 +168,11 @@ class Capabilities_Settings_UI {
 
                 $('[id^="ppcs-"]').hide();
                 $($(this).find('a').first().attr('href')).show();
+            });
+
+            //init chosen.js
+            $('.settings-chosen-select').chosen({
+                'width': '25em'
             });
 
         });
