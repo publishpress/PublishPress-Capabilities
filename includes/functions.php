@@ -337,8 +337,8 @@ function ppc_roles_disable_woocommerce_admin_restrictions($restrict_access) {
     }
     return $restrict_access;
 }
-add_filter('woocommerce_prevent_admin_access', 'ppc_roles_disable_woocommerce_admin_restrictions');
-add_filter('woocommerce_disable_admin_bar', 'ppc_roles_disable_woocommerce_admin_restrictions');
+add_filter('woocommerce_prevent_admin_access', 'ppc_roles_disable_woocommerce_admin_restrictions', 20);
+add_filter('woocommerce_disable_admin_bar', 'ppc_roles_disable_woocommerce_admin_restrictions', 20);
 
 /**
  * List of capabilities admin pages
