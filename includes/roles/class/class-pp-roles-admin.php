@@ -155,7 +155,12 @@ class Pp_Roles_Admin
             $editor_options['classic_editor'] = esc_html__('Classic editor', 'capsman-enhanced');
         }
 
+        $show_block_control = true;
         $fields = [];
+
+        if ($role_edit && $current && isset($current['role']) && $current['role'] === 'administrator') {
+            $show_block_control = false;
+        }
 
         //add role_name
         $fields['role_name'] = [
@@ -177,6 +182,19 @@ class Pp_Roles_Admin
             'editable'  => ($role_edit) ? false : true,
             'required'  => false,
         ];
+
+        if ($show_block_control) {
+            //add disable_role_user_login
+            $fields['disable_role_user_login'] = [
+                'label'        => esc_html__('Block Login', 'capsman-enhanced'),
+                'description'  => esc_html__('Block users in this role from logging into the site.', 'capsman-enhanced'),
+                'type'         => 'checkbox',
+                'value_key'    => 'disable_role_user_login',
+                'tab'          => 'advanced',
+                'editable'     => true,
+                'required'     => false,
+            ];
+        }
 
         //add role_level
         $fields['role_level'] = [
