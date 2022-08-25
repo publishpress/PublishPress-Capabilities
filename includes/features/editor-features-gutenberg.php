@@ -57,7 +57,7 @@
                      * global $_wp_post_type_features is empty or doesn't 
                      * contain data for current post type
                      */
-                    if (empty($_wp_post_type_features) || !is_array($_wp_post_type_features) || isset($_wp_post_type_features[$type_obj->name])) {
+                    if (empty($_wp_post_type_features) || !is_array($_wp_post_type_features) || !isset($_wp_post_type_features[$type_obj->name])) {
                         continue;
                     }
                     //skip this element if post type does not support feature
