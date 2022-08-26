@@ -100,23 +100,33 @@ class Pp_Roles_Admin
      */
     public static function get_fields_tabs($current, $role_edit, $role_copy)
     {
-        $fields_tabs = [
-            'general'     => [
-                'label'    => esc_html__('General', 'capsman-enhanced'),
-                'icon'     => 'dashicons dashicons-admin-tools',
-            ],
-            'editing'     => [
-                'label'    => esc_html__('Editing', 'capsman-enhanced'),
-                'icon'     => 'dashicons dashicons-edit-page',
-            ],
-            'redirects'     => [
-                'label'    => esc_html__('Redirects', 'capsman-enhanced'),
-                'icon'     => 'dashicons dashicons-admin-links',
-            ],
-            'advanced'  => [
-                'label' => esc_html__('Advanced', 'capsman-enhanced'),
-                'icon'     => 'dashicons dashicons-admin-generic',
-            ],
+        $fields_tabs = [];
+
+        $fields_tabs['general'] = [
+            'label' => esc_html__('General', 'capsman-enhanced'),
+            'icon'  => 'dashicons dashicons-admin-tools',
+        ];
+
+        $fields_tabs['editing'] = [
+            'label'    => esc_html__('Editing', 'capsman-enhanced'),
+            'icon'     => 'dashicons dashicons-edit-page',
+        ];
+
+        $fields_tabs['redirects'] = [
+            'label'    => esc_html__('Redirects', 'capsman-enhanced'),
+            'icon'     => 'dashicons dashicons-admin-links',
+        ];
+
+        if (defined('WC_PLUGIN_FILE')) {
+            $fields_tabs['woocommerce'] = [
+                'label'    => esc_html__('WooCommerce', 'capsman-enhanced'),
+                'icon'     => 'dashicons dashicons-products',
+            ];
+        }
+        
+        $fields_tabs['advanced'] = [
+            'label' => esc_html__('Advanced', 'capsman-enhanced'),
+            'icon'     => 'dashicons dashicons-admin-generic',
         ];
 
         if ($role_edit && !$current['is_system']) {
@@ -274,6 +284,19 @@ class Pp_Roles_Admin
                 'editable'    => true,
                 'options'     => $editor_options,
             ];
+        }
+        
+        if (defined('WC_PLUGIN_FILE')) {
+            //add disable_woocommerce_admin_restrictions
+            $fields['disable_woocommerce_admin_restrictions'] = [
+            'label'        => esc_html__('Disable WooCommerce admin restrictions', 'capsman-enhanced'),
+            'description'  => '',
+            'type'         => 'checkbox',
+            'value_key'    => 'disable_woocommerce_admin_restrictions',
+            'tab'          => 'woocommerce',
+            'editable'     => true,
+            'required'     => false,
+        ];
         }
         
         /**

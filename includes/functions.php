@@ -347,6 +347,30 @@ function ppc_roles_wp_authenticate_user($user) {
 add_filter('wp_authenticate_user', 'ppc_roles_wp_authenticate_user', 1);
 
 /**
+ * Wocommerce role admin access restriction remove
+ */
+function ppc_roles_disable_woocommerce_admin_restrictions($restrict_access) {
+
+    if ($restrict_access && is_user_logged_in()) {
+        $user = get_userdata(get_current_user_id());
+
+        if (isset($user->roles) && is_array($user->roles)) {
+            foreach ($user->roles as $user_role) {
+                //get role option
+                $role_option = get_option("pp_capabilities_{$user_role}_role_option", []);
+                if (is_array($role_option) && !empty($role_option) && !empty($role_option['disable_woocommerce_admin_restrictions'])) {
+                    $restrict_access = false;
+                    break;
+                }
+            }
+        }
+    }
+    return $restrict_access;
+}
+add_filter('woocommerce_prevent_admin_access', 'ppc_roles_disable_woocommerce_admin_restrictions', 20);
+add_filter('woocommerce_disable_admin_bar', 'ppc_roles_disable_woocommerce_admin_restrictions', 20);
+
+/**
  * List of capabilities admin pages
  *
  */
