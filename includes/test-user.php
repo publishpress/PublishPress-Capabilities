@@ -33,7 +33,7 @@ class PP_Capabilities_Test_User
      */
     public function ppc_test_user_row_actions($actions, $user)
     {
-        if (current_user_can('manage_capabilities')) {
+        if (current_user_can('manage_capabilities') && current_user_can('edit_user', $user->ID)) {
 
             $link = add_query_arg(
                 [
@@ -84,7 +84,8 @@ class PP_Capabilities_Test_User
                 //redirect back to admin dashboard
                 wp_redirect(admin_url());
                 exit;
-            } elseif (is_admin() && current_user_can('manage_capabilities')) {
+            } elseif (is_admin() && current_user_can('manage_capabilities') && current_user_can('edit_user', $request_user_id)) {
+
                 // store current user cookie to enable switch back
                 $hashed_id = $this->ppc_encrypt_decrypt_string('encrypt', $current_user->ID);
                 // phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.cookies_setcookie
