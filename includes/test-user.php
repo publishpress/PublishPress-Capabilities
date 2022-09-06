@@ -70,20 +70,23 @@ class PP_Capabilities_Test_User
         }
 
         $request_user_id = isset($_GET['ppc_test_user']) ? (int) base64_decode(sanitize_text_field($_GET['ppc_test_user'])) : 0;
-        $ppc_return_user = isset($_GET['ppc_return_user']) ? (int) base64_decode(sanitize_text_field($_GET['ppc_return_user'])) : 0;
+        $ppc_return_back = isset($_GET['ppc_return_back']) ? (int) sanitize_text_field($_GET['ppc_return_back']) : 0;
         $request_user    = get_userdata($request_user_id);
         
         if (!$request_user || (is_object($request_user) && !isset($request_user->ID))) {
             wp_die(esc_html__('Unable to retrieve user data.', 'capsman-enhanced'));
         } else {
-            if ($ppc_return_user > 0) {
-                wp_set_auth_cookie($ppc_return_user, false);
-                // Unset the cookie
-                // phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.cookies_setcookie
-                setcookie('ppc_test_user_tester_'.COOKIEHASH, 0, time()-3600, SITECOOKIEPATH, COOKIE_DOMAIN, false, true);
-                //redirect back to admin dashboard
-                wp_redirect(admin_url());
-                exit;
+            if ($ppc_return_back > 0) {
+                $original_user_id = self::ppc_test_user_tester_id();
+                if ($original_user_id) {
+                    wp_set_auth_cookie($ppc_return_back, false);
+                    // Unset the cookie
+                    // phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.cookies_setcookie
+                    setcookie('ppc_test_user_tester_'.COOKIEHASH, 0, time()-3600, SITECOOKIEPATH, COOKIE_DOMAIN, false, true);
+                    //redirect back to admin dashboard
+                    wp_redirect(admin_url());
+                    exit;
+                }
             } elseif (is_admin() && current_user_can('manage_capabilities') && current_user_can('edit_user', $request_user_id)) {
 
                 // store current user cookie to enable switch back
@@ -106,15 +109,13 @@ class PP_Capabilities_Test_User
     public function ppc_test_user_revert_notice()
     {
 
-        $tester_user_id = self::ppc_test_user_tester_id();
-
-        if (!empty($tester_user_id)) {
+        if (!empty(self::ppc_test_user_tester_id())) {
             $user = wp_get_current_user();
 
             $return_link = add_query_arg(
                 [
                     'ppc_test_user'   => base64_encode($user->ID), 
-                    'ppc_return_user' => base64_encode($tester_user_id),
+                    'ppc_return_back' => 1,
                     '_wpnonce'        => wp_create_nonce('ppc-test-user')
                 ], 
                 home_url()
