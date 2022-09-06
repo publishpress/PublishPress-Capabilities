@@ -33,7 +33,7 @@ class PP_Capabilities_Test_User
      */
     public function ppc_test_user_row_actions($actions, $user)
     {
-        if (current_user_can('manage_capabilities') && current_user_can('edit_user', $user->ID)) {
+        if (current_user_can('manage_capabilities') && current_user_can('edit_user', $user->ID) && $user->ID !== get_current_user_id()) {
 
             $link = add_query_arg(
                 [
