@@ -77,22 +77,24 @@ class PP_Capabilities_Test_User
             wp_die(esc_html__('Unable to retrieve user data.', 'capsman-enhanced'));
         } else {
             if ($ppc_return_back > 0) {
-                $original_user_id = self::ppc_test_user_tester_id();
+                $user_auth        = wp_unslash(self::ppc_test_user_tester_auth());
+                $original_user_id = wp_validate_auth_cookie($user_auth, 'logged_in');
                 if ($original_user_id) {
-                    wp_set_auth_cookie($ppc_return_back, false);
+                    wp_set_auth_cookie($original_user_id, false);
                     // Unset the cookie
                     // phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.cookies_setcookie
-                    setcookie('ppc_test_user_tester_'.COOKIEHASH, 0, time()-3600, SITECOOKIEPATH, COOKIE_DOMAIN, false, true);
+                    setcookie('ppc_test_user_tester_'.COOKIEHASH, 0, time()-3600, COOKIEPATH, COOKIE_DOMAIN, is_ssl(), true);
                     //redirect back to admin dashboard
                     wp_redirect(admin_url());
                     exit;
                 }
             } elseif (is_admin() && current_user_can('manage_capabilities') && current_user_can('edit_user', $request_user_id)) {
 
-                // store current user cookie to enable switch back
-                $hashed_id = $this->ppc_encrypt_decrypt_string('encrypt', $current_user->ID);
+                // Create and set auth cookie for current user before switching
+                $token = function_exists('wp_get_session_token') ? wp_get_session_token() : '';
+                $orig_auth_cookie = wp_generate_auth_cookie($current_user->ID, time() + 86400, 'logged_in', $token);
                 // phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.cookies_setcookie
-                setcookie('ppc_test_user_tester_'.COOKIEHASH, $hashed_id, 0, SITECOOKIEPATH, COOKIE_DOMAIN, false, true);
+                setcookie('ppc_test_user_tester_'.COOKIEHASH, $orig_auth_cookie, time() + 86400, COOKIEPATH, COOKIE_DOMAIN, is_ssl(), true);
                 // Login as the other user
                 wp_set_auth_cookie($request_user_id, false);
                 //redirect user to admin dashboard
@@ -109,7 +111,7 @@ class PP_Capabilities_Test_User
     public function ppc_test_user_revert_notice()
     {
 
-        if (!empty(self::ppc_test_user_tester_id())) {
+        if (!empty(self::ppc_test_user_tester_auth())) {
             $user = wp_get_current_user();
 
             $return_link = add_query_arg(
@@ -152,41 +154,15 @@ class PP_Capabilities_Test_User
     /**
      * Get tester user from cookie
      */
-    private static function ppc_test_user_tester_id()
+    private static function ppc_test_user_tester_auth()
     {
-        $key = 'ppc_test_user_tester_'.COOKIEHASH;
-        if (isset($_COOKIE[$key]) && !empty($_COOKIE[$key])) {
+        $auth_key = 'ppc_test_user_tester_'.COOKIEHASH;
+        if (isset($_COOKIE[$auth_key]) && !empty($_COOKIE[$auth_key])) {
             // phpcs:ignore WordPressVIPMinimum.Variables.RestrictedVariables.cache_constraints___COOKIE
-            $user_id = self::ppc_encrypt_decrypt_string('decrypt', sanitize_text_field($_COOKIE[$key]));
-            return $user_id;
+            return $_COOKIE[$auth_key];
         } else {
             return false;
         }
-    }
-
-    /**
-     * Encript and Decrypt
-     */
-    private static function ppc_encrypt_decrypt_string($action, $string)
-    {
-        $output = false;
-        $encrypt_method = "AES-256-CBC";
-        //secret key
-        $secret_key = wp_salt();
-        $secret_iv  = wp_salt('secure_auth');
-
-        // hash
-        $key = hash('sha256', $secret_key);
-
-        // iv - encrypt method AES-256-CBC expects 16 bytes - else it's result in warning
-        $iv = substr(hash('sha256', $secret_iv), 0, 16);
-        if ($action == 'encrypt') {
-            $output = openssl_encrypt($string, $encrypt_method, $key, 0, $iv);
-            $output = base64_encode($output);
-        } elseif ($action == 'decrypt') {
-            $output = openssl_decrypt(base64_decode($string), $encrypt_method, $key, 0, $iv);
-        }
-        return $output;
     }
 
 }
