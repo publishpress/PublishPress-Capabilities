@@ -409,6 +409,16 @@ Fixed : Security issue. Please update.
 
 == Changelog ==
 
+= 2.5.1 - 13 Sep 2022 =
+  * Added : Ability to block user login by role #510
+  * Update : Add disable WooCommerce admin restrictions in role settings #549
+  * Update : Hide taxonomy screen option for editor features #554
+  * Update : Hide metabox screen option for editor features #556
+  * Fixed : It's possible to access customize page even after blocking with admin menu #559
+  * Fixed : Uncaught error: Illegal offset type in isset or empty #564
+  * Update : Translation Note Suggestion for "Editor" #567
+  * Update : Capability-FR-IT-Translation_updates-August15_2022 #551
+
 = 2.5.0 - 11 Aug 2022 =
   * Update : Admin Features UI design consistency #466
   * Fixed : Support WordPress API for Editor features Classic Editor disable / enable #531
