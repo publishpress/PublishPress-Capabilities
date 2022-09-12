@@ -263,8 +263,8 @@ class Pp_Roles_Admin
 
         //add disable_code_editor
         $fields['disable_code_editor'] = [
-            'label'        => esc_html__('Disable Code Editor', 'capsman-enhanced'),
-            'description'  => esc_html__('Disable the "Code editor" option for the Gutenberg block editor.', 'capsman-enhanced'),
+            'label'        => /* Translators: "Editor" means post editor like Gutenberg */ esc_html__('Disable Code Editor', 'capsman-enhanced'),
+            'description'  => /* Translators: "Editor" means post editor like Gutenberg */ esc_html__('Disable the "Code editor" option for the Gutenberg block editor.', 'capsman-enhanced'),
             'type'         => 'checkbox',
             'value_key'    => 'disable_code_editor',
             'tab'          => 'editing',
@@ -275,8 +275,8 @@ class Pp_Roles_Admin
         if (count($editor_options) > 1) {
             //add role_editor
             $fields['role_editor'] = [
-                'label'       => esc_html__('Control Allowed Editors', 'capsman-enhanced'),
-                'description' => esc_html__('Select the allowed editor options for users in this role.', 'capsman-enhanced'),
+                'label'       => /* Translators: "Editor" means post editor like Gutenberg */ esc_html__('Control Allowed Editors', 'capsman-enhanced'),
+                'description' => /* Translators: "Editor" means post editor like Gutenberg */ esc_html__('Select the allowed editor options for users in this role.', 'capsman-enhanced'),
                 'type'        => 'select',
                 'multiple'    => true,
                 'value_key'   => 'role_editor',
@@ -375,8 +375,8 @@ class Pp_Roles_Admin
                             name="<?php echo esc_attr($key); ?><?php echo $args['multiple'] ? '[]' : '';?>"
                             id="<?php echo esc_attr($key.'-select'); ?>"
                             class="pp-capabilities-role-choosen"
-                            data-placeholder="<?php esc_html_e('Select allowed editor', 'capsman-enhanced'); ?>"
-                            data-message="<?php esc_attr_e('You must select at least one editor for the role when managing allowed editor.',  'capsman-enhanced'); ?>"
+                            data-placeholder="<?php /* Translators: "Editor" means post editor like Gutenberg */ esc_html_e('Select allowed editor', 'capsman-enhanced'); ?>"
+                            data-message="<?php /* Translators: "Editor" means post editor like Gutenberg */ esc_attr_e('You must select at least one editor for the role when managing allowed editor.',  'capsman-enhanced'); ?>"
                             <?php echo ($args['multiple'] ? 'multiple' : '');?>
                             <?php echo ($args['required'] ? 'required="true"' : '');?>>
                             <?php
