@@ -1,6 +1,6 @@
 === PublishPress Capabilities - User Role Access, Editor Permissions, Admin Menus ===
 
-Contributors: publishpress, kevinB, stevejburge, andergmartins
+Contributors: publishpress, kevinB, stevejburge, andergmartins, olatechpro
 Author: PublishPress
 Author URI: https://publishpress.com
 Tags: user roles, capabilities, permissions, admin menus, post editing, post types, taxonomies
