@@ -289,14 +289,14 @@ class Pp_Roles_Admin
         if (defined('WC_PLUGIN_FILE')) {
             //add disable_woocommerce_admin_restrictions
             $fields['disable_woocommerce_admin_restrictions'] = [
-            'label'        => esc_html__('Disable WooCommerce admin restrictions', 'capsman-enhanced'),
-            'description'  => '',
-            'type'         => 'checkbox',
-            'value_key'    => 'disable_woocommerce_admin_restrictions',
-            'tab'          => 'woocommerce',
-            'editable'     => true,
-            'required'     => false,
-        ];
+                'label'        => esc_html__('Disable WooCommerce admin restrictions', 'capsman-enhanced'),
+                'description'  => esc_html__('WooCommerce blocks most users from accessing the WordPress admin area. When enabled, this setting will remove those restrictions.', 'capsman-enhanced'),
+                'type'         => 'checkbox',
+                'value_key'    => 'disable_woocommerce_admin_restrictions',
+                'tab'          => 'woocommerce',
+                'editable'     => true,
+                'required'     => false,
+            ];
         }
         
         /**
