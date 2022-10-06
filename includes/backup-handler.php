@@ -168,7 +168,7 @@ class Capsman_BackupHandler
 
             // Get the upload data.
             $raw  = file_get_contents( $file['file'] );
-            $data = maybe_unserialize( $raw );
+            $data = json_decode($raw, true);
             
             // Remove the uploaded file.
             wp_delete_file( $file['file'] );
