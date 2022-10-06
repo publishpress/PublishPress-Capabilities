@@ -972,8 +972,8 @@ class CapabilityManager
             header( 'Content-Disposition: attachment; filename=capabilities-export-' . current_time('Y-m-d_g-i-s_a') . '.json' );
             header( "Expires: 0" );
 
-            // Serialize the export data.
-            echo serialize( $data );
+            // encode the export data.
+            echo json_encode($data);
 
             // Start the download.
             die();
