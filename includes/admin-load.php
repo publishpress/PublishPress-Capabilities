@@ -34,6 +34,7 @@ class PP_Capabilities_Admin_UI {
         } else {
             add_action('user_register', [$this, 'action_profile_update'], 9);
         }
+        add_action('init', [$this, 'register_textdomain']);
 
         if (is_admin() && (isset($_REQUEST['page']) && (in_array($_REQUEST['page'], ['pp-capabilities', 'pp-capabilities-backup', 'pp-capabilities-roles', 'pp-capabilities-admin-menus', 'pp-capabilities-editor-features', 'pp-capabilities-nav-menus', 'pp-capabilities-settings', 'pp-capabilities-admin-features']))
 
@@ -87,6 +88,25 @@ class PP_Capabilities_Admin_UI {
         //capabilities settings
         add_action('pp-capabilities-settings-ui', [$this, 'settingsUI']);
     }
+
+	function register_textdomain() {
+
+        $domain       = 'capsman-enhanced';
+		$mofile_custom = sprintf('%s-%s.mo', $domain, get_user_locale());
+		$locations = [
+			trailingslashit( WP_LANG_DIR . '/' . $domain ),
+			trailingslashit( WP_LANG_DIR . '/loco/plugins/'),
+			trailingslashit( WP_LANG_DIR ),
+			trailingslashit( plugin_dir_path(CME_FILE) . 'languages' ),
+        ];
+		// Try custom locations in WP_LANG_DIR.
+		foreach ($locations as $location) {
+			if (load_textdomain($domain, $location . $mofile_custom)) {
+				return true;
+			}
+		}
+
+	}
 
     /**
      * Filters the editors that are enabled for the post type.

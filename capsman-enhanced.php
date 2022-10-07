@@ -130,7 +130,6 @@ if ( version_compare(PHP_VERSION, '5.4.0', '<') ) {
 	}
 
 	if (is_admin()) {
-		load_plugin_textdomain('capsman-enhanced', false, basename(dirname(__FILE__)) .'/languages');
 
 		// @todo: refactor
 		require_once (dirname(__FILE__) . '/includes/functions-admin.php');
