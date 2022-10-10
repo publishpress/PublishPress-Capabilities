@@ -107,42 +107,18 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 	<div class="pp-columns-wrapper pp-enable-sidebar">
 		<div class="pp-column-left">
 
-			<div style="float:right">
+			<div style="float:right;margin-bottom:5px;">
 
 			<?php
 			$caption = (in_array(sanitize_key(get_locale()), ['en_EN', 'en_US'])) ? 'Save Capabilities' : __('Save Changes', 'capsman-enhanced');
 			?>
 			<input type="submit" name="SaveRole" value="<?php echo esc_attr($caption);?>" class="button-primary" />
 			</div>
+            <div class="clear"></div>
 
 			<?php
 			$img_url = $capsman->mod_url . '/images/';
 			?>
-			<div class="publishpress-headline" style="margin-bottom:20px;">
-			<span class="cme-subtext">
-			<?php
-
-			if (defined('PRESSPERMIT_ACTIVE') && function_exists('presspermit')) {
-				if ($group = presspermit()->groups()->getMetagroup('wp_role', $this->current)) {
-					printf(
-						// back compat with existing language string
-						str_replace(
-							['&lt;strong&gt;', '&lt;/strong&gt;'],
-							['<strong>', '</strong>'],
-							esc_html__('<strong>Note:</strong> Capability changes <strong>remain in the database</strong> after plugin deactivation. You can also configure this role as a %sPermission Group%s.', 'capsman-enhanced')
-						),
-						'<a href="' . esc_url_raw(admin_url("admin.php?page=presspermit-edit-permissions&action=edit&agent_id={$group->ID}")) . '">',
-						'</a>'
-					);
-				}
-			} else {
-				// unescaped for now for back compat with existing language string
-				_e( '<strong>Note:</strong> Capability changes <strong>remain in the database</strong> after plugin deactivation.', 'capsman-enhanced' );
-			}
-
-			?>
-			</span>
-			</div>
 
 			<?php
 			if ( defined( 'PRESSPERMIT_ACTIVE' ) ) {
@@ -1568,6 +1544,40 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 			do_action('publishpress-caps_sidebar_top');
 
 			$banners = new PublishPress\WordPressBanners\BannersMain;
+            
+            if (defined('PRESSPERMIT_ACTIVE') && function_exists('presspermit')) {
+                if ($group = presspermit()->groups()->getMetagroup('wp_role', $this->current)) {
+                    $additional_message = sprintf(
+                        // back compat with existing language string
+                        str_replace(
+                            ['&lt;strong&gt;', '&lt;/strong&gt;'],
+                            ['<strong>', '</strong>'],
+                            esc_html__('<strong>Note:</strong> Capability changes <strong>remain in the database</strong> after plugin deactivation. You can also configure this role as a %sPermission Group%s.', 'capsman-enhanced')
+                        ),
+                        '<a href="' . esc_url_raw(admin_url("admin.php?page=presspermit-edit-permissions&action=edit&agent_id={$group->ID}")) . '">',
+                        '</a>'
+                    );
+                }
+            } else {
+                // unescaped for now for back compat with existing language string
+                $additional_message = __('<strong>Note:</strong> Capability changes <strong>remain in the database</strong> after plugin deactivation.', 'capsman-enhanced');
+            }
+        
+            $banners->pp_display_banner(
+                '',
+                '',
+                [
+                    '<span style="font-size: 7px;vertical-align: bottom;">&#9679;</span>' . sprintf(esc_html__('%1s Check icon: %2s This capability is granted.', 'capsman-enhanced'), '<strong>', '</strong>'),
+                    '<span style="font-size: 7px;vertical-align: bottom;">&#9679;</span>' . sprintf(esc_html__('%1s Empty box: %2s No change.', 'capsman-enhanced'), '<strong>', '</strong>'),
+                    '<span style="font-size: 7px;vertical-align: bottom;">&#9679;</span>' . sprintf(esc_html__('%1s X icon: %2s This capability is denied.', 'capsman-enhanced'), '<strong>', '</strong>'),
+                   '<p class="cme-subtext">' . $additional_message . '</p>'
+                ],
+                'https://publishpress.com/knowledge-base/checkboxes/',
+                __('View Documentation', 'capsman-enhanced'),
+                '',
+                'button'
+            );
+
 			$banners->pp_display_banner(
 			    '',
 			    __( 'PublishPress Capabilities is safe to use', 'capsman-enhanced' ),

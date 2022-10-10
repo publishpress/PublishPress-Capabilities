@@ -231,8 +231,23 @@ $active_tab_text = is_object($active_tab_type_obj)
                     </tr>
                 </table>
             </div><!-- .pp-column-left -->
-            <?php if (defined('CAPSMAN_PERMISSIONS_INSTALLED') && !CAPSMAN_PERMISSIONS_INSTALLED) { ?>
-                <div class="pp-column-right">
+            <div class="pp-column-right">
+                <?php 
+                $banners = new PublishPress\WordPressBanners\BannersMain;
+                $banners->pp_display_banner(
+                    '',
+                    '',
+                    [
+                        sprintf(esc_html__('%1s Empty box: %2s No change.', 'capsman-enhanced'), '<strong>', '</strong>'),
+                        sprintf(esc_html__('%1s X icon: %2s This capability is denied.', 'capsman-enhanced'), '<strong>', '</strong>')
+                    ],
+                    'https://publishpress.com/knowledge-base/checkboxes/',
+                    __('View Documentation', 'capsman-enhanced'),
+                    '',
+                    'button'
+                );
+                ?>
+                <?php if (defined('CAPSMAN_PERMISSIONS_INSTALLED') && !CAPSMAN_PERMISSIONS_INSTALLED) { ?>
                     <?php
                     $banners = new PublishPress\WordPressBanners\BannersMain;
                     $banners->pp_display_banner(
@@ -248,8 +263,8 @@ $active_tab_text = is_object($active_tab_type_obj)
                         'install-permissions.jpg'
                     );
                     ?>
-                </div><!-- .pp-column-right -->
-            <?php } ?>
+                <?php } ?>
+            </div><!-- .pp-column-right -->
         </div><!-- .pp-columns-wrapper -->
     </form>
 

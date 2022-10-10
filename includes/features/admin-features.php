@@ -220,25 +220,39 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
 
                     </fieldset>
                 </div><!-- .pp-column-left -->
-                <?php if (defined('CAPSMAN_PERMISSIONS_INSTALLED') && !CAPSMAN_PERMISSIONS_INSTALLED) { ?>
-                    <div class="pp-column-right">
-                        <?php
-                        $banners = new PublishPress\WordPressBanners\BannersMain;
-                        $banners->pp_display_banner(
-                            esc_html__( 'Recommendations for you', 'capsman-enhanced' ),
-                            esc_html__( 'Control permissions for individual posts and pages', 'capsman-enhanced' ),
-                            array(
-                                esc_html__( 'Choose who can read and edit each post.', 'capsman-enhanced' ),
-                                esc_html__( 'Allow specific user roles or users to manage each post.', 'capsman-enhanced' ),
-                                esc_html__( 'PublishPress Permissions is 100% free to install.', 'capsman-enhanced' )
-                            ),
-                            admin_url( 'plugin-install.php?s=publishpress-ppcore-install&tab=search&type=term' ),
-                            esc_html__( 'Click here to install PublishPress Permissions', 'capsman-enhanced' ),
-                            'install-permissions.jpg'
-                        );
-                        ?>
-                    </div><!-- .pp-column-right -->
-                <?php } ?>
+                <div class="pp-column-right">
+                    <?php 
+                    $banners = new PublishPress\WordPressBanners\BannersMain;
+                    $banners->pp_display_banner(
+                        '',
+                        '',
+                        [
+                            sprintf(esc_html__('%1s Empty box: %2s No change.', 'capsman-enhanced'), '<strong>', '</strong>'),
+                            sprintf(esc_html__('%1s X icon: %2s This capability is denied.', 'capsman-enhanced'), '<strong>', '</strong>')
+                        ],
+                        'https://publishpress.com/knowledge-base/checkboxes/',
+                        __('View Documentation', 'capsman-enhanced'),
+                        '',
+                        'button'
+                    );
+                    ?>
+                    <?php if (defined('CAPSMAN_PERMISSIONS_INSTALLED') && !CAPSMAN_PERMISSIONS_INSTALLED) { ?>
+                            <?php
+                            $banners->pp_display_banner(
+                                esc_html__( 'Recommendations for you', 'capsman-enhanced' ),
+                                esc_html__( 'Control permissions for individual posts and pages', 'capsman-enhanced' ),
+                                array(
+                                    esc_html__( 'Choose who can read and edit each post.', 'capsman-enhanced' ),
+                                    esc_html__( 'Allow specific user roles or users to manage each post.', 'capsman-enhanced' ),
+                                    esc_html__( 'PublishPress Permissions is 100% free to install.', 'capsman-enhanced' )
+                                ),
+                                admin_url( 'plugin-install.php?s=publishpress-ppcore-install&tab=search&type=term' ),
+                                esc_html__( 'Click here to install PublishPress Permissions', 'capsman-enhanced' ),
+                                'install-permissions.jpg'
+                            );
+                            ?>
+                    <?php } ?>
+                </div><!-- .pp-column-right -->
             </div><!-- .pp-columns-wrapper -->
         </form>
 
