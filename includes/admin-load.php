@@ -177,11 +177,6 @@ class PP_Capabilities_Admin_UI {
 
         unset($def_post_types['attachment']);
 
-        if ((count($def_post_types) > 14) && !defined('PP_CAPABILITIES_UNLIMITED_FEATURE_TYPES')) {
-            $custom_types = array_diff($def_post_types, ['post', 'page']);
-            $def_post_types = array_merge(['post', 'page'], array_slice($custom_types, 0, 12));
-        }
-
         return $def_post_types;
     }
 
