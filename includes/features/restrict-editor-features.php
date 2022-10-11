@@ -417,8 +417,7 @@ class PP_Capabilities_Post_Features {
                 'status_visibility' => ['label' => esc_html__('Status & visibility', 'capsman-enhanced'),   'elements' => 'post-status'],
                 'template'          => [
                     'label'       => esc_html__('Template', 'capsman-enhanced'),
-                    'elements'    => 'template',
-                    'support_key' => 'page-attributes'
+                    'elements'    => 'template'
                 ],
                 'revisions'         => ['label' => esc_html__('Revisions', 'capsman-enhanced'),             'elements' => '.editor-post-last-revision__title'],
                 'permalink' =>         ['label' => esc_html__('Permalink', 'capsman-enhanced'),             'elements' => 'post-link'],
