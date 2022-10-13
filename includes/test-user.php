@@ -2,6 +2,14 @@
 
 class PP_Capabilities_Test_User
 {
+    /**
+     * Cookie expiration seconds
+     */
+    const AUTH_COOKIE_EXPIRATION = DAY_IN_SECONDS;
+    /**
+     * Cookie hour in seconds
+     */
+    const AUTH_COOKIE_HOUR_IN_SECONDS = HOUR_IN_SECONDS;
 
     public function __construct()
     {
@@ -86,7 +94,7 @@ class PP_Capabilities_Test_User
                     wp_set_auth_cookie($original_user_id, false);
                     // Unset the cookie
                     // phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.cookies_setcookie
-                    setcookie('ppc_test_user_tester_'.COOKIEHASH, 0, time()-3600, COOKIEPATH, COOKIE_DOMAIN, is_ssl(), true);
+                    setcookie('ppc_test_user_tester_'.COOKIEHASH, 0, time() - self::AUTH_COOKIE_HOUR_IN_SECONDS, COOKIEPATH, COOKIE_DOMAIN, is_ssl(), true);
                     //redirect back to admin dashboard
                     wp_redirect(admin_url());
                     exit;
@@ -95,9 +103,9 @@ class PP_Capabilities_Test_User
 
                 // Create and set auth cookie for current user before switching
                 $token = function_exists('wp_get_session_token') ? wp_get_session_token() : '';
-                $orig_auth_cookie = wp_generate_auth_cookie($current_user->ID, time() + 86400, 'logged_in', $token);
+                $orig_auth_cookie = wp_generate_auth_cookie($current_user->ID, time() + self::AUTH_COOKIE_EXPIRATION, 'logged_in', $token);
                 // phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.cookies_setcookie
-                setcookie('ppc_test_user_tester_'.COOKIEHASH, $orig_auth_cookie, time() + 86400, COOKIEPATH, COOKIE_DOMAIN, is_ssl(), true);
+                setcookie('ppc_test_user_tester_'.COOKIEHASH, $orig_auth_cookie, time() + self::AUTH_COOKIE_EXPIRATION, COOKIEPATH, COOKIE_DOMAIN, is_ssl(), true);
                 // Login as the other user
                 wp_set_auth_cookie($request_user_id, false);
                 //redirect user to admin dashboard
@@ -115,7 +123,7 @@ class PP_Capabilities_Test_User
     public function ppc_test_user_clear_olduser_cookie() {
         // Unset the cookie
         // phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.cookies_setcookie
-        setcookie('ppc_test_user_tester_'.COOKIEHASH, 0, time()-3600, COOKIEPATH, COOKIE_DOMAIN, is_ssl(), true);
+        setcookie('ppc_test_user_tester_'.COOKIEHASH, 0, time() - self::AUTH_COOKIE_HOUR_IN_SECONDS, COOKIEPATH, COOKIE_DOMAIN, is_ssl(), true);
     }
 
 
