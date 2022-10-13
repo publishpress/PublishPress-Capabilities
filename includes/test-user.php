@@ -10,6 +10,9 @@ class PP_Capabilities_Test_User
         //add return message notice link
         add_action('wp_head', [$this, 'ppc_test_user_revert_notice']);
         add_action('all_admin_notices', [$this, 'ppc_test_user_revert_notice']);
+        //clear test user cookie on logout and login
+        add_action('wp_logout', [$this, 'ppc_test_user_clear_olduser_cookie']);
+        add_action('wp_login', [$this, 'ppc_test_user_clear_olduser_cookie']);
 
         $this->ppc_test_user_action();
     }
@@ -102,6 +105,17 @@ class PP_Capabilities_Test_User
                 exit;
             }
         }
+    }
+
+    /**
+     * Clear test user cookie on logout and login
+     *
+     * @return void
+     */
+    public function ppc_test_user_clear_olduser_cookie() {
+        // Unset the cookie
+        // phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.cookies_setcookie
+        setcookie('ppc_test_user_tester_'.COOKIEHASH, 0, time()-3600, COOKIEPATH, COOKIE_DOMAIN, is_ssl(), true);
     }
 
 
