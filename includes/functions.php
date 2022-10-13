@@ -249,7 +249,7 @@ add_action('admin_bar_menu', 'ppc_features_get_admin_bar_nodes', 999);
  *
  */
 function ppc_admin_feature_restrictions() {
-    require_once ( dirname(CME_FILE) . '/includes/features/restrict-admin-features.php' );    
+    require_once ( PUBLISHPRESS_CAPS_ABSPATH . '/includes/features/restrict-admin-features.php' );    
     PP_Capabilities_Admin_Features::adminFeaturedRestriction();
 }
 add_action('init', 'ppc_admin_feature_restrictions', 999);
@@ -261,7 +261,7 @@ add_action('init', 'ppc_admin_feature_restrictions', 999);
  * @return void
  */
 function ppc_test_user_init () {
-    require_once (dirname(CME_FILE) . '/includes/test-user.php');
+    require_once (PUBLISHPRESS_CAPS_ABSPATH . '/includes/test-user.php');
     
     PP_Capabilities_Test_User::init();
 }
