@@ -302,6 +302,7 @@ class PP_Capabilities_Admin_UI {
 
                 if (empty($roles)) {
                     $roles = (array) get_option('default_role');
+                    $roles = array_values($roles);
                 }
 
                 wp_localize_script(
