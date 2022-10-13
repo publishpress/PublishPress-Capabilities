@@ -96,7 +96,7 @@ class PP_Capabilities_Test_User
                     // phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.cookies_setcookie
                     setcookie('ppc_test_user_tester_'.COOKIEHASH, 0, time() - self::AUTH_COOKIE_HOUR_IN_SECONDS, COOKIEPATH, COOKIE_DOMAIN, is_ssl(), true);
                     //redirect back to admin dashboard
-                    wp_redirect(admin_url());
+                    wp_safe_redirect(admin_url());
                     exit;
                 }
             } elseif (is_admin() && current_user_can('manage_capabilities') && current_user_can('edit_user', $request_user_id)) {
@@ -109,7 +109,7 @@ class PP_Capabilities_Test_User
                 // Login as the other user
                 wp_set_auth_cookie($request_user_id, false);
                 //redirect user to admin dashboard
-                wp_redirect(admin_url());
+                wp_safe_redirect(admin_url());
                 exit;
             }
         }
