@@ -93,8 +93,7 @@ class PP_Capabilities_Test_User
                 if ($original_user_id) {
                     wp_set_auth_cookie($original_user_id, false);
                     // Unset the cookie
-                    // phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.cookies_setcookie
-                    setcookie('ppc_test_user_tester_'.COOKIEHASH, 0, time() - self::AUTH_COOKIE_HOUR_IN_SECONDS, COOKIEPATH, COOKIE_DOMAIN, is_ssl(), true);
+                    $this->ppc_test_user_clear_olduser_cookie();
                     //redirect back to admin dashboard
                     wp_safe_redirect(admin_url());
                     exit;
