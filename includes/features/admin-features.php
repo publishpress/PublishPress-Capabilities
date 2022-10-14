@@ -223,12 +223,13 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                 <div class="pp-column-right">
                 <?php 
                 $banners = new PublishPress\WordPressBanners\BannersMain;
-                $banner_messages = [];
-                $banner_messages[] = sprintf(esc_html__('%1s No change', 'capsman-enhanced'), '<input type="checkbox" title="'. esc_attr__('Empty box', 'capsman-enhanced') .'" disabled>');
-                $banner_messages[] = sprintf(esc_html__('%1s This capability is denied', 'capsman-enhanced'), '<input type="checkbox" title="'. esc_attr__('X icon', 'capsman-enhanced') .'" checked disabled>');
+                $banner_messages = ['<p>'];
+                $banner_messages[] = sprintf(esc_html__('%1s= No change', 'capsman-enhanced'), '<input type="checkbox" title="'. esc_attr__('usage key', 'capsman-enhanced') .'" disabled>');
+                $banner_messages[] = sprintf(esc_html__('%1s= This feature is denied', 'capsman-enhanced'), '<input type="checkbox" title="'. esc_attr__('usage key', 'capsman-enhanced') .'" checked disabled>');
+                $banner_messages[] = '</p>';
                 $banners->pp_display_banner(
                     '',
-                    '',
+                    __('Usage Key', 'capsman-enhanced'),
                     $banner_messages,
                     'https://publishpress.com/knowledge-base/checkboxes/',
                     __('View Documentation', 'capsman-enhanced'),
