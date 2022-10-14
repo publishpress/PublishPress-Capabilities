@@ -733,6 +733,10 @@ table.pp-capabilities-cb-key td.pp-cap-x {
     padding-top: 4px;
 }
 
+div.ppc-editor-features-classic-toggle {
+  margin-bottom: 20px;
+}
+
 .pp-column-right.capabilities-sidebar .pp-sidebar-box ul,
 .pp-capability-menus-wrapper.editor-features .pp-column-right .pp-sidebar-box:first-of-type ul,
 .pp-capability-menus-wrapper.admin-features .pp-column-right .pp-sidebar-box:first-of-type ul {

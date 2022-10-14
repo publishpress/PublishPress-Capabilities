@@ -131,7 +131,7 @@ $active_tab_text = is_object($active_tab_type_obj)
                                         data-current_cpt="<?php esc_attr_e(sprintf(esc_html__('Save %s Restrictions', 'capsman-enhanced'), 'post_type')); ?>" />
                                 </div>
                             
-                            <?php if ($classic_editor) { ?>
+                            <?php if ($classic_editor) : ?>
                                 <ul class="nav-tab-wrapper">
                                     <li class="editor-features-tab gutenberg-tab nav-tab <?php if (empty($_REQUEST['ppc-tab']) || ('gutenberg' == $_REQUEST['ppc-tab'])) echo 'nav-tab-active';?>"
                                         data-tab=".editor-features-gutenberg"><a href="#"><?php esc_html_e('Gutenberg', 'capsman-enhanced') ?></a></li>
@@ -139,7 +139,13 @@ $active_tab_text = is_object($active_tab_type_obj)
                                     <li class="editor-features-tab classic-tab nav-tab <?php if (!empty($_REQUEST['ppc-tab']) && ('classic' == $_REQUEST['ppc-tab'])) echo 'nav-tab-active';?>"
                                         data-tab=".editor-features-classic"><a href="#"><?php esc_html_e('Classic', 'capsman-enhanced') ?></a></li>
                                 </ul>
-                            <?php } ?>
+                            <?php else: ?>
+                                <div class="ppc-editor-features-classic-toggle">
+                                <input type="submit" name="editor-features-classic-editor-toggle"
+                                    value="<?php esc_attr_e('show Classic Editor controls', 'capsman-enhanced') ?>"
+                                    class="button-secondary ppc-editor-classic-toggle-button" />
+                                </div>
+                            <?php endif; ?>
 
                             </div>
 
@@ -215,12 +221,8 @@ $active_tab_text = is_object($active_tab_type_obj)
 
 
                             <div class="editor-features-footer-meta">
-                                <?php if (!$classic_editor) : ?>
-                                <input type="submit" name="editor-features-classic-editor-toggle"
-                                    value="<?php esc_attr_e('show Classic Editor controls', 'capsman-enhanced') ?>"
-                                    class="button-secondary ppc-editor-classic-toggle-button" />
-                                <?php endif; ?>
-
+                                <div style="float:right">
+                                
                                 <input type="submit" name="editor-features-all-submit"
                                     value="<?php esc_attr_e('Save for all Post Types', 'capsman-enhanced') ?>"
                                     class="button-secondary ppc-editor-features-submit" style="float:right" />
@@ -229,6 +231,8 @@ $active_tab_text = is_object($active_tab_type_obj)
                                     value="<?php esc_attr_e(sprintf(esc_html__('Save %s Restrictions', 'capsman-enhanced'), esc_html($active_tab_text))); ?>"
                                     class="button-primary ppc-editor-features-submit" style="float:right"
                                     data-current_cpt="<?php esc_attr_e(sprintf(esc_html__('Save %s Restrictions', 'capsman-enhanced'), 'post_type')); ?>" />
+
+                                </div>
                             </div>
 
                         </td>
