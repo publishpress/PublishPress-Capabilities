@@ -225,7 +225,7 @@ $active_tab_text = is_object($active_tab_type_obj)
                                     value="<?php esc_attr_e(sprintf(esc_html__('Save %s Restrictions', 'capsman-enhanced'), esc_html($active_tab_text))); ?>"
                                     class="button-primary ppc-editor-features-submit" style="float:right"
                                     data-current_cpt="<?php esc_attr_e(sprintf(esc_html__('Save %s Restrictions', 'capsman-enhanced'), 'post_type')); ?>" />
-                            </div
+                            </div>
 
                         </td>
                     </tr>
