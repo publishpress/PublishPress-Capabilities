@@ -88,6 +88,13 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 	<input type="hidden" name="pp_caps_tab" value="<?php echo esc_attr($pp_tab);?>" />
 
 	<p>
+		<div style="float:right;margin-bottom:5px;">
+			<?php
+			$caption = (in_array(sanitize_key(get_locale()), ['en_EN', 'en_US'])) ? 'Save Capabilities' : __('Save Changes', 'capsman-enhanced');
+			?>
+			<input type="submit" name="SaveRole" value="<?php echo esc_attr($caption);?>" class="button-primary" />
+		</div>
+
 		<select name="role">
 			<?php
 			foreach ( $roles as $role_name => $name ) {
@@ -103,19 +110,9 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 	</p>
 
 	<fieldset>
-	<table id="akmin"><tr><td>
+	<table id="akmin" class="clear"><tr><td>
 	<div class="pp-columns-wrapper pp-enable-sidebar">
 		<div class="pp-column-left">
-
-			<div style="float:right;margin-bottom:5px;">
-
-			<?php
-			$caption = (in_array(sanitize_key(get_locale()), ['en_EN', 'en_US'])) ? 'Save Capabilities' : __('Save Changes', 'capsman-enhanced');
-			?>
-			<input type="submit" name="SaveRole" value="<?php echo esc_attr($caption);?>" class="button-primary" />
-			</div>
-            <div class="clear"></div>
-
 			<?php
 			$img_url = $capsman->mod_url . '/images/';
 			?>
