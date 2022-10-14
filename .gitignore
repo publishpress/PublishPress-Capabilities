@@ -19,3 +19,5 @@ wp-content/plugins/hello.php
 
 vendor/
 /dist
+.DS_Store
+.idea/
