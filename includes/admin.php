@@ -1572,6 +1572,9 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
                 'button'
             );
 
+			?>
+			<div class="pp-capabilities-safe-to-use">
+			<?php
 			$banners->pp_display_banner(
 			    '',
 			    __( 'PublishPress Capabilities is safe to use', 'capsman-enhanced' ),
@@ -1585,6 +1588,8 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 				'button'
 			);
 			?>
+			</div>
+
 
 			<dl>
 				<dt><?php esc_html_e('Add Capability', 'capsman-enhanced'); ?></dt>
