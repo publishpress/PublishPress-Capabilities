@@ -685,6 +685,10 @@ body.capabilities_page_pp-capabilities-admin-features .pp-capability-menus-selec
 	display: inline-block;
 }
 
+.pp-columns-wrapper .pp-sidebar-box {
+  font-size: inherit;
+}
+
 #publishpress_caps_form table#akmin td .pp-sidebar-box p:not(:last-of-type) {
 	margin: 15px 0;
 	padding: 0;
