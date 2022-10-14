@@ -72,7 +72,7 @@ $active_tab_text = is_object($active_tab_type_obj)
             action="admin.php?page=pp-capabilities-editor-features">
         <?php wp_nonce_field('pp-capabilities-editor-features'); ?>
         <input type="hidden" name="pp_caps_tab" value="<?php echo esc_attr($active_tab_slug);?>" />
-        <div class="pp-columns-wrapper<?php echo defined('CAPSMAN_PERMISSIONS_INSTALLED') && !CAPSMAN_PERMISSIONS_INSTALLED ? ' pp-enable-sidebar' : '' ?>">
+        <div class="pp-columns-wrapper pp-enable-sidebar">
             <div class="pp-column-left">
                 <table id="akmin">
                     <tr>
@@ -234,13 +234,13 @@ $active_tab_text = is_object($active_tab_type_obj)
             <div class="pp-column-right">
                 <?php 
                 $banners = new PublishPress\WordPressBanners\BannersMain;
+                $banner_messages = [];
+                $banner_messages[] = sprintf(esc_html__('%1s No change', 'capsman-enhanced'), '<input type="checkbox" title="'. esc_attr__('Empty box', 'capsman-enhanced') .'" disabled>');
+                $banner_messages[] = sprintf(esc_html__('%1s This capability is denied', 'capsman-enhanced'), '<input type="checkbox" title="'. esc_attr__('X icon', 'capsman-enhanced') .'" checked disabled>');
                 $banners->pp_display_banner(
                     '',
                     '',
-                    [
-                        sprintf(esc_html__('%1s Empty box: %2s No change.', 'capsman-enhanced'), '<strong>', '</strong>'),
-                        sprintf(esc_html__('%1s X icon: %2s This capability is denied.', 'capsman-enhanced'), '<strong>', '</strong>')
-                    ],
+                    $banner_messages,
                     'https://publishpress.com/knowledge-base/checkboxes/',
                     __('View Documentation', 'capsman-enhanced'),
                     '',

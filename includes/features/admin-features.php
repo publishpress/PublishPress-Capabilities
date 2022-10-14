@@ -32,14 +32,14 @@ $disabled_admin_items = array_key_exists($default_role, $disabled_admin_items) ?
 $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
 ?>
 
-    <div class="wrap publishpress-caps-manage pressshack-admin-wrapper pp-capability-menus-wrapper">
+    <div class="wrap publishpress-caps-manage pressshack-admin-wrapper pp-capability-menus-wrapper admin-features">
         <div id="icon-capsman-admin" class="icon32"></div>
         <h2><?php esc_html_e('Admin Feature Restrictions', 'capsman-enhanced'); ?></h2>
 
         <form method="post" id="ppc-admin-features-form" action="admin.php?page=pp-capabilities-admin-features">
             <?php wp_nonce_field('pp-capabilities-admin-features'); ?>
 
-            <div class="pp-columns-wrapper<?php echo defined('CAPSMAN_PERMISSIONS_INSTALLED') && !CAPSMAN_PERMISSIONS_INSTALLED ? ' pp-enable-sidebar' : '' ?>">
+            <div class="pp-columns-wrapper pp-enable-sidebar">
                 <div class="pp-column-left">
                     <fieldset>
                         <table id="akmin">
@@ -221,21 +221,21 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                     </fieldset>
                 </div><!-- .pp-column-left -->
                 <div class="pp-column-right">
-                    <?php 
-                    $banners = new PublishPress\WordPressBanners\BannersMain;
-                    $banners->pp_display_banner(
-                        '',
-                        '',
-                        [
-                            sprintf(esc_html__('%1s Empty box: %2s No change.', 'capsman-enhanced'), '<strong>', '</strong>'),
-                            sprintf(esc_html__('%1s X icon: %2s This capability is denied.', 'capsman-enhanced'), '<strong>', '</strong>')
-                        ],
-                        'https://publishpress.com/knowledge-base/checkboxes/',
-                        __('View Documentation', 'capsman-enhanced'),
-                        '',
-                        'button'
-                    );
-                    ?>
+                <?php 
+                $banners = new PublishPress\WordPressBanners\BannersMain;
+                $banner_messages = [];
+                $banner_messages[] = sprintf(esc_html__('%1s No change', 'capsman-enhanced'), '<input type="checkbox" title="'. esc_attr__('Empty box', 'capsman-enhanced') .'" disabled>');
+                $banner_messages[] = sprintf(esc_html__('%1s This capability is denied', 'capsman-enhanced'), '<input type="checkbox" title="'. esc_attr__('X icon', 'capsman-enhanced') .'" checked disabled>');
+                $banners->pp_display_banner(
+                    '',
+                    '',
+                    $banner_messages,
+                    'https://publishpress.com/knowledge-base/checkboxes/',
+                    __('View Documentation', 'capsman-enhanced'),
+                    '',
+                    'button'
+                );
+                ?>
                     <?php if (defined('CAPSMAN_PERMISSIONS_INSTALLED') && !CAPSMAN_PERMISSIONS_INSTALLED) { ?>
                             <?php
                             $banners->pp_display_banner(

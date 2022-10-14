@@ -1545,6 +1545,10 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 
 			$banners = new PublishPress\WordPressBanners\BannersMain;
             
+            $banner_messages = [];
+            $banner_messages[] = sprintf(esc_html__('%1s Capability granted', 'capsman-enhanced'), '<input type="checkbox" title="'. esc_attr__('Check icon', 'capsman-enhanced') .'" checked disabled>');
+            $banner_messages[] = sprintf(esc_html__('%1s Capability not granted', 'capsman-enhanced'), '<input type="checkbox" title="'. esc_attr__('Empty box', 'capsman-enhanced') .'" disabled>');
+            $banner_messages[] = sprintf(esc_html__('%1s Capability negated, even if granted by another role', 'capsman-enhanced'), '<span class="cap-x" title="'. esc_attr__('X icon', 'capsman-enhanced') .'">X</span>');
             if (defined('PRESSPERMIT_ACTIVE') && function_exists('presspermit')) {
                 if ($group = presspermit()->groups()->getMetagroup('wp_role', $this->current)) {
                     $additional_message = sprintf(
@@ -1552,26 +1556,19 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
                         str_replace(
                             ['&lt;strong&gt;', '&lt;/strong&gt;'],
                             ['<strong>', '</strong>'],
-                            esc_html__('<strong>Note:</strong> Capability changes <strong>remain in the database</strong> after plugin deactivation. You can also configure this role as a %sPermission Group%s.', 'capsman-enhanced')
+                            esc_html__('You can also configure this role as a %sPermission Group%s.', 'capsman-enhanced')
                         ),
                         '<a href="' . esc_url_raw(admin_url("admin.php?page=presspermit-edit-permissions&action=edit&agent_id={$group->ID}")) . '">',
                         '</a>'
                     );
+                    $banner_messages[] = '<p class="cme-subtext">' . $additional_message . '</p>';
                 }
-            } else {
-                // unescaped for now for back compat with existing language string
-                $additional_message = __('<strong>Note:</strong> Capability changes <strong>remain in the database</strong> after plugin deactivation.', 'capsman-enhanced');
             }
-        
+
             $banners->pp_display_banner(
                 '',
                 '',
-                [
-                    '<span style="font-size: 7px;vertical-align: bottom;">&#9679;</span>' . sprintf(esc_html__('%1s Check icon: %2s This capability is granted.', 'capsman-enhanced'), '<strong>', '</strong>'),
-                    '<span style="font-size: 7px;vertical-align: bottom;">&#9679;</span>' . sprintf(esc_html__('%1s Empty box: %2s No change.', 'capsman-enhanced'), '<strong>', '</strong>'),
-                    '<span style="font-size: 7px;vertical-align: bottom;">&#9679;</span>' . sprintf(esc_html__('%1s X icon: %2s This capability is denied.', 'capsman-enhanced'), '<strong>', '</strong>'),
-                   '<p class="cme-subtext">' . $additional_message . '</p>'
-                ],
+                $banner_messages,
                 'https://publishpress.com/knowledge-base/checkboxes/',
                 __('View Documentation', 'capsman-enhanced'),
                 '',
@@ -1582,8 +1579,8 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 			    '',
 			    __( 'PublishPress Capabilities is safe to use', 'capsman-enhanced' ),
 			    array(
-			        __( 'This plugin automatically creates a backup whenever you save changes. You can use these backups to
-restore an earlier version of your roles and capabilities.', 'capsman-enhanced' )
+			        __( 'WordPress stores role capabilities in your database, where they remain even if the plugin is deactivated.', 'capsman-enhanced' ),
+			        __( 'Whenever you use PublishPress Capabilities to save changes, it also creates a backup which you can use to restore previous configuration', 'capsman-enhanced' )
 			    ),
 			    admin_url( 'admin.php?page=pp-capabilities-backup' ),
 			    __( 'Go to the Backup feature', 'capsman-enhanced' ),
