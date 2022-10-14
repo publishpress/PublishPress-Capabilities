@@ -1543,9 +1543,9 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 			$banners = new PublishPress\WordPressBanners\BannersMain;
             
             $banner_messages = [];
-            $banner_messages[] = sprintf(esc_html__('%1s Capability granted', 'capsman-enhanced'), '<input type="checkbox" title="'. esc_attr__('Check icon', 'capsman-enhanced') .'" checked disabled>');
-            $banner_messages[] = sprintf(esc_html__('%1s Capability not granted', 'capsman-enhanced'), '<input type="checkbox" title="'. esc_attr__('Empty box', 'capsman-enhanced') .'" disabled>');
-            $banner_messages[] = sprintf(esc_html__('%1s Capability negated, even if granted by another role', 'capsman-enhanced'), '<span class="cap-x" title="'. esc_attr__('X icon', 'capsman-enhanced') .'">X</span>');
+            $banner_messages[] = sprintf(esc_html__('%1s= Capability granted %2$s', 'capsman-enhanced'), '<table class="pp-capabilities-cb-key"><tr><td class="pp-cap-icon pp-cap-icon-checked"><input type="checkbox" title="'. esc_attr__('usage key', 'capsman-enhanced') .'" checked disabled></td><td>', '</td></tr>');
+            $banner_messages[] = sprintf(esc_html__('%1s= Capability not granted %2$s', 'capsman-enhanced'), '<tr><td class="pp-cap-icon"><input type="checkbox" title="'. esc_attr__('usage key', 'capsman-enhanced') .'" disabled></td><td class="pp-cap-not-checked-definition">', '</td></tr>');
+            $banner_messages[] = sprintf(esc_html__('%1s= Capability negated, even if granted by another role %2$s', 'capsman-enhanced'), '<tr><td class="pp-cap-icon pp-cap-x"><span class="cap-x pp-cap-key" title="'. esc_attr__('usage key', 'capsman-enhanced') .'">X</span></td><td class="cap-x-definition">', '</td></tr></table>');
             if (defined('PRESSPERMIT_ACTIVE') && function_exists('presspermit')) {
                 if ($group = presspermit()->groups()->getMetagroup('wp_role', $this->current)) {
                     $additional_message = sprintf(
@@ -1564,7 +1564,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 
             $banners->pp_display_banner(
                 '',
-                '',
+                'Usage Key',
                 $banner_messages,
                 'https://publishpress.com/knowledge-base/checkboxes/',
                 __('View Documentation', 'capsman-enhanced'),
@@ -1577,7 +1577,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 			    __( 'PublishPress Capabilities is safe to use', 'capsman-enhanced' ),
 			    array(
 			        __( 'WordPress stores role capabilities in your database, where they remain even if the plugin is deactivated.', 'capsman-enhanced' ),
-			        __( 'Whenever you use PublishPress Capabilities to save changes, it also creates a backup which you can use to restore previous configuration', 'capsman-enhanced' )
+			        __( 'Whenever you use PublishPress Capabilities to save changes, it also creates a backup which you can use to restore a previous configuration.', 'capsman-enhanced' )
 			    ),
 			    admin_url( 'admin.php?page=pp-capabilities-backup' ),
 			    __( 'Go to the Backup feature', 'capsman-enhanced' ),

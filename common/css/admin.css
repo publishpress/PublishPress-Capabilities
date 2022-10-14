@@ -716,6 +716,28 @@ body.capabilities_page_pp-capabilities-settings .publishpress-caps-settings .for
     width: 300px;
 }
 
+table.pp-capabilities-cb-key td {
+  padding-bottom: 5px;
+  padding-top: 5px;
+}
+
+table.pp-capabilities-cb-key td.pp-cap-icon-checked {
+  padding-top: 4px;
+}
+
+table.pp-capabilities-cb-key td.pp-cap-not-checked-definition {
+  padding-top: 6px;
+}
+
+table.pp-capabilities-cb-key td.pp-cap-x {
+  padding-top: 2px;
+  padding-left: 3px;
+}
+
+.capabilities-sidebar td.cap-x-definition {
+    padding-top: 4px;
+}
+
 .pp-column-right.capabilities-sidebar .pp-sidebar-box ul,
 .pp-capability-menus-wrapper.editor-features .pp-column-right .pp-sidebar-box:first-of-type ul,
 .pp-capability-menus-wrapper.admin-features .pp-column-right .pp-sidebar-box:first-of-type ul {
