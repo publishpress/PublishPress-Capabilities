@@ -102,16 +102,6 @@ $active_tab_text = is_object($active_tab_type_obj)
 
                                 <img class="loading" src="<?php echo esc_url_raw($capsman->mod_url); ?>/images/wpspin_light.gif" style="display: none">
 
-
-                                <input type="submit" name="editor-features-all-submit"
-                                    value="<?php esc_attr_e('Save for all Post Types', 'capsman-enhanced') ?>"
-                                    class="button-secondary ppc-editor-features-submit" style="float:right" />
-                                    
-                                <input type="submit" name="editor-features-submit"
-                                    value="<?php esc_attr_e(sprintf(esc_html__('Save %s Restrictions', 'capsman-enhanced'), esc_html($active_tab_text))); ?>"
-                                    class="button-primary ppc-editor-features-submit" style="float:right"
-                                    data-current_cpt="<?php esc_attr_e(sprintf(esc_html__('Save %s Restrictions', 'capsman-enhanced'), 'post_type')); ?>" />
-
                                 <input type="hidden" name="ppc-tab" value="<?php echo (!empty($_REQUEST['ppc-tab'])) ? sanitize_key($_REQUEST['ppc-tab']) : 'gutenberg';?>" />
                             </div>
 
@@ -129,6 +119,18 @@ $active_tab_text = is_object($active_tab_type_obj)
                             /* ]]> */
                             </script>
 
+                            <div>
+                                <div class="pp-capabilities-submit-top" style="float:right">
+                                    <input type="submit" name="editor-features-all-submit"
+                                            value="<?php esc_attr_e('Save for all Post Types', 'capsman-enhanced') ?>"
+                                            class="button-secondary ppc-editor-features-submit" style="float:right" />
+                                            
+                                    <input type="submit" name="editor-features-submit"
+                                        value="<?php esc_attr_e(sprintf(esc_html__('Save %s Restrictions', 'capsman-enhanced'), esc_html($active_tab_text))); ?>"
+                                        class="button-primary ppc-editor-features-submit" style="float:right"
+                                        data-current_cpt="<?php esc_attr_e(sprintf(esc_html__('Save %s Restrictions', 'capsman-enhanced'), 'post_type')); ?>" />
+                                </div>
+                            
                             <?php if ($classic_editor) { ?>
                                 <ul class="nav-tab-wrapper">
                                     <li class="editor-features-tab gutenberg-tab nav-tab <?php if (empty($_REQUEST['ppc-tab']) || ('gutenberg' == $_REQUEST['ppc-tab'])) echo 'nav-tab-active';?>"
@@ -138,6 +140,8 @@ $active_tab_text = is_object($active_tab_type_obj)
                                         data-tab=".editor-features-classic"><a href="#"><?php esc_html_e('Classic', 'capsman-enhanced') ?></a></li>
                                 </ul>
                             <?php } ?>
+
+                            </div>
 
                             <div id="pp-capability-menu-wrapper" class="postbox">
                                 <div class="pp-capability-menus">

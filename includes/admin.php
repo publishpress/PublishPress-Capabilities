@@ -88,7 +88,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 	<input type="hidden" name="pp_caps_tab" value="<?php echo esc_attr($pp_tab);?>" />
 
 	<p>
-		<div style="float:right;margin-bottom:5px;">
+		<div class="pp-capabilities-submit-top" style="float:right">
 			<?php
 			$caption = (in_array(sanitize_key(get_locale()), ['en_EN', 'en_US'])) ? 'Save Capabilities' : __('Save Changes', 'capsman-enhanced');
 			?>

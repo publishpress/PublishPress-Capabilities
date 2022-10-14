@@ -563,11 +563,6 @@ table#akmin .pp-capability-menus-select .restrict-column {
   display: inline-block;
 }
 
-.pp-capability-menus-wrapper .button-primary {
-  margin-bottom: 25px !important;
-}
-
-
 .pp-capability-menus-wrapper .tooltip {
   position: relative;
   display: inline-block;
@@ -775,7 +770,20 @@ table.pp-capabilities-cb-key td.pp-cap-x {
     list-style: none !important;
 }
 
+@media (min-width: 1200px) {
+  #ppc-editor-features-form div.pp-column-right {
+    padding-top: 135px;
+  }
+}
+
 @media (max-width: 1199px) {
+  div.pp-capabilities-submit-top {
+    padding-right: 10px;
+  }
+
+  .pp-columns-wrapper div.pp-column-right {
+    padding-top: 35px;
+  }
 
 	#ppc-capabilities-wrapper {
 		display: block;
