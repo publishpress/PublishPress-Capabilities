@@ -1564,7 +1564,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 
             $banners->pp_display_banner(
                 '',
-                'Usage Key',
+                __('Usage Key', 'capsman-enhanced'),
                 $banner_messages,
                 'https://publishpress.com/knowledge-base/checkboxes/',
                 __('View Documentation', 'capsman-enhanced'),
