@@ -302,7 +302,6 @@ class PP_Capabilities_Admin_UI {
 
                 if (empty($roles)) {
                     $roles = (array) get_option('default_role');
-                    $roles = array_values($roles);
                 }
 
                 wp_localize_script(
@@ -365,7 +364,7 @@ class PP_Capabilities_Admin_UI {
             return [];
         }
 
-        return $user->roles;
+        return array_values($user->roles);
     }
 
     public function action_profile_update($userId, $oldUserData = [])
