@@ -716,6 +716,10 @@ body.capabilities_page_pp-capabilities-settings .publishpress-caps-settings .for
     width: 300px;
 }
 
+.publishpress-caps-settings .description {
+    vertical-align: bottom;
+}
+
 @media (max-width: 1199px) {
 
 	#ppc-capabilities-wrapper {

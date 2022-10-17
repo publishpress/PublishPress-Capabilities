@@ -44,10 +44,13 @@ class Capabilities_Settings_UI {
                             <?php
                                 $checked = checked(!empty(get_option('cme_capabilities_add_user_multi_roles', 0)), true, false);
                             ?>
-                            <th scope="row"> <?php esc_html_e('Enable Multiple Roles When Creating Users', 'capsman-enhanced'); ?></th>
+                            <th scope="row"><?php esc_html_e('Multiples roles on "Add New User" screen', 'capsman-enhanced'); ?></th>
                             <td>
                                 <label> 
                                 <input type="checkbox" name="cme_capabilities_add_user_multi_roles" id="cme_capabilities_add_user_multi_roles" autocomplete="off" value="1" <?php echo esc_attr($checked);?>>
+                                <span class="description">
+                                    <?php esc_html_e('This allows you to assign a user to multiples roles on the "Add New User" screen.', 'capsman-enhanced'); ?>
+                                </span>
                                 </label>
                                 <br>
                             </td>
@@ -62,10 +65,13 @@ class Capabilities_Settings_UI {
                             <?php
                                 $checked = checked(!empty(get_option('cme_capabilities_show_private_taxonomies', 0)), true, false);
                             ?>
-                            <th scope="row"> <?php esc_html_e('Show Private Taxonomies', 'capsman-enhanced'); ?></th>
+                            <th scope="row"> <?php esc_html_e('Show private taxonomies', 'capsman-enhanced'); ?></th>
                             <td>
                                 <label> 
                                 <input type="checkbox" name="cme_capabilities_show_private_taxonomies" id="cme_capabilities_show_private_taxonomies" autocomplete="off" value="1" <?php echo esc_attr($checked);?>>
+                                <span class="description">
+                                    <?php esc_html_e('This will show all taxonomies on the "Capabilities" screen, even ones normally hidden in the WordPress admin area.', 'capsman-enhanced'); ?>
+                                </span>
                                 </label>
                                 <br>
                             </td>
@@ -83,10 +89,13 @@ class Capabilities_Settings_UI {
                             <?php
                                 $checked = checked(!empty(get_option('cme_editor_features_private_post_type', 0)), true, false);
                             ?>
-                            <th scope="row"> <?php esc_html_e('Support for Private Post Types', 'capsman-enhanced'); ?></th>
+                            <th scope="row"> <?php esc_html_e('Show private post types', 'capsman-enhanced'); ?></th>
                             <td>
                                 <label> 
                                 <input type="checkbox" name="cme_editor_features_private_post_type" id="cme_editor_features_private_post_type" autocomplete="off" value="1" <?php echo esc_attr($checked);?>>
+                                <span class="description">
+                                    <?php esc_html_e('This will show all post types to the "Editor Features" screen, even ones normally hidden in the WordPress admin area.', 'capsman-enhanced'); ?>
+                                </span>
                                 </label>
                                 <br>
                             </td>
@@ -96,10 +105,13 @@ class Capabilities_Settings_UI {
                             <?php
                                 $checked = checked(!empty(get_option('cme_editor_features_classic_editor_tab', 0)), true, false);
                             ?>
-                            <th scope="row"> <?php esc_html_e('Enable Classic Editor Tab', 'capsman-enhanced'); ?></th>
+                            <th scope="row"> <?php esc_html_e('Enable Classic Editor tab', 'capsman-enhanced'); ?></th>
                             <td>
                                 <label> 
                                 <input type="checkbox" name="cme_editor_features_classic_editor_tab" id="cme_editor_features_classic_editor_tab" autocomplete="off" value="1" <?php echo esc_attr($checked);?>>
+                                <span class="description">
+                                    <?php esc_html_e('Always show Classic Editor tab in Editor Features', 'capsman-enhanced'); ?>
+                                </span>
                                 </label>
                                 <br>
                             </td>
