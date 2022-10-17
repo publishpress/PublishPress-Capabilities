@@ -782,6 +782,10 @@ div.ppc-editor-features-classic-toggle {
     list-style: none !important;
 }
 
+.publishpress-caps-settings .description {
+    vertical-align: bottom;
+}
+
 @media (min-width: 1200px) {
   #ppc-editor-features-form div.pp-column-right {
     padding-top: 135px;
