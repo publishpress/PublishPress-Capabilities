@@ -168,6 +168,31 @@ class PP_Capabilities_Test_User
                     ?>
                 </p>
             </div>
+            <?php if (!is_admin()) : ?>
+                <style>
+                    .ppc-testing-user.notice {
+                        position: relative;
+                        background: #fff;
+                        border: 1px solid #c3c4c7;
+                        border-left-width: 4px;
+                        border-left-color: #00a32a;
+                        box-shadow: 0 1px 1px rgb(0 0 0 / 4%);
+                        margin: 5px 0 15px;
+                        padding-right: 38px;
+                        padding: 1px 12px;
+                    }
+
+                    .ppc-testing-user.notice p {
+                        font-size: 13px;
+                        line-height: 1.5;
+                        margin: 0.5em 0;
+                        padding: 2px;
+                    }
+                    .ppc-testing-user.notice a {
+                        padding-bottom: 2px;
+                    }
+                </style>
+            <?php endif; ?>
             <?php
         }
     }
