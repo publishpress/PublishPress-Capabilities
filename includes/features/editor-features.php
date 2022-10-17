@@ -72,7 +72,7 @@ $active_tab_text = is_object($active_tab_type_obj)
             action="admin.php?page=pp-capabilities-editor-features">
         <?php wp_nonce_field('pp-capabilities-editor-features'); ?>
         <input type="hidden" name="pp_caps_tab" value="<?php echo esc_attr($active_tab_slug);?>" />
-        <div class="pp-columns-wrapper<?php echo defined('CAPSMAN_PERMISSIONS_INSTALLED') && !CAPSMAN_PERMISSIONS_INSTALLED ? ' pp-enable-sidebar' : '' ?>">
+        <div class="pp-columns-wrapper pp-enable-sidebar">
             <div class="pp-column-left">
                 <table id="akmin">
                     <tr>
@@ -102,16 +102,6 @@ $active_tab_text = is_object($active_tab_type_obj)
 
                                 <img class="loading" src="<?php echo esc_url_raw($capsman->mod_url); ?>/images/wpspin_light.gif" style="display: none">
 
-
-                                <input type="submit" name="editor-features-all-submit"
-                                    value="<?php esc_attr_e('Save for all Post Types', 'capsman-enhanced') ?>"
-                                    class="button-secondary ppc-editor-features-submit" style="float:right" />
-                                    
-                                <input type="submit" name="editor-features-submit"
-                                    value="<?php esc_attr_e(sprintf(esc_html__('Save %s Restrictions', 'capsman-enhanced'), esc_html($active_tab_text))); ?>"
-                                    class="button-primary ppc-editor-features-submit" style="float:right"
-                                    data-current_cpt="<?php esc_attr_e(sprintf(esc_html__('Save %s Restrictions', 'capsman-enhanced'), 'post_type')); ?>" />
-
                                 <input type="hidden" name="ppc-tab" value="<?php echo (!empty($_REQUEST['ppc-tab'])) ? sanitize_key($_REQUEST['ppc-tab']) : 'gutenberg';?>" />
                             </div>
 
@@ -129,7 +119,19 @@ $active_tab_text = is_object($active_tab_type_obj)
                             /* ]]> */
                             </script>
 
-                            <?php if ($classic_editor) { ?>
+                            <div>
+                                <div class="pp-capabilities-submit-top" style="float:right">
+                                    <input type="submit" name="editor-features-all-submit"
+                                            value="<?php esc_attr_e('Save for all Post Types', 'capsman-enhanced') ?>"
+                                            class="button-secondary ppc-editor-features-submit" style="float:right" />
+                                            
+                                    <input type="submit" name="editor-features-submit"
+                                        value="<?php esc_attr_e(sprintf(esc_html__('Save %s Restrictions', 'capsman-enhanced'), esc_html($active_tab_text))); ?>"
+                                        class="button-primary ppc-editor-features-submit" style="float:right"
+                                        data-current_cpt="<?php esc_attr_e(sprintf(esc_html__('Save %s Restrictions', 'capsman-enhanced'), 'post_type')); ?>" />
+                                </div>
+                            
+                            <?php if ($classic_editor) : ?>
                                 <ul class="nav-tab-wrapper">
                                     <li class="editor-features-tab gutenberg-tab nav-tab <?php if (empty($_REQUEST['ppc-tab']) || ('gutenberg' == $_REQUEST['ppc-tab'])) echo 'nav-tab-active';?>"
                                         data-tab=".editor-features-gutenberg"><a href="#"><?php esc_html_e('Gutenberg', 'capsman-enhanced') ?></a></li>
@@ -137,7 +139,15 @@ $active_tab_text = is_object($active_tab_type_obj)
                                     <li class="editor-features-tab classic-tab nav-tab <?php if (!empty($_REQUEST['ppc-tab']) && ('classic' == $_REQUEST['ppc-tab'])) echo 'nav-tab-active';?>"
                                         data-tab=".editor-features-classic"><a href="#"><?php esc_html_e('Classic', 'capsman-enhanced') ?></a></li>
                                 </ul>
-                            <?php } ?>
+                            <?php else: ?>
+                                <div class="ppc-editor-features-classic-toggle">
+                                <input type="submit" name="editor-features-classic-editor-toggle"
+                                    value="<?php esc_attr_e('show Classic Editor controls', 'capsman-enhanced') ?>"
+                                    class="button-secondary ppc-editor-classic-toggle-button" />
+                                </div>
+                            <?php endif; ?>
+
+                            </div>
 
                             <div id="pp-capability-menu-wrapper" class="postbox">
                                 <div class="pp-capability-menus">
@@ -211,12 +221,8 @@ $active_tab_text = is_object($active_tab_type_obj)
 
 
                             <div class="editor-features-footer-meta">
-                                <?php if (!$classic_editor) : ?>
-                                <input type="submit" name="editor-features-classic-editor-toggle"
-                                    value="<?php esc_attr_e('show Classic Editor controls', 'capsman-enhanced') ?>"
-                                    class="button-secondary ppc-editor-classic-toggle-button" />
-                                <?php endif; ?>
-
+                                <div style="float:right">
+                                
                                 <input type="submit" name="editor-features-all-submit"
                                     value="<?php esc_attr_e('Save for all Post Types', 'capsman-enhanced') ?>"
                                     class="button-secondary ppc-editor-features-submit" style="float:right" />
@@ -225,14 +231,32 @@ $active_tab_text = is_object($active_tab_type_obj)
                                     value="<?php esc_attr_e(sprintf(esc_html__('Save %s Restrictions', 'capsman-enhanced'), esc_html($active_tab_text))); ?>"
                                     class="button-primary ppc-editor-features-submit" style="float:right"
                                     data-current_cpt="<?php esc_attr_e(sprintf(esc_html__('Save %s Restrictions', 'capsman-enhanced'), 'post_type')); ?>" />
-                            </div
+
+                                </div>
+                            </div>
 
                         </td>
                     </tr>
                 </table>
             </div><!-- .pp-column-left -->
-            <?php if (defined('CAPSMAN_PERMISSIONS_INSTALLED') && !CAPSMAN_PERMISSIONS_INSTALLED) { ?>
-                <div class="pp-column-right">
+            <div class="pp-column-right">
+                <?php 
+                $banners = new PublishPress\WordPressBanners\BannersMain;
+                $banner_messages = ['<p>'];
+                $banner_messages[] = sprintf(esc_html__('%1s= No change', 'capsman-enhanced'), '<input type="checkbox" title="'. esc_attr__('usage key', 'capsman-enhanced') .'" disabled>');
+                $banner_messages[] = sprintf(esc_html__('%1s= This feature is denied', 'capsman-enhanced'), '<input type="checkbox" title="'. esc_attr__('usage key', 'capsman-enhanced') .'" checked disabled>');
+                $banner_messages[] = '<p>';
+                $banners->pp_display_banner(
+                    '',
+                    __('Usage Key', 'capsman-enhanced'),
+                    $banner_messages,
+                    'https://publishpress.com/knowledge-base/checkboxes/',
+                    __('View Documentation', 'capsman-enhanced'),
+                    '',
+                    'button'
+                );
+                ?>
+                <?php if (defined('CAPSMAN_PERMISSIONS_INSTALLED') && !CAPSMAN_PERMISSIONS_INSTALLED) { ?>
                     <?php
                     $banners = new PublishPress\WordPressBanners\BannersMain;
                     $banners->pp_display_banner(
@@ -248,8 +272,8 @@ $active_tab_text = is_object($active_tab_type_obj)
                         'install-permissions.jpg'
                     );
                     ?>
-                </div><!-- .pp-column-right -->
-            <?php } ?>
+                <?php } ?>
+            </div><!-- .pp-column-right -->
         </div><!-- .pp-columns-wrapper -->
     </form>
 
@@ -290,8 +314,8 @@ $active_tab_text = is_object($active_tab_type_obj)
     input[name="editor-features-all-submit"].ppc-editor-features-submit {
         margin-left: 10px;
     }
-    .pp-columns-wrapper .nav-tab-wrapper,
-    .pp-columns-wrapper .postbox {
+    .pp-column-left .nav-tab-wrapper,
+    .pp-column-left .postbox {
         border: unset;
     }
     .pp-capability-menus {
