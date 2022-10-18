@@ -16,7 +16,7 @@ class PP_Capabilities_Test_User
         //adds Test this user to users row action.
         add_filter('user_row_actions', [$this, 'ppc_test_user_row_actions'], 10, 2);
         //add return message notice link
-        add_action('wp_head', [$this, 'ppc_test_user_revert_notice']);
+        add_action('wp_footer', [$this, 'ppc_test_user_revert_notice']);
         add_action('all_admin_notices', [$this, 'ppc_test_user_revert_notice']);
         //clear test user cookie on logout and login
         add_action('wp_logout', [$this, 'ppc_test_user_clear_olduser_cookie']);
@@ -171,25 +171,42 @@ class PP_Capabilities_Test_User
             <?php if (!is_admin()) : ?>
                 <style>
                     .ppc-testing-user.notice {
-                        position: relative;
-                        background: #fff;
-                        border: 1px solid #c3c4c7;
-                        border-left-width: 4px;
-                        border-left-color: #00a32a;
-                        box-shadow: 0 1px 1px rgb(0 0 0 / 4%);
-                        margin: 5px 0 15px;
-                        padding-right: 38px;
-                        padding: 1px 12px;
+                        position: relative !important;
+                        background: #fff !important;
+                        border: 1px solid #c3c4c7 !important;
+                        border-left-width: 4px !important;
+                        border-left-color: #00a32a !important;
+                        box-shadow: 0 1px 1px rgb(0 0 0 / 4%) !important;
+                        padding-right: 38px !important;
+                        padding: 1px 12px !important;
+                        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif !important;
+                        color: #3c434a !important;
+                        font-size: 13px !important;
+                        line-height: 1.4em !important;
+                        max-width: 1024px !important;
+                        margin: 0px auto !important;
+                        margin-bottom: 20px !important;
+                        margin-top: 10px !important;
+                        width: 100% !important;
                     }
-
+                    .ppc-testing-user.notice .dashicons {
+                        color: #56c234 !important;
+                    }
                     .ppc-testing-user.notice p {
-                        font-size: 13px;
-                        line-height: 1.5;
-                        margin: 0.5em 0;
-                        padding: 2px;
+                        font-size: 13px !important;
+                        line-height: 1.5 !important;
+                        margin: 0.5em 0 !important;
+                        padding: 2px !important;
                     }
                     .ppc-testing-user.notice a {
-                        padding-bottom: 2px;
+                        padding-bottom: 2px !important;
+                    }
+                    .ppc-testing-user.notice a,
+                    .ppc-testing-user.notice a:hover,
+                    .ppc-testing-user.notice a:active
+                    .ppc-testing-user.notice a:visited {
+                        color: #2271b1 !important;
+                        text-decoration: underline !important;
                     }
                 </style>
             <?php endif; ?>
