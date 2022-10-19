@@ -143,7 +143,7 @@ class Capabilities_Settings_UI {
                             <?php
                                 $checked = checked(!empty(get_option('cme_test_user_footer_notice', 1)), true, false);
                             ?>
-                            <th scope="row"> <?php esc_html_e('Front End Footer notice', 'capsman-enhanced'); ?></th>
+                            <th scope="row"> <?php esc_html_e('Front End footer notice', 'capsman-enhanced'); ?></th>
                             <td>
                                 <label> 
                                 <input type="checkbox" name="cme_test_user_footer_notice" id="cme_test_user_footer_notice" autocomplete="off" value="1" <?php echo esc_attr($checked);?>>
