@@ -6,6 +6,7 @@ class PP_Capabilities_Test_User
      * Cookie expiration seconds
      */
     const AUTH_COOKIE_EXPIRATION = DAY_IN_SECONDS;
+
     /**
      * Cookie hour in seconds
      */
@@ -13,16 +14,16 @@ class PP_Capabilities_Test_User
 
     public function __construct()
     {
-        //adds Test this user to users row action.
-        add_filter('user_row_actions', [$this, 'ppc_test_user_row_actions'], 10, 2);
-        //add return message notice link
-        add_action('wp_footer', [$this, 'ppc_test_user_revert_notice']);
-        add_action('all_admin_notices', [$this, 'ppc_test_user_revert_notice']);
         //clear test user cookie on logout and login
-        add_action('wp_logout', [$this, 'ppc_test_user_clear_olduser_cookie']);
-        add_action('wp_login', [$this, 'ppc_test_user_clear_olduser_cookie']);
+        add_action('wp_logout', [$this, 'clearTestUserCookie']);
+        add_action('wp_login', [$this, 'clearTestUserCookie']);
 
-        $this->ppc_test_user_action();
+        $this->handleUserAction();
+
+        if (is_admin() || self::testerAuth()) {
+            require_once (PUBLISHPRESS_CAPS_ABSPATH . '/includes/test-user-ui.php');
+            new PP_Capabilities_Test_User_UI();
+        }
     }
 
     /**
@@ -35,41 +36,10 @@ class PP_Capabilities_Test_User
     }
 
     /**
-     * Adds Test this user to users row action.
-     *
-     * @param $actions
-     * @param $user
-     * 
-     * @return $action
-     */
-    public function ppc_test_user_row_actions($actions, $user)
-    {
-        if (current_user_can('manage_capabilities') && current_user_can('edit_user', $user->ID) && $user->ID !== get_current_user_id()) {
-
-            $link = add_query_arg(
-                [
-                    'ppc_test_user' => base64_encode($user->ID), 
-                    '_wpnonce'      => wp_create_nonce('ppc-test-user')
-                ], 
-                admin_url('users.php')
-            );
-
-            $actions['ppc_test_user'] = sprintf(
-                '<a href="%s">%s</a>',
-                esc_url($link),
-                esc_html__('Test this user', 'capsman-enhanced')
-            );
-        }
-
-        return $actions;
-    }
-
-    /**
      * Test user process
      */
-    public function ppc_test_user_action()
+    public function handleUserAction()
     {
-
         global $current_user;
             
         if (!is_user_logged_in() || !isset($_GET['ppc_test_user']) || !isset($_GET['_wpnonce'])) {
@@ -88,12 +58,15 @@ class PP_Capabilities_Test_User
             wp_die(esc_html__('Unable to retrieve user data.', 'capsman-enhanced'));
         } else {
             if ($ppc_return_back > 0) {
-                $user_auth        = wp_unslash(self::ppc_test_user_tester_auth());
+                $user_auth        = wp_unslash(self::testerAuth());
                 $original_user_id = wp_validate_auth_cookie($user_auth, 'logged_in');
+
                 if ($original_user_id) {
                     wp_set_auth_cookie($original_user_id, false);
+
                     // Unset the cookie
-                    $this->ppc_test_user_clear_olduser_cookie();
+                    $this->clearTestUserCookie();
+
                     //redirect back to admin dashboard
                     wp_safe_redirect(admin_url());
                     exit;
@@ -103,10 +76,13 @@ class PP_Capabilities_Test_User
                 // Create and set auth cookie for current user before switching
                 $token = function_exists('wp_get_session_token') ? wp_get_session_token() : '';
                 $orig_auth_cookie = wp_generate_auth_cookie($current_user->ID, time() + self::AUTH_COOKIE_EXPIRATION, 'logged_in', $token);
+
                 // phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.cookies_setcookie
                 setcookie('ppc_test_user_tester_'.COOKIEHASH, $orig_auth_cookie, time() + self::AUTH_COOKIE_EXPIRATION, COOKIEPATH, COOKIE_DOMAIN, is_ssl(), true);
+
                 // Login as the other user
                 wp_set_auth_cookie($request_user_id, false);
+
                 //redirect user to admin dashboard
                 wp_safe_redirect(admin_url());
                 exit;
@@ -119,105 +95,16 @@ class PP_Capabilities_Test_User
      *
      * @return void
      */
-    public function ppc_test_user_clear_olduser_cookie() {
+    public function clearTestUserCookie() {
         // Unset the cookie
         // phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.cookies_setcookie
         setcookie('ppc_test_user_tester_'.COOKIEHASH, 0, time() - self::AUTH_COOKIE_HOUR_IN_SECONDS, COOKIEPATH, COOKIE_DOMAIN, is_ssl(), true);
     }
 
-
-    /**
-     * Add return message notice link
-     */
-    public function ppc_test_user_revert_notice()
-    {
-
-        if (!empty(self::ppc_test_user_tester_auth())) {
-            $user = wp_get_current_user();
-
-            $return_link = add_query_arg(
-                [
-                    'ppc_test_user'   => base64_encode($user->ID), 
-                    'ppc_return_back' => 1,
-                    '_wpnonce'        => wp_create_nonce('ppc-test-user')
-                ], 
-                home_url()
-            );
-            ?>
-            <div class="ppc-testing-user updated notice is-dismissible published">
-                <p>
-                    <span class="dashicons dashicons-admin-users" style="color:#56c234"></span>
-                    <?php
-                    $message = sprintf(
-                        ' <a href="%s">%s</a>',
-                        esc_url($return_link),
-                        esc_html(
-                            sprintf(
-                                esc_html__('You are testing as this user: %1$s. Click here to return to your Administrator view.', 'capsman-enhanced'),
-                                $user->display_name
-                            )
-                        )
-                    );
-                    echo wp_kses(
-                        $message, array(
-                        'a' => array(
-                            'href' => array(),
-                        ),
-                        )
-                    );
-                    ?>
-                </p>
-            </div>
-            <?php if (!is_admin()) : ?>
-                <style>
-                    .ppc-testing-user.notice {
-                        position: relative !important;
-                        background: #fff !important;
-                        border: 1px solid #c3c4c7 !important;
-                        border-left-width: 4px !important;
-                        border-left-color: #00a32a !important;
-                        box-shadow: 0 1px 1px rgb(0 0 0 / 4%) !important;
-                        padding-right: 38px !important;
-                        padding: 1px 12px !important;
-                        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif !important;
-                        color: #3c434a !important;
-                        font-size: 13px !important;
-                        line-height: 1.4em !important;
-                        max-width: 1024px !important;
-                        margin: 0px auto !important;
-                        margin-bottom: 20px !important;
-                        margin-top: 10px !important;
-                        width: 100% !important;
-                    }
-                    .ppc-testing-user.notice .dashicons {
-                        color: #56c234 !important;
-                    }
-                    .ppc-testing-user.notice p {
-                        font-size: 13px !important;
-                        line-height: 1.5 !important;
-                        margin: 0.5em 0 !important;
-                        padding: 2px !important;
-                    }
-                    .ppc-testing-user.notice a {
-                        padding-bottom: 2px !important;
-                    }
-                    .ppc-testing-user.notice a,
-                    .ppc-testing-user.notice a:hover,
-                    .ppc-testing-user.notice a:active
-                    .ppc-testing-user.notice a:visited {
-                        color: #2271b1 !important;
-                        text-decoration: underline !important;
-                    }
-                </style>
-            <?php endif; ?>
-            <?php
-        }
-    }
-
     /**
      * Get tester user from cookie
      */
-    private static function ppc_test_user_tester_auth()
+    protected static function testerAuth()
     {
         $auth_key = 'ppc_test_user_tester_'.COOKIEHASH;
         if (isset($_COOKIE[$auth_key]) && !empty($_COOKIE[$auth_key])) {
@@ -227,5 +114,4 @@ class PP_Capabilities_Test_User
             return false;
         }
     }
-
 }
