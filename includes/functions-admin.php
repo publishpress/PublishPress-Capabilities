@@ -254,9 +254,7 @@ function pp_capabilities_settings_options() {
        'cme_editor_features_private_post_type',
        'cme_capabilities_show_private_taxonomies',
        'cme_capabilities_add_user_multi_roles',
-       'cme_editor_features_classic_editor_tab',
-       'cme_test_user_admin_bar',
-       'cme_test_user_footer_notice'
+       'cme_editor_features_classic_editor_tab'
    ];
 
    return apply_filters('pp_capabilities_settings_options', $settings_options);
