@@ -27,6 +27,7 @@ class Capabilities_Settings_UI {
             <li class="<?php echo esc_attr('nav-tab ' . $first_active_tab); ?>"><a href="#ppcs-tab-roles"><?php esc_html_e('Roles', 'capsman-enhanced');?></a></li>
             <li class="nav-tab"><a href="#ppcs-tab-capabilities"><?php esc_html_e('Capabilities', 'capsman-enhanced');?></a></li>
             <li class="nav-tab"><a href="#ppcs-tab-editor-features"><?php esc_html_e('Editor Features', 'capsman-enhanced');?></a></li>
+            <li class="nav-tab"><a href="#ppcs-tab-test-user"><?php esc_html_e('Test User', 'capsman-enhanced');?></a></li>
             <?php do_action('pp_capabilities_settings_after_menu_list'); ?>
         </ul>
 
@@ -117,6 +118,42 @@ class Capabilities_Settings_UI {
                             </td>
                         </tr>
 
+                        </tbody>
+                    </table>
+
+                    <table class="form-table" role="presentation" id="ppcs-tab-test-user" style="display:none;">
+                        <tbody>
+                            <tr>
+                            <?php
+                                $checked = checked(!empty(get_option('cme_test_user_admin_bar', 1)), true, false);
+                            ?>
+                            <th scope="row"> <?php esc_html_e('Admin Bar modification', 'capsman-enhanced'); ?></th>
+                            <td>
+                                <label> 
+                                <input type="checkbox" name="cme_test_user_admin_bar" id="cme_test_user_admin_bar" autocomplete="off" value="1" <?php echo esc_attr($checked);?>>
+                                <span class="description">
+                                    <?php esc_html_e('When testing, display a caption in the Admin Bar and a return link in the login popup', 'capsman-enhanced'); ?>
+                                </span>
+                                </label>
+                                <br>
+                            </td>
+                            </tr>
+
+                            <tr>
+                            <?php
+                                $checked = checked(!empty(get_option('cme_test_user_footer_notice', 1)), true, false);
+                            ?>
+                            <th scope="row"> <?php esc_html_e('Front End footer notice', 'capsman-enhanced'); ?></th>
+                            <td>
+                                <label> 
+                                <input type="checkbox" name="cme_test_user_footer_notice" id="cme_test_user_footer_notice" autocomplete="off" value="1" <?php echo esc_attr($checked);?>>
+                                <span class="description">
+                                    <?php esc_html_e('When testing, display a status box with return link in the front end footer', 'capsman-enhanced'); ?>
+                                </span>
+                                </label>
+                                <br>
+                            </td>
+                            </tr>
                         </tbody>
                     </table>
 
