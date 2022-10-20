@@ -409,6 +409,17 @@ Fixed : Security issue. Please update.
 
 == Changelog ==
 
+= 2.6.0 - 20 Oct 2022 =
+  * Added : Add a way for admins to test user accounts #57
+  * Fixed : Multi-select JS fails to load on Profile Edit Screen #576
+  * Update : Adding an explanation for Checkmark / empty / X #578
+  * Update : Add text description to Settings #573
+  * Fixed : Plugin translation ignores user's language setting #580
+  * Fixed : Illegal string offset 'administrator' & Array to string conversion Warning #589
+  * Update : Support for the "Templates" metabox #251
+  * Fixed : Some CPT is missing from Editor Features #582
+  * Update : Capabilities-FR-IT-TranslationUpdate-September2022 #577
+
 = 2.5.2 - 04 Oct 2022 =
   * Update : Changes to Import/Export encoding method
 
