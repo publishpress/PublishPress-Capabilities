@@ -48,7 +48,7 @@ class Capabilities_Settings_UI {
                             <th scope="row"><?php esc_html_e('Multiples roles on "Add New User" screen', 'capsman-enhanced'); ?></th>
                             <td>
                                 <label> 
-                                <input type="checkbox" name="cme_capabilities_add_user_multi_roles" id="cme_capabilities_add_user_multi_roles" autocomplete="off" value="1" <?php echo esc_attr($checked);?>>
+                                <input type="checkbox" name="cme_capabilities_add_user_multi_roles" id="cme_capabilities_add_user_multi_roles" autocomplete="off" value="1" <?php echo $checked;?>>
                                 <span class="description">
                                     <?php esc_html_e('This allows you to assign a user to multiples roles on the "Add New User" screen.', 'capsman-enhanced'); ?>
                                 </span>
@@ -69,7 +69,7 @@ class Capabilities_Settings_UI {
                             <th scope="row"> <?php esc_html_e('Show private taxonomies', 'capsman-enhanced'); ?></th>
                             <td>
                                 <label> 
-                                <input type="checkbox" name="cme_capabilities_show_private_taxonomies" id="cme_capabilities_show_private_taxonomies" autocomplete="off" value="1" <?php echo esc_attr($checked);?>>
+                                <input type="checkbox" name="cme_capabilities_show_private_taxonomies" id="cme_capabilities_show_private_taxonomies" autocomplete="off" value="1" <?php echo $checked;?>>
                                 <span class="description">
                                     <?php esc_html_e('This will show all taxonomies on the "Capabilities" screen, even ones normally hidden in the WordPress admin area.', 'capsman-enhanced'); ?>
                                 </span>
@@ -93,7 +93,7 @@ class Capabilities_Settings_UI {
                             <th scope="row"> <?php esc_html_e('Show private post types', 'capsman-enhanced'); ?></th>
                             <td>
                                 <label> 
-                                <input type="checkbox" name="cme_editor_features_private_post_type" id="cme_editor_features_private_post_type" autocomplete="off" value="1" <?php echo esc_attr($checked);?>>
+                                <input type="checkbox" name="cme_editor_features_private_post_type" id="cme_editor_features_private_post_type" autocomplete="off" value="1" <?php echo $checked;?>>
                                 <span class="description">
                                     <?php esc_html_e('Show all post types on the "Editor Features" screen, even ones normally hidden in the WordPress admin area.', 'capsman-enhanced'); ?>
                                 </span>
@@ -109,7 +109,7 @@ class Capabilities_Settings_UI {
                             <th scope="row"> <?php esc_html_e('Enable Classic Editor tab', 'capsman-enhanced'); ?></th>
                             <td>
                                 <label> 
-                                <input type="checkbox" name="cme_editor_features_classic_editor_tab" id="cme_editor_features_classic_editor_tab" autocomplete="off" value="1" <?php echo esc_attr($checked);?>>
+                                <input type="checkbox" name="cme_editor_features_classic_editor_tab" id="cme_editor_features_classic_editor_tab" autocomplete="off" value="1" <?php echo $checked;?>>
                                 <span class="description">
                                     <?php esc_html_e('Always show the Classic Editor tab in "Editor Features" screen.', 'capsman-enhanced'); ?>
                                 </span>
@@ -130,7 +130,7 @@ class Capabilities_Settings_UI {
                             <th scope="row"> <?php esc_html_e('Admin Bar modification', 'capsman-enhanced'); ?></th>
                             <td>
                                 <label> 
-                                <input type="checkbox" name="cme_test_user_admin_bar" id="cme_test_user_admin_bar" autocomplete="off" value="1" <?php echo esc_attr($checked);?>>
+                                <input type="checkbox" name="cme_test_user_admin_bar" id="cme_test_user_admin_bar" autocomplete="off" value="1" <?php echo $checked;?>>
                                 <span class="description">
                                     <?php esc_html_e('When testing, display a caption and return link in the Admin Bar.', 'capsman-enhanced'); ?>
                                 </span>
@@ -146,7 +146,7 @@ class Capabilities_Settings_UI {
                             <th scope="row"> <?php esc_html_e('Front End footer notice', 'capsman-enhanced'); ?></th>
                             <td>
                                 <label> 
-                                <input type="checkbox" name="cme_test_user_footer_notice" id="cme_test_user_footer_notice" autocomplete="off" value="1" <?php echo esc_attr($checked);?>>
+                                <input type="checkbox" name="cme_test_user_footer_notice" id="cme_test_user_footer_notice" autocomplete="off" value="1" <?php echo $checked;?>>
                                 <span class="description">
                                     <?php esc_html_e('When testing, display a return link in the front end footer.', 'capsman-enhanced'); ?>
                                 </span>
