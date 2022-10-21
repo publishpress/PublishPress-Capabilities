@@ -95,7 +95,7 @@ class Capabilities_Settings_UI {
                                 <label> 
                                 <input type="checkbox" name="cme_editor_features_private_post_type" id="cme_editor_features_private_post_type" autocomplete="off" value="1" <?php echo esc_attr($checked);?>>
                                 <span class="description">
-                                    <?php esc_html_e('This will show all post types to the "Editor Features" screen, even ones normally hidden in the WordPress admin area.', 'capsman-enhanced'); ?>
+                                    <?php esc_html_e('Show all post types on the "Editor Features" screen, even ones normally hidden in the WordPress admin area.', 'capsman-enhanced'); ?>
                                 </span>
                                 </label>
                                 <br>
@@ -111,7 +111,7 @@ class Capabilities_Settings_UI {
                                 <label> 
                                 <input type="checkbox" name="cme_editor_features_classic_editor_tab" id="cme_editor_features_classic_editor_tab" autocomplete="off" value="1" <?php echo esc_attr($checked);?>>
                                 <span class="description">
-                                    <?php esc_html_e('Always show Classic Editor tab in Editor Features', 'capsman-enhanced'); ?>
+                                    <?php esc_html_e('Always show the Classic Editor tab in "Editor Features" screen.', 'capsman-enhanced'); ?>
                                 </span>
                                 </label>
                                 <br>
