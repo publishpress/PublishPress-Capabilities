@@ -783,7 +783,7 @@ div.ppc-editor-features-classic-toggle {
 }
 
 .publishpress-caps-settings .description {
-    vertical-align: bottom;
+    vertical-align: text-bottom;
 }
 
 @media (min-width: 1200px) {
