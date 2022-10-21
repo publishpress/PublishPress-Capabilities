@@ -27,8 +27,8 @@ class Capabilities_Settings_UI {
             <li class="<?php echo esc_attr('nav-tab ' . $first_active_tab); ?>"><a href="#ppcs-tab-roles"><?php esc_html_e('Roles', 'capsman-enhanced');?></a></li>
             <li class="nav-tab"><a href="#ppcs-tab-capabilities"><?php esc_html_e('Capabilities', 'capsman-enhanced');?></a></li>
             <li class="nav-tab"><a href="#ppcs-tab-editor-features"><?php esc_html_e('Editor Features', 'capsman-enhanced');?></a></li>
-            <li class="nav-tab"><a href="#ppcs-tab-test-user"><?php esc_html_e('Test User', 'capsman-enhanced');?></a></li>
             <?php do_action('pp_capabilities_settings_after_menu_list'); ?>
+            <li class="nav-tab"><a href="#ppcs-tab-test-user"><?php esc_html_e('Test User', 'capsman-enhanced');?></a></li>
         </ul>
 
         <fieldset>
@@ -132,7 +132,7 @@ class Capabilities_Settings_UI {
                                 <label> 
                                 <input type="checkbox" name="cme_test_user_admin_bar" id="cme_test_user_admin_bar" autocomplete="off" value="1" <?php echo esc_attr($checked);?>>
                                 <span class="description">
-                                    <?php esc_html_e('When testing, display a caption in the Admin Bar and a return link in the login popup', 'capsman-enhanced'); ?>
+                                    <?php esc_html_e('When testing, display a caption and return link in the Admin Bar.', 'capsman-enhanced'); ?>
                                 </span>
                                 </label>
                                 <br>
@@ -148,7 +148,7 @@ class Capabilities_Settings_UI {
                                 <label> 
                                 <input type="checkbox" name="cme_test_user_footer_notice" id="cme_test_user_footer_notice" autocomplete="off" value="1" <?php echo esc_attr($checked);?>>
                                 <span class="description">
-                                    <?php esc_html_e('When testing, display a status box with return link in the front end footer', 'capsman-enhanced'); ?>
+                                    <?php esc_html_e('When testing, display a return link in the front end footer.', 'capsman-enhanced'); ?>
                                 </span>
                                 </label>
                                 <br>
