@@ -253,7 +253,7 @@ $active_tab_text = is_object($active_tab_type_obj)
                     'https://publishpress.com/knowledge-base/checkboxes/',
                     __('View Documentation', 'capsman-enhanced'),
                     '',
-                    'button'
+                    'button ppc-checkboxes-documentation-link'
                 );
                 ?>
                 <?php if (defined('CAPSMAN_PERMISSIONS_INSTALLED') && !CAPSMAN_PERMISSIONS_INSTALLED) { ?>

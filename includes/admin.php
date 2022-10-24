@@ -1568,7 +1568,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
                 'https://publishpress.com/knowledge-base/checkboxes/',
                 __('View Documentation', 'capsman-enhanced'),
                 '',
-                'button'
+                'button ppc-checkboxes-documentation-link'
             );
 
 			?>

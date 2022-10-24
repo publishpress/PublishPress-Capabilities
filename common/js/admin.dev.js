@@ -6,6 +6,9 @@ jQuery(document).ready( function($) {
 	$('span.cap-x:not([class*="pp-cap-key"])').attr('title',cmeAdmin.capNegated);
 	$('table.cme-checklist input[class!="cme-check-all"]').not(':disabled').attr('title',cmeAdmin.chkCaption);
 
+  if ($('.ppc-checkboxes-documentation-link').length > 0) {
+    $('.ppc-checkboxes-documentation-link').attr('target', 'blank'); 
+  }
 	$('table.cme-checklist a.neg-cap').click( function(e) {
 		$(this).closest('td').removeClass('cap-yes').removeClass('cap-no').addClass('cap-neg');
 
