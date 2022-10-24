@@ -87,32 +87,31 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 
 	<input type="hidden" name="pp_caps_tab" value="<?php echo esc_attr($pp_tab);?>" />
 
-	<p>
-		<div class="pp-capabilities-submit-top" style="float:right">
-			<?php
-			$caption = (in_array(sanitize_key(get_locale()), ['en_EN', 'en_US'])) ? 'Save Capabilities' : __('Save Changes', 'capsman-enhanced');
-			?>
-			<input type="submit" name="SaveRole" value="<?php echo esc_attr($caption);?>" class="button-primary" />
-		</div>
-
-		<select name="role">
-			<?php
-			foreach ( $roles as $role_name => $name ) {
-				$role_name = sanitize_key($role_name);
-
-				if (pp_capabilities_is_editable_role($role_name)) {
-					$name = translate_user_role($name);
-					echo '<option value="' . esc_attr($role_name) .'"'; selected($default, $role_name); echo '> ' . esc_html($name) . ' &nbsp;</option>';
-				}
-			}
-			?>
-		</select>
-	</p>
-
 	<fieldset>
 	<table id="akmin" class="clear"><tr><td>
 	<div class="pp-columns-wrapper pp-enable-sidebar">
 		<div class="pp-column-left">
+            <div style="margin-bottom: 20px;">
+                <div class="pp-capabilities-submit-top" style="float:right">
+                    <?php
+                    $caption = (in_array(sanitize_key(get_locale()), ['en_EN', 'en_US'])) ? 'Save Capabilities' : __('Save Changes', 'capsman-enhanced');
+                    ?>
+                    <input type="submit" name="SaveRole" value="<?php echo esc_attr($caption);?>" class="button-primary" />
+                </div>
+
+                <select name="role">
+                    <?php
+                    foreach ( $roles as $role_name => $name ) {
+                        $role_name = sanitize_key($role_name);
+
+                        if (pp_capabilities_is_editable_role($role_name)) {
+                            $name = translate_user_role($name);
+                            echo '<option value="' . esc_attr($role_name) .'"'; selected($default, $role_name); echo '> ' . esc_html($name) . ' &nbsp;</option>';
+                        }
+                    }
+                    ?>
+                </select>
+            </div>
 			<?php
 			$img_url = $capsman->mod_url . '/images/';
 			?>

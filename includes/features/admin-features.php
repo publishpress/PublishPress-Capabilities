@@ -39,50 +39,49 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
         <form method="post" id="ppc-admin-features-form" action="admin.php?page=pp-capabilities-admin-features">
             <?php wp_nonce_field('pp-capabilities-admin-features'); ?>
 
-            <div>
-                <div class="publishpress-headline">
-                <span class="cme-subtext">
-                <span class='pp-capability-role-caption'>
-                <?php
-                esc_html_e('Note: You are only restricting access to admin features screens. Some plugins may also add features to other areas of WordPress.',
-                    'capsman-enhanced');
-                ?>
-                </span>
-                </span>
-                </div>
-
-                <p>
-                <div class="publishpress-filters">
-                    <div class="pp-capabilities-submit-top" style="float:right;">
-                        <input type="submit" name="admin-features-submit"
-                            value="<?php esc_attr_e('Save Changes', 'capsman-enhanced') ?>"
-                            class="button-primary ppc-admin-features-submit" />
-                    </div>
-
-                    <select name="ppc-admin-features-role" class="ppc-admin-features-role">
-                        <?php
-                        foreach ($roles as $role_name => $name) :
-                            $name = translate_user_role($name);
-                            ?>
-                            <option value="<?php echo esc_attr($role_name); ?>" <?php selected($default_role,
-                                $role_name); ?>><?php echo esc_html($name); ?></option>
-                        <?php
-                        endforeach;
-                        ?>
-                    </select> &nbsp;
-
-                    <img class="loading" src="<?php echo esc_url_raw($capsman->mod_url); ?>/images/wpspin_light.gif"
-                            style="display: none">
-                </div>
-                </p>
-            </div>
-
             <div class="pp-columns-wrapper pp-enable-sidebar clear">
                 <div class="pp-column-left">
                     <fieldset>
                         <table id="akmin">
                             <tr>
                                 <td class="content">
+                                    <div>
+                                        <div class="publishpress-headline">
+                                        <span class="cme-subtext">
+                                        <span class='pp-capability-role-caption'>
+                                        <?php
+                                        esc_html_e('Note: You are only restricting access to admin features screens. Some plugins may also add features to other areas of WordPress.',
+                                            'capsman-enhanced');
+                                        ?>
+                                        </span>
+                                        </span>
+                                        </div>
+
+                                        <p>
+                                        <div class="publishpress-filters">
+                                            <div class="pp-capabilities-submit-top" style="float:right;">
+                                                <input type="submit" name="admin-features-submit"
+                                                    value="<?php esc_attr_e('Save Changes', 'capsman-enhanced') ?>"
+                                                    class="button-primary ppc-admin-features-submit" />
+                                            </div>
+
+                                            <select name="ppc-admin-features-role" class="ppc-admin-features-role">
+                                                <?php
+                                                foreach ($roles as $role_name => $name) :
+                                                    $name = translate_user_role($name);
+                                                    ?>
+                                                    <option value="<?php echo esc_attr($role_name); ?>" <?php selected($default_role,
+                                                        $role_name); ?>><?php echo esc_html($name); ?></option>
+                                                <?php
+                                                endforeach;
+                                                ?>
+                                            </select> &nbsp;
+
+                                            <img class="loading" src="<?php echo esc_url_raw($capsman->mod_url); ?>/images/wpspin_light.gif"
+                                                    style="display: none">
+                                        </div>
+                                        </p>
+                                    </div>
                                     <div id="pp-capability-menu-wrapper" class="postbox">
                                         <div class="pp-capability-menus">
 	
