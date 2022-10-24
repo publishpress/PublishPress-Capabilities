@@ -235,7 +235,7 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                 $banner_messages[] = '</p>';
                 $banners->pp_display_banner(
                     '',
-                    __('Usage Key', 'capsman-enhanced'),
+                    __('How to use Admin Features', 'capsman-enhanced'),
                     $banner_messages,
                     'https://publishpress.com/knowledge-base/checkboxes/',
                     __('View Documentation', 'capsman-enhanced'),
