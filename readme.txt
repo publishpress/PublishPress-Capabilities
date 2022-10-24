@@ -409,7 +409,7 @@ Fixed : Security issue. Please update.
 
 == Changelog ==
 
-= 2.6.0 - 20 Oct 2022 =
+= 2.6.0 - 24 Oct 2022 =
   * Added : Add a way for admins to test user accounts #57
   * Fixed : Multi-select JS fails to load on Profile Edit Screen #576
   * Update : Adding an explanation for Checkmark / empty / X #578
