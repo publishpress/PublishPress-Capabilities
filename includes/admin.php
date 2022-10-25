@@ -87,32 +87,31 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 
 	<input type="hidden" name="pp_caps_tab" value="<?php echo esc_attr($pp_tab);?>" />
 
-	<p>
-		<div class="pp-capabilities-submit-top" style="float:right">
-			<?php
-			$caption = (in_array(sanitize_key(get_locale()), ['en_EN', 'en_US'])) ? 'Save Capabilities' : __('Save Changes', 'capsman-enhanced');
-			?>
-			<input type="submit" name="SaveRole" value="<?php echo esc_attr($caption);?>" class="button-primary" />
-		</div>
-
-		<select name="role">
-			<?php
-			foreach ( $roles as $role_name => $name ) {
-				$role_name = sanitize_key($role_name);
-
-				if (pp_capabilities_is_editable_role($role_name)) {
-					$name = translate_user_role($name);
-					echo '<option value="' . esc_attr($role_name) .'"'; selected($default, $role_name); echo '> ' . esc_html($name) . ' &nbsp;</option>';
-				}
-			}
-			?>
-		</select>
-	</p>
-
 	<fieldset>
 	<table id="akmin" class="clear"><tr><td>
 	<div class="pp-columns-wrapper pp-enable-sidebar">
 		<div class="pp-column-left">
+            <div style="margin-bottom: 20px;">
+                <div class="pp-capabilities-submit-top" style="float:right">
+                    <?php
+                    $caption = (in_array(sanitize_key(get_locale()), ['en_EN', 'en_US'])) ? 'Save Capabilities' : __('Save Changes', 'capsman-enhanced');
+                    ?>
+                    <input type="submit" name="SaveRole" value="<?php echo esc_attr($caption);?>" class="button-primary" />
+                </div>
+
+                <select name="role">
+                    <?php
+                    foreach ( $roles as $role_name => $name ) {
+                        $role_name = sanitize_key($role_name);
+
+                        if (pp_capabilities_is_editable_role($role_name)) {
+                            $name = translate_user_role($name);
+                            echo '<option value="' . esc_attr($role_name) .'"'; selected($default, $role_name); echo '> ' . esc_html($name) . ' &nbsp;</option>';
+                        }
+                    }
+                    ?>
+                </select>
+            </div>
 			<?php
 			$img_url = $capsman->mod_url . '/images/';
 			?>
@@ -1545,7 +1544,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
             $banner_messages = [];
             $banner_messages[] = sprintf(esc_html__('%1s= Capability granted %2$s', 'capsman-enhanced'), '<table class="pp-capabilities-cb-key"><tr><td class="pp-cap-icon pp-cap-icon-checked"><input type="checkbox" title="'. esc_attr__('usage key', 'capsman-enhanced') .'" checked disabled></td><td>', '</td></tr>');
             $banner_messages[] = sprintf(esc_html__('%1s= Capability not granted %2$s', 'capsman-enhanced'), '<tr><td class="pp-cap-icon"><input type="checkbox" title="'. esc_attr__('usage key', 'capsman-enhanced') .'" disabled></td><td class="pp-cap-not-checked-definition">', '</td></tr>');
-            $banner_messages[] = sprintf(esc_html__('%1s= Capability negated, even if granted by another role %2$s', 'capsman-enhanced'), '<tr><td class="pp-cap-icon pp-cap-x"><span class="cap-x pp-cap-key" title="'. esc_attr__('usage key', 'capsman-enhanced') .'">X</span></td><td class="cap-x-definition">', '</td></tr></table>');
+            $banner_messages[] = sprintf(esc_html__('%1s= Capability denied, even if granted by another role %2$s', 'capsman-enhanced'), '<tr><td class="pp-cap-icon pp-cap-x"><span class="cap-x pp-cap-key" title="'. esc_attr__('usage key', 'capsman-enhanced') .'">X</span></td><td class="cap-x-definition">', '</td></tr></table>');
             if (defined('PRESSPERMIT_ACTIVE') && function_exists('presspermit')) {
                 if ($group = presspermit()->groups()->getMetagroup('wp_role', $this->current)) {
                     $additional_message = sprintf(
@@ -1564,12 +1563,12 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 
             $banners->pp_display_banner(
                 '',
-                __('Usage Key', 'capsman-enhanced'),
+                __('How to use Capabilities', 'capsman-enhanced'),
                 $banner_messages,
                 'https://publishpress.com/knowledge-base/checkboxes/',
                 __('View Documentation', 'capsman-enhanced'),
                 '',
-                'button'
+                'button ppc-checkboxes-documentation-link'
             );
 
 			?>

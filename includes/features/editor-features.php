@@ -248,12 +248,12 @@ $active_tab_text = is_object($active_tab_type_obj)
                 $banner_messages[] = '<p>';
                 $banners->pp_display_banner(
                     '',
-                    __('Usage Key', 'capsman-enhanced'),
+                    __('How to use Editor Features', 'capsman-enhanced'),
                     $banner_messages,
                     'https://publishpress.com/knowledge-base/checkboxes/',
                     __('View Documentation', 'capsman-enhanced'),
                     '',
-                    'button'
+                    'button ppc-checkboxes-documentation-link'
                 );
                 ?>
                 <?php if (defined('CAPSMAN_PERMISSIONS_INSTALLED') && !CAPSMAN_PERMISSIONS_INSTALLED) { ?>
