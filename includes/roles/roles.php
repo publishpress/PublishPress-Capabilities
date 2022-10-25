@@ -20,11 +20,10 @@
         $table->prepare_items();
         pp_capabilities_roles()->notify->display();
         ?>
+
         <hr class="wp-header-end">
         <div id="ajax-response"></div>
-        <form class="search-form wp-clearfix" method="get">
-            <?php $table->search_box(esc_html__('Search Roles', 'capsman-enhanced'), 'roles'); ?>
-        </form>
+
         <div id="col-container" class="wp-clearfix">
             <div class="col-wrap">
                 <form action="" method="post">
@@ -38,7 +37,6 @@
         <form method="get">
             <?php $table->inline_edit() ?>
         </form>
-
     </div>
     <?php } ?>
 
