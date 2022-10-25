@@ -34,6 +34,7 @@ class PP_Capabilities_Admin_UI {
         } else {
             add_action('user_register', [$this, 'action_profile_update'], 9);
         }
+        add_action('init', [$this, 'register_textdomain']);
 
         if (is_admin() && (isset($_REQUEST['page']) && (in_array($_REQUEST['page'], ['pp-capabilities', 'pp-capabilities-backup', 'pp-capabilities-roles', 'pp-capabilities-admin-menus', 'pp-capabilities-editor-features', 'pp-capabilities-nav-menus', 'pp-capabilities-settings', 'pp-capabilities-admin-features']))
 
@@ -87,6 +88,25 @@ class PP_Capabilities_Admin_UI {
         //capabilities settings
         add_action('pp-capabilities-settings-ui', [$this, 'settingsUI']);
     }
+
+	function register_textdomain() {
+
+        $domain       = 'capsman-enhanced';
+		$mofile_custom = sprintf('%s-%s.mo', $domain, get_user_locale());
+		$locations = [
+			trailingslashit( WP_LANG_DIR . '/' . $domain ),
+			trailingslashit( WP_LANG_DIR . '/loco/plugins/'),
+			trailingslashit( WP_LANG_DIR ),
+			trailingslashit( plugin_dir_path(CME_FILE) . 'languages' ),
+        ];
+		// Try custom locations in WP_LANG_DIR.
+		foreach ($locations as $location) {
+			if (load_textdomain($domain, $location . $mofile_custom)) {
+				return true;
+			}
+		}
+
+	}
 
     /**
      * Filters the editors that are enabled for the post type.
@@ -176,11 +196,6 @@ class PP_Capabilities_Admin_UI {
         }
 
         unset($def_post_types['attachment']);
-
-        if ((count($def_post_types) > 14) && !defined('PP_CAPABILITIES_UNLIMITED_FEATURE_TYPES')) {
-            $custom_types = array_diff($def_post_types, ['post', 'page']);
-            $def_post_types = array_merge(['post', 'page'], array_slice($custom_types, 0, 12));
-        }
 
         return $def_post_types;
     }
@@ -349,7 +364,7 @@ class PP_Capabilities_Admin_UI {
             return [];
         }
 
-        return $user->roles;
+        return array_values($user->roles);
     }
 
     public function action_profile_update($userId, $oldUserData = [])

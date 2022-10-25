@@ -7,7 +7,7 @@ Tags: user roles, capabilities, permissions, admin menus, post editing, post typ
 Requires at least: 4.9.7
 Tested up to: 6.0
 Requires PHP: 5.6.20
-Stable tag: 2.5.2
+Stable tag: 2.6.0
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -408,6 +408,17 @@ Fixed : Non-administrators with user editing capabilities could add new Administ
 Fixed : Security issue. Please update.
 
 == Changelog ==
+
+= 2.6.0 - 25 Oct 2022 =
+  * Added : Add a way for admins to test user accounts #57
+  * Fixed : Multi-select JS fails to load on Profile Edit Screen #576
+  * Update : Adding an explanation for Checkmark / empty / X #578
+  * Update : Add text description to Settings #573
+  * Fixed : Plugin translation ignores user's language setting #580
+  * Fixed : Illegal string offset 'administrator' & Array to string conversion Warning #589
+  * Update : Support for the "Templates" metabox #251
+  * Fixed : Some CPT is missing from Editor Features #582
+  * Update : Capabilities-FR-IT-TranslationUpdate-September2022 #577
 
 = 2.5.2 - 04 Oct 2022 =
   * Update : Changes to Import/Export encoding method

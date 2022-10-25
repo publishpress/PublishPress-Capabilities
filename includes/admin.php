@@ -87,62 +87,34 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 
 	<input type="hidden" name="pp_caps_tab" value="<?php echo esc_attr($pp_tab);?>" />
 
-	<p>
-		<select name="role">
-			<?php
-			foreach ( $roles as $role_name => $name ) {
-				$role_name = sanitize_key($role_name);
-
-				if (pp_capabilities_is_editable_role($role_name)) {
-					$name = translate_user_role($name);
-					echo '<option value="' . esc_attr($role_name) .'"'; selected($default, $role_name); echo '> ' . esc_html($name) . ' &nbsp;</option>';
-				}
-			}
-			?>
-		</select>
-	</p>
-
 	<fieldset>
-	<table id="akmin"><tr><td>
+	<table id="akmin" class="clear"><tr><td>
 	<div class="pp-columns-wrapper pp-enable-sidebar">
 		<div class="pp-column-left">
+            <div style="margin-bottom: 20px;">
+                <div class="pp-capabilities-submit-top" style="float:right">
+                    <?php
+                    $caption = (in_array(sanitize_key(get_locale()), ['en_EN', 'en_US'])) ? 'Save Capabilities' : __('Save Changes', 'capsman-enhanced');
+                    ?>
+                    <input type="submit" name="SaveRole" value="<?php echo esc_attr($caption);?>" class="button-primary" />
+                </div>
 
-			<div style="float:right">
+                <select name="role">
+                    <?php
+                    foreach ( $roles as $role_name => $name ) {
+                        $role_name = sanitize_key($role_name);
 
-			<?php
-			$caption = (in_array(sanitize_key(get_locale()), ['en_EN', 'en_US'])) ? 'Save Capabilities' : __('Save Changes', 'capsman-enhanced');
-			?>
-			<input type="submit" name="SaveRole" value="<?php echo esc_attr($caption);?>" class="button-primary" />
-			</div>
-
+                        if (pp_capabilities_is_editable_role($role_name)) {
+                            $name = translate_user_role($name);
+                            echo '<option value="' . esc_attr($role_name) .'"'; selected($default, $role_name); echo '> ' . esc_html($name) . ' &nbsp;</option>';
+                        }
+                    }
+                    ?>
+                </select>
+            </div>
 			<?php
 			$img_url = $capsman->mod_url . '/images/';
 			?>
-			<div class="publishpress-headline" style="margin-bottom:20px;">
-			<span class="cme-subtext">
-			<?php
-
-			if (defined('PRESSPERMIT_ACTIVE') && function_exists('presspermit')) {
-				if ($group = presspermit()->groups()->getMetagroup('wp_role', $this->current)) {
-					printf(
-						// back compat with existing language string
-						str_replace(
-							['&lt;strong&gt;', '&lt;/strong&gt;'],
-							['<strong>', '</strong>'],
-							esc_html__('<strong>Note:</strong> Capability changes <strong>remain in the database</strong> after plugin deactivation. You can also configure this role as a %sPermission Group%s.', 'capsman-enhanced')
-						),
-						'<a href="' . esc_url_raw(admin_url("admin.php?page=presspermit-edit-permissions&action=edit&agent_id={$group->ID}")) . '">',
-						'</a>'
-					);
-				}
-			} else {
-				// unescaped for now for back compat with existing language string
-				_e( '<strong>Note:</strong> Capability changes <strong>remain in the database</strong> after plugin deactivation.', 'capsman-enhanced' );
-			}
-
-			?>
-			</span>
-			</div>
 
 			<?php
 			if ( defined( 'PRESSPERMIT_ACTIVE' ) ) {
@@ -1568,12 +1540,46 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 			do_action('publishpress-caps_sidebar_top');
 
 			$banners = new PublishPress\WordPressBanners\BannersMain;
+            
+            $banner_messages = [];
+            $banner_messages[] = sprintf(esc_html__('%1s= Capability granted %2$s', 'capsman-enhanced'), '<table class="pp-capabilities-cb-key"><tr><td class="pp-cap-icon pp-cap-icon-checked"><input type="checkbox" title="'. esc_attr__('usage key', 'capsman-enhanced') .'" checked disabled></td><td>', '</td></tr>');
+            $banner_messages[] = sprintf(esc_html__('%1s= Capability not granted %2$s', 'capsman-enhanced'), '<tr><td class="pp-cap-icon"><input type="checkbox" title="'. esc_attr__('usage key', 'capsman-enhanced') .'" disabled></td><td class="pp-cap-not-checked-definition">', '</td></tr>');
+            $banner_messages[] = sprintf(esc_html__('%1s= Capability denied, even if granted by another role %2$s', 'capsman-enhanced'), '<tr><td class="pp-cap-icon pp-cap-x"><span class="cap-x pp-cap-key" title="'. esc_attr__('usage key', 'capsman-enhanced') .'">X</span></td><td class="cap-x-definition">', '</td></tr></table>');
+            if (defined('PRESSPERMIT_ACTIVE') && function_exists('presspermit')) {
+                if ($group = presspermit()->groups()->getMetagroup('wp_role', $this->current)) {
+                    $additional_message = sprintf(
+                        // back compat with existing language string
+                        str_replace(
+                            ['&lt;strong&gt;', '&lt;/strong&gt;'],
+                            ['<strong>', '</strong>'],
+                            esc_html__('You can also configure this role as a %sPermission Group%s.', 'capsman-enhanced')
+                        ),
+                        '<a href="' . esc_url_raw(admin_url("admin.php?page=presspermit-edit-permissions&action=edit&agent_id={$group->ID}")) . '">',
+                        '</a>'
+                    );
+                    $banner_messages[] = '<p class="cme-subtext">' . $additional_message . '</p>';
+                }
+            }
+
+            $banners->pp_display_banner(
+                '',
+                __('How to use Capabilities', 'capsman-enhanced'),
+                $banner_messages,
+                'https://publishpress.com/knowledge-base/checkboxes/',
+                __('View Documentation', 'capsman-enhanced'),
+                '',
+                'button ppc-checkboxes-documentation-link'
+            );
+
+			?>
+			<div class="pp-capabilities-safe-to-use">
+			<?php
 			$banners->pp_display_banner(
 			    '',
 			    __( 'PublishPress Capabilities is safe to use', 'capsman-enhanced' ),
 			    array(
-			        __( 'This plugin automatically creates a backup whenever you save changes. You can use these backups to
-restore an earlier version of your roles and capabilities.', 'capsman-enhanced' )
+			        __( 'WordPress stores role capabilities in your database, where they remain even if the plugin is deactivated.', 'capsman-enhanced' ),
+			        __( 'Whenever you use PublishPress Capabilities to save changes, it also creates a backup which you can use to restore a previous configuration.', 'capsman-enhanced' )
 			    ),
 			    admin_url( 'admin.php?page=pp-capabilities-backup' ),
 			    __( 'Go to the Backup feature', 'capsman-enhanced' ),
@@ -1581,6 +1587,8 @@ restore an earlier version of your roles and capabilities.', 'capsman-enhanced' 
 				'button'
 			);
 			?>
+			</div>
+
 
 			<dl>
 				<dt><?php esc_html_e('Add Capability', 'capsman-enhanced'); ?></dt>

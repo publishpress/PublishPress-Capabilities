@@ -32,51 +32,56 @@ $disabled_admin_items = array_key_exists($default_role, $disabled_admin_items) ?
 $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
 ?>
 
-    <div class="wrap publishpress-caps-manage pressshack-admin-wrapper pp-capability-menus-wrapper">
+    <div class="wrap publishpress-caps-manage pressshack-admin-wrapper pp-capability-menus-wrapper admin-features">
         <div id="icon-capsman-admin" class="icon32"></div>
         <h2><?php esc_html_e('Admin Feature Restrictions', 'capsman-enhanced'); ?></h2>
 
         <form method="post" id="ppc-admin-features-form" action="admin.php?page=pp-capabilities-admin-features">
             <?php wp_nonce_field('pp-capabilities-admin-features'); ?>
 
-            <div class="pp-columns-wrapper<?php echo defined('CAPSMAN_PERMISSIONS_INSTALLED') && !CAPSMAN_PERMISSIONS_INSTALLED ? ' pp-enable-sidebar' : '' ?>">
+            <div class="pp-columns-wrapper pp-enable-sidebar clear">
                 <div class="pp-column-left">
                     <fieldset>
                         <table id="akmin">
                             <tr>
                                 <td class="content">
+                                    <div>
+                                        <div class="publishpress-headline">
+                                        <span class="cme-subtext">
+                                        <span class='pp-capability-role-caption'>
+                                        <?php
+                                        esc_html_e('Note: You are only restricting access to admin features screens. Some plugins may also add features to other areas of WordPress.',
+                                            'capsman-enhanced');
+                                        ?>
+                                        </span>
+                                        </span>
+                                        </div>
 
-                                    <div class="publishpress-headline">
-                                    <span class="cme-subtext">
-                                    <span class='pp-capability-role-caption'>
-                                    <?php
-                                    esc_html_e('Note: You are only restricting access to admin features screens. Some plugins may also add features to other areas of WordPress.',
-                                        'capsman-enhanced');
-                                    ?>
-                                    </span>
-                                    </span>
-                                    </div>
-                                    <div class="publishpress-filters">
-                                        <select name="ppc-admin-features-role" class="ppc-admin-features-role">
-                                            <?php
-                                            foreach ($roles as $role_name => $name) :
-                                                $name = translate_user_role($name);
+                                        <p>
+                                        <div class="publishpress-filters">
+                                            <div class="pp-capabilities-submit-top" style="float:right;">
+                                                <input type="submit" name="admin-features-submit"
+                                                    value="<?php esc_attr_e('Save Changes', 'capsman-enhanced') ?>"
+                                                    class="button-primary ppc-admin-features-submit" />
+                                            </div>
+
+                                            <select name="ppc-admin-features-role" class="ppc-admin-features-role">
+                                                <?php
+                                                foreach ($roles as $role_name => $name) :
+                                                    $name = translate_user_role($name);
+                                                    ?>
+                                                    <option value="<?php echo esc_attr($role_name); ?>" <?php selected($default_role,
+                                                        $role_name); ?>><?php echo esc_html($name); ?></option>
+                                                <?php
+                                                endforeach;
                                                 ?>
-                                                <option value="<?php echo esc_attr($role_name); ?>" <?php selected($default_role,
-                                                    $role_name); ?>><?php echo esc_html($name); ?></option>
-                                            <?php
-                                            endforeach;
-                                            ?>
-                                        </select> &nbsp;
+                                            </select> &nbsp;
 
-                                        <img class="loading" src="<?php echo esc_url_raw($capsman->mod_url); ?>/images/wpspin_light.gif"
-                                             style="display: none">
-
-                                        <input type="submit" name="admin-features-submit"
-                                               value="<?php esc_attr_e('Save Changes', 'capsman-enhanced') ?>"
-                                               class="button-primary ppc-admin-features-submit" style="float:right"/>
+                                            <img class="loading" src="<?php echo esc_url_raw($capsman->mod_url); ?>/images/wpspin_light.gif"
+                                                    style="display: none">
+                                        </div>
+                                        </p>
                                     </div>
-
                                     <div id="pp-capability-menu-wrapper" class="postbox">
                                         <div class="pp-capability-menus">
 	
@@ -220,25 +225,40 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
 
                     </fieldset>
                 </div><!-- .pp-column-left -->
-                <?php if (defined('CAPSMAN_PERMISSIONS_INSTALLED') && !CAPSMAN_PERMISSIONS_INSTALLED) { ?>
-                    <div class="pp-column-right">
-                        <?php
-                        $banners = new PublishPress\WordPressBanners\BannersMain;
-                        $banners->pp_display_banner(
-                            esc_html__( 'Recommendations for you', 'capsman-enhanced' ),
-                            esc_html__( 'Control permissions for individual posts and pages', 'capsman-enhanced' ),
-                            array(
-                                esc_html__( 'Choose who can read and edit each post.', 'capsman-enhanced' ),
-                                esc_html__( 'Allow specific user roles or users to manage each post.', 'capsman-enhanced' ),
-                                esc_html__( 'PublishPress Permissions is 100% free to install.', 'capsman-enhanced' )
-                            ),
-                            admin_url( 'plugin-install.php?s=publishpress-ppcore-install&tab=search&type=term' ),
-                            esc_html__( 'Click here to install PublishPress Permissions', 'capsman-enhanced' ),
-                            'install-permissions.jpg'
-                        );
-                        ?>
-                    </div><!-- .pp-column-right -->
-                <?php } ?>
+                <div class="pp-column-right">
+                <?php 
+                $banners = new PublishPress\WordPressBanners\BannersMain;
+                $banner_messages = ['<p>'];
+                $banner_messages[] = sprintf(esc_html__('%1s= No change', 'capsman-enhanced'), '<input type="checkbox" title="'. esc_attr__('usage key', 'capsman-enhanced') .'" disabled>');
+                $banner_messages[] = sprintf(esc_html__('%1s= This feature is denied', 'capsman-enhanced'), '<input type="checkbox" title="'. esc_attr__('usage key', 'capsman-enhanced') .'" checked disabled>');
+                $banner_messages[] = '</p>';
+                $banners->pp_display_banner(
+                    '',
+                    __('How to use Admin Features', 'capsman-enhanced'),
+                    $banner_messages,
+                    'https://publishpress.com/knowledge-base/checkboxes/',
+                    __('View Documentation', 'capsman-enhanced'),
+                    '',
+                    'button ppc-checkboxes-documentation-link'
+                );
+                ?>
+                    <?php if (defined('CAPSMAN_PERMISSIONS_INSTALLED') && !CAPSMAN_PERMISSIONS_INSTALLED) { ?>
+                            <?php
+                            $banners->pp_display_banner(
+                                esc_html__( 'Recommendations for you', 'capsman-enhanced' ),
+                                esc_html__( 'Control permissions for individual posts and pages', 'capsman-enhanced' ),
+                                array(
+                                    esc_html__( 'Choose who can read and edit each post.', 'capsman-enhanced' ),
+                                    esc_html__( 'Allow specific user roles or users to manage each post.', 'capsman-enhanced' ),
+                                    esc_html__( 'PublishPress Permissions is 100% free to install.', 'capsman-enhanced' )
+                                ),
+                                admin_url( 'plugin-install.php?s=publishpress-ppcore-install&tab=search&type=term' ),
+                                esc_html__( 'Click here to install PublishPress Permissions', 'capsman-enhanced' ),
+                                'install-permissions.jpg'
+                            );
+                            ?>
+                    <?php } ?>
+                </div><!-- .pp-column-right -->
             </div><!-- .pp-columns-wrapper -->
         </form>
 

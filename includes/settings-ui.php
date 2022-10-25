@@ -28,6 +28,7 @@ class Capabilities_Settings_UI {
             <li class="nav-tab"><a href="#ppcs-tab-capabilities"><?php esc_html_e('Capabilities', 'capsman-enhanced');?></a></li>
             <li class="nav-tab"><a href="#ppcs-tab-editor-features"><?php esc_html_e('Editor Features', 'capsman-enhanced');?></a></li>
             <?php do_action('pp_capabilities_settings_after_menu_list'); ?>
+            <li class="nav-tab"><a href="#ppcs-tab-test-user"><?php esc_html_e('Test User', 'capsman-enhanced');?></a></li>
         </ul>
 
         <fieldset>
@@ -44,10 +45,13 @@ class Capabilities_Settings_UI {
                             <?php
                                 $checked = checked(!empty(get_option('cme_capabilities_add_user_multi_roles', 0)), true, false);
                             ?>
-                            <th scope="row"> <?php esc_html_e('Enable Multiple Roles When Creating Users', 'capsman-enhanced'); ?></th>
+                            <th scope="row"><?php esc_html_e('Multiples roles on "Add New User" screen', 'capsman-enhanced'); ?></th>
                             <td>
                                 <label> 
-                                <input type="checkbox" name="cme_capabilities_add_user_multi_roles" id="cme_capabilities_add_user_multi_roles" autocomplete="off" value="1" <?php echo esc_attr($checked);?>>
+                                <input type="checkbox" name="cme_capabilities_add_user_multi_roles" id="cme_capabilities_add_user_multi_roles" autocomplete="off" value="1" <?php echo $checked;?>>
+                                <span class="description">
+                                    <?php esc_html_e('This allows you to assign a user to multiples roles on the "Add New User" screen.', 'capsman-enhanced'); ?>
+                                </span>
                                 </label>
                                 <br>
                             </td>
@@ -62,10 +66,13 @@ class Capabilities_Settings_UI {
                             <?php
                                 $checked = checked(!empty(get_option('cme_capabilities_show_private_taxonomies', 0)), true, false);
                             ?>
-                            <th scope="row"> <?php esc_html_e('Show Private Taxonomies', 'capsman-enhanced'); ?></th>
+                            <th scope="row"> <?php esc_html_e('Show private taxonomies', 'capsman-enhanced'); ?></th>
                             <td>
                                 <label> 
-                                <input type="checkbox" name="cme_capabilities_show_private_taxonomies" id="cme_capabilities_show_private_taxonomies" autocomplete="off" value="1" <?php echo esc_attr($checked);?>>
+                                <input type="checkbox" name="cme_capabilities_show_private_taxonomies" id="cme_capabilities_show_private_taxonomies" autocomplete="off" value="1" <?php echo $checked;?>>
+                                <span class="description">
+                                    <?php esc_html_e('This will show all taxonomies on the "Capabilities" screen, even ones normally hidden in the WordPress admin area.', 'capsman-enhanced'); ?>
+                                </span>
                                 </label>
                                 <br>
                             </td>
@@ -83,10 +90,13 @@ class Capabilities_Settings_UI {
                             <?php
                                 $checked = checked(!empty(get_option('cme_editor_features_private_post_type', 0)), true, false);
                             ?>
-                            <th scope="row"> <?php esc_html_e('Support for Private Post Types', 'capsman-enhanced'); ?></th>
+                            <th scope="row"> <?php esc_html_e('Show private post types', 'capsman-enhanced'); ?></th>
                             <td>
                                 <label> 
-                                <input type="checkbox" name="cme_editor_features_private_post_type" id="cme_editor_features_private_post_type" autocomplete="off" value="1" <?php echo esc_attr($checked);?>>
+                                <input type="checkbox" name="cme_editor_features_private_post_type" id="cme_editor_features_private_post_type" autocomplete="off" value="1" <?php echo $checked;?>>
+                                <span class="description">
+                                    <?php esc_html_e('Show all post types on the "Editor Features" screen, even ones normally hidden in the WordPress admin area.', 'capsman-enhanced'); ?>
+                                </span>
                                 </label>
                                 <br>
                             </td>
@@ -96,15 +106,54 @@ class Capabilities_Settings_UI {
                             <?php
                                 $checked = checked(!empty(get_option('cme_editor_features_classic_editor_tab', 0)), true, false);
                             ?>
-                            <th scope="row"> <?php esc_html_e('Enable Classic Editor Tab', 'capsman-enhanced'); ?></th>
+                            <th scope="row"> <?php esc_html_e('Enable Classic Editor tab', 'capsman-enhanced'); ?></th>
                             <td>
                                 <label> 
-                                <input type="checkbox" name="cme_editor_features_classic_editor_tab" id="cme_editor_features_classic_editor_tab" autocomplete="off" value="1" <?php echo esc_attr($checked);?>>
+                                <input type="checkbox" name="cme_editor_features_classic_editor_tab" id="cme_editor_features_classic_editor_tab" autocomplete="off" value="1" <?php echo $checked;?>>
+                                <span class="description">
+                                    <?php esc_html_e('Always show the Classic Editor tab in "Editor Features" screen.', 'capsman-enhanced'); ?>
+                                </span>
                                 </label>
                                 <br>
                             </td>
                         </tr>
 
+                        </tbody>
+                    </table>
+
+                    <table class="form-table" role="presentation" id="ppcs-tab-test-user" style="display:none;">
+                        <tbody>
+                            <tr>
+                            <?php
+                                $checked = checked(!empty(get_option('cme_test_user_admin_bar', 1)), true, false);
+                            ?>
+                            <th scope="row"> <?php esc_html_e('Admin Bar modification', 'capsman-enhanced'); ?></th>
+                            <td>
+                                <label> 
+                                <input type="checkbox" name="cme_test_user_admin_bar" id="cme_test_user_admin_bar" autocomplete="off" value="1" <?php echo $checked;?>>
+                                <span class="description">
+                                    <?php esc_html_e('When testing, display a caption and return link in the Admin Bar.', 'capsman-enhanced'); ?>
+                                </span>
+                                </label>
+                                <br>
+                            </td>
+                            </tr>
+
+                            <tr>
+                            <?php
+                                $checked = checked(!empty(get_option('cme_test_user_footer_notice', 1)), true, false);
+                            ?>
+                            <th scope="row"> <?php esc_html_e('Front End footer notice', 'capsman-enhanced'); ?></th>
+                            <td>
+                                <label> 
+                                <input type="checkbox" name="cme_test_user_footer_notice" id="cme_test_user_footer_notice" autocomplete="off" value="1" <?php echo $checked;?>>
+                                <span class="description">
+                                    <?php esc_html_e('When testing, display a return link in the front end footer.', 'capsman-enhanced'); ?>
+                                </span>
+                                </label>
+                                <br>
+                            </td>
+                            </tr>
                         </tbody>
                     </table>
 
