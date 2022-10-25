@@ -34,6 +34,7 @@
   },
   "extra": {
     "plugin-name": "capability-manager-enhanced",
-    "plugin-slug": "capsman-enhanced"
+    "plugin-slug": "capsman-enhanced",
+    "plugin-folder": "capability-manager-enhanced"
   }
 }

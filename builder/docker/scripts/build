@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 start_time=$(date +%s)
 
-script_version="1.1.0"
+script_version="1.1.1"
 
 command=${1}
 source_path=$(pwd)
@@ -37,6 +37,19 @@ get_plugin_slug() {
 plugin_slug=$(get_plugin_slug)
 
 #######################################
+# Get the plugin folder from composer.json file.
+# Globals:
+#   scripts_path
+#   source_path
+# Returns:
+#   The plugin folder.
+#######################################
+get_plugin_folder() {
+    php "${scripts_path}/parse-json.php" "${source_path}/composer.json" "extra.plugin-folder"
+}
+plugin_folder=$(get_plugin_folder)
+
+#######################################
 # Get the plugin version from the main plugin file.
 # Returns:
 #   The plugin version.
@@ -47,7 +60,7 @@ get_plugin_version() {
 }
 plugin_version=$(get_plugin_version)
 
-tmp_build_dir="${dist_path}/${plugin_slug}"
+tmp_build_dir="${dist_path}/${plugin_folder}"
 
 #######################################
 # Echo the string as an step in the output.
@@ -109,12 +122,13 @@ build_to_dir() {
 #   Step messages.
 #######################################
 pack_built_dir() {
-    zip_path="${dist_path}/${plugin_name}-${plugin_version}.zip"
+    zip_filename="${plugin_name}-${plugin_version}.zip"
+    zip_path="${dist_path}/${zip_filename}"
     echo_step "Removing old zip file, if exists"
     rm -f "${zip_path}"
     pushd "${dist_path}" > /dev/null 2>&1
-    echo_step "Creating the zip file on dist/${plugin_name}-${plugin_version}.zip"
-    zip -qr "${zip_path}" ./${plugin_slug}
+    echo_step "Creating the zip file on dist/${zip_filename}"
+    zip -qr "${zip_path}" ./${plugin_folder}
     popd > /dev/null 2>&1
 }
 
@@ -164,11 +178,11 @@ repeat(){
 echo_header() {
     repeat "=" $cols
     line=$(repeat "-" $(($cols-16)))
-    echo "      __"
-    echo "   -=(o '.      PUBLISHPRESS PLUGIN BUILDER - v${script_version}"
-    echo "     '.-.\      ${line}"
-    echo "     /|  \\      Name: ${plugin_name}"
-    echo "     '|  ||     Slug: ${plugin_slug}"
+    echo "      __        PUBLISHPRESS PLUGIN BUILDER - v${script_version}"
+    echo "   -=(o '.      ${line}"
+    echo "     '.-.\      Name: ${plugin_name}"
+    echo "     /|  \\\     Slug: ${plugin_slug}"
+    echo "     '|  ||     Folder: ${plugin_folder}"
     echo "      _\_):,_   Version: ${plugin_version}"
     echo ""
     repeat "=" $cols
