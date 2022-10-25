@@ -28,11 +28,12 @@
         "url": "https://github.com/publishpress/publishpress-instance-protection"
       }
     ],
-    "require-dev": {
-        "publishpress/publishpress-plugin-builder": "^1.3"
-    },
     "scripts": {
-      "build": "vendor/bin/robo build --ansi",
-      "build-unpacked": "vendor/bin/robo build:unpacked --ansi"
+      "build": "builder/docker/scripts/build build",
+      "build-unpacked": "builder/docker/scripts/build build-dir"
+    },
+    "extra": {
+      "plugin-name": "capability-manager-enhanced",
+      "plugin-slug": "capsman-enhanced"
     }
 }
