@@ -716,6 +716,12 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
 
 		$this->views();
 
+        ?>
+        <form class="search-form wp-clearfix" method="get">
+        <?php $this->search_box(esc_html__('Search Roles', 'capsman-enhanced'), 'roles'); ?>
+        </form>
+        <?php
+
 		parent::display();
 	}
 }
