@@ -378,7 +378,8 @@ class Pp_Roles_Actions
         $new_caps = pp_roles_remove_capabilities_role_level($current->capabilities);
 
         if (isset($_REQUEST['role_level'])) {
-            $add_caps = array_merge($new_caps, ak_level2caps(absint($_REQUEST['role_level'])));
+            $request_role_level = ($_REQUEST['current_role'] === 'administrator') ? 10 : absint($_REQUEST['role_level']);
+            $add_caps = array_merge($new_caps, ak_level2caps($request_role_level));
         }else{
             $add_caps =  $new_caps;
         }
