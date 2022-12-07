@@ -380,7 +380,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 						);
 
 						if (defined('PUBLISHPRESS_VERSION')) {
-							$plugin_caps['PublishPress'] = apply_filters('cme_publishpress_capabilities',
+							$plugin_caps['PublishPress Planner'] = apply_filters('cme_publishpress_capabilities',
                                [
                                     'edit_metadata',
                                     'edit_post_subscriptions',
