@@ -457,6 +457,8 @@ class PP_Capabilities_Admin_UI {
 
 
     public function settingsUI() {
+        wp_enqueue_script('pp-capabilities-chosen-js', plugin_dir_url(CME_FILE) . 'common/libs/chosen-v1.8.7/chosen.jquery.js', ['jquery'], PUBLISHPRESS_CAPS_VERSION);
+        wp_enqueue_style('pp-capabilities-chosen-css', plugin_dir_url(CME_FILE) . 'common/libs/chosen-v1.8.7/chosen.css', false, PUBLISHPRESS_CAPS_VERSION);
         require_once(dirname(__FILE__).'/settings-ui.php');
         new Capabilities_Settings_UI();
     }

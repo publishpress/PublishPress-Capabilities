@@ -12,7 +12,8 @@ add_action('init', function() {
             foreach (array_map('sanitize_key', explode(',', sanitize_text_field($_POST['all_options']))) as $option_name) {
                 foreach (['cme_', 'capsman', 'pp_capabilities'] as $prefix) {
                     if (0 === strpos($option_name, $prefix)) {
-                        $value = isset($_POST[$option_name]) ? sanitize_text_field($_POST[$option_name]) : '';
+                        $value = isset($_POST[$option_name]) ? $_POST[$option_name] : '';// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+                        $value = is_array($value) ? array_map('sanitize_text_field', $value) : sanitize_text_field($value);
             
                         if (!is_array($value)) {
                             $value = trim($value);
