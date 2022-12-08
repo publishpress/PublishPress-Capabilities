@@ -52,5 +52,12 @@
 - vendor/publishpress/wordpress-version-notices/codeception.dist.yml
 - vendor/publishpress/wordpress-version-notices/codeception.yml
 - vendor/publishpress/wordpress-version-notices/tests
+- vendor/pimple/pimple/CHANGELOG
+- vendor/pimple/pimple/README.rst
+- vendor/pimple/pimple/composer.json
+- vendor/pimple/pimple/ext
+- vendor/pimple/pimple/phpunit.xml.dist
+- vendor/pimple/pimple/src/Pimple/Tests
+- vendor/psr/container/composer.json
 - webpack.config.js
 - webpack.mix.js
