@@ -5,9 +5,9 @@ Author: PublishPress
 Author URI: https://publishpress.com
 Tags: user roles, capabilities, permissions, admin menus, post editing, post types, taxonomies
 Requires at least: 4.9.7
-Tested up to: 6.0
+Tested up to: 6.1
 Requires PHP: 5.6.20
-Stable tag: 2.6.0
+Stable tag: 2.6.1
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -408,6 +408,16 @@ Fixed : Non-administrators with user editing capabilities could add new Administ
 Fixed : Security issue. Please update.
 
 == Changelog ==
+
+= 2.6.1 - 08 Dec 2022 =
+  * Update : Allow users to block some roles from "User Testing", #621
+  * Update : Allow admins to test users from the user profile page, #626
+  * Fixed : Block URL not working, #629
+  * Update : Block change of user level for Administrators, #628
+  * Update : UI Consistency: vertical alignment of Usage Keys, Roles screen search box, #617
+  * Fixed : Unexpected placeholder %1 warning, #624
+  * Update : Change "PublishPress" to "PublishPress Planner" in Capabiliites, #638
+  * Update : FREE Capabilities ES-FR-IT Translation Updates October 27, #620
 
 = 2.6.0 - 25 Oct 2022 =
   * Added : Add a way for admins to test user accounts #57

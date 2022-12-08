@@ -380,7 +380,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 						);
 
 						if (defined('PUBLISHPRESS_VERSION')) {
-							$plugin_caps['PublishPress'] = apply_filters('cme_publishpress_capabilities',
+							$plugin_caps['PublishPress Planner'] = apply_filters('cme_publishpress_capabilities',
                                [
                                     'edit_metadata',
                                     'edit_post_subscriptions',
@@ -1542,9 +1542,9 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 			$banners = new PublishPress\WordPressBanners\BannersMain;
             
             $banner_messages = [];
-            $banner_messages[] = sprintf(esc_html__('%1s= Capability granted %2$s', 'capsman-enhanced'), '<table class="pp-capabilities-cb-key"><tr><td class="pp-cap-icon pp-cap-icon-checked"><input type="checkbox" title="'. esc_attr__('usage key', 'capsman-enhanced') .'" checked disabled></td><td>', '</td></tr>');
-            $banner_messages[] = sprintf(esc_html__('%1s= Capability not granted %2$s', 'capsman-enhanced'), '<tr><td class="pp-cap-icon"><input type="checkbox" title="'. esc_attr__('usage key', 'capsman-enhanced') .'" disabled></td><td class="pp-cap-not-checked-definition">', '</td></tr>');
-            $banner_messages[] = sprintf(esc_html__('%1s= Capability denied, even if granted by another role %2$s', 'capsman-enhanced'), '<tr><td class="pp-cap-icon pp-cap-x"><span class="cap-x pp-cap-key" title="'. esc_attr__('usage key', 'capsman-enhanced') .'">X</span></td><td class="cap-x-definition">', '</td></tr></table>');
+            $banner_messages[] = sprintf(esc_html__('%1$s = Capability granted %2$s', 'capsman-enhanced'), '<table class="pp-capabilities-cb-key"><tr><td class="pp-cap-icon pp-cap-icon-checked"><input type="checkbox" title="'. esc_attr__('usage key', 'capsman-enhanced') .'" checked disabled></td><td>', '</td></tr>');
+            $banner_messages[] = sprintf(esc_html__('%1$s = Capability not granted %2$s', 'capsman-enhanced'), '<tr><td class="pp-cap-icon"><input type="checkbox" title="'. esc_attr__('usage key', 'capsman-enhanced') .'" disabled></td><td class="pp-cap-not-checked-definition">', '</td></tr>');
+            $banner_messages[] = sprintf(esc_html__('%1$s = Capability denied, even if granted by another role %2$s', 'capsman-enhanced'), '<tr><td class="pp-cap-icon pp-cap-x"><span class="cap-x pp-cap-key" title="'. esc_attr__('usage key', 'capsman-enhanced') .'">X</span></td><td class="cap-x-definition">', '</td></tr></table>');
             if (defined('PRESSPERMIT_ACTIVE') && function_exists('presspermit')) {
                 if ($group = presspermit()->groups()->getMetagroup('wp_role', $this->current)) {
                     $additional_message = sprintf(

@@ -71,7 +71,7 @@ class PP_Capabilities_Test_User
                     wp_safe_redirect(admin_url());
                     exit;
                 }
-            } elseif (is_admin() && current_user_can('manage_capabilities') && current_user_can('edit_user', $request_user_id)) {
+            } elseif (is_admin() && self::canTestUser($request_user)) {
 
                 // Create and set auth cookie for current user before switching
                 $token = function_exists('wp_get_session_token') ? wp_get_session_token() : '';
@@ -113,5 +113,24 @@ class PP_Capabilities_Test_User
         } else {
             return false;
         }
+    }
+
+    /**
+     * Check if current user can test user
+     */
+    protected static function canTestUser($user)
+    {
+        $excluded_roles = (array) get_option('cme_test_user_excluded_roles', []);
+
+        $can_test_user  = false;
+        if (current_user_can('manage_capabilities') 
+            && current_user_can('edit_user', $user->ID) 
+            && $user->ID !== get_current_user_id()
+            && !array_intersect($excluded_roles, $user->roles)
+        ) {
+            $can_test_user = true;
+        }
+
+        return $can_test_user;
     }
 }

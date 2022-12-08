@@ -229,8 +229,8 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                 <?php 
                 $banners = new PublishPress\WordPressBanners\BannersMain;
                 $banner_messages = ['<p>'];
-                $banner_messages[] = sprintf(esc_html__('%1s= No change', 'capsman-enhanced'), '<input type="checkbox" title="'. esc_attr__('usage key', 'capsman-enhanced') .'" disabled>');
-                $banner_messages[] = sprintf(esc_html__('%1s= This feature is denied', 'capsman-enhanced'), '<input type="checkbox" title="'. esc_attr__('usage key', 'capsman-enhanced') .'" checked disabled>');
+                $banner_messages[] = sprintf(esc_html__('%1$s = No change', 'capsman-enhanced'), '<input type="checkbox" title="'. esc_attr__('usage key', 'capsman-enhanced') .'" disabled>');
+                $banner_messages[] = sprintf(esc_html__('%1$s = This feature is denied', 'capsman-enhanced'), '<input type="checkbox" title="'. esc_attr__('usage key', 'capsman-enhanced') .'" checked disabled>');
                 $banner_messages[] = '</p>';
                 $banners->pp_display_banner(
                     '',

@@ -213,7 +213,7 @@ class Pp_Roles_Admin
             'type'      => 'select',
             'value_key' => 'role_level',
             'tab'       => 'advanced',
-            'editable'  => true,
+            'editable'  => ($role_edit && $current && isset($current['role']) && $current['role'] === 'administrator') ? false : true,
             'options'   => [
                 '10' => '10',
                 '9' => '9',
@@ -404,7 +404,7 @@ class Pp_Roles_Admin
                     <select 
                         name="<?php echo esc_attr($key); ?><?php echo $args['multiple'] ? '[]' : '';?>"
                         id="<?php echo esc_attr($key); ?>"
-                        class="pp-capabilities-role-choosen"
+                        class="<?php echo (!$args['editable'] ? '' : 'pp-capabilities-role-choosen'); ?>"
                         data-placeholder="<?php printf(esc_html__('Select %s', 'capsman-enhanced'), esc_html(strtolower($args['label']))); ?>"
                         <?php echo ($args['multiple'] ? 'multiple' : '');?>
                         <?php echo ($args['required'] ? 'required="true"' : '');?>>
@@ -417,6 +417,7 @@ class Pp_Roles_Admin
                             }
                             ?>
                             <option value="<?php esc_attr_e($select_key); ?>"
+                                    <?php echo (!$args['editable'] && !$selected_option ? 'disabled' : ''); ?>
                                     <?php selected(true, $selected_option); ?>>
                                     <?php echo esc_html($select_label); ?>
                             </option>

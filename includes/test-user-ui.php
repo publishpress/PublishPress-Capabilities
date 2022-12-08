@@ -6,6 +6,8 @@ class PP_Capabilities_Test_User_UI extends PP_Capabilities_Test_User
     {
         // Admin Dashboard: Add "Test this user" as a Users row action.
         add_filter('user_row_actions', [$this, 'adminUsersRowActions'], 10, 2);
+        // Adds "Test this user" to user profile edit page
+        add_action('personal_options', [$this, 'adminUserEditAction']);
 
         // Admin Dashboard, Admin Bar and Front End Footer: Testing indicator, switch back link
         add_action('wp_enqueue_scripts', [$this, 'adminBarScripts'], 9);
@@ -25,7 +27,7 @@ class PP_Capabilities_Test_User_UI extends PP_Capabilities_Test_User
      */
     public function adminUsersRowActions($actions, $user)
     {
-        if (current_user_can('manage_capabilities') && current_user_can('edit_user', $user->ID) && $user->ID !== get_current_user_id()) {
+        if (PP_Capabilities_Test_User::canTestUser($user)) {
 
             $link = add_query_arg(
                 [
@@ -43,6 +45,38 @@ class PP_Capabilities_Test_User_UI extends PP_Capabilities_Test_User
         }
 
         return $actions;
+    }
+
+    /**
+     * Adds "Test this user" to user profile edit page
+     *
+     * @return void
+     */
+    public function adminUserEditAction($user)
+    {
+        if (current_user_can('manage_capabilities') && current_user_can('edit_user', $user->ID) && $user->ID !== get_current_user_id()) {
+            $link = add_query_arg(
+                [
+                    'ppc_test_user' => base64_encode($user->ID), 
+                    '_wpnonce'      => wp_create_nonce('ppc-test-user')
+                ], 
+                admin_url('users.php')
+            );
+            ?>
+            <tr class="user-test-user-wrap">
+                <th scope="row"><?php esc_html_e('Test user', 'capsman-enhanced'); ?></th>
+                <td>
+                    <?php 
+                    printf(
+                        '<a href="%s" class="button">%s</a>',
+                        esc_url($link),
+                        esc_html__('Test this user', 'capsman-enhanced')
+                    );
+                    ?>
+                </td>
+            </tr>
+            <?php
+        }
     }
 
 	function adminBarScripts() {

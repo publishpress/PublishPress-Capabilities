@@ -154,6 +154,39 @@ class Capabilities_Settings_UI {
                                 <br>
                             </td>
                             </tr>
+
+                            <tr>
+                            <?php
+                                $excluded_roles = (array) get_option('cme_test_user_excluded_roles', []);
+                            ?>
+                            <th scope="row"> <?php esc_html_e('Exclude role from User Testing', 'capsman-enhanced'); ?></th>
+                            <td>
+                                <label> 
+                                    <select 
+                                        name="cme_test_user_excluded_roles[]" 
+                                        id="cme_test_user_excluded_roles"
+                                        class="pp-capabilities-settings-chosen"
+                                        data-placeholder="<?php esc_attr_e('Select roles...', 'capsman-enhanced'); ?>"
+                                        multiple
+                                    >
+                                        <?php foreach (wp_roles()->roles as $role => $detail) : ?>
+                                            <option 
+                                                value="<?php echo esc_attr($role); ?>"
+                                                <?php selected(in_array($role, $excluded_roles), true); ?>
+                                                >
+                                                <?php echo esc_html($detail['name']); ?>
+                                            </option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                    <br />
+                                    <span class="description">
+                                        <?php esc_html_e('Exclude users in selected roles from User Testing.', 'capsman-enhanced'); ?>
+                                    </span>
+                                </label>
+                                <br>
+                            </td>
+                            </tr>
+                            
                         </tbody>
                     </table>
 
@@ -172,6 +205,10 @@ class Capabilities_Settings_UI {
 
                 $('[id^="ppcs-"]').hide();
                 $($(this).find('a').first().attr('href')).show();
+            });
+
+            $('.pp-capabilities-settings-chosen').chosen({
+                'width': '30em'
             });
 
         });

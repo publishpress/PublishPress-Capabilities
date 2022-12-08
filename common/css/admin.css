@@ -787,8 +787,11 @@ div.ppc-editor-features-classic-toggle {
 }
 
 @media (min-width: 1200px) {
+  .pp-column-right.capabilities-sidebar {
+    padding-top: 50px;
+  }
   .pp-capability-menus-wrapper.editor-features div.pp-column-right {
-      padding-top: 145px;
+    padding-top: 135px;
   }
   .pp-capability-menus-wrapper.admin-features div.pp-column-right {
       padding-top: 107px;
