@@ -409,6 +409,16 @@ Fixed : Security issue. Please update.
 
 == Changelog ==
 
+= 2.6.1 - 08 Dec 2022 =
+  * Update : Allow users to block some roles from "User Testing", #621
+  * Update : Allow admins to test users from the user profile page, #626
+  * Fixed : Block URL not working, #629
+  * Update : Block change of user level for Administrators, #628
+  * Update : UI Consistency: vertical alignment of Usage Keys, Roles screen search box, #617
+  * Fixed : Unexpected placeholder %1 warning, #624
+  * Update : Change "PublishPress" to "PublishPress Planner" in Capabiliites, #638
+  * Update : FREE Capabilities ES-FR-IT Translation Updates October 27, #620
+
 = 2.6.0 - 25 Oct 2022 =
   * Added : Add a way for admins to test user accounts #57
   * Fixed : Multi-select JS fails to load on Profile Edit Screen #576
