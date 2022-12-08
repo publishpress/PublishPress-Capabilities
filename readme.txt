@@ -11,7 +11,7 @@ Stable tag: 2.6.1
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
-The best permissions plugin allows you to customize user roles, editor features and admin menus. You control who has access to your WordPress site.  
+The best permissions plugin to customize user roles, editor features and admin menus. You control who has access to your WordPress site and all the features in your WordPress admin area.
 
 == Description ==
 
@@ -45,6 +45,7 @@ PublishPress Capabilities is **safe to use**. Every time you change your site's 
 11. **Media library permissions**: Decide who can upload, edit and delete files.
 12. **WooCommerce permissions**: Control access to WooCommerce products, orders, coupons and more.
 13. **Multisite support**: Manage permissions on a single site or across your whole network.
+14. **User switching**: Test any user's account without resetting their password.
 
 ## #1. WordPress User Role Editor ##
 
@@ -127,6 +128,12 @@ We mentioned earlier that PublishPress Capabilities has special support for WooC
 PublishPress Capabilities allows you to control permissions on a single site or across your whole network. Every time you update permissions in PublishPress Capabilities, you can choose to sync those changes across your multisite network.
 
 [Click here to learn about multisite permissions](https://publishpress.com/knowledge-base/multisite-network/).
+
+## #14. User Testing ##
+
+If you run a WordPress website which allows users to log in, you probably spend a lot of time answering account questions or solving website bugs for your users. Site administrators often have to browse their site and see exactly what the user sees. They need to test the user's account without resetting their password. This is possible with PublishPress Capabilities.
+
+[Click here to learn about user testing](https://publishpress.com/knowledge-base/user-testing/).
 
 ## Join PublishPress and get the Pro plugins ##
 
