@@ -180,7 +180,7 @@ class CapabilityManager
 		if (empty($_REQUEST['page']) 
 		|| !in_array( 
 			$_REQUEST['page'], 
-			['pp-capabilities', 'pp-capabilities-roles', 'pp-capabilities-admin-menus', 'pp-capabilities-nav-menus', 'pp-capabilities-editor-features', 'pp-capabilities-backup', 'pp-capabilities-settings', 'pp-capabilities-admin-features']
+			['pp-capabilities', 'pp-capabilities-roles', 'pp-capabilities-admin-menus', 'pp-capabilities-nav-menus', 'pp-capabilities-editor-features', 'pp-capabilities-backup', 'pp-capabilities-settings', 'pp-capabilities-admin-features', 'pp-capabilities-profile-features']
 			)
 		) {
 			return;
@@ -375,6 +375,8 @@ class CapabilityManager
 		add_submenu_page('pp-capabilities-roles',  __('Editor Features', 'capsman-enhanced'), __('Editor Features', 'capsman-enhanced'), $cap_name, 'pp-capabilities-editor-features', [$this, 'ManageEditorFeatures']);
 
 		add_submenu_page('pp-capabilities-roles',  __('Admin Features', 'capsman-enhanced'), __('Admin Features', 'capsman-enhanced'), $cap_name, 'pp-capabilities-admin-features', [$this, 'ManageAdminFeatures']);
+
+		add_submenu_page('pp-capabilities-roles',  __('Profile Features', 'capsman-enhanced'), __('Profile Features', 'capsman-enhanced'), $cap_name, 'pp-capabilities-profile-features', [$this, 'ManageProfileFeatures']);
 
 		do_action('pp-capabilities-admin-submenus');
 
@@ -579,6 +581,72 @@ class CapabilityManager
 		}
 
         include(dirname(CME_FILE) . '/includes/features/admin-features.php');
+    }
+
+	
+	/**
+	 * Manages Profile Features
+	 *
+	 * @return void
+	 */
+	public function ManageProfileFeatures() {
+		if ((!is_multisite() || !is_super_admin()) && !current_user_can('administrator') && !current_user_can('manage_capabilities')) {
+            // TODO: Implement exceptions.
+		    wp_die('<strong>' . esc_html__('You do not have permission to manage admin features.', 'capsman-enhanced') . '</strong>');
+		}
+
+		$this->generateNames();
+		$roles = array_keys($this->roles);
+
+		if (!isset($this->current)) {
+			if (empty($_POST) && !empty($_REQUEST['role'])) {
+				$this->set_current_role(sanitize_key($_REQUEST['role']));
+			}
+		}
+
+		if (!isset($this->current) || !get_role($this->current)) {
+			$this->current = get_option('default_role');
+		}
+
+		if (!in_array($this->current, $roles)) {
+			$this->current = array_shift($roles);
+		}
+
+		if (!empty($_SERVER['REQUEST_METHOD']) && ('POST' == $_SERVER['REQUEST_METHOD']) && isset($_POST['ppc-profile-features-role']) && !empty($_REQUEST['_wpnonce'])) {
+			if (!wp_verify_nonce(sanitize_key($_REQUEST['_wpnonce']), 'pp-capabilities-profile-features')) {
+				wp_die('<strong>' . esc_html__('You do not have permission to manage profile features.', 'capsman-enhanced') . '</strong>');
+			} else {
+				$features_role = sanitize_key($_POST['ppc-profile-features-role']);
+				
+				$this->set_current_role($features_role);
+
+				$disabled_profile_items = !empty(get_option('capsman_disabled_profile_features')) ? (array)get_option('capsman_disabled_profile_features') : [];
+				$disabled_profile_items[$features_role] = isset($_POST['capsman_disabled_profile_features']) ? array_map('sanitize_text_field', $_POST['capsman_disabled_profile_features']) : '';
+
+				update_option('capsman_disabled_profile_features', $disabled_profile_items, false);
+
+                //update element sort
+				$profile_features_elements_order = !empty($_POST['capsman_profile_features_elements_order']) ? sanitize_text_field($_POST['capsman_profile_features_elements_order']) : false;
+                if ($profile_features_elements_order) {
+                    $profile_features_elements_order = explode(",", $profile_features_elements_order);
+                    $profile_features_elements_order = array_filter($profile_features_elements_order);
+                    if (!empty($profile_features_elements_order)) {
+                        $previos_elements = !empty(get_option('capsman_profile_features_elements')) ? (array)get_option('capsman_profile_features_elements') : [];
+                        $new_elements     = [];
+                        foreach($profile_features_elements_order as $element_key) {
+                            if (isset($previos_elements[$element_key])) {
+                                $new_elements[$element_key] = $previos_elements[$element_key];
+                            }
+                        }
+                        update_option('capsman_profile_features_elements', $new_elements, false);
+                    }
+                }
+				
+	            ak_admin_notify(__('Settings updated.', 'capsman-enhanced'));
+			}
+		}
+
+        include(dirname(CME_FILE) . '/includes/features/profile-features.php');
     }
 
 	/**
