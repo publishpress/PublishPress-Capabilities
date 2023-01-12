@@ -791,8 +791,12 @@ div.ppc-editor-features-classic-toggle {
     display: none;
 }
 
-.pp-capability-menus-wrapper.profile-features table.pp-capability-menus-select tr {
-    display: flex;
+.pp-capability-menus-wrapper.profile-features table#akmin .pp-capability-menus-select .restrict-column {
+  min-width: 40px;
+}
+
+.pp-capability-menus-wrapper.profile-features table#akmin .pp-capability-menus-select .refresh-column {
+    text-align: right;
 }
 
 .pp-capability-menus-wrapper.profile-features table.pp-capability-menus-select thead tr {

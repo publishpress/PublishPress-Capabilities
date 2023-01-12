@@ -183,7 +183,7 @@ $personal_profile_edit_url = admin_url('user-edit.php?user_id='. get_current_use
                                                                 <tr class="ppc-menu-row parent-menu ppc-sortable-row <?php echo esc_attr($section_id); ?>"
                                                                     data-element_key="<?php echo esc_attr($section_id); ?>"
                                                                 >
-                                                                    <td class="features-section-header restrict-column ppc-menu-checkbox" style="text-align: left;" colspan="2">
+                                                                    <td class="features-section-header restrict-column ppc-menu-checkbox" style="text-align: left;" colspan="3">
                                                                         <input
                                                                                 id="check-item-<?php echo (int) $sn; ?>"
                                                                                 class="check-item" type="checkbox"
@@ -211,7 +211,7 @@ $personal_profile_edit_url = admin_url('user-edit.php?user_id='. get_current_use
                                                                             value="<?php echo esc_attr($restrict_value); ?>"
                                                                             <?php echo (in_array($restrict_value, $disabled_profile_items)) ? 'checked' : ''; ?>/>
                                                                     </td>
-                                                                    <td class="menu-column ppc-menu-item">
+                                                                    <td class="menu-column ppc-menu-item" colspan="2">
                                                                         <label for="check-item-<?php echo (int) $sn; ?>">
                                                                             <span
                                                                                 class="menu-item-link<?php echo (in_array($restrict_value, $disabled_profile_items)) ? ' restricted' : ''; ?>">
