@@ -316,6 +316,7 @@ class PP_Capabilities_Admin_UI {
                         'selected_roles'    => $roles,
                         'multi_roles'       => (defined('PP_CAPABILITIES_ADD_USER_MULTI_ROLES') || get_option('cme_capabilities_add_user_multi_roles')) ? 1 : 0,
                         'profile_page_title' => esc_html__('Page title', 'capsman-enhanced'),
+                        'rankmath_title'    => esc_html__('Rank Math SEO', 'capsman-enhanced'),
                         'nonce'             => wp_create_nonce('ppc-profile-edit-action')
                     ]
                 );

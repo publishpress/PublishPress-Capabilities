@@ -117,6 +117,34 @@ jQuery(function ($) {
           'elements': single_element,
           'element_type': 'section'
         };
+        /**
+         * We have two problems
+         * 1. Rank math is adding new tr via javascript 
+         * (/plugins/seo-by-rank-math/includes/admin/class-admin.php) 
+         * before twitter div and  i can't think of a better solution 
+         * to handle this yet.
+         * 
+         * 2. The new tr been added via javascript doesn't
+         * have class leading to an extra problem as we can't
+         * delay our class generation till they load their 
+         * inline script since the code need to run as early 
+         * as possible so user doesn't see hidden items for 
+         * seconds.
+         * 
+         * For now, i'll implement a not so neat solution
+         * while we try to improve on user feedback/think
+         * of a better solution
+         */
+        if (single_element.indexOf('rank-math-metabox-wrap') >= 0) {
+          single_element = '#profile-page tr.user-url-wrap + tr';
+          element_label = ppCapabilitiesProfileData.rankmath_title;//we can't find the title as it's loading after this function
+          page_elements[cleanUpStrings(single_element)] =
+          {
+            'label': element_label,
+            'elements': single_element,
+            'element_type': 'header'
+          };
+        }
       }
     });
 
