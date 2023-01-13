@@ -133,15 +133,6 @@ $personal_profile_edit_url = admin_url('user-edit.php?user_id='. get_current_use
                                                                         </strong>
                                                                     </span></label>
                                                                 </td>
-                                                                <td class="restrict-column ppc-menu-item refresh-column">
-                                                                    <a href="<?php echo esc_url($other_profile_edit_url); ?>">
-                                                                        <?php printf(esc_html__('Update %s profile items', 'capsman-enhanced'), esc_html($default_role_name)); ?>
-                                                                    </a>
-                                                                    |
-                                                                    <a href="<?php echo esc_url($personal_profile_edit_url); ?>">
-                                                                        <?php esc_html_e('Update personal profile items', 'capsman-enhanced'); ?>
-                                                                    </a>
-                                                                </td>
                                                             </tr>
                                                         </thead>
                                                         <tfoot>
@@ -149,7 +140,7 @@ $personal_profile_edit_url = admin_url('user-edit.php?user_id='. get_current_use
                                                                 <td class="restrict-column ppc-menu-checkbox">
                                                                     <input id="check-all-item-2" class="check-item check-all-menu-item" type="checkbox"/>
                                                                 </td>
-                                                                <td class="menu-column ppc-menu-item" colspan="2">
+                                                                <td class="menu-column ppc-menu-item">
                                                                     <label for="check-all-item">
                                                                     <span class="menu-item-link check-all-menu-link">
                                                                         <strong>
@@ -163,7 +154,7 @@ $personal_profile_edit_url = admin_url('user-edit.php?user_id='. get_current_use
                                                         <tbody>
                                                         <?php if (empty($profile_features_elements)) : ?>
                                                             <tr class="ppc-menu-row parent-menu empty-features-element">
-                                                                <td colspan="3">
+                                                                <td colspan="2">
                                                                     <?php
                                                                     printf(esc_html__('Profile features elements is empty. %1s Update %2s profile items %3s or %4s Update personal profile items %5s now', 'capsman-enhanced'), '<a href="'. esc_url($other_profile_edit_url) .'">', esc_html($default_role_name), '</a>', '<a href="'. esc_url($personal_profile_edit_url) .'">', '</a>');
                                                                     ?>
@@ -183,7 +174,7 @@ $personal_profile_edit_url = admin_url('user-edit.php?user_id='. get_current_use
                                                                 <tr class="ppc-menu-row parent-menu ppc-sortable-row <?php echo esc_attr($section_id); ?>"
                                                                     data-element_key="<?php echo esc_attr($section_id); ?>"
                                                                 >
-                                                                    <td class="features-section-header restrict-column ppc-menu-checkbox" style="text-align: left;" colspan="3">
+                                                                    <td class="features-section-header restrict-column ppc-menu-checkbox" style="text-align: left;" colspan="2">
                                                                         <input
                                                                                 id="check-item-<?php echo (int) $sn; ?>"
                                                                                 class="check-item" type="checkbox"
@@ -211,7 +202,7 @@ $personal_profile_edit_url = admin_url('user-edit.php?user_id='. get_current_use
                                                                             value="<?php echo esc_attr($restrict_value); ?>"
                                                                             <?php echo (in_array($restrict_value, $disabled_profile_items)) ? 'checked' : ''; ?>/>
                                                                     </td>
-                                                                    <td class="menu-column ppc-menu-item" colspan="2">
+                                                                    <td class="menu-column ppc-menu-item">
                                                                         <label for="check-item-<?php echo (int) $sn; ?>">
                                                                             <span
                                                                                 class="menu-item-link<?php echo (in_array($restrict_value, $disabled_profile_items)) ? ' restricted' : ''; ?>">
@@ -249,8 +240,10 @@ $personal_profile_edit_url = admin_url('user-edit.php?user_id='. get_current_use
                 </div><!-- .pp-column-left -->
                 <div class="pp-column-right">
                 <?php 
-                $banners = new PublishPress\WordPressBanners\BannersMain;
+                $banners = new PublishPress\WordPressBanners\BannersMain; 
                 $banner_messages = ['<p>'];
+                $banner_messages[] = '<i class="dashicons dashicons-arrow-right"></i>' . sprintf(esc_html__('%1$s Click here to update %2$s profile elements. %3$s', 'capsman-enhanced'), '<a href="'. esc_url($other_profile_edit_url) .'">', esc_html($default_role_name), '</a>');
+                $banner_messages[] = '<i class="dashicons dashicons-arrow-right"></i>' . sprintf(esc_html__('%1$s Click here to update personal profile elements. %2$s', 'capsman-enhanced'), '<a href="'. esc_url($personal_profile_edit_url) .'">', '</a>');
                 $banner_messages[] = sprintf(esc_html__('%1$s = No change', 'capsman-enhanced'), '<input type="checkbox" title="'. esc_attr__('usage key', 'capsman-enhanced') .'" disabled>');
                 $banner_messages[] = sprintf(esc_html__('%1$s = This feature is denied', 'capsman-enhanced'), '<input type="checkbox" title="'. esc_attr__('usage key', 'capsman-enhanced') .'" checked disabled>');
                 $banner_messages[] = '</p>';
