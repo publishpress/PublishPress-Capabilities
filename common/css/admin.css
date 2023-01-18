@@ -793,7 +793,8 @@ div.ppc-editor-features-classic-toggle {
 }
 
 .pp-capability-menus-wrapper.profile-features table#akmin .pp-capability-menus-select .restrict-column {
-  min-width: 10px;
+    min-width: 10px;
+    width: 0px;
 }
 
 .pp-capability-menus-wrapper.profile-features table#akmin .pp-capability-menus-select .refresh-column {
