@@ -797,6 +797,10 @@ div.ppc-editor-features-classic-toggle {
     width: 0px;
 }
 
+.pp-capability-menus-wrapper.profile-features table#akmin td.toggle-all-column {
+    padding-left: 0;
+}
+
 .pp-capability-menus-wrapper.profile-features table#akmin .pp-capability-menus-select .refresh-column {
     text-align: right;
 }

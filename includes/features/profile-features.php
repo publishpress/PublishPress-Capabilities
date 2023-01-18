@@ -125,7 +125,7 @@ $personal_profile_edit_url = admin_url('user-edit.php?user_id='. get_current_use
                                                                 <td class="restrict-column ppc-menu-checkbox">
                                                                     <input id="check-all-item" class="check-item check-all-menu-item" type="checkbox"/>
                                                                 </td>
-                                                                <td class="menu-column ppc-menu-item">
+                                                                <td class="menu-column ppc-menu-item toggle-all-column">
                                                                     <label for="check-all-item">
                                                                     <span class="menu-item-link check-all-menu-link">
                                                                         <strong>
@@ -140,7 +140,7 @@ $personal_profile_edit_url = admin_url('user-edit.php?user_id='. get_current_use
                                                                 <td class="restrict-column ppc-menu-checkbox">
                                                                     <input id="check-all-item-2" class="check-item check-all-menu-item" type="checkbox"/>
                                                                 </td>
-                                                                <td class="menu-column ppc-menu-item">
+                                                                <td class="menu-column ppc-menu-item toggle-all-column">
                                                                     <label for="check-all-item">
                                                                     <span class="menu-item-link check-all-menu-link">
                                                                         <strong>
@@ -207,7 +207,7 @@ $personal_profile_edit_url = admin_url('user-edit.php?user_id='. get_current_use
                                                                             <span
                                                                                 class="menu-item-link<?php echo (in_array($restrict_value, $disabled_profile_items)) ? ' restricted' : ''; ?>">
                                                                             <strong>
-                                                                                <i class="dashicons dashicons-arrow-right"></i>
+                                                                                 &mdash; 
                                                                                 <?php echo esc_html($item_name); ?>
                                                                                 <small class="cme-subtext">[<?php echo esc_html($element_type); ?>]</small>
                                                                             </strong></span>
