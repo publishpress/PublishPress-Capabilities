@@ -241,9 +241,25 @@ $personal_profile_edit_url = admin_url('user-edit.php?user_id='. get_current_use
                 <div class="pp-column-right">
                 <?php 
                 $banners = new PublishPress\WordPressBanners\BannersMain; 
+                ?>
+                <?php 
                 $banner_messages = ['<p>'];
-                $banner_messages[] = '<i class="dashicons dashicons-arrow-right"></i>' . sprintf(esc_html__('%1$s Click here to update %2$s profile elements. %3$s', 'capsman-enhanced'), '<a href="'. esc_url($other_profile_edit_url) .'">', esc_html($default_role_name), '</a>');
-                $banner_messages[] = '<i class="dashicons dashicons-arrow-right"></i>' . sprintf(esc_html__('%1$s Click here to update personal profile elements. %2$s', 'capsman-enhanced'), '<a href="'. esc_url($personal_profile_edit_url) .'">', '</a>');
+                $banner_messages[] = esc_html__('Click these links if any items from the Profile screen are missing:', 'capsman-enhanced');
+                $banner_messages[] = '<i class="dashicons dashicons-arrow-right"></i>' . sprintf(esc_html__('%1$s Click to update items for this role. %2$s', 'capsman-enhanced'), '<a href="'. esc_url($other_profile_edit_url) .'">', '</a>');
+                $banner_messages[] = '<i class="dashicons dashicons-arrow-right"></i>' . sprintf(esc_html__('%1$s Click to update items for personal profile. %2$s', 'capsman-enhanced'), '<a href="'. esc_url($personal_profile_edit_url) .'">', '</a>');
+                $banner_messages[] = '</p>';
+                $banners->pp_display_banner(
+                    '',
+                    __('Update Profile Features', 'capsman-enhanced'),
+                    $banner_messages,
+                    '',
+                    '',
+                    '',
+                    ''
+                );
+                ?>
+                <?php 
+                $banner_messages = ['<p>'];
                 $banner_messages[] = sprintf(esc_html__('%1$s = No change', 'capsman-enhanced'), '<input type="checkbox" title="'. esc_attr__('usage key', 'capsman-enhanced') .'" disabled>');
                 $banner_messages[] = sprintf(esc_html__('%1$s = This feature is denied', 'capsman-enhanced'), '<input type="checkbox" title="'. esc_attr__('usage key', 'capsman-enhanced') .'" checked disabled>');
                 $banner_messages[] = '</p>';

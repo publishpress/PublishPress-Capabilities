@@ -782,7 +782,8 @@ div.ppc-editor-features-classic-toggle {
 
 .pp-capability-menus-wrapper.editor-features .pp-column-right .pp-sidebar-box:first-of-type ul,
 .pp-capability-menus-wrapper.admin-features .pp-column-right .pp-sidebar-box:first-of-type ul,
-.pp-capability-menus-wrapper.profile-features .pp-column-right .pp-sidebar-box:first-of-type ul {
+.pp-capability-menus-wrapper.profile-features .pp-column-right .pp-sidebar-box:nth-of-type(1) ul,
+.pp-capability-menus-wrapper.profile-features .pp-column-right .pp-sidebar-box:nth-of-type(2) ul {
     list-style: none !important;
 }
 
