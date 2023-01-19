@@ -539,6 +539,7 @@ table#akmin .pp-capability-menus-select .restrict-column {
 .pp-capability-menus .check-all-menu-link,
 .pp-capability-menus .check-all-menu-link:active {
   color: #555;
+  margin-left: -48px;
 }
 
 .pp-capability-menus .menu-item-link.restricted,
@@ -792,37 +793,13 @@ div.ppc-editor-features-classic-toggle {
     display: none;
 }
 
-.pp-capability-menus-wrapper.profile-features table#akmin .pp-capability-menus-select .restrict-column {
-    min-width: 10px;
-    width: 0px;
-}
-
-.pp-capability-menus-wrapper.profile-features table#akmin td.toggle-all-column {
-    padding-left: 0;
-}
-
-.pp-capability-menus-wrapper.profile-features table#akmin .pp-capability-menus-select .refresh-column {
-    text-align: right;
-}
-
-.pp-capability-menus-wrapper.profile-features table.pp-capability-menus-select thead tr {
-    border-bottom: 1px solid #c3c4c7;
-}
-
-.pp-capability-menus-wrapper.profile-features table.pp-capability-menus-select tfoot tr {
-    border-top: 1px solid #c3c4c7;
-}
-
-.pp-capability-menus-wrapper.profile-features table.pp-capability-menus-select td {
-    border: none;
-}
-
 .pp-capability-menus-wrapper.profile-features tr.empty-features-element td {
     margin-left: 40px;
 }
 
-.pp-capability-menus-wrapper.profile-features tr td.refresh-column {
-    margin-left: auto;
+.pp-capability-menus-wrapper.profile-features table#akmin .pp-capability-menus-select .restrict-column {
+    width: 0;
+    min-width: 70px;
 }
 
 .publishpress-caps-settings .description {
