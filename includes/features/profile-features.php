@@ -71,16 +71,6 @@ $personal_profile_edit_url = admin_url('user-edit.php?user_id='. get_current_use
                             <tr>
                                 <td class="content">
                                     <div>
-                                        <div class="publishpress-headline">
-                                        <span class="cme-subtext">
-                                        <span class='pp-capability-role-caption'>
-                                        <?php
-                                        esc_html_e('Note: You are only restricting access to profile features screens. You can change element order by drag and drop if not in the right order or section due to when new elements are added.',
-                                            'capsman-enhanced');
-                                        ?>
-                                        </span>
-                                        </span>
-                                        </div>
 
                                         <p>
                                         <div class="publishpress-filters">
