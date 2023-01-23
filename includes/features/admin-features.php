@@ -46,16 +46,6 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                             <tr>
                                 <td class="content">
                                     <div>
-                                        <div class="publishpress-headline">
-                                        <span class="cme-subtext">
-                                        <span class='pp-capability-role-caption'>
-                                        <?php
-                                        esc_html_e('Note: You are only restricting access to admin features screens. Some plugins may also add features to other areas of WordPress.',
-                                            'capsman-enhanced');
-                                        ?>
-                                        </span>
-                                        </span>
-                                        </div>
 
                                         <p>
                                         <div class="publishpress-filters">
