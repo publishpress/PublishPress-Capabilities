@@ -564,6 +564,14 @@ table#akmin .pp-capability-menus-select .restrict-column {
   display: inline-block;
 }
 
+.pp-capability-menus thead td.restrict-column + td .menu-item-link:hover,
+.pp-capability-menus thead td.restrict-column + td .menu-item-link:focus,
+.pp-capability-menus tfoot td.restrict-column + td .menu-item-link:hover,
+.pp-capability-menus tfoot td.restrict-column + td .menu-item-link:focus {
+    border-color: transparent;
+    background: transparent;
+}
+
 .pp-capability-menus-wrapper .tooltip {
   position: relative;
   display: inline-block;
@@ -821,7 +829,7 @@ div.ppc-editor-features-classic-toggle {
       padding-top: 107px;
   }
   .pp-capability-menus-wrapper.profile-features div.pp-column-right {
-      padding-top: 107px;
+      padding-top: 80px;
   }
 }
 
