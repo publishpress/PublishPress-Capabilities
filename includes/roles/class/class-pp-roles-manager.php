@@ -91,7 +91,7 @@ class Pp_Roles_Manager
         $count = wp_cache_get($cache_key, 'count');
 
         if (!$count) {
-            $count = count_users('memory');
+            $count = count_users();
 
             $expire_days = 7;
             $expire_days = apply_filters('ppc_role_count_users_cache_expire_days', $expire_days);
