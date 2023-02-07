@@ -30,7 +30,9 @@ class Pp_Roles_Manager
         $editable = function_exists('get_editable_roles') ? 
                         array_keys(get_editable_roles()) : 
                         array_keys(apply_filters('editable_roles', $roles));
-        $count = count_users();
+
+        $count = $this->ppc_role_count_users();
+
         $res = [];
 
         foreach ($roles as $role => $detail) {
@@ -75,6 +77,31 @@ class Pp_Roles_Manager
         }
 
         return $res;
+    }
+
+    /**
+     * Count role users
+     *
+     * @return array
+     */
+    public function ppc_role_count_users() {
+
+        $cache_key = 'ppc_role_count_users_cache';
+
+        $count = wp_cache_get($cache_key, 'count');
+
+        if (!$count) {
+            $count = count_users('memory');
+
+            $expire_days = 7;
+            $expire_days = apply_filters('ppc_role_count_users_cache_expire_days', $expire_days);
+
+            $expire = (int)$expire_days * DAY_IN_SECONDS;
+            wp_cache_set($cache_key, $count, 'count', $expire);
+
+        }
+
+        return $count;
     }
 
     /**
