@@ -91,7 +91,18 @@ class Pp_Roles_Manager
         $count = wp_cache_get($cache_key, 'count');
 
         if (!$count) {
-            $count = count_users();
+
+            /**
+             * The computational strategy to use when counting the users.
+             * Accepts either 'time' or 'memory'.
+             * 
+             * Using $strategy = ‘time’ this is CPU-intensive and should handle around 10^7 users.
+             * Using $strategy = ‘memory’ this is memory-intensive and should handle around 10^5 users, 
+             * but see WP Bug #12257. https://developer.wordpress.org/reference/functions/count_users/
+             */
+            $strategy = apply_filters('ppc_role_count_users_strategy', 'time');
+
+            $count = count_users($strategy);
 
             $expire_days = 7;
             $expire_days = apply_filters('ppc_role_count_users_cache_expire_days', $expire_days);
