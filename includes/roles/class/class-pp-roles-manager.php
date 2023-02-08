@@ -94,13 +94,18 @@ class Pp_Roles_Manager
 
             /**
              * The computational strategy to use when counting the users.
-             * Accepts either 'time' or 'memory'.
              * 
              * Using $strategy = ‘time’ this is CPU-intensive and should handle around 10^7 users.
              * Using $strategy = ‘memory’ this is memory-intensive and should handle around 10^5 users, 
              * but see WP Bug #12257. https://developer.wordpress.org/reference/functions/count_users/
              */
-            $strategy = apply_filters('ppc_role_count_users_strategy', 'time');
+            $time_strategy = (bool) apply_filters('ppc_role_count_users_time_strategy', true);
+
+            if ($time_strategy) {
+                $strategy =  'time';
+            } else {
+                $strategy =  'memory';
+            }
 
             $count = count_users($strategy);
 
