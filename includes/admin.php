@@ -731,6 +731,14 @@ if (defined('PUBLISHPRESS_REVISIONS_VERSION') && function_exists('rvy_get_option
 								if ( in_array( $key, $unfiltered[$item_type] ) )
 									continue;
 
+								if (in_array($cap_type, ['copy', 'revise'])) {
+									global $revisionary;
+									
+									if (!empty($revisionary) && !empty($revisionary->enabled_post_types) && empty($revisionary->enabled_post_types[$key])) {
+										continue;
+									}
+								}
+
 								$row = "<tr class='cme_type_" . esc_attr($key) . "'>";
 
 								if ( $cap_type ) {
