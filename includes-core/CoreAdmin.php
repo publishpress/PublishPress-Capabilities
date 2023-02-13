@@ -64,9 +64,9 @@ class CoreAdmin {
         add_submenu_page('pp-capabilities-roles',  esc_html__('Admin Menus', 'capsman-enhanced'), esc_html__('Admin Menus', 'capsman-enhanced'), $cap_name, 'pp-capabilities-admin-menus', [$this, 'AdminMenusPromo']);
     }
 
-    function NavMenusPromo() {
+    function AdminMenusPromo() {
         wp_enqueue_style('pp-capabilities-admin-core', plugin_dir_url(CME_FILE) . 'includes-core/admin-core.css', [], PUBLISHPRESS_CAPS_VERSION, 'all');
-        include (dirname(__FILE__) . '/nav-menus-promo.php');
+        include (dirname(__FILE__) . '/admin-menus-promo.php');
     }
 
     function metaboxesPromo(){
