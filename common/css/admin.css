@@ -799,6 +799,22 @@ div.ppc-editor-features-classic-toggle {
     vertical-align: text-bottom;
 }
 
+
+/* ====================================================== Nav Menu Restriction */
+
+body.capabilities_page_pp-capabilities-nav-menus .pp-capability-menus-select .restrict-column {
+    width: 70px !important;
+}
+
+.capabilities_page_pp-capabilities-nav-menus input.ppc-nav-menu-submit {
+margin-bottom: 10px !important;
+}
+
+.capabilities_page_pp-capabilities-nav-menus input.ppc-nav-menu-submit {
+margin-bottom: 10px !important;
+}
+
+
 @media (min-width: 1200px) {
   .pp-column-right.capabilities-sidebar {
     padding-top: 50px;
