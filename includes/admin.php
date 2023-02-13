@@ -243,11 +243,11 @@ if (defined('PUBLISHPRESS_REVISIONS_VERSION') && function_exists('rvy_get_option
             }
 
             if ($pp_revisions_copy) {
-                $default_caps = array_merge($default_caps, ['copy_posts', 'copy_others_posts', 'copy_published_posts', 'copy_private_posts', 'copy_pages', 'copy_others_pages', 'copy_published_pages', 'copy_private_pages']);
+                $default_caps = array_merge($default_caps, ['copy_posts', 'copy_others_posts', 'copy_pages', 'copy_others_pages']);
             }
 
             if ($pp_revisions_revise) {
-                $default_caps = array_merge($default_caps, ['revise_posts', 'revise_others_posts', 'revise_published_posts', 'revise_private_posts', 'revise_pages', 'revise_others_pages', 'revise_published_pages', 'revise_private_pages']);
+                $default_caps = array_merge($default_caps, ['revise_posts', 'revise_others_posts', 'revise_pages', 'revise_others_pages']);
             }
 
 			$type_caps = array();
@@ -708,6 +708,12 @@ if (defined('PUBLISHPRESS_REVISIONS_VERSION') && function_exists('rvy_get_option
 								$prop = str_replace( '_posts', '', $prop );
 								$prop = str_replace( '_pages', '', $prop );
 								$prop = str_replace( '_terms', '', $prop );
+
+								if (in_array($prop, ['copy_published', 'copy_private', 'revise_published', 'revise_private'])) {
+									echo "<th></th>";
+									continue;
+								}
+
 								$tip = ( isset( $cap_tips[$prop] ) ) ? $cap_tips[$prop] : '';
 								$th_class = ( 'taxonomy' == $item_type ) ? 'term-cap' : 'post-cap';
 								echo "<th style='text-align:center;' title='" . esc_attr($tip) . "' class='" . esc_attr($th_class) . "'>";
@@ -757,12 +763,6 @@ if (defined('PUBLISHPRESS_REVISIONS_VERSION') && function_exists('rvy_get_option
                                         if (isset($type_obj->cap->edit_others_posts) && !isset($type_obj->cap->copy_others_posts)) {
                                             $type_obj->cap->copy_others_posts = str_replace('edit_', 'copy_', $type_obj->cap->edit_others_posts);
                                         }
-                                        if (isset($type_obj->cap->edit_published_posts) && !isset($type_obj->cap->copy_published_posts)) {
-                                            $type_obj->cap->copy_published_posts = str_replace('edit_', 'copy_', $type_obj->cap->edit_published_posts);
-                                        }
-                                        if (isset($type_obj->cap->edit_private_posts) && !isset($type_obj->cap->copy_private_posts)) {
-                                            $type_obj->cap->copy_private_posts = str_replace('edit_', 'copy_', $type_obj->cap->edit_private_posts);
-                                        }
                                     }
                         
                                     if ($pp_revisions_revise) {
@@ -772,12 +772,6 @@ if (defined('PUBLISHPRESS_REVISIONS_VERSION') && function_exists('rvy_get_option
                                         }
                                         if (isset($type_obj->cap->edit_others_posts) && !isset($type_obj->cap->revise_others_posts)) {
                                             $type_obj->cap->revise_others_posts = str_replace('edit_', 'revise_', $type_obj->cap->edit_others_posts);
-                                        }
-                                        if (isset($type_obj->cap->edit_published_posts) && !isset($type_obj->cap->revise_published_posts)) {
-                                            $type_obj->cap->revise_published_posts = str_replace('edit_', 'revise_', $type_obj->cap->edit_published_posts);
-                                        }
-                                        if (isset($type_obj->cap->edit_private_posts) && !isset($type_obj->cap->revise_private_posts)) {
-                                            $type_obj->cap->revise_private_posts = str_replace('edit_', 'revise_', $type_obj->cap->edit_private_posts);
                                         }
                                     }
 
