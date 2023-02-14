@@ -78,16 +78,6 @@ $active_tab_text = is_object($active_tab_type_obj)
                     <tr>
                         <td class="content">
 
-                            <div class="publishpress-headline">
-                                <span class="cme-subtext">
-                                <span class='pp-capability-role-caption'>
-                                <?php
-                                esc_html_e('Select editor features to remove. Note that this screen cannot be used to grant additional features to any role.', 'capsman-enhanced');
-                                ?>
-                                </span>
-                                </span>
-                            </div>
-
                             <div class="publishpress-filters">
                                 <select name="ppc-editor-features-role" class="ppc-editor-features-role">
                                     <?php
