@@ -378,6 +378,8 @@ class CapabilityManager
 
 		add_submenu_page('pp-capabilities-roles',  __('Profile Features', 'capsman-enhanced'), __('Profile Features', 'capsman-enhanced'), $cap_name, 'pp-capabilities-profile-features', [$this, 'ManageProfileFeatures']);
 
+        add_submenu_page('pp-capabilities-roles',  __('Nav Menus', 'capsman-enhanced'), __('Nav Menus', 'capsman-enhanced'), $cap_name, 'pp-capabilities-nav-menus', [$this, 'ManageNavMenus']);
+
 		do_action('pp-capabilities-admin-submenus');
 
 		add_submenu_page('pp-capabilities-roles',  __('Backup', 'capsman-enhanced'), __('Backup', 'capsman-enhanced'), $cap_name, 'pp-capabilities-backup', array($this, 'backupTool'));
@@ -581,6 +583,56 @@ class CapabilityManager
 		}
 
         include(dirname(CME_FILE) . '/includes/features/admin-features.php');
+    }
+	
+	/**
+	 * Manage Nave Menus
+	 *
+	 * @return void
+	 */
+	public function ManageNavMenus() {
+		if ((!is_multisite() || !is_super_admin()) && !current_user_can('administrator') && !current_user_can('manage_capabilities')) {
+            // TODO: Implement exceptions.
+		    wp_die('<strong>' . esc_html__('You do not have permission to manage admin features.', 'capsman-enhanced') . '</strong>');
+		}
+
+		$this->generateNames();
+		$roles = array_keys($this->roles);
+
+		if (!isset($this->current)) {
+			if (empty($_POST) && !empty($_REQUEST['role'])) {
+				$this->set_current_role(sanitize_key($_REQUEST['role']));
+			}
+		}
+
+		if (!isset($this->current) || !get_role($this->current)) {
+			$this->current = get_option('default_role');
+		}
+
+		if (!in_array($this->current, $roles)) {
+			$this->current = array_shift($roles);
+		}
+
+		if (!empty($_SERVER['REQUEST_METHOD']) && ('POST' == $_SERVER['REQUEST_METHOD']) && isset($_POST['ppc-nav-menu-role']) && !empty($_REQUEST['_wpnonce'])) {
+			if (!wp_verify_nonce(sanitize_key($_REQUEST['_wpnonce']), 'pp-capabilities-nav-menus')) {
+				wp_die('<strong>' . esc_html__('You do not have permission to manage navigation menus.', 'capsman-enhanced') . '</strong>');
+			} else {
+				$menu_role = sanitize_key($_POST['ppc-nav-menu-role']);
+				
+				$this->set_current_role($menu_role);
+
+                //set role nav child menu
+                $nav_item_menu_option = !empty(get_option('capsman_nav_item_menus')) ? get_option('capsman_nav_item_menus') : [];
+
+                $nav_item_menu_option[$menu_role] = isset($_POST['pp_cababilities_restricted_items']) ? array_map('sanitize_text_field', $_POST['pp_cababilities_restricted_items']) : '';
+
+                update_option('capsman_nav_item_menus', $nav_item_menu_option, false);
+
+                ak_admin_notify(__('Settings updated.', 'capsman-enhanced'));
+			}
+		}
+
+        include(dirname(CME_FILE) . '/includes/features/nav-menus.php');
     }
 
 	
