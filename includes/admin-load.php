@@ -91,6 +91,9 @@ class PP_Capabilities_Admin_UI {
 
         //capabilities settings
         add_action('pp-capabilities-settings-ui', [$this, 'settingsUI']);
+
+        //clear the "done" flag on new plugin install 
+        add_action('activated_plugin', [$this, 'clearProfileFeaturesDoneFlag'], 10, 2);
     }
 
 	function register_textdomain() {
@@ -470,5 +473,19 @@ class PP_Capabilities_Admin_UI {
         wp_enqueue_style('pp-capabilities-chosen-css', plugin_dir_url(CME_FILE) . 'common/libs/chosen-v1.8.7/chosen.css', false, PUBLISHPRESS_CAPS_VERSION);
         require_once(dirname(__FILE__).'/settings-ui.php');
         new Capabilities_Settings_UI();
+    }
+
+    /**
+     * Clear the "done" flag on new plugin install 
+     * (forcing another auto-refresh on next Profile Restrictions visit)
+     *
+     * @param string $plugin       Path to the plugin file relative to the plugins directory.
+     * @param bool   $network_wide Whether to enable the plugin for all sites in the network
+     * or just the current site. Multisite only. Default false.
+     * 
+     * @return void
+     */
+    public function clearProfileFeaturesDoneFlag($plugin, $network_wide) {
+        delete_option('capsman_profile_features_updated');
     }
 }

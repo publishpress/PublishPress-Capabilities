@@ -41,7 +41,12 @@ class PP_Capabilities_Profile_Features
         } elseif (!current_user_can($cap_name)) {
             $response['redirect'] = $redirect_url . '&profile_features_status=0&&profile_features_message=1';
         } else {
+            $response['status']  = 'success';
             $profile_features_elements = self::elementsLayout();
+            $profile_feature_role = get_option("capsman_profile_features_elements_testing_role", 'subscriber');
+            $profile_element_updated = (array) get_option("capsman_profile_features_updated", []);
+            $profile_element_updated[$profile_feature_role] = 1;
+            $role_profile_features_elements = [];
             foreach ($page_elements as $key => $data) {
                 $new_element_key  = sanitize_key($key);
                 $new_element_data = [
@@ -49,12 +54,28 @@ class PP_Capabilities_Profile_Features
                     'elements'     => sanitize_text_field($data['elements']),
                     'element_type' => sanitize_key($data['element_type'])
                 ];
-                $profile_features_elements[$new_element_key] = $new_element_data;
+                $role_profile_features_elements[$new_element_key] = $new_element_data;
             }
+            $profile_features_elements[$profile_feature_role] = $role_profile_features_elements;
             update_option('capsman_profile_features_elements', $profile_features_elements, false);
-            $response['redirect'] = $redirect_url . '&profile_features_status=1&&profile_features_message=0';
+            update_option('capsman_profile_features_updated', $profile_element_updated, false);
+            delete_option('capsman_profile_features_elements_testing_role');
+            if (isset($_COOKIE['ppc_test_user_tester_'.COOKIEHASH]) && !empty($_COOKIE['ppc_test_user_tester_'.COOKIEHASH])) {
+                $user = wp_get_current_user();
+                $redirect_url = add_query_arg(
+                    [
+                        'ppc_test_user'   => base64_encode(get_current_user_id()),
+                        'profile_feature_action' => 1,
+                        'ppc_return_back' => 1,
+                        '_wpnonce'        => wp_create_nonce('ppc-test-user')
+                    ], 
+                    home_url()
+                );
+                $response['redirect'] = $redirect_url;
+            } else {
+                $response['redirect'] = $redirect_url . '&profile_features_status=1&profile_features_message=0';
+            }
         }
-
         wp_send_json($response);
     }
 

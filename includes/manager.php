@@ -698,6 +698,7 @@ class CapabilityManager
 			}
 		}
 
+        $this->profileFeaturesCaptureRedirect();
         include(dirname(CME_FILE) . '/includes/features/profile-features.php');
     }
 
@@ -1104,6 +1105,51 @@ class CapabilityManager
 	function settingsPage() {
 		include ( dirname(CME_FILE) . '/includes/settings.php' );
 	}
+
+    /**
+     * Redirect for profile features capturing
+     *
+     * @return void
+     */
+    function profileFeaturesCaptureRedirect() {
+        if (is_admin() && !empty($_REQUEST['page']) && ('pp-capabilities-profile-features' === $_REQUEST['page'])) {
+            global $capsman;
+            $default_role = $capsman->get_last_role();
+            $profile_element_updated = (array) get_option("capsman_profile_features_updated", []);
+            $refresh_element = isset($_REQUEST['refresh_element']) ? (int) $_REQUEST['refresh_element'] : 0;
+            if (is_array($profile_element_updated) && isset($profile_element_updated[$default_role]) && (int)$profile_element_updated[$default_role] > 0) {
+                if ($refresh_element === 0) {
+                    return;
+                }
+            }
+            //get user in current role
+            $role_user = get_users(
+                [
+                    'role'    => $default_role,
+                    'exclude' => [get_current_user_id()],
+                    'number'  => 1,
+                ]
+            );
+            if (!empty($role_user)) {
+                //redirect user to test link for validation and redirection
+                $test_as_user = $role_user[0];
+                $test_link = add_query_arg(
+                    [
+                        'ppc_test_user'         => base64_encode($test_as_user->ID), 
+                        'profile_feature_action' => 1, 
+                        '_wpnonce'              => wp_create_nonce('ppc-test-user')
+                    ], 
+                    admin_url('users.php')
+                );
+                if ($refresh_element > 0) {
+                    delete_option('capsman_profile_features_updated');
+                }
+                update_option('capsman_profile_features_elements_testing_role', $default_role, false);
+                wp_safe_redirect($test_link);
+                exit();
+            }
+		}
+    }
 }
 
 function cme_publishpressFooter() {

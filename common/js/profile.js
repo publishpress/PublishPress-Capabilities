@@ -34,6 +34,7 @@ jQuery(function ($) {
    * Only run the below code if it's profile element update request
    */
   if (window.location.href.indexOf("ppc_profile_element") > -1 && Number(getUrlParameter('ppc_profile_element')) === 1) {
+
     //add spinner
     $('#profile-page').after('<div class="ppc-profile-fullpage-loader"></div>');
     //get all page elements
@@ -53,17 +54,6 @@ jQuery(function ($) {
       'elements': single_element,
       'element_type': 'header'
     };
-    //add 'Add new' button
-    single_element = '#profile-page .page-title-action';
-    element_label = $(single_element).html();
-    if (element_label) {
-      page_elements[cleanUpStrings(single_element)] =
-      {
-        'label': element_label,
-        'elements': single_element,
-        'element_type': 'button'
-      };
-    }
     
     //loop through all profile form parents
     $('#profile-page form').children().each(function () {

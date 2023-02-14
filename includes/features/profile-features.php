@@ -24,37 +24,14 @@ global $capsman;
 
 $roles             = $capsman->roles;
 $default_role      = $capsman->get_last_role();
-$default_role_name = $default_role;
 
 $disabled_profile_items = !empty(get_option('capsman_disabled_profile_features')) ? (array)get_option('capsman_disabled_profile_features') : [];
 $disabled_profile_items = array_key_exists($default_role, $disabled_profile_items) ? (array)$disabled_profile_items[$default_role] : [];
 
 $profile_features_elements = \PublishPress\Capabilities\PP_Capabilities_Profile_Features::elementsLayout();
+$profile_features_elements = isset($profile_features_elements[$default_role]) ? $profile_features_elements[$default_role] : [];
 
-/**
- * User role profile fields differs and as a result,
- * we need user ID from current role to edit
- * while adding current user ID as fallback.
- */
-
-$role_user = get_users(
-    [
-        'role'    => $default_role,
-        'exclude' => [get_current_user_id()],
-        'fields'   => 'ID',
-        'number'  => 1,
-    ]
-);
-
-if (!empty($role_user)) {
-    $role_user_id = $role_user[0];
-} else {
-    $role_user_id = get_current_user_id();
-    $default_role_name = '';
-}
-
-$other_profile_edit_url    = admin_url('user-edit.php?user_id='. $role_user_id .'&ppc_profile_element=1');
-$personal_profile_edit_url = admin_url('user-edit.php?user_id='. get_current_user_id() .'&ppc_profile_element=1');
+$refresh_url = admin_url('admin.php?page=pp-capabilities-profile-features&refresh_element=1');
 ?>
 
     <div class="wrap publishpress-caps-manage pressshack-admin-wrapper pp-capability-menus-wrapper profile-features <?php echo (empty($profile_features_elements) ? 'empty-elements' : ''); ?>">
@@ -84,9 +61,6 @@ $personal_profile_edit_url = admin_url('user-edit.php?user_id='. get_current_use
                                                 <?php
                                                 foreach ($roles as $role_name => $name) :
                                                     $name = translate_user_role($name);
-                                                    if ($role_name === $default_role_name && $default_role === $default_role_name) {
-                                                        $default_role_name = $name;
-                                                    }
                                                     ?>
                                                     <option value="<?php echo esc_attr($role_name); ?>" <?php selected($default_role,
                                                         $role_name); ?>><?php echo esc_html($name); ?></option>
@@ -155,7 +129,7 @@ $personal_profile_edit_url = admin_url('user-edit.php?user_id='. get_current_use
                                                             <tr class="ppc-menu-row parent-menu empty-features-element">
                                                                 <td colspan="2">
                                                                     <?php
-                                                                    printf(esc_html__('Profile features elements is empty. %1s Update %2s profile items %3s or %4s Update general profile items %5s now', 'capsman-enhanced'), '<a href="'. esc_url($other_profile_edit_url) .'">', esc_html($default_role_name), '</a>', '<a href="'. esc_url($personal_profile_edit_url) .'">', '</a>');
+                                                                    esc_html_e('There is no user in this role.', 'capsman-enhanced');
                                                                     ?>
                                                                 </td>
                                                             </tr>
@@ -245,9 +219,8 @@ $personal_profile_edit_url = admin_url('user-edit.php?user_id='. get_current_use
                 ?>
                 <?php 
                 $banner_messages = ['<p>'];
-                $banner_messages[] = esc_html__('Click these links if any items from the Profile screen are missing:', 'capsman-enhanced');
-                $banner_messages[] = '<i class="dashicons dashicons-arrow-right"></i>' . sprintf(esc_html__('%1$s Click to update %2$s profile items. %3$s', 'capsman-enhanced'), '<a href="'. esc_url($other_profile_edit_url) .'">', esc_html($default_role_name), '</a>');
-                $banner_messages[] = '<i class="dashicons dashicons-arrow-right"></i>' . sprintf(esc_html__('%1$s Click to update general profile items. %2$s', 'capsman-enhanced'), '<a href="'. esc_url($personal_profile_edit_url) .'">', '</a>');
+                $banner_messages[] = esc_html__('Click the below link to refresh profile items:', 'capsman-enhanced');
+                $banner_messages[] = '<i class="dashicons dashicons-arrow-right"></i> <a href="'. $refresh_url .'">' . esc_html__('Refresh profile items.', 'capsman-enhanced') .'</a>';
                 $banner_messages[] = '</p>';
                 $banners->pp_display_banner(
                     '',
