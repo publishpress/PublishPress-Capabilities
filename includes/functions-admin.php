@@ -212,6 +212,14 @@ function pp_capabilities_backup_sections()
    $backup_sections[$cms_id . '_admin_features_backup']['label']     = esc_html__('Admin Features', 'capsman-enhanced');
    $backup_sections[$cms_id . '_admin_features_backup']['options'][] = "capsman_disabled_admin_features";
 
+    //Nav Menu
+    $backup_sections['capsman_nav_menu_backup']['label']     = esc_html__('Nav Menu', 'capsman-enhanced');
+    $backup_sections['capsman_nav_menu_backup']['options'][] = "capsman_nav_item_menus";
+
+    //settings
+    $backup_sections['capsman_settings_backup']['label']     = esc_html__('Settings', 'capsman-enhanced');
+    $backup_sections['capsman_settings_backup']['options']   = pp_capabilities_settings_options();
+
    return apply_filters('pp_capabilities_backup_sections', $backup_sections);
 }
 

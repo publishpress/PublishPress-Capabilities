@@ -30,7 +30,9 @@ class Pp_Roles_Manager
         $editable = function_exists('get_editable_roles') ? 
                         array_keys(get_editable_roles()) : 
                         array_keys(apply_filters('editable_roles', $roles));
-        $count = count_users();
+
+        $count = $this->ppc_role_count_users();
+
         $res = [];
 
         foreach ($roles as $role => $detail) {
@@ -75,6 +77,47 @@ class Pp_Roles_Manager
         }
 
         return $res;
+    }
+
+    /**
+     * Count role users
+     *
+     * @return array
+     */
+    public function ppc_role_count_users() {
+
+        $cache_key = 'ppc_role_count_users_cache';
+
+        $count = wp_cache_get($cache_key, 'count');
+
+        if (!$count) {
+
+            /**
+             * The computational strategy to use when counting the users.
+             * 
+             * Using $strategy = ‘time’ this is CPU-intensive and should handle around 10^7 users.
+             * Using $strategy = ‘memory’ this is memory-intensive and should handle around 10^5 users, 
+             * but see WP Bug #12257. https://developer.wordpress.org/reference/functions/count_users/
+             */
+            $time_strategy = (bool) apply_filters('ppc_role_count_users_time_strategy', true);
+
+            if ($time_strategy) {
+                $strategy =  'time';
+            } else {
+                $strategy =  'memory';
+            }
+
+            $count = count_users($strategy);
+
+            $expire_days = 7;
+            $expire_days = apply_filters('ppc_role_count_users_cache_expire_days', $expire_days);
+
+            $expire = (int)$expire_days * DAY_IN_SECONDS;
+            wp_cache_set($cache_key, $count, 'count', $expire);
+
+        }
+
+        return $count;
     }
 
     /**
