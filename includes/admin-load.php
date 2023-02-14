@@ -262,7 +262,7 @@ class PP_Capabilities_Admin_UI {
         if (function_exists('get_current_screen') && (!defined('PUBLISHPRESS_VERSION') || empty($publishpress) || empty($publishpress->modules) || empty($publishpress->modules->roles))) {
             $screen = get_current_screen();
 
-            if ((('user-edit' === $screen->base || 'user' === $screen->base && 'add' === $screen->action) && (defined('PP_CAPABILITIES_ADD_USER_MULTI_ROLES') || get_option('cme_capabilities_add_user_multi_roles')))) {
+            if (('user-edit' === $screen->base && get_option('cme_capabilities_edit_user_multi_roles')) || ('user' === $screen->base && 'add' === $screen->action && (defined('PP_CAPABILITIES_ADD_USER_MULTI_ROLES') || get_option('cme_capabilities_add_user_multi_roles')))) {
                 // Check if we are on the user's profile page
                 wp_enqueue_script(
                     'pp-capabilities-chosen-js',

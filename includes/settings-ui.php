@@ -45,12 +45,28 @@ class Capabilities_Settings_UI {
                             <?php
                                 $checked = checked(!empty(get_option('cme_capabilities_add_user_multi_roles', 0)), true, false);
                             ?>
-                            <th scope="row"><?php esc_html_e('Enable Multiples User Roles', 'capsman-enhanced'); ?></th>
+                            <th scope="row"><?php esc_html_e('Multiples roles on "Add New User" screen', 'capsman-enhanced'); ?></th>
                             <td>
                                 <label> 
                                 <input type="checkbox" name="cme_capabilities_add_user_multi_roles" id="cme_capabilities_add_user_multi_roles" autocomplete="off" value="1" <?php echo $checked;?>>
                                 <span class="description">
-                                    <?php esc_html_e('This allows you to assign a user to multiples roles on the "Add New User" and "User Edit" screen.', 'capsman-enhanced'); ?>
+                                    <?php esc_html_e('This allows you to assign a user to multiples roles on the "Add New User" screen.', 'capsman-enhanced'); ?>
+                                </span>
+                                </label>
+                                <br>
+                            </td>
+                        </tr>
+
+                            <tr>
+                            <?php
+                                $checked = checked(!empty(get_option('cme_capabilities_edit_user_multi_roles', 0)), true, false);
+                            ?>
+                            <th scope="row"><?php esc_html_e('Multiples roles on "User Edit" screen', 'capsman-enhanced'); ?></th>
+                            <td>
+                                <label> 
+                                <input type="checkbox" name="cme_capabilities_edit_user_multi_roles" id="cme_capabilities_edit_user_multi_roles" autocomplete="off" value="1" <?php echo $checked;?>>
+                                <span class="description">
+                                    <?php esc_html_e('This allows you to assign multiple roles on the "User Edit" screen.', 'capsman-enhanced'); ?>
                                 </span>
                                 </label>
                                 <br>
