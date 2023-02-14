@@ -22,6 +22,8 @@ class CoreAdmin {
                         ['base' => 'capabilities_page_pp-capabilities'],
                         ['base' => 'capabilities_page_pp-capabilities-editor-features'],
                         ['base' => 'capabilities_page_pp-capabilities-admin-features'],
+                        ['base' => 'capabilities_page_pp-capabilities-profile-features'],
+                        ['base' => 'capabilities_page_pp-capabilities-nav-menus'],
                         ['base' => 'capabilities_page_pp-capabilities-backup'],
                         ['base' => 'capabilities_page_pp-capabilities-settings'],
                     ]
@@ -60,17 +62,11 @@ class CoreAdmin {
         $cap_name = (is_multisite() && is_super_admin()) ? 'read' : 'manage_capabilities';
         
         add_submenu_page('pp-capabilities-roles',  esc_html__('Admin Menus', 'capsman-enhanced'), esc_html__('Admin Menus', 'capsman-enhanced'), $cap_name, 'pp-capabilities-admin-menus', [$this, 'AdminMenusPromo']);
-        add_submenu_page('pp-capabilities-roles',  esc_html__('Nav Menus', 'capsman-enhanced'), esc_html__('Nav Menus', 'capsman-enhanced'), $cap_name, 'pp-capabilities-nav-menus', [$this, 'NavMenusPromo']);
     }
 
     function AdminMenusPromo() {
         wp_enqueue_style('pp-capabilities-admin-core', plugin_dir_url(CME_FILE) . 'includes-core/admin-core.css', [], PUBLISHPRESS_CAPS_VERSION, 'all');
         include (dirname(__FILE__) . '/admin-menus-promo.php');
-    }
-
-    function NavMenusPromo() {
-        wp_enqueue_style('pp-capabilities-admin-core', plugin_dir_url(CME_FILE) . 'includes-core/admin-core.css', [], PUBLISHPRESS_CAPS_VERSION, 'all');
-        include (dirname(__FILE__) . '/nav-menus-promo.php');
     }
 
     function metaboxesPromo(){

@@ -297,6 +297,14 @@ class Pp_Roles_Actions
                update_option('capsman_disabled_admin_features', $disabled_admin_items, false);
            }
 
+
+            //Nav Menu
+            $nav_item_menu_option = !empty(get_option('capsman_nav_item_menus')) ? get_option('capsman_nav_item_menus') : [];
+            if (is_array($nav_item_menu_option) && array_key_exists($copied_role, $nav_item_menu_option)) {
+                $nav_item_menu_option[$role_slug] = $nav_item_menu_option[$copied_role];
+                update_option('capsman_nav_item_menus', $nav_item_menu_option, false);
+            }
+
            /**
              * Allow other plugins to perform action after role is copied.
              *
