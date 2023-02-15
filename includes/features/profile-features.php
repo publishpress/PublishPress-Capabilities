@@ -219,7 +219,6 @@ $refresh_url = admin_url('admin.php?page=pp-capabilities-profile-features&refres
                 ?>
                 <?php 
                 $banner_messages = ['<p>'];
-                $banner_messages[] = esc_html__('Click the below link to refresh profile items:', 'capsman-enhanced');
                 $banner_messages[] = '<i class="dashicons dashicons-arrow-right"></i> <a href="'. $refresh_url .'">' . esc_html__('Refresh profile items.', 'capsman-enhanced') .'</a>';
                 $banner_messages[] = '</p>';
                 $banners->pp_display_banner(
