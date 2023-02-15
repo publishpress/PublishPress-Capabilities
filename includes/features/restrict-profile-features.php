@@ -34,12 +34,9 @@ class PP_Capabilities_Profile_Features
 
         $security       = isset($_POST['security']) ? sanitize_key($_POST['security']) : false;
         $page_elements  = isset($_POST['page_elements']) ? $_POST['page_elements'] : [];// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-        $cap_name = (is_multisite() && is_super_admin()) ? 'read' : 'manage_capabilities';
-
+        
         if (!$security || !wp_verify_nonce($security, 'ppc-profile-edit-action')) {
             $response['redirect'] = $redirect_url . '&profile_features_status=0&&profile_features_message=0';
-        } elseif (!current_user_can($cap_name)) {
-            $response['redirect'] = $redirect_url . '&profile_features_status=0&&profile_features_message=1';
         } else {
             $response['status']  = 'success';
             $profile_features_elements = self::elementsLayout();

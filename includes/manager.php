@@ -166,6 +166,9 @@ class CapabilityManager
 
         //process export
         add_action( 'admin_init', [$this, 'processExport']);
+
+        //redirect for profile features capturing
+        add_action('admin_init', [$this, 'profileFeaturesCaptureRedirect']);
 	}
 
     /**
@@ -698,7 +701,6 @@ class CapabilityManager
 			}
 		}
 
-        $this->profileFeaturesCaptureRedirect();
         include(dirname(CME_FILE) . '/includes/features/profile-features.php');
     }
 
@@ -1112,9 +1114,20 @@ class CapabilityManager
      * @return void
      */
     function profileFeaturesCaptureRedirect() {
-        if (is_admin() && !empty($_REQUEST['page']) && ('pp-capabilities-profile-features' === $_REQUEST['page'])) {
+
+		if ((!is_multisite() || !is_super_admin()) && !current_user_can('administrator') && !current_user_can('manage_capabilities')) {
+            return;
+		}
+
+        if (is_admin() && !empty($_REQUEST['page']) && 'pp-capabilities-profile-features' === $_REQUEST['page']) {
             global $capsman;
             $default_role = $capsman->get_last_role();
+
+            if (!empty($_REQUEST['role'])) {
+				$default_role = sanitize_key($_REQUEST['role']);
+                $this->set_current_role($default_role);
+			}
+
             $profile_element_updated = (array) get_option("capsman_profile_features_updated", []);
             $refresh_element = isset($_REQUEST['refresh_element']) ? (int) $_REQUEST['refresh_element'] : 0;
             if (is_array($profile_element_updated) && isset($profile_element_updated[$default_role]) && (int)$profile_element_updated[$default_role] > 0) {
