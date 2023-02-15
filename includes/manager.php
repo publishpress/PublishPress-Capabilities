@@ -1143,24 +1143,30 @@ class CapabilityManager
                     'number'  => 1,
                 ]
             );
-            if (!empty($role_user)) {
-                //redirect user to test link for validation and redirection
+
+            if (empty($role_user) && $default_role !== 'administrator') {
+                return;
+            }
+            //redirect user to test link for validation and redirection
+            if (empty($role_user)) {
+                $test_link = admin_url('profile.php?ppc_profile_element=1');
+            } else {
                 $test_as_user = $role_user[0];
                 $test_link = add_query_arg(
                     [
-                        'ppc_test_user'         => base64_encode($test_as_user->ID), 
-                        'profile_feature_action' => 1, 
+                        'ppc_test_user'         => base64_encode($test_as_user->ID),
+                        'profile_feature_action' => 1,
                         '_wpnonce'              => wp_create_nonce('ppc-test-user')
-                    ], 
+                    ],
                     admin_url('users.php')
                 );
-                if ($refresh_element > 0) {
-                    delete_option('capsman_profile_features_updated');
-                }
-                update_option('capsman_profile_features_elements_testing_role', $default_role, false);
-                wp_safe_redirect($test_link);
-                exit();
             }
+            if ($refresh_element > 0) {
+                delete_option('capsman_profile_features_updated');
+            }
+            update_option('capsman_profile_features_elements_testing_role', $default_role, false);
+            wp_safe_redirect($test_link);
+            exit();
 		}
     }
 }
