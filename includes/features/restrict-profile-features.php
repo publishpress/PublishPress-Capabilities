@@ -12,10 +12,6 @@ class PP_Capabilities_Profile_Features
     public static function instance() {
         //ajax handler for updating profile features elements
         add_action('wp_ajax_ppc_update_profile_features_element_by_ajax', [__CLASS__, 'profileElementUpdateAjaxHandler']);
-        //request status response code handler
-        add_action('admin_notices', [__CLASS__, 'handleRequestResponseCode']);
-        //add removeable args
-        add_filter('removable_query_args', [__CLASS__, 'addRemovableArgs']);
         //implement profile features restriction
         add_action('admin_head', [__CLASS__, 'applyProfileRestriction'], 1);
     }
@@ -36,7 +32,7 @@ class PP_Capabilities_Profile_Features
         $page_elements  = isset($_POST['page_elements']) ? $_POST['page_elements'] : [];// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
         
         if (!$security || !wp_verify_nonce($security, 'ppc-profile-edit-action')) {
-            $response['redirect'] = $redirect_url . '&profile_features_status=0&&profile_features_message=0';
+            $response['redirect'] = $redirect_url;
         } else {
             $response['status']  = 'success';
             $profile_features_elements = self::elementsLayout();
@@ -70,73 +66,10 @@ class PP_Capabilities_Profile_Features
                 );
                 $response['redirect'] = $redirect_url;
             } else {
-                $response['redirect'] = $redirect_url . '&profile_features_status=1&profile_features_message=0';
+                $response['redirect'] = $redirect_url;
             }
         }
         wp_send_json($response);
-    }
-
-    /**
-     * Get all response code messages
-     *
-     * @return void
-     */
-    public static function getResponseMessages() {
-        $response_messages = [
-            0 => [
-                0 => esc_html__('You do not have permission to manage profile features.', 'capsman-enhanced'),
-                1 => esc_html__('Security verification failed.', 'capsman-enhanced')
-            ],
-            1 => [
-                0 => esc_html__('Profile features element updated successfully.', 'capsman-enhanced')
-            ]
-        ];
-
-        return $response_messages;
-    }
-
-    /**
-     * Request status response code handler
-     *
-     * @return void
-     */
-    public static function handleRequestResponseCode() {
-        if (!isset($_REQUEST['page']) 
-            || (isset($_REQUEST['page']) && $_REQUEST['page'] !== 'pp-capabilities-profile-features')
-            || !isset($_REQUEST['profile_features_status'])
-            || !isset($_REQUEST['profile_features_message'])
-        ) {
-            return;
-        }
-
-        $status_code       = intval($_REQUEST['profile_features_status']);
-        $status_message    = intval($_REQUEST['profile_features_message']);
-        $response_messages = self::getResponseMessages();
-        if ($status_code === 0 && isset($response_messages[$status_code][$status_message])) {
-            ak_admin_error($response_messages[$status_code][$status_message]);
-        } elseif ($status_code === 1 && isset($response_messages[$status_code][$status_message])) {
-            ak_admin_notify($response_messages[$status_code][$status_message]);
-        }
-
-    }
-
-    /**
-     * Add removeable args
-     *
-     * @param array $args
-     * @return array
-     */
-    public static function addRemovableArgs($args) {
-
-        $args = (array) $args;
-
-        return array_merge(
-            $args,
-            [
-                'profile_features_status',
-                'profile_features_message',
-            ]
-        );
     }
 
     /**
