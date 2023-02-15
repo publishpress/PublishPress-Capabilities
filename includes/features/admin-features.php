@@ -243,7 +243,7 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                                     esc_html__( 'PublishPress Permissions is 100% free to install.', 'capsman-enhanced' )
                                 ),
                                 admin_url( 'plugin-install.php?s=publishpress-ppcore-install&tab=search&type=term' ),
-                                esc_html__( 'Click here to install PublishPress Permissions', 'capsman-enhanced' ),
+                                esc_html__( 'Install PublishPress Permissions', 'capsman-enhanced' ),
                                 'install-permissions.jpg'
                             );
                             ?>
