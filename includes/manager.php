@@ -682,10 +682,13 @@ class CapabilityManager
                 $previous_role_element          = !empty($previous_elements[$features_role]) ? (array)$previous_elements[$features_role] : [];
 
                 if (!empty($previous_role_element)) {
-                    $previous_role_element = array_column($previous_role_element, 'elements');
+                    $previous_role_element_items = array_column($previous_role_element, 'elements');
+                } else {
+                    $previous_role_element_items = [];
                 }
 
-                $disabled_element_differences   = array_diff($previous_role_disabled_element, $previous_role_element);
+
+                $disabled_element_differences   = array_diff($previous_role_disabled_element, $previous_role_element_items);
                 $new_disabled_element_items     = array_merge($new_disabled_element, $disabled_element_differences);
                 $new_disabled_element_items     = array_filter($new_disabled_element_items);
 
@@ -701,11 +704,12 @@ class CapabilityManager
                     if (!empty($profile_features_elements_order)) {
                         $new_elements     = [];
                         foreach($profile_features_elements_order as $element_key) {
-                            if (isset($previous_elements[$element_key])) {
-                                $new_elements[$element_key] = $previous_elements[$element_key];
+                            if (isset($previous_role_element[$element_key])) {
+                                $new_elements[$element_key] = $previous_role_element[$element_key];
                             }
                         }
-                        update_option('capsman_profile_features_elements', $new_elements, false);
+                        $previous_elements[$features_role] = $new_elements;
+                        update_option('capsman_profile_features_elements', $previous_elements, false);
                     }
                 }
 				
