@@ -675,10 +675,23 @@ class CapabilityManager
 				
 				$this->set_current_role($features_role);
 
-				$disabled_profile_items = !empty(get_option('capsman_disabled_profile_features')) ? (array)get_option('capsman_disabled_profile_features') : [];
-				$disabled_profile_items[$features_role] = isset($_POST['capsman_disabled_profile_features']) ? array_map('sanitize_text_field', $_POST['capsman_disabled_profile_features']) : '';
+                $previous_elements              = !empty(get_option('capsman_profile_features_elements')) ? (array)get_option('capsman_profile_features_elements') : [];
+				$previous_disabled_profile_items = !empty(get_option('capsman_disabled_profile_features')) ? (array)get_option('capsman_disabled_profile_features') : [];
+                $new_disabled_element           = isset($_POST['capsman_disabled_profile_features']) ? array_map('sanitize_text_field', $_POST['capsman_disabled_profile_features']) : [];
+                $previous_role_disabled_element = !empty($previous_disabled_profile_items[$features_role]) ? (array)$previous_disabled_profile_items[$features_role] : [];
+                $previous_role_element          = !empty($previous_elements[$features_role]) ? (array)$previous_elements[$features_role] : [];
 
-				update_option('capsman_disabled_profile_features', $disabled_profile_items, false);
+                if (!empty($previous_role_element)) {
+                    $previous_role_element = array_column($previous_role_element, 'elements');
+                }
+
+                $disabled_element_differences   = array_diff($previous_role_disabled_element, $previous_role_element);
+                $new_disabled_element_items     = array_merge($new_disabled_element, $disabled_element_differences);
+                $new_disabled_element_items     = array_filter($new_disabled_element_items);
+
+				$previous_disabled_profile_items[$features_role] = $new_disabled_element_items;
+
+				update_option('capsman_disabled_profile_features', $previous_disabled_profile_items, false);
 
                 //update element sort
 				$profile_features_elements_order = !empty($_POST['capsman_profile_features_elements_order']) ? sanitize_text_field($_POST['capsman_profile_features_elements_order']) : false;
@@ -686,11 +699,10 @@ class CapabilityManager
                     $profile_features_elements_order = explode(",", $profile_features_elements_order);
                     $profile_features_elements_order = array_filter($profile_features_elements_order);
                     if (!empty($profile_features_elements_order)) {
-                        $previos_elements = !empty(get_option('capsman_profile_features_elements')) ? (array)get_option('capsman_profile_features_elements') : [];
                         $new_elements     = [];
                         foreach($profile_features_elements_order as $element_key) {
-                            if (isset($previos_elements[$element_key])) {
-                                $new_elements[$element_key] = $previos_elements[$element_key];
+                            if (isset($previous_elements[$element_key])) {
+                                $new_elements[$element_key] = $previous_elements[$element_key];
                             }
                         }
                         update_option('capsman_profile_features_elements', $new_elements, false);
