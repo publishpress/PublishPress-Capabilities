@@ -270,6 +270,9 @@ class PP_Capabilities_Admin_UI {
             $screen = get_current_screen();
 
             if ('user-edit' === $screen->base || 'profile' === $screen->base || ('user' === $screen->base && 'add' === $screen->action)) {
+
+				$multi_role = ('user-edit' === $screen->base && get_option('cme_capabilities_edit_user_multi_roles')) || ('user' === $screen->base && 'add' === $screen->action && (defined('PP_CAPABILITIES_ADD_USER_MULTI_ROLES') || get_option('cme_capabilities_add_user_multi_roles'))) ? true : false;
+
                 // Check if we are on the user's profile page
                 wp_enqueue_script(
                     'pp-capabilities-chosen-js',
@@ -317,7 +320,7 @@ class PP_Capabilities_Admin_UI {
                     [
                         'role_description'  => esc_html__('Drag multiple roles selection to change order.', 'capsman-enhanced'),
                         'selected_roles'    => $roles,
-                        'multi_roles'       => (defined('PP_CAPABILITIES_ADD_USER_MULTI_ROLES') || get_option('cme_capabilities_add_user_multi_roles')) ? 1 : 0,
+                        'multi_roles'       => $multi_role ? 1 : 0,
                         'profile_page_title' => esc_html__('Page title', 'capsman-enhanced'),
                         'rankmath_title'    => esc_html__('Rank Math SEO', 'capsman-enhanced'),
                         'nonce'             => wp_create_nonce('ppc-profile-edit-action')
