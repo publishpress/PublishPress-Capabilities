@@ -57,9 +57,16 @@ class PP_Capabilities_Test_User
         if (!$request_user || (is_object($request_user) && !isset($request_user->ID))) {
             wp_die(esc_html__('Unable to retrieve user data.', 'capsman-enhanced'));
         } else {
+            $profile_feature_action = isset($_GET['profile_feature_action']) ? (int) sanitize_text_field($_GET['profile_feature_action']) : 0;
             if ($ppc_return_back > 0) {
                 $user_auth        = wp_unslash(self::testerAuth());
                 $original_user_id = wp_validate_auth_cookie($user_auth, 'logged_in');
+
+                if ($profile_feature_action === 1) {
+                    $redirect_url = admin_url('admin.php?page=pp-capabilities-profile-features');
+                } else {
+                    $redirect_url = admin_url();
+                }
 
                 if ($original_user_id) {
                     wp_set_auth_cookie($original_user_id, false);
@@ -68,10 +75,16 @@ class PP_Capabilities_Test_User
                     $this->clearTestUserCookie();
 
                     //redirect back to admin dashboard
-                    wp_safe_redirect(admin_url());
+                    wp_safe_redirect($redirect_url);
                     exit;
                 }
             } elseif (is_admin() && self::canTestUser($request_user)) {
+
+                if ($profile_feature_action === 1) {
+                    $redirect_url = admin_url('profile.php?ppc_profile_element=1');
+                } else {
+                    $redirect_url = admin_url();
+                }
 
                 // Create and set auth cookie for current user before switching
                 $token = function_exists('wp_get_session_token') ? wp_get_session_token() : '';
@@ -84,7 +97,7 @@ class PP_Capabilities_Test_User
                 wp_set_auth_cookie($request_user_id, false);
 
                 //redirect user to admin dashboard
-                wp_safe_redirect(admin_url());
+                wp_safe_redirect($redirect_url);
                 exit;
             }
         }

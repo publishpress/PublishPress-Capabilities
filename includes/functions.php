@@ -397,7 +397,8 @@ function pp_capabilities_admin_pages(){
         'pp-capabilities-editor-features', 
         'pp-capabilities-backup', 
         'pp-capabilities-settings', 
-        'pp-capabilities-admin-features'
+        'pp-capabilities-admin-features', 
+        'pp-capabilities-profile-features'
     ];
 
    return apply_filters('pp_capabilities_admin_pages', $pp_capabilities_pages);
