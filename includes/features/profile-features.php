@@ -160,7 +160,6 @@ $refresh_url = admin_url('admin.php?page=pp-capabilities-profile-features&refres
                                                                             <strong class="menu-item-link<?php echo (in_array($restrict_value, $disabled_profile_items)) ? ' restricted' : ''; ?>">
                                                                                 <span class="dashicons dashicons-portfolio"></span>
                                                                                 <?php echo esc_html($item_name); ?>
-                                                                                <small class="cme-subtext">[<?php echo esc_html($element_type); ?>]</small>
                                                                             </strong>
                                                                         </label>
                                                                     </td>
@@ -184,7 +183,6 @@ $refresh_url = admin_url('admin.php?page=pp-capabilities-profile-features&refres
                                                                             <strong>
                                                                                  <?php echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &mdash;'; ?> 
                                                                                 <?php echo esc_html($item_name); ?>
-                                                                                <small class="cme-subtext">[<?php echo esc_html($element_type); ?>]</small>
                                                                             </strong></span>
                                                                         </label>
                                                                     </td>
