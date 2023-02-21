@@ -290,7 +290,7 @@ class Pp_Roles_Admin
             //add disable_woocommerce_admin_restrictions
             $fields['disable_woocommerce_admin_restrictions'] = [
                 'label'        => esc_html__('Disable WooCommerce admin restrictions', 'capsman-enhanced'),
-                'description'  => esc_html__('WooCommerce blocks most users from accessing the WordPress admin area. When enabled, this setting will remove those restrictions.', 'capsman-enhanced'),
+                'description'   => sprintf(esc_html__('By default, WooCommerce prevents most users from accessing the WordPress admin area. When enabled, this setting will remove those restrictions for this role. %1s Click here for more details. %2s', 'capsman-enhanced'), '<a href="https://publishpress.com/knowledge-base/wordpress-admin-area-access-for-woocommerce-users/" target="blank">', '</a>'),
                 'type'         => 'checkbox',
                 'value_key'    => 'disable_woocommerce_admin_restrictions',
                 'tab'          => 'woocommerce',
@@ -457,7 +457,7 @@ class Pp_Roles_Admin
                         <?php echo ($args['required'] ? 'required="true"' : '');?> 
                         <?php echo (!$args['editable'] ? 'readonly="readonly"' : ''); ?>/>
                         <?php if (isset($args['description'])) : ?>
-                            <span class="description"><?php echo esc_html($args['description']); ?></span>
+                            <span class="description"><?php echo $args['description']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
                         <?php endif; ?>
                 <?php  elseif ($args['key'] === 'login_redirect') :
                         $referer_redirect = (is_array($current) && isset($current['referer_redirect']) && (int)$current['referer_redirect'] > 0) ? true : false;
