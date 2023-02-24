@@ -23,6 +23,7 @@ class CoreAdmin {
                         ['base' => 'capabilities_page_pp-capabilities-editor-features'],
                         ['base' => 'capabilities_page_pp-capabilities-admin-features'],
                         ['base' => 'capabilities_page_pp-capabilities-profile-features'],
+                        ['base' => 'capabilities_page_pp-capabilities-frontend-features'],
                         ['base' => 'capabilities_page_pp-capabilities-nav-menus'],
                         ['base' => 'capabilities_page_pp-capabilities-backup'],
                         ['base' => 'capabilities_page_pp-capabilities-settings'],

@@ -614,7 +614,8 @@ body.capabilities_page_pp-capabilities-nav-menus .pp-capability-menus-select .re
 }
 
 
-body.capabilities_page_pp-capabilities-admin-features .pp-capability-menus-select .restrict-column {
+body.capabilities_page_pp-capabilities-admin-features .pp-capability-menus-select .restrict-column,
+body.capabilities_page_pp-capabilities-frontend-features .pp-capability-menus-select .restrict-column {
   width: 70px !important;
 }
 
@@ -766,6 +767,7 @@ div.ppc-editor-features-classic-toggle {
 .pp-column-right.capabilities-sidebar .pp-sidebar-box ul,
 .pp-capability-menus-wrapper.editor-features .pp-column-right .pp-sidebar-box:first-of-type ul,
 .pp-capability-menus-wrapper.admin-features .pp-column-right .pp-sidebar-box:first-of-type ul,
+.pp-capability-menus-wrapper.frontend-features .pp-column-right .pp-sidebar-box:first-of-type ul,
 .pp-capability-menus-wrapper.profile-features .pp-column-right .pp-sidebar-box:first-of-type ul,
 .pp-capability-menus-wrapper.nav-menus .pp-column-right .pp-sidebar-box:first-of-type ul {
     padding: 0 !important;
@@ -775,6 +777,7 @@ div.ppc-editor-features-classic-toggle {
 .pp-column-right.capabilities-sidebar .pp-sidebar-box:first-of-type ul input:disabled,
 .pp-capability-menus-wrapper.editor-features .pp-column-right .pp-sidebar-box:first-of-type ul input:disabled,
 .pp-capability-menus-wrapper.admin-features .pp-column-right .pp-sidebar-box:first-of-type ul input:disabled,
+.pp-capability-menus-wrapper.frontend-features .pp-column-right .pp-sidebar-box:first-of-type ul input:disabled,
 .pp-capability-menus-wrapper.profile-features .pp-column-right .pp-sidebar-box:first-of-type ul input:disabled,
 .pp-capability-menus-wrapper.nav-menus .pp-column-right .pp-sidebar-box:first-of-type ul input:disabled {
     opacity: 1 !important;
@@ -786,6 +789,7 @@ div.ppc-editor-features-classic-toggle {
 
 .pp-capability-menus-wrapper.editor-features .pp-column-right .pp-sidebar-box:first-of-type ul input[type=checkbox]:checked::before,
 .pp-capability-menus-wrapper.admin-features .pp-column-right .pp-sidebar-box:first-of-type ul input[type=checkbox]:checked::before,
+.pp-capability-menus-wrapper.frontend-features .pp-column-right .pp-sidebar-box:first-of-type ul input[type=checkbox]:checked::before,
 .pp-capability-menus-wrapper.profile-features .pp-column-right .pp-sidebar-box:nth-of-type(2) ul input[type=checkbox]:checked::before,
 .pp-capability-menus-wrapper.nav-menus .pp-column-right .pp-sidebar-box:first-of-type ul input[type=checkbox]:checked::before {
     content: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHByZXNlcnZlQXNwZWN0UmF0aW89InhNaWRZTWlkIG1lZXQiIHZpZXdCb3g9IjAgMCAyMCAyMCIgc3R5bGU9Ii1tcy10cmFuc2Zvcm06IHJvdGF0ZSgzNjBkZWcpOyAtd2Via2l0LXRyYW5zZm9ybTogcm90YXRlKDM2MGRlZyk7IHRyYW5zZm9ybTogcm90YXRlKDM2MGRlZyk7Ij48cGF0aCBkPSJNMTQuOTUgNi40NkwxMS40MSAxMGwzLjU0IDMuNTRsLTEuNDEgMS40MUwxMCAxMS40MmwtMy41MyAzLjUzbC0xLjQyLTEuNDJMOC41OCAxMEw1LjA1IDYuNDdsMS40Mi0xLjQyTDEwIDguNThsMy41NC0zLjUzeiIgZmlsbD0iI2RjMTQzYyIvPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgwLCAwLCAwLCAwKSIgLz48L3N2Zz4=) !important;
@@ -803,6 +807,7 @@ div.ppc-editor-features-classic-toggle {
 
 .pp-capability-menus-wrapper.editor-features .pp-column-right .pp-sidebar-box:first-of-type ul,
 .pp-capability-menus-wrapper.admin-features .pp-column-right .pp-sidebar-box:first-of-type ul,
+.pp-capability-menus-wrapper.frontend-features .pp-column-right .pp-sidebar-box:first-of-type ul,
 .pp-capability-menus-wrapper.profile-features .pp-column-right .pp-sidebar-box:nth-of-type(1) ul,
 .pp-capability-menus-wrapper.profile-features .pp-column-right .pp-sidebar-box:nth-of-type(2) ul,
 .pp-capability-menus-wrapper.nav-menus .pp-column-right .pp-sidebar-box:first-of-type ul {
@@ -846,6 +851,109 @@ body.capabilities_page_pp-capabilities-nav-menus .pp-capability-menus-select .re
 }
 
 
+.frontend-features-form.simple-form .field-row th {
+    width: 155px;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    vertical-align: baseline;
+    border: none !important;
+}
+
+.frontend-features-form.simple-form .field-row td {
+    padding-left: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.frontend-features-form.simple-form .field-row input,
+.frontend-features-form.simple-form .field-row textarea,
+.frontend-features-form.simple-form .field-row textarea + .CodeMirror-wrap {
+    width: 80%;
+}
+
+.frontend-features-form.simple-form .field-row textarea {
+    resize: none;
+    height: 30px;
+    vertical-align: top;
+}
+
+.frontend-features-form.simple-form .field-row .chosen-container + input {
+    width: 50%;
+}
+
+.frontend-features-save-button-warning {
+    display: none;
+    color: red;
+    padding-left: 10px;
+}
+
+.pressshack-admin-wrapper input[type=submit][disabled]:hover + .frontend-features-save-button-warning {
+    display: block;
+    float: left;
+    margin-right: 10px;
+}
+
+.frontend-feature-entry {
+    color: #50575e;
+}
+
+.frontend-feature-entry-pages {
+    color: green;
+}
+
+.frontend-feature-red {
+    color: red;
+}
+
+.frontend-custom-styles-output {
+    max-height: 200px;
+    overflow-y: auto;
+    width: auto;
+    background-color: #fff;
+    color: #000;
+    padding: 8px 12px;
+    border-left: 4px solid #04AA6D;
+    word-wrap: break-word;
+    font-size: 15px;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    max-width: 480px;
+}
+
+.ppc-menu-overlay-item {
+    background: #feb123 !important;
+    opacity: 0.7 !important;
+}
+
+.pp-capability-menus-wrapper.frontend-features #pp-capability-menus-general #ppc-capabilities-wrapper {
+    border: none;
+}
+
+.pp-capability-menus-wrapper.frontend-features .ppc-capabilities-tabs {
+    min-width: 255px;
+}
+
+.pp-capability-menus-wrapper.frontend-features .ppc-capabilities-tabs li i {
+    font-size: 18px;
+}
+
+.pp-capability-menus-wrapper.frontend-features #ppc-capabilities-wrapper .ppc-capabilities-content > div {
+    padding: 0 !important;
+}
+
+.pp-capability-menus-wrapper.frontend-features table#akmin .pp-capability-menus-select .restrict-column {
+    min-width: 0;
+}
+
+.pp-capability-menus-wrapper.frontend-features .striped > tbody > :nth-child(odd) {
+    background-color: transparent;
+}
+.pp-capability-menus-wrapper.frontend-features .striped > tbody > :nth-child(even) {
+    background-color: #f6f7f7;
+}
+
+
 @media (min-width: 1200px) {
   .pp-column-right.capabilities-sidebar {
     padding-top: 50px;
@@ -853,7 +961,8 @@ body.capabilities_page_pp-capabilities-nav-menus .pp-capability-menus-select .re
   .pp-capability-menus-wrapper.editor-features div.pp-column-right {
     padding-top: 110px;
   }
-  .pp-capability-menus-wrapper.admin-features div.pp-column-right {
+  .pp-capability-menus-wrapper.admin-features div.pp-column-right,
+  .pp-capability-menus-wrapper.frontend-features div.pp-column-right {
       padding-top: 80px;
   }
   .pp-capability-menus-wrapper.nav-menus div.pp-column-right {

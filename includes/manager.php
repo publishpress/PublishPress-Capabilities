@@ -183,7 +183,7 @@ class CapabilityManager
 		if (empty($_REQUEST['page']) 
 		|| !in_array( 
 			$_REQUEST['page'], 
-			['pp-capabilities', 'pp-capabilities-roles', 'pp-capabilities-admin-menus', 'pp-capabilities-nav-menus', 'pp-capabilities-editor-features', 'pp-capabilities-backup', 'pp-capabilities-settings', 'pp-capabilities-admin-features', 'pp-capabilities-profile-features']
+			['pp-capabilities', 'pp-capabilities-roles', 'pp-capabilities-admin-menus', 'pp-capabilities-nav-menus', 'pp-capabilities-editor-features', 'pp-capabilities-backup', 'pp-capabilities-settings', 'pp-capabilities-admin-features', 'pp-capabilities-profile-features', 'pp-capabilities-frontend-features']
 			)
 		) {
 			return;
@@ -378,6 +378,8 @@ class CapabilityManager
 		add_submenu_page('pp-capabilities-roles',  __('Editor Features', 'capsman-enhanced'), __('Editor Features', 'capsman-enhanced'), $cap_name, 'pp-capabilities-editor-features', [$this, 'ManageEditorFeatures']);
 
 		add_submenu_page('pp-capabilities-roles',  __('Admin Features', 'capsman-enhanced'), __('Admin Features', 'capsman-enhanced'), $cap_name, 'pp-capabilities-admin-features', [$this, 'ManageAdminFeatures']);
+
+		add_submenu_page('pp-capabilities-roles',  __('Frontend Features', 'capsman-enhanced'), __('Frontend Features', 'capsman-enhanced'), $cap_name, 'pp-capabilities-frontend-features', [$this, 'ManageFrontendFeatures']);
 
 		add_submenu_page('pp-capabilities-roles',  __('Profile Features', 'capsman-enhanced'), __('Profile Features', 'capsman-enhanced'), $cap_name, 'pp-capabilities-profile-features', [$this, 'ManageProfileFeatures']);
 
@@ -586,6 +588,54 @@ class CapabilityManager
 		}
 
         include(dirname(CME_FILE) . '/includes/features/admin-features.php');
+    }
+	
+	/**
+	 * Manages Frontend Features
+	 *
+	 * @return void
+	 */
+	public function ManageFrontendFeatures() {
+		if ((!is_multisite() || !is_super_admin()) && !current_user_can('administrator') && !current_user_can('manage_capabilities')) {
+            // TODO: Implement exceptions.
+		    wp_die('<strong>' . esc_html__('You do not have permission to manage frontend features.', 'capsman-enhanced') . '</strong>');
+		}
+
+		$this->generateNames();
+		$roles = array_keys($this->roles);
+
+		if (!isset($this->current)) {
+			if (empty($_POST) && !empty($_REQUEST['role'])) {
+				$this->set_current_role(sanitize_key($_REQUEST['role']));
+			}
+		}
+
+		if (!isset($this->current) || !get_role($this->current)) {
+			$this->current = get_option('default_role');
+		}
+
+		if (!in_array($this->current, $roles)) {
+			$this->current = array_shift($roles);
+		}
+
+		if (!empty($_SERVER['REQUEST_METHOD']) && ('POST' == $_SERVER['REQUEST_METHOD']) && isset($_POST['ppc-frontend-features-role']) && !empty($_REQUEST['_wpnonce'])) {
+			if (!wp_verify_nonce(sanitize_key($_REQUEST['_wpnonce']), 'pp-capabilities-frontend-features')) {
+				wp_die('<strong>' . esc_html__('You do not have permission to manage frontend features.', 'capsman-enhanced') . '</strong>');
+			} else {
+				$features_role = sanitize_key($_POST['ppc-frontend-features-role']);
+				
+				$this->set_current_role($features_role);
+
+				$disabled_frontend_items = !empty(get_option('capsman_disabled_frontend_features')) ? (array)get_option('capsman_disabled_frontend_features') : [];
+				$disabled_frontend_items[$features_role] = isset($_POST['capsman_disabled_frontend_features']) ? array_map('sanitize_text_field', $_POST['capsman_disabled_frontend_features']) : '';
+
+				update_option('capsman_disabled_frontend_features', $disabled_frontend_items, false);
+				
+	            ak_admin_notify(__('Settings updated.', 'capsman-enhanced'));
+			}
+		}
+
+        include(dirname(CME_FILE) . '/includes/features/frontend-features/frontend-features.php');
     }
 	
 	/**

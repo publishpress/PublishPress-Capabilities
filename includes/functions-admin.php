@@ -7,6 +7,10 @@
  *
  */
 
+
+require_once (dirname(CME_FILE) . '/includes/features/frontend-features/frontend-features-action.php');
+\PublishPress\Capabilities\PP_Capabilities_Frontend_Features_Action::instance();
+
 function cme_fakefunc() {
 }
 
