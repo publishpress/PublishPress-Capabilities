@@ -7,7 +7,7 @@ Tags: user roles, capabilities, permissions, admin menus, post editing, post typ
 Requires at least: 4.9.7
 Tested up to: 6.1
 Requires PHP: 5.6.20
-Stable tag: 2.6.1
+Stable tag: 2.7.0
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
