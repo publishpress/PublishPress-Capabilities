@@ -7,11 +7,11 @@ Tags: user roles, capabilities, permissions, admin menus, post editing, post typ
 Requires at least: 4.9.7
 Tested up to: 6.1
 Requires PHP: 5.6.20
-Stable tag: 2.6.1
+Stable tag: 2.7.0
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
-The best permissions plugin allows you to customize user roles, editor features and admin menus. You control who has access to your WordPress site.  
+The best permissions plugin to customize user roles, editor features and admin menus. You control who has access to your WordPress site and all the features in your WordPress admin area.
 
 == Description ==
 
@@ -45,6 +45,7 @@ PublishPress Capabilities is **safe to use**. Every time you change your site's 
 11. **Media library permissions**: Decide who can upload, edit and delete files.
 12. **WooCommerce permissions**: Control access to WooCommerce products, orders, coupons and more.
 13. **Multisite support**: Manage permissions on a single site or across your whole network.
+14. **User switching**: Test any user's account without resetting their password.
 
 ## #1. WordPress User Role Editor ##
 
@@ -127,6 +128,12 @@ We mentioned earlier that PublishPress Capabilities has special support for WooC
 PublishPress Capabilities allows you to control permissions on a single site or across your whole network. Every time you update permissions in PublishPress Capabilities, you can choose to sync those changes across your multisite network.
 
 [Click here to learn about multisite permissions](https://publishpress.com/knowledge-base/multisite-network/).
+
+## #14. User Testing ##
+
+If you run a WordPress website which allows users to log in, you probably spend a lot of time answering account questions or solving website bugs for your users. Site administrators often have to browse their site and see exactly what the user sees. They need to test the user's account without resetting their password. This is possible with PublishPress Capabilities.
+
+[Click here to learn about user testing](https://publishpress.com/knowledge-base/user-testing/).
 
 ## Join PublishPress and get the Pro plugins ##
 
@@ -408,6 +415,21 @@ Fixed : Non-administrators with user editing capabilities could add new Administ
 Fixed : Security issue. Please update.
 
 == Changelog ==
+
+= 2.7.0 - 27 Feb 2022 =
+  * Feature : Allow admins to customize the "Profile" screen for users (Profile Features), #271
+  * Update : Make "Nav Menus" available in Free version, #606
+  * Update : Add copy & revise capabilities when Revisions activated, #596
+  * Update : Implement UI friendly checkbox for shared capabilities, #686
+  * Update : Add required capability for WooCommerce admin restrictions, #687
+  * Update : Ability to disable multiple roles on user edit screen, #622
+  * Fixed : Custom item did not included in export/import, #631
+  * Fixed : Template and Permalink are not hidden, #650
+  * Fixed : Text error if no "read" capability, #700
+  * Fixed : Application Timeout error in Capabilities plugin, #683
+  * Update : Remove Note from plugin screens, #614
+  * Fixed : Inconsistent right sidebar, #690
+  * Update : Capabilities FR-IT Translation Updates 2023, #652
 
 = 2.6.1 - 08 Dec 2022 =
   * Update : Allow users to block some roles from "User Testing", #621

@@ -264,6 +264,13 @@ class Pp_Roles_Actions
         $role_option['disable_role_user_login'] = !empty($_REQUEST['disable_role_user_login']) ? (int) $_REQUEST['disable_role_user_login'] : 0;
         if (defined('WC_PLUGIN_FILE')) {
             $role_option['disable_woocommerce_admin_restrictions'] = !empty($_REQUEST['disable_woocommerce_admin_restrictions']) ? (int) $_REQUEST['disable_woocommerce_admin_restrictions'] : 0;
+
+            if (!empty($role_option['disable_woocommerce_admin_restrictions'])) {
+                // get the the role object
+                $role_object = get_role($role['name']);
+                // add 'view_admin_dashboard' capability to this role object
+                $role_object->add_cap('view_admin_dashboard');
+            }
         }
         update_option('pp_capabilities_' . $role['name'] . '_role_option', $role_option);
 
@@ -296,6 +303,14 @@ class Pp_Roles_Actions
                $disabled_admin_items[$role_slug] = $disabled_admin_items[$copied_role];
                update_option('capsman_disabled_admin_features', $disabled_admin_items, false);
            }
+
+
+            //Nav Menu
+            $nav_item_menu_option = !empty(get_option('capsman_nav_item_menus')) ? get_option('capsman_nav_item_menus') : [];
+            if (is_array($nav_item_menu_option) && array_key_exists($copied_role, $nav_item_menu_option)) {
+                $nav_item_menu_option[$role_slug] = $nav_item_menu_option[$copied_role];
+                update_option('capsman_nav_item_menus', $nav_item_menu_option, false);
+            }
 
            /**
              * Allow other plugins to perform action after role is copied.
@@ -409,6 +424,13 @@ class Pp_Roles_Actions
         $role_option['disable_role_user_login'] = !empty($_REQUEST['disable_role_user_login']) ? (int) $_REQUEST['disable_role_user_login'] : 0;
         if (defined('WC_PLUGIN_FILE')) {
             $role_option['disable_woocommerce_admin_restrictions'] = !empty($_REQUEST['disable_woocommerce_admin_restrictions']) ? (int) $_REQUEST['disable_woocommerce_admin_restrictions'] : 0;
+
+            if (!empty($role_option['disable_woocommerce_admin_restrictions'])) {
+                // get the the role object
+                $role_object = get_role(sanitize_key($_REQUEST['current_role']));
+                // add 'view_admin_dashboard' capability to this role object
+                $role_object->add_cap('view_admin_dashboard');
+            }
         }
         update_option('pp_capabilities_' . sanitize_key($_REQUEST['current_role']) . '_role_option', $role_option);
 

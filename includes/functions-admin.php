@@ -212,6 +212,19 @@ function pp_capabilities_backup_sections()
    $backup_sections[$cms_id . '_admin_features_backup']['label']     = esc_html__('Admin Features', 'capsman-enhanced');
    $backup_sections[$cms_id . '_admin_features_backup']['options'][] = "capsman_disabled_admin_features";
 
+   //Profile Features
+   $backup_sections[$cms_id . '_profile_features_backup']['label']     = esc_html__('Profile Features', 'capsman-enhanced');
+   $backup_sections[$cms_id . '_profile_features_backup']['options'][] = "capsman_disabled_profile_features";
+   $backup_sections[$cms_id . '_profile_features_backup']['options'][] = "capsman_profile_features_elements";
+
+   //Nav Menu
+   $backup_sections['capsman_nav_menu_backup']['label']     = esc_html__('Nav Menu', 'capsman-enhanced');
+   $backup_sections['capsman_nav_menu_backup']['options'][] = "capsman_nav_item_menus";
+
+   //settings
+   $backup_sections['capsman_settings_backup']['label']     = esc_html__('Settings', 'capsman-enhanced');
+   $backup_sections['capsman_settings_backup']['options']   = pp_capabilities_settings_options();
+
    return apply_filters('pp_capabilities_backup_sections', $backup_sections);
 }
 
@@ -254,6 +267,7 @@ function pp_capabilities_settings_options() {
        'cme_editor_features_private_post_type',
        'cme_capabilities_show_private_taxonomies',
        'cme_capabilities_add_user_multi_roles',
+       'cme_capabilities_edit_user_multi_roles',
        'cme_editor_features_classic_editor_tab',
        'cme_test_user_admin_bar',
        'cme_test_user_footer_notice',

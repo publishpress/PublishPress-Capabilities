@@ -539,6 +539,7 @@ table#akmin .pp-capability-menus-select .restrict-column {
 .pp-capability-menus .check-all-menu-link,
 .pp-capability-menus .check-all-menu-link:active {
   color: #555;
+  margin-left: -48px;
 }
 
 .pp-capability-menus .menu-item-link.restricted,
@@ -561,6 +562,14 @@ table#akmin .pp-capability-menus-select .restrict-column {
 .pp-capability-menus .menu-item-link:hover + .dashicons,
 .pp-capability-menus .menu-item-link:focus + .dashicons {
   display: inline-block;
+}
+
+.pp-capability-menus thead td.restrict-column + td .menu-item-link:hover,
+.pp-capability-menus thead td.restrict-column + td .menu-item-link:focus,
+.pp-capability-menus tfoot td.restrict-column + td .menu-item-link:hover,
+.pp-capability-menus tfoot td.restrict-column + td .menu-item-link:focus {
+    border-color: transparent;
+    background: transparent;
 }
 
 .pp-capability-menus-wrapper .tooltip {
@@ -589,6 +598,15 @@ table#akmin .pp-capability-menus-select .restrict-column {
 .capabilities_page_pp-capabilities-admin-menus input.ppc-admin-menu-submit,
 .capabilities_page_pp-capabilities-nav-menus input.ppc-nav-menu-submit {
 margin-bottom: 10px !important;
+}
+
+
+.capabilities_page_pp-capabilities-admin-menus input.ppc-admin-menu-submit, .capabilities_page_pp-capabilities-nav-menus input.ppc-nav-menu-submit {
+    margin-bottom: 10px !important;
+}
+
+body.capabilities_page_pp-capabilities-nav-menus .pp-capability-menus-select .restrict-column {
+    width: 70px !important;
 }
 
 .pp-capability-menus-wrapper .features-section-header {
@@ -747,14 +765,18 @@ div.ppc-editor-features-classic-toggle {
 
 .pp-column-right.capabilities-sidebar .pp-sidebar-box ul,
 .pp-capability-menus-wrapper.editor-features .pp-column-right .pp-sidebar-box:first-of-type ul,
-.pp-capability-menus-wrapper.admin-features .pp-column-right .pp-sidebar-box:first-of-type ul {
+.pp-capability-menus-wrapper.admin-features .pp-column-right .pp-sidebar-box:first-of-type ul,
+.pp-capability-menus-wrapper.profile-features .pp-column-right .pp-sidebar-box:first-of-type ul,
+.pp-capability-menus-wrapper.nav-menus .pp-column-right .pp-sidebar-box:first-of-type ul {
     padding: 0 !important;
     margin: 0 !important;
 }
 
 .pp-column-right.capabilities-sidebar .pp-sidebar-box:first-of-type ul input:disabled,
 .pp-capability-menus-wrapper.editor-features .pp-column-right .pp-sidebar-box:first-of-type ul input:disabled,
-.pp-capability-menus-wrapper.admin-features .pp-column-right .pp-sidebar-box:first-of-type ul input:disabled {
+.pp-capability-menus-wrapper.admin-features .pp-column-right .pp-sidebar-box:first-of-type ul input:disabled,
+.pp-capability-menus-wrapper.profile-features .pp-column-right .pp-sidebar-box:first-of-type ul input:disabled,
+.pp-capability-menus-wrapper.nav-menus .pp-column-right .pp-sidebar-box:first-of-type ul input:disabled {
     opacity: 1 !important;
     background: #fff !important;
     color: #50575e !important;
@@ -763,7 +785,9 @@ div.ppc-editor-features-classic-toggle {
 }
 
 .pp-capability-menus-wrapper.editor-features .pp-column-right .pp-sidebar-box:first-of-type ul input[type=checkbox]:checked::before,
-.pp-capability-menus-wrapper.admin-features .pp-column-right .pp-sidebar-box:first-of-type ul input[type=checkbox]:checked::before {
+.pp-capability-menus-wrapper.admin-features .pp-column-right .pp-sidebar-box:first-of-type ul input[type=checkbox]:checked::before,
+.pp-capability-menus-wrapper.profile-features .pp-column-right .pp-sidebar-box:nth-of-type(2) ul input[type=checkbox]:checked::before,
+.pp-capability-menus-wrapper.nav-menus .pp-column-right .pp-sidebar-box:first-of-type ul input[type=checkbox]:checked::before {
     content: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHByZXNlcnZlQXNwZWN0UmF0aW89InhNaWRZTWlkIG1lZXQiIHZpZXdCb3g9IjAgMCAyMCAyMCIgc3R5bGU9Ii1tcy10cmFuc2Zvcm06IHJvdGF0ZSgzNjBkZWcpOyAtd2Via2l0LXRyYW5zZm9ybTogcm90YXRlKDM2MGRlZyk7IHRyYW5zZm9ybTogcm90YXRlKDM2MGRlZyk7Ij48cGF0aCBkPSJNMTQuOTUgNi40NkwxMS40MSAxMGwzLjU0IDMuNTRsLTEuNDEgMS40MUwxMCAxMS40MmwtMy41MyAzLjUzbC0xLjQyLTEuNDJMOC41OCAxMEw1LjA1IDYuNDdsMS40Mi0xLjQyTDEwIDguNThsMy41NC0zLjUzeiIgZmlsbD0iI2RjMTQzYyIvPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgwLCAwLCAwLCAwKSIgLz48L3N2Zz4=) !important;
 }
 
@@ -778,23 +802,65 @@ div.ppc-editor-features-classic-toggle {
 }
 
 .pp-capability-menus-wrapper.editor-features .pp-column-right .pp-sidebar-box:first-of-type ul,
-.pp-capability-menus-wrapper.admin-features .pp-column-right .pp-sidebar-box:first-of-type ul {
+.pp-capability-menus-wrapper.admin-features .pp-column-right .pp-sidebar-box:first-of-type ul,
+.pp-capability-menus-wrapper.profile-features .pp-column-right .pp-sidebar-box:nth-of-type(1) ul,
+.pp-capability-menus-wrapper.profile-features .pp-column-right .pp-sidebar-box:nth-of-type(2) ul,
+.pp-capability-menus-wrapper.nav-menus .pp-column-right .pp-sidebar-box:first-of-type ul {
     list-style: none !important;
+}
+
+.pp-capability-menus-wrapper.profile-features.empty-elements .ppc-profile-features-submit,
+.pp-capability-menus-wrapper.profile-features.empty-elements .refresh-column {
+    display: none;
+}
+
+.pp-capability-menus-wrapper.profile-features tr.empty-features-element td {
+    margin-left: 40px;
+}
+
+.pp-capability-menus-wrapper.profile-features table#akmin .pp-capability-menus-select .restrict-column {
+    width: 0;
+    min-width: 70px;
 }
 
 .publishpress-caps-settings .description {
     vertical-align: text-bottom;
 }
 
+.pp-capability-menus-wrapper.profile-features table.pp-capability-menus-select tbody tr {
+    cursor: move;
+}
+
+/* ====================================================== Nav Menu Restriction */
+
+body.capabilities_page_pp-capabilities-nav-menus .pp-capability-menus-select .restrict-column {
+    width: 70px !important;
+}
+
+.capabilities_page_pp-capabilities-nav-menus input.ppc-nav-menu-submit {
+    margin-bottom: 10px !important;
+}
+
+.capabilities_page_pp-capabilities-nav-menus input.ppc-nav-menu-submit {
+    margin-bottom: 10px !important;
+}
+
+
 @media (min-width: 1200px) {
   .pp-column-right.capabilities-sidebar {
     padding-top: 50px;
   }
   .pp-capability-menus-wrapper.editor-features div.pp-column-right {
-    padding-top: 135px;
+    padding-top: 110px;
   }
   .pp-capability-menus-wrapper.admin-features div.pp-column-right {
-      padding-top: 107px;
+      padding-top: 80px;
+  }
+  .pp-capability-menus-wrapper.nav-menus div.pp-column-right {
+      padding-top: 62px;
+  }
+  .pp-capability-menus-wrapper.profile-features div.pp-column-right {
+    padding-top: 80px;
   }
 }
 

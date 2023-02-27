@@ -52,6 +52,14 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 } else {
 	$pp_metagroup_caps = array();
 }
+
+if (defined('PUBLISHPRESS_REVISIONS_VERSION') && function_exists('rvy_get_option')) {
+    $pp_revisions_copy   = rvy_get_option("copy_posts_capability");
+    $pp_revisions_revise = rvy_get_option("revise_posts_capability");
+} else {
+    $pp_revisions_copy   = false;
+    $pp_revisions_revise = false;
+}
 ?>
 <div class="wrap publishpress-caps-manage pressshack-admin-wrapper">
 	<div id="icon-capsman-admin" class="icon32"></div>
@@ -178,6 +186,13 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
                 $cap_properties['list']['type'] = ['list_posts', 'list_others_posts', 'list_published_posts', 'list_private_posts'];
             }
 
+            if ($pp_revisions_copy) {
+                $cap_properties['copy']['type'] = ['copy_posts', 'copy_others_posts', 'copy_published_posts', 'copy_private_posts'];
+            }
+
+            if ($pp_revisions_revise) {
+                $cap_properties['revise']['type'] = ['revise_posts', 'revise_others_posts', 'revise_published_posts', 'revise_private_posts'];
+            }
 
 			$cap_properties['read']['type'] = array( 'read_private_posts' );
 
@@ -195,6 +210,14 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 
             if (defined('PRESSPERMIT_ACTIVE')) {
                 $cap_type_names['list'] = __('Listing', 'capsman-enhanced');
+            }
+
+            if ($pp_revisions_copy) {
+                $cap_type_names['copy'] = __('Copy', 'capsman-enhanced');
+            }
+
+            if ($pp_revisions_revise) {
+                $cap_type_names['revise'] = __('Revise', 'capsman-enhanced');
             }
 
 			$cap_tips = array(
@@ -217,6 +240,14 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 
             if (defined('PRESSPERMIT_ACTIVE')) {
                 $default_caps = array_merge($default_caps, ['list_posts', 'list_others_posts', 'list_published_posts', 'list_private_posts', 'list_pages', 'list_others_pages', 'list_published_pages', 'list_private_pages']);
+            }
+
+            if ($pp_revisions_copy) {
+                $default_caps = array_merge($default_caps, ['copy_posts', 'copy_others_posts', 'copy_pages', 'copy_others_pages']);
+            }
+
+            if ($pp_revisions_revise) {
+                $default_caps = array_merge($default_caps, ['revise_posts', 'revise_others_posts', 'revise_pages', 'revise_others_pages']);
             }
 
 			$type_caps = array();
@@ -677,6 +708,12 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 								$prop = str_replace( '_posts', '', $prop );
 								$prop = str_replace( '_pages', '', $prop );
 								$prop = str_replace( '_terms', '', $prop );
+
+								if (in_array($prop, ['copy_published', 'copy_private', 'revise_published', 'revise_private'])) {
+									echo "<th></th>";
+									continue;
+								}
+
 								$tip = ( isset( $cap_tips[$prop] ) ) ? $cap_tips[$prop] : '';
 								$th_class = ( 'taxonomy' == $item_type ) ? 'term-cap' : 'post-cap';
 								echo "<th style='text-align:center;' title='" . esc_attr($tip) . "' class='" . esc_attr($th_class) . "'>";
@@ -693,6 +730,14 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 							foreach( $defined[$item_type] as $key => $type_obj ) {
 								if ( in_array( $key, $unfiltered[$item_type] ) )
 									continue;
+
+								if (in_array($cap_type, ['copy', 'revise'])) {
+									global $revisionary;
+									
+									if (!empty($revisionary) && !empty($revisionary->enabled_post_types) && empty($revisionary->enabled_post_types[$key])) {
+										continue;
+									}
+								}
 
 								$row = "<tr class='cme_type_" . esc_attr($key) . "'>";
 
@@ -715,6 +760,26 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
                                         }
                                         if (isset($type_obj->cap->edit_private_posts) && !isset($type_obj->cap->list_private_posts)) {
                                             $type_obj->cap->list_private_posts = str_replace('edit_', 'list_', $type_obj->cap->edit_private_posts);
+                                        }
+                                    }
+
+                                    if ($pp_revisions_copy) {
+                                        //add copy capabilities
+                                        if (isset($type_obj->cap->edit_posts) && !isset($type_obj->cap->copy_posts)) {
+                                            $type_obj->cap->copy_posts = str_replace('edit_', 'copy_', $type_obj->cap->edit_posts);
+                                        }
+                                        if (isset($type_obj->cap->edit_others_posts) && !isset($type_obj->cap->copy_others_posts)) {
+                                            $type_obj->cap->copy_others_posts = str_replace('edit_', 'copy_', $type_obj->cap->edit_others_posts);
+                                        }
+                                    }
+                        
+                                    if ($pp_revisions_revise) {
+                                        //add revise capabilities
+                                        if (isset($type_obj->cap->edit_posts) && !isset($type_obj->cap->revise_posts)) {
+                                            $type_obj->cap->revise_posts = str_replace('edit_', 'revise_', $type_obj->cap->edit_posts);
+                                        }
+                                        if (isset($type_obj->cap->edit_others_posts) && !isset($type_obj->cap->revise_others_posts)) {
+                                            $type_obj->cap->revise_others_posts = str_replace('edit_', 'revise_', $type_obj->cap->edit_others_posts);
                                         }
                                     }
 
@@ -759,6 +824,7 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 												|| $type_obj->cap->$prop == str_replace( '_posts', "_" . _cme_get_plural($type_obj->name, $type_obj), $prop )
 												|| $type_obj->cap->$prop == str_replace( '_pages', "_" . _cme_get_plural($type_obj->name, $type_obj), $prop )
 												)
+                                            && (!in_array($type_obj->cap->$prop, $grouped_caps_lists)) //capabilitiy not enforced in $grouped_caps_lists
 											) {
 												// only present these term caps up top if we are ensuring that they get enforced separately from manage_terms
 												if ( in_array( $prop, array( 'edit_terms', 'delete_terms', 'assign_terms' ) ) && ( ! in_array( $type_obj->name, cme_get_detailed_taxonomies() ) || defined( 'OLD_PRESSPERMIT_ACTIVE' ) ) ) {
@@ -789,7 +855,11 @@ if( defined('PRESSPERMIT_ACTIVE') ) {
 													$any_caps = true;
 												}
 											} else {
-												$cap_title = sprintf( __( 'shared capability: %s', 'capsman-enhanced' ), esc_attr( $type_obj->cap->$prop ) );
+                                                $display_row = true;
+                                                $cap_name = sanitize_key($type_obj->cap->$prop);
+												$cap_title = sprintf( __( 'shared capability: %s', 'capsman-enhanced' ), esc_attr( $cap_name ) );
+
+                                                $checkbox = '<input disabled type="checkbox" title="' . esc_attr($cap_title) . '" ' . checked(1, ! empty($rcaps[$cap_name]), false ) . ' />';
 											}
 
 											if ( isset($rcaps[$cap_name]) && empty($rcaps[$cap_name]) ) {

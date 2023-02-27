@@ -327,7 +327,8 @@ class PP_Capabilities_Post_Features {
             wp_register_script(
                 'ppc-features-block-script',
                 plugin_dir_url(CME_FILE) . 'includes/features/features-block-script.js',
-                ['wp-blocks', 'wp-edit-post']
+                ['wp-blocks', 'wp-edit-post'],
+                PUBLISHPRESS_CAPS_VERSION
             );
 
             //localize script
@@ -417,10 +418,10 @@ class PP_Capabilities_Post_Features {
                 'status_visibility' => ['label' => esc_html__('Status & visibility', 'capsman-enhanced'),   'elements' => 'post-status'],
                 'template'          => [
                     'label'       => esc_html__('Template', 'capsman-enhanced'),
-                    'elements'    => 'template'
+                    'elements'    => '.components-panel__row.edit-post-post-template'
                 ],
-                'revisions'         => ['label' => esc_html__('Revisions', 'capsman-enhanced'),             'elements' => '.editor-post-last-revision__title'],
-                'permalink' =>         ['label' => esc_html__('Permalink', 'capsman-enhanced'),             'elements' => 'post-link'],
+                'revisions'         => ['label' => esc_html__('Revisions', 'capsman-enhanced'), 'elements' => '.editor-post-last-revision__title'],
+                'permalink' =>         ['label' => esc_html__('Permalink', 'capsman-enhanced'), 'elements' => '.components-panel__row.edit-post-post-url'],
                 'categories' =>        [
                     'label'        => esc_html__('Categories', 'capsman-enhanced'), 
                     'elements'     => 'taxonomy-panel-category',
