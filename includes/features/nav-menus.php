@@ -229,7 +229,7 @@ $nav_menu_item_option = array_key_exists($default_role, $nav_menu_item_option) ?
                                                         } else {
                                                             ?>
                                                             <tr>
-                                                                <td style="color: red;"> <?php esc_html_e('No menu found', 'capsman-enhanced'); ?></td>
+                                                                <td colspan="2"> <?php esc_html_e('There are no frontend menu links. To control access to navigation menus, please add menu links.', 'capsman-enhanced'); ?></td>
                                                             </tr>
                                                             <?php
                                                         }

@@ -7,7 +7,7 @@ Tags: user roles, capabilities, permissions, admin menus, post editing, post typ
 Requires at least: 4.9.7
 Tested up to: 6.1
 Requires PHP: 5.6.20
-Stable tag: 2.6.1
+Stable tag: 2.7.0
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -415,6 +415,21 @@ Fixed : Non-administrators with user editing capabilities could add new Administ
 Fixed : Security issue. Please update.
 
 == Changelog ==
+
+= 2.7.0 - 27 Feb 2022 =
+  * Feature : Allow admins to customize the "Profile" screen for users (Profile Features), #271
+  * Update : Make "Nav Menus" available in Free version, #606
+  * Update : Add copy & revise capabilities when Revisions activated, #596
+  * Update : Implement UI friendly checkbox for shared capabilities, #686
+  * Update : Add required capability for WooCommerce admin restrictions, #687
+  * Update : Ability to disable multiple roles on user edit screen, #622
+  * Fixed : Custom item did not included in export/import, #631
+  * Fixed : Template and Permalink are not hidden, #650
+  * Fixed : Text error if no "read" capability, #700
+  * Fixed : Application Timeout error in Capabilities plugin, #683
+  * Update : Remove Note from plugin screens, #614
+  * Fixed : Inconsistent right sidebar, #690
+  * Update : Capabilities FR-IT Translation Updates 2023, #652
 
 = 2.6.1 - 08 Dec 2022 =
   * Update : Allow users to block some roles from "User Testing", #621

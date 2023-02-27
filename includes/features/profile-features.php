@@ -129,7 +129,7 @@ $refresh_url = admin_url('admin.php?page=pp-capabilities-profile-features&refres
                                                             <tr class="ppc-menu-row parent-menu empty-features-element">
                                                                 <td colspan="2">
                                                                     <?php
-                                                                    esc_html_e('There is no user in this role.', 'capsman-enhanced');
+                                                                    esc_html_e('There are no users in this role. To modify features on the "Profile" screen, please select a role with users.', 'capsman-enhanced');
                                                                     ?>
                                                                 </td>
                                                             </tr>
