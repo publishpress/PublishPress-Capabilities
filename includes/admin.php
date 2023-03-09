@@ -855,6 +855,12 @@ if (defined('PUBLISHPRESS_REVISIONS_VERSION') && function_exists('rvy_get_option
 													$any_caps = true;
 												}
 											} else {
+
+												// only present these term caps up top if we are ensuring that they get enforced separately from manage_terms
+												if ( in_array( $prop, array( 'edit_terms', 'delete_terms', 'assign_terms' ) ) && ( ! in_array( $type_obj->name, cme_get_detailed_taxonomies() ) || defined( 'OLD_PRESSPERMIT_ACTIVE' ) ) ) {
+													continue;
+												}
+                                                
                                                 $display_row = true;
                                                 $cap_name = sanitize_key($type_obj->cap->$prop);
 												$cap_title = sprintf( __( 'shared capability: %s', 'capsman-enhanced' ), esc_attr( $cap_name ) );
