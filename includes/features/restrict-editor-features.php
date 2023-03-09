@@ -80,6 +80,7 @@ class PP_Capabilities_Post_Features {
             '#post-preview' => ['label' => esc_html__('Preview', 'capsman-enhanced')],
             '.misc-pub-post-status' => ['label' => esc_html__('Publish Status ', 'capsman-enhanced')],
             '.misc-pub-visibility' => ['label' => esc_html__('Publish Visibility', 'capsman-enhanced')],
+            '#sticky-span' => ['label' => esc_html__('Stick this post to the front page', 'capsman-enhanced')],
             '#passworddiv' => ['label' => esc_html__('Password Protect This Post', 'capsman-enhanced')],
             '#misc-publishing-actions' => ['label' => esc_html__('Publish Actions', 'capsman-enhanced')],
             '.misc-pub-curtime' => ['label' => esc_html__('Publish Schedule', 'capsman-enhanced')],
@@ -422,6 +423,7 @@ class PP_Capabilities_Post_Features {
                 ],
                 'revisions'         => ['label' => esc_html__('Revisions', 'capsman-enhanced'), 'elements' => '.editor-post-last-revision__title'],
                 'permalink' =>         ['label' => esc_html__('Permalink', 'capsman-enhanced'), 'elements' => '.components-panel__row.edit-post-post-url'],
+                'sticky'    =>         ['label' => esc_html__('Stick to the top of the blog', 'capsman-enhanced'), 'elements' => '.components-panel .components-panel__body.edit-post-post-status .edit-post-post-url + .components-panel__row'],
                 'categories' =>        [
                     'label'        => esc_html__('Categories', 'capsman-enhanced'), 
                     'elements'     => 'taxonomy-panel-category',
