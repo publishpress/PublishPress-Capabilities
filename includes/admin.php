@@ -863,9 +863,10 @@ if (defined('PUBLISHPRESS_REVISIONS_VERSION') && function_exists('rvy_get_option
                                                 
                                                 $display_row = true;
                                                 $cap_name = sanitize_key($type_obj->cap->$prop);
-												$cap_title = sprintf( __( 'shared capability: %s', 'capsman-enhanced' ), esc_attr( $cap_name ) );
+												$cap_title = '';
+                                                $tool_tip  = sprintf( __( 'Currently this capability is controlled by %s. Use the sidebar to enable unique capabilities.', 'capsman-enhanced' ), esc_attr( $cap_name ) );
 
-                                                $checkbox = '<input disabled type="checkbox" title="' . esc_attr($cap_title) . '" ' . checked(1, ! empty($rcaps[$cap_name]), false ) . ' />';
+                                                $checkbox = '<span class="ppc-tool-tip disabled" data-tip="'. esc_attr($tool_tip) .'"><input disabled class="disabled" type="checkbox" ' . checked(1, ! empty($rcaps[$cap_name]), false ) . ' /></span>';
 											}
 
 											if ( isset($rcaps[$cap_name]) && empty($rcaps[$cap_name]) ) {
