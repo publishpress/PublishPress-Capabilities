@@ -38,10 +38,17 @@ if (!empty($_REQUEST['role'])) {
     $role_caption = translate_user_role($roles[$default_role]);
 }
 
+$fse_theme = pp_capabilities_is_block_theme();
 
-$nav_menus = (array)get_terms('nav_menu');
-$nav_menus = array_combine(wp_list_pluck($nav_menus, 'term_id'), wp_list_pluck($nav_menus, 'name'));
-
+if ($fse_theme) {
+    $nav_menus      = pp_capabilities_get_fse_navs();
+    $nav_menus      = array_combine(wp_list_pluck($nav_menus, 'ID'), wp_list_pluck($nav_menus, 'post_title'));
+    $menu_separator = '|';
+} else {
+    $nav_menus      = (array)get_terms('nav_menu');
+    $nav_menus      = array_combine(wp_list_pluck($nav_menus, 'term_id'), wp_list_pluck($nav_menus, 'name'));
+    $menu_separator = '_';
+}
 
 $nav_menu_item_option = !empty(get_option('capsman_nav_item_menus')) ? get_option('capsman_nav_item_menus') : [];
 $nav_menu_item_option = array_key_exists($default_role, $nav_menu_item_option) ? (array)$nav_menu_item_option[$default_role] : [];
@@ -175,7 +182,11 @@ $nav_menu_item_option = array_key_exists($default_role, $nav_menu_item_option) ?
 
                                                                 <?php
                                                                 //begin menu item query
-                                                                $menu_items = (array)wp_get_nav_menu_items($menu_id);
+                                                                if ($fse_theme) {
+                                                                    $menu_items = pp_capabilities_get_fse_navs_sub_items($menu_id);
+                                                                } else {
+                                                                    $menu_items = (array)wp_get_nav_menu_items($menu_id);
+                                                                }
 
                                                                 if (count($menu_items) === 0) {
                                                                     continue;
@@ -184,7 +195,7 @@ $nav_menu_item_option = array_key_exists($default_role, $nav_menu_item_option) ?
                                                                 foreach ($menu_items as $menu_item) {
                                                                     $sn++;
 
-                                                                    $sub_menu_value = $menu_item->ID . '_' . $menu_item->object_id . '_' . $menu_item->object;
+                                                                    $sub_menu_value = $menu_item->ID . $menu_separator . $menu_item->object_id . $menu_separator . $menu_item->object;
                                                                     /**
                                                                      * 1.) Item ID
                                                                      * 2.) Object Id

@@ -427,6 +427,99 @@ function pp_capabilities_nav_menu_access_denied()
     wp_die(esc_html($forbidden));
 }
 
+
+
+/**
+ * Check if current active theme is block 
+ * theme/support full site editing
+ *
+ * @return bool
+ */
+function pp_capabilities_is_block_theme() 
+{
+    $is_block_theme = false;
+
+    if (function_exists('wp_is_block_theme') 
+        && function_exists('block_template_part') 
+        && wp_is_block_theme()
+    ) {
+        $is_block_theme = true;
+    }
+
+    return $is_block_theme;
+}
+
+/**
+ * Get FSE theme nav menus
+ *
+ * @return array
+ */
+function pp_capabilities_get_fse_navs()
+{
+    $args = array(
+        'post_type'      => 'wp_navigation',
+        'no_found_rows'  => true,
+        'order'          => 'DESC',
+        'orderby'        => 'date',
+        'post_status'    => 'publish',
+        'posts_per_page' => -1
+    );
+
+    return get_posts($args);
+}
+
+
+/**
+ * Get FSE theme nav menus sub items
+ *
+ * @param integer $nav_id
+ * @return array
+ */
+function pp_capabilities_get_fse_navs_sub_items($nav_id)
+{
+    $menu_items = [];
+
+    $nav_post = get_post($nav_id);
+
+    if ($nav_post && !is_wp_error($nav_post) && !empty($nav_post->post_content)) {
+        $parsed_blocks = parse_blocks($nav_post->post_content);
+        $parsed_blocks = block_core_navigation_filter_out_empty_blocks($parsed_blocks);
+
+        foreach ($parsed_blocks as $parsed_block) {
+            $block_attrs    = $parsed_block['attrs'];
+            $inner_blocks   = $parsed_block['innerBlocks'];
+            $menu_items[]   = pp_capabilities_parse_nav_block($block_attrs);
+            if (!empty($inner_blocks)) {
+                foreach ($inner_blocks as $inner_block) {
+                    $menu_items[]   = pp_capabilities_parse_nav_block($inner_block['attrs'], $block_attrs['id']);
+                }
+            }
+            
+        }
+    }
+
+    return $menu_items;
+}
+
+/**
+ * Parse nav block attributes to required format
+ *
+ * @param array $block_attrs
+ * @return object
+ */
+function pp_capabilities_parse_nav_block($block_attrs, $parent = 0) {
+
+    $return = [
+        'ID'                => $block_attrs['id'],
+        'title'             => $block_attrs['label'],
+        'object_id'         => $block_attrs['url'],
+        'object'            => $block_attrs['type'],
+        'menu_item_parent'  => $parent
+    ];
+
+    return (object) $return;
+}
+
 /**
  * Nav menu restriction
  */
@@ -527,6 +620,13 @@ if (!is_admin()) {
      */
     function pp_capabilities_nav_menu_access($query)
     {
+        global $ppc_nav_menu_restricted;
+
+        //this function is getting called many times. So, it's needed
+        if ($ppc_nav_menu_restricted) {
+            return;
+        }
+
         if (!function_exists('wp_get_current_user')) {
             return;
         }
@@ -555,20 +655,32 @@ if (!is_admin()) {
         }
 
         if ($disabled_nav_menu) {
+            $fse_theme = pp_capabilities_is_block_theme();
 
             //we only need object id and object name e.g, 1_category
-            $disabled_object = preg_replace('!(0|[1-9][0-9]*)_([a-zA-Z0-9_.-]*),!s', '$2,', $disabled_nav_menu);
+            if ($fse_theme) {
+                $disabled_object = preg_replace("/(\|)(.*?)(\|)/", '_', $disabled_nav_menu);
+                
+                //get all urls for css, js and direct block implementation
+                preg_match_all("/\|\s*(.*?)\s*\|/", $disabled_nav_menu, $matches);
+                $fse_blocked_nav_links = array_filter($matches[1]);
+            } else {
+                //native nav uses _ separator
+                $disabled_object = preg_replace('!(0|[1-9][0-9]*)_([a-zA-Z0-9_.-]*),!s', '$2,', $disabled_nav_menu);
+
+                $fse_blocked_nav_links        = [];
+            }
+            
             $disabled_nav_menu_array = array_filter(explode(", ", $disabled_object));
 
             //category tags and taxonomy page check
             if (is_category() || is_tag() || is_tax()) {
                 $taxonomy_id = get_queried_object()->term_id;
                 $taxonnomy_type = get_queried_object()->taxonomy;
-                foreach ($disabled_nav_menu_array as $item_option) {
-                    $option_object = $taxonomy_id . '_' . $taxonnomy_type;
-                    if (in_array($option_object, $disabled_nav_menu_array)) {
-                        pp_capabilities_nav_menu_access_denied();
-                    }
+                $option_object = $taxonomy_id . '_' . $taxonnomy_type;
+                if (in_array($option_object, $disabled_nav_menu_array)) {
+                    $ppc_nav_menu_restricted = true;
+                    pp_capabilities_nav_menu_access_denied();
                 }
             }
 
@@ -576,14 +688,68 @@ if (!is_admin()) {
             if (is_singular()) {
                 $post_type = get_post_type();
                 $post_id = get_the_ID();
-                foreach ($disabled_nav_menu_array as $item_option) {
-                    $option_object = $post_id . '_' . $post_type;
-                    if (in_array($option_object, $disabled_nav_menu_array)) {
-                        pp_capabilities_nav_menu_access_denied();
-                    }
+                $option_object = $post_id . '_' . $post_type;
+                if (in_array($option_object, $disabled_nav_menu_array)) {
+                    $ppc_nav_menu_restricted = true;
+                    pp_capabilities_nav_menu_access_denied();
                 }
             }
+
+            $ppc_nav_menu_restricted = true;
+
+            if (!empty($fse_blocked_nav_links)) {
+                //restrict access to url
+                if (in_array(pp_capabilities_current_url(), $fse_blocked_nav_links)) {
+                    $ppc_nav_menu_restricted = true;
+                    pp_capabilities_nav_menu_access_denied();
+                }
+                //hide menu item immediately, remove menu item from li after page load
+                add_action('wp_head', function() use ($fse_blocked_nav_links) { 
+                    $menu_item_selectors = array_map('pp_capabilities_nav_link_selector', $fse_blocked_nav_links);
+                    ?>
+                    <style>
+                        <?php echo join(', ', $menu_item_selectors); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+                        {
+                            display: none !important;
+                        }
+                    </style>
+
+                    <script>
+                        jQuery(document).ready( function($) {
+                            $('<?php echo join(', ', $menu_item_selectors); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>').each( function() {
+                                $(this).closest('li').remove();
+                            });
+                        });
+                    </script>
+                    <?php
+                });
+            }
+
         }
     }
     add_action('parse_query', 'pp_capabilities_nav_menu_access');
+}
+
+/**
+ * Generate style link selector for a nav link
+ *
+ * @param string $url
+ * @return string
+ */
+function pp_capabilities_nav_link_selector($url) {
+    return 'li.wp-block-navigation-item a[href*="'. $url .'"]';
+}
+
+/**
+ * Get current page URL
+ *
+ * @return string
+ */
+function pp_capabilities_current_url()
+{
+    if (!empty($_SERVER['HTTP_HOST']) && !empty($_SERVER['REQUEST_URI'])) {
+        return esc_url_raw((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
+    } else {
+        return home_url('');
+    }
 }
