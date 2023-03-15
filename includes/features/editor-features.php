@@ -229,7 +229,7 @@ $active_tab_text = is_object($active_tab_type_obj)
                     </tr>
                 </table>
             </div><!-- .pp-column-left -->
-            <div class="pp-column-right">
+            <div class="pp-column-right pp-capabilities-sidebar">
                 <?php 
                 $banners = new PublishPress\WordPressBanners\BannersMain;
                 $banner_messages = ['<p>'];
@@ -247,21 +247,7 @@ $active_tab_text = is_object($active_tab_type_obj)
                 );
                 ?>
                 <?php if (defined('CAPSMAN_PERMISSIONS_INSTALLED') && !CAPSMAN_PERMISSIONS_INSTALLED) { ?>
-                    <?php
-                    $banners = new PublishPress\WordPressBanners\BannersMain;
-                    $banners->pp_display_banner(
-                        esc_html__( 'Recommendations for you', 'capsman-enhanced' ),
-                        esc_html__( 'Control permissions for individual posts and pages', 'capsman-enhanced' ),
-                        array(
-                            esc_html__( 'Choose who can read and edit each post.', 'capsman-enhanced' ),
-                            esc_html__( 'Allow specific user roles or users to manage each post.', 'capsman-enhanced' ),
-                            esc_html__( 'PublishPress Permissions is 100% free to install.', 'capsman-enhanced' )
-                        ),
-                        admin_url( 'plugin-install.php?s=publishpress-ppcore-install&tab=search&type=term' ),
-                        esc_html__( 'Click here to install PublishPress Permissions', 'capsman-enhanced' ),
-                        'install-permissions.jpg'
-                    );
-                    ?>
+                    <?php pp_capabilities_permission_box(); ?>
                 <?php } ?>
             </div><!-- .pp-column-right -->
         </div><!-- .pp-columns-wrapper -->
