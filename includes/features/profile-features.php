@@ -31,7 +31,11 @@ $disabled_profile_items = array_key_exists($default_role, $disabled_profile_item
 $profile_features_elements = \PublishPress\Capabilities\PP_Capabilities_Profile_Features::elementsLayout();
 $profile_features_elements = isset($profile_features_elements[$default_role]) ? $profile_features_elements[$default_role] : [];
 
-$refresh_url = admin_url('admin.php?page=pp-capabilities-profile-features&refresh_element=1');
+if (get_option('cme_profile_features_auto_redirect')) {
+    $refresh_url = admin_url('admin.php?page=pp-capabilities-profile-features&refresh_element=1');
+} else {
+    $refresh_url = admin_url('admin.php?page=pp-capabilities-profile-features&role_refresh=1');
+}
 ?>
 
     <div class="wrap publishpress-caps-manage pressshack-admin-wrapper pp-capability-menus-wrapper profile-features <?php echo (empty($profile_features_elements) ? 'empty-elements' : ''); ?>">
@@ -129,7 +133,7 @@ $refresh_url = admin_url('admin.php?page=pp-capabilities-profile-features&refres
                                                             <tr class="ppc-menu-row parent-menu empty-features-element">
                                                                 <td colspan="2">
                                                                     <?php
-                                                                    esc_html_e('There are no users in this role. To modify features on the "Profile" screen, please select a role with users.', 'capsman-enhanced');
+                                                                    esc_html_e('There are no users in this role. Please select a role that has users and is able to access the "Profile" screen.', 'capsman-enhanced');
                                                                     ?>
                                                                 </td>
                                                             </tr>
