@@ -1146,11 +1146,21 @@ class CapabilityManager
 
             $profile_element_updated = (array) get_option("capsman_profile_features_updated", []);
             $refresh_element = isset($_REQUEST['refresh_element']) ? (int) $_REQUEST['refresh_element'] : 0;
-            if (is_array($profile_element_updated) && isset($profile_element_updated[$default_role]) && (int)$profile_element_updated[$default_role] > 0) {
-                if ($refresh_element === 0) {
+            $role_refresh    = isset($_REQUEST['role_refresh']) ? (int) $_REQUEST['role_refresh'] : 0;
+            if (
+                is_array($profile_element_updated) 
+                && isset($profile_element_updated[$default_role]) 
+                && (int)$profile_element_updated[$default_role] > 0
+            ) {
+                if ($refresh_element === 0 && $role_refresh === 0) {
                     return;
                 }
             }
+
+            if (!get_option('cme_profile_features_auto_redirect') && !$role_refresh) {
+                return;
+            }
+            
             //get user in current role
             $role_user = get_users(
                 [
@@ -1169,8 +1179,6 @@ class CapabilityManager
             if (!empty($role_user)) {
                 $testing_user = $role_user[0];
                 if (!user_can($testing_user->ID, 'read')) {
-                    $can_redirect = false;
-                } elseif (defined('WC_PLUGIN_FILE') && !user_can($testing_user->ID, 'view_admin_dashboard')) { 
                     $can_redirect = false;
                 }
 
