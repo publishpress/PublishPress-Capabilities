@@ -906,7 +906,92 @@ body.capabilities_page_pp-capabilities-nav-menus .pp-capability-menus-select .re
     box-shadow: 0 2px 5px rgb(0 0 0 / 10%), 0 0 56px rgb(0 0 0 / 8%);
 }
 
+/* ====================================================== Sidebar promo box */
+
+.pp-capabilities-sidebar .action-button {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.pp-capabilities-sidebar .action-button a {
+    font-weight: normal;
+    text-decoration: none;
+    padding: 9px 12px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    box-sizing: border-box;
+    border: 1px solid #fca871;
+    break-inside: avoid;
+    white-space: nowrap;
+    background-color: #FFB300;
+    border-color: #C58C07;
+    color: #754D26;
+    text-shadow: none;
+}
+
+.pp-capabilities-sidebar .action-button a:hover {
+    background: #fcca46;
+    color: #000 !important;
+}
+
+.pp-capabilities-sidebar h3.hndle {
+    font-size: 14px;
+    padding: 8px 12px;
+    margin: 0;
+    line-height: 1.4;
+}
+
+.pp-capabilities-sidebar .advertisement-box-content .inside ul {
+    margin-bottom: 20px;
+}
+
+.pp-capabilities-sidebar .advertisement-box-content .inside ul li {
+    position: relative;
+    padding-left: 22px;
+    font-weight: 600;
+    font-size: .9em;
+}
+
+.pp-capabilities-sidebar .advertisement-box-content .inside ul li:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 0;
+    background-color: #3C50FF;
+    mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z'/></svg>");
+    -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z'/></svg>");
+    mask-size: 16px;
+    -webkit-mask-size: 16px;
+    mask-repeat: no-repeat;
+    -webkit-mask-repeat: no-repeat;
+    mask-position: left;
+    -webkit-mask-position: left;
+}
+
+.pp-capabilities-sidebar .advertisement-box-header {
+    background: #655897;
+    color: #ffffff;
+}
+
+.pp-capabilities-sidebar .advertisement-box-content {
+    border: 1px solid #655897;
+}
+
+.pp-capabilities-sidebar .box-banner-image {
+    background: #655997;
+    text-align: center;
+}
+
+.pp-capabilities-sidebar .box-banner-image img {
+    max-width: 100%;
+}
+
 @media (max-width: 760px) {
+    
   .ppc-tool-tip::after { 
         font-size: .75em;
         margin-left: -5em;

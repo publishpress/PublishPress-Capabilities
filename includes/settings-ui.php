@@ -27,6 +27,7 @@ class Capabilities_Settings_UI {
             <li class="<?php echo esc_attr('nav-tab ' . $first_active_tab); ?>"><a href="#ppcs-tab-roles"><?php esc_html_e('Roles', 'capsman-enhanced');?></a></li>
             <li class="nav-tab"><a href="#ppcs-tab-capabilities"><?php esc_html_e('Capabilities', 'capsman-enhanced');?></a></li>
             <li class="nav-tab"><a href="#ppcs-tab-editor-features"><?php esc_html_e('Editor Features', 'capsman-enhanced');?></a></li>
+            <li class="nav-tab"><a href="#ppcs-tab-profile-features"><?php esc_html_e('Profile Features', 'capsman-enhanced');?></a></li>
             <?php do_action('pp_capabilities_settings_after_menu_list'); ?>
             <li class="nav-tab"><a href="#ppcs-tab-test-user"><?php esc_html_e('Test User', 'capsman-enhanced');?></a></li>
         </ul>
@@ -203,6 +204,28 @@ class Capabilities_Settings_UI {
                             </td>
                             </tr>
                             
+                        </tbody>
+                    </table>
+
+                    <table class="form-table" role="presentation" id="ppcs-tab-profile-features" style="display:none;">
+                        <tbody>
+
+                            <tr>
+                            <?php
+                                $checked = checked(!empty(get_option('cme_profile_features_auto_redirect', 0)), true, false);
+                            ?>
+                            <th scope="row"> <?php esc_html_e('Automatically refresh profile elements', 'capsman-enhanced'); ?></th>
+                            <td>
+                                <label> 
+                                <input type="checkbox" name="cme_profile_features_auto_redirect" id="cme_profile_features_auto_redirect" autocomplete="off" value="1" <?php echo $checked;?>>
+                                <span class="description">
+                                    <?php esc_html_e('Always try to automatically find profile elements. This may cause temporary issues when updating user roles that do not have access to the WordPress admin area.', 'capsman-enhanced'); ?>
+                                </span>
+                                </label>
+                                <br>
+                            </td>
+                        </tr>
+
                         </tbody>
                     </table>
 

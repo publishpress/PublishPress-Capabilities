@@ -271,7 +271,8 @@ function pp_capabilities_settings_options() {
        'cme_editor_features_classic_editor_tab',
        'cme_test_user_admin_bar',
        'cme_test_user_footer_notice',
-       'cme_test_user_excluded_roles'
+       'cme_test_user_excluded_roles',
+       'cme_profile_features_auto_redirect',
    ];
 
    return apply_filters('pp_capabilities_settings_options', $settings_options);
