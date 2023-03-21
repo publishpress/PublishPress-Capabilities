@@ -789,7 +789,6 @@ div.ppc-editor-features-classic-toggle {
 
 .pp-capability-menus-wrapper.editor-features .pp-column-right .pp-sidebar-box:first-of-type ul input[type=checkbox]:checked::before,
 .pp-capability-menus-wrapper.admin-features .pp-column-right .pp-sidebar-box:first-of-type ul input[type=checkbox]:checked::before,
-.pp-capability-menus-wrapper.frontend-features .pp-column-right .pp-sidebar-box:first-of-type ul input[type=checkbox]:checked::before,
 .pp-capability-menus-wrapper.profile-features .pp-column-right .pp-sidebar-box:nth-of-type(2) ul input[type=checkbox]:checked::before,
 .pp-capability-menus-wrapper.nav-menus .pp-column-right .pp-sidebar-box:first-of-type ul input[type=checkbox]:checked::before {
     content: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHByZXNlcnZlQXNwZWN0UmF0aW89InhNaWRZTWlkIG1lZXQiIHZpZXdCb3g9IjAgMCAyMCAyMCIgc3R5bGU9Ii1tcy10cmFuc2Zvcm06IHJvdGF0ZSgzNjBkZWcpOyAtd2Via2l0LXRyYW5zZm9ybTogcm90YXRlKDM2MGRlZyk7IHRyYW5zZm9ybTogcm90YXRlKDM2MGRlZyk7Ij48cGF0aCBkPSJNMTQuOTUgNi40NkwxMS40MSAxMGwzLjU0IDMuNTRsLTEuNDEgMS40MUwxMCAxMS40MmwtMy41MyAzLjUzbC0xLjQyLTEuNDJMOC41OCAxMEw1LjA1IDYuNDdsMS40Mi0xLjQyTDEwIDguNThsMy41NC0zLjUzeiIgZmlsbD0iI2RjMTQzYyIvPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgwLCAwLCAwLCAwKSIgLz48L3N2Zz4=) !important;
@@ -1107,6 +1106,15 @@ body.capabilities_page_pp-capabilities-nav-menus .pp-capability-menus-select .re
 }
 .pp-capability-menus-wrapper.frontend-features .striped > tbody > :nth-child(even) {
     background-color: #f6f7f7;
+}
+
+.pp-capability-menus-wrapper.frontend-features .restrict-column input[type=checkbox]:checked::before {
+    content: url("data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%2020%2020%27%3E%3Cpath%20d%3D%27M14.83%204.89l1.34.94-5.81%208.38H9.02L5.78%209.67l1.34-1.25%202.57%202.4z%27%20fill%3D%27%233582c4%27%2F%3E%3C%2Fsvg%3E");
+}
+
+.pp-capability-menus-wrapper.frontend-features .pp-capability-menus .menu-item-link.restricted, 
+.pp-capability-menus-wrapper.frontend-features .pp-capability-menus .menu-item-link.restricted:active {
+    color: green;
 }
 
 .custom-item-output:not(.show),
