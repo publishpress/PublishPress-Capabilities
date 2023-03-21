@@ -906,7 +906,8 @@ body.capabilities_page_pp-capabilities-nav-menus .pp-capability-menus-select .re
     color: red;
 }
 
-.frontend-custom-styles-output {
+.frontend-custom-styles-output,
+.custom-item-display {
     max-height: 200px;
     overflow-y: auto;
     width: auto;
@@ -951,6 +952,25 @@ body.capabilities_page_pp-capabilities-nav-menus .pp-capability-menus-select .re
 }
 .pp-capability-menus-wrapper.frontend-features .striped > tbody > :nth-child(even) {
     background-color: #f6f7f7;
+}
+
+.custom-item-output:not(.show),
+.editing-custom-item {
+    display: none;
+}
+
+.custom-item-action {
+    float: right;
+}
+
+.editing-custom-item span.title {
+    color: green;
+}
+
+.editing-custom-item span.cancel-edit {
+    color: red;
+    cursor: pointer;
+    float: right;
 }
 
 

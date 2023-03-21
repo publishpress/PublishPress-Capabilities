@@ -55,13 +55,17 @@ class PP_Capabilities_Frontend_Features_UI
         ?>
         <tr class="ppc-menu-row child-menu frontendelements">
             <td colspan="2" class="form-td">
-                <table class="frontend-features-form simple-form">
+                <table class="frontend-features-form simple-form frontendelements-form">
                     <tr class="ppc-menu-row parent-menu">
                         <td colspan="2">
                             <p class="cme-subtext">
                                 <?php esc_html_e('You can remove elements from frontend area by adding their IDs or classes below:', 'capsman-enhanced'); ?>
                             </p>
-                            </h4>
+                            <p class="editing-custom-item">
+                                <strong><?php esc_html_e('Editing:', 'capsman-enhanced'); ?></strong> 
+                                <span class="title"></span>
+                                <span class="cancel-edit" data-section="frontendelements">- <?php esc_html_e('Cancel Edit', 'capsman-enhanced'); ?></span>
+                            </p>
                         </td>
                     </tr>
 
@@ -71,7 +75,7 @@ class PP_Capabilities_Frontend_Features_UI
                             <font color="red">*</font>
                         </th>
                         <td>
-                            <input class="frontend-element-new-name frontent-form-field" type="text" /><br />
+                            <input class="frontend-element-new-name frontent-form-field frontendelements-form-label" type="text" /><br />
                             <small>
                                 <?php esc_html_e('Enter the name/label to identify the element on this screen.', 'capsman-enhanced'); ?>
                             </small>
@@ -84,7 +88,7 @@ class PP_Capabilities_Frontend_Features_UI
                             <font color="red">*</font>
                         </th>
                         <td>
-                            <textarea class="frontend-element-new-element frontent-form-field"></textarea><br />
+                            <textarea class="frontend-element-new-element frontent-form-field frontendelements-form-element"></textarea><br />
                             <small>
                                 <?php esc_html_e('IDs or classes to hide. Separate multiple values by comma (.custom-item-one, .custom-item-two, #new-item-id).', 'capsman-enhanced'); ?>
                             </small>
@@ -97,7 +101,7 @@ class PP_Capabilities_Frontend_Features_UI
                             <font color="red">*</font>
                         </th>
                         <td>
-                            <select class="frontend-element-new-element-pages chosen-cpt-select"
+                            <select class="frontend-element-new-element-pages chosen-cpt-select frontendelements-form-pages"
                                 data-placeholder="<?php esc_attr_e('Select option...', 'capsman-enhanced'); ?>"
                                 multiple>
                                 <?php foreach (self::getElementFormPageOptions() as $value => $label) : ?>
@@ -107,7 +111,7 @@ class PP_Capabilities_Frontend_Features_UI
                                 </option>
                                 <?php endforeach; ?>
                             </select>
-                            <input class="frontend-element-new-element-posts frontent-form-field" type="text"
+                            <input class="frontend-element-new-element-posts frontent-form-field frontendelements-form-posts" type="text"
                                 placeholder="Enter multiple page/post ID separated by space." />
                             <br />
                             <small>
@@ -118,10 +122,14 @@ class PP_Capabilities_Frontend_Features_UI
 
                     <tr class="field-row">
                         <td colspan="2">
+                            <input type="hidden" class="custom-edit-id" value="" />
                             <input class="frontend-element-form-nonce" type="hidden"
                                 value="<?php echo esc_attr(wp_create_nonce('frontend-element-nonce')); ?>" />
-                            <button type="button" class="frontend-element-form-submit button button-secondary"
-                                data-required="<?php esc_attr_e('All fields are required.', 'capsman-enhanced'); ?>">
+                            <button type="button" class="submit-button frontend-element-form-submit button button-secondary"
+                                data-required="<?php esc_attr_e('All fields are required.', 'capsman-enhanced'); ?>"
+                                data-add="<?php esc_attr_e('Add', 'capsman-enhanced'); ?>"
+                                data-edit="<?php esc_attr_e('Edit', 'capsman-enhanced'); ?>"
+                                data-section="frontendelements">
                                 <?php esc_html_e('Add', 'capsman-enhanced'); ?></button>
                             <span class="ppc-feature-post-loader spinner"></span>
                             <div class="ppc-post-features-note"></div>
@@ -143,13 +151,17 @@ class PP_Capabilities_Frontend_Features_UI
         ?>
         <tr class="ppc-menu-row child-menu bodyclass">
             <td colspan="2" class="form-td">
-                <table class="frontend-features-form simple-form">
+                <table class="frontend-features-form simple-form bodyclass-form">
                     <tr class="ppc-menu-row parent-menu">
                         <td colspan="2">
                             <p class="cme-subtext">
                                 <?php esc_html_e('You can add page body class using the form below:', 'capsman-enhanced'); ?>
                             </p>
-                            </h4>
+                            <p class="editing-custom-item">
+                                <strong><?php esc_html_e('Editing:', 'capsman-enhanced'); ?></strong> 
+                                <span class="title"></span>
+                                <span class="cancel-edit" data-section="bodyclass">- <?php esc_html_e('Cancel Edit', 'capsman-enhanced'); ?></span>
+                            </p>
                         </td>
                     </tr>
 
@@ -159,7 +171,7 @@ class PP_Capabilities_Frontend_Features_UI
                             <font color="red">*</font>
                         </th>
                         <td>
-                            <input class="body-class-new-name frontent-form-field" type="text" /><br />
+                            <input class="body-class-new-name frontent-form-field bodyclass-form-label" type="text" /><br />
                             <small>
                                 <?php esc_html_e('Enter the name/label to identify the element on this screen.', 'capsman-enhanced'); ?>
                             </small>
@@ -172,7 +184,7 @@ class PP_Capabilities_Frontend_Features_UI
                             <font color="red">*</font>
                         </th>
                         <td>
-                            <textarea class="body-class-new-element frontent-form-field"></textarea><br />
+                            <textarea class="body-class-new-element frontent-form-field bodyclass-form-element"></textarea><br />
                             <small>
                                 <?php esc_html_e('Enter classes that should be added to body html. Separate multiple values by space (custom-item-one custom-item-two).', 'capsman-enhanced'); ?>
                             </small>
@@ -185,7 +197,7 @@ class PP_Capabilities_Frontend_Features_UI
                             <font color="red">*</font>
                         </th>
                         <td>
-                            <select class="body-class-new-element-pages chosen-cpt-select"
+                            <select class="body-class-new-element-pages chosen-cpt-select bodyclass-form-pages"
                                 data-placeholder="<?php esc_attr_e('Select option...', 'capsman-enhanced'); ?>"
                                 multiple>
                                 <?php foreach (self::getElementFormPageOptions() as $value => $label) : ?>
@@ -195,7 +207,7 @@ class PP_Capabilities_Frontend_Features_UI
                                 </option>
                                 <?php endforeach; ?>
                             </select>
-                            <input class="body-class-new-element-posts frontent-form-field" type="text"
+                            <input class="body-class-new-element-posts frontent-form-field bodyclass-form-posts" type="text"
                                 placeholder="Enter multiple page/post ID separated by space." />
                             <br />
                             <small>
@@ -206,10 +218,14 @@ class PP_Capabilities_Frontend_Features_UI
 
                     <tr class="field-row">
                         <td colspan="2">
+                            <input type="hidden" class="custom-edit-id" value="" />
                             <input class="body-class-form-nonce" type="hidden"
                                 value="<?php echo esc_attr(wp_create_nonce('bodyclass-nonce')); ?>" />
-                            <button type="button" class="body-class-form-submit button button-secondary"
-                                data-required="<?php esc_attr_e('All fields are required.', 'capsman-enhanced'); ?>">
+                            <button type="button" class="submit-button body-class-form-submit button button-secondary"
+                                data-required="<?php esc_attr_e('All fields are required.', 'capsman-enhanced'); ?>"
+                                data-add="<?php esc_attr_e('Add', 'capsman-enhanced'); ?>"
+                                data-edit="<?php esc_attr_e('Edit', 'capsman-enhanced'); ?>"
+                                data-section="bodyclass">
                                 <?php esc_html_e('Add', 'capsman-enhanced'); ?></button>
                             <span class="ppc-feature-post-loader spinner"></span>
                             <div class="ppc-post-features-note"></div>
@@ -231,13 +247,17 @@ class PP_Capabilities_Frontend_Features_UI
         ?>
         <tr class="ppc-menu-row child-menu customstyles">
             <td colspan="2" class="form-td">
-                <table class="frontend-features-form simple-form">
+                <table class="frontend-features-form simple-form customstyles-form">
                     <tr class="ppc-menu-row parent-menu">
                         <td colspan="2">
                             <p class="cme-subtext">
                                 <?php esc_html_e('You can add custom style css to be added to frontend pages using the form below:', 'capsman-enhanced'); ?>
                             </p>
-                            </h4>
+                            <p class="editing-custom-item">
+                                <strong><?php esc_html_e('Editing:', 'capsman-enhanced'); ?></strong> 
+                                <span class="title"></span>
+                                <span class="cancel-edit" data-section="customstyles">- <?php esc_html_e('Cancel Edit', 'capsman-enhanced'); ?></span>
+                            </p>
                         </td>
                     </tr>
 
@@ -247,7 +267,7 @@ class PP_Capabilities_Frontend_Features_UI
                             <font color="red">*</font>
                         </th>
                         <td>
-                            <input class="customstyles-element-new-name frontent-form-field" type="text" /><br />
+                            <input class="customstyles-element-new-name frontent-form-field customstyles-form-label" type="text" /><br />
                             <small>
                                 <?php esc_html_e('Enter the name/label to identify the element on this screen.', 'capsman-enhanced'); ?>
                             </small>
@@ -260,7 +280,7 @@ class PP_Capabilities_Frontend_Features_UI
                             <font color="red">*</font>
                         </th>
                         <td>
-                            <textarea class="customstyles-element-new-element ppc-code-editor-page-css"></textarea><br />
+                            <textarea class="customstyles-element-new-element ppc-code-editor-page-css customstyles-form-element"></textarea><br />
                             <div class="customstyles-new-element-clear"></div>
                             <small>
                                 <?php esc_html_e('Example: .custom-style-1 { color: red;} #custom-header { background: red; } ', 'capsman-enhanced'); ?>
@@ -274,7 +294,7 @@ class PP_Capabilities_Frontend_Features_UI
                             <font color="red">*</font>
                         </th>
                         <td>
-                            <select class="customstyles-new-element-pages chosen-cpt-select"
+                            <select class="customstyles-new-element-pages chosen-cpt-select  customstyles-form-pages"
                                 data-placeholder="<?php esc_attr_e('Select option...', 'capsman-enhanced'); ?>"
                                 multiple>
                                 <?php foreach (self::getElementFormPageOptions() as $value => $label) : ?>
@@ -284,7 +304,7 @@ class PP_Capabilities_Frontend_Features_UI
                                 </option>
                                 <?php endforeach; ?>
                             </select>
-                            <input class="customstyles-new-element-posts frontent-form-field" type="text"
+                            <input class="customstyles-new-element-posts frontent-form-field  customstyles-form-posts" type="text"
                                 placeholder="Enter multiple page/post ID separated by space." />
                             <br />
                             <small>
@@ -295,10 +315,14 @@ class PP_Capabilities_Frontend_Features_UI
 
                     <tr class="field-row">
                         <td colspan="2">
+                            <input type="hidden" class="custom-edit-id" value="" />
                             <input class="customstyles-form-nonce" type="hidden"
                                 value="<?php echo esc_attr(wp_create_nonce('customstyles-nonce')); ?>" />
-                            <button type="button" class="customstyles-form-submit button button-secondary"
-                                data-required="<?php esc_attr_e('All fields are required.', 'capsman-enhanced'); ?>">
+                            <button type="button" class="submit-button customstyles-form-submit button button-secondary"
+                                data-required="<?php esc_attr_e('All fields are required.', 'capsman-enhanced'); ?>"
+                                data-add="<?php esc_attr_e('Add', 'capsman-enhanced'); ?>"
+                                data-edit="<?php esc_attr_e('Edit', 'capsman-enhanced'); ?>"
+                                data-section="customstyles">
                                 <?php esc_html_e('Add', 'capsman-enhanced'); ?></button>
                             <span class="ppc-feature-post-loader spinner"></span>
                             <div class="ppc-post-features-note"></div>
@@ -344,33 +368,54 @@ class PP_Capabilities_Frontend_Features_UI
         $section_array           = $args['section_array'];
         $section_slug            = $args['section_slug'];
         $section_id              = $args['section_id'];
-        $sn                      = $args['sn'];
         $item_name               = $section_array['label'];
         $restrict_value          = $section_slug.'||'.$section_id;
         $additional_class        = isset($args['additional_class']) ? $args['additional_class'] : '';
+        $additional_class       .= ' custom-item-' . $section_id;
 
         ob_start(); ?>
         <tr
             class="ppc-menu-row child-menu <?php echo esc_attr($section_slug . ' ' . $additional_class); ?>">
             <td class="restrict-column ppc-menu-checkbox">
-                <input id="check-item-<?php echo (int) $sn; ?>"
+                <input id="check-item-<?php echo $section_id; ?>"
                     class="check-item" type="checkbox" name="capsman_disabled_frontend_features[]"
                     value="<?php echo esc_attr($restrict_value); ?>"
                     <?php echo (in_array($restrict_value, $disabled_frontend_items)) ? 'checked' : ''; ?>/>
             </td>
             <td class="menu-column ppc-menu-item">
 
-                <label for="check-item-<?php echo (int) $sn; ?>">
+                <label for="check-item-<?php echo $section_id; ?>">
                     <span
                         class="menu-item-link<?php echo (in_array($restrict_value, $disabled_frontend_items)) ? ' restricted' : ''; ?>">
                         <strong>
                             &mdash;
                             <?php
-                                            echo esc_html($section_array['label']) . ' <small class="frontend-feature-entry">(' . esc_html($section_array['elements']). ')</small> <small class="frontend-feature-entry-pages">[' . esc_html(join(', ', $section_array['pages'])). ']</small> &nbsp; '
-                                            . '<span class="frontend-features-delete-item frontend-feature-red" data-section="' . esc_attr($section_slug)  . '" data-id="' . esc_attr($section_id)  . '" data-delete-nonce="'. esc_attr(wp_create_nonce('frontend-delete' . $section_id .'-nonce')) .'"><small>(' . esc_html__('Delete', 'capsman-enhanced') . ')</small></span>' . ''; ?>
+                            
+                            echo esc_html($section_array['label']) . ' 
+                            &nbsp; 
+                           <span class="custom-item-action">
+                                <small class="view-custom-item">' . esc_html__('View', 'capsman-enhanced') . '</small> &nbsp;|&nbsp; 
+                                <small class="edit-custom-item" 
+                                    data-section="' . esc_attr($section_slug)  . '"
+                                    data-label="' . esc_attr($section_array['label'])  . '"
+                                    data-element="' . esc_attr($section_array['elements'])  . '"
+                                    data-pages="' . esc_attr(join(', ', $section_array['pages']))  . '"
+                                    data-id="' . esc_attr($section_id)  . '">
+                                        ' . esc_html__('Edit', 'capsman-enhanced') . '
+                                </small> &nbsp;|&nbsp; ' . '
+                                <span class="frontend-features-delete-item frontend-feature-red" data-section="' . esc_attr($section_slug)  . '" data-id="' . esc_attr($section_id)  . '" data-delete-nonce="'. esc_attr(wp_create_nonce('frontend-delete' . $section_id .'-nonce')) .'"><small>(' . esc_html__('Delete', 'capsman-enhanced') . ')</small></span>' . '
+                            </span>'; ?>
                         </strong>
                     </span>
                 </label>
+                <div class="custom-item-output">
+                    <div><br />
+                        <small class="frontend-feature-entry-pages">[<?php echo esc_html(join(', ', $section_array['pages'])); ?>]</small>
+                    </div>
+                    <pre
+                        class="custom-item-display"><?php echo esc_html($section_array['elements']); ?>)
+                    </pre>
+                </div>
             </td>
         </tr>
         <?php
@@ -397,35 +442,53 @@ class PP_Capabilities_Frontend_Features_UI
         $section_array           = $args['section_array'];
         $section_slug            = $args['section_slug'];
         $section_id              = $args['section_id'];
-        $sn                      = $args['sn'];
         $item_name               = $section_array['label'];
         $restrict_value          = $section_slug.'||'.$section_id;
         $additional_class        = isset($args['additional_class']) ? $args['additional_class'] : '';
+        $additional_class       .= ' custom-item-' . $section_id;
 
         ob_start(); ?>
         <tr
             class="ppc-menu-row child-menu <?php echo esc_attr($section_slug . ' ' . $additional_class); ?>">
             <td class="restrict-column ppc-menu-checkbox">
-                <input id="check-item-<?php echo (int) $sn; ?>"
+                <input id="check-item-<?php echo $section_id; ?>"
                     class="check-item" type="checkbox" name="capsman_disabled_frontend_features[]"
                     value="<?php echo esc_attr($restrict_value); ?>"
                     <?php echo (in_array($restrict_value, $disabled_frontend_items)) ? 'checked' : ''; ?>/>
             </td>
             <td class="menu-column ppc-menu-item">
 
-                <label for="check-item-<?php echo (int) $sn; ?>">
+                <label for="check-item-<?php echo $section_id; ?>">
                     <span
                         class="menu-item-link<?php echo (in_array($restrict_value, $disabled_frontend_items)) ? ' restricted' : ''; ?>">
                         <strong>
                             &mdash;
                             <?php
-                                            echo esc_html($section_array['label']) . ' <small class="frontend-feature-entry-pages">[' . esc_html(join(', ', $section_array['pages'])). ']</small> &nbsp; '
-                                            . '<span class="frontend-features-delete-item frontend-feature-red" data-section="' . esc_attr($section_slug)  . '" data-id="' . esc_attr($section_id)  . '" data-delete-nonce="'. esc_attr(wp_create_nonce('frontend-delete' . $section_id .'-nonce')) .'"><small>(' . esc_html__('Delete', 'capsman-enhanced') . ')</small></span>' . ''; ?>
+                            echo esc_html($section_array['label']) . ' 
+                             &nbsp; 
+                            <span class="custom-item-action">
+                            <small class="view-custom-item">' . esc_html__('View', 'capsman-enhanced') . '</small> &nbsp;|&nbsp; 
+                            <small class="edit-custom-item" 
+                                data-section="' . esc_attr($section_slug)  . '"
+                                data-label="' . esc_attr($section_array['label'])  . '"
+                                data-pages="' . esc_attr(join(', ', $section_array['pages']))  . '"
+                                data-id="' . esc_attr($section_id)  . '">
+                                    ' . esc_html__('Edit', 'capsman-enhanced') . '
+                            </small> &nbsp;|&nbsp; 
+                            ' . '<span class="frontend-features-delete-item frontend-feature-red" data-section="' . esc_attr($section_slug)  . '" data-id="' . esc_attr($section_id)  . '" data-delete-nonce="'. esc_attr(wp_create_nonce('frontend-delete' . $section_id .'-nonce')) .'"><small>' . esc_html__('Delete', 'capsman-enhanced') . '</small></span>
+                            </span>' . ''; ?>
                         </strong>
                     </span>
                 </label>
-                <pre
-                    class="frontend-custom-styles-output"><?php esc_html_e($section_array['elements']); ?></pre>
+                <div class="custom-item-output">
+                    <div><br />
+                        <small class="frontend-feature-entry-pages">[<?php echo esc_html(join(', ', $section_array['pages'])); ?>]</small>
+                    </div>
+                    <pre
+                        class="frontend-custom-styles-output"><?php esc_html_e($section_array['elements']); ?>
+                    </pre>
+                    <div class="customstyles-new-element-update"></div>
+                </div>
             </td>
         </tr>
         <?php
@@ -473,6 +536,12 @@ class PP_Capabilities_Frontend_Features_UI
                         $(document).on("click", ".customstyles-new-element-clear", function(){
                             customstyles_editor.codemirror.setValue("");
                             $(".ppc-code-editor-page-css").val("");
+                            $(".ppc-code-editor-page-css").trigger("change");
+                        });
+                        $(document).on("click", ".customstyles-new-element-update", function(){
+                            var element_value = $(this).closest("td").find(".frontend-custom-styles-output").html();
+                            customstyles_editor.codemirror.setValue(element_value);
+                            $(".ppc-code-editor-page-css").val(element_value);
                             $(".ppc-code-editor-page-css").trigger("change");
                         });
                     }

@@ -216,6 +216,10 @@ function pp_capabilities_backup_sections()
    $backup_sections[$cms_id . '_admin_features_backup']['label']     = esc_html__('Admin Features', 'capsman-enhanced');
    $backup_sections[$cms_id . '_admin_features_backup']['options'][] = "capsman_disabled_admin_features";
 
+   //Frontend Features
+   $backup_sections[$cms_id . '_frontend_features_backup']['label']     = esc_html__('Frontend Features', 'capsman-enhanced');
+   $backup_sections[$cms_id . '_frontend_features_backup']['options'][] = "capsman_disabled_frontend_features";
+
    //Profile Features
    $backup_sections[$cms_id . '_profile_features_backup']['label']     = esc_html__('Profile Features', 'capsman-enhanced');
    $backup_sections[$cms_id . '_profile_features_backup']['options'][] = "capsman_disabled_profile_features";

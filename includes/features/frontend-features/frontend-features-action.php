@@ -50,6 +50,7 @@ class PP_Capabilities_Frontend_Features_Action
         $element_pages  = (isset($_POST['element_pages']) && is_array($_POST['element_pages'])) ? array_map('sanitize_text_field', $_POST['element_pages']) : [];
         $element_posts  = isset($_POST['element_posts']) ? sanitize_text_field($_POST['element_posts']) : '';
         $security       = isset($_POST['security']) ? sanitize_key($_POST['security']) : '';
+        $item_id        = isset($_POST['item_id']) ? sanitize_key($_POST['item_id']) : '';
 
         if ((!is_multisite() || !is_super_admin()) && !current_user_can('administrator') && !current_user_can('manage_capabilities')) {
             $response['message'] = esc_html__('You do not have permission to manage frontend features.', 'capsman-enhanced');
@@ -58,7 +59,7 @@ class PP_Capabilities_Frontend_Features_Action
         } elseif (empty(trim($custom_label)) || empty(trim($custom_element))) {
             $response['message'] = esc_html__('All fields are required.', 'capsman-enhanced');
         } else {
-            $element_id       = uniqid(true);
+            $element_id       = (!empty($item_id)) ? $item_id : uniqid(true);
             $data             = PP_Capabilities_Frontend_Features_Data::getFrontendElements();
 
             //merge pages
@@ -88,7 +89,11 @@ class PP_Capabilities_Frontend_Features_Action
             ];
 
             $response['content'] = PP_Capabilities_Frontend_Features_UI::do_pp_capabilities_frontend_features_frontendelements_tr($function_args, false);
-            $response['message'] = esc_html__('New frontend element added. Save changes to enable for role.', 'capsman-enhanced');
+            if ($item_id) {
+                $response['message'] = esc_html__('Frontend element item updated. Save changes to enable for role.', 'capsman-enhanced');
+            } else {
+                $response['message'] = esc_html__('New frontend element added. Save changes to enable for role.', 'capsman-enhanced');
+            }
             $response['status']  = 'success';
         }
 
@@ -110,6 +115,7 @@ class PP_Capabilities_Frontend_Features_Action
         $element_pages  = (isset($_POST['element_pages']) && is_array($_POST['element_pages'])) ? array_map('sanitize_text_field', $_POST['element_pages']) : [];
         $element_posts  = isset($_POST['element_posts']) ? sanitize_text_field($_POST['element_posts']) : '';
         $security       = isset($_POST['security']) ? sanitize_key($_POST['security']) : '';
+        $item_id        = isset($_POST['item_id']) ? sanitize_key($_POST['item_id']) : '';
 
         if ((!is_multisite() || !is_super_admin()) && !current_user_can('administrator') && !current_user_can('manage_capabilities')) {
             $response['message'] = esc_html__('You do not have permission to manage frontend features.', 'capsman-enhanced');
@@ -118,7 +124,7 @@ class PP_Capabilities_Frontend_Features_Action
         } elseif (empty(trim($custom_label)) || empty(trim($custom_element))) {
             $response['message'] = esc_html__('All fields are required.', 'capsman-enhanced');
         } else {
-            $element_id       = uniqid(true);
+            $element_id       = (!empty($item_id)) ? $item_id : uniqid(true);
             $data             = PP_Capabilities_Frontend_Features_Data::getBodyClass();
 
             //merge pages
@@ -148,7 +154,11 @@ class PP_Capabilities_Frontend_Features_Action
             ];
 
             $response['content'] = PP_Capabilities_Frontend_Features_UI::do_pp_capabilities_frontend_features_bodyclass_tr($function_args, false);
-            $response['message'] = esc_html__('New body class item added. Save changes to enable for role.', 'capsman-enhanced');
+            if ($item_id) {
+                $response['message'] = esc_html__('Body class item updated. Save changes to enable for role.', 'capsman-enhanced');
+            } else {
+                $response['message'] = esc_html__('New body class item added. Save changes to enable for role.', 'capsman-enhanced');
+            }
             $response['status']  = 'success';
         }
 
@@ -170,6 +180,7 @@ class PP_Capabilities_Frontend_Features_Action
         $element_pages  = (isset($_POST['element_pages']) && is_array($_POST['element_pages'])) ? array_map('sanitize_text_field', $_POST['element_pages']) : [];
         $element_posts  = isset($_POST['element_posts']) ? sanitize_text_field($_POST['element_posts']) : '';
         $security       = isset($_POST['security']) ? sanitize_key($_POST['security']) : '';
+        $item_id        = isset($_POST['item_id']) ? sanitize_key($_POST['item_id']) : '';
 
         if ((!is_multisite() || !is_super_admin()) && !current_user_can('administrator') && !current_user_can('manage_capabilities')) {
             $response['message'] = esc_html__('You do not have permission to manage frontend features.', 'capsman-enhanced');
@@ -178,7 +189,7 @@ class PP_Capabilities_Frontend_Features_Action
         } elseif (empty(trim($custom_label)) || empty(trim($custom_element))) {
             $response['message'] = esc_html__('All fields are required.', 'capsman-enhanced');
         } else {
-            $element_id       = uniqid(true);
+            $element_id       = (!empty($item_id)) ? $item_id : uniqid(true);
             $data             = PP_Capabilities_Frontend_Features_Data::getCustomStyles();
 
             //merge pages
@@ -201,14 +212,18 @@ class PP_Capabilities_Frontend_Features_Action
             $function_args = [
                 'disabled_frontend_items' => [],
                 'section_array'           => $data[$element_id],
-                'section_slug'            => 'bodyclass',
+                'section_slug'            => 'customstyles',
                 'section_id'              => $element_id,
                 'sn'                      => time(),
                 'additional_class'        => 'ppc-menu-overlay-item'
             ];
 
             $response['content'] = PP_Capabilities_Frontend_Features_UI::do_pp_capabilities_frontend_features_customstyles_tr($function_args, false);
-            $response['message'] = esc_html__('New custom styles added. Save changes to enable for role.', 'capsman-enhanced');
+            if ($item_id) {
+                $response['message'] = esc_html__('Custom styles item updated. Save changes to enable for role.', 'capsman-enhanced');
+            } else {
+                $response['message'] = esc_html__('New custom styles added. Save changes to enable for role.', 'capsman-enhanced');
+            }
             $response['status']  = 'success';
         }
 

@@ -464,13 +464,15 @@ jQuery(document).ready( function($) {
     // -------------------------------------------------------------
     $(document).on("click", ".frontend-element-form-submit", function (event) {
       event.preventDefault();
-      var ajax_action   = 'ppc_submit_frontend_element_by_ajax';
+      var button        = $(this),
+        ajax_action     = 'ppc_submit_frontend_element_by_ajax';
         custom_label    = $('.frontend-element-new-name').val(),
         custom_element  = $('.frontend-element-new-element').val(),
         element_pages   = $('.frontend-element-new-element-pages').val(),
         element_posts   = $('.frontend-element-new-element-posts').val(),
         security        = $('.frontend-element-form-nonce').val(),
-        button          = $(this);
+        item_section    = $(this).attr('data-section'),
+        item_id         = $('.' + item_section + '-form').find('.custom-edit-id').val();
         
       if (custom_label == '' || custom_element == '' || (element_pages.length === 0 && element_posts == '')) {
         button.closest('tr').find('.ppc-post-features-note').html('<div class="ppc-feature-submit-form-error" style="color:red;">' + button.attr('data-required') + '</div>');
@@ -489,6 +491,7 @@ jQuery(document).ready( function($) {
         'custom_element': custom_element,
         'element_pages': element_pages,
         'element_posts': element_posts,
+        'item_id': item_id,
       };
 
       $.post(ajaxurl, data, function (response) {
@@ -513,10 +516,15 @@ jQuery(document).ready( function($) {
             $('.ppc-menu-overlay-item').removeClass('ppc-menu-overlay-item');
           }, 5000);
 
-          if(parent_child.length > 0){
-            $('.child-menu.frontendelements:last').after(response.content);
-          }else{
-            parent_table.after(response.content);
+          if (item_id !== '') {
+            $('.cancel-edit').trigger("click");
+            $('.custom-item-' + item_id).replaceWith(response.content);
+          } else {
+            if (parent_child.length > 0) {
+              $('.child-menu.frontendelements:last').after(response.content);
+            } else {
+              parent_table.after(response.content);
+            }
           }
         }
 
@@ -532,13 +540,15 @@ jQuery(document).ready( function($) {
     // -------------------------------------------------------------
     $(document).on("click", ".body-class-form-submit", function (event) {
       event.preventDefault();
-      var ajax_action   = 'ppc_submit_bodyclass_by_ajax';
+      var button        = $(this),
+        ajax_action     = 'ppc_submit_bodyclass_by_ajax';
         custom_label    = $('.body-class-new-name').val(),
         custom_element  = $('.body-class-new-element').val(),
         element_pages   = $('.body-class-new-element-pages').val(),
         element_posts   = $('.body-class-new-element-posts').val(),
         security        = $('.body-class-form-nonce').val(),
-        button          = $(this);
+        item_section    = $(this).attr('data-section'),
+        item_id         = $('.' + item_section + '-form').find('.custom-edit-id').val();
         
       if (custom_label == '' || custom_element == '' || (element_pages.length === 0 && element_posts == '')) {
         button.closest('tr').find('.ppc-post-features-note').html('<div class="ppc-feature-submit-form-error" style="color:red;">' + button.attr('data-required') + '</div>');
@@ -557,6 +567,7 @@ jQuery(document).ready( function($) {
         'custom_element': custom_element,
         'element_pages': element_pages,
         'element_posts': element_posts,
+        'item_id': item_id,
       };
 
       $.post(ajaxurl, data, function (response) {
@@ -581,10 +592,15 @@ jQuery(document).ready( function($) {
             $('.ppc-menu-overlay-item').removeClass('ppc-menu-overlay-item');
           }, 5000);
 
-          if(parent_child.length > 0){
-            $('.child-menu.bodyclass:last').after(response.content);
-          }else{
-            parent_table.after(response.content);
+          if (item_id !== '') {
+            $('.cancel-edit').trigger("click");
+            $('.custom-item-' + item_id).replaceWith(response.content);
+          } else {
+            if (parent_child.length > 0) {
+              $('.child-menu.bodyclass:last').after(response.content);
+            } else {
+              parent_table.after(response.content);
+            }
           }
         }
 
@@ -600,14 +616,16 @@ jQuery(document).ready( function($) {
   // -------------------------------------------------------------
   $(document).on("click", ".customstyles-form-submit", function (event) {
     event.preventDefault();
-    var ajax_action   = 'ppc_submit_custom_styles_by_ajax';
+    var button        = $(this),
+      ajax_action     = 'ppc_submit_custom_styles_by_ajax';
       custom_label    = $('.customstyles-element-new-name').val(),
       custom_element  = $(".customstyles-element-new-element").val(),
       element_pages   = $('.customstyles-new-element-pages').val(),
       element_posts   = $('.customstyles-new-element-posts').val(),
       security        = $('.customstyles-form-nonce').val(),
-      button          = $(this);
-      
+      item_section    = $(this).attr('data-section'),
+      item_id         = $('.' + item_section + '-form').find('.custom-edit-id').val();
+
     if (custom_label == '' || custom_element == '' || (element_pages.length === 0 && element_posts == '')) {
       button.closest('tr').find('.ppc-post-features-note').html('<div class="ppc-feature-submit-form-error" style="color:red;">' + button.attr('data-required') + '</div>');
       $(".ppc-feature-submit-form-error").delay(2000).fadeOut('slow');
@@ -625,6 +643,7 @@ jQuery(document).ready( function($) {
       'custom_element': custom_element,
       'element_pages': element_pages,
       'element_posts': element_posts,
+      'item_id': item_id,
     };
 
     $.post(ajaxurl, data, function (response) {
@@ -649,10 +668,15 @@ jQuery(document).ready( function($) {
           $('.ppc-menu-overlay-item').removeClass('ppc-menu-overlay-item');
         }, 5000);
 
-        if(parent_child.length > 0){
-          $('.child-menu.customstyles:last').after(response.content);
-        }else{
-          parent_table.after(response.content);
+        if (item_id !== '') {
+          $('.cancel-edit').trigger("click");
+          $('.custom-item-' + item_id).replaceWith(response.content);
+        } else {
+          if (parent_child.length > 0) {
+            $('.child-menu.customstyles:last').after(response.content);
+          } else {
+            parent_table.after(response.content);
+          }
         }
       }
 
@@ -690,6 +714,91 @@ jQuery(document).ready( function($) {
         });
 
       }
+  });
+
+  // -------------------------------------------------------------
+  //   View custom item
+  // -------------------------------------------------------------
+  $(document).on("click", ".view-custom-item", function (event) {
+    event.preventDefault();
+    $(this).closest('td').find('.custom-item-output').toggleClass('show');
+  });
+
+  // -------------------------------------------------------------
+  //   Edit custom item
+  // -------------------------------------------------------------
+  $(document).on("click", ".edit-custom-item", function (event) {
+    event.preventDefault();
+    var item          = $(this);
+    var item_section  = item.attr('data-section');
+    var item_id       = item.attr('data-id');
+    var item_label    = item.attr('data-label');
+    var item_element  = item.attr('data-element');
+    var item_pages    = '';
+    var item_form     = $('.' + item_section + '-form');
+
+    if (item_id == '') {
+      return;
+    }
+
+    item_form.find('.' + item_section + '-form-label').val(item_label);
+    item_form.find('.editing-custom-item').show();
+    item_form.find('.editing-custom-item .title').html(item_label);
+    item_form.find('.submit-button').html(item_form.find('.submit-button').attr('data-edit'));
+    item_form.find('.custom-edit-id').val(item_id);
+
+    if (item_section === 'customstyles') {
+      item.closest('td').find('.customstyles-new-element-update').trigger("click");
+    } else {
+      item_form.find('.' + item_section + '-form-element').val(item_element);
+    }
+    
+    if (item_section === 'customstyles' || item_section === 'frontendelements' || item_section === 'bodyclass') {
+      //update form pages
+      item_pages   = item.attr('data-pages');
+      item_pages = item_pages.split(', ');
+      var page_items = [];
+      var post_items = [];
+      item_pages.forEach(function (item_page) {
+        if (!isNaN(parseFloat(item_page)) && !isNaN(item_page - 0)) {
+          post_items.push(item_page);
+        } else {
+          page_items.push(item_page);
+        }
+      });
+      item_form.find('.' + item_section + '-form-pages').val(page_items).trigger('chosen:updated');
+      item_form.find('.' + item_section + '-form-posts').val(post_items.join(' '));
+    }
+
+    //scroll to the form
+    $([document.documentElement, document.body]).animate({
+      scrollTop: item_form.offset().top - 50
+    }, 'fast');
+  });
+
+  // -------------------------------------------------------------
+  //   Cancel custom item edit
+  // -------------------------------------------------------------
+  $(document).on("click", ".editing-custom-item .cancel-edit", function (event) {
+    event.preventDefault();
+    var item          = $(this);
+    var item_section  = item.attr('data-section');
+    var item_form     = $('.' + item_section + '-form');
+
+    item_form.find('.' + item_section + '-form-label').val('');
+    item_form.find('.editing-custom-item').hide();
+    item_form.find('.submit-button').html(item_form.find('.submit-button').attr('data-add'));
+    item_form.find('.custom-edit-id').val('');
+    item_form.find('.' + item_section + '-form-element').val('');
+
+    if (item_section === 'customstyles') {
+      $('.customstyles-new-element-clear').trigger("click");
+    }
+
+    if (item_section === 'customstyles' || item_section === 'frontendelements' || item_section === 'bodyclass') {
+      item_form.find('.' + item_section + '-form-pages').val([]).trigger('chosen:updated');
+      item_form.find('.' + item_section + '-form-posts').val('');
+    }
   });
   
   	// -------------------------------------------------------------
