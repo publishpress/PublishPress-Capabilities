@@ -90,10 +90,10 @@ class Capsman_PP_UI {
 	function pp_types_ui( $defined_types ) {
 		?>
 		<dl>
-			<dt><?php esc_html_e('Type-Specific Capabilities', 'capsman-enhanced'); ?></dt>
+			<dt><?php esc_html_e('Unique Capabilities for Post Types', 'capsman-enhanced'); ?></dt>
 			<dd style="text-align:center;">
 				<?php
-				echo "<p class='cme-hint'>" . esc_html__( 'Ensure permissions can be controlled separately from other post types.', 'capsman-enhanced' ) . "</p>";
+				echo "<p class='cme-hint'>" . esc_html__( 'Allow post type permissions to be controlled separately from other areas of WordPress.', 'capsman-enhanced' ) . "</p>";
 				
 				if ( defined( 'PRESSPERMIT_ACTIVE' ) && pp_capabilities_get_permissions_option( 'display_hints' ) ) :?>
 				<div class="cme-subtext" style="margin-top:0">
@@ -174,10 +174,10 @@ class Capsman_PP_UI {
 	function pp_taxonomies_ui( $defined_taxonomies ) {
 		?>
 		<dl>
-			<dt><?php esc_html_e('Taxonomy-Specific Capabilities', 'capsman-enhanced'); ?></dt>
+			<dt><?php esc_html_e('Unique Capabilities for Taxonomies', 'capsman-enhanced'); ?></dt>
 			<dd style="text-align:center;">
 				<?php
-				echo "<p class='cme-hint'>" . esc_html__( 'Ensure permissions can be controlled separately from other taxonomies.', 'capsman-enhanced' ) . "</p>";
+				echo "<p class='cme-hint'>" . esc_html__( 'Allow taxonomy permissions to be controlled separately from other areas of WordPress.', 'capsman-enhanced' ) . "</p>";
 				
 				echo "<table style='width:100%'><tr>";
 				
@@ -233,10 +233,10 @@ class Capsman_PP_UI {
 		</dl>
 		
 		<dl>
-			<dt><?php esc_html_e('Detailed Taxonomy Capabilities', 'capsman-enhanced'); ?></dt>
+			<dt><?php esc_html_e('Detailed Capabilities for Taxonomies', 'capsman-enhanced'); ?></dt>
 			<dd style="text-align:center;">
 				<?php
-				echo "<p class='cme-hint'>" . esc_html__( 'Enforce Edit, Delete and Assign capabilities separately from Management capability.', 'capsman-enhanced' ) . "</p>";
+				echo "<p class='cme-hint'>" . esc_html__( 'Allow "Edit", "Delete" and "Assign" capabilities separately from the "Manage" capability.', 'capsman-enhanced' ) . "</p>";
 				
 				echo "<table style='width:100%'><tr>";
 				

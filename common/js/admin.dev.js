@@ -287,7 +287,7 @@ jQuery(document).ready( function($) {
       var negative_checkbox = 0;
 
       //determine if we should check or uncheck based on current input state
-      clicked_box.closest('tr').find('input[type="checkbox"]').each(function () {
+      clicked_box.closest('tr').find('input[type="checkbox"]:not(.disabled)').each(function () {
         if (!$(this).hasClass('excluded-input') && !$(this).prop('checked')) {
           all_checkbox++;
           unchecked_fields = true;
@@ -319,7 +319,7 @@ jQuery(document).ready( function($) {
         //perform checked action
         clicked_box.closest('tr').find('td').filter('td[class!="cap-unreg"]').each(function () {
           $(this).closest('td').removeClass('cap-neg').removeClass('cap-yes').addClass('cap-no');
-          $(this).parent().find('input[type="checkbox"]').prop('checked',true);
+          $(this).parent().find('input[type="checkbox"]:not(.disabled)').prop('checked',true);
           $(this).parent().find('input.cme-negation-input').remove();
           // Also apply for any other checkboxes with the same name
           var cap_name_attr = $(this).next('input[type="checkbox"]').attr('name');
@@ -343,7 +343,7 @@ jQuery(document).ready( function($) {
         //perform blank action if state is checked
         clicked_box.closest('tr').find('td').filter('td[class!="cap-unreg"]').each(function () {
           $(this).closest('td').removeClass('cap-neg').removeClass('cap-yes').addClass('cap-no');
-          $(this).parent().find('input[type="checkbox"]').prop('checked',false);
+          $(this).parent().find('input[type="checkbox"]:not(.disabled)').prop('checked',false);
           $(this).parent().find('input.cme-negation-input').remove();
           // Also apply for any other checkboxes with the same name
           var cap_name_attr = $(this).next('input[type="checkbox"]').attr('name');
@@ -361,14 +361,16 @@ jQuery(document).ready( function($) {
       } else {
         //perform X action if state is blank
         clicked_box.closest('tr').find('td[class!="cap-neg"]').filter('td[class!="cap-unreg"]').each(function () {
-          $(this).addClass('cap-neg');
     
           var cap_name_attr = $(this).find('input[type="checkbox"]').attr('name');
-          $(this).append('<input type="hidden" class="cme-negation-input" name="'+cap_name_attr+'" value="" />');
+          if (cap_name_attr) {
+            $(this).addClass('cap-neg');
+            $(this).append('<input type="hidden" class="cme-negation-input" name="' + cap_name_attr + '" value="" />');
     
-          $('input[name="' + cap_name_attr + '"]').parent().next('a.neg-cap:visible').click();
-          if ($(this).closest('td').hasClass('upload_files')) {
-            $('tr.unfiltered_upload').find('a.neg-cap').trigger('click');
+            $('input[name="' + cap_name_attr + '"]:not(.disabled)').parent().next('a.neg-cap:visible').click();
+            if ($(this).closest('td').hasClass('upload_files')) {
+              $('tr.unfiltered_upload').find('a.neg-cap').trigger('click');
+            }
           }
         });
       }

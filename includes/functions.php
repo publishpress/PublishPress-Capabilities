@@ -430,6 +430,55 @@ function pp_capabilities_nav_menu_access_denied()
     wp_die(esc_html($forbidden));
 }
 
+
+
+
+    /**
+     * Display permission recomendation box
+     *
+     * @return void
+     */
+    function pp_capabilities_permission_box()
+    {
+        //the banner style only got enqueue when banner display 
+        //funtion is used which will no longer be true after removing the banner.
+        wp_enqueue_style(
+            'pp-wordpress-banners-style',
+            plugin_dir_url(CME_FILE) . 'vendor/publishpress/wordpress-banners/assets/css/style.css',
+            false,
+            PP_WP_BANNERS_VERSION
+        );
+        ?>
+        <div class="advertisement-box-content postbox">
+            <div class="postbox-header">
+                <h3 class="advertisement-box-header hndle is-non-sortable">
+                    <span><?php esc_html_e('Recommendations for you', 'capsman-enhanced'); ?></span>
+                </h3>
+            </div>
+            <div class="inside">
+                <h3><?php esc_html_e('Control permissions for individual posts and pages', 'capsman-enhanced'); ?></h3>
+                <ul>
+                    <li><?php esc_html_e('Choose who can read and edit each post.', 'capsman-enhanced'); ?></li>
+                    <li><?php esc_html_e('Allow specific user roles or users to manage each post.', 'capsman-enhanced'); ?></li>
+                    <li><?php esc_html_e('PublishPress Permissions is 100% free to install.', 'capsman-enhanced'); ?></li>
+                </ul>
+                <div class="action-button">
+                    <p>
+                        <a href="<?php echo esc_url(admin_url('plugin-install.php?s=publishpress-ppcore-install&tab=search&type=term')); ?>">
+                            <?php esc_html_e('Install PublishPress Permissions', 'capsman-enhanced'); ?>
+                        </a>
+                    </p>
+                </div>
+                <div class="box-banner-image">
+                <a href="<?php echo esc_url(admin_url('plugin-install.php?s=publishpress-ppcore-install&tab=search&type=term')); ?>">
+                    <img src="<?php echo esc_url(plugin_dir_url(CME_FILE) . 'common/img/install-permissions.jpg'); ?>" title="<?php esc_attr_e('Control permissions for individual posts and pages', 'capsman-enhanced'); ?>">
+                </a>
+                </div>
+            </div>
+        </div>
+    <?php
+    }
+
 /**
  * Nav menu restriction
  */

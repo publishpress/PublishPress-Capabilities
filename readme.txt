@@ -1,25 +1,25 @@
-=== PublishPress Capabilities - User Role Access, Editor Permissions, Admin Menus ===
+=== PublishPress Capabilities - User Role Editor, Access Permissions, Admin Menus ===
 
 Contributors: publishpress, kevinB, stevejburge, andergmartins, olatechpro
 Author: PublishPress
 Author URI: https://publishpress.com
-Tags: user roles, capabilities, permissions, admin menus, post editing, post types, taxonomies
+Tags: capabilities, permissions, admin menus, user roles, user role editor, access control, members, edit capabilities, publishpress capabilities, multisite capabilities, roles access, post editing screen, taxonomy capabilities, post permissions, page permisisons, woocommerce capabilities, user testing, user switching, hide metaboxes, hide editor features, media library capabilities, post type permissions, user role capabilities, edit user roles, administrator, editor, subscriber, contributor, author, shop manager
 Requires at least: 4.9.7
 Tested up to: 6.1
 Requires PHP: 5.6.20
-Stable tag: 2.6.1
+Stable tag: 2.7.0
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
-The best permissions plugin to customize user roles, editor features and admin menus. You control who has access to your WordPress site and all the features in your WordPress admin area.
+PublishPress Capabilities is the best plugin to control permissions, user roles, and admin menus. You can manage who has access to your WordPress site.
 
 == Description ==
 
-[PublishPress Capabilities](https://publishpress.com/capabilities/) gives you control over all the permissions on your WordPress site. We built this user role editor plugin so you have an EASY and POWERFUL way to manage users.
+PublishPress Capabilities gives you control over all the capabilities and permissions on your WordPress site. We built this user role editor plugin so you have an EASY and POWERFUL way to manage users.
 
-You can **customize all your WordPress user roles**, from Administrators and Editors to Authors, Contributors, Subscribers and custom roles. Each use role can have the exact permissions that your site needs.
+You can use PublishPress Capabilities **manage all your WordPress user roles**, from Administrators and Editors to Authors, Contributors, Subscribers and custom roles. Each use role can have the exact capabilities that your site needs.
 
-You can use PublishPress Capabilities to clean up the post editing screen. You can decide what authors see when they're writing posts. You can **hide any features on the Gutenberg or Classic Editor screens**. 
+PublishPress Capabilitiesc can clean up your post editing screen. You can decide what authors see when they're writing posts. You can **hide any feature on the Gutenberg or Classic Editor screens**. 
 
 The Pro version of PublishPress Capabilities enables you to stop users from accessing any admin menu link and any frontend menu link.
 
@@ -415,6 +415,21 @@ Fixed : Non-administrators with user editing capabilities could add new Administ
 Fixed : Security issue. Please update.
 
 == Changelog ==
+
+= 2.7.0 - 27 Feb 2022 =
+  * Feature : Allow admins to customize the "Profile" screen for users (Profile Features), #271
+  * Update : Make "Nav Menus" available in Free version, #606
+  * Update : Add copy & revise capabilities when Revisions activated, #596
+  * Update : Implement UI friendly checkbox for shared capabilities, #686
+  * Update : Add required capability for WooCommerce admin restrictions, #687
+  * Update : Ability to disable multiple roles on user edit screen, #622
+  * Fixed : Custom item did not included in export/import, #631
+  * Fixed : Template and Permalink are not hidden, #650
+  * Fixed : Text error if no "read" capability, #700
+  * Fixed : Application Timeout error in Capabilities plugin, #683
+  * Update : Remove Note from plugin screens, #614
+  * Fixed : Inconsistent right sidebar, #690
+  * Update : Capabilities FR-IT Translation Updates 2023, #652
 
 = 2.6.1 - 08 Dec 2022 =
   * Update : Allow users to block some roles from "User Testing", #621

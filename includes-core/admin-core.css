@@ -6,10 +6,6 @@ div.pp-capability-menus-wrapper-promo select.ppc-nav-menu-role {
   filter: blur(2px);
 }
 
-#pp-capability-menu-wrapper {
-  border: inherit;
-}
-
 #pp-capability-menu-wrapper div.pp-capability-menus-promo {
   height: 600px;
   overflow: hidden;
