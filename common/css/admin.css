@@ -1032,8 +1032,9 @@ body.capabilities_page_pp-capabilities-nav-menus .pp-capability-menus-select .re
     vertical-align: top;
 }
 
-.frontend-features-form.simple-form .field-row .chosen-container + input {
-    width: 50%;
+.frontend-features-form.simple-form .field-row .chosen-container + input,
+.frontend-features-form.simple-form .field-row .post-ids-label {
+    margin-top: 10px;
 }
 
 .frontend-features-save-button-warning {

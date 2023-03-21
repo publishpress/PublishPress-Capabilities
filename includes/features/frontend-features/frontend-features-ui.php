@@ -102,7 +102,7 @@ class PP_Capabilities_Frontend_Features_UI
                         </th>
                         <td>
                             <select class="frontend-element-new-element-pages chosen-cpt-select frontendelements-form-pages"
-                                data-placeholder="<?php esc_attr_e('Select option...', 'capsman-enhanced'); ?>"
+                                data-placeholder="<?php esc_attr_e('Select pages...', 'capsman-enhanced'); ?>"
                                 multiple>
                                 <?php foreach (self::getElementFormPageOptions() as $value => $label) : ?>
                                 <option
@@ -111,6 +111,7 @@ class PP_Capabilities_Frontend_Features_UI
                                 </option>
                                 <?php endforeach; ?>
                             </select>
+                            <div class="post-ids-label"><?php esc_html_e('Post IDs:', 'capsman-enhanced'); ?></div>
                             <input class="frontend-element-new-element-posts frontent-form-field frontendelements-form-posts" type="text"
                                 placeholder="Enter multiple page/post ID separated by space." />
                             <br />
@@ -198,7 +199,7 @@ class PP_Capabilities_Frontend_Features_UI
                         </th>
                         <td>
                             <select class="body-class-new-element-pages chosen-cpt-select bodyclass-form-pages"
-                                data-placeholder="<?php esc_attr_e('Select option...', 'capsman-enhanced'); ?>"
+                                data-placeholder="<?php esc_attr_e('Select pages...', 'capsman-enhanced'); ?>"
                                 multiple>
                                 <?php foreach (self::getElementFormPageOptions() as $value => $label) : ?>
                                 <option
@@ -207,6 +208,7 @@ class PP_Capabilities_Frontend_Features_UI
                                 </option>
                                 <?php endforeach; ?>
                             </select>
+                            <div class="post-ids-label"><?php esc_html_e('Post IDs:', 'capsman-enhanced'); ?></div>
                             <input class="body-class-new-element-posts frontent-form-field bodyclass-form-posts" type="text"
                                 placeholder="Enter multiple page/post ID separated by space." />
                             <br />
@@ -295,7 +297,7 @@ class PP_Capabilities_Frontend_Features_UI
                         </th>
                         <td>
                             <select class="customstyles-new-element-pages chosen-cpt-select  customstyles-form-pages"
-                                data-placeholder="<?php esc_attr_e('Select option...', 'capsman-enhanced'); ?>"
+                                data-placeholder="<?php esc_attr_e('Select pages...', 'capsman-enhanced'); ?>"
                                 multiple>
                                 <?php foreach (self::getElementFormPageOptions() as $value => $label) : ?>
                                 <option
@@ -304,6 +306,7 @@ class PP_Capabilities_Frontend_Features_UI
                                 </option>
                                 <?php endforeach; ?>
                             </select>
+                            <div class="post-ids-label"><?php esc_html_e('Post IDs:', 'capsman-enhanced'); ?></div>
                             <input class="customstyles-new-element-posts frontent-form-field  customstyles-form-posts" type="text"
                                 placeholder="Enter multiple page/post ID separated by space." />
                             <br />
@@ -571,7 +574,7 @@ class PP_Capabilities_Frontend_Features_UI
                 $(function(){
                     if( $(".chosen-cpt-select").length ) {
                         $(".chosen-cpt-select").chosen({
-                            "width": "30%"
+                            "width": "80%"
                           });
                     }
                 });
