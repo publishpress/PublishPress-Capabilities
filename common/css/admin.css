@@ -1135,10 +1135,18 @@ body.capabilities_page_pp-capabilities-nav-menus .pp-capability-menus-select .re
     color: green;
 }
 
-.editing-custom-item span.cancel-edit {
-    color: red;
+.cancel-custom-item-edit {
+    color: red !important;
     cursor: pointer;
-    float: right;
+}
+
+.custom-item-submit-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.cancel-custom-item-edit {
+    display: none !important;
 }
 
 

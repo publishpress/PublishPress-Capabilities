@@ -64,7 +64,6 @@ class PP_Capabilities_Frontend_Features_UI
                             <p class="editing-custom-item">
                                 <strong><?php esc_html_e('Editing:', 'capsman-enhanced'); ?></strong> 
                                 <span class="title"></span>
-                                <span class="cancel-edit" data-section="frontendelements">- <?php esc_html_e('Cancel Edit', 'capsman-enhanced'); ?></span>
                             </p>
                         </td>
                     </tr>
@@ -126,12 +125,18 @@ class PP_Capabilities_Frontend_Features_UI
                             <input type="hidden" class="custom-edit-id" value="" />
                             <input class="frontend-element-form-nonce" type="hidden"
                                 value="<?php echo esc_attr(wp_create_nonce('frontend-element-nonce')); ?>" />
-                            <button type="button" class="submit-button frontend-element-form-submit button button-secondary"
-                                data-required="<?php esc_attr_e('All fields are required.', 'capsman-enhanced'); ?>"
-                                data-add="<?php esc_attr_e('Add', 'capsman-enhanced'); ?>"
-                                data-edit="<?php esc_attr_e('Edit', 'capsman-enhanced'); ?>"
-                                data-section="frontendelements">
-                                <?php esc_html_e('Add', 'capsman-enhanced'); ?></button>
+                            <div class="custom-item-submit-buttons">
+                                <div class="cancel-custom-item-edit button button-secondary"
+                                    data-section="frontendelements">
+                                    <?php esc_html_e('Cancel Edit', 'capsman-enhanced'); ?></div>
+
+                                <button type="button" class="submit-button frontend-element-form-submit button button-secondary"
+                                    data-required="<?php esc_attr_e('All fields are required.', 'capsman-enhanced'); ?>"
+                                    data-add="<?php esc_attr_e('Add', 'capsman-enhanced'); ?>"
+                                    data-edit="<?php esc_attr_e('Save Edit', 'capsman-enhanced'); ?>"
+                                    data-section="frontendelements">
+                                    <?php esc_html_e('Add', 'capsman-enhanced'); ?></button>
+                            </div>
                             <span class="ppc-feature-post-loader spinner"></span>
                             <div class="ppc-post-features-note"></div>
                             </th>
@@ -161,7 +166,6 @@ class PP_Capabilities_Frontend_Features_UI
                             <p class="editing-custom-item">
                                 <strong><?php esc_html_e('Editing:', 'capsman-enhanced'); ?></strong> 
                                 <span class="title"></span>
-                                <span class="cancel-edit" data-section="bodyclass">- <?php esc_html_e('Cancel Edit', 'capsman-enhanced'); ?></span>
                             </p>
                         </td>
                     </tr>
@@ -223,12 +227,17 @@ class PP_Capabilities_Frontend_Features_UI
                             <input type="hidden" class="custom-edit-id" value="" />
                             <input class="body-class-form-nonce" type="hidden"
                                 value="<?php echo esc_attr(wp_create_nonce('bodyclass-nonce')); ?>" />
-                            <button type="button" class="submit-button body-class-form-submit button button-secondary"
-                                data-required="<?php esc_attr_e('All fields are required.', 'capsman-enhanced'); ?>"
-                                data-add="<?php esc_attr_e('Add', 'capsman-enhanced'); ?>"
-                                data-edit="<?php esc_attr_e('Edit', 'capsman-enhanced'); ?>"
-                                data-section="bodyclass">
-                                <?php esc_html_e('Add', 'capsman-enhanced'); ?></button>
+                                <div class="custom-item-submit-buttons">
+                                    <div class="cancel-custom-item-edit button button-secondary"
+                                        data-section="bodyclass">
+                                        <?php esc_html_e('Cancel Edit', 'capsman-enhanced'); ?></div>
+                                    <button type="button" class="submit-button body-class-form-submit button button-secondary"
+                                        data-required="<?php esc_attr_e('All fields are required.', 'capsman-enhanced'); ?>"
+                                        data-add="<?php esc_attr_e('Add', 'capsman-enhanced'); ?>"
+                                        data-edit="<?php esc_attr_e('Save Edit', 'capsman-enhanced'); ?>"
+                                        data-section="bodyclass">
+                                        <?php esc_html_e('Save Edit', 'capsman-enhanced'); ?></button>
+                                </div>
                             <span class="ppc-feature-post-loader spinner"></span>
                             <div class="ppc-post-features-note"></div>
                             </th>
@@ -258,7 +267,6 @@ class PP_Capabilities_Frontend_Features_UI
                             <p class="editing-custom-item">
                                 <strong><?php esc_html_e('Editing:', 'capsman-enhanced'); ?></strong> 
                                 <span class="title"></span>
-                                <span class="cancel-edit" data-section="customstyles">- <?php esc_html_e('Cancel Edit', 'capsman-enhanced'); ?></span>
                             </p>
                         </td>
                     </tr>
@@ -321,12 +329,17 @@ class PP_Capabilities_Frontend_Features_UI
                             <input type="hidden" class="custom-edit-id" value="" />
                             <input class="customstyles-form-nonce" type="hidden"
                                 value="<?php echo esc_attr(wp_create_nonce('customstyles-nonce')); ?>" />
-                            <button type="button" class="submit-button customstyles-form-submit button button-secondary"
-                                data-required="<?php esc_attr_e('All fields are required.', 'capsman-enhanced'); ?>"
-                                data-add="<?php esc_attr_e('Add', 'capsman-enhanced'); ?>"
-                                data-edit="<?php esc_attr_e('Edit', 'capsman-enhanced'); ?>"
-                                data-section="customstyles">
-                                <?php esc_html_e('Add', 'capsman-enhanced'); ?></button>
+                            <div class="custom-item-submit-buttons">
+                                <div class="cancel-custom-item-edit button button-secondary"
+                                    data-section="customstyles">
+                                    <?php esc_html_e('Cancel Edit', 'capsman-enhanced'); ?></div>
+                                <button type="button" class="submit-button customstyles-form-submit button button-secondary"
+                                    data-required="<?php esc_attr_e('All fields are required.', 'capsman-enhanced'); ?>"
+                                    data-add="<?php esc_attr_e('Add', 'capsman-enhanced'); ?>"
+                                    data-edit="<?php esc_attr_e('Save Edit', 'capsman-enhanced'); ?>"
+                                    data-section="customstyles">
+                                    <?php esc_html_e('Add', 'capsman-enhanced'); ?></button>
+                            </div>
                             <span class="ppc-feature-post-loader spinner"></span>
                             <div class="ppc-post-features-note"></div>
                             </th>
@@ -416,7 +429,7 @@ class PP_Capabilities_Frontend_Features_UI
                         <small class="frontend-feature-entry-pages">[<?php echo esc_html(join(', ', $section_array['pages'])); ?>]</small>
                     </div>
                     <pre
-                        class="custom-item-display"><?php echo esc_html($section_array['elements']); ?>)
+                        class="custom-item-display"><?php echo esc_html($section_array['elements']); ?>
                     </pre>
                 </div>
             </td>

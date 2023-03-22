@@ -519,7 +519,7 @@ jQuery(document).ready( function($) {
           }, 5000);
 
           if (item_id !== '') {
-            $('.cancel-edit').trigger("click");
+            $('.cancel-custom-item-edit').trigger("click");
             $('.custom-item-' + item_id).replaceWith(response.content);
           } else {
             if (parent_child.length > 0) {
@@ -595,7 +595,7 @@ jQuery(document).ready( function($) {
           }, 5000);
 
           if (item_id !== '') {
-            $('.cancel-edit').trigger("click");
+            $('.cancel-custom-item-edit').trigger("click");
             $('.custom-item-' + item_id).replaceWith(response.content);
           } else {
             if (parent_child.length > 0) {
@@ -671,7 +671,7 @@ jQuery(document).ready( function($) {
         }, 5000);
 
         if (item_id !== '') {
-          $('.cancel-edit').trigger("click");
+          $('.cancel-custom-item-edit').trigger("click");
           $('.custom-item-' + item_id).replaceWith(response.content);
         } else {
           if (parent_child.length > 0) {
@@ -745,6 +745,7 @@ jQuery(document).ready( function($) {
 
     item_form.find('.' + item_section + '-form-label').val(item_label);
     item_form.find('.editing-custom-item').show();
+    item_form.find('.cancel-custom-item-edit').attr('style', 'display: inline-block !important');
     item_form.find('.editing-custom-item .title').html(item_label);
     item_form.find('.submit-button').html(item_form.find('.submit-button').attr('data-edit'));
     item_form.find('.custom-edit-id').val(item_id);
@@ -781,7 +782,7 @@ jQuery(document).ready( function($) {
   // -------------------------------------------------------------
   //   Cancel custom item edit
   // -------------------------------------------------------------
-  $(document).on("click", ".editing-custom-item .cancel-edit", function (event) {
+  $(document).on("click", ".cancel-custom-item-edit", function (event) {
     event.preventDefault();
     var item          = $(this);
     var item_section  = item.attr('data-section');
@@ -789,6 +790,7 @@ jQuery(document).ready( function($) {
 
     item_form.find('.' + item_section + '-form-label').val('');
     item_form.find('.editing-custom-item').hide();
+    item_form.find('.cancel-custom-item-edit').attr('style', '');
     item_form.find('.submit-button').html(item_form.find('.submit-button').attr('data-add'));
     item_form.find('.custom-edit-id').val('');
     item_form.find('.' + item_section + '-form-element').val('');
