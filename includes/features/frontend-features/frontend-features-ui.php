@@ -26,7 +26,45 @@ class PP_Capabilities_Frontend_Features_UI
             add_action('pp_capabilities_frontend_features_bodyclass_before_subsection_tr', [$this, 'bodyClassForm']);
             //add custom styles form
             add_action('pp_capabilities_frontend_features_customstyles_before_subsection_tr', [$this, 'customStylesForm']);
+            //add frontend features metabox
+            //add_action('add_meta_boxes', [$this, 'addFrontendFeaturesMetabox']);
         }
+    }
+
+    /**
+     * Add frontend features metabox
+     *
+     * @return void
+     */
+    public function addFrontendFeaturesMetabox()
+    {
+        global $post;
+
+        //write_log($post);
+
+        /*
+        add_meta_box(
+            'ppc_frontend_metabox',
+            __('Author Box Preview', 'publishpress-authors'),
+            [$this, 'renderFrontendFeaturesMetabox'],
+            self::POST_TYPE_BOXES,
+            'normal',
+            'high'
+        );*/
+    }
+
+    /**
+     * Render layout slug metaboxes
+     *
+     * @param \WP_Post $post
+     * @return void
+     */
+    public function renderFrontendFeaturesMetabox(\WP_Post $post)
+    { 
+        $layout_slug = '';//self::POST_TYPE_BOXES . '_' . $post->ID;
+    ?>
+        <input type="text" value="<?php echo esc_attr($layout_slug); ?>" readonly />
+    <?php
     }
 
     /**
@@ -37,11 +75,29 @@ class PP_Capabilities_Frontend_Features_UI
     public static function getElementFormPageOptions()
     {
         $options = [
-          'global'    => esc_html__('Every Pages', 'capsman-enhanced'),
-          'frontpage' => esc_html__('Home / FrontPage', 'capsman-enhanced'),
-          'archive'   => esc_html__('Archive Pages', 'capsman-enhanced'),
-          'singlular' => esc_html__('Singlular Pages', 'capsman-enhanced')
+          'whole_site'    => esc_html__('Whole Site', 'capsman-enhanced'),
+          'homepage'      => esc_html__('Homepage', 'capsman-enhanced'),
+          'archive_pages' => esc_html__('Archive Pages', 'capsman-enhanced'),
+          'single_pages'  => esc_html__('Single Pages', 'capsman-enhanced')
         ];
+      
+        return $options;
+    }
+
+    /**
+     * Form element post type options
+     *
+     * @return array
+     */
+    public static function getElementFormPostTypesOptions()
+    {
+        $post_types = get_post_types(['public' => true], 'objects');
+        unset($post_types['attachment']);
+
+        $options = [];
+        foreach ($post_types as $name => $post_type) {
+            $options[$name] = $post_type->label;
+        }
       
         return $options;
     }
@@ -97,7 +153,6 @@ class PP_Capabilities_Frontend_Features_UI
                     <tr class="field-row">
                         <th scope="row">
                             <?php esc_html_e('Restrict to pages:', 'capsman-enhanced'); ?>
-                            <font color="red">*</font>
                         </th>
                         <td>
                             <select class="frontend-element-new-element-pages chosen-cpt-select frontendelements-form-pages"
@@ -110,12 +165,31 @@ class PP_Capabilities_Frontend_Features_UI
                                 </option>
                                 <?php endforeach; ?>
                             </select>
-                            <div class="post-ids-label"><?php esc_html_e('Post IDs:', 'capsman-enhanced'); ?></div>
-                            <input class="frontend-element-new-element-posts frontent-form-field frontendelements-form-posts" type="text"
-                                placeholder="Enter multiple page/post ID separated by space." />
                             <br />
                             <small>
-                                <?php esc_html_e('You can select post or pages where this element should be added. Additional custom post ID can be added in the provided textbox separating multiple values by space (87 873 203).', 'capsman-enhanced'); ?>
+                                <?php esc_html_e('You can select pages where this element should be added.', 'capsman-enhanced'); ?>
+                            </small>
+                        </td>
+                    </tr>
+
+                    <tr class="field-row">
+                        <th scope="row">
+                            <?php esc_html_e('Add post metabox:', 'capsman-enhanced'); ?>
+                        </th>
+                        <td>
+                            <select class="frontend-element-new-element-post-types chosen-cpt-select frontendelements-form-post-types"
+                                data-placeholder="<?php esc_attr_e('Select post types...', 'capsman-enhanced'); ?>"
+                                multiple>
+                                <?php foreach (self::getElementFormPostTypesOptions() as $value => $label) : ?>
+                                <option
+                                    value="<?php echo esc_attr($value); ?>">
+                                    <?php echo esc_html($label); ?>
+                                </option>
+                                <?php endforeach; ?>
+                            </select>
+                            <br />
+                            <small>
+                                <?php esc_html_e('This enable you to apply this restriction to specific posts in selected post type using post metabox while editing post or page.', 'capsman-enhanced'); ?>
                             </small>
                         </td>
                     </tr>
@@ -199,7 +273,6 @@ class PP_Capabilities_Frontend_Features_UI
                     <tr class="field-row">
                         <th scope="row">
                             <?php esc_html_e('Restrict to pages:', 'capsman-enhanced'); ?>
-                            <font color="red">*</font>
                         </th>
                         <td>
                             <select class="body-class-new-element-pages chosen-cpt-select bodyclass-form-pages"
@@ -212,12 +285,31 @@ class PP_Capabilities_Frontend_Features_UI
                                 </option>
                                 <?php endforeach; ?>
                             </select>
-                            <div class="post-ids-label"><?php esc_html_e('Post IDs:', 'capsman-enhanced'); ?></div>
-                            <input class="body-class-new-element-posts frontent-form-field bodyclass-form-posts" type="text"
-                                placeholder="Enter multiple page/post ID separated by space." />
                             <br />
                             <small>
-                                <?php esc_html_e('You can select post or pages where this element should be added. Additional custom post ID can be added in the provided textbox separating multiple values by space (87 873 203).', 'capsman-enhanced'); ?>
+                                <?php esc_html_e('You can select post or pages where this element should be added.', 'capsman-enhanced'); ?>
+                            </small>
+                        </td>
+                    </tr>
+
+                    <tr class="field-row">
+                        <th scope="row">
+                            <?php esc_html_e('Add post metabox:', 'capsman-enhanced'); ?>
+                        </th>
+                        <td>
+                            <select class="body-class-new-element-post-types chosen-cpt-select bodyclass-form-post-types"
+                                data-placeholder="<?php esc_attr_e('Select post types...', 'capsman-enhanced'); ?>"
+                                multiple>
+                                <?php foreach (self::getElementFormPostTypesOptions() as $value => $label) : ?>
+                                <option
+                                    value="<?php echo esc_attr($value); ?>">
+                                    <?php echo esc_html($label); ?>
+                                </option>
+                                <?php endforeach; ?>
+                            </select>
+                            <br />
+                            <small>
+                                <?php esc_html_e('This enable you to apply this restriction to specific posts in selected post type using post metabox while editing post or page.', 'capsman-enhanced'); ?>
                             </small>
                         </td>
                     </tr>
@@ -301,7 +393,6 @@ class PP_Capabilities_Frontend_Features_UI
                     <tr class="field-row">
                         <th scope="row">
                             <?php esc_html_e('Restrict to pages:', 'capsman-enhanced'); ?>
-                            <font color="red">*</font>
                         </th>
                         <td>
                             <select class="customstyles-new-element-pages chosen-cpt-select  customstyles-form-pages"
@@ -314,12 +405,31 @@ class PP_Capabilities_Frontend_Features_UI
                                 </option>
                                 <?php endforeach; ?>
                             </select>
-                            <div class="post-ids-label"><?php esc_html_e('Post IDs:', 'capsman-enhanced'); ?></div>
-                            <input class="customstyles-new-element-posts frontent-form-field  customstyles-form-posts" type="text"
-                                placeholder="Enter multiple page/post ID separated by space." />
                             <br />
                             <small>
-                                <?php esc_html_e('You can select post or pages where this element should be added. Additional custom post ID can be added in the provided textbox separating multiple values by space (87 873 203).', 'capsman-enhanced'); ?>
+                                <?php esc_html_e('You can select post or pages where this element should be added.', 'capsman-enhanced'); ?>
+                            </small>
+                        </td>
+                    </tr>
+
+                    <tr class="field-row">
+                        <th scope="row">
+                            <?php esc_html_e('Add post metabox:', 'capsman-enhanced'); ?>
+                        </th>
+                        <td>
+                            <select class="customstyles-new-element-post-types chosen-cpt-select customstyles-form-post-types"
+                                data-placeholder="<?php esc_attr_e('Select post types...', 'capsman-enhanced'); ?>"
+                                multiple>
+                                <?php foreach (self::getElementFormPostTypesOptions() as $value => $label) : ?>
+                                <option
+                                    value="<?php echo esc_attr($value); ?>">
+                                    <?php echo esc_html($label); ?>
+                                </option>
+                                <?php endforeach; ?>
+                            </select>
+                            <br />
+                            <small>
+                                <?php esc_html_e('This enable you to apply this restriction to specific posts in selected post type using post metabox while editing post or page.', 'capsman-enhanced'); ?>
                             </small>
                         </td>
                     </tr>
@@ -409,12 +519,22 @@ class PP_Capabilities_Frontend_Features_UI
                     </span>
                 </label>
                 <div class="custom-item-output">
-                    <div><br />
-                        <small class="frontend-feature-entry-pages">[<?php echo esc_html(join(', ', $section_array['pages'])); ?>]</small>
-                    </div>
                     <pre
                         class="custom-item-display"><?php echo esc_html($section_array['elements']); ?>
                     </pre>
+                    <div>
+                        <p class="frontend-feature-entry-pages">
+                            <?php if (!empty($section_array['pages'])) : ?>
+                            <strong><?php esc_html_e('Pages', 'capsman-enhanced'); ?>:</strong>
+                            <?php echo esc_html(str_replace(['-', '_'], ' ', join(', ', $section_array['pages']))); ?>
+                            <?php endif; ?>
+                            <?php if (!empty($section_array['posts'])) : ?>
+                            <br />
+                            <strong><?php esc_html_e('Posts', 'capsman-enhanced'); ?>:</strong>
+                            <?php echo esc_html(join(', ', $section_array['posts'])); ?>
+                            <?php endif; ?>
+                        </p>
+                    </div>
                 </div>
             </td>
             <td>
@@ -426,6 +546,7 @@ class PP_Capabilities_Frontend_Features_UI
                     data-label="<?php echo esc_attr($section_array['label']); ?>"
                     data-element="<?php echo esc_attr($section_array['elements']); ?>"
                     data-pages="<?php echo esc_attr(join(', ', $section_array['pages'])); ?>"
+                    data-post-types="<?php echo esc_attr(join(', ', $section_array['post_types'])); ?>"
                     data-id="<?php echo esc_attr($section_id); ?>">
                 <?php esc_html_e('Edit', 'capsman-enhanced'); ?>
                 </div>
@@ -490,12 +611,22 @@ class PP_Capabilities_Frontend_Features_UI
                     </span>
                 </label>
                 <div class="custom-item-output">
-                    <div><br />
-                        <small class="frontend-feature-entry-pages">[<?php echo esc_html(join(', ', $section_array['pages'])); ?>]</small>
-                    </div>
                     <pre
                         class="frontend-custom-styles-output"><?php esc_html_e($section_array['elements']); ?>
                     </pre>
+                    <div>
+                        <p class="frontend-feature-entry-pages">
+                            <?php if (!empty($section_array['pages'])) : ?>
+                            <strong><?php esc_html_e('Pages', 'capsman-enhanced'); ?>:</strong>
+                            <?php echo esc_html(str_replace(['-', '_'], ' ', join(', ', $section_array['pages']))); ?>
+                            <?php endif; ?>
+                            <?php if (!empty($section_array['posts'])) : ?>
+                            <br />
+                            <strong><?php esc_html_e('Posts', 'capsman-enhanced'); ?>:</strong>
+                            <?php echo esc_html(join(', ', $section_array['posts'])); ?>
+                            <?php endif; ?>
+                        </p>
+                    </div>
                     <div class="customstyles-new-element-update"></div>
                 </div>
             </td>
@@ -507,6 +638,7 @@ class PP_Capabilities_Frontend_Features_UI
                     data-section="<?php echo esc_attr($section_slug); ?>"
                     data-label="<?php echo esc_attr($section_array['label']); ?>"
                     data-pages="<?php echo esc_attr(join(', ', $section_array['pages'])); ?>"
+                    data-post-types="<?php echo esc_attr(join(', ', $section_array['post_types'])); ?>"
                     data-id="<?php echo esc_attr($section_id); ?>">
                 <?php esc_html_e('Edit', 'capsman-enhanced'); ?>
                 </div>

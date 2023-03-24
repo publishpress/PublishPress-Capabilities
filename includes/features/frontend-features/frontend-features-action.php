@@ -48,7 +48,7 @@ class PP_Capabilities_Frontend_Features_Action
         $custom_label   = isset($_POST['custom_label']) ? sanitize_text_field($_POST['custom_label']) : '';
         $custom_element = isset($_POST['custom_element']) ? sanitize_textarea_field($_POST['custom_element']) : '';
         $element_pages  = (isset($_POST['element_pages']) && is_array($_POST['element_pages'])) ? array_map('sanitize_text_field', $_POST['element_pages']) : [];
-        $element_posts  = isset($_POST['element_posts']) ? sanitize_text_field($_POST['element_posts']) : '';
+        $element_post_types  = (isset($_POST['element_post_types']) && is_array($_POST['element_post_types'])) ? array_map('sanitize_text_field', $_POST['element_post_types']) : [];
         $security       = isset($_POST['security']) ? sanitize_key($_POST['security']) : '';
         $item_id        = isset($_POST['item_id']) ? sanitize_key($_POST['item_id']) : '';
 
@@ -62,19 +62,12 @@ class PP_Capabilities_Frontend_Features_Action
             $element_id       = (!empty($item_id)) ? $item_id : uniqid(true);
             $data             = PP_Capabilities_Frontend_Features_Data::getFrontendElements();
 
-            //merge pages
-            if (!empty($element_posts)) {
-                $post_ids =  explode(' ', $element_posts);
-                $post_ids = array_filter($post_ids);
-                $post_ids = array_map('trim', $post_ids);
-                $element_pages = array_merge($element_pages, $post_ids);
-            }
-
             $data[$element_id] = [
                 'element_id'    => $element_id,
                 'label'         => $custom_label,
                 'elements'      => $custom_element,
-                'pages'         => $element_pages
+                'pages'         => $element_pages,
+                'post_types'    => $element_post_types
             ];
 
             update_option('capsman_frontend_features_hide_elements', $data);
@@ -113,7 +106,7 @@ class PP_Capabilities_Frontend_Features_Action
         $custom_label   = isset($_POST['custom_label']) ? sanitize_text_field($_POST['custom_label']) : '';
         $custom_element = isset($_POST['custom_element']) ? sanitize_textarea_field($_POST['custom_element']) : '';
         $element_pages  = (isset($_POST['element_pages']) && is_array($_POST['element_pages'])) ? array_map('sanitize_text_field', $_POST['element_pages']) : [];
-        $element_posts  = isset($_POST['element_posts']) ? sanitize_text_field($_POST['element_posts']) : '';
+        $element_post_types  = (isset($_POST['element_post_types']) && is_array($_POST['element_post_types'])) ? array_map('sanitize_text_field', $_POST['element_post_types']) : [];
         $security       = isset($_POST['security']) ? sanitize_key($_POST['security']) : '';
         $item_id        = isset($_POST['item_id']) ? sanitize_key($_POST['item_id']) : '';
 
@@ -127,19 +120,12 @@ class PP_Capabilities_Frontend_Features_Action
             $element_id       = (!empty($item_id)) ? $item_id : uniqid(true);
             $data             = PP_Capabilities_Frontend_Features_Data::getBodyClass();
 
-            //merge pages
-            if (!empty($element_posts)) {
-                $post_ids =  explode(' ', $element_posts);
-                $post_ids = array_filter($post_ids);
-                $post_ids = array_map('trim', $post_ids);
-                $element_pages = array_merge($element_pages, $post_ids);
-            }
-
             $data[$element_id] = [
                 'element_id'    => $element_id,
                 'label'         => $custom_label,
                 'elements'      => $custom_element,
-                'pages'         => $element_pages
+                'pages'         => $element_pages,
+                'post_types'    => $element_post_types
             ];
 
             update_option('capsman_frontend_features_body_class', $data);
@@ -178,7 +164,7 @@ class PP_Capabilities_Frontend_Features_Action
         $custom_label   = isset($_POST['custom_label']) ? sanitize_text_field($_POST['custom_label']) : '';
         $custom_element = isset($_POST['custom_element']) ? sanitize_textarea_field($_POST['custom_element']) : '';
         $element_pages  = (isset($_POST['element_pages']) && is_array($_POST['element_pages'])) ? array_map('sanitize_text_field', $_POST['element_pages']) : [];
-        $element_posts  = isset($_POST['element_posts']) ? sanitize_text_field($_POST['element_posts']) : '';
+        $element_post_types  = (isset($_POST['element_post_types']) && is_array($_POST['element_post_types'])) ? array_map('sanitize_text_field', $_POST['element_post_types']) : [];
         $security       = isset($_POST['security']) ? sanitize_key($_POST['security']) : '';
         $item_id        = isset($_POST['item_id']) ? sanitize_key($_POST['item_id']) : '';
 
@@ -192,19 +178,12 @@ class PP_Capabilities_Frontend_Features_Action
             $element_id       = (!empty($item_id)) ? $item_id : uniqid(true);
             $data             = PP_Capabilities_Frontend_Features_Data::getCustomStyles();
 
-            //merge pages
-            if (!empty($element_posts)) {
-                $post_ids =  explode(' ', $element_posts);
-                $post_ids = array_filter($post_ids);
-                $post_ids = array_map('trim', $post_ids);
-                $element_pages = array_merge($element_pages, $post_ids);
-            }
-
             $data[$element_id] = [
                 'element_id'    => $element_id,
                 'label'         => $custom_label,
                 'elements'      => $custom_element,
-                'pages'         => $element_pages
+                'pages'         => $element_pages,
+                'post_types'    => $element_post_types
             ];
 
             update_option('capsman_frontend_features_custom_styles', $data);

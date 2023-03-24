@@ -169,7 +169,7 @@ $active_tab_slug    = (!empty($_REQUEST['pp_caps_tab'])) ? sanitize_key($_REQUES
                                                     <div id="cme-cap-type-tables-<?php esc_attr_e($section_slug); ?>"
                                                         style="<?php esc_attr_e($active_style); ?>">
                                                         <table
-                                                            class="wp-list-table widefat striped pp-capability-menus-select">
+                                                            class="wp-list-table widefat striped pp-capability-menus-select <?php esc_attr_e($section_slug); ?>-table">
                                                             <tfoot>
                                                                 <tr class="ppc-menu-row parent-menu">
 
