@@ -391,36 +391,20 @@ class PP_Capabilities_Frontend_Features_UI
 
         ob_start(); ?>
         <tr
-            class="ppc-menu-row child-menu <?php echo esc_attr($section_slug . ' ' . $additional_class); ?>">
+            class="custom-item-row ppc-menu-row child-menu <?php echo esc_attr($section_slug . ' ' . $additional_class); ?>">
             <td class="restrict-column ppc-menu-checkbox">
                 <input id="check-item-<?php echo $section_id; ?>"
                     class="check-item" type="checkbox" name="capsman_disabled_frontend_features[]"
                     value="<?php echo esc_attr($restrict_value); ?>"
                     <?php echo (in_array($restrict_value, $disabled_frontend_items)) ? 'checked' : ''; ?>/>
             </td>
-            <td class="menu-column ppc-menu-item">
+            <td class="menu-column ppc-menu-item primay-td">
 
                 <label for="check-item-<?php echo $section_id; ?>">
                     <span
                         class="menu-item-link<?php echo (in_array($restrict_value, $disabled_frontend_items)) ? ' restricted' : ''; ?>">
                         <strong>
-                            &mdash;
-                            <?php
-                            
-                            echo esc_html($section_array['label']) . ' 
-                            &nbsp; 
-                           <span class="custom-item-action">
-                                <small class="view-custom-item">' . esc_html__('View', 'capsman-enhanced') . '</small> &nbsp;|&nbsp; 
-                                <small class="edit-custom-item" 
-                                    data-section="' . esc_attr($section_slug)  . '"
-                                    data-label="' . esc_attr($section_array['label'])  . '"
-                                    data-element="' . esc_attr($section_array['elements'])  . '"
-                                    data-pages="' . esc_attr(join(', ', $section_array['pages']))  . '"
-                                    data-id="' . esc_attr($section_id)  . '">
-                                        ' . esc_html__('Edit', 'capsman-enhanced') . '
-                                </small> &nbsp;|&nbsp; ' . '
-                                <span class="frontend-features-delete-item frontend-feature-red" data-section="' . esc_attr($section_slug)  . '" data-id="' . esc_attr($section_id)  . '" data-delete-nonce="'. esc_attr(wp_create_nonce('frontend-delete' . $section_id .'-nonce')) .'"><small>(' . esc_html__('Delete', 'capsman-enhanced') . ')</small></span>' . '
-                            </span>'; ?>
+                            <?php echo esc_html($section_array['label']); ?>
                         </strong>
                     </span>
                 </label>
@@ -431,6 +415,28 @@ class PP_Capabilities_Frontend_Features_UI
                     <pre
                         class="custom-item-display"><?php echo esc_html($section_array['elements']); ?>
                     </pre>
+                </div>
+            </td>
+            <td>
+                <div class="button view-custom-item"><?php esc_html_e('View', 'capsman-enhanced'); ?></div>
+            </td>
+            <td>
+                <div class="button edit-custom-item" 
+                    data-section="<?php echo esc_attr($section_slug); ?>"
+                    data-label="<?php echo esc_attr($section_array['label']); ?>"
+                    data-element="<?php echo esc_attr($section_array['elements']); ?>"
+                    data-pages="<?php echo esc_attr(join(', ', $section_array['pages'])); ?>"
+                    data-id="<?php echo esc_attr($section_id); ?>">
+                <?php esc_html_e('Edit', 'capsman-enhanced'); ?>
+                </div>
+            </td>
+            <td>
+                <div 
+                    class="button frontend-features-delete-item frontend-feature-red" 
+                    data-section="<?php echo esc_attr($section_slug); ?>" 
+                    data-id="<?php echo esc_attr($section_id); ?>" 
+                    data-delete-nonce="<?php echo esc_attr(wp_create_nonce('frontend-delete' . $section_id .'-nonce')); ?>">
+                    <?php esc_html_e('Delete', 'capsman-enhanced'); ?>    
                 </div>
             </td>
         </tr>
@@ -465,34 +471,21 @@ class PP_Capabilities_Frontend_Features_UI
 
         ob_start(); ?>
         <tr
-            class="ppc-menu-row child-menu <?php echo esc_attr($section_slug . ' ' . $additional_class); ?>">
+            class="custom-item-row ppc-menu-row child-menu <?php echo esc_attr($section_slug . ' ' . $additional_class); ?>">
             <td class="restrict-column ppc-menu-checkbox">
                 <input id="check-item-<?php echo $section_id; ?>"
                     class="check-item" type="checkbox" name="capsman_disabled_frontend_features[]"
                     value="<?php echo esc_attr($restrict_value); ?>"
                     <?php echo (in_array($restrict_value, $disabled_frontend_items)) ? 'checked' : ''; ?>/>
             </td>
-            <td class="menu-column ppc-menu-item">
+            <td class="menu-column ppc-menu-item primay-td">
 
                 <label for="check-item-<?php echo $section_id; ?>">
                     <span
                         class="menu-item-link<?php echo (in_array($restrict_value, $disabled_frontend_items)) ? ' restricted' : ''; ?>">
                         <strong>
-                            &mdash;
                             <?php
-                            echo esc_html($section_array['label']) . ' 
-                             &nbsp; 
-                            <span class="custom-item-action">
-                            <small class="view-custom-item">' . esc_html__('View', 'capsman-enhanced') . '</small> &nbsp;|&nbsp; 
-                            <small class="edit-custom-item" 
-                                data-section="' . esc_attr($section_slug)  . '"
-                                data-label="' . esc_attr($section_array['label'])  . '"
-                                data-pages="' . esc_attr(join(', ', $section_array['pages']))  . '"
-                                data-id="' . esc_attr($section_id)  . '">
-                                    ' . esc_html__('Edit', 'capsman-enhanced') . '
-                            </small> &nbsp;|&nbsp; 
-                            ' . '<span class="frontend-features-delete-item frontend-feature-red" data-section="' . esc_attr($section_slug)  . '" data-id="' . esc_attr($section_id)  . '" data-delete-nonce="'. esc_attr(wp_create_nonce('frontend-delete' . $section_id .'-nonce')) .'"><small>' . esc_html__('Delete', 'capsman-enhanced') . '</small></span>
-                            </span>' . ''; ?>
+                            echo esc_html($section_array['label']); ?>
                         </strong>
                     </span>
                 </label>
@@ -504,6 +497,27 @@ class PP_Capabilities_Frontend_Features_UI
                         class="frontend-custom-styles-output"><?php esc_html_e($section_array['elements']); ?>
                     </pre>
                     <div class="customstyles-new-element-update"></div>
+                </div>
+            </td>
+            <td>
+                <div class="button view-custom-item"><?php esc_html_e('View', 'capsman-enhanced'); ?></div>
+            </td>
+            <td>
+                <div class="button edit-custom-item" 
+                    data-section="<?php echo esc_attr($section_slug); ?>"
+                    data-label="<?php echo esc_attr($section_array['label']); ?>"
+                    data-pages="<?php echo esc_attr(join(', ', $section_array['pages'])); ?>"
+                    data-id="<?php echo esc_attr($section_id); ?>">
+                <?php esc_html_e('Edit', 'capsman-enhanced'); ?>
+                </div>
+            </td>
+            <td>
+                <div 
+                    class="button frontend-features-delete-item frontend-feature-red" 
+                    data-section="<?php echo esc_attr($section_slug); ?>" 
+                    data-id="<?php echo esc_attr($section_id); ?>" 
+                    data-delete-nonce="<?php echo esc_attr(wp_create_nonce('frontend-delete' . $section_id .'-nonce')); ?>">
+                    <?php esc_html_e('Delete', 'capsman-enhanced'); ?>    
                 </div>
             </td>
         </tr>
@@ -555,7 +569,7 @@ class PP_Capabilities_Frontend_Features_UI
                             $(".ppc-code-editor-page-css").trigger("change");
                         });
                         $(document).on("click", ".customstyles-new-element-update", function(){
-                            var element_value = $(this).closest("td").find(".frontend-custom-styles-output").html();
+                            var element_value = $(this).closest(".custom-item-row").find(".frontend-custom-styles-output").html();
                             customstyles_editor.codemirror.setValue(element_value);
                             $(".ppc-code-editor-page-css").val(element_value);
                             $(".ppc-code-editor-page-css").trigger("change");
@@ -587,7 +601,7 @@ class PP_Capabilities_Frontend_Features_UI
                 $(function(){
                     if( $(".chosen-cpt-select").length ) {
                         $(".chosen-cpt-select").chosen({
-                            "width": "80%"
+                            "width": "100%"
                           });
                     }
                 });

@@ -723,7 +723,7 @@ jQuery(document).ready( function($) {
   // -------------------------------------------------------------
   $(document).on("click", ".view-custom-item", function (event) {
     event.preventDefault();
-    $(this).closest('td').find('.custom-item-output').toggleClass('show');
+    $(this).closest('.custom-item-row').find('.custom-item-output').toggleClass('show');
   });
 
   // -------------------------------------------------------------
@@ -751,7 +751,7 @@ jQuery(document).ready( function($) {
     item_form.find('.custom-edit-id').val(item_id);
 
     if (item_section === 'customstyles') {
-      item.closest('td').find('.customstyles-new-element-update').trigger("click");
+      item.closest('.custom-item-row').find('.customstyles-new-element-update').trigger("click");
     } else {
       item_form.find('.' + item_section + '-form-element').val(item_element);
     }

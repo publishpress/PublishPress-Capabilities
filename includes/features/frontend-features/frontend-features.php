@@ -72,7 +72,7 @@ $active_tab_slug    = (!empty($_REQUEST['pp_caps_tab'])) ? sanitize_key($_REQUES
 
         <div class="pp-columns-wrapper pp-enable-sidebar">
             <div class="pp-column-left">
-                <table id="akmin">
+                <table id="akmin" style="border-bottom: none !important;">
                     <tr>
                         <td class="content">
 
@@ -183,33 +183,66 @@ $active_tab_slug    = (!empty($_REQUEST['pp_caps_tab'])) ? sanitize_key($_REQUES
                                                                 </tr>
                                                             </tfoot>
                                                             <tbody>
-
-                                                                <?php do_action("pp_capabilities_frontend_features_{$section_slug}_before_subsection_tr"); ?>
-                                                                <?php
-                                                                        foreach ($section_elements as $section_id => $section_array) :
-                                                                            $sn++;
-                                                                            if (!$section_id) {
-                                                                                continue;
-                                                                            }
-                                                                            $section_tr_function = 'do_pp_capabilities_frontend_features_' . $section_slug . '_tr';
-                                                                            $function_args = [
-                                                                                'disabled_frontend_items' => $disabled_frontend_items,
-                                                                                'section_array'           => $section_array,
-                                                                                'section_slug'            => $section_slug,
-                                                                                'section_id'              => $section_id,
-                                                                                'sn'                      => $sn
-                                                                            ];
-                                                                            //render tr ui for row
-                                                                            if (method_exists('\PublishPress\Capabilities\PP_Capabilities_Frontend_Features_UI', $section_tr_function)) {
-                                                                                PP_Capabilities_Frontend_Features_UI::$section_tr_function($function_args);
-                                                                            } elseif (function_exists($section_tr_function)) {
-                                                                                $section_tr_function($function_args);
-                                                                            }
-                                                                        endforeach; // $section_elements subsection loop
-                                                                        ?>
+                                                                <?php do_action("pp_capabilities_frontend_features_{$section_slug}_before_subsection_tr"); 
+                                                                $display_title_class = empty($section_elements) ? 'temporarily hidden-element' : ''; 
+                                                                ?>
+                                                                <tr class="custom-table-title <?php echo esc_attr($display_title_class); ?>">
+                                                                    <td colspan="2" class="title-td">
+                                                                        <label>
+                                                                            <?php esc_attr_e('Edit Your Custom Styles', 'capsman-enhanced') ?>
+                                                                        </label>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr class="custom-item-wrapper-tr <?php echo esc_attr($display_title_class); ?>">
+                                                                    <td colspan="2" class="custom-item-wrapper-td">
+                                                                        <table class="wp-list-table widefat fixed striped table-view-list custom-items-table">
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <td class="manage-column column-cb check-column"><?php esc_attr_e('Enable', 'capsman-enhanced') ?></td>
+                                                                                    <th scope="col" class="manage-column column-primary"
+                                                                                    >
+                                                                                        <?php esc_attr_e('Label', 'capsman-enhanced') ?>
+                                                                                    </th>
+                                                                                    <th scope="col" class="manage-column">
+                                                                                        <?php esc_attr_e('View', 'capsman-enhanced') ?>
+                                                                                    </th>
+                                                                                    <th scope="col" class="manage-column">
+                                                                                        <?php esc_attr_e('Edit', 'capsman-enhanced') ?>
+                                                                                    </th>
+                                                                                    <th scope="col" class="manage-column">
+                                                                                        <?php esc_attr_e('Delete', 'capsman-enhanced') ?>
+                                                                                    </th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                            <?php
+                                                                            foreach ($section_elements as $section_id => $section_array) :
+                                                                                $sn++;
+                                                                                if (!$section_id) {
+                                                                                    continue;
+                                                                                }
+                                                                                $section_tr_function = 'do_pp_capabilities_frontend_features_' . $section_slug . '_tr';
+                                                                                $function_args = [
+                                                                                    'disabled_frontend_items' => $disabled_frontend_items,
+                                                                                    'section_array'           => $section_array,
+                                                                                    'section_slug'            => $section_slug,
+                                                                                    'section_id'              => $section_id,
+                                                                                    'sn'                      => $sn
+                                                                                ];
+                                                                                //render tr ui for row
+                                                                                if (method_exists('\PublishPress\Capabilities\PP_Capabilities_Frontend_Features_UI', $section_tr_function)) {
+                                                                                    PP_Capabilities_Frontend_Features_UI::$section_tr_function($function_args);
+                                                                                } elseif (function_exists($section_tr_function)) {
+                                                                                    $section_tr_function($function_args);
+                                                                                }
+                                                                            endforeach; // $section_elements subsection loop
+                                                                            ?>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </td>
+                                                                </tr>
                                                             </tbody>
                                                         </table>
-
                                                     </div>
                                                     <?php
                                                         endforeach; // $frontend_features_elements section loop
