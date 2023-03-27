@@ -734,7 +734,7 @@ jQuery(document).ready( function($) {
 
     item_form.find('.' + item_section + '-form-label').val(item_label);
     item_form.find('.editing-custom-item').show();
-    item_form.find('.cancel-custom-item-edit').attr('style', 'display: inline-block !important');
+    item_form.find('.cancel-custom-item-edit').attr('style', 'visibility: visible');
     item_form.find('.editing-custom-item .title').html(item_label);
     item_form.find('.submit-button').html(item_form.find('.submit-button').attr('data-edit'));
     item_form.find('.custom-edit-id').val(item_id);

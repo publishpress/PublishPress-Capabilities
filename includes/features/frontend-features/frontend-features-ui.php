@@ -26,45 +26,7 @@ class PP_Capabilities_Frontend_Features_UI
             add_action('pp_capabilities_frontend_features_bodyclass_before_subsection_tr', [$this, 'bodyClassForm']);
             //add custom styles form
             add_action('pp_capabilities_frontend_features_customstyles_before_subsection_tr', [$this, 'customStylesForm']);
-            //add frontend features metabox
-            //add_action('add_meta_boxes', [$this, 'addFrontendFeaturesMetabox']);
         }
-    }
-
-    /**
-     * Add frontend features metabox
-     *
-     * @return void
-     */
-    public function addFrontendFeaturesMetabox()
-    {
-        global $post;
-
-        //write_log($post);
-
-        /*
-        add_meta_box(
-            'ppc_frontend_metabox',
-            __('Author Box Preview', 'publishpress-authors'),
-            [$this, 'renderFrontendFeaturesMetabox'],
-            self::POST_TYPE_BOXES,
-            'normal',
-            'high'
-        );*/
-    }
-
-    /**
-     * Render layout slug metaboxes
-     *
-     * @param \WP_Post $post
-     * @return void
-     */
-    public function renderFrontendFeaturesMetabox(\WP_Post $post)
-    { 
-        $layout_slug = '';//self::POST_TYPE_BOXES . '_' . $post->ID;
-    ?>
-        <input type="text" value="<?php echo esc_attr($layout_slug); ?>" readonly />
-    <?php
     }
 
     /**
@@ -115,7 +77,7 @@ class PP_Capabilities_Frontend_Features_UI
                     <tr class="ppc-menu-row parent-menu">
                         <td colspan="2">
                             <p class="cme-subtext">
-                                <?php esc_html_e('You can remove elements from frontend area by adding their IDs or classes below:', 'capsman-enhanced'); ?>
+                                <?php esc_html_e('You can remove frontend elements by adding their IDs or classes below:', 'capsman-enhanced'); ?>
                             </p>
                             <p class="editing-custom-item">
                                 <strong><?php esc_html_e('Editing:', 'capsman-enhanced'); ?></strong> 
@@ -132,7 +94,7 @@ class PP_Capabilities_Frontend_Features_UI
                         <td>
                             <input class="frontend-element-new-name frontent-form-field frontendelements-form-label" type="text" /><br />
                             <small>
-                                <?php esc_html_e('Enter the name/label to identify the element on this screen.', 'capsman-enhanced'); ?>
+                                <?php esc_html_e('This will only show here in the WordPress admin area.', 'capsman-enhanced'); ?>
                             </small>
                         </td>
                     </tr>
@@ -145,14 +107,14 @@ class PP_Capabilities_Frontend_Features_UI
                         <td>
                             <textarea class="frontend-element-new-element frontent-form-field frontendelements-form-element"></textarea><br />
                             <small>
-                                <?php esc_html_e('IDs or classes to hide. Separate multiple values by comma (.custom-item-one, .custom-item-two, #new-item-id).', 'capsman-enhanced'); ?>
+                                <?php esc_html_e('IDs or classes to hide. Separate multiple values with a comma (.custom-item-one, .custom-item-two, #new-item-id).', 'capsman-enhanced'); ?>
                             </small>
                         </td>
                     </tr>
 
                     <tr class="field-row">
                         <th scope="row">
-                            <?php esc_html_e('Restrict to pages:', 'capsman-enhanced'); ?>
+                            <?php esc_html_e('Load on page types:', 'capsman-enhanced'); ?>
                         </th>
                         <td>
                             <select class="frontend-element-new-element-pages chosen-cpt-select frontendelements-form-pages"
@@ -167,7 +129,7 @@ class PP_Capabilities_Frontend_Features_UI
                             </select>
                             <br />
                             <small>
-                                <?php esc_html_e('You can select pages where this element should be added.', 'capsman-enhanced'); ?>
+                                <?php esc_html_e('You can select page types where this element will be added.', 'capsman-enhanced'); ?>
                             </small>
                         </td>
                     </tr>
@@ -189,7 +151,7 @@ class PP_Capabilities_Frontend_Features_UI
                             </select>
                             <br />
                             <small>
-                                <?php esc_html_e('This enable you to apply this restriction to specific posts in selected post type using post metabox while editing post or page.', 'capsman-enhanced'); ?>
+                                <?php esc_html_e('This will add a metabox on the post editing screen. You can use this feature to add body classes only for that post.', 'capsman-enhanced'); ?>
                             </small>
                         </td>
                     </tr>
@@ -206,10 +168,10 @@ class PP_Capabilities_Frontend_Features_UI
 
                                 <button type="button" class="submit-button frontend-element-form-submit button button-secondary"
                                     data-required="<?php esc_attr_e('All fields are required.', 'capsman-enhanced'); ?>"
-                                    data-add="<?php esc_attr_e('Add', 'capsman-enhanced'); ?>"
+                                    data-add="<?php esc_attr_e('Add Frontend Element', 'capsman-enhanced'); ?>"
                                     data-edit="<?php esc_attr_e('Save Edit', 'capsman-enhanced'); ?>"
                                     data-section="frontendelements">
-                                    <?php esc_html_e('Add', 'capsman-enhanced'); ?></button>
+                                    <?php esc_html_e('Add Frontend Element', 'capsman-enhanced'); ?></button>
                             </div>
                             <span class="ppc-feature-post-loader spinner"></span>
                             <div class="ppc-post-features-note"></div>
@@ -235,7 +197,7 @@ class PP_Capabilities_Frontend_Features_UI
                     <tr class="ppc-menu-row parent-menu">
                         <td colspan="2">
                             <p class="cme-subtext">
-                                <?php esc_html_e('You can add page body class using the form below:', 'capsman-enhanced'); ?>
+                                <?php esc_html_e('You can add a page body class using the form below:', 'capsman-enhanced'); ?>
                             </p>
                             <p class="editing-custom-item">
                                 <strong><?php esc_html_e('Editing:', 'capsman-enhanced'); ?></strong> 
@@ -252,7 +214,7 @@ class PP_Capabilities_Frontend_Features_UI
                         <td>
                             <input class="body-class-new-name frontent-form-field bodyclass-form-label" type="text" /><br />
                             <small>
-                                <?php esc_html_e('Enter the name/label to identify the element on this screen.', 'capsman-enhanced'); ?>
+                                <?php esc_html_e('This will only show here in the WordPress admin area.', 'capsman-enhanced'); ?>
                             </small>
                         </td>
                     </tr>
@@ -265,14 +227,14 @@ class PP_Capabilities_Frontend_Features_UI
                         <td>
                             <textarea class="body-class-new-element frontent-form-field bodyclass-form-element"></textarea><br />
                             <small>
-                                <?php esc_html_e('Enter classes that should be added to body html. Separate multiple values by space (custom-item-one custom-item-two).', 'capsman-enhanced'); ?>
+                                <?php esc_html_e('Enter classes that should be added to the body HTML. Separate multiple values with a space (custom-item-one custom-item-two).', 'capsman-enhanced'); ?>
                             </small>
                         </td>
                     </tr>
 
                     <tr class="field-row">
                         <th scope="row">
-                            <?php esc_html_e('Restrict to pages:', 'capsman-enhanced'); ?>
+                            <?php esc_html_e('Load on page types:', 'capsman-enhanced'); ?>
                         </th>
                         <td>
                             <select class="body-class-new-element-pages chosen-cpt-select bodyclass-form-pages"
@@ -309,7 +271,7 @@ class PP_Capabilities_Frontend_Features_UI
                             </select>
                             <br />
                             <small>
-                                <?php esc_html_e('This enable you to apply this restriction to specific posts in selected post type using post metabox while editing post or page.', 'capsman-enhanced'); ?>
+                                <?php esc_html_e('This will add a metabox on the post editing screen. You can use this feature to add body classes only for that post.', 'capsman-enhanced'); ?>
                             </small>
                         </td>
                     </tr>
@@ -325,10 +287,10 @@ class PP_Capabilities_Frontend_Features_UI
                                         <?php esc_html_e('Cancel Edit', 'capsman-enhanced'); ?></div>
                                     <button type="button" class="submit-button body-class-form-submit button button-secondary"
                                         data-required="<?php esc_attr_e('All fields are required.', 'capsman-enhanced'); ?>"
-                                        data-add="<?php esc_attr_e('Add', 'capsman-enhanced'); ?>"
+                                        data-add="<?php esc_attr_e('Save Body Class', 'capsman-enhanced'); ?>"
                                         data-edit="<?php esc_attr_e('Save Edit', 'capsman-enhanced'); ?>"
                                         data-section="bodyclass">
-                                        <?php esc_html_e('Save Edit', 'capsman-enhanced'); ?></button>
+                                        <?php esc_html_e('Save Body Class', 'capsman-enhanced'); ?></button>
                                 </div>
                             <span class="ppc-feature-post-loader spinner"></span>
                             <div class="ppc-post-features-note"></div>
@@ -354,7 +316,7 @@ class PP_Capabilities_Frontend_Features_UI
                     <tr class="ppc-menu-row parent-menu">
                         <td colspan="2">
                             <p class="cme-subtext">
-                                <?php esc_html_e('You can add custom style css to be added to frontend pages using the form below:', 'capsman-enhanced'); ?>
+                                <?php esc_html_e('You can add custom CSS styles that will be applied on the frontend of your site.', 'capsman-enhanced'); ?>
                             </p>
                             <p class="editing-custom-item">
                                 <strong><?php esc_html_e('Editing:', 'capsman-enhanced'); ?></strong> 
@@ -371,28 +333,28 @@ class PP_Capabilities_Frontend_Features_UI
                         <td>
                             <input class="customstyles-element-new-name frontent-form-field customstyles-form-label" type="text" /><br />
                             <small>
-                                <?php esc_html_e('Enter the name/label to identify the element on this screen.', 'capsman-enhanced'); ?>
+                                <?php esc_html_e('This will only show here in the WordPress admin area.', 'capsman-enhanced'); ?>
                             </small>
                         </td>
                     </tr>
 
                     <tr class="field-row">
                         <th scope="row">
-                            <?php esc_html_e('Style CSS', 'capsman-enhanced'); ?>
+                            <?php esc_html_e('CSS Styles', 'capsman-enhanced'); ?>
                             <font color="red">*</font>
                         </th>
                         <td>
                             <textarea class="customstyles-element-new-element ppc-code-editor-page-css customstyles-form-element"></textarea><br />
                             <div class="customstyles-new-element-clear"></div>
                             <small>
-                                <?php esc_html_e('Example: .custom-style-1 { color: red;} #custom-header { background: red; } ', 'capsman-enhanced'); ?>
+                                <?php esc_html_e('Examples: .custom-style-1 { color: red; } #custom-header { background: red; } ', 'capsman-enhanced'); ?>
                             </small>
                         </td>
                     </tr>
 
                     <tr class="field-row">
                         <th scope="row">
-                            <?php esc_html_e('Restrict to pages:', 'capsman-enhanced'); ?>
+                            <?php esc_html_e('Load on page types:', 'capsman-enhanced'); ?>
                         </th>
                         <td>
                             <select class="customstyles-new-element-pages chosen-cpt-select  customstyles-form-pages"
@@ -429,7 +391,7 @@ class PP_Capabilities_Frontend_Features_UI
                             </select>
                             <br />
                             <small>
-                                <?php esc_html_e('This enable you to apply this restriction to specific posts in selected post type using post metabox while editing post or page.', 'capsman-enhanced'); ?>
+                                <?php esc_html_e('This will add a metabox on the post editing screen. You can use this feature to add body classes only for that post.', 'capsman-enhanced'); ?>
                             </small>
                         </td>
                     </tr>
@@ -445,10 +407,10 @@ class PP_Capabilities_Frontend_Features_UI
                                     <?php esc_html_e('Cancel Edit', 'capsman-enhanced'); ?></div>
                                 <button type="button" class="submit-button customstyles-form-submit button button-secondary"
                                     data-required="<?php esc_attr_e('All fields are required.', 'capsman-enhanced'); ?>"
-                                    data-add="<?php esc_attr_e('Add', 'capsman-enhanced'); ?>"
+                                    data-add="<?php esc_attr_e('Add Custom Style', 'capsman-enhanced'); ?>"
                                     data-edit="<?php esc_attr_e('Save Edit', 'capsman-enhanced'); ?>"
                                     data-section="customstyles">
-                                    <?php esc_html_e('Add', 'capsman-enhanced'); ?></button>
+                                    <?php esc_html_e('Add Custom Style', 'capsman-enhanced'); ?></button>
                             </div>
                             <span class="ppc-feature-post-loader spinner"></span>
                             <div class="ppc-post-features-note"></div>
@@ -527,11 +489,6 @@ class PP_Capabilities_Frontend_Features_UI
                             <?php if (!empty($section_array['pages'])) : ?>
                             <strong><?php esc_html_e('Pages', 'capsman-enhanced'); ?>:</strong>
                             <?php echo esc_html(str_replace(['-', '_'], ' ', join(', ', $section_array['pages']))); ?>
-                            <?php endif; ?>
-                            <?php if (!empty($section_array['posts'])) : ?>
-                            <br />
-                            <strong><?php esc_html_e('Posts', 'capsman-enhanced'); ?>:</strong>
-                            <?php echo esc_html(join(', ', $section_array['posts'])); ?>
                             <?php endif; ?>
                         </p>
                     </div>
@@ -619,11 +576,6 @@ class PP_Capabilities_Frontend_Features_UI
                             <?php if (!empty($section_array['pages'])) : ?>
                             <strong><?php esc_html_e('Pages', 'capsman-enhanced'); ?>:</strong>
                             <?php echo esc_html(str_replace(['-', '_'], ' ', join(', ', $section_array['pages']))); ?>
-                            <?php endif; ?>
-                            <?php if (!empty($section_array['posts'])) : ?>
-                            <br />
-                            <strong><?php esc_html_e('Posts', 'capsman-enhanced'); ?>:</strong>
-                            <?php echo esc_html(join(', ', $section_array['posts'])); ?>
                             <?php endif; ?>
                         </p>
                     </div>

@@ -614,8 +614,7 @@ body.capabilities_page_pp-capabilities-nav-menus .pp-capability-menus-select .re
 }
 
 
-body.capabilities_page_pp-capabilities-admin-features .pp-capability-menus-select .restrict-column,
-body.capabilities_page_pp-capabilities-frontend-features .pp-capability-menus-select .restrict-column {
+body.capabilities_page_pp-capabilities-admin-features .pp-capability-menus-select .restrict-column {
   width: 70px !important;
 }
 
@@ -1138,15 +1137,12 @@ body.capabilities_page_pp-capabilities-nav-menus .pp-capability-menus-select .re
 .cancel-custom-item-edit {
     color: red !important;
     cursor: pointer;
+    visibility: hidden;
 }
 
 .custom-item-submit-buttons {
     display: flex;
     justify-content: space-between;
-}
-
-.cancel-custom-item-edit {
-    display: none !important;
 }
 
 .custom-item-wrapper-td {
@@ -1164,7 +1160,7 @@ body.capabilities_page_pp-capabilities-nav-menus .pp-capability-menus-select .re
 }
 
 .custom-items-table .check-column {
-    width: 66px;
+    width: 92px;
     text-align: center;
 }
 
@@ -1183,6 +1179,10 @@ body.capabilities_page_pp-capabilities-nav-menus .pp-capability-menus-select .re
 
 .custom-table-title .title-td {
     padding-left: 25px;
+}
+
+body.capabilities_page_pp-capabilities-frontend-features .pp-capability-menus-select .restrict-column {
+  width: 99px !important;
 }
 
 .hidden-element {

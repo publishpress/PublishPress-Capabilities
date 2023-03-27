@@ -89,6 +89,10 @@ class PP_Capabilities_Admin_UI {
         require_once (dirname(CME_FILE) . '/includes/features/restrict-profile-features.php');
         \PublishPress\Capabilities\PP_Capabilities_Profile_Features::instance();
 
+        //frontend features post metabox
+        require_once (dirname(__FILE__) . '/features/frontend-features/frontend-features-metaboxes.php');
+        \PublishPress\Capabilities\PP_Capabilities_Frontend_Features_Metaboxes::instance();
+
         //capabilities settings
         add_action('pp-capabilities-settings-ui', [$this, 'settingsUI']);
 

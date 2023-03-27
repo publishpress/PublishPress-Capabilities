@@ -189,7 +189,7 @@ $active_tab_slug    = (!empty($_REQUEST['pp_caps_tab'])) ? sanitize_key($_REQUES
                                                                 <tr class="custom-table-title <?php echo esc_attr($display_title_class); ?>">
                                                                     <td colspan="2" class="title-td">
                                                                         <label>
-                                                                            <?php esc_attr_e('Edit Your Custom Styles', 'capsman-enhanced') ?>
+                                                                            <?php printf(esc_html__('Edit Your %1$s', 'capsman-enhanced'), esc_html($section_title)); ?>
                                                                         </label>
                                                                     </td>
                                                                 </tr>
@@ -198,20 +198,14 @@ $active_tab_slug    = (!empty($_REQUEST['pp_caps_tab'])) ? sanitize_key($_REQUES
                                                                         <table class="wp-list-table widefat fixed striped table-view-list custom-items-table">
                                                                             <thead>
                                                                                 <tr>
-                                                                                    <td class="manage-column column-cb check-column"><?php esc_attr_e('Enable', 'capsman-enhanced') ?></td>
+                                                                                    <td class="manage-column column-cb check-column"><?php esc_attr_e('Enable for Role', 'capsman-enhanced') ?></td>
                                                                                     <th scope="col" class="manage-column column-primary"
                                                                                     >
                                                                                         <?php esc_attr_e('Label', 'capsman-enhanced') ?>
                                                                                     </th>
-                                                                                    <th scope="col" class="manage-column">
-                                                                                        <?php esc_attr_e('View', 'capsman-enhanced') ?>
-                                                                                    </th>
-                                                                                    <th scope="col" class="manage-column">
-                                                                                        <?php esc_attr_e('Edit', 'capsman-enhanced') ?>
-                                                                                    </th>
-                                                                                    <th scope="col" class="manage-column">
-                                                                                        <?php esc_attr_e('Delete', 'capsman-enhanced') ?>
-                                                                                    </th>
+                                                                                    <th scope="col" class="manage-column"></th>
+                                                                                    <th scope="col" class="manage-column"></th>
+                                                                                    <th scope="col" class="manage-column"></th>
                                                                                 </tr>
                                                                             </thead>
                                                                             <tbody>

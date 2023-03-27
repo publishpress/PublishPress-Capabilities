@@ -128,7 +128,7 @@ class PP_Capabilities_Frontend_Features_Restrict
                 if (isset($body_class_data[$element_id])) {
                     $current_body_class_data = $body_class_data[$element_id];
                     //add body class if it's enabled for this page
-                    if ($this->elementEnabledForCurrentPage($current_body_class_data['pages'])) {
+                    if ($this->elementEnabledForCurrentPage($current_body_class_data['pages'], $element_id)) {
                         $current_body_class = explode(' ', $current_body_class_data['elements']);
                         $new_body_class = array_merge($new_body_class, $current_body_class);
                     }
@@ -163,7 +163,7 @@ class PP_Capabilities_Frontend_Features_Restrict
                 if (isset($custom_styles_data[$element_id])) {
                     $current_custom_styles_data = $custom_styles_data[$element_id];
                     //add style if it's enabled for this page
-                    if ($this->elementEnabledForCurrentPage($current_custom_styles_data['pages'])) {
+                    if ($this->elementEnabledForCurrentPage($current_custom_styles_data['pages'], $element_id)) {
                         $custom_css .= $current_custom_styles_data['elements'];
                     }
                 }
@@ -186,7 +186,7 @@ class PP_Capabilities_Frontend_Features_Restrict
                 if (isset($frontend_elements_data[$element_id])) {
                     $current_frontend_elements_data = $frontend_elements_data[$element_id];
                     //add element selector if it's enabled for this page
-                    if ($this->elementEnabledForCurrentPage($current_frontend_elements_data['pages'])) {
+                    if ($this->elementEnabledForCurrentPage($current_frontend_elements_data['pages'], $element_id)) {
                         $frontend_element_selectors[] = $current_frontend_elements_data['elements'];
                     }
                 }
@@ -215,33 +215,40 @@ class PP_Capabilities_Frontend_Features_Restrict
      *
      * @return bool
      */
-    private function elementEnabledForCurrentPage($enabled_pages)
+    private function elementEnabledForCurrentPage($enabled_pages, $element_id)
     {
         global $post;
 
-        if (in_array('global', $enabled_pages)) {
+        if (in_array('whole_site', $enabled_pages)) {
             //all pages element
             return true;
         }
         
-        if (in_array('frontpage', $enabled_pages) && (is_front_page() || is_home())) {
+        if (in_array('homepage', $enabled_pages) && (is_front_page() || is_home())) {
             //homepage element
             return  true;
         }
         
-        if (in_array('archive', $enabled_pages) && is_archive()) {
+        if (in_array('archive_pages', $enabled_pages) && is_archive()) {
             //archive element
             return true;
         }
         
-        if (in_array('singlular', $enabled_pages) && is_singular()) {
+        if (in_array('single_pages', $enabled_pages) && is_singular()) {
             //singular element
             return true;
         }
-        
-        if (is_object($post) && isset($post->ID) && in_array($post->ID, $enabled_pages)) {
-            //custom post id page
-            return true;
+
+        if (is_singular() && is_object($post) && isset($post->ID)) {
+            //single post
+            $custom_styles     = (array) get_post_meta($post->ID, '_ppc_customstyles', true);
+            $frontend_elements = (array) get_post_meta($post->ID, '_ppc_frontendelements', true);
+            $body_class        = (array) get_post_meta($post->ID, '_ppc_bodyclass', true);
+            $post_features     = array_merge($custom_styles, $frontend_elements, $body_class);
+
+            if (in_array($element_id, $post_features)) {
+                return true;
+            }
         }
 
         return false;
