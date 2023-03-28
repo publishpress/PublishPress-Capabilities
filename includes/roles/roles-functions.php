@@ -171,6 +171,25 @@ function pp_capabilities_roles_admin_features($role, $check = false)
 }
 
 /**
+ * Get profile features restriction for a role
+ *
+ * @param string $role role to check
+ * @param boolean $check whether to check database or not
+ * @return integer
+ */
+function pp_capabilities_roles_profile_features($role, $check = false)
+{
+    if ($role && $check) {
+        $disabled_items = !empty(get_option('capsman_disabled_profile_features')) ? (array)get_option('capsman_disabled_profile_features') : [];
+        $disabled_items = array_key_exists($role, $disabled_items) ? (array)$disabled_items[$role] : [];
+        $disabled_items = array_filter($disabled_items);
+        return count($disabled_items);
+    } else {
+        return 0;
+    }
+}
+
+/**
  * Get admin menus restriction for a role
  *
  * @param string $role role to check
