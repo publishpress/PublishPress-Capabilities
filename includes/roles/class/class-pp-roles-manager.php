@@ -69,6 +69,7 @@ class Pp_Roles_Manager
                 'count'           => isset($count['avail_roles'][$role]) ? $count['avail_roles'][$role] : 0,
                 'editor_features' => pp_capabilities_roles_editor_features($role, $include_features),
                 'admin_features'  => pp_capabilities_roles_admin_features($role, $include_features),
+                'profile_features'  => pp_capabilities_roles_profile_features($role, $include_features),
                 'admin_menus'     => pp_capabilities_roles_admin_menus($role, $include_features),
                 'nav_menus'       => pp_capabilities_roles_nav_menus($role, $include_features),
                 'is_system'       => $this->is_system_role($role),
