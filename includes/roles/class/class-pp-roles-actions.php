@@ -304,6 +304,13 @@ class Pp_Roles_Actions
                update_option('capsman_disabled_admin_features', $disabled_admin_items, false);
            }
 
+           //Profile Features
+           $disabled_profile_items = !empty(get_option('capsman_disabled_profile_features')) ? (array)get_option('capsman_disabled_profile_features') : [];
+           if (is_array($disabled_profile_items) && array_key_exists($copied_role, $disabled_profile_items)) {
+               $disabled_profile_items[$role_slug] = $disabled_profile_items[$copied_role];
+               update_option('capsman_disabled_profile_features', $disabled_profile_items, false);
+           }
+
 
             //Nav Menu
             $nav_item_menu_option = !empty(get_option('capsman_nav_item_menus')) ? get_option('capsman_nav_item_menus') : [];
