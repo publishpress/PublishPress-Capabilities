@@ -524,6 +524,13 @@ jQuery(document).ready( function($) {
             parent_table.find('.custom-items-table tbody').append(response.content);
             parent_table.find('.temporarily.hidden-element').removeClass('temporarily hidden-element');
           }
+
+          if ($('table.frontendelements-table table.custom-items-table tr.custom-item-row').length > 1) {
+              $('table.frontendelements-table .custom-item-toggle-row').removeClass('hidden-element');
+            } else {
+              $('table.frontendelements-table .custom-item-toggle-row').addClass('hidden-element');
+          }
+
         }
 
         button.closest('form').find('input[type=submit]').attr('disabled', false);
@@ -596,6 +603,13 @@ jQuery(document).ready( function($) {
             parent_table.find('.custom-items-table tbody').append(response.content);
             parent_table.find('.temporarily.hidden-element').removeClass('temporarily hidden-element');
           }
+
+          if ($('table.bodyclass-table table.custom-items-table tr.custom-item-row').length > 1) {
+              $('table.bodyclass-table .custom-item-toggle-row').removeClass('hidden-element');
+            } else {
+              $('table.bodyclass-table .custom-item-toggle-row').addClass('hidden-element');
+          }
+
         }
 
         button.closest('form').find('input[type=submit]').attr('disabled', false);
@@ -668,6 +682,13 @@ jQuery(document).ready( function($) {
           parent_table.find('.custom-items-table tbody').append(response.content);
           parent_table.find('.temporarily.hidden-element').removeClass('temporarily hidden-element');
         }
+
+        if ($('table.customstyles-table table.custom-items-table tr.custom-item-row').length > 1) {
+            $('table.customstyles-table .custom-item-toggle-row').removeClass('hidden-element');
+          } else {
+            $('table.customstyles-table .custom-item-toggle-row').addClass('hidden-element');
+        }
+
       }
 
       button.closest('form').find('input[type=submit]').attr('disabled', false);
@@ -700,7 +721,15 @@ jQuery(document).ready( function($) {
           if (response.status == 'error') {
             item.closest('.ppc-menu-row').show();
             alert(response.message);
+          } else {
+            item.closest('.ppc-menu-row').remove();
+            if ($('table.' + item_section + '-table table.custom-items-table tr.custom-item-row').length > 1) {
+              $('table.' + item_section + '-table .custom-item-toggle-row').removeClass('hidden-element');
+            } else {
+              $('table.' + item_section + '-table .custom-item-toggle-row').addClass('hidden-element');
+            }
           }
+          
         });
 
       }

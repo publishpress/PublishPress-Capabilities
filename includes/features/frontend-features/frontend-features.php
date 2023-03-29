@@ -171,7 +171,7 @@ $active_tab_slug    = (!empty($_REQUEST['pp_caps_tab'])) ? sanitize_key($_REQUES
                                                         <table
                                                             class="wp-list-table widefat striped pp-capability-menus-select <?php esc_attr_e($section_slug); ?>-table">
                                                             <tfoot>
-                                                                <tr class="ppc-menu-row parent-menu">
+                                                                <tr class="ppc-menu-row parent-menu custom-item-toggle-row hidden-element">
 
                                                                     <td class="restrict-column ppc-menu-checkbox">
                                                                         <input class="check-item check-all-menu-item"
@@ -312,8 +312,10 @@ $active_tab_slug    = (!empty($_REQUEST['pp_caps_tab'])) ? sanitize_key($_REQUES
         // Tabs and Content display
         $('.ppc-capabilities-tabs > ul > li').click(function() {
             var $pp_tab = $(this).attr('data-content');
+            var $pp_tab_slug = $(this).attr('data-slug');
+            var $element_counts = 0;
 
-            $("[name='pp_caps_tab']").val($(this).attr('data-slug'));
+            $("[name='pp_caps_tab']").val($pp_tab_slug);
 
             // Show current Content
             $('.ppc-capabilities-content > div').hide();
@@ -323,7 +325,18 @@ $active_tab_slug    = (!empty($_REQUEST['pp_caps_tab'])) ? sanitize_key($_REQUES
             $('.ppc-capabilities-tabs > ul > li').removeClass('ppc-capabilities-tab-active');
             $(this).addClass('ppc-capabilities-tab-active');
 
+            //show or hide toggle all row if more than one entry
+            $element_counts = $('table.' + $pp_tab_slug + '-table table.custom-items-table tr.custom-item-row').length;
+
+            if ($element_counts > 1) {
+                $('table.' + $pp_tab_slug + '-table .custom-item-toggle-row').removeClass('hidden-element');
+            } else {
+                $('table.' + $pp_tab_slug + '-table .custom-item-toggle-row').addClass('hidden-element');
+            }
+
         });
+        //trigger initial click for toggle all update
+        $('.ppc-capabilities-tabs .ppc-capabilities-tab-active').trigger('click');
 
         // -------------------------------------------------------------
         //   Set form action attribute to include role
