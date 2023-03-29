@@ -74,7 +74,7 @@ class PP_Capabilities_Frontend_Features_Metaboxes
 
         self::loadFeaturesMetaboxAssets(); ?>
         <p>
-            <?php printf(esc_html__('Note: Only enabled features in %1$s Frontend Features Settings %2$s will be added to the frontend.', 'capsman-enhanced'), '<a href="'. admin_url('/admin.php?page=pp-capabilities-frontend-features') .'" target="_blank">', '</a>'); ?>
+            <?php esc_html_e('Choose Frontend Features that will apply to this post.', 'capsman-enhanced'); ?>
         </p>
         <?php
         foreach ($frontend_features_elements as $section_title => $section_elements) :
