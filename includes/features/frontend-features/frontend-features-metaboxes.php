@@ -44,7 +44,7 @@ class PP_Capabilities_Frontend_Features_Metaboxes
 
         $frontend_features_elements = PP_Capabilities_Frontend_Features_Data::elementsLayout();
 
-        $all_elements = call_user_func_array('array_merge', $frontend_features_elements);
+        $all_elements = call_user_func_array('array_merge', array_values($frontend_features_elements));
 
         if (!empty($all_elements)) {
             $post_types = array_column(array_values($all_elements), 'post_types');
