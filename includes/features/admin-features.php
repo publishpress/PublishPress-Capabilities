@@ -81,18 +81,44 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
 	
 		                                            <table
 		                                                class="wp-list-table widefat striped pp-capability-menus-select">
-	
+                                                        <thead>
+                                                            <tr class="ppc-menu-row parent-menu">
+
+                                                                <td class="restrict-column ppc-menu-checkbox">
+                                                                    <input id="check-all-item"
+                                                                        class="check-item check-all-menu-item"
+                                                                        type="checkbox"/>
+                                                                </td>
+                                                                <td class="menu-column ppc-menu-item">
+                                                                    <label for="check-all-item">
+                                                                <span class="menu-item-link check-all-menu-link">
+                                                                    <strong>
+                                                                    <?php esc_html_e('Toggle all', 'capsman-enhanced'); ?>
+                                                                    </strong>
+                                                                </span></label>
+                                                                </td>
+
+                                                            </tr>
+                                                        </thead>
                                                         <tfoot>
-                                                        <tr class="ppc-menu-row parent-menu">
+                                                            <tr class="ppc-menu-row parent-menu">
 
-                                                            <td class="restrict-column ppc-menu-checkbox">
-                                                                <input id="check-all-item-2"
-                                                                       class="check-item check-all-menu-item" type="checkbox"/>
-                                                            </td>
-                                                            <td class="menu-column ppc-menu-item">
-                                                            </td>
+                                                                <td class="restrict-column ppc-menu-checkbox">
+                                                                    <input id="check-all-item-2"
+                                                                        class="check-item check-all-menu-item"
+                                                                        type="checkbox"/>
+                                                                </td>
+                                                                <td class="menu-column ppc-menu-item">
+                                                                    <label for="check-all-item-2">
+                                                                    <span class="menu-item-link check-all-menu-link">
+                                                                    <strong>
+                                                                        <?php esc_html_e('Toggle all', 'capsman-enhanced'); ?>
+                                                                    </strong>
+                                                                    </span>
+                                                                    </label>
+                                                                </td>
 
-                                                        </tr>
+                                                            </tr>
                                                         </tfoot>
 
                                                         <tbody>
