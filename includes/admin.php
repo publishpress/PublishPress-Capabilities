@@ -842,13 +842,19 @@ if (defined('PUBLISHPRESS_REVISIONS_VERSION') && function_exists('rvy_get_option
 													$td_classes []='cm-has-via-pp';
 
 												if ( $is_administrator || current_user_can($cap_name) ) {
+                                                    $cap_title = '';
 													if ( ! empty($pp_metagroup_caps[$cap_name]) ) {
-														$cap_title = sprintf(__( '%s: assigned by Permission Group', 'capsman-enhanced' ), esc_attr($cap_name) );
+														$tool_tip = sprintf(__( '%s: assigned by Permission Group', 'capsman-enhanced' ), '<strong>' . $cap_name . '</strong>' );
 													} else {
-														$cap_title = esc_attr($cap_name);
+														$tool_tip = sprintf(__( 'This capability is %s', 'capsman-enhanced' ), '<strong>' . $cap_name . '</strong>' );
 													}
 
-													$checkbox = '<input type="checkbox" title="' . esc_attr($cap_title) . '" name="caps[' . esc_attr($cap_name) . ']" autocomplete="off" value="1" ' . checked(1, ! empty($rcaps[$cap_name]), false ) . ' />';
+                                                    $checkbox = '<div class="ppc-tool-tip disabled"><input type="checkbox" name="caps[' . esc_attr($cap_name) . ']" autocomplete="off" value="1" ' . checked(1, ! empty($rcaps[$cap_name]), false ) . ' />
+                                                        <div class="tool-tip-text">
+                                                            <p>'. $tool_tip .'</p>
+                                                            <i></i>
+                                                        </div>
+                                                    </div>';
 
 													$type_caps [$cap_name] = true;
 													$display_row = true;
@@ -864,15 +870,28 @@ if (defined('PUBLISHPRESS_REVISIONS_VERSION') && function_exists('rvy_get_option
                                                 $display_row = true;
                                                 $cap_name = sanitize_key($type_obj->cap->$prop);
 												$cap_title = '';
-                                                $tool_tip  = sprintf( __( 'Currently this capability is controlled by %s. Use the sidebar to enable unique capabilities.', 'capsman-enhanced' ), esc_attr( $cap_name ) );
+                                                $tool_tip  = sprintf( __( 'This capability is controlled by %s Use the sidebar settings to allow this to be controlled independently.', 'capsman-enhanced' ), '<strong>' . $cap_name . '</strong>.<br /><br />' );
 
-                                                $checkbox = '<span class="ppc-tool-tip disabled" data-tip="'. esc_attr($tool_tip) .'"><input disabled class="disabled" type="checkbox" ' . checked(1, ! empty($rcaps[$cap_name]), false ) . ' /></span>';
+                                                $checkbox = '<div class="ppc-tool-tip disabled"><input disabled class="disabled" type="checkbox" ' . checked(1, ! empty($rcaps[$cap_name]), false ) . ' />
+                                                    <div class="tool-tip-text">
+                                                        <p>'. $tool_tip .'</p>
+                                                        <i></i>
+                                                    </div>
+                                                </div>';
 											}
 
 											if ( isset($rcaps[$cap_name]) && empty($rcaps[$cap_name]) ) {
 												$td_classes []= "cap-neg";
 											}
 										} else {
+                                            $tool_tip  =__( 'Post type registration does not define this capability distinctly.', 'capsman-enhanced');
+
+                                            $checkbox = '<div class="ppc-tool-tip disabled">&nbsp; &nbsp; &nbsp; &nbsp;
+                                                <div class="tool-tip-text">
+                                                    <p>'. $tool_tip .'</p>
+                                                    <i></i>
+                                                </div>
+                                            </div>';
 											$td_classes []= "cap-unreg";
 										}
 
