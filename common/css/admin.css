@@ -846,56 +846,22 @@ body.capabilities_page_pp-capabilities-nav-menus .pp-capability-menus-select .re
 }
 
 .ppc-tool-tip {
-    cursor: help;
+    display: inline-block;
     position: relative;
+    cursor: help;
 }
-.ppc-tool-tip::before,
-.ppc-tool-tip::after {
+
+.ppc-tool-tip .tool-tip-text {
+    display: none;
+    min-width: 250px; 
+    top: -20px;
     left: 50%;
-    opacity: 0;
+    transform: translate(-50%, -100%);
+    font-weight: normal;
+    border-radius: 10px;
     position: absolute;
-    z-index: -100;
-}
-
-.ppc-tool-tip:hover::before,
-.ppc-tool-tip:focus::before,
-.ppc-tool-tip:hover::after,
-.ppc-tool-tip:focus::after {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-    z-index: 100; 
-}
-
-.ppc-tool-tip::before {
-    border-style: solid;
-    border-width: 1em 0.75em 0 0.75em;
-    border-color: #655997 transparent transparent transparent;
-    bottom: 100%;
-    content: "";
-    margin-left: -0.5em;
-    transition: all .65s cubic-bezier(.84,-0.18,.31,1.26), opacity .65s .5s;
-    transform:  scale(.6) translateY(-90%);
-} 
-
-.ppc-tool-tip:hover::before,
-.ppc-tool-tip:focus::before {
-    transition: all .65s cubic-bezier(.84,-0.18,.31,1.26) .2s;
-}
-.ppc-tool-tip::after {
-    background: #655997;
-    border-radius: .25em;
-    bottom: 180%;
-    color: #EDEFF0;
-    content: attr(data-tip);
-    margin-left: -8.75em;
-    padding: 1em;
-    transition: all .65s cubic-bezier(.84,-0.18,.31,1.26) .2s;
-    transform:  scale(.6) translateY(50%);  
-    width: 17.5em;
-}
-
-.ppc-tool-tip:hover::after,
-.ppc-tool-tip:focus::after  {
+    z-index: 99999999;
+    box-sizing: border-box;
     transition: all .65s cubic-bezier(.84,-0.18,.31,1.26);
     color: #6f6f6f;
     font-size: 13px;
@@ -904,6 +870,31 @@ body.capabilities_page_pp-capabilities-nav-menus .pp-capability-menus-select .re
     background-color: #fff;
     border: 1px solid #d5d5d5;
     box-shadow: 0 2px 5px rgb(0 0 0 / 10%), 0 0 56px rgb(0 0 0 / 8%);
+}
+
+.ppc-tool-tip:hover .tool-tip-text {
+    display: block;
+}
+
+.ppc-tool-tip .tool-tip-text i {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -12px;
+    width: 24px;
+    height: 12px;
+    overflow: hidden;
+}
+
+.ppc-tool-tip .tool-tip-text i::after {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    left: 50%;
+    transform: translate(-50%,-50%) rotate(45deg);
+    background-color: #fff;
+    box-shadow: 0 1px 8px rgba(0,0,0,0.5);
 }
 
 /* ====================================================== Sidebar promo box */
@@ -989,16 +980,6 @@ body.capabilities_page_pp-capabilities-nav-menus .pp-capability-menus-select .re
 .pp-capabilities-sidebar .box-banner-image img {
     max-width: 100%;
 }
-
-@media (max-width: 760px) {
-    
-  .ppc-tool-tip::after { 
-        font-size: .75em;
-        margin-left: -5em;
-        width: 10em; 
-  }
-}
-
 
 @media (min-width: 1200px) {
   .pp-column-right.capabilities-sidebar {
