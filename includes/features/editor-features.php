@@ -233,6 +233,8 @@ $active_tab_text = is_object($active_tab_type_obj)
                 <?php 
                 $banners = new PublishPress\WordPressBanners\BannersMain;
                 $banner_messages = ['<p>'];
+                $banner_messages[] = esc_html__('Editor Features allows you to remove elements from the post editing screen.', 'capsman-enhanced');
+                $banner_messages[] = '</p><p>';
                 $banner_messages[] = sprintf(esc_html__('%1$s = No change', 'capsman-enhanced'), '<input type="checkbox" title="'. esc_attr__('usage key', 'capsman-enhanced') .'" disabled>');
                 $banner_messages[] = sprintf(esc_html__('%1$s = This feature is denied', 'capsman-enhanced'), '<input type="checkbox" title="'. esc_attr__('usage key', 'capsman-enhanced') .'" checked disabled>');
                 $banner_messages[] = '<p>';

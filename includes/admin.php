@@ -1638,6 +1638,7 @@ if (defined('PUBLISHPRESS_REVISIONS_VERSION') && function_exists('rvy_get_option
 			$banners = new PublishPress\WordPressBanners\BannersMain;
             
             $banner_messages = [];
+            $banner_messages[] = esc_html__('Capabilities allows you change the permissions for any user role.', 'capsman-enhanced');
             $banner_messages[] = sprintf(esc_html__('%1$s = Capability granted %2$s', 'capsman-enhanced'), '<table class="pp-capabilities-cb-key"><tr><td class="pp-cap-icon pp-cap-icon-checked"><input type="checkbox" title="'. esc_attr__('usage key', 'capsman-enhanced') .'" checked disabled></td><td>', '</td></tr>');
             $banner_messages[] = sprintf(esc_html__('%1$s = Capability not granted %2$s', 'capsman-enhanced'), '<tr><td class="pp-cap-icon"><input type="checkbox" title="'. esc_attr__('usage key', 'capsman-enhanced') .'" disabled></td><td class="pp-cap-not-checked-definition">', '</td></tr>');
             $banner_messages[] = sprintf(esc_html__('%1$s = Capability denied, even if granted by another role %2$s', 'capsman-enhanced'), '<tr><td class="pp-cap-icon pp-cap-x"><span class="cap-x pp-cap-key" title="'. esc_attr__('usage key', 'capsman-enhanced') .'">X</span></td><td class="cap-x-definition">', '</td></tr></table>');
