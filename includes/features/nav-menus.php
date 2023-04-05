@@ -256,6 +256,8 @@ $nav_menu_item_option = array_key_exists($default_role, $nav_menu_item_option) ?
                 <?php 
                 $banners = new PublishPress\WordPressBanners\BannersMain;
                 $banner_messages = ['<p>'];
+                $banner_messages[] = esc_html__('Nav Menus allows you to block access to frontend menu links.', 'capsman-enhanced');
+                $banner_messages[] = '</p><p>';
                 $banner_messages[] = sprintf(esc_html__('%1$s = No change', 'capsman-enhanced'), '<input type="checkbox" title="'. esc_attr__('usage key', 'capsman-enhanced') .'" disabled>');
                 $banner_messages[] = sprintf(esc_html__('%1$s = This feature is denied', 'capsman-enhanced'), '<input type="checkbox" title="'. esc_attr__('usage key', 'capsman-enhanced') .'" checked disabled>');
                 $banner_messages[] = '</p>';
