@@ -265,6 +265,8 @@ $active_tab_slug    = (!empty($_REQUEST['pp_caps_tab'])) ? sanitize_key($_REQUES
                 <?php
                 $banners = new PublishPress\WordPressBanners\BannersMain;
                 $banner_messages = ['<p>'];
+                $banner_messages[] = esc_html__('Profile Features allows you to remove elements from the frontend of your site.', 'capsman-enhanced');
+                $banner_messages[] = '</p><p>';
                 $banner_messages[] = sprintf(esc_html__('%1$s = No change', 'capsman-enhanced'), '<input type="checkbox" title="'. esc_attr__('usage key', 'capsman-enhanced') .'" disabled>');
                 $banner_messages[] = sprintf(esc_html__('%1$s = This feature is enabled', 'capsman-enhanced'), '<input type="checkbox" title="'. esc_attr__('usage key', 'capsman-enhanced') .'" checked disabled>');
                 $banner_messages[] = '</p>';
