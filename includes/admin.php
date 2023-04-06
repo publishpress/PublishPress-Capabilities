@@ -27,9 +27,15 @@
  *  along with this program. If not, see <http://www.gnu.org/licenses/>.
  **/
 
-global $capsman, $cme_cap_helper, $current_user;
+global $capsman, $cme_cap_helper, $current_user, $sidebar_metabox_state;
 
 do_action('publishpress-caps_manager-load');
+
+$sidebar_metabox_state = get_user_meta($current_user->ID, 'ppc_sidebar_metabox_state', true);
+if ($sidebar_metabox_state == '' || !is_array($sidebar_metabox_state)) {
+    $sidebar_metabox_state = [];
+    $sidebar_metabox_state['how_to_user_capabilities'] = 'opened';
+}
 
 $roles = $this->roles;
 $default = $this->current;
@@ -1658,42 +1664,101 @@ if (defined('PUBLISHPRESS_REVISIONS_VERSION') && function_exists('rvy_get_option
                 }
             }
 
-            $banners->pp_display_banner(
-                '',
-                __('How to use Capabilities', 'capsman-enhanced'),
-                $banner_messages,
-                'https://publishpress.com/knowledge-base/checkboxes/',
-                __('View Documentation', 'capsman-enhanced'),
-                '',
-                'button ppc-checkboxes-documentation-link'
-            );
+            ?>
+            <div class="ppc-sidebar-panel-metabox meta-box-sortables">
+                <?php $meta_box_state = (isset($sidebar_metabox_state['how_to_user_capabilities'])) ? $sidebar_metabox_state['how_to_user_capabilities'] : 'closed';  ?>
+                <div class="postbox ppc-sidebar-panel <?php echo esc_attr($meta_box_state); ?>">
+                    <input 
+                        name="ppc_metabox_state[how_to_user_capabilities]"
+                        type="hidden" 
+                        class="metabox-state" 
+                        value="<?php echo esc_attr($meta_box_state); ?>"
+                    />
+                    <div class="postbox-header">
+                        <h2 class="hndle ui-sortable-handle"><?php esc_html_e('How to use Capabilities', 'capsman-enhanced'); ?></h2>
+                        <div class="handle-actions">
+                            <button type="button" class="handlediv">
+                                <span class="toggle-indicator"></span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="inside">
+                    <?php 
+                        $banners->pp_display_banner(
+                            '',
+                            '',
+                            $banner_messages,
+                            'https://publishpress.com/knowledge-base/checkboxes/',
+                            __('View Documentation', 'capsman-enhanced'),
+                            '',
+                            'button ppc-checkboxes-documentation-link'
+                        );
+                        ?>
+                    </div>
+                </div>
+            </div>
 
-			?>
-			<div class="pp-capabilities-safe-to-use">
-			<?php
-			$banners->pp_display_banner(
-			    '',
-			    __( 'PublishPress Capabilities is safe to use', 'capsman-enhanced' ),
-			    array(
-			        __( 'WordPress stores role capabilities in your database, where they remain even if the plugin is deactivated.', 'capsman-enhanced' ),
-			        __( 'Whenever you use PublishPress Capabilities to save changes, it also creates a backup which you can use to restore a previous configuration.', 'capsman-enhanced' )
-			    ),
-			    admin_url( 'admin.php?page=pp-capabilities-backup' ),
-			    __( 'Go to the Backup feature', 'capsman-enhanced' ),
-				'',
-				'button'
-			);
-			?>
-			</div>
+            <div class="ppc-sidebar-panel-metabox meta-box-sortables">
+                <?php $meta_box_state = (isset($sidebar_metabox_state['capabilities_safe_to_use'])) ? $sidebar_metabox_state['capabilities_safe_to_use'] : 'closed';  ?>
+                <div class="postbox ppc-sidebar-panel <?php echo esc_attr($meta_box_state); ?>">
+                    <input 
+                        name="ppc_metabox_state[capabilities_safe_to_use]"
+                        type="hidden" 
+                        class="metabox-state" 
+                        value="<?php echo esc_attr($meta_box_state); ?>"
+                    />
+                    <div class="postbox-header">
+                        <h2 class="hndle ui-sortable-handle"><?php esc_html_e( 'Capabilities is safe to use', 'capsman-enhanced' ); ?></h2>
+                        <div class="handle-actions">
+                            <button type="button" class="handlediv">
+                                <span class="toggle-indicator"></span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="inside">
+                     <?php
+                            $banners->pp_display_banner(
+                                '',
+                                '',
+                                array(
+                                    __( 'WordPress stores role capabilities in your database, where they remain even if the plugin is deactivated.', 'capsman-enhanced' ),
+                                    __( 'Whenever you use PublishPress Capabilities to save changes, it also creates a backup which you can use to restore a previous configuration.', 'capsman-enhanced' )
+                                ),
+                                admin_url( 'admin.php?page=pp-capabilities-backup' ),
+                                __( 'Go to the Backup feature', 'capsman-enhanced' ),
+                                '',
+                                'button'
+                            );
+                        ?>
+                    </div>
+                </div>
+            </div>
 
-
-			<dl>
-				<dt><?php esc_html_e('Add Capability', 'capsman-enhanced'); ?></dt>
-				<dd style="text-align:center;">
-					<p><input type="text" name="capability-name" class="regular-text" placeholder="<?php echo 'capability_name';?>" /><br />
-					<input type="submit" name="AddCap" value="<?php esc_attr_e('Add to role', 'capsman-enhanced') ?>" class="button" /></p>
-				</dd>
-			</dl>
+            <div class="ppc-sidebar-panel-metabox meta-box-sortables">
+                <?php $meta_box_state = (isset($sidebar_metabox_state['add_capability'])) ? $sidebar_metabox_state['add_capability'] : 'closed';  ?>
+                <div class="postbox ppc-sidebar-panel <?php echo esc_attr($meta_box_state); ?>">
+                    <input 
+                        name="ppc_metabox_state[add_capability]"
+                        type="hidden" 
+                        class="metabox-state" 
+                        value="<?php echo esc_attr($meta_box_state); ?>"
+                    />
+                    <div class="postbox-header">
+                        <h2 class="hndle ui-sortable-handle"><?php esc_html_e('Add Capability', 'capsman-enhanced'); ?></h2>
+                        <div class="handle-actions">
+                            <button type="button" class="handlediv">
+                                <span class="toggle-indicator"></span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="inside" style="text-align:center;">
+                        <p>
+                            <input type="text" name="capability-name" class="regular-text" placeholder="<?php echo 'capability_name';?>" /><br />
+                            <input type="submit" name="AddCap" value="<?php esc_attr_e('Add to role', 'capsman-enhanced') ?>" class="button" />
+                        </p>
+                    </div>
+                </div>
+            </div>
 
 			<?php
 				$pp_ui->pp_types_ui( $defined['type'] );

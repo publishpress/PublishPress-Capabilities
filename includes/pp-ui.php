@@ -88,11 +88,27 @@ class Capsman_PP_UI {
 	
 	// Note: CME can now impose type-specific capabilities without Press Permit Core active
 	function pp_types_ui( $defined_types ) {
-		?>
-		<dl>
-			<dt><?php esc_html_e('Unique Capabilities for Post Types', 'capsman-enhanced'); ?></dt>
-			<dd style="text-align:center;">
-				<?php
+        global $sidebar_metabox_state;
+        ?>
+        <div class="ppc-sidebar-panel-metabox meta-box-sortables">
+            <?php $meta_box_state = (isset($sidebar_metabox_state['unique_capabilities_for_post_types'])) ? $sidebar_metabox_state['unique_capabilities_for_post_types'] : 'closed';  ?>
+            <div class="postbox ppc-sidebar-panel <?php echo esc_attr($meta_box_state); ?>">
+                <input 
+                    name="ppc_metabox_state[unique_capabilities_for_post_types]"
+                    type="hidden" 
+                    class="metabox-state" 
+                    value="<?php echo esc_attr($meta_box_state); ?>"
+                />
+                <div class="postbox-header">
+                    <h2 class="hndle ui-sortable-handle"><?php esc_html_e('Unique Capabilities for Post Types', 'capsman-enhanced'); ?></h2>
+                    <div class="handle-actions">
+                        <button type="button" class="handlediv">
+                            <span class="toggle-indicator"></span>
+                        </button>
+                    </div>
+                </div>
+                <div class="inside" style="text-align:center;">
+                <?php
 				echo "<p class='cme-hint'>" . esc_html__( 'Allow post type permissions to be controlled separately from other areas of WordPress.', 'capsman-enhanced' ) . "</p>";
 				
 				if ( defined( 'PRESSPERMIT_ACTIVE' ) && pp_capabilities_get_permissions_option( 'display_hints' ) ) :?>
@@ -165,17 +181,34 @@ class Capsman_PP_UI {
 				?>
 
 				<input type="submit" name="update_filtered_types" value="<?php esc_attr_e('Update', 'capsman-enhanced') ?>" class="button" />
-			</dd>
-		</dl>
+                </div>
+            </div>
+        </div>
 		<?php
 	}
 	
 	// Note: CME can now impose type-specific capabilities without Press Permit Core active
 	function pp_taxonomies_ui( $defined_taxonomies ) {
+        global $sidebar_metabox_state;
 		?>
-		<dl>
-			<dt><?php esc_html_e('Unique Capabilities for Taxonomies', 'capsman-enhanced'); ?></dt>
-			<dd style="text-align:center;">
+        <div class="ppc-sidebar-panel-metabox meta-box-sortables">
+            <?php $meta_box_state = (isset($sidebar_metabox_state['unique_capabilities_for_taxonomies'])) ? $sidebar_metabox_state['unique_capabilities_for_taxonomies'] : 'closed';  ?>
+            <div class="postbox ppc-sidebar-panel <?php echo esc_attr($meta_box_state); ?>">
+                <input 
+                    name="ppc_metabox_state[unique_capabilities_for_taxonomies]"
+                    type="hidden" 
+                    class="metabox-state" 
+                    value="<?php echo esc_attr($meta_box_state); ?>"
+                />
+                <div class="postbox-header">
+                    <h2 class="hndle ui-sortable-handle"><?php esc_html_e('Unique Capabilities for Taxonomies', 'capsman-enhanced'); ?></h2>
+                    <div class="handle-actions">
+                        <button type="button" class="handlediv">
+                            <span class="toggle-indicator"></span>
+                        </button>
+                    </div>
+                </div>
+                <div class="inside" style="text-align:center;">
 				<?php
 				echo "<p class='cme-hint'>" . esc_html__( 'Allow taxonomy permissions to be controlled separately from other areas of WordPress.', 'capsman-enhanced' ) . "</p>";
 				
@@ -229,12 +262,30 @@ class Capsman_PP_UI {
 				</table>
 				
 				<input type="submit" name="update_filtered_taxonomies" value="<?php esc_attr_e('Update', 'capsman-enhanced') ?>" class="button" />
-			</dd>
-		</dl>
-		
-		<dl>
-			<dt><?php esc_html_e('Detailed Capabilities for Taxonomies', 'capsman-enhanced'); ?></dt>
-			<dd style="text-align:center;">
+                </div>
+            </div>
+        </div>
+
+
+        <div class="ppc-sidebar-panel-metabox meta-box-sortables">
+                <?php $meta_box_state = (isset($sidebar_metabox_state['detailed_capabilities_for_taxonomies'])) ? $sidebar_metabox_state['detailed_capabilities_for_taxonomies'] : 'closed';  ?>
+                <div class="postbox ppc-sidebar-panel <?php echo esc_attr($meta_box_state); ?>">
+                    <input 
+                        name="ppc_metabox_state[detailed_capabilities_for_taxonomies]"
+                        type="hidden" 
+                        class="metabox-state" 
+                        value="<?php echo esc_attr($meta_box_state); ?>"
+                    />
+                    <div class="postbox-header">
+                        <h2 class="hndle ui-sortable-handle"><?php esc_html_e('Detailed Capabilities for Taxonomies', 'capsman-enhanced'); ?></h2>
+                        <div class="handle-actions">
+                            <button type="button" class="handlediv">
+                                <span class="toggle-indicator"></span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="inside" style="text-align:center;">
+                        
 				<?php
 				echo "<p class='cme-hint'>" . esc_html__( 'Allow "Edit", "Delete" and "Assign" capabilities separately from the "Manage" capability.', 'capsman-enhanced' ) . "</p>";
 				
@@ -286,8 +337,9 @@ class Capsman_PP_UI {
 				</table>
 				
 				<input type="submit" name="update_detailed_taxonomies" value="<?php esc_attr_e('Update', 'capsman-enhanced') ?>" class="button" />
-			</dd>
-		</dl>
+                    </div>
+                </div>
+            </div>
 		<?php
 	}
 }

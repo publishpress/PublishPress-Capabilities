@@ -981,6 +981,54 @@ body.capabilities_page_pp-capabilities-nav-menus .pp-capability-menus-select .re
     max-width: 100%;
 }
 
+.ppc-sidebar-panel .postbox-header .hndle {
+    cursor: move;
+    webkit-user-select: none;
+    user-select: none;
+    font-size: 14px;
+    padding: 8px 12px;
+    margin: 0;
+    line-height: 1.4;
+}
+
+.ppc-sidebar-panel .postbox-header .handle-actions {
+    flex-shrink: 0;
+}
+
+.ppc-sidebar-panel .postbox-header .handle-actions .handlediv {
+    width: 36px !important;
+    height: 36px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    background: none !important;
+    outline: 0 !important;
+    box-shadow: none !important;
+    cursor: pointer;
+}
+
+.ppc-sidebar-panel .postbox-header .handle-actions .handlediv:focus,
+.ppc-sidebar-panel .postbox-header .handle-actions .handlediv:active,
+.ppc-sidebar-panel .postbox-header .handle-actions .handlediv:hover {
+    outline: 0;
+    box-shadow: none;
+}
+
+.ppc-sidebar-panel .pp-sidebar-box {
+    padding: 0;
+    border: none;
+    margin: 0;
+    box-shadow: none;
+}
+
+.publishpress-caps-manage .pp-columns-wrapper.pp-enable-sidebar .pp-column-left {
+    width: 72%;
+}
+
+.publishpress-caps-manage .pp-columns-wrapper.pp-enable-sidebar .pp-column-right {
+    width: calc(28% - 20px);
+}
+
 @media (min-width: 1200px) {
   .pp-column-right.capabilities-sidebar {
     padding-top: 50px;
