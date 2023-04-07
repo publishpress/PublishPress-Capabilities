@@ -9,6 +9,7 @@
  */
 
 namespace PublishPressCapabilities {
+    global $pagenow;
 
     use function __;
     use function add_action;
@@ -17,15 +18,20 @@ namespace PublishPressCapabilities {
 
     use const PHP_VERSION;
 
+    if (!function_exists('get_plugin_data')) {
+        include_once ABSPATH . '/wp-admin/includes/plugin.php';
+    }
+    $plugin_data = get_plugin_data(PUBLISHPRESS_CAPS_VERSION_FILE);
+
     $data = [
-        'plugin_name' => 'PublishPress Capabilities',
-        'plugin_slug' => 'capsman-enhanced',
-        'plugin_file' => 'capability-manager-enhanced/capsman-enhanced.php',
+        'plugin_name' => $plugin_data['Name'],
+        'plugin_slug' => $plugin_data['TextDomain'],
+        'plugin_file' => plugin_basename(PUBLISHPRESS_CAPS_VERSION_FILE),
         'min_php_version' => '7.2.5',
         'message_format' => __(
             '%s requires PHP %s or later. Please upgrade PHP to a compatible version. Your current version is %s.',
-            'capsman-enhanced'
-        ),
+            $plugin_data['TextDomain']
+        )
     ];
 
     $isValidVersion = version_compare(PHP_VERSION, $data['min_php_version'], '>=');
@@ -57,6 +63,26 @@ namespace PublishPressCapabilities {
             </tr>
             <?php
         });
+
+        if ($pagenow === 'plugins.php') {
+            add_action('admin_notices', function () use ($data) {
+                ?>
+                <div class="error">
+                    <p><?php
+                        echo esc_html(
+                            sprintf(
+                                $data['message_format'],
+                                $data['plugin_name'],
+                                $data['min_php_version'],
+                                PHP_VERSION
+                            )
+                        );
+                        ?>   
+                    </p> 
+                </div>
+                <?php
+            });
+        }
     }
 
     return $isValidVersion;

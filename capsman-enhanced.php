@@ -28,8 +28,11 @@
  * @version 	2.4.0
  */
 
+if (!defined('PUBLISHPRESS_CAPS_VERSION_FILE')) {
+    define('PUBLISHPRESS_CAPS_VERSION_FILE', __FILE__);
+}
 // If the PHP version is not compatible, terminate the plugin execution.
-if (! include_once __DIR__ . '/includes-core/check-php-version.php') {
+if (! include_once __DIR__ . '/check-php-version.php') {
     return;
 }
 
