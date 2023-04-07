@@ -535,7 +535,7 @@ function pp_capabilities_get_fse_navs_sub_items($nav_id)
             $menu_items[]   = pp_capabilities_parse_nav_block($block_attrs);
             if (!empty($inner_blocks)) {
                 foreach ($inner_blocks as $inner_block) {
-                    $menu_items[]   = pp_capabilities_parse_nav_block($inner_block['attrs'], $block_attrs['id']);
+                    $menu_items[]   = pp_capabilities_parse_nav_block($inner_block, $block_attrs['id']);
                 }
             }
             
