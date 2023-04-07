@@ -392,6 +392,23 @@ if (defined('PUBLISHPRESS_REVISIONS_VERSION') && function_exists('rvy_get_option
                         ];
                         $grouped_caps_lists = array_merge($grouped_caps_lists, $grouped_caps['Plugins']);
 
+                        if (is_multisite()) {
+                            //add multisite caps
+							$grouped_caps['Multisite'] = [
+								'create_sites',
+                                'delete_sites',
+                                'manage_network',
+                                'manage_sites',
+                                'manage_network_users',
+                                'manage_network_plugins',
+                                'manage_network_themes',
+                                'manage_network_options',
+                                'upgrade_network',
+                                'setup_network',
+							];
+                            $grouped_caps_lists = array_merge($grouped_caps_lists, $grouped_caps['Multisite']);
+                        }
+                        
 						$grouped_caps = apply_filters('cme_grouped_capabilities', $grouped_caps);
 
 						foreach($grouped_caps as $grouped_title => $__grouped_caps) {
