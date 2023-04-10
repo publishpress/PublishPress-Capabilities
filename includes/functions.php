@@ -533,7 +533,7 @@ function pp_capabilities_get_fse_navs_sub_items($nav_id)
             $menu_items   = pp_capabilities_parse_nav_block($parsed_block, $menu_items);
         }
     }
-    
+
     return $menu_items;
 }
 
@@ -551,7 +551,8 @@ function pp_capabilities_parse_nav_block($parsed_block, $menu_items, $parent = 0
     $block_attrs    = $parsed_block['attrs'];
     $inner_blocks   = $parsed_block['innerBlocks'];
     $block_id       = isset($block_attrs['id']) ? $block_attrs['id'] : 0;
-    $menu_items[] = (object) [
+    if (!empty($block_attrs)) {
+        $menu_items[] = (object) [
         'ID'                => $block_id,
         'title'             => $block_attrs['label'],
         'object_id'         => $block_attrs['url'],
@@ -559,9 +560,10 @@ function pp_capabilities_parse_nav_block($parsed_block, $menu_items, $parent = 0
         'menu_item_parent'  => $parent
     ];
 
-    if (!empty($inner_blocks)) {
-        foreach ($inner_blocks as $inner_block) {
-            $menu_items   = pp_capabilities_parse_nav_block($inner_block, $menu_items, max($block_id, 1));
+        if (!empty($inner_blocks)) {
+            foreach ($inner_blocks as $inner_block) {
+                $menu_items   = pp_capabilities_parse_nav_block($inner_block, $menu_items, max($block_id, 1));
+            }
         }
     }
 
