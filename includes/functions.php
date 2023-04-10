@@ -551,14 +551,15 @@ function pp_capabilities_parse_nav_block($parsed_block, $menu_items, $parent = 0
     $block_attrs    = $parsed_block['attrs'];
     $inner_blocks   = $parsed_block['innerBlocks'];
     $block_id       = isset($block_attrs['id']) ? $block_attrs['id'] : 0;
-    if (!empty($block_attrs)) {
+
+    if (!empty($block_attrs) && isset($block_attrs['kind'])) {
         $menu_items[] = (object) [
-        'ID'                => $block_id,
-        'title'             => $block_attrs['label'],
-        'object_id'         => $block_attrs['url'],
-        'object'            => isset($block_attrs['type']) ? $block_attrs['type'] : $block_attrs['kind'],
-        'menu_item_parent'  => $parent
-    ];
+            'ID'                => $block_id,
+            'title'             => $block_attrs['label'],
+            'object_id'         => $block_attrs['url'],
+            'object'            => isset($block_attrs['type']) ? $block_attrs['type'] : $block_attrs['kind'],
+            'menu_item_parent'  => $parent
+        ];
 
         if (!empty($inner_blocks)) {
             foreach ($inner_blocks as $inner_block) {
