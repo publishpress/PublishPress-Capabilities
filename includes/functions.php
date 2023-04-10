@@ -530,38 +530,42 @@ function pp_capabilities_get_fse_navs_sub_items($nav_id)
         $parsed_blocks = block_core_navigation_filter_out_empty_blocks($parsed_blocks);
 
         foreach ($parsed_blocks as $parsed_block) {
-            $block_attrs    = $parsed_block['attrs'];
-            $inner_blocks   = $parsed_block['innerBlocks'];
-            $menu_items[]   = pp_capabilities_parse_nav_block($block_attrs);
-            if (!empty($inner_blocks)) {
-                foreach ($inner_blocks as $inner_block) {
-                    $menu_items[]   = pp_capabilities_parse_nav_block($inner_block, $block_attrs['id']);
-                }
-            }
-            
+            $menu_items   = pp_capabilities_parse_nav_block($parsed_block, $menu_items);
         }
     }
-
+    
     return $menu_items;
 }
 
 /**
  * Parse nav block attributes to required format
  *
- * @param array $block_attrs
- * @return object
+ * @param object $parsed_block
+ * @param array $menu_items
+ * @param integer $parent
+ * 
+ * @return array $menu_items
  */
-function pp_capabilities_parse_nav_block($block_attrs, $parent = 0) {
+function pp_capabilities_parse_nav_block($parsed_block, $menu_items, $parent = 0) {
 
-    $return = [
-        'ID'                => $block_attrs['id'],
+    $block_attrs    = $parsed_block['attrs'];
+    $inner_blocks   = $parsed_block['innerBlocks'];
+    $block_id       = isset($block_attrs['id']) ? $block_attrs['id'] : 0;
+    $menu_items[] = (object) [
+        'ID'                => $block_id,
         'title'             => $block_attrs['label'],
         'object_id'         => $block_attrs['url'],
-        'object'            => $block_attrs['type'],
+        'object'            => isset($block_attrs['type']) ? $block_attrs['type'] : $block_attrs['kind'],
         'menu_item_parent'  => $parent
     ];
 
-    return (object) $return;
+    if (!empty($inner_blocks)) {
+        foreach ($inner_blocks as $inner_block) {
+            $menu_items   = pp_capabilities_parse_nav_block($inner_block, $menu_items, max($block_id, 1));
+        }
+    }
+
+    return $menu_items;
 }
 
 /**
