@@ -125,15 +125,7 @@ class PP_Capabilities_Test_User_UI extends PP_Capabilities_Test_User
 
                 var sel = $('#wp-admin-bar-my-account a.ab-item:visible:has(span.display-name)');
 
-                var avatar = $(sel).find('img.avatar');
-
-                if (typeof(avatar) == 'undefined') {
-                    avatar = '';
-                } else {
-                    avatar = $(sel).find('img.avatar').prop('outerHTML');
-                }
-
-                $(sel).html(switchBackDiv + $(sel).find('span.display-name').prop('outerHTML') + avatar);
+                $(sel).html(switchBackDiv + $(sel).find('span.display-name').prop('outerHTML'));
 
                 <?php
                 $message = sprintf(
