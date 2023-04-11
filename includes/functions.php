@@ -553,6 +553,7 @@ function pp_capabilities_parse_nav_block($parsed_block, $menu_items, $parent = 0
     $block_id       = isset($block_attrs['id']) ? $block_attrs['id'] : 0;
 
     if (!empty($block_attrs) && isset($block_attrs['kind'])) {
+        //This block has attributes
         $menu_items[] = (object) [
             'ID'                => $block_id,
             'title'             => $block_attrs['label'],
@@ -566,9 +567,83 @@ function pp_capabilities_parse_nav_block($parsed_block, $menu_items, $parent = 0
                 $menu_items   = pp_capabilities_parse_nav_block($inner_block, $menu_items, max($block_id, 1));
             }
         }
+    } elseif (!empty($block_attrs) && isset($block_attrs['label'])) {
+        //This block has the needed label attribute (core/search, core/home-link)
+        $menu_items[] = (object) [
+            'ID'                => 0,
+            'title'             => $block_attrs['label'],
+            'object_id'         => $parsed_block['blockName'],
+            'object'            => 'custom_block',
+            'menu_item_parent'  => $parent
+        ];
+
+        if (!empty($inner_blocks)) {
+            foreach ($inner_blocks as $inner_block) {
+                $menu_items   = pp_capabilities_parse_nav_block($inner_block, $menu_items, max($block_id, 1));
+            }
+        }
+    } elseif (!empty($parsed_block) && isset($parsed_block['blockName']) && in_array($parsed_block['blockName'], ['core/site-logo', 'core/site-title', 'core/social-links', 'core/page-list'])) {
+        //This block doesn't have any block attr
+        $menu_items[] = (object) [
+            'ID'                => 0,
+            'title'             => ppc_block_friend_name($parsed_block['blockName']),
+            'object_id'         => $parsed_block['blockName'],
+            'object'            => 'custom_block',
+            'menu_item_parent'  => $parent
+        ];
+
+        //add page list inner block
+        if ($parsed_block['blockName'] === 'core/page-list') {
+            $pages_args = ['sort_column' => 'menu_order,post_title', 'order' => 'asc'];
+            if (isset($block_attrs['parentPageID']) && !empty($block_attrs['parentPageID'])) {
+                $pages_args['child_of'] = $block_attrs['parentPageID'];
+            }
+            $all_pages = get_pages($pages_args);
+            if (!empty($all_pages)) {
+                foreach ( (array) $all_pages as $page ) {
+                    $inner_blocks[] = [
+                        'blockName' => 'page_list_link',
+                        'attrs'     => [
+                            'label' => $page->post_title,
+                            'type'  => 'page',
+                            'kind'  => 'post-type',
+                            'id'    => $page->ID,
+                            'url'   => get_permalink($page->ID)
+                        ],
+                        'innerBlocks' => []
+                    ];
+                }
+            }
+        }
+
+        if (!empty($inner_blocks)) {
+            foreach ($inner_blocks as $inner_block) {
+                $menu_items   = pp_capabilities_parse_nav_block($inner_block, $menu_items, max($block_id, 1));
+            }
+        }
     }
 
     return $menu_items;
+}
+
+function ppc_block_friend_name($block_name) {
+
+    $friendly_name = $block_name;
+
+    $supported_blocks = [
+        'core/site-logo'     => __('Site Logo', 'capsman-enhanced'),
+        'core/site-title'    => __('Site Title', 'capsman-enhanced'),
+        'core/social-links'  => __('Social Links', 'capsman-enhanced'),
+        'core/page-list'     => __('Page Lists', 'capsman-enhanced'),
+        'core/search'        => __('Search', 'capsman-enhanced'),
+        'core/home-link'     => __('Home Link', 'capsman-enhanced'),
+    ];
+
+    if (array_key_exists($block_name, $supported_blocks)) {
+        $friendly_name = $supported_blocks[$block_name];
+    }
+    
+    return $friendly_name;
 }
 
 /**
@@ -769,6 +844,7 @@ if (!is_admin()) {
                         jQuery(document).ready( function($) {
                             $('<?php echo join(', ', $menu_item_selectors); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>').each( function() {
                                 $(this).closest('li').remove();
+                                $(this).remove();
                             });
                         });
                     </script>
@@ -788,7 +864,21 @@ if (!is_admin()) {
  * @return string
  */
 function pp_capabilities_nav_link_selector($url) {
-    return 'li.wp-block-navigation-item a[href*="'. $url .'"]';
+
+    $link_selector = 'li.wp-block-navigation-item a[href*="'. $url .'"]';
+    if ($url === 'core/search') {
+        $link_selector = '.wp-block-navigation .wp-block-search';
+    } elseif ($url === 'core/site-logo') {
+        $link_selector = 'li.wp-block-navigation-item .wp-block-site-logo';
+    } elseif ($url === 'core/site-title') {
+        $link_selector = '.wp-block-navigation .wp-block-site-title';
+    } elseif ($url === 'core/social-links') {
+        $link_selector = '.wp-block-navigation .wp-block-social-links';
+    } elseif ($url === 'core/home-link') {
+        $link_selector = '.wp-block-navigation .wp-block-home-link';
+    }
+
+    return $link_selector;
 }
 
 /**
