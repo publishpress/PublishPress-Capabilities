@@ -302,10 +302,13 @@ $nav_menu_item_option = array_key_exists($default_role, $nav_menu_item_option) ?
                 //   Instant restricted item class
                 // -------------------------------------------------------------
                 $(document).on('change', '.pp-capability-menus-wrapper .ppc-menu-row .check-item', function () {
-
+                    var checkbox_value = $(this).val();
                     if ($(this).is(':checked')) {
                         //add class if value is checked
                         $(this).closest('tr').find('.menu-item-link').addClass('restricted');
+                        //check other fields with same value
+                        $("input[type='checkbox'][value='" + checkbox_value + "']").prop('checked', true);
+                        $("input[type='checkbox'][value='" + checkbox_value + "']").closest('tr').find('.menu-item-link').addClass('restricted');
 
                         //toggle all checkbox
                         if ($(this).hasClass('check-all-menu-item')) {
@@ -320,6 +323,9 @@ $nav_menu_item_option = array_key_exists($default_role, $nav_menu_item_option) ?
                     } else {
                         //unchecked value
                         $(this).closest('tr').find('.menu-item-link').removeClass('restricted');
+                        //uncheck other fields with same value
+                        $("input[type='checkbox'][value='" + checkbox_value + "']").prop('checked', false);
+                        $("input[type='checkbox'][value='" + checkbox_value + "']").closest('tr').find('.menu-item-link').removeClass('restricted');
 
                         //toggle all checkbox
                         if ($(this).hasClass('check-all-menu-item')) {
