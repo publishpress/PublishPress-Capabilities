@@ -94,6 +94,8 @@ class PP_Capabilities_Admin_UI {
 
         //clear the "done" flag on new plugin install 
         add_action('activated_plugin', [$this, 'clearProfileFeaturesDoneFlag'], 10, 2);
+        //prevent access to admin dashboard
+        add_action('admin_init', [$this, 'blockDashboardAccess']);
     }
 
 	function register_textdomain() {
@@ -490,5 +492,32 @@ class PP_Capabilities_Admin_UI {
      */
     public function clearProfileFeaturesDoneFlag($plugin, $network_wide) {
         delete_option('capsman_profile_features_updated');
+    }
+
+    /**
+     * Block dasbboard access
+     *
+     * @return void
+     */
+    public function blockDashboardAccess() {
+
+        if (current_user_can('manage_options') || wp_doing_ajax()) {
+            return;
+        }
+
+        $user = wp_get_current_user();
+        if (isset($user->roles) && is_array($user->roles)) {
+            foreach ($user->roles as $user_role) {
+                //get role option
+                $role_option = get_option("pp_capabilities_{$user_role}_role_option", []);
+                if (is_array($role_option) && !empty($role_option) 
+                    && !empty($role_option['block_dashboard_access']) 
+                    && (int)$role_option['block_dashboard_access'] > 0
+                ) {
+                    wp_safe_redirect(home_url());
+                    die();
+                }
+            }
+        }
     }
 }

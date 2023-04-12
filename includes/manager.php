@@ -939,6 +939,12 @@ class CapabilityManager
 			$capsman_modify = new CapsmanHandler( $this );
 			$capsman_modify->processAdminGeneral();
 		}
+
+        //save user sidebar panel state
+        if (!empty($_POST['ppc_metabox_state'])) {
+            $metabox_state = map_deep($_POST['ppc_metabox_state'], 'sanitize_text_field');
+            update_user_meta(get_current_user_id(), 'ppc_sidebar_metabox_state', $metabox_state);
+        }
 	}
 
 	/**

@@ -262,6 +262,7 @@ class Pp_Roles_Actions
         $role_option['custom_redirect']     = !empty($_REQUEST['custom_redirect']) ? (int) $_REQUEST['custom_redirect'] : 0;
         $role_option['disable_code_editor'] = !empty($_REQUEST['disable_code_editor']) ? (int) $_REQUEST['disable_code_editor'] : 0;
         $role_option['disable_role_user_login'] = !empty($_REQUEST['disable_role_user_login']) ? (int) $_REQUEST['disable_role_user_login'] : 0;
+        $role_option['block_dashboard_access'] = !empty($_REQUEST['block_dashboard_access']) ? (int) $_REQUEST['block_dashboard_access'] : 0;
         if (defined('WC_PLUGIN_FILE')) {
             $role_option['disable_woocommerce_admin_restrictions'] = !empty($_REQUEST['disable_woocommerce_admin_restrictions']) ? (int) $_REQUEST['disable_woocommerce_admin_restrictions'] : 0;
 
@@ -302,6 +303,13 @@ class Pp_Roles_Actions
            if (is_array($disabled_admin_items) && array_key_exists($copied_role, $disabled_admin_items)) {
                $disabled_admin_items[$role_slug] = $disabled_admin_items[$copied_role];
                update_option('capsman_disabled_admin_features', $disabled_admin_items, false);
+           }
+
+           //Profile Features
+           $disabled_profile_items = !empty(get_option('capsman_disabled_profile_features')) ? (array)get_option('capsman_disabled_profile_features') : [];
+           if (is_array($disabled_profile_items) && array_key_exists($copied_role, $disabled_profile_items)) {
+               $disabled_profile_items[$role_slug] = $disabled_profile_items[$copied_role];
+               update_option('capsman_disabled_profile_features', $disabled_profile_items, false);
            }
 
 
@@ -422,6 +430,7 @@ class Pp_Roles_Actions
         $role_option['custom_redirect']     = !empty($_REQUEST['custom_redirect']) ? (int) $_REQUEST['custom_redirect'] : 0;
         $role_option['disable_code_editor'] = !empty($_REQUEST['disable_code_editor']) ? (int) $_REQUEST['disable_code_editor'] : 0;
         $role_option['disable_role_user_login'] = !empty($_REQUEST['disable_role_user_login']) ? (int) $_REQUEST['disable_role_user_login'] : 0;
+        $role_option['block_dashboard_access'] = !empty($_REQUEST['block_dashboard_access']) ? (int) $_REQUEST['block_dashboard_access'] : 0;
         if (defined('WC_PLUGIN_FILE')) {
             $role_option['disable_woocommerce_admin_restrictions'] = !empty($_REQUEST['disable_woocommerce_admin_restrictions']) ? (int) $_REQUEST['disable_woocommerce_admin_restrictions'] : 0;
 
