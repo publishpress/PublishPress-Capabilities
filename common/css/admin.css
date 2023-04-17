@@ -845,6 +845,10 @@ body.capabilities_page_pp-capabilities-nav-menus .pp-capability-menus-select .re
     margin-bottom: 10px !important;
 }
 
+span.menu-item-link {
+user-select: none;
+}
+
 .ppc-tool-tip {
     display: inline-block;
     position: relative;

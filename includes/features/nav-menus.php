@@ -241,7 +241,7 @@ $nav_menu_item_option = array_key_exists($default_role, $nav_menu_item_option) ?
                                                                                 value="<?php echo esc_attr($sub_menu_value); ?>"
                                                                                 <?php echo (in_array($sub_menu_value, $nav_menu_item_option)) ? 'checked' : ''; ?> />
                                                                         </td>
-                                                                        <td class="menu-column ppc-menu-item'">
+                                                                        <td class="menu-column ppc-menu-item">
 
                                                                             <label for="check-item-<?php echo (int) $sn; ?>">
                                                                             <span class="menu-item-link<?php echo (in_array($sub_menu_value, $nav_menu_item_option)) ? ' restricted' : ''; ?>">
