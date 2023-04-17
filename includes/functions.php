@@ -461,7 +461,6 @@ function pp_capabilities_sidebox_banner($banner_title, $banner_messages)
             </ul>
             </div>
         </div>
-    </div>
     <?php
 }
 
