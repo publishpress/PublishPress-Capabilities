@@ -217,42 +217,23 @@ if (get_option('cme_profile_features_auto_redirect')) {
                 </div><!-- .pp-column-left -->
                 <div class="pp-column-right pp-capabilities-sidebar">
                 <?php 
-                $banners = new PublishPress\WordPressBanners\BannersMain; 
-                ?>
-                <?php 
                 $banner_messages = ['<p>'];
                 $banner_messages[] = '<i class="dashicons dashicons-arrow-right"></i> <a href="'. $refresh_url .'">' . esc_html__('Refresh profile items.', 'capsman-enhanced') .'</a>';
                 $banner_messages[] = '</p>';
-                $banners->pp_display_banner(
-                    '',
-                    __('Update Profile Features', 'capsman-enhanced'),
-                    $banner_messages,
-                    '',
-                    '',
-                    '',
-                    ''
-                );
+                $banner_title  = __('Update Profile Features', 'capsman-enhanced');
+                pp_capabilities_sidebox_banner($banner_title, $banner_messages);
                 ?>
                 <?php 
                 $banner_messages = ['<p>'];
                 $banner_messages[] = esc_html__('Profile Features allows you to remove elements from the Profile screen.', 'capsman-enhanced');
                 $banner_messages[] = '</p><p>';
-                $banner_messages[] = sprintf(esc_html__('%1$s = No change', 'capsman-enhanced'), '<input type="checkbox" title="'. esc_attr__('usage key', 'capsman-enhanced') .'" disabled>');
-                $banner_messages[] = sprintf(esc_html__('%1$s = This feature is denied', 'capsman-enhanced'), '<input type="checkbox" title="'. esc_attr__('usage key', 'capsman-enhanced') .'" checked disabled>');
+                $banner_messages[] = sprintf(esc_html__('%1$s = No change', 'capsman-enhanced'), '<input type="checkbox" title="'. esc_attr__('usage key', 'capsman-enhanced') .'" disabled>') . ' <br />';
+                $banner_messages[] = sprintf(esc_html__('%1$s = This feature is denied', 'capsman-enhanced'), '<input type="checkbox" title="'. esc_attr__('usage key', 'capsman-enhanced') .'" checked disabled>') . ' <br />';
                 $banner_messages[] = '</p>';
-                $banners->pp_display_banner(
-                    '',
-                    __('How to use Profile Features', 'capsman-enhanced'),
-                    $banner_messages,
-                    'https://publishpress.com/knowledge-base/checkboxes/',
-                    __('View Documentation', 'capsman-enhanced'),
-                    '',
-                    'button ppc-checkboxes-documentation-link'
-                );
+                $banner_messages[] = '<p><a class="button ppc-checkboxes-documentation-link" href="https://publishpress.com/knowledge-base/checkboxes/"target="blank">' . esc_html__('View Documentation', 'capsman-enhanced') . '</a></p>';
+                $banner_title  = __('How to use Profile Features', 'capsman-enhanced');
+                pp_capabilities_sidebox_banner($banner_title, $banner_messages);
                 ?>
-                    <?php if (defined('CAPSMAN_PERMISSIONS_INSTALLED') && !CAPSMAN_PERMISSIONS_INSTALLED) { ?>
-                        <?php pp_capabilities_permission_box(); ?>
-                    <?php } ?>
                 </div><!-- .pp-column-right -->
             </div><!-- .pp-columns-wrapper -->
         </form>

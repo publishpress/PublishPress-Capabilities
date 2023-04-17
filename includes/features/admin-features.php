@@ -243,26 +243,16 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                 </div><!-- .pp-column-left -->
                 <div class="pp-column-right pp-capabilities-sidebar">
                 <?php 
-                $banners = new PublishPress\WordPressBanners\BannersMain;
                 $banner_messages = ['<p>'];
                 $banner_messages[] = esc_html__('Admin Features allows you to remove elements from the admin area and toolbar.', 'capsman-enhanced');
                 $banner_messages[] = '</p><p>';
-                $banner_messages[] = sprintf(esc_html__('%1$s = No change', 'capsman-enhanced'), '<input type="checkbox" title="'. esc_attr__('usage key', 'capsman-enhanced') .'" disabled>');
-                $banner_messages[] = sprintf(esc_html__('%1$s = This feature is denied', 'capsman-enhanced'), '<input type="checkbox" title="'. esc_attr__('usage key', 'capsman-enhanced') .'" checked disabled>');
+                $banner_messages[] = sprintf(esc_html__('%1$s = No change', 'capsman-enhanced'), '<input type="checkbox" title="'. esc_attr__('usage key', 'capsman-enhanced') .'" disabled>') . ' <br />';
+                $banner_messages[] = sprintf(esc_html__('%1$s = This feature is denied', 'capsman-enhanced'), '<input type="checkbox" title="'. esc_attr__('usage key', 'capsman-enhanced') .'" checked disabled>') . ' <br />';
                 $banner_messages[] = '</p>';
-                $banners->pp_display_banner(
-                    '',
-                    __('How to use Admin Features', 'capsman-enhanced'),
-                    $banner_messages,
-                    'https://publishpress.com/knowledge-base/checkboxes/',
-                    __('View Documentation', 'capsman-enhanced'),
-                    '',
-                    'button ppc-checkboxes-documentation-link'
-                );
+                $banner_messages[] = '<p><a class="button ppc-checkboxes-documentation-link" href="https://publishpress.com/knowledge-base/checkboxes/"target="blank">' . esc_html__('View Documentation', 'capsman-enhanced') . '</a></p>';
+                $banner_title  = __('How to use Admin Feature', 'capsman-enhanced');
+                pp_capabilities_sidebox_banner($banner_title, $banner_messages);
                 ?>
-                    <?php if (defined('CAPSMAN_PERMISSIONS_INSTALLED') && !CAPSMAN_PERMISSIONS_INSTALLED) { ?>
-                        <?php pp_capabilities_permission_box(); ?>
-                    <?php } ?>
                 </div><!-- .pp-column-right -->
             </div><!-- .pp-columns-wrapper -->
         </form>
