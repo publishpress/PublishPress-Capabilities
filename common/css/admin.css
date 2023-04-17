@@ -1029,6 +1029,33 @@ body.capabilities_page_pp-capabilities-nav-menus .pp-capability-menus-select .re
     width: calc(28% - 20px);
 }
 
+.pp-sidebar-box.advertisement-box-content {
+    padding: 0;
+    border: 1px solid #c3c4c7;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+    background: #fff;
+    font-size: initial;
+}
+
+.pp-sidebar-box.advertisement-box-content ul {
+    padding: 0 !important;
+}
+
+.pp-capability-menus-wrapper.profile-features .pp-sidebar-box.advertisement-box-content li {
+    padding: 0 !important;
+}
+
+.pp-sidebar-box.advertisement-box-content ul,
+.pp-sidebar-box.advertisement-box-content ul li {
+    list-style: none;
+    font-size: 13px !important;
+    font-weight: normal !important;
+}
+
+.pp-sidebar-box.advertisement-box-content ul li::before {
+    display: none;
+}
+
 @media (min-width: 1200px) {
   .pp-column-right.capabilities-sidebar {
     padding-top: 50px;
