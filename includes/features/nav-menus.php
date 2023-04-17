@@ -215,7 +215,7 @@ $nav_menu_item_option = array_key_exists($default_role, $nav_menu_item_option) ?
                                                                     } else {
                                                                         $depth_space = '&emsp;&emsp;';
                                                                     }
-                                                                    write_log($menu_item);
+                                                                    
                                                                     if (isset($menu_item->depth) && $menu_item->depth > 0) {
                                                                         if (isset($menu_item->is_parent_page) && $menu_item->is_parent_page === 1 && $menu_item->depth === 1) {
                                                                             //depth?
