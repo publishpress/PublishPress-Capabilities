@@ -845,7 +845,7 @@ body.capabilities_page_pp-capabilities-nav-menus .pp-capability-menus-select .re
     margin-bottom: 10px !important;
 }
 
-span.menu-item-link {
+td.ppc-menu-item span.menu-item-link {
 user-select: none;
 }
 
