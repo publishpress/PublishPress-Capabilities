@@ -1029,6 +1029,28 @@ body.capabilities_page_pp-capabilities-nav-menus .pp-capability-menus-select .re
     width: calc(28% - 20px);
 }
 
+.ppc-nav-menu-expand,
+.ppc-menu-block-icon {
+    vertical-align: top;
+}
+
+.ppc-nav-menu-expand svg,
+.ppc-menu-block-icon svg {
+    fill: currentColor;
+    outline: none;
+}
+
+tr.opened .ppc-nav-menu-expand svg {
+    transform: rotate(90deg);
+    transition: transform .2s ease;
+    visibility: visible;
+}
+
+.pp-capability-menus-wrapper .fse-nav-menu .section-closed,
+.pp-capability-menus-wrapper .fse-nav-menu .menu-closed {
+    display: none !important;
+}
+
 @media (min-width: 1200px) {
   .pp-column-right.capabilities-sidebar {
     padding-top: 50px;

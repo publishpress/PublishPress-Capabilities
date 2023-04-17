@@ -533,7 +533,7 @@ function pp_capabilities_get_fse_navs_sub_items($nav_id)
             $menu_items   = pp_capabilities_parse_nav_block($parsed_block, $menu_items);
         }
     }
-
+    
     return $menu_items;
 }
 
@@ -543,53 +543,90 @@ function pp_capabilities_get_fse_navs_sub_items($nav_id)
  * @param object $parsed_block
  * @param array $menu_items
  * @param integer $parent
+ * @param integer $depth
+ * @param string $ancestor_class
  * 
  * @return array $menu_items
  */
-function pp_capabilities_parse_nav_block($parsed_block, $menu_items, $parent = 0) {
+function pp_capabilities_parse_nav_block($parsed_block, $menu_items, $parent = 0, $depth = 0, $ancestor_class = '') {
 
     $block_attrs    = $parsed_block['attrs'];
     $inner_blocks   = $parsed_block['innerBlocks'];
     $block_id       = isset($block_attrs['id']) ? $block_attrs['id'] : 0;
 
+    //assign page id to page list block
+    if ($block_id === 0 && isset($parsed_block['blockName']) && in_array($parsed_block['blockName'], ['core/page-list'])) {
+        $block_id = '+'.abs(crc32(uniqid(true)));
+    }
+
+    //add parent id to ancestor class
+    if ($parent !== 0) {
+        $ancestor_class .= ' ancestor-' . str_replace('+', '', $parent);
+    }
+
+    if (isset($block_attrs['kind']) && $block_attrs['kind'] === 'post-type' && wp_get_post_parent_id($block_attrs['id']) > 0) {
+        $parent = wp_get_post_parent_id($block_attrs['id']);
+        $post_ancestors = get_post_ancestors($block_attrs['id']);
+        $depth  = count($post_ancestors);
+        //add post ancestors id to ancestor class
+        if (!empty($post_ancestors)) {
+            $post_ancesstors_class = ' ancestor-' . join(' ancestor-', $post_ancestors);
+            $ancestor_class .= $post_ancesstors_class;
+        }
+    }
+
+    //we don't want current block id in ancestor class
+    $ancestor_class = str_replace('ancestor-' . $block_id . '', '', $ancestor_class);
+
     if (!empty($block_attrs) && isset($block_attrs['kind'])) {
         //This block has attributes
         $menu_items[] = (object) [
             'ID'                => $block_id,
-            'title'             => $block_attrs['label'],
+            'title'             =>  ppc_block_menu_icon($parsed_block['blockName']) . ' ' .  $block_attrs['label'],
             'object_id'         => $block_attrs['url'],
             'object'            => isset($block_attrs['type']) ? $block_attrs['type'] : $block_attrs['kind'],
-            'menu_item_parent'  => $parent
+            'menu_item_parent'  => $parent,
+            'ancestor_class'    => $ancestor_class,
+            'is_parent_page'    => !empty($inner_blocks) || (isset($block_attrs['is_parent_page']) && $block_attrs['is_parent_page'] === 1) ? 1 : 0,
+            'depth'             => $depth
         ];
 
         if (!empty($inner_blocks)) {
+            $depth++;
             foreach ($inner_blocks as $inner_block) {
-                $menu_items   = pp_capabilities_parse_nav_block($inner_block, $menu_items, max($block_id, 1));
+                $menu_items   = pp_capabilities_parse_nav_block($inner_block, $menu_items, max($block_id, 1), $depth, $ancestor_class);
             }
         }
     } elseif (!empty($block_attrs) && isset($block_attrs['label'])) {
         //This block has the needed label attribute (core/search, core/home-link)
         $menu_items[] = (object) [
-            'ID'                => 0,
-            'title'             => $block_attrs['label'],
+            'ID'                => $block_id,
+            'title'             => ppc_block_menu_icon($parsed_block['blockName']) . ' ' .  $block_attrs['label'],
             'object_id'         => $parsed_block['blockName'],
             'object'            => 'custom_block',
-            'menu_item_parent'  => $parent
+            'menu_item_parent'  => $parent,
+            'ancestor_class'    => $ancestor_class,
+            'is_parent_page'    => !empty($inner_blocks) ? 1 : 0,
+            'depth'             => $depth
         ];
 
         if (!empty($inner_blocks)) {
+            $depth++;
             foreach ($inner_blocks as $inner_block) {
-                $menu_items   = pp_capabilities_parse_nav_block($inner_block, $menu_items, max($block_id, 1));
+                $menu_items   = pp_capabilities_parse_nav_block($inner_block, $menu_items, max($block_id, 1), $depth, $ancestor_class);
             }
         }
     } elseif (!empty($parsed_block) && isset($parsed_block['blockName']) && in_array($parsed_block['blockName'], ['core/site-logo', 'core/site-title', 'core/social-links', 'core/page-list'])) {
         //This block doesn't have any block attr
         $menu_items[] = (object) [
-            'ID'                => 0,
-            'title'             => ppc_block_friend_name($parsed_block['blockName']),
+            'ID'                => $block_id,
+            'title'             => ppc_block_menu_icon($parsed_block['blockName']) . ' ' .  ppc_block_friend_name($parsed_block['blockName']),
             'object_id'         => $parsed_block['blockName'],
             'object'            => 'custom_block',
-            'menu_item_parent'  => $parent
+            'menu_item_parent'  => $parent,
+            'ancestor_class'    => $ancestor_class,
+            'is_parent_page'    => $block_id !== 0 && (!empty($inner_blocks) || $parsed_block['blockName'] === 'core/page-list') ? 1 : 0,
+            'depth'             => $depth
         ];
 
         //add page list inner block
@@ -601,6 +638,7 @@ function pp_capabilities_parse_nav_block($parsed_block, $menu_items, $parent = 0
             $all_pages = get_pages($pages_args);
             if (!empty($all_pages)) {
                 foreach ( (array) $all_pages as $page ) {
+                    $children = get_pages('child_of='.$page->ID);
                     $inner_blocks[] = [
                         'blockName' => 'page_list_link',
                         'attrs'     => [
@@ -608,6 +646,7 @@ function pp_capabilities_parse_nav_block($parsed_block, $menu_items, $parent = 0
                             'type'  => 'page',
                             'kind'  => 'post-type',
                             'id'    => $page->ID,
+                            'is_parent_page' => count($children) > 0 ? 1 : 0,
                             'url'   => get_permalink($page->ID)
                         ],
                         'innerBlocks' => []
@@ -617,8 +656,9 @@ function pp_capabilities_parse_nav_block($parsed_block, $menu_items, $parent = 0
         }
 
         if (!empty($inner_blocks)) {
+            $depth++;
             foreach ($inner_blocks as $inner_block) {
-                $menu_items   = pp_capabilities_parse_nav_block($inner_block, $menu_items, max($block_id, 1));
+                $menu_items   = pp_capabilities_parse_nav_block($inner_block, $menu_items, max($block_id, 1), $depth, $ancestor_class);
             }
         }
     }
@@ -644,6 +684,28 @@ function ppc_block_friend_name($block_name) {
     }
     
     return $friendly_name;
+}
+
+
+function ppc_block_menu_icon($block_name) {
+
+    $menu_icon = '<span class="ppc-menu-block-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" context="list-view" aria-hidden="true" focusable="false"><path d="M7 13.8h6v-1.5H7v1.5zM18 16V4c0-1.1-.9-2-2-2H6c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2zM5.5 16V4c0-.3.2-.5.5-.5h10c.3 0 .5.2.5.5v12c0 .3-.2.5-.5.5H6c-.3 0-.5-.2-.5-.5zM7 10.5h8V9H7v1.5zm0-3.3h8V5.8H7v1.4zM20.2 6v13c0 .7-.6 1.2-1.2 1.2H8v1.5h11c1.5 0 2.7-1.2 2.7-2.8V6h-1.5z"></path></svg></span>';
+
+    $supported_blocks = [
+        'core/site-logo'     => '<span class="ppc-menu-block-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" context="list-view" aria-hidden="true" focusable="false"><path d="M12 3c-5 0-9 4-9 9s4 9 9 9 9-4 9-9-4-9-9-9zm0 1.5c4.1 0 7.5 3.4 7.5 7.5v.1c-1.4-.8-3.3-1.7-3.4-1.8-.2-.1-.5-.1-.8.1l-2.9 2.1L9 11.3c-.2-.1-.4 0-.6.1l-3.7 2.2c-.1-.5-.2-1-.2-1.5 0-4.2 3.4-7.6 7.5-7.6zm0 15c-3.1 0-5.7-1.9-6.9-4.5l3.7-2.2 3.5 1.2c.2.1.5 0 .7-.1l2.9-2.1c.8.4 2.5 1.2 3.5 1.9-.9 3.3-3.9 5.8-7.4 5.8z"></path></svg></span>',
+        'core/site-title'    => '<span class="ppc-menu-block-icon"><svg xmlns="https://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" context="list-view" aria-hidden="true" focusable="false"><path d="M12 9c-.8 0-1.5.7-1.5 1.5S11.2 12 12 12s1.5-.7 1.5-1.5S12.8 9 12 9zm0-5c-3.6 0-6.5 2.8-6.5 6.2 0 .8.3 1.8.9 3.1.5 1.1 1.2 2.3 2 3.6.7 1 3 3.8 3.2 3.9l.4.5.4-.5c.2-.2 2.6-2.9 3.2-3.9.8-1.2 1.5-2.5 2-3.6.6-1.3.9-2.3.9-3.1C18.5 6.8 15.6 4 12 4zm4.3 8.7c-.5 1-1.1 2.2-1.9 3.4-.5.7-1.7 2.2-2.4 3-.7-.8-1.9-2.3-2.4-3-.8-1.2-1.4-2.3-1.9-3.3-.6-1.4-.7-2.2-.7-2.5 0-2.6 2.2-4.7 5-4.7s5 2.1 5 4.7c0 .2-.1 1-.7 2.4z"></path></svg></span>',
+        'core/social-links'  => '<span class="ppc-menu-block-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="24" height="24" context="list-view" aria-hidden="true" focusable="false"><path d="M9 11.8l6.1-4.5c.1.4.4.7.9.7h2c.6 0 1-.4 1-1V5c0-.6-.4-1-1-1h-2c-.6 0-1 .4-1 1v.4l-6.4 4.8c-.2-.1-.4-.2-.6-.2H6c-.6 0-1 .4-1 1v2c0 .6.4 1 1 1h2c.2 0 .4-.1.6-.2l6.4 4.8v.4c0 .6.4 1 1 1h2c.6 0 1-.4 1-1v-2c0-.6-.4-1-1-1h-2c-.5 0-.8.3-.9.7L9 12.2v-.4z"></path></svg></span>',
+        'core/page-list'     => '<span class="ppc-menu-block-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" context="list-view" aria-hidden="true" focusable="false"><path d="M7 13.8h6v-1.5H7v1.5zM18 16V4c0-1.1-.9-2-2-2H6c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2zM5.5 16V4c0-.3.2-.5.5-.5h10c.3 0 .5.2.5.5v12c0 .3-.2.5-.5.5H6c-.3 0-.5-.2-.5-.5zM7 10.5h8V9H7v1.5zm0-3.3h8V5.8H7v1.4zM20.2 6v13c0 .7-.6 1.2-1.2 1.2H8v1.5h11c1.5 0 2.7-1.2 2.7-2.8V6h-1.5z"></path></svg></span>',
+        'core/search'        => '<span class="ppc-menu-block-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" context="list-view" aria-hidden="true" focusable="false"><path d="M13.5 6C10.5 6 8 8.5 8 11.5c0 1.1.3 2.1.9 3l-3.4 3 1 1.1 3.4-2.9c1 .9 2.2 1.4 3.6 1.4 3 0 5.5-2.5 5.5-5.5C19 8.5 16.5 6 13.5 6zm0 9.5c-2.2 0-4-1.8-4-4s1.8-4 4-4 4 1.8 4 4-1.8 4-4 4z"></path></svg></span>',
+        'core/home-link'     => '<span class="ppc-menu-block-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" context="list-view" aria-hidden="true" focusable="false"><path d="M12 4L4 7.9V20h16V7.9L12 4zm6.5 14.5H14V13h-4v5.5H5.5V8.8L12 5.7l6.5 3.1v9.7z"></path></svg></span>',
+        'core/navigation-link' => '<span class="ppc-menu-block-icon"><svg xmlns="https://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" context="list-view" aria-hidden="true" focusable="false"><path d="M12.5 14.5h-1V16h1c2.2 0 4-1.8 4-4s-1.8-4-4-4h-1v1.5h1c1.4 0 2.5 1.1 2.5 2.5s-1.1 2.5-2.5 2.5zm-4 1.5v-1.5h-1C6.1 14.5 5 13.4 5 12s1.1-2.5 2.5-2.5h1V8h-1c-2.2 0-4 1.8-4 4s1.8 4 4 4h1zm-1-3.2h5v-1.5h-5v1.5zM18 4H9c-1.1 0-2 .9-2 2v.5h1.5V6c0-.3.2-.5.5-.5h9c.3 0 .5.2.5.5v12c0 .3-.2.5-.5.5H9c-.3 0-.5-.2-.5-.5v-.5H7v.5c0 1.1.9 2 2 2h9c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2z"></path></svg></span>',
+    ];
+
+    if (array_key_exists($block_name, $supported_blocks)) {
+        $menu_icon = $supported_blocks[$block_name];
+    }
+    
+    return $menu_icon;
 }
 
 /**

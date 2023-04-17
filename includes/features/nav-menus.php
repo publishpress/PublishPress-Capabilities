@@ -110,7 +110,7 @@ $nav_menu_item_option = array_key_exists($default_role, $nav_menu_item_option) ?
                                                     class="pp-capability-menus-content editable-role"
                                                     style="display: block;">
 
-                                                    <table class="wp-list-table widefat fixed striped pp-capability-menus-select">
+                                                    <table class="wp-list-table widefat fixed striped pp-capability-menus-select <?php echo ($fse_theme) ? 'fse-nav-menu' : ''; ?>">
 
                                                         <thead>
                                                             <tr class="ppc-menu-row parent-menu">
@@ -163,7 +163,9 @@ $nav_menu_item_option = array_key_exists($default_role, $nav_menu_item_option) ?
                                                             foreach ($nav_menus as $menu_id => $menu_name) {
                                                                 ?>
 
-                                                                <tr class="ppc-menu-row parent-menu">
+                                                                <tr class="ppc-menu-row parent-menu section-menu opened" 
+                                                                    data-menu-id="<?php echo esc_attr($menu_id); ?>"
+                                                                    >
 
                                                                     <td class="restrict-column ppc-menu-checkbox">
 
@@ -172,7 +174,12 @@ $nav_menu_item_option = array_key_exists($default_role, $nav_menu_item_option) ?
 
                                                                         <label for="check-item-<?php echo (int) $sn; ?>">
                                                                         <span class="menu-item-link">
-                                                                        <strong><i class="dashicons dashicons-menu-alt"></i>
+                                                                        <strong>
+                                                                            <?php if ($fse_theme) : ?>
+                                                                                <span class="ppc-nav-menu-expand"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M10.8622 8.04053L14.2805 12.0286L10.8622 16.0167L9.72327 15.0405L12.3049 12.0286L9.72327 9.01672L10.8622 8.04053Z"></path></svg></span>
+                                                                            <?php else : ?>
+                                                                            <i class="dashicons dashicons-menu-alt"></i>
+                                                                            <?php endif; ?>
                                                                             <?php echo esc_html(wp_strip_all_tags($menu_name)); ?>
                                                                         </strong></span>
                                                                         </label>
@@ -204,13 +211,29 @@ $nav_menu_item_option = array_key_exists($default_role, $nav_menu_item_option) ?
                                                                      */
 
                                                                     if ($menu_item->menu_item_parent > 0) {
-                                                                        $depth_space = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &mdash;&mdash;';
+                                                                        $depth_space = '&emsp;&emsp;&emsp;';
                                                                     } else {
-                                                                        $depth_space = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &mdash;';
+                                                                        $depth_space = '&emsp;&emsp;';
                                                                     }
+                                                                    write_log($menu_item);
+                                                                    if (isset($menu_item->depth) && $menu_item->depth > 0) {
+                                                                        if (isset($menu_item->is_parent_page) && $menu_item->is_parent_page === 1 && $menu_item->depth === 1) {
+                                                                            //depth?
+                                                                        } else {
+                                                                            for ($i = 1; $i<=$menu_item->depth; $i++) {
+                                                                                $depth_space .= '&emsp;';
+                                                                            }
+                                                                        }
+                                                                        if (substr($menu_item->menu_item_parent, 0, 1) !== '+') {
+                                                                            $depth_space .= '&emsp;';
+                                                                        }
+                                                                    }
+                                                                    $ancestor_class = isset($menu_item->ancestor_class) ? str_replace('+', '', $menu_item->ancestor_class) : '';
                                                                     ?>
-                                                                    <tr class="ppc-menu-row child-menu">
-
+                                                                    <tr class="ppc-menu-row child-menu <?php echo ($fse_theme && isset($menu_item->is_parent_page) && $menu_item->is_parent_page === 1) ? 'subsection-menu' : '' ?> <?php echo esc_attr($ancestor_class); ?> opened"
+                                                                    data-menu-id="<?php echo esc_attr($menu_item->ID); ?>"
+                                                                    data-section-menu-id="<?php echo esc_attr($menu_id); ?>"
+                                                                    data-parent-menu-id="<?php echo esc_attr($menu_item->menu_item_parent); ?>">
                                                                         <td class="restrict-column ppc-menu-checkbox">
                                                                             <input id="check-item-<?php echo (int) $sn; ?>"
                                                                                 class="check-item" type="checkbox"
@@ -222,8 +245,16 @@ $nav_menu_item_option = array_key_exists($default_role, $nav_menu_item_option) ?
 
                                                                             <label for="check-item-<?php echo (int) $sn; ?>">
                                                                             <span class="menu-item-link<?php echo (in_array($sub_menu_value, $nav_menu_item_option)) ? ' restricted' : ''; ?>">
-                                                                            <strong><?php echo esc_html($depth_space); ?>
+                                                                            <strong>
+                                                                                <?php if ($fse_theme && isset($menu_item->is_parent_page) && $menu_item->is_parent_page === 1) {
+                                                                                    $depth_space .= '<span class="ppc-nav-menu-expand"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M10.8622 8.04053L14.2805 12.0286L10.8622 16.0167L9.72327 15.0405L12.3049 12.0286L9.72327 9.01672L10.8622 8.04053Z"></path></svg></span>';
+                                                                                } ?>
+                                                                                <?php echo $depth_space; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+                                                                                <?php if ($fse_theme) : ?>
+                                                                                    <?php echo $menu_item->title; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+                                                                                <?php else : ?>
                                                                                 <?php echo esc_html(wp_strip_all_tags($menu_item->title)); ?>
+                                                                                <?php endif; ?>
                                                                             </strong></span>
                                                                             </label>
 
@@ -359,6 +390,35 @@ $nav_menu_item_option = array_key_exists($default_role, $nav_menu_item_option) ?
                     //go to url
                     window.location = '<?php echo esc_url_raw(admin_url('admin.php?page=pp-capabilities-nav-menus&role=')); ?>' + $(this).val() + '';
 
+                });
+
+                // -------------------------------------------------------------
+                //   Fse menu section click
+                // -------------------------------------------------------------
+                $(document).on('click', '.pp-capability-menus-wrapper .fse-nav-menu .ppc-menu-row.section-menu label', function () {
+                    let clicked_menu = $(this);
+                    let menu_tr      = clicked_menu.closest('tr');
+                    let menu_id      = menu_tr.attr('data-menu-id');
+                    $('tr[data-section-menu-id="' + menu_id + '"]').toggleClass('section-closed');
+                    menu_tr.toggleClass('opened');
+                });
+
+                // -------------------------------------------------------------
+                //   Fse menu perent menu click
+                // -------------------------------------------------------------
+                $(document).on('click', '.pp-capability-menus-wrapper .fse-nav-menu .ppc-menu-row.subsection-menu label', function (event) {
+                    event.preventDefault();
+                    event.stopPropagation();
+
+                    let clicked_menu = $(this);
+                    let menu_tr      = clicked_menu.closest('tr');
+                    let menu_id      = menu_tr.attr('data-menu-id');
+                    if (menu_tr.hasClass('opened')) {
+                        $('tr[data-parent-menu-id="' + menu_id + '"], tr.ancestor-' + menu_id.replace('+', '') + '').addClass('menu-closed');
+                    } else {
+                        $('tr[data-parent-menu-id="' + menu_id + '"], tr.ancestor-' + menu_id.replace('+', '') + '').removeClass('menu-closed');
+                    }
+                    menu_tr.toggleClass('opened');
                 });
 
             });
