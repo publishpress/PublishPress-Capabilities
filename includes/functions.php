@@ -555,7 +555,7 @@ function pp_capabilities_parse_nav_block($parsed_block, $menu_items, $parent = 0
         $ancestor_class .= ' ancestor-' . str_replace('+', '', $parent);
     }
 
-    if (isset($block_attrs['kind']) && $block_attrs['kind'] === 'post-type' && wp_get_post_parent_id($block_attrs['id']) > 0) {
+    if (isset($block_attrs['kind']) && $block_attrs['kind'] === 'post-type' && wp_get_post_parent_id($block_id) > 0) {
         $parent = wp_get_post_parent_id($block_attrs['id']);
         $post_ancestors = get_post_ancestors($block_attrs['id']);
         $depth  = count($post_ancestors);
@@ -569,7 +569,7 @@ function pp_capabilities_parse_nav_block($parsed_block, $menu_items, $parent = 0
     //we don't want current block id in ancestor class
     $ancestor_class = str_replace('ancestor-' . $block_id . '', '', $ancestor_class);
 
-    if (!empty($block_attrs) && isset($block_attrs['kind'])) {
+    if (!empty($block_attrs) && isset($block_attrs['kind']) && isset($block_attrs['label']) && isset($block_attrs['id'])) {
         //This block has attributes
         $menu_items[] = (object) [
             'ID'                => $block_id,
@@ -704,7 +704,9 @@ function ppc_block_menu_icon($block_name) {
  */
 if (!is_admin()) {
 
-    /**
+    /** 
+     * Classic menu
+     * 
      * Checks the menu items for their visibility options and
      * removes menu items that are not visible.
      *
@@ -792,6 +794,205 @@ if (!is_admin()) {
     }
     add_filter('wp_get_nav_menu_items', 'pp_capabilities_nav_menu_permission', 99, 3);
 
+    /** 
+     * FSE theme menu
+     * 
+     * Checks the menu items for their visibility options and
+     * removes menu items that are not visible.
+     *
+     * @return array
+     */
+    function pp_capabilities_fse_nav_menu_permission($inner_blocks) {
+        global $ppc_disabled_nav_menu_data;
+
+        //return if it's admin page
+        if (is_admin()) {
+            return $inner_blocks;
+        }
+
+        if (!is_array($ppc_disabled_nav_menu_data)) {
+            //we want to make sure we're not running disabled data check multiple times for each filter
+            $ppc_disabled_nav_menu_data = [];
+        }
+
+        if (isset($ppc_disabled_nav_menu_data['nav_menu_item_option'])) {
+            $nav_menu_item_option = $ppc_disabled_nav_menu_data['nav_menu_item_option'];
+        } else {
+            $nav_menu_item_option = !empty(get_option('capsman_nav_item_menus')) ? (array)get_option('capsman_nav_item_menus') : [];
+            $ppc_disabled_nav_menu_data['nav_menu_item_option'] = $nav_menu_item_option;
+        }
+
+        if (!$nav_menu_item_option || !function_exists('wp_get_current_user')) {
+            return $inner_blocks;
+        }
+
+        if (isset($ppc_disabled_nav_menu_data['disabled_nav_menu'])) {
+            $disabled_nav_menu = $ppc_disabled_nav_menu_data['disabled_nav_menu'];
+        } else {
+            $user_roles = (array)wp_get_current_user()->roles;
+            //add loggedin and guest option to role
+            $user_roles[] = (is_user_logged_in()) ? 'ppc_users' : 'ppc_guest';
+            // Support plugin integrations by allowing additional role-based limitations to be applied to user based on external criteria
+            $user_roles = apply_filters('pp_capabilities_nav_menu_access_role_restrictions', $user_roles);
+            $disabled_nav_menu = '';
+            //extract disabled menu for roles user belong
+            foreach ($user_roles as $role) {
+                if (array_key_exists($role, $nav_menu_item_option)) {
+                    $disabled_nav_menu .= implode(", ", (array)$nav_menu_item_option[$role]) . ', ';
+                }
+            }
+            $ppc_disabled_nav_menu_data['disabled_nav_menu'] = $disabled_nav_menu;
+        }
+
+        if ($disabled_nav_menu) {
+            if (isset($ppc_disabled_nav_menu_data['fse_theme'])) {
+                $fse_theme               = $ppc_disabled_nav_menu_data['fse_theme'];
+                $disabled_object         = $ppc_disabled_nav_menu_data['disabled_object'];
+                $fse_blocked_nav_links   = $ppc_disabled_nav_menu_data['fse_blocked_nav_links'];
+                $disabled_nav_menu_array = $ppc_disabled_nav_menu_data['disabled_nav_menu_array'];
+            } else {
+                $fse_theme = pp_capabilities_is_block_theme();
+                //we only need object id and object name e.g, 1_category
+                if ($fse_theme) {
+                    $disabled_object = preg_replace("/(\|)(.*?)(\|)/", '_', $disabled_nav_menu);
+                    //get all urls for css, js and direct block implementation
+                    preg_match_all("/\|\s*(.*?)\s*\|/", $disabled_nav_menu, $matches);
+                    $fse_blocked_nav_links = array_filter($matches[1]);
+                } else {
+                    //native nav uses _ separator
+                    $disabled_object = preg_replace('!(0|[1-9][0-9]*)_([a-zA-Z0-9_.-]*),!s', '$2,', $disabled_nav_menu);
+                    $fse_blocked_nav_links        = [];
+                }
+                $disabled_nav_menu_array = array_filter(explode(", ", $disabled_object));
+
+                $ppc_disabled_nav_menu_data['fse_theme'] = $fse_theme;
+                $ppc_disabled_nav_menu_data['disabled_object'] = $disabled_object;
+                $ppc_disabled_nav_menu_data['fse_blocked_nav_links'] = $fse_blocked_nav_links;
+                $ppc_disabled_nav_menu_data['disabled_nav_menu_array'] = $disabled_nav_menu_array;
+            }
+
+            //we're having issues removing item due to key change. So, we should do this in array
+            $removeable_keys    = [];
+            $new_page_list_items = [];
+            foreach ($inner_blocks as $key_offset => $inner_block) {
+                if (isset($inner_block->parsed_block) && is_array($inner_block->parsed_block) && !empty($inner_block->parsed_block)) {
+                    $block_details = $inner_block->parsed_block;
+                    $block_name    = isset($block_details['blockName']) ? $block_details['blockName'] : false;
+                    $block_attrs   = isset($block_details['attrs']) ? (array)$block_details['attrs'] : false;
+                    if (in_array($block_name, ['core/site-logo', 'core/site-title', 'core/social-links', 'core/search', 'core/home-link']) && in_array($block_name, $fse_blocked_nav_links)) {
+                        //unset core nav block
+                        $removeable_keys[] = $key_offset;
+                    } elseif (is_array($block_attrs) && isset($block_attrs['url']) && in_array($block_attrs['url'], $fse_blocked_nav_links)) {
+                        //unset custom links
+                        $removeable_keys[] = $key_offset;
+                    } elseif (in_array($block_name, ['core/page-list'])) {
+                        //unset page list nav block
+                        $removeable_keys[] = $key_offset;
+
+                        //we need to list all non-editable pagelist pages and add them as block to enable removal
+                        $parent_page_id = isset($block_attrs['parentPageID']) ? (int) $block_attrs['parentPageID'] : 0;
+                        $all_pages = get_pages(
+                            [
+                                'sort_column' => 'menu_order,post_title',
+                                'order'       => 'asc',
+                            ]
+                        );
+                        
+                        if (!empty($all_pages)) {
+                            $top_level_pages     = [];
+                            $pages_with_children = [];
+                            foreach ((array) $all_pages as $page) {
+                                $page_link = get_permalink($page->ID);
+                                //only add pages not blocked as navigation link
+                                if (!in_array($page_link, $fse_blocked_nav_links)) {
+                                    if ($page->post_parent) {
+                                        $pages_with_children[ $page->post_parent ][ $page->ID ] = [
+                                            'blockName' => 'core/navigation-link',
+                                            'attrs'     => [
+                                                'label' => $page->post_title,
+                                                'type'  => 'page',
+                                                'kind'  => 'post-type',
+                                                'id'    => $page->ID,
+                                                'url'   => $page_link,
+                                            ],
+                                            'innerBlocks'  => [],
+                                            'innerHTML'    => '',
+                                            'innerContent' => [],
+                                        ];
+                                    } else {
+                                        $top_level_pages[ $page->ID ] = [
+                                            'blockName' => 'core/navigation-link',
+                                            'attrs'     => [
+                                                'label' => $page->post_title,
+                                                'type'  => 'page',
+                                                'kind'  => 'post-type',
+                                                'id'    => $page->ID,
+                                                'url'   => $page_link,
+                                                'isTopLevelLink' => 1
+                                            ],
+                                            'innerBlocks'  => [],
+                                            'innerHTML'    => '',
+                                            'innerContent' => [],
+                                        ];
+                                    }
+                                }
+                            }
+
+                            $new_page_list_items = ppc_block_core_page_list_nest_pages( $top_level_pages, $pages_with_children );
+                            if ( 0 !== $parent_page_id ) {
+                                if (array_key_exists($parent_page_id, $pages_with_children)) {
+                                    $new_page_list_items = ppc_block_core_page_list_nest_pages(
+                                        $pages_with_children[$parent_page_id],
+                                        $pages_with_children
+                                    );
+                                } else {
+                                    // If the parent page has no child pages, there is nothing to show.
+                                    $new_page_list_items = [];
+                                }
+                            }
+                        }
+                    } else {
+                        //this is probably a block we currently not supporting
+                    }
+                }
+            }
+            
+            //unset using block function
+            foreach (array_values($removeable_keys) as $removeable_keys) {
+                $inner_blocks->offsetUnset($removeable_keys);
+            }
+            //add new navigation links that wasn't removed from page list to block
+            if (!empty($new_page_list_items)) {
+                foreach ($new_page_list_items as $new_page_list_item) {
+                    $inner_blocks->offsetSet(null, $new_page_list_item);
+                }
+            }
+        }
+
+        return $inner_blocks;
+    }
+    add_filter('block_core_navigation_render_inner_blocks', 'pp_capabilities_fse_nav_menu_permission', 999);
+
+    /**
+     * Outputs nested array of pages  inner blocks
+     *
+     * @param array $current_level The level being iterated through.
+     * @param array $children The children grouped by parent post ID.
+     *
+     * @return array The nested array of pages.
+     */
+    function ppc_block_core_page_list_nest_pages( $current_level, $children ) {
+        if ( empty( $current_level ) ) {
+            return;
+        }
+        foreach ( (array) $current_level as $key => $current ) {
+            if ( isset( $children[ $key ] ) ) {
+                $current_level[ $key ]['innerBlocks'] = ppc_block_core_page_list_nest_pages($children[ $key ], $children);
+            }
+        }
+        return $current_level;
+    }
+
     /**
      * Checks the menu items for their privacy and remove
      * if user do not have permission to item
@@ -799,7 +1000,7 @@ if (!is_admin()) {
      */
     function pp_capabilities_nav_menu_access($query)
     {
-        global $ppc_nav_menu_restricted;
+        global $ppc_nav_menu_restricted, $ppc_disabled_nav_menu_data;
 
         //this function is getting called many times. So, it's needed
         if ($ppc_nav_menu_restricted) {
@@ -810,47 +1011,66 @@ if (!is_admin()) {
             return;
         }
 
-        $nav_menu_item_option = !empty(get_option('capsman_nav_item_menus')) ? (array)get_option('capsman_nav_item_menus') : [];
+        if (!is_array($ppc_disabled_nav_menu_data)) {
+            //we want to make sure we're not running disabled data check multiple times for each filter
+            $ppc_disabled_nav_menu_data = [];
+        }
+
+        if (isset($ppc_disabled_nav_menu_data['nav_menu_item_option'])) {
+            $nav_menu_item_option = $ppc_disabled_nav_menu_data['nav_menu_item_option'];
+        } else {
+            $nav_menu_item_option = !empty(get_option('capsman_nav_item_menus')) ? (array)get_option('capsman_nav_item_menus') : [];
+            $ppc_disabled_nav_menu_data['nav_menu_item_option'] = $nav_menu_item_option;
+        }
 
         if (!$nav_menu_item_option || !function_exists('wp_get_current_user')) {
             return;
         }
 
-        $user_roles = (array)wp_get_current_user()->roles;
-
-        //add loggedin and guest option to role
-        $user_roles[] = (is_user_logged_in()) ? 'ppc_users' : 'ppc_guest';
-
-        // Support plugin integrations by allowing additional role-based limitations to be applied to user based on external criteria
-        $user_roles = apply_filters('pp_capabilities_nav_menu_access_role_restrictions', $user_roles);
-
-        $disabled_nav_menu = '';
-
-        //extract disabled menu for roles user belong
-        foreach ($user_roles as $role) {
-            if (array_key_exists($role, $nav_menu_item_option)) {
-                $disabled_nav_menu .= implode(", ", (array)$nav_menu_item_option[$role]) . ', ';
+        if (isset($ppc_disabled_nav_menu_data['disabled_nav_menu'])) {
+            $disabled_nav_menu = $ppc_disabled_nav_menu_data['disabled_nav_menu'];
+        } else {
+            $user_roles = (array)wp_get_current_user()->roles;
+            //add loggedin and guest option to role
+            $user_roles[] = (is_user_logged_in()) ? 'ppc_users' : 'ppc_guest';
+            // Support plugin integrations by allowing additional role-based limitations to be applied to user based on external criteria
+            $user_roles = apply_filters('pp_capabilities_nav_menu_access_role_restrictions', $user_roles);
+            $disabled_nav_menu = '';
+            //extract disabled menu for roles user belong
+            foreach ($user_roles as $role) {
+                if (array_key_exists($role, $nav_menu_item_option)) {
+                    $disabled_nav_menu .= implode(", ", (array)$nav_menu_item_option[$role]) . ', ';
+                }
             }
+            $ppc_disabled_nav_menu_data['disabled_nav_menu'] = $disabled_nav_menu;
         }
 
         if ($disabled_nav_menu) {
-            $fse_theme = pp_capabilities_is_block_theme();
-
-            //we only need object id and object name e.g, 1_category
-            if ($fse_theme) {
-                $disabled_object = preg_replace("/(\|)(.*?)(\|)/", '_', $disabled_nav_menu);
-                
-                //get all urls for css, js and direct block implementation
-                preg_match_all("/\|\s*(.*?)\s*\|/", $disabled_nav_menu, $matches);
-                $fse_blocked_nav_links = array_filter($matches[1]);
+            if (isset($ppc_disabled_nav_menu_data['fse_theme'])) {
+                $fse_theme               = $ppc_disabled_nav_menu_data['fse_theme'];
+                $disabled_object         = $ppc_disabled_nav_menu_data['disabled_object'];
+                $fse_blocked_nav_links   = $ppc_disabled_nav_menu_data['fse_blocked_nav_links'];
+                $disabled_nav_menu_array = $ppc_disabled_nav_menu_data['disabled_nav_menu_array'];
             } else {
-                //native nav uses _ separator
-                $disabled_object = preg_replace('!(0|[1-9][0-9]*)_([a-zA-Z0-9_.-]*),!s', '$2,', $disabled_nav_menu);
+                $fse_theme = pp_capabilities_is_block_theme();
+                //we only need object id and object name e.g, 1_category
+                if ($fse_theme) {
+                    $disabled_object = preg_replace("/(\|)(.*?)(\|)/", '_', $disabled_nav_menu);
+                    //get all urls for css, js and direct block implementation
+                    preg_match_all("/\|\s*(.*?)\s*\|/", $disabled_nav_menu, $matches);
+                    $fse_blocked_nav_links = array_filter($matches[1]);
+                } else {
+                    //native nav uses _ separator
+                    $disabled_object = preg_replace('!(0|[1-9][0-9]*)_([a-zA-Z0-9_.-]*),!s', '$2,', $disabled_nav_menu);
+                    $fse_blocked_nav_links        = [];
+                }
+                $disabled_nav_menu_array = array_filter(explode(", ", $disabled_object));
 
-                $fse_blocked_nav_links        = [];
+                $ppc_disabled_nav_menu_data['fse_theme'] = $fse_theme;
+                $ppc_disabled_nav_menu_data['disabled_object'] = $disabled_object;
+                $ppc_disabled_nav_menu_data['fse_blocked_nav_links'] = $fse_blocked_nav_links;
+                $ppc_disabled_nav_menu_data['disabled_nav_menu_array'] = $disabled_nav_menu_array;
             }
-            
-            $disabled_nav_menu_array = array_filter(explode(", ", $disabled_object));
 
             //category tags and taxonomy page check
             if (is_category() || is_tag() || is_tax()) {
@@ -883,7 +1103,7 @@ if (!is_admin()) {
                     pp_capabilities_nav_menu_access_denied();
                 }
                 //hide menu item immediately, remove menu item from li after page load
-                add_action('wp_head', function() use ($fse_blocked_nav_links) { 
+                add_action('wp_head', function() use ($fse_blocked_nav_links) {
                     $menu_item_selectors = array_map('pp_capabilities_nav_link_selector', $fse_blocked_nav_links);
                     ?>
                     <style>

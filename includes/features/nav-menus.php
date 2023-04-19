@@ -239,6 +239,7 @@ $nav_menu_item_option = array_key_exists($default_role, $nav_menu_item_option) ?
                                                                                 class="check-item" type="checkbox"
                                                                                 name="pp_cababilities_restricted_items[]"
                                                                                 value="<?php echo esc_attr($sub_menu_value); ?>"
+                                                                                style="<?php echo (substr($menu_item->ID, 0, 1) === '+') ? 'display: none;' : ''; ?>"
                                                                                 <?php echo (in_array($sub_menu_value, $nav_menu_item_option)) ? 'checked' : ''; ?> />
                                                                         </td>
                                                                         <td class="menu-column ppc-menu-item">
