@@ -20,7 +20,7 @@
 
 require_once(dirname(CME_FILE) . '/includes/features/restrict-profile-features.php');
 
-global $capsman;
+global $capsman, $role_has_user;
 
 $roles             = $capsman->roles;
 $default_role      = $capsman->get_last_role();
@@ -133,7 +133,11 @@ if (get_option('cme_profile_features_auto_redirect')) {
                                                             <tr class="ppc-menu-row parent-menu empty-features-element">
                                                                 <td colspan="2">
                                                                     <?php
-                                                                    esc_html_e('There are no users in this role. Please select a role that has users and is able to access the "Profile" screen.', 'capsman-enhanced');
+                                                                    if ($role_has_user) {
+                                                                        printf(esc_html__('Click %1$s Refresh profile items %2$s to manage elements for this role.', 'capsman-enhanced'), '<a href="'. $refresh_url .'">', '</a>');
+                                                                    } else {
+                                                                        esc_html_e('There are no users in this role. Please select a role that has users and is able to access the "Profile" screen.', 'capsman-enhanced');
+                                                                    }
                                                                     ?>
                                                                 </td>
                                                             </tr>

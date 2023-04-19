@@ -1142,7 +1142,7 @@ class CapabilityManager
 		}
 
         if (is_admin() && !empty($_REQUEST['page']) && 'pp-capabilities-profile-features' === $_REQUEST['page']) {
-            global $capsman;
+            global $capsman, $role_has_user;
             $default_role = $capsman->get_last_role();
 
             if (!empty($_REQUEST['role'])) {
@@ -1153,6 +1153,21 @@ class CapabilityManager
             $profile_element_updated = (array) get_option("capsman_profile_features_updated", []);
             $refresh_element = isset($_REQUEST['refresh_element']) ? (int) $_REQUEST['refresh_element'] : 0;
             $role_refresh    = isset($_REQUEST['role_refresh']) ? (int) $_REQUEST['role_refresh'] : 0;
+            
+            //get user in current role
+            $role_user = get_users(
+                [
+                    'role'    => $default_role,
+                    'exclude' => [get_current_user_id()],
+                    'number'  => 1,
+                ]
+            );
+
+            $role_has_user = true;
+            if (empty($role_user) && $default_role !== 'administrator') {
+                $role_has_user = false;
+            }
+            
             if (
                 is_array($profile_element_updated) 
                 && isset($profile_element_updated[$default_role]) 
@@ -1166,15 +1181,6 @@ class CapabilityManager
             if (!get_option('cme_profile_features_auto_redirect') && !$role_refresh) {
                 return;
             }
-            
-            //get user in current role
-            $role_user = get_users(
-                [
-                    'role'    => $default_role,
-                    'exclude' => [get_current_user_id()],
-                    'number'  => 1,
-                ]
-            );
 
             if (empty($role_user) && $default_role !== 'administrator') {
                 return;
