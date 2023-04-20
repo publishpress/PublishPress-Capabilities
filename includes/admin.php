@@ -907,7 +907,7 @@ if (defined('PUBLISHPRESS_REVISIONS_VERSION') && function_exists('rvy_get_option
 												$td_classes []= "cap-neg";
 											}
 										} else {
-                                            $tool_tip  =__( 'Post type registration does not define this capability distinctly.', 'capsman-enhanced');
+                                            $tool_tip  =__( 'This capability is not available for this post type.', 'capsman-enhanced');
 
                                             $checkbox = '<div class="ppc-tool-tip disabled">&nbsp; &nbsp; &nbsp; &nbsp;
                                                 <div class="tool-tip-text">
