@@ -985,6 +985,14 @@ user-select: none;
     max-width: 100%;
 }
 
+.ppc-sidebar-panel {
+    padding: 0;
+    border: 1px solid #655897;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+    background: #fff;
+    font-size: initial;
+}
+
 .ppc-sidebar-panel .postbox-header .hndle {
     cursor: move;
     webkit-user-select: none;
@@ -1010,6 +1018,9 @@ user-select: none;
     box-shadow: none !important;
     cursor: pointer;
 }
+.ppc-sidebar-panel .postbox-header .handle-actions .handlediv .toggle-indicator::before  {
+    color: #ffffff;
+}
 
 .ppc-sidebar-panel .postbox-header .handle-actions .handlediv:focus,
 .ppc-sidebar-panel .postbox-header .handle-actions .handlediv:active,
@@ -1025,6 +1036,21 @@ user-select: none;
     box-shadow: none;
 }
 
+.ppc-sidebar-panel .postbox-header {
+    background: #655897;
+    color: #ffffff;
+}
+
+.ppc-sidebar-panel .postbox-header {
+    background: #655897;
+    color: #ffffff;
+}
+
+.ppc-sidebar-panel .postbox-header .hndle {
+    background: #655897;
+    color: #ffffff;
+}
+
 .publishpress-caps-manage .pp-columns-wrapper.pp-enable-sidebar .pp-column-left {
     width: 72%;
 }
@@ -1035,9 +1061,6 @@ user-select: none;
 
 .pp-sidebar-box.advertisement-box-content {
     padding: 0;
-    border: 1px solid #c3c4c7;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
-    background: #fff;
     font-size: initial;
 }
 
