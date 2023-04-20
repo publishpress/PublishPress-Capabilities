@@ -939,6 +939,12 @@ class CapabilityManager
 			$capsman_modify = new CapsmanHandler( $this );
 			$capsman_modify->processAdminGeneral();
 		}
+
+        //save user sidebar panel state
+        if (!empty($_POST['ppc_metabox_state'])) {
+            $metabox_state = map_deep($_POST['ppc_metabox_state'], 'sanitize_text_field');
+            update_user_meta(get_current_user_id(), 'ppc_sidebar_metabox_state', $metabox_state);
+        }
 	}
 
 	/**
@@ -1136,7 +1142,7 @@ class CapabilityManager
 		}
 
         if (is_admin() && !empty($_REQUEST['page']) && 'pp-capabilities-profile-features' === $_REQUEST['page']) {
-            global $capsman;
+            global $capsman, $role_has_user;
             $default_role = $capsman->get_last_role();
 
             if (!empty($_REQUEST['role'])) {
@@ -1146,11 +1152,8 @@ class CapabilityManager
 
             $profile_element_updated = (array) get_option("capsman_profile_features_updated", []);
             $refresh_element = isset($_REQUEST['refresh_element']) ? (int) $_REQUEST['refresh_element'] : 0;
-            if (is_array($profile_element_updated) && isset($profile_element_updated[$default_role]) && (int)$profile_element_updated[$default_role] > 0) {
-                if ($refresh_element === 0) {
-                    return;
-                }
-            }
+            $role_refresh    = isset($_REQUEST['role_refresh']) ? (int) $_REQUEST['role_refresh'] : 0;
+            
             //get user in current role
             $role_user = get_users(
                 [
@@ -1160,29 +1163,61 @@ class CapabilityManager
                 ]
             );
 
+            $role_has_user = true;
+            if (empty($role_user) && $default_role !== 'administrator') {
+                $role_has_user = false;
+            }
+            
+            if (
+                is_array($profile_element_updated) 
+                && isset($profile_element_updated[$default_role]) 
+                && (int)$profile_element_updated[$default_role] > 0
+            ) {
+                if ($refresh_element === 0 && $role_refresh === 0) {
+                    return;
+                }
+            }
+
+            if (!get_option('cme_profile_features_auto_redirect') && !$role_refresh) {
+                return;
+            }
+
             if (empty($role_user) && $default_role !== 'administrator') {
                 return;
             }
-            //redirect user to test link for validation and redirection
-            if (empty($role_user)) {
-                $test_link = admin_url('profile.php?ppc_profile_element=1');
-            } else {
-                $test_as_user = $role_user[0];
-                $test_link = add_query_arg(
-                    [
+
+            $can_redirect = true;
+
+            if (!empty($role_user)) {
+                $testing_user = $role_user[0];
+                if (!user_can($testing_user->ID, 'read')) {
+                    $can_redirect = false;
+                }
+
+            }
+            
+            if ($can_redirect) {
+                //redirect user to test link for validation and redirection
+                if (empty($role_user)) {
+                    $test_link = admin_url('profile.php?ppc_profile_element=1');
+                } else {
+                    $test_as_user = $role_user[0];
+                    $test_link = add_query_arg(
+                        [
                         'ppc_test_user'         => base64_encode($test_as_user->ID),
                         'profile_feature_action' => 1,
                         '_wpnonce'              => wp_create_nonce('ppc-test-user')
                     ],
-                    admin_url('users.php')
-                );
+                        admin_url('users.php')
+                    );
+                }
+                if ($refresh_element > 0) {
+                    delete_option('capsman_profile_features_updated');
+                }
+                update_option('capsman_profile_features_elements_testing_role', $default_role, false);
+                wp_safe_redirect($test_link);
+                exit();
             }
-            if ($refresh_element > 0) {
-                delete_option('capsman_profile_features_updated');
-            }
-            update_option('capsman_profile_features_elements_testing_role', $default_role, false);
-            wp_safe_redirect($test_link);
-            exit();
 		}
     }
 }

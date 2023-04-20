@@ -20,7 +20,7 @@
 
 require_once(dirname(CME_FILE) . '/includes/features/restrict-profile-features.php');
 
-global $capsman;
+global $capsman, $role_has_user;
 
 $roles             = $capsman->roles;
 $default_role      = $capsman->get_last_role();
@@ -31,7 +31,11 @@ $disabled_profile_items = array_key_exists($default_role, $disabled_profile_item
 $profile_features_elements = \PublishPress\Capabilities\PP_Capabilities_Profile_Features::elementsLayout();
 $profile_features_elements = isset($profile_features_elements[$default_role]) ? $profile_features_elements[$default_role] : [];
 
-$refresh_url = admin_url('admin.php?page=pp-capabilities-profile-features&refresh_element=1');
+if (get_option('cme_profile_features_auto_redirect')) {
+    $refresh_url = admin_url('admin.php?page=pp-capabilities-profile-features&refresh_element=1');
+} else {
+    $refresh_url = admin_url('admin.php?page=pp-capabilities-profile-features&role_refresh=1');
+}
 ?>
 
     <div class="wrap publishpress-caps-manage pressshack-admin-wrapper pp-capability-menus-wrapper profile-features <?php echo (empty($profile_features_elements) ? 'empty-elements' : ''); ?>">
@@ -129,7 +133,11 @@ $refresh_url = admin_url('admin.php?page=pp-capabilities-profile-features&refres
                                                             <tr class="ppc-menu-row parent-menu empty-features-element">
                                                                 <td colspan="2">
                                                                     <?php
-                                                                    esc_html_e('There are no users in this role. To modify features on the "Profile" screen, please select a role with users.', 'capsman-enhanced');
+                                                                    if ($role_has_user) {
+                                                                        printf(esc_html__('Click %1$s Refresh profile items %2$s to manage elements for this role.', 'capsman-enhanced'), '<a href="'. $refresh_url .'">', '</a>');
+                                                                    } else {
+                                                                        esc_html_e('There are no users in this role. Please select a role that has users and is able to access the "Profile" screen.', 'capsman-enhanced');
+                                                                    }
                                                                     ?>
                                                                 </td>
                                                             </tr>
@@ -211,55 +219,25 @@ $refresh_url = admin_url('admin.php?page=pp-capabilities-profile-features&refres
 
                     </fieldset>
                 </div><!-- .pp-column-left -->
-                <div class="pp-column-right">
-                <?php 
-                $banners = new PublishPress\WordPressBanners\BannersMain; 
-                ?>
+                <div class="pp-column-right pp-capabilities-sidebar">
                 <?php 
                 $banner_messages = ['<p>'];
                 $banner_messages[] = '<i class="dashicons dashicons-arrow-right"></i> <a href="'. $refresh_url .'">' . esc_html__('Refresh profile items.', 'capsman-enhanced') .'</a>';
                 $banner_messages[] = '</p>';
-                $banners->pp_display_banner(
-                    '',
-                    __('Update Profile Features', 'capsman-enhanced'),
-                    $banner_messages,
-                    '',
-                    '',
-                    '',
-                    ''
-                );
+                $banner_title  = __('Update Profile Features', 'capsman-enhanced');
+                pp_capabilities_sidebox_banner($banner_title, $banner_messages);
                 ?>
                 <?php 
                 $banner_messages = ['<p>'];
-                $banner_messages[] = sprintf(esc_html__('%1$s = No change', 'capsman-enhanced'), '<input type="checkbox" title="'. esc_attr__('usage key', 'capsman-enhanced') .'" disabled>');
-                $banner_messages[] = sprintf(esc_html__('%1$s = This feature is denied', 'capsman-enhanced'), '<input type="checkbox" title="'. esc_attr__('usage key', 'capsman-enhanced') .'" checked disabled>');
+                $banner_messages[] = esc_html__('Profile Features allows you to remove elements from the Profile screen.', 'capsman-enhanced');
+                $banner_messages[] = '</p><p>';
+                $banner_messages[] = sprintf(esc_html__('%1$s = No change', 'capsman-enhanced'), '<input type="checkbox" title="'. esc_attr__('usage key', 'capsman-enhanced') .'" disabled>') . ' <br />';
+                $banner_messages[] = sprintf(esc_html__('%1$s = This feature is denied', 'capsman-enhanced'), '<input type="checkbox" title="'. esc_attr__('usage key', 'capsman-enhanced') .'" checked disabled>') . ' <br />';
                 $banner_messages[] = '</p>';
-                $banners->pp_display_banner(
-                    '',
-                    __('How to use Profile Features', 'capsman-enhanced'),
-                    $banner_messages,
-                    'https://publishpress.com/knowledge-base/checkboxes/',
-                    __('View Documentation', 'capsman-enhanced'),
-                    '',
-                    'button ppc-checkboxes-documentation-link'
-                );
+                $banner_messages[] = '<p><a class="button ppc-checkboxes-documentation-link" href="https://publishpress.com/knowledge-base/profile-features-screen/"target="blank">' . esc_html__('View Documentation', 'capsman-enhanced') . '</a></p>';
+                $banner_title  = __('How to use Profile Features', 'capsman-enhanced');
+                pp_capabilities_sidebox_banner($banner_title, $banner_messages);
                 ?>
-                    <?php if (defined('CAPSMAN_PERMISSIONS_INSTALLED') && !CAPSMAN_PERMISSIONS_INSTALLED) { ?>
-                            <?php
-                            $banners->pp_display_banner(
-                                esc_html__( 'Recommendations for you', 'capsman-enhanced' ),
-                                esc_html__( 'Control permissions for individual posts and pages', 'capsman-enhanced' ),
-                                array(
-                                    esc_html__( 'Choose who can read and edit each post.', 'capsman-enhanced' ),
-                                    esc_html__( 'Allow specific user roles or users to manage each post.', 'capsman-enhanced' ),
-                                    esc_html__( 'PublishPress Permissions is 100% free to install.', 'capsman-enhanced' )
-                                ),
-                                admin_url( 'plugin-install.php?s=publishpress-ppcore-install&tab=search&type=term' ),
-                                esc_html__( 'Click here to install PublishPress Permissions', 'capsman-enhanced' ),
-                                'install-permissions.jpg'
-                            );
-                            ?>
-                    <?php } ?>
                 </div><!-- .pp-column-right -->
             </div><!-- .pp-columns-wrapper -->
         </form>

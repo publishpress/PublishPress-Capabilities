@@ -125,7 +125,7 @@ class PP_Capabilities_Test_User_UI extends PP_Capabilities_Test_User
 
                 var sel = $('#wp-admin-bar-my-account a.ab-item:visible:has(span.display-name)');
 
-                $(sel).html(switchBackDiv + $(sel).find('span.display-name').prop('outerHTML') + $(sel).find('img.avatar').prop('outerHTML'));
+                $(sel).html(switchBackDiv + $(sel).find('span.display-name').prop('outerHTML'));
 
                 <?php
                 $message = sprintf(

@@ -229,40 +229,18 @@ $active_tab_text = is_object($active_tab_type_obj)
                     </tr>
                 </table>
             </div><!-- .pp-column-left -->
-            <div class="pp-column-right">
+            <div class="pp-column-right pp-capabilities-sidebar">
                 <?php 
-                $banners = new PublishPress\WordPressBanners\BannersMain;
                 $banner_messages = ['<p>'];
-                $banner_messages[] = sprintf(esc_html__('%1$s = No change', 'capsman-enhanced'), '<input type="checkbox" title="'. esc_attr__('usage key', 'capsman-enhanced') .'" disabled>');
-                $banner_messages[] = sprintf(esc_html__('%1$s = This feature is denied', 'capsman-enhanced'), '<input type="checkbox" title="'. esc_attr__('usage key', 'capsman-enhanced') .'" checked disabled>');
+                $banner_messages[] = esc_html__('Editor Features allows you to remove elements from the post editing screen.', 'capsman-enhanced');
+                $banner_messages[] = '</p><p>';
+                $banner_messages[] = sprintf(esc_html__('%1$s = No change', 'capsman-enhanced'), '<input type="checkbox" title="'. esc_attr__('usage key', 'capsman-enhanced') .'" disabled>') . ' <br />';
+                $banner_messages[] = sprintf(esc_html__('%1$s = This feature is denied', 'capsman-enhanced'), '<input type="checkbox" title="'. esc_attr__('usage key', 'capsman-enhanced') .'" checked disabled>'). ' <br />';
                 $banner_messages[] = '<p>';
-                $banners->pp_display_banner(
-                    '',
-                    __('How to use Editor Features', 'capsman-enhanced'),
-                    $banner_messages,
-                    'https://publishpress.com/knowledge-base/checkboxes/',
-                    __('View Documentation', 'capsman-enhanced'),
-                    '',
-                    'button ppc-checkboxes-documentation-link'
-                );
+                $banner_messages[] = '<p><a class="button ppc-checkboxes-documentation-link" href="https://publishpress.com/knowledge-base/editor-features/"target="blank">' . esc_html__('View Documentation', 'capsman-enhanced') . '</a></p>';
+                $banner_title  = __('How to use Editor Features', 'capsman-enhanced');
+                pp_capabilities_sidebox_banner($banner_title, $banner_messages);
                 ?>
-                <?php if (defined('CAPSMAN_PERMISSIONS_INSTALLED') && !CAPSMAN_PERMISSIONS_INSTALLED) { ?>
-                    <?php
-                    $banners = new PublishPress\WordPressBanners\BannersMain;
-                    $banners->pp_display_banner(
-                        esc_html__( 'Recommendations for you', 'capsman-enhanced' ),
-                        esc_html__( 'Control permissions for individual posts and pages', 'capsman-enhanced' ),
-                        array(
-                            esc_html__( 'Choose who can read and edit each post.', 'capsman-enhanced' ),
-                            esc_html__( 'Allow specific user roles or users to manage each post.', 'capsman-enhanced' ),
-                            esc_html__( 'PublishPress Permissions is 100% free to install.', 'capsman-enhanced' )
-                        ),
-                        admin_url( 'plugin-install.php?s=publishpress-ppcore-install&tab=search&type=term' ),
-                        esc_html__( 'Click here to install PublishPress Permissions', 'capsman-enhanced' ),
-                        'install-permissions.jpg'
-                    );
-                    ?>
-                <?php } ?>
             </div><!-- .pp-column-right -->
         </div><!-- .pp-columns-wrapper -->
     </form>

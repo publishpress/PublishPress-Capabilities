@@ -81,18 +81,44 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
 	
 		                                            <table
 		                                                class="wp-list-table widefat striped pp-capability-menus-select">
-	
+                                                        <thead>
+                                                            <tr class="ppc-menu-row parent-menu">
+
+                                                                <td class="restrict-column ppc-menu-checkbox">
+                                                                    <input id="check-all-item"
+                                                                        class="check-item check-all-menu-item"
+                                                                        type="checkbox"/>
+                                                                </td>
+                                                                <td class="menu-column ppc-menu-item">
+                                                                    <label for="check-all-item">
+                                                                <span class="menu-item-link check-all-menu-link">
+                                                                    <strong>
+                                                                    <?php esc_html_e('Toggle all', 'capsman-enhanced'); ?>
+                                                                    </strong>
+                                                                </span></label>
+                                                                </td>
+
+                                                            </tr>
+                                                        </thead>
                                                         <tfoot>
-                                                        <tr class="ppc-menu-row parent-menu">
+                                                            <tr class="ppc-menu-row parent-menu">
 
-                                                            <td class="restrict-column ppc-menu-checkbox">
-                                                                <input id="check-all-item-2"
-                                                                       class="check-item check-all-menu-item" type="checkbox"/>
-                                                            </td>
-                                                            <td class="menu-column ppc-menu-item">
-                                                            </td>
+                                                                <td class="restrict-column ppc-menu-checkbox">
+                                                                    <input id="check-all-item-2"
+                                                                        class="check-item check-all-menu-item"
+                                                                        type="checkbox"/>
+                                                                </td>
+                                                                <td class="menu-column ppc-menu-item">
+                                                                    <label for="check-all-item-2">
+                                                                    <span class="menu-item-link check-all-menu-link">
+                                                                    <strong>
+                                                                        <?php esc_html_e('Toggle all', 'capsman-enhanced'); ?>
+                                                                    </strong>
+                                                                    </span>
+                                                                    </label>
+                                                                </td>
 
-                                                        </tr>
+                                                            </tr>
                                                         </tfoot>
 
                                                         <tbody>
@@ -215,39 +241,18 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
 
                     </fieldset>
                 </div><!-- .pp-column-left -->
-                <div class="pp-column-right">
+                <div class="pp-column-right pp-capabilities-sidebar">
                 <?php 
-                $banners = new PublishPress\WordPressBanners\BannersMain;
                 $banner_messages = ['<p>'];
-                $banner_messages[] = sprintf(esc_html__('%1$s = No change', 'capsman-enhanced'), '<input type="checkbox" title="'. esc_attr__('usage key', 'capsman-enhanced') .'" disabled>');
-                $banner_messages[] = sprintf(esc_html__('%1$s = This feature is denied', 'capsman-enhanced'), '<input type="checkbox" title="'. esc_attr__('usage key', 'capsman-enhanced') .'" checked disabled>');
+                $banner_messages[] = esc_html__('Admin Features allows you to remove elements from the admin area and toolbar.', 'capsman-enhanced');
+                $banner_messages[] = '</p><p>';
+                $banner_messages[] = sprintf(esc_html__('%1$s = No change', 'capsman-enhanced'), '<input type="checkbox" title="'. esc_attr__('usage key', 'capsman-enhanced') .'" disabled>') . ' <br />';
+                $banner_messages[] = sprintf(esc_html__('%1$s = This feature is denied', 'capsman-enhanced'), '<input type="checkbox" title="'. esc_attr__('usage key', 'capsman-enhanced') .'" checked disabled>') . ' <br />';
                 $banner_messages[] = '</p>';
-                $banners->pp_display_banner(
-                    '',
-                    __('How to use Admin Features', 'capsman-enhanced'),
-                    $banner_messages,
-                    'https://publishpress.com/knowledge-base/checkboxes/',
-                    __('View Documentation', 'capsman-enhanced'),
-                    '',
-                    'button ppc-checkboxes-documentation-link'
-                );
+                $banner_messages[] = '<p><a class="button ppc-checkboxes-documentation-link" href="https://publishpress.com/knowledge-base/admin-features-screen/"target="blank">' . esc_html__('View Documentation', 'capsman-enhanced') . '</a></p>';
+                $banner_title  = __('How to use Admin Features', 'capsman-enhanced');
+                pp_capabilities_sidebox_banner($banner_title, $banner_messages);
                 ?>
-                    <?php if (defined('CAPSMAN_PERMISSIONS_INSTALLED') && !CAPSMAN_PERMISSIONS_INSTALLED) { ?>
-                            <?php
-                            $banners->pp_display_banner(
-                                esc_html__( 'Recommendations for you', 'capsman-enhanced' ),
-                                esc_html__( 'Control permissions for individual posts and pages', 'capsman-enhanced' ),
-                                array(
-                                    esc_html__( 'Choose who can read and edit each post.', 'capsman-enhanced' ),
-                                    esc_html__( 'Allow specific user roles or users to manage each post.', 'capsman-enhanced' ),
-                                    esc_html__( 'PublishPress Permissions is 100% free to install.', 'capsman-enhanced' )
-                                ),
-                                admin_url( 'plugin-install.php?s=publishpress-ppcore-install&tab=search&type=term' ),
-                                esc_html__( 'Install PublishPress Permissions', 'capsman-enhanced' ),
-                                'install-permissions.jpg'
-                            );
-                            ?>
-                    <?php } ?>
                 </div><!-- .pp-column-right -->
             </div><!-- .pp-columns-wrapper -->
         </form>

@@ -172,6 +172,7 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
             'capabilities'    => esc_html__('Capabilities', 'capsman-enhanced'),
             'editor_features' => esc_html__('Editor Features', 'capsman-enhanced'),
             'admin_features'  => esc_html__('Admin Features', 'capsman-enhanced'),
+            'profile_features'  => esc_html__('Profile Features', 'capsman-enhanced'),
             'admin_menus'     => esc_html__('Admin Menus', 'capsman-enhanced'),
             'nav_menus'       => esc_html__('Nav Menus', 'capsman-enhanced'),
         ];
@@ -193,6 +194,7 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
             'capabilities'  => ['capabilities', true],
             'editor_features' => ['editor_features', true],
             'admin_features'  => ['admin_features', true],
+            'profile_features'  => ['profile_features', true],
             'admin_menus'   => ['admin_menus', true],
             'nav_menus'     => ['nav_menus', true],
         ];
@@ -465,6 +467,30 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
                 )
             ),
             number_format_i18n($item['admin_features'])
+        );
+    }
+
+    /**
+     * The action column
+     *
+     * @param $item
+     *
+     * @return string
+     */
+    protected function column_profile_features($item)
+    {
+        return sprintf(
+            '<a href="%s">%s</a>',
+            esc_url(
+                add_query_arg(
+                    [
+                        'page' => 'pp-capabilities-profile-features', 
+                        'role' => esc_attr($item['role'])
+                    ], 
+                    admin_url('admin.php')
+                )
+            ),
+            number_format_i18n($item['profile_features'])
         );
     }
 
