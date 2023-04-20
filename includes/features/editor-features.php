@@ -237,7 +237,7 @@ $active_tab_text = is_object($active_tab_type_obj)
                 $banner_messages[] = sprintf(esc_html__('%1$s = No change', 'capsman-enhanced'), '<input type="checkbox" title="'. esc_attr__('usage key', 'capsman-enhanced') .'" disabled>') . ' <br />';
                 $banner_messages[] = sprintf(esc_html__('%1$s = This feature is denied', 'capsman-enhanced'), '<input type="checkbox" title="'. esc_attr__('usage key', 'capsman-enhanced') .'" checked disabled>'). ' <br />';
                 $banner_messages[] = '<p>';
-                $banner_messages[] = '<p><a class="button ppc-checkboxes-documentation-link" href="https://publishpress.com/knowledge-base/checkboxes/"target="blank">' . esc_html__('View Documentation', 'capsman-enhanced') . '</a></p>';
+                $banner_messages[] = '<p><a class="button ppc-checkboxes-documentation-link" href="https://publishpress.com/knowledge-base/editor-features/"target="blank">' . esc_html__('View Documentation', 'capsman-enhanced') . '</a></p>';
                 $banner_title  = __('How to use Editor Features', 'capsman-enhanced');
                 pp_capabilities_sidebox_banner($banner_title, $banner_messages);
                 ?>
