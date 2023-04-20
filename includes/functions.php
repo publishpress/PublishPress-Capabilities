@@ -456,7 +456,9 @@ function pp_capabilities_sidebox_banner($banner_title, $banner_messages)
             <div class="inside">
             <ul>
                 <?php foreach ($banner_messages as $banner_message) : ?>
-                    <li><?php echo $banner_message; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped?></li>
+                    <?php if (!empty($banner_message)) : ?>
+                        <li><?php echo $banner_message; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped?></li>
+                    <?php endif; ?>
                 <?php endforeach ?>
             </ul>
             </div>
