@@ -170,9 +170,10 @@ class Capsman_PP_UI {
 				
 				$define_create_posts_cap = get_option("{$pp_prefix}_define_create_posts_cap");?>
 				
-					<div style="margin-top:10px;margin-bottom:10px">
+					<div style="margin-top:20px;margin-bottom:10px" class="ppc-tool-tip">
 					<label for="pp_define_create_posts_cap">
-					<input name="pp_define_create_posts_cap" type="checkbox" id="pp_define_create_posts_cap" autocomplete="off" value="1" <?php checked('1', $define_create_posts_cap );?> title="<?php esc_attr_e( 'Make selected post types require a different capability to add new posts.', 'capsman-enhanced');?>" /> <?php esc_html_e('Use create_posts capability');?>
+					<input name="pp_define_create_posts_cap" type="checkbox" id="pp_define_create_posts_cap" autocomplete="off" value="1" <?php checked('1', $define_create_posts_cap );?> /> <?php esc_html_e('Enable the "Create" column for selected post types');?>
+                    <div class="tool-tip-text"><p><?php esc_attr_e('This will add a new capability for creating new posts. Normally, this is controlled by the "Edit" capability.', 'capsman-enhanced');?></p><i></i></div>
 					</label>
 					</div>
 				
