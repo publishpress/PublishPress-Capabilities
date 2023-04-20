@@ -250,7 +250,7 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                 $banner_messages[] = sprintf(esc_html__('%1$s = This feature is denied', 'capsman-enhanced'), '<input type="checkbox" title="'. esc_attr__('usage key', 'capsman-enhanced') .'" checked disabled>') . ' <br />';
                 $banner_messages[] = '</p>';
                 $banner_messages[] = '<p><a class="button ppc-checkboxes-documentation-link" href="https://publishpress.com/knowledge-base/admin-features-screen/"target="blank">' . esc_html__('View Documentation', 'capsman-enhanced') . '</a></p>';
-                $banner_title  = __('How to use Admin Feature', 'capsman-enhanced');
+                $banner_title  = __('How to use Admin Features', 'capsman-enhanced');
                 pp_capabilities_sidebox_banner($banner_title, $banner_messages);
                 ?>
                 </div><!-- .pp-column-right -->
