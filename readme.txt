@@ -416,7 +416,21 @@ Fixed : Security issue. Please update.
 
 == Changelog ==
 
-= 2.7.0 - 27 Feb 2022 =
+= 2.7.1 - 20 Apr 2023 =
+  * Feature : Nav Menus Block Navigation/FSE theme support, #710
+  * Update : Capability Sidebar Update #719
+  * Feature : Add multisite capabilities tab, #737
+  * Feature : Add tooltips to explain capabilities, #734
+  * Feature : Single checkbox to block Dashboard access, #693
+  * Update : Add "Toggle All" option in Admin Features, #694
+  * Update : Add "Profile Features" column to "Roles", #740
+  * Update : Update documentation links, #776
+  * Update : Profile Features text update, #773
+  * Update : Add an explanation of each screen, #691
+  * Fixed : It's not possible to hide "sticky option" using Editor Feature, #724
+  * Fixed : Taxonomies Delete title missing for disabled checkbox, #726
+
+= 2.7.0 - 27 Feb 2023 =
   * Feature : Allow admins to customize the "Profile" screen for users (Profile Features), #271
   * Update : Make "Nav Menus" available in Free version, #606
   * Update : Add copy & revise capabilities when Revisions activated, #596
