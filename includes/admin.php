@@ -1725,7 +1725,7 @@ if (defined('PUBLISHPRESS_REVISIONS_VERSION') && function_exists('rvy_get_option
                         value="<?php echo esc_attr($meta_box_state); ?>"
                     />
                     <div class="postbox-header">
-                        <h2 class="hndle ui-sortable-handle"><?php esc_html_e( 'Capabilities is safe to use', 'capsman-enhanced' ); ?></h2>
+                        <h2 class="hndle ui-sortable-handle"><?php esc_html_e( 'Capabilities is Safe to Use', 'capsman-enhanced' ); ?></h2>
                         <div class="handle-actions">
                             <button type="button" class="handlediv">
                                 <span class="toggle-indicator"></span>
@@ -1761,7 +1761,7 @@ if (defined('PUBLISHPRESS_REVISIONS_VERSION') && function_exists('rvy_get_option
                         value="<?php echo esc_attr($meta_box_state); ?>"
                     />
                     <div class="postbox-header">
-                        <h2 class="hndle ui-sortable-handle"><?php esc_html_e('Add Capability', 'capsman-enhanced'); ?></h2>
+                        <h2 class="hndle ui-sortable-handle"><?php esc_html_e('Add a New Capability', 'capsman-enhanced'); ?></h2>
                         <div class="handle-actions">
                             <button type="button" class="handlediv">
                                 <span class="toggle-indicator"></span>
