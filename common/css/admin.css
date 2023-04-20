@@ -766,10 +766,14 @@ div.ppc-editor-features-classic-toggle {
 .pp-column-right.capabilities-sidebar .pp-sidebar-box ul,
 .pp-capability-menus-wrapper.editor-features .pp-column-right .pp-sidebar-box:first-of-type ul,
 .pp-capability-menus-wrapper.admin-features .pp-column-right .pp-sidebar-box:first-of-type ul,
-.pp-capability-menus-wrapper.profile-features .pp-column-right .pp-sidebar-box:first-of-type ul,
+.pp-capability-menus-wrapper.profile-features .pp-column-right .pp-sidebar-box ul,
 .pp-capability-menus-wrapper.nav-menus .pp-column-right .pp-sidebar-box:first-of-type ul {
     padding: 0 !important;
     margin: 0 !important;
+}
+
+.pp-capability-menus-wrapper.profile-features .pp-column-right .pp-sidebar-box ul li i {
+    margin-left: -5px;
 }
 
 .pp-column-right.capabilities-sidebar .pp-sidebar-box:first-of-type ul input:disabled,
@@ -943,7 +947,6 @@ user-select: none;
 
 .pp-capabilities-sidebar .advertisement-box-content .inside ul li {
     position: relative;
-    padding-left: 22px;
     font-weight: 600;
     font-size: .9em;
 }
