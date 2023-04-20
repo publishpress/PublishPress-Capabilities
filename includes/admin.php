@@ -1705,7 +1705,7 @@ if (defined('PUBLISHPRESS_REVISIONS_VERSION') && function_exists('rvy_get_option
                             '',
                             '',
                             $banner_messages,
-                            'https://publishpress.com/knowledge-base/checkboxes/',
+                            'https://publishpress.com/knowledge-base/capabilities-screen/',
                             __('View Documentation', 'capsman-enhanced'),
                             '',
                             'button ppc-checkboxes-documentation-link'

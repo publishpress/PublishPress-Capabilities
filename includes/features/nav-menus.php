@@ -167,14 +167,12 @@ $nav_menu_item_option = array_key_exists($default_role, $nav_menu_item_option) ?
                                                                     data-menu-id="<?php echo esc_attr($menu_id); ?>"
                                                                     >
 
-                                                                    <td class="restrict-column ppc-menu-checkbox">
-
-                                                                    </td>
-                                                                    <td class="menu-column ppc-menu-item parent">
+                                                                    <td class="menu-column ppc-menu-item parent features-section-header restrict-column ppc-menu-checkbox" style="text-align: left;" colspan="2">
 
                                                                         <label for="check-item-<?php echo (int) $sn; ?>">
                                                                         <span class="menu-item-link">
                                                                         <strong>
+                                                                        <i class="dashicons dashicons-welcome-widgets-menus"></i> 
                                                                             <?php if ($fse_theme) : ?>
                                                                                 <span class="ppc-nav-menu-expand"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M10.8622 8.04053L14.2805 12.0286L10.8622 16.0167L9.72327 15.0405L12.3049 12.0286L9.72327 9.01672L10.8622 8.04053Z"></path></svg></span>
                                                                             <?php else : ?>
@@ -303,7 +301,7 @@ $nav_menu_item_option = array_key_exists($default_role, $nav_menu_item_option) ?
                 $banner_messages[] = sprintf(esc_html__('%1$s = No change', 'capsman-enhanced'), '<input type="checkbox" title="'. esc_attr__('usage key', 'capsman-enhanced') .'" disabled>') . ' <br />';
                 $banner_messages[] = sprintf(esc_html__('%1$s = This feature is denied', 'capsman-enhanced'), '<input type="checkbox" title="'. esc_attr__('usage key', 'capsman-enhanced') .'" checked disabled>') . ' <br />';
                 $banner_messages[] = '</p>';
-                $banner_messages[] = '<p><a class="button ppc-checkboxes-documentation-link" href="https://publishpress.com/knowledge-base/checkboxes/"target="blank">' . esc_html__('View Documentation', 'capsman-enhanced') . '</a></p>';
+                $banner_messages[] = '<p><a class="button ppc-checkboxes-documentation-link" href="https://publishpress.com/knowledge-base/nav-menus/"target="blank">' . esc_html__('View Documentation', 'capsman-enhanced') . '</a></p>';
                 $banner_title  = __('How to use Nav Menus', 'capsman-enhanced');
                 pp_capabilities_sidebox_banner($banner_title, $banner_messages);
                 ?>

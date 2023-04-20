@@ -524,8 +524,8 @@ table#akmin .pp-capability-menus-select .restrict-column {
   transition: all 0.25s ease-out;
 }
 
-.pp-capability-menus .menu-item-link:hover,
-.pp-capability-menus .menu-item-link:focus {
+.pp-capability-menus-wrapper:not(.nav-menus) .pp-capability-menus .menu-item-link:hover,
+.pp-capability-menus-wrapper:not(.nav-menus) .pp-capability-menus .menu-item-link:focus {
   border-color: #eee;
   background: #fafafa;
   cursor: pointer;
