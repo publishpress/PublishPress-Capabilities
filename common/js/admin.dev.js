@@ -1,7 +1,7 @@
 jQuery(document).ready( function($) {
 	$('a.neg-cap').attr('title',cmeAdmin.negationCaption);
 	$('a.neg-type-caps').attr('title',cmeAdmin.typeCapsNegationCaption);
-	$('td.cap-unreg').attr('title',cmeAdmin.typeCapUnregistered);
+	//$('td.cap-unreg').attr('title',cmeAdmin.typeCapUnregistered);
 	$('a.normal-cap').attr('title',cmeAdmin.switchableCaption);
 	$('span.cap-x:not([class*="pp-cap-key"])').attr('title',cmeAdmin.capNegated);
 	$('table.cme-checklist input[class!="cme-check-all"]').not(':disabled').attr('title',cmeAdmin.chkCaption);
@@ -460,6 +460,20 @@ jQuery(document).ready( function($) {
       }
     });
   }
+
+  /**
+   * Toggle capabilities sidebar panel
+   */
+   $(document).on('click', '.ppc-sidebar-panel .postbox-header', function () {
+     if ($(this).closest('.ppc-sidebar-panel').hasClass('closed')) {
+       $(this).closest('.ppc-sidebar-panel').find('.metabox-state').val('opened');
+       $(this).closest('.ppc-sidebar-panel').toggleClass('closed');
+     } else {
+       $(this).closest('.ppc-sidebar-panel').find('.metabox-state').val('closed');
+       $(this).closest('.ppc-sidebar-panel').toggleClass('closed');
+     }
+   });
+ 
 
     // -------------------------------------------------------------
     //   Frontend elements new entry

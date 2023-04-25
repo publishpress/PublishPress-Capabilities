@@ -204,6 +204,16 @@ class Pp_Roles_Admin
                 'editable'     => true,
                 'required'     => false,
             ];
+            //add block_dashboard_access
+            $fields['block_dashboard_access'] = [
+                'label'        => esc_html__('Block Dashboard Access', 'capsman-enhanced'),
+                'description'  => esc_html__('Block users in this role from accessing admin area.', 'capsman-enhanced'),
+                'type'         => 'checkbox',
+                'value_key'    => 'block_dashboard_access',
+                'tab'          => 'advanced',
+                'editable'     => true,
+                'required'     => false,
+            ];
         }
 
         //add role_level
