@@ -31,7 +31,7 @@ class PP_Capabilities_Profile_Features
         $security       = isset($_POST['security']) ? sanitize_key($_POST['security']) : false;
         $page_elements  = isset($_POST['page_elements']) ? $_POST['page_elements'] : [];// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
         
-        if (!$security || !wp_verify_nonce($security, 'ppc-profile-edit-action')) {
+        if (!$security || !wp_verify_nonce($security, 'ppc-profile-edit-action') || !pp_capabilities_feature_enabled('profile-features')) {
             $response['redirect'] = $redirect_url;
         } else {
             $response['status']  = 'success';
@@ -92,7 +92,7 @@ class PP_Capabilities_Profile_Features
      */
     public static function applyProfileRestriction() {
 
-        if (!function_exists('get_current_screen')) {
+        if (!function_exists('get_current_screen') || !pp_capabilities_feature_enabled('profile-features')) {
             return;
         }
 
