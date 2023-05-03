@@ -22,6 +22,7 @@ class PP_Capabilities_Admin_UI {
 
         if (is_admin()) {
             add_action('admin_init', [$this, 'featureRestrictionsClassic'], PHP_INT_MAX - 1);
+            add_action('wp_ajax_save_dashboard_feature_by_ajax', [$this, 'saveDashboardFeature']);
         }
 
         add_action('admin_enqueue_scripts', [$this, 'adminScripts'], 100);
@@ -339,10 +340,11 @@ class PP_Capabilities_Admin_UI {
     function adminPrintScripts() {
 
 
-        /**
-         * Update capabilities top level slug from roles to capabilities
-         */
-        $menu_inline_script = "
+        if (pp_capabilities_feature_enabled('capabilities')) {
+            /**
+             * Update capabilities top level slug from dashboard to capabilities
+             */
+            $menu_inline_script = "
             jQuery(document).ready( function($) {
                 if (jQuery('li#toplevel_page_pp-capabilities-dashboard a.toplevel_page_pp-capabilities-dashboard').length > 0) {
                     var toplevel_page = jQuery('li#toplevel_page_pp-capabilities-dashboard a.toplevel_page_pp-capabilities-dashboard');
@@ -352,7 +354,8 @@ class PP_Capabilities_Admin_UI {
                     }
                 }
             });";
-        ppc_add_inline_script($menu_inline_script);
+            ppc_add_inline_script($menu_inline_script);
+        }
 
         // Counteract overzealous menu icon styling in PublishPress <= 3.2.0 :)
         if (defined('PUBLISHPRESS_VERSION') && version_compare(constant('PUBLISHPRESS_VERSION'), '3.2.0', '<=') && defined('PP_CAPABILITIES_FIX_ADMIN_ICON')):?>
@@ -508,5 +511,44 @@ class PP_Capabilities_Admin_UI {
                 }
             }
         }
+    }
+
+    /**
+     * Ajax for saving a feature from dashboard page
+     * 
+     * Copied from PublishPress Blocks
+     *
+     * @return boolean,void     Return false if failure, echo json on success
+     */
+    public function saveDashboardFeature()
+    {
+        if ((!is_multisite() || !is_super_admin()) && !current_user_can('administrator') && !current_user_can('manage_capabilities')) {
+            wp_send_json( __('No permission!', 'capsman-enhanced'), 403 );
+            return false;
+        }
+
+        if (
+            ! wp_verify_nonce(
+                sanitize_key( $_POST['nonce'] ),
+                'pp-capabilities-dashboard-nonce'
+            )
+        ) {
+            wp_send_json( __('Invalid nonce token!', 'capsman-enhanced'), 400 );
+        }
+
+        if( empty( $_POST['feature'] ) || ! $_POST['feature'] ) { // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+            wp_send_json( __('Error: wrong data', 'capsman-enhanced'), 400 );
+            return false;
+        }
+
+        $capsman_dashboard_features_status = !empty(get_option('capsman_dashboard_features_status')) ? (array)get_option('capsman_dashboard_features_status') : [];
+    
+
+        $feature = sanitize_text_field( $_POST['feature'] );
+
+        $capsman_dashboard_features_status[$feature]['status'] = (bool) $_POST['new_state'] ? 'on' : 'off';
+        update_option('capsman_dashboard_features_status', $capsman_dashboard_features_status, false);
+
+        wp_send_json( true, 200 );
     }
 }

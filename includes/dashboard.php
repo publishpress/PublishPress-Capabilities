@@ -23,12 +23,7 @@
         <?php esc_html_e('Dashboard', 'capsman-enhanced'); ?>
     </h2>
 
-    <form method="post" id="ppc-capabilities-dashboard-form" action="admin.php?page=pp-capabilities-dashboard">
-        <?php wp_nonce_field('pp-capabilities-dashboard'); ?>
-        <div class="settings-submit">
-            <input type="submit" name="dashboard-settings-submit" value="<?php esc_attr_e('Save Changes', 'capsman-enhanced') ?>" class="button-primary"/>
-        </div>
-        <div class="clear"></div>
+    <form id="ppc-capabilities-dashboard-form">
         <div class="dashboard-settings-boxes">
             <?php foreach (pp_capabilities_dashboard_options() as $feature => $option) : ?>
                 <div class="dashboard-settings-box">
@@ -38,9 +33,9 @@
                         <div class="ppc-switch-button">
                             <label class="switch">
                                 <input 
-                                    type="checkbox" 
-                                    name="capsman_dashboard_features[]" 
-                                    value="<?php echo esc_attr($feature); ?>" 
+                                    type="checkbox"
+                                    value="1" 
+                                    data-feature="<?php echo esc_attr($feature); ?>"
                                     <?php checked(pp_capabilities_feature_enabled($feature), true); ?>
                                 />
                                 <span class="slider"></span>
@@ -50,10 +45,6 @@
                 </div>
             <?php endforeach; ?>
         </div>
-        <div class="settings-submit">
-            <input type="submit" name="dashboard-settings-submit" value="<?php esc_attr_e('Save Changes', 'capsman-enhanced') ?>" class="button-primary"/>
-        </div>
-        <div class="clear"></div>
     </form>
     <?php if (!defined('PUBLISHPRESS_CAPS_PRO_VERSION') || get_option('cme_display_branding')) {
         cme_publishpressFooter();

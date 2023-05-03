@@ -432,7 +432,7 @@ div.publishpress-caps-backup td.cme-backup-info .cme-negate {
   text-decoration: line-through;
 }
 
-.cme-backup-info ul.toplevel_page_pp-capabilities {
+.cme-backup-info ul.toplevel_page_pp-capabilities-dashboard {
   display: inline-block;
   padding-left:30px;
 }
@@ -1108,6 +1108,7 @@ tr.opened .ppc-nav-menu-expand svg {
     display: none !important;
 }
 
+/* Start COPIED FROM PP BLOCKS */
 .pp-capability-menus-wrapper.capabilities-dashboard input {
     float: right;
 }
@@ -1272,6 +1273,37 @@ tr.opened .ppc-nav-menu-expand svg {
 .block-item-readonly .ppc-switch-button .switch {
     opacity: 0.3
 }
+
+
+.ppc-floating-status {
+    position: fixed;
+    bottom: 20px;
+    left: 184px;
+    background: #2c3338;
+    padding: 10px 15px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    transition: all 0.5s ease-out;
+    box-shadow: 0 0 15px #999;
+    z-index: 999;
+}
+@media (max-width: 782px) {
+    .ppc-floating-status {
+        left: 60px;
+    }
+}
+.ppc-floating-status.ppc-floating-status--success {
+    color: #00d084;
+}
+.ppc-floating-status.ppc-floating-status--error {
+    color: #d63638;
+}
+
+.ppc-hide-menu-item {
+    display:none !important
+}
+
+/* end COPIED FROM PP BLOCKS */
 
 @media (min-width: 1200px) {
   .pp-column-right.capabilities-sidebar {

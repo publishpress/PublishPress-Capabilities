@@ -1187,22 +1187,7 @@ function pp_capabilities_feature_enabled($feature) {
 
     //let use global settings incase this request is made more than once in a page load
     if (!is_array($capsman_dashboard_features_status)) {
-        if (isset($_GET['page']) && $_GET['page'] === 'pp-capabilities-dashboard' && isset($_POST['dashboard-settings-submit'])) {
-            //let use global POST for newly saved settings on dashboard page
-                $all_features = array_keys(pp_capabilities_dashboard_options());
-                $capsman_dashboard_features = isset($_POST['capsman_dashboard_features']) ? array_map('sanitize_text_field', $_POST['capsman_dashboard_features']) : [];
-                $capsman_dashboard_features_status = [];
-                foreach ($all_features as $loop_feature) {
-                    $loop_feature = sanitize_key($loop_feature);
-                    if (in_array($loop_feature, $capsman_dashboard_features)) {
-                        $capsman_dashboard_features_status[$loop_feature]['status'] = 'on';
-                    } else {
-                        $capsman_dashboard_features_status[$loop_feature]['status'] = 'off';
-                    }
-                }
-        } else {
-            $capsman_dashboard_features_status = !empty(get_option('capsman_dashboard_features_status')) ? (array)get_option('capsman_dashboard_features_status') : [];
-        }
+        $capsman_dashboard_features_status = !empty(get_option('capsman_dashboard_features_status')) ? (array)get_option('capsman_dashboard_features_status') : [];
     }
 
     //let enable all feature by default

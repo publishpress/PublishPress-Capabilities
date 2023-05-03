@@ -199,8 +199,10 @@ class CapabilityManager
 
 		$suffix = defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ? '.dev' : '';
 		$url = $this->mod_url . "/common/js/admin{$suffix}.js";
-		wp_enqueue_script( 'cme_admin', $url, array('jquery'), PUBLISHPRESS_CAPS_VERSION, true );
+		wp_enqueue_script( 'cme_admin', $url, array('jquery', 'wp-i18n'), PUBLISHPRESS_CAPS_VERSION, true );
 		wp_localize_script( 'cme_admin', 'cmeAdmin', [
+            'ajaxurl' => admin_url('admin-ajax.php'),
+            'nonce' => wp_create_nonce('pp-capabilities-dashboard-nonce'),
 			'negationCaption' => __( 'Explicity negate this capability by storing as disabled', 'capsman-enhanced' ),
 			'typeCapsNegationCaption' => __( 'Explicitly negate these capabilities by storing as disabled', 'capsman-enhanced' ),
 			'typeCapUnregistered' => __( 'Post type registration does not define this capability distinctly', 'capsman-enhanced' ),
@@ -337,6 +339,9 @@ class CapabilityManager
 	}
 
 	public function cme_menu() {
+
+        global $submenu;
+        
 		$cap_name = (is_multisite() && is_super_admin()) ? 'read' : 'manage_capabilities';
 
 		$menu_order = 72;
@@ -358,10 +363,17 @@ class CapabilityManager
 			'dashicons-admin-network',
 			$menu_order
 		);
-        
+        $dashboard_screen = (isset($_GET['page']) && $_GET['page'] === 'pp-capabilities-dashboard') ? true : false;
         $sub_menu_pages = pp_capabilities_sub_menu_lists();
+        $submenu_slugs              = [];
+        $submenu_slugs_conditions   = [];
         foreach ($sub_menu_pages as $feature => $subpage_option) {
-            if ($subpage_option['dashboard_control'] === false || pp_capabilities_feature_enabled($feature)) {
+            if ($subpage_option['dashboard_control'] === false 
+                || pp_capabilities_feature_enabled($feature)
+                //we'll be using css to hide menu on dashboard control screen to enable dynamic menu control
+                || $dashboard_screen
+            ) {
+                //register the menu if enabled
                 $hook = add_submenu_page('pp-capabilities-dashboard', $subpage_option['title'], $subpage_option['title'], $subpage_option['capabilities'], $subpage_option['page'], $subpage_option['callback']);
                 if ($feature === 'roles' && !empty($hook)) {
                     add_action(
@@ -373,7 +385,35 @@ class CapabilityManager
                     );
                 }
             }
+            if ($dashboard_screen) {
+                $submenu_slugs[] = $subpage_option['page'];
+                $submenu_slugs_conditions[] = [ $subpage_option['page'], pp_capabilities_feature_enabled($feature)];
+            }
         }
+
+        if ($dashboard_screen) {
+            /**
+             * Add CSS classes to these submenus to dynamically show/hide them
+             * through dashboard page enable/disable features.
+             * Copied from PublishPress Blocks
+             */
+            foreach ($submenu['pp-capabilities-dashboard'] as $key => $value) {
+                if (in_array($submenu['pp-capabilities-dashboard'][$key][2], $submenu_slugs)) {
+                    $slug_ = $submenu['pp-capabilities-dashboard'][$key][2];
+
+                    // Add a class to hide menu if feature is disabled on Dashboard
+                    foreach ($submenu_slugs_conditions as $item) {
+                        if ($item[0] === $slug_) {
+                            $showHide = $item[1] === false ? ' ppc-hide-menu-item' : '';
+                            break;
+                        }
+                    }
+
+                    $submenu['pp-capabilities-dashboard'][$key][4] = $slug_ . '-menu-item' . $showHide;
+                }
+            }
+        }
+        
 	}
 
     function initRolesAdmin() {
@@ -698,7 +738,7 @@ class CapabilityManager
 
 	
 	/**
-	 * Manages Admin Features
+	 * Manages Dashboard
 	 *
 	 * @return void
 	 */
@@ -706,29 +746,6 @@ class CapabilityManager
 		if ((!is_multisite() || !is_super_admin()) && !current_user_can('administrator') && !current_user_can('manage_capabilities')) {
             // TODO: Implement exceptions.
 		    wp_die('<strong>' . esc_html__('You do not have permission to manage admin features.', 'capsman-enhanced') . '</strong>');
-		}
-
-		if (!empty($_SERVER['REQUEST_METHOD']) && ('POST' == $_SERVER['REQUEST_METHOD']) && isset($_POST['dashboard-settings-submit']) && !empty($_REQUEST['_wpnonce'])) {
-			if (!wp_verify_nonce(sanitize_key($_REQUEST['_wpnonce']), 'pp-capabilities-dashboard')) {
-				wp_die('<strong>' . esc_html__('You do not have permission to manage capabilities dashboard.', 'capsman-enhanced') . '</strong>');
-			} else {
-                $all_features = array_keys(pp_capabilities_dashboard_options());
-                
-                $capsman_dashboard_features = isset($_POST['capsman_dashboard_features']) ? array_map('sanitize_text_field', $_POST['capsman_dashboard_features']) : [];
-
-                $enabled_features = [];
-                foreach ($all_features as $feature) {
-                    $feature = sanitize_key($feature);
-                    if (in_array($feature, $capsman_dashboard_features)) {
-                        $enabled_features[$feature]['status'] = 'on';
-                    } else {
-                        $enabled_features[$feature]['status'] = 'off';
-                    }
-                }
-				update_option('capsman_dashboard_features_status', $enabled_features, false);
-				
-	            ak_admin_notify(__('Settings updated.', 'capsman-enhanced'));
-			}
 		}
 
         include(dirname(CME_FILE) . '/includes/dashboard.php');
