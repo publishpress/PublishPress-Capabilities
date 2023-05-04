@@ -17,7 +17,7 @@ class PP_Capabilities_Frontend_Features_UI
 
     public function __construct()
     {
-        if (is_admin()) {
+        if (is_admin() && pp_capabilities_feature_enabled('frontend-features')) {
             //load settings page scripts
             self::loadFeaturesAdminAssets();
             //add frontend features form

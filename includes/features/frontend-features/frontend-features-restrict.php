@@ -21,7 +21,7 @@ class PP_Capabilities_Frontend_Features_Restrict
 
     public function __construct()
     {
-        if (!is_admin()) {
+        if (!is_admin() && pp_capabilities_feature_enabled('frontend-features')) {
             //set up frontend restriction global data to be used on pages
             add_action('init', [$this, 'setFrontendFeaturesRestrictionGlobal']);
             //add frontend features body class

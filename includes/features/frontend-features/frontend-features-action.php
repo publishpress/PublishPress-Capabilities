@@ -23,7 +23,7 @@ class PP_Capabilities_Frontend_Features_Action
 
     public function __construct()
     {
-        if (is_admin()) {
+        if (is_admin() && pp_capabilities_feature_enabled('frontend-features')) {
             //ajax handler for frontend element new entry submission
             add_action('wp_ajax_ppc_submit_frontend_element_by_ajax', [$this, 'frontendElementNewEntryAjaxHandler']);
             //ajax handler for body class new entry submission
