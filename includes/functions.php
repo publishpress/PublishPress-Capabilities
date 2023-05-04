@@ -251,8 +251,10 @@ add_action('admin_bar_menu', 'ppc_features_get_admin_bar_nodes', 999);
  *
  */
 function ppc_admin_feature_restrictions() {
-    require_once ( PUBLISHPRESS_CAPS_ABSPATH . '/includes/features/restrict-admin-features.php' );    
-    PP_Capabilities_Admin_Features::adminFeaturedRestriction();
+    if (pp_capabilities_feature_enabled('admin-features')) {
+        require_once(PUBLISHPRESS_CAPS_ABSPATH . '/includes/features/restrict-admin-features.php');
+        PP_Capabilities_Admin_Features::adminFeaturedRestriction();
+    }
 }
 add_action('init', 'ppc_admin_feature_restrictions', 999);
 
@@ -263,8 +265,10 @@ add_action('init', 'ppc_admin_feature_restrictions', 999);
  * @return void
  */
 function ppc_test_user_init () {
-    require_once (PUBLISHPRESS_CAPS_ABSPATH . '/includes/test-user.php');
-    PP_Capabilities_Test_User::init();
+    if (pp_capabilities_feature_enabled('user-testing')) {
+        require_once(PUBLISHPRESS_CAPS_ABSPATH . '/includes/test-user.php');
+        PP_Capabilities_Test_User::init();
+    }
 }
 add_action('init', 'ppc_test_user_init');
 
@@ -279,7 +283,7 @@ add_action('init', 'ppc_test_user_init');
  */
 function ppc_roles_login_redirect($redirect_to, $request, $user) {
 
-    if (isset($user->roles) && is_array($user->roles)) {
+    if (pp_capabilities_feature_enabled('roles') && isset($user->roles) && is_array($user->roles)) {
         foreach ($user->roles as $user_role) {
             //get role option
             $role_option = get_option("pp_capabilities_{$user_role}_role_option", []);
@@ -316,7 +320,7 @@ add_filter('login_redirect', 'ppc_roles_login_redirect', 10, 3);
  */
 function ppc_roles_logout_redirect($redirect_to, $request, $user) {
 
-    if (isset($user->roles) && is_array($user->roles)) {
+    if (pp_capabilities_feature_enabled('roles') && isset($user->roles) && is_array($user->roles)) {
         foreach ($user->roles as $user_role) {
             //get role option
             $role_option = get_option("pp_capabilities_{$user_role}_role_option", []);
@@ -344,7 +348,7 @@ function ppc_roles_wp_authenticate_user($user) {
         return $user;
     }
 
-    if (isset($user->roles) && is_array($user->roles)) {
+    if (pp_capabilities_feature_enabled('roles') && isset($user->roles) && is_array($user->roles)) {
         foreach ($user->roles as $user_role) {
             //get role option
             $role_option = get_option("pp_capabilities_{$user_role}_role_option", []);
@@ -366,7 +370,7 @@ add_filter('wp_authenticate_user', 'ppc_roles_wp_authenticate_user', 1);
  */
 function ppc_roles_disable_woocommerce_admin_restrictions($restrict_access) {
 
-    if ($restrict_access && is_user_logged_in()) {
+    if (pp_capabilities_feature_enabled('roles') && $restrict_access && is_user_logged_in()) {
         $user = get_userdata(get_current_user_id());
 
         if (isset($user->roles) && is_array($user->roles)) {
@@ -393,6 +397,7 @@ function pp_capabilities_admin_pages(){
 
     $pp_capabilities_pages = [
         'pp-capabilities', 
+        'pp-capabilities-dashboard', 
         'pp-capabilities-roles', 
         'pp-capabilities-admin-menus', 
         'pp-capabilities-nav-menus', 
@@ -720,7 +725,7 @@ if (!is_admin()) {
     function pp_capabilities_nav_menu_permission($items, $menu, $args)
     {
         //return if it's admin page
-        if (is_admin()) {
+        if (is_admin() || !pp_capabilities_feature_enabled('nav-menus')) {
             return $items;
         }
 
@@ -811,7 +816,7 @@ if (!is_admin()) {
         global $ppc_disabled_nav_menu_data;
 
         //return if it's admin page
-        if (is_admin()) {
+        if (is_admin() || !pp_capabilities_feature_enabled('nav-menus')) {
             return $inner_blocks;
         }
 
@@ -1008,7 +1013,7 @@ if (!is_admin()) {
         global $ppc_nav_menu_restricted, $ppc_disabled_nav_menu_data;
 
         //this function is getting called many times. So, it's needed
-        if ($ppc_nav_menu_restricted) {
+        if ($ppc_nav_menu_restricted || !pp_capabilities_feature_enabled('nav-menus')) {
             return;
         }
 
@@ -1171,4 +1176,31 @@ function pp_capabilities_current_url()
     } else {
         return home_url('');
     }
+}
+
+/**
+ * Check if a feature is enabled
+ *
+ * @param integer $feature
+ * 
+ * @return bool
+ */
+function pp_capabilities_feature_enabled($feature) {
+    global $capsman_dashboard_features_status;
+
+    //let use global settings incase this request is made more than once in a page load
+    if (!is_array($capsman_dashboard_features_status)) {
+        $capsman_dashboard_features_status = !empty(get_option('capsman_dashboard_features_status')) ? (array)get_option('capsman_dashboard_features_status') : [];
+    }
+
+    //let enable all feature by default
+    $feature_enabled = true;
+    if (isset($capsman_dashboard_features_status[$feature])
+        && isset($capsman_dashboard_features_status[$feature]['status'])
+        && $capsman_dashboard_features_status[$feature]['status'] === 'off'
+    ) {
+        $feature_enabled = false;
+    }
+
+    return $feature_enabled;
 }
