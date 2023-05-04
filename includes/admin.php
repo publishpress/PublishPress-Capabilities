@@ -749,8 +749,8 @@ if (defined('PUBLISHPRESS_REVISIONS_VERSION') && function_exists('rvy_get_option
 							}
 
 							echo '</tr></thead>';
-
-							foreach( $defined[$item_type] as $key => $type_obj ) {
+                            $attachement_cap_position = 0;
+                            foreach( $defined[$item_type] as $key => $type_obj ) {
 								if ( in_array( $key, $unfiltered[$item_type] ) )
 									continue;
 
@@ -822,6 +822,9 @@ if (defined('PUBLISHPRESS_REVISIONS_VERSION') && function_exists('rvy_get_option
 										$checkbox = '';
 										$cap_title = '';
 
+                                        if ($type_obj->name === 'attachment') {
+                                            $attachement_cap_position++;
+                                        }
 										if ( ! empty($type_obj->cap->$prop) && ( in_array( $type_obj->name, array( 'post', 'page' ) )
 										|| ! in_array( $type_obj->cap->$prop, $default_caps )
 										|| ( ( 'manage_categories' == $type_obj->cap->$prop ) && ( 'manage_terms' == $prop ) && ( 'category' == $type_obj->name ) ) ) ) {
@@ -907,8 +910,16 @@ if (defined('PUBLISHPRESS_REVISIONS_VERSION') && function_exists('rvy_get_option
 												$td_classes []= "cap-neg";
 											}
 										} else {
-                                            $tool_tip  =__( 'This capability is not available for this post type.', 'capsman-enhanced');
+                                            if ($type_obj->name === 'attachment') {
+                                                if ($attachement_cap_position === 1 || $attachement_cap_position === 3) {
+                                                    $tool_tip  =__('Use the sidebar settings to allow this to be controlled independently.', 'capsman-enhanced');
+                                                } else {
+                                                    $tool_tip  =__('This capability is not available for this post type.', 'capsman-enhanced');
+                                                }
 
+                                            } else {
+                                                $tool_tip  =__('This capability is not available for this post type.', 'capsman-enhanced');
+                                            }
                                             $checkbox = '<div class="ppc-tool-tip disabled">&nbsp; &nbsp; &nbsp; &nbsp;
                                                 <div class="tool-tip-text">
                                                     <p>'. $tool_tip .'</p>
