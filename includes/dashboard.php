@@ -26,23 +26,31 @@
     <form id="ppc-capabilities-dashboard-form">
         <div class="dashboard-settings-boxes">
             <?php foreach (pp_capabilities_dashboard_options() as $feature => $option) : ?>
-                <div class="dashboard-settings-box">
-                    <h3><?php echo esc_html($option['label']); ?></h3>
-                    <div class="dashboard-settings-description"><?php echo esc_html($option['description']); ?></div>
-                    <div class="dashboard-settings-control">
-                        <div class="ppc-switch-button">
-                            <label class="switch">
-                                <input 
-                                    type="checkbox"
-                                    value="1" 
-                                    data-feature="<?php echo esc_attr($feature); ?>"
-                                    <?php checked(pp_capabilities_feature_enabled($feature), true); ?>
-                                />
-                                <span class="slider"></span>
-                            </label>
+                <?php 
+                    $feature_capability = 'manage_capabilities';
+                    if ($feature !== 'capabilities') {
+                        $feature_capability .= '_' . str_replace('-', '_', $feature);
+                    }
+
+                    if (current_user_can($feature_capability)) : ?>
+                    <div class="dashboard-settings-box">
+                        <h3><?php echo esc_html($option['label']); ?></h3>
+                        <div class="dashboard-settings-description"><?php echo esc_html($option['description']); ?></div>
+                        <div class="dashboard-settings-control">
+                            <div class="ppc-switch-button">
+                                <label class="switch">
+                                    <input 
+                                        type="checkbox"
+                                        value="1" 
+                                        data-feature="<?php echo esc_attr($feature); ?>"
+                                        <?php checked(pp_capabilities_feature_enabled($feature), true); ?>
+                                    />
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
                         </div>
                     </div>
-                </div>
+                <?php endif; ?>
             <?php endforeach; ?>
         </div>
     </form>

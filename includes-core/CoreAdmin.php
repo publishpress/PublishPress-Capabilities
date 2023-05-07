@@ -3,7 +3,6 @@ namespace PublishPress\Capabilities;
 
 class CoreAdmin {
     function __construct() {
-        add_action('admin_print_scripts', [$this, 'setUpgradeMenuLink'], 50);
 
         if (is_admin()) {
             $autoloadPath = PUBLISHPRESS_CAPS_ABSPATH . '/vendor/autoload.php';
@@ -32,6 +31,17 @@ class CoreAdmin {
     
                 return $settings;
             });
+            add_filter(
+                \PPVersionNotices\Module\MenuLink\Module::SETTINGS_FILTER,
+                function ($settings) {
+                    $settings['publishpress-capabilities'] = [
+                        'parent' => 'pp-capabilities-dashboard',
+                        'label'  => 'Upgrade to Pro',
+                        'link'   => 'https://publishpress.com/links/capabilities-menu',
+                    ];
+
+                    return $settings;
+            });
         }
 
         add_filter('pp_capabilities_sub_menu_lists', [$this, 'actCapabilitiesSubmenus'], 10, 2);
@@ -44,21 +54,6 @@ class CoreAdmin {
         add_action('pp_capabilities_admin_features_after_table_tr', [$this, 'customItemsPromo']);
     }
 
-    function setUpgradeMenuLink() {
-        $url = 'https://publishpress.com/links/capabilities-menu';
-        ?>
-        <style type="text/css">
-        #toplevel_page_pp-capabilities-dashboard ul li:last-of-type a {font-weight: bold !important; color: #FEB123 !important;}
-        </style>
-
-		<script type="text/javascript">
-            jQuery(document).ready(function($) {
-                $('#toplevel_page_pp-capabilities-dashboard ul li:last a').attr('href', '<?php echo esc_url_raw($url);?>').attr('target', '_blank').css('font-weight', 'bold').css('color', '#FEB123');
-            });
-        </script>
-		<?php
-    }
-
     function actCapabilitiesSubmenus($sub_menu_pages, $cme_fakefunc) {
         if (!$cme_fakefunc) {
             //add admin menu after profile features menu
@@ -66,7 +61,7 @@ class CoreAdmin {
             $profile_features_menu   = [];
             $profile_features_menu['admin-menus'] = [
                 'title'             => __('Admin Menus', 'capsman-enhanced'),
-                'capabilities'      => (is_multisite() && is_super_admin()) ? 'read' : 'manage_capabilities',
+                'capabilities'      => (is_multisite() && is_super_admin()) ? 'read' : 'manage_capabilities_admin_menus',
                 'page'              => 'pp-capabilities-admin-menus',
                 'callback'          => [$this, 'AdminMenusPromo'],
                 'dashboard_control' => true,

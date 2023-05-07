@@ -498,7 +498,6 @@ jQuery(document).ready( function($) {
               success: function () {
                   newState == 1 ? checkbox.prop("checked", true) : checkbox.prop("checked", false);
                   slider.css("opacity", 1);
-                  var pMenu = $("#toplevel_page_pp-capabilities-dashboard");
                   switch (feature) {
                       case "capabilities":
                           ppcDynamicSubmenu("pp-" + feature, newState);

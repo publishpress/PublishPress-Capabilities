@@ -427,11 +427,7 @@ if (defined('PUBLISHPRESS_REVISIONS_VERSION') && function_exists('rvy_get_option
 						$plugin_caps = [];
 
 						//PublishPress Capabilities Capabilities
-						$plugin_caps['PublishPress Capabilities'] = apply_filters('cme_publishpress_capabilities_capabilities',
-							[
-							    'manage_capabilities',
-                            ]
-						);
+						$plugin_caps['PublishPress Capabilities'] = apply_filters('cme_publishpress_capabilities_capabilities', []);
 
 						if (defined('PUBLISHPRESS_VERSION')) {
 							$plugin_caps['PublishPress Planner'] = apply_filters('cme_publishpress_capabilities',

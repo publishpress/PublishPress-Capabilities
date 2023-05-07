@@ -9,7 +9,7 @@ class Pp_Roles_Admin
      * @access   protected
      * @var string
      */
-    protected $capability = 'manage_options';
+    protected $capability = 'manage_capabilities_roles';
 
     /**
      * Roles list table instance

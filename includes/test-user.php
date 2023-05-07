@@ -136,7 +136,7 @@ class PP_Capabilities_Test_User
         $excluded_roles = (array) get_option('cme_test_user_excluded_roles', []);
 
         $can_test_user  = false;
-        if (current_user_can('manage_capabilities') 
+        if (current_user_can('manage_capabilities_user_testing') 
             && current_user_can('edit_user', $user->ID) 
             && $user->ID !== get_current_user_id()
             && !array_intersect($excluded_roles, $user->roles)
