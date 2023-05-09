@@ -17,7 +17,7 @@ class CoreAdmin {
                     'message' => 'You\'re using PublishPress Capabilities Free. The Pro version has more features and support. %sUpgrade to Pro%s',
                     'link'    => 'https://publishpress.com/links/capabilities-banner',
                     'screens' => [
-                        ['base' => 'toplevel_page_pp-capabilities-dashboard'],
+                        ['base' => 'capabilities_page_pp-capabilities-dashboard'],
                         ['base' => 'capabilities_page_pp-capabilities'],
                         ['base' => 'capabilities_page_pp-capabilities-roles'],
                         ['base' => 'capabilities_page_pp-capabilities-editor-features'],
@@ -26,6 +26,16 @@ class CoreAdmin {
                         ['base' => 'capabilities_page_pp-capabilities-nav-menus'],
                         ['base' => 'capabilities_page_pp-capabilities-backup'],
                         ['base' => 'capabilities_page_pp-capabilities-settings'],
+                        //all menu could become a top menu page if main top menu is disabled/they're the only menu
+                        ['base' => 'toplevel_page_pp-capabilities-dashboard'],
+                        ['base' => 'toplevel_page_pp-capabilities'],
+                        ['base' => 'toplevel_page_pp-capabilities-roles'],
+                        ['base' => 'toplevel_page_pp-capabilities-editor-features'],
+                        ['base' => 'toplevel_page_pp-capabilities-admin-features'],
+                        ['base' => 'toplevel_page_pp-capabilities-profile-features'],
+                        ['base' => 'toplevel_page_pp-capabilities-nav-menus'],
+                        ['base' => 'toplevel_page_pp-capabilities-backup'],
+                        ['base' => 'toplevel_page_pp-capabilities-settings'],
                     ]
                 ];
     
