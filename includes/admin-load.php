@@ -460,6 +460,7 @@ class PP_Capabilities_Admin_UI {
         } elseif (count($user_menu_caps) > 0) {
             $cap_name      = $user_menu_caps[0];
             $cap_index     = str_replace(['manage_capabilities_', 'manage_', '_'], ['', '', '-'], $cap_name);
+            $cap_title     .= count($user_menu_caps) === 1 ? ' '. $sub_menu_pages[$cap_index]['title'] : '';
             $cap_page_slug = $sub_menu_pages[$cap_index]['page'];
             $cap_callback  = $sub_menu_pages[$cap_index]['callback'];
         }
