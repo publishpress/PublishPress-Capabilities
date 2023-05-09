@@ -1232,6 +1232,12 @@ if (defined('PUBLISHPRESS_REVISIONS_VERSION') && function_exists('rvy_get_option
 								$title_text = $cap_name;
 							}
 
+                            if ($cap_name === 'manage_capabilities_user_testing') {
+                                $warning_message = '&nbsp; <span class="ppc-tool-tip"><span class="dashicons dashicons-info-outline"><span class="tool-tip-text"><p>'. sprintf(esc_html__('User testing capabilities require additional capabilities like %1$s edit_users %2$s to be able to test user.', 'capsman-enhanced'), '<strong>', '</strong>') .'</p><i></i></span></span></span>';
+                            } else {
+                                $warning_message = '';
+                            }
+
 							$disabled = '';
 							$checked = checked(1, ! empty($rcaps[$cap_name]), false );
 							$cap_title = $title_text;
@@ -1241,7 +1247,7 @@ if (defined('PUBLISHPRESS_REVISIONS_VERSION') && function_exists('rvy_get_option
 							<?php
 							echo esc_html(str_replace( '_', ' ', $cap_name));
 							?>
-							</span></label><a href="#" class="neg-cap" style="visibility: hidden;">&nbsp;x&nbsp;</a>
+							</span></label><?php echo $warning_message; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?><a href="#" class="neg-cap" style="visibility: hidden;">&nbsp;x&nbsp;</a>
 							<?php if ( false !== strpos( $class, 'cap-neg' ) ) :?>
 								<input type="hidden" class="cme-negation-input" name="caps[<?php echo esc_attr($cap_name); ?>]" value="" />
 							<?php endif; ?>

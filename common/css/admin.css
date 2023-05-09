@@ -860,7 +860,7 @@ user-select: none;
 .ppc-tool-tip {
     display: inline-block;
     position: relative;
-    cursor: help;
+    cursor: pointer;
 }
 
 .ppc-tool-tip .tool-tip-text {
