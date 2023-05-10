@@ -538,10 +538,6 @@ class CapabilityManager
 					update_option("capsman_feature_restrict_{$post_type}", $post_features_option, false);
 				}
 
-                if (isset($_POST['editor-features-classic-editor-toggle'])) {
-					update_option("cme_editor_features_classic_editor_tab", 1);
-                }
-
 				ak_admin_notify(__('Settings updated.', 'capsman-enhanced'));
 			}
 		}

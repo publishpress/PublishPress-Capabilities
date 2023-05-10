@@ -129,12 +129,6 @@ $active_tab_text = is_object($active_tab_type_obj)
                                     <li class="editor-features-tab classic-tab nav-tab <?php if (!empty($_REQUEST['ppc-tab']) && ('classic' == $_REQUEST['ppc-tab'])) echo 'nav-tab-active';?>"
                                         data-tab=".editor-features-classic"><a href="#"><?php esc_html_e('Classic', 'capsman-enhanced') ?></a></li>
                                 </ul>
-                            <?php else: ?>
-                                <div class="ppc-editor-features-classic-toggle">
-                                <input type="submit" name="editor-features-classic-editor-toggle"
-                                    value="<?php esc_attr_e('show Classic Editor controls', 'capsman-enhanced') ?>"
-                                    class="button-secondary ppc-editor-classic-toggle-button" />
-                                </div>
                             <?php endif; ?>
 
                             </div>
@@ -240,6 +234,8 @@ $active_tab_text = is_object($active_tab_type_obj)
                 $banner_messages[] = '<p><a class="button ppc-checkboxes-documentation-link" href="https://publishpress.com/knowledge-base/editor-features/"target="blank">' . esc_html__('View Documentation', 'capsman-enhanced') . '</a></p>';
                 $banner_title  = __('How to use Editor Features', 'capsman-enhanced');
                 pp_capabilities_sidebox_banner($banner_title, $banner_messages);
+                // add promo sidebar
+                pp_capabilities_pro_sidebox();
                 ?>
             </div><!-- .pp-column-right -->
         </div><!-- .pp-columns-wrapper -->

@@ -431,7 +431,7 @@ function is_pp_capabilities_admin_page(){
 
 function pp_capabilities_nav_menu_access_denied()
 {
-    $forbidden = esc_attr__('You do not have permission to access this page.', 'capabilities-pro');
+    $forbidden = esc_attr__('You do not have permission to access this page.', 'capsman-enhanced');
     wp_die(esc_html($forbidden));
 }
 
@@ -471,6 +471,84 @@ function pp_capabilities_sidebox_banner($banner_title, $banner_messages)
             </ul>
             </div>
         </div>
+    <?php
+}
+
+/**
+ * Load pro sidebar
+ */
+function pp_capabilities_pro_sidebox()
+{
+    if (defined('PUBLISHPRESS_CAPS_PRO_VERSION')) {
+        return;
+    }
+    
+    //the banner style only got enqueue when banner display
+    //funtion is used which will no longer be true after removing the banner.
+    wp_enqueue_style(
+        'pp-wordpress-banners-style',
+        plugin_dir_url(CME_FILE) . 'vendor/publishpress/wordpress-banners/assets/css/style.css',
+        false,
+        PP_WP_BANNERS_VERSION
+    );
+    ?>
+    <div class="ppc-advertisement-promo">
+        <div class="advertisement-box-content postbox">
+            <div class="postbox-header">
+                <h3 class="advertisement-box-header hndle is-non-sortable">
+                    <span><?php echo esc_html__('Upgrade to Capabilities Pro', 'capsman-enhanced'); ?></span>
+                </h3>
+            </div>
+
+            <div class="inside">
+                <p><?php echo esc_html__('Enhance the power of PublishPress Capabilities with the Pro version:', 'capsman-enhanced'); ?>
+                </p>
+                <ul>
+                    <li><?php echo esc_html__('Admin Menu restrictions', 'capsman-enhanced'); ?></li>
+                    <li><?php echo esc_html__('Remove metaboxes on the editing screen', 'capsman-enhanced'); ?></li>
+                    <li><?php echo esc_html__('Remove anything on the editing screen', 'capsman-enhanced'); ?></li>
+                    <li><?php echo esc_html__('Remove anything in the WordPress admin', 'capsman-enhanced'); ?></li>
+                    <li><?php echo esc_html__('Block admin pages by URL', 'capsman-enhanced'); ?></li>
+                    <li><?php echo esc_html__('Fast, professional support', 'capsman-enhanced'); ?></li>
+                    <li><?php echo esc_html__('No ads inside the plugin', 'capsman-enhanced'); ?></li>
+                </ul>
+                <div class="upgrade-btn">
+                    <a href="https://publishpress.com/links/capabilities-menu" target="__blank"><?php echo esc_html__('Upgrade to Pro', 'capsman-enhanced'); ?></a>
+                </div>
+            </div>
+        </div>
+        <div class="advertisement-box-content postbox">
+            <div class="postbox-header">
+                <h3 class="advertisement-box-header hndle is-non-sortable">
+                    <span><?php echo esc_html__('Need PublishPress Capabilities Support?', 'capsman-enhanced'); ?></span>
+                </h3>
+            </div>
+
+            <div class="inside">
+                <p><?php echo esc_html__('If you need help or have a new feature request, let us know.', 'capsman-enhanced'); ?>
+                    <a class="advert-link" href="https://wordpress.org/plugins/capability-manager-enhanced/" target="_blank">
+                    <?php echo esc_html__('Request Support', 'capsman-enhanced'); ?> 
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="linkIcon">
+                            <path
+                                d="M18.2 17c0 .7-.6 1.2-1.2 1.2H7c-.7 0-1.2-.6-1.2-1.2V7c0-.7.6-1.2 1.2-1.2h3.2V4.2H7C5.5 4.2 4.2 5.5 4.2 7v10c0 1.5 1.2 2.8 2.8 2.8h10c1.5 0 2.8-1.2 2.8-2.8v-3.6h-1.5V17zM14.9 3v1.5h3.7l-6.4 6.4 1.1 1.1 6.4-6.4v3.7h1.5V3h-6.3z"
+                            ></path>
+                        </svg>
+                    </a>
+                </p>
+                <p>
+                <?php echo esc_html__('Detailed documentation is also available on the plugin website.', 'capsman-enhanced'); ?> 
+                    <a class="advert-link" href="https://publishpress.com/docs-category/cme/" target="_blank">
+                    <?php echo esc_html__('View Knowledge Base', 'capsman-enhanced'); ?> 
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="linkIcon">
+                            <path
+                                d="M18.2 17c0 .7-.6 1.2-1.2 1.2H7c-.7 0-1.2-.6-1.2-1.2V7c0-.7.6-1.2 1.2-1.2h3.2V4.2H7C5.5 4.2 4.2 5.5 4.2 7v10c0 1.5 1.2 2.8 2.8 2.8h10c1.5 0 2.8-1.2 2.8-2.8v-3.6h-1.5V17zM14.9 3v1.5h3.7l-6.4 6.4 1.1 1.1 6.4-6.4v3.7h1.5V3h-6.3z"
+                            ></path>
+                        </svg>
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
     <?php
 }
 
