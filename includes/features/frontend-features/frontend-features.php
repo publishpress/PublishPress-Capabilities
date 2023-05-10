@@ -272,6 +272,8 @@ $active_tab_slug    = (!empty($_REQUEST['pp_caps_tab'])) ? sanitize_key($_REQUES
                 $banner_messages[] = '<p><a class="button ppc-checkboxes-documentation-link" href="https://publishpress.com/knowledge-base/frontend-features/"target="blank">' . esc_html__('View Documentation', 'capsman-enhanced') . '</a></p>';
                 $banner_title  = __('How to use Frontend Features', 'capsman-enhanced');
                 pp_capabilities_sidebox_banner($banner_title, $banner_messages);
+                // add promo sidebar
+                pp_capabilities_pro_sidebox();
                 ?>
             </div><!-- .pp-column-right -->
         </div><!-- .pp-columns-wrapper -->
