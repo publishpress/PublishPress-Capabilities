@@ -1233,7 +1233,7 @@ if (defined('PUBLISHPRESS_REVISIONS_VERSION') && function_exists('rvy_get_option
 							}
 
                             if ($cap_name === 'manage_capabilities_user_testing') {
-                                $warning_message = '&nbsp; <span class="ppc-tool-tip"><span class="dashicons dashicons-info-outline"></span><span class="tool-tip-text"><p>'. sprintf(esc_html__('User testing capabilities require additional capabilities like %1$s edit_users %2$s to be able to test user.', 'capsman-enhanced'), '<strong>', '</strong>') .'</p><i></i></span></span>';
+                                $warning_message = '&nbsp; <span class="ppc-tool-tip"><span class="dashicons dashicons-info-outline"></span><span class="tool-tip-text"><p>'. sprintf(esc_html__('The User Testing feature also requires the %1$s edit_users %2$s capability.', 'capsman-enhanced'), '<strong>', '</strong>') .'</p><i></i></span></span>';
                             } else {
                                 $warning_message = '';
                             }
