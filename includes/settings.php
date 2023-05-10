@@ -47,8 +47,6 @@ global $wpdb;
             <li class="publishpress-contact"><a href="https://publishpress.com/contact" target="_blank"><?php esc_html_e('Help / Contact Form', 'capsman-enhanced');?></a></li>
         </ul>
         <?php */ endif;?>
-
-        <input type="submit" name="submit" id="submit" class="button button-primary" value="<?php esc_attr_e('Save Changes', 'capsman-enhanced');?>">
     </form>
 
 	<?php if (!defined('PUBLISHPRESS_CAPS_PRO_VERSION') || get_option('cme_display_branding')) {

@@ -304,6 +304,8 @@ $nav_menu_item_option = array_key_exists($default_role, $nav_menu_item_option) ?
                 $banner_messages[] = '<p><a class="button ppc-checkboxes-documentation-link" href="https://publishpress.com/knowledge-base/nav-menus/"target="blank">' . esc_html__('View Documentation', 'capsman-enhanced') . '</a></p>';
                 $banner_title  = __('How to use Nav Menus', 'capsman-enhanced');
                 pp_capabilities_sidebox_banner($banner_title, $banner_messages);
+                // add promo sidebar
+                pp_capabilities_pro_sidebox();
                 ?>
                 </div><!-- .pp-column-right -->
             </div><!-- .pp-columns-wrapper -->

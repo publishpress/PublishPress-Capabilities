@@ -237,6 +237,8 @@ if (get_option('cme_profile_features_auto_redirect')) {
                 $banner_messages[] = '<p><a class="button ppc-checkboxes-documentation-link" href="https://publishpress.com/knowledge-base/profile-features-screen/"target="blank">' . esc_html__('View Documentation', 'capsman-enhanced') . '</a></p>';
                 $banner_title  = __('How to use Profile Features', 'capsman-enhanced');
                 pp_capabilities_sidebox_banner($banner_title, $banner_messages);
+                // add promo sidebar
+                pp_capabilities_pro_sidebox();
                 ?>
                 </div><!-- .pp-column-right -->
             </div><!-- .pp-columns-wrapper -->
