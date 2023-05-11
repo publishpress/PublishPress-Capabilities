@@ -410,7 +410,7 @@ Fixed : Security issue. Please update.
 
 == Changelog ==
 
-= 2.8.0 - 1 May 2023 =
+= 2.8.0 - 11 May 2023 =
   * Feature : Custom capabilities for each feature/menu, #727
   * Feature : Allow users to disable some features [Dashboard Menu], #491
   * Update : Remove "Show Classic Editor Controls" on Editor Features screen, #797
