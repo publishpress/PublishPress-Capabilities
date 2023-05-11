@@ -7,7 +7,7 @@ Tags: capabilities, permissions, admin menus, user roles, user role editor, acce
 Requires at least: 4.9.7
 Tested up to: 6.2
 Requires PHP: 5.6.20
-Stable tag: 2.7.1
+Stable tag: 2.8.0
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -409,6 +409,13 @@ Fixed : Non-administrators with user editing capabilities could add new Administ
 Fixed : Security issue. Please update.
 
 == Changelog ==
+
+= 2.8.0 - 1 May 2023 =
+  * Feature : Custom capabilities for each feature/menu, #727
+  * Feature : Allow users to disable some features [Dashboard Menu], #491
+  * Update : Remove "Show Classic Editor Controls" on Editor Features screen, #797
+  * Update : Update Tooltip message for media capabilities, #796
+  * Update : Add a Promo sidebar, #768
 
 = 2.7.1 - 20 Apr 2023 =
   * Feature : Nav Menus Block Navigation/FSE theme support, #710
