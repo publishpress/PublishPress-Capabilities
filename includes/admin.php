@@ -427,11 +427,7 @@ if (defined('PUBLISHPRESS_REVISIONS_VERSION') && function_exists('rvy_get_option
 						$plugin_caps = [];
 
 						//PublishPress Capabilities Capabilities
-						$plugin_caps['PublishPress Capabilities'] = apply_filters('cme_publishpress_capabilities_capabilities',
-							[
-							    'manage_capabilities',
-                            ]
-						);
+						$plugin_caps['PublishPress Capabilities'] = apply_filters('cme_publishpress_capabilities_capabilities', []);
 
 						if (defined('PUBLISHPRESS_VERSION')) {
 							$plugin_caps['PublishPress Planner'] = apply_filters('cme_publishpress_capabilities',
@@ -749,8 +745,8 @@ if (defined('PUBLISHPRESS_REVISIONS_VERSION') && function_exists('rvy_get_option
 							}
 
 							echo '</tr></thead>';
-
-							foreach( $defined[$item_type] as $key => $type_obj ) {
+                            $attachement_cap_position = 0;
+                            foreach( $defined[$item_type] as $key => $type_obj ) {
 								if ( in_array( $key, $unfiltered[$item_type] ) )
 									continue;
 
@@ -822,6 +818,9 @@ if (defined('PUBLISHPRESS_REVISIONS_VERSION') && function_exists('rvy_get_option
 										$checkbox = '';
 										$cap_title = '';
 
+                                        if ($type_obj->name === 'attachment') {
+                                            $attachement_cap_position++;
+                                        }
 										if ( ! empty($type_obj->cap->$prop) && ( in_array( $type_obj->name, array( 'post', 'page' ) )
 										|| ! in_array( $type_obj->cap->$prop, $default_caps )
 										|| ( ( 'manage_categories' == $type_obj->cap->$prop ) && ( 'manage_terms' == $prop ) && ( 'category' == $type_obj->name ) ) ) ) {
@@ -907,8 +906,16 @@ if (defined('PUBLISHPRESS_REVISIONS_VERSION') && function_exists('rvy_get_option
 												$td_classes []= "cap-neg";
 											}
 										} else {
-                                            $tool_tip  =__( 'This capability is not available for this post type.', 'capsman-enhanced');
+                                            if ($type_obj->name === 'attachment') {
+                                                if ($attachement_cap_position === 1 || $attachement_cap_position === 3) {
+                                                    $tool_tip  =__('Use the sidebar settings to allow this to be controlled independently.', 'capsman-enhanced');
+                                                } else {
+                                                    $tool_tip  =__('This capability is not available for this post type.', 'capsman-enhanced');
+                                                }
 
+                                            } else {
+                                                $tool_tip  =__('This capability is not available for this post type.', 'capsman-enhanced');
+                                            }
                                             $checkbox = '<div class="ppc-tool-tip disabled">&nbsp; &nbsp; &nbsp; &nbsp;
                                                 <div class="tool-tip-text">
                                                     <p>'. $tool_tip .'</p>
@@ -1225,6 +1232,12 @@ if (defined('PUBLISHPRESS_REVISIONS_VERSION') && function_exists('rvy_get_option
 								$title_text = $cap_name;
 							}
 
+                            if ($cap_name === 'manage_capabilities_user_testing') {
+                                $warning_message = '&nbsp; <span class="ppc-tool-tip"><span class="dashicons dashicons-info-outline"></span><span class="tool-tip-text"><p>'. sprintf(esc_html__('The User Testing feature also requires the %1$s edit_users %2$s capability.', 'capsman-enhanced'), '<strong>', '</strong>') .'</p><i></i></span></span>';
+                            } else {
+                                $warning_message = '';
+                            }
+
 							$disabled = '';
 							$checked = checked(1, ! empty($rcaps[$cap_name]), false );
 							$cap_title = $title_text;
@@ -1234,7 +1247,7 @@ if (defined('PUBLISHPRESS_REVISIONS_VERSION') && function_exists('rvy_get_option
 							<?php
 							echo esc_html(str_replace( '_', ' ', $cap_name));
 							?>
-							</span></label><a href="#" class="neg-cap" style="visibility: hidden;">&nbsp;x&nbsp;</a>
+							</span></label><?php echo $warning_message; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?><a href="#" class="neg-cap" style="visibility: hidden;">&nbsp;x&nbsp;</a>
 							<?php if ( false !== strpos( $class, 'cap-neg' ) ) :?>
 								<input type="hidden" class="cme-negation-input" name="caps[<?php echo esc_attr($cap_name); ?>]" value="" />
 							<?php endif; ?>

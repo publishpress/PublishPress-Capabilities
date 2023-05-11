@@ -11,8 +11,8 @@ class Capsman_BackupHandler
 	var $cm;
 
 	function __construct( $manager_obj ) {
-		if ((!is_multisite() || !is_super_admin()) && !current_user_can('administrator') && !current_user_can('restore_roles'))
-			wp_die( esc_html__( 'You do not have permission to restore roles.', 'capsman-enhanced' ) );
+		if ((!is_multisite() || !is_super_admin()) && !current_user_can('administrator') && !current_user_can('manage_capabilities_backup'))
+			wp_die( esc_html__( 'You do not have permission to restore backup.', 'capsman-enhanced' ) );
 	
 		$this->cm = $manager_obj;
 	}

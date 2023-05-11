@@ -18,11 +18,30 @@ class PP_Capabilities_Admin_UI {
          */
         require_once (dirname(CME_FILE) . '/classes/pp-capabilities-notices.php');
 
+        /**
+         * Installer class
+         */
+        require_once (dirname(CME_FILE) . '/classes/pp-capabilities-installer.php');
+
         add_action('init', [$this, 'featureRestrictionsGutenberg'], PHP_INT_MAX - 1);
 
         if (is_admin()) {
             add_action('admin_init', [$this, 'featureRestrictionsClassic'], PHP_INT_MAX - 1);
+            add_action('wp_ajax_save_dashboard_feature_by_ajax', [$this, 'saveDashboardFeature']);
+
+            // Installation hooks
+            add_action(
+                'pp_capabilities_install',
+                ['PublishPress\\Capabilities\\Classes\\PP_Capabilities_Installer', 'runInstallTasks']
+            );
+            add_action(
+                'pp_capabilities_upgrade',
+                ['PublishPress\\Capabilities\\Classes\\PP_Capabilities_Installer', 'runUpgradeTasks']
+            );
+            add_action('admin_init', [$this, 'manage_installation'], 2000);
         }
+
+        add_filter('cme_publishpress_capabilities_capabilities', 'cme_publishpress_capabilities_capabilities');
 
         add_action('admin_enqueue_scripts', [$this, 'adminScripts'], 100);
         add_action('admin_print_scripts', [$this, 'adminPrintScripts']);
@@ -36,7 +55,7 @@ class PP_Capabilities_Admin_UI {
         }
         add_action('init', [$this, 'register_textdomain']);
 
-        if (is_admin() && (isset($_REQUEST['page']) && (in_array($_REQUEST['page'], ['pp-capabilities', 'pp-capabilities-backup', 'pp-capabilities-roles', 'pp-capabilities-admin-menus', 'pp-capabilities-editor-features', 'pp-capabilities-nav-menus', 'pp-capabilities-settings', 'pp-capabilities-admin-features', 'pp-capabilities-profile-features']))
+        if (is_admin() && (isset($_REQUEST['page']) && (in_array($_REQUEST['page'], ['pp-capabilities', 'pp-capabilities-backup', 'pp-capabilities-roles', 'pp-capabilities-admin-menus', 'pp-capabilities-editor-features', 'pp-capabilities-nav-menus', 'pp-capabilities-settings', 'pp-capabilities-admin-features', 'pp-capabilities-profile-features', 'pp-capabilities-dashboard']))
 
         || (!empty($_REQUEST['action']) && in_array($_REQUEST['action'], ['pp-roles-add-role', 'pp-roles-delete-role', 'pp-roles-hide-role', 'pp-roles-unhide-role']))
         || ( ! empty($_SERVER['SCRIPT_NAME']) && strpos(sanitize_text_field($_SERVER['SCRIPT_NAME']), 'p-admin/plugins.php' ) && ! empty($_REQUEST['action'] ) ) 
@@ -58,7 +77,7 @@ class PP_Capabilities_Admin_UI {
         add_action('init', function() { // late execution avoids clash with autoloaders in other plugins
             global $pagenow;
 
-            if ((($pagenow == 'admin.php') && isset($_GET['page']) && in_array($_GET['page'], ['pp-capabilities', 'pp-capabilities-roles', 'pp-capabilities-backup'])) // @todo: CSS for button alignment in Editor Features, Admin Features
+            if ((($pagenow == 'admin.php') && isset($_GET['page']) && in_array($_GET['page'], ['pp-capabilities', 'pp-capabilities-backup', 'pp-capabilities-roles', 'pp-capabilities-admin-menus', 'pp-capabilities-editor-features', 'pp-capabilities-nav-menus', 'pp-capabilities-settings', 'pp-capabilities-admin-features', 'pp-capabilities-profile-features', 'pp-capabilities-dashboard'])) // @todo: CSS for button alignment in Editor Features, Admin Features
             || (defined('DOING_AJAX') && DOING_AJAX && !empty($_REQUEST['action']) && (false !== strpos(sanitize_key($_REQUEST['action']), 'capability-manager-enhanced')))
             ) {
                 if (!class_exists('\PublishPress\WordPressReviews\ReviewsController')) {
@@ -212,13 +231,17 @@ class PP_Capabilities_Admin_UI {
     public function shouldDisplayBanner() {
         global $pagenow;
 
-        return ($pagenow == 'admin.php') && isset($_GET['page']) && in_array($_GET['page'], ['pp-capabilities', 'pp-capabilities-roles', 'pp-capabilities-backup']);
+        return ($pagenow == 'admin.php') && isset($_GET['page']) && in_array($_GET['page'], ['pp-capabilities', 'pp-capabilities-backup', 'pp-capabilities-roles', 'pp-capabilities-admin-menus', 'pp-capabilities-editor-features', 'pp-capabilities-nav-menus', 'pp-capabilities-settings', 'pp-capabilities-admin-features', 'pp-capabilities-profile-features', 'pp-capabilities-dashboard']);
     }
 
     private function applyFeatureRestrictions($editor = 'gutenberg') {
         global $pagenow;
 
         if (is_multisite() && is_super_admin() && !defined('PP_CAPABILITIES_RESTRICT_SUPER_ADMIN')) {
+            return;
+        }
+
+        if (!pp_capabilities_feature_enabled('editor-features')) {
             return;
         }
 
@@ -280,34 +303,34 @@ class PP_Capabilities_Admin_UI {
                     'pp-capabilities-chosen-js',
                     plugin_dir_url(CME_FILE) . 'common/libs/chosen-v1.8.7/chosen.jquery.js',
                     ['jquery'],
-                    CAPSMAN_VERSION
+                    PUBLISHPRESS_CAPS_VERSION
                 );
 
                 wp_enqueue_script(
                     'pp-capabilities-jquery-ui',
                     plugin_dir_url(CME_FILE) . 'common/libs/jquery/jquery-ui.js',
                     ['jquery'],
-                    CAPSMAN_VERSION
+                    PUBLISHPRESS_CAPS_VERSION
                 );
 
                 wp_enqueue_script(
                     'pp-capabilities-roles-profile-js',
                     plugin_dir_url(CME_FILE) . 'common/js/profile.js',
                     ['jquery', 'pp-capabilities-chosen-js'],
-                    CAPSMAN_VERSION
+                    PUBLISHPRESS_CAPS_VERSION
                 );
 
                 wp_enqueue_style(
                     'pp-capabilities-chosen-css',
                     plugin_dir_url(CME_FILE) . 'common/libs/chosen-v1.8.7/chosen.css',
                     false,
-                    CAPSMAN_VERSION
+                    PUBLISHPRESS_CAPS_VERSION
                 );
                 wp_enqueue_style(
                     'pp-capabilities-roles-profile-css',
                     plugin_dir_url(CME_FILE) . 'common/css/profile.css',
                     ['pp-capabilities-chosen-css'],
-                    CAPSMAN_VERSION
+                    PUBLISHPRESS_CAPS_VERSION
                 );
 
                 $roles = !empty($_GET['user_id']) ? $this->getUsersRoles((int) $_GET['user_id']) : [];
@@ -334,26 +357,29 @@ class PP_Capabilities_Admin_UI {
 
     function adminPrintScripts() {
 
+        global $capabilities_toplevel_page;
 
-        /**
-         * Update capabilities top level slug from roles to capabilities
-         */
-        $menu_inline_script = "
+        if (!empty($capabilities_toplevel_page) && pp_capabilities_feature_enabled('capabilities') && current_user_can('manage_capabilities')) {
+            /**
+             * Update capabilities top level slug from dashboard/toplevel page to capabilities
+             */
+            $menu_inline_script = "
             jQuery(document).ready( function($) {
-                if (jQuery('li#toplevel_page_pp-capabilities-roles a.toplevel_page_pp-capabilities-roles').length > 0) {
-                    var toplevel_page = jQuery('li#toplevel_page_pp-capabilities-roles a.toplevel_page_pp-capabilities-roles');
+                if (jQuery('li#toplevel_page_{$capabilities_toplevel_page} a.toplevel_page_{$capabilities_toplevel_page}').length > 0) {
+                    var toplevel_page = jQuery('li#toplevel_page_{$capabilities_toplevel_page} a.toplevel_page_{$capabilities_toplevel_page}');
                     var toplevel_page_link = toplevel_page.attr('href');
                     if (toplevel_page_link) {
-                        toplevel_page.attr('href', toplevel_page_link.replace('pp-capabilities-roles', 'pp-capabilities'));
+                        toplevel_page.attr('href', toplevel_page_link.replace('{$capabilities_toplevel_page}', 'pp-capabilities'));
                     }
                 }
             });";
-        ppc_add_inline_script($menu_inline_script);
+            ppc_add_inline_script($menu_inline_script);
+        }
 
         // Counteract overzealous menu icon styling in PublishPress <= 3.2.0 :)
         if (defined('PUBLISHPRESS_VERSION') && version_compare(constant('PUBLISHPRESS_VERSION'), '3.2.0', '<=') && defined('PP_CAPABILITIES_FIX_ADMIN_ICON')):?>
         <style type="text/css">
-        #toplevel_page_pp-capabilities-roles .dashicons-before::before, #toplevel_page_pp-capabilities-roles .wp-has-current-submenu .dashicons-before::before {
+        #toplevel_page_pp-capabilities-dashboard .dashicons-before::before, #toplevel_page_pp-capabilities-dashboard .wp-has-current-submenu .dashicons-before::before {
             background-image: inherit !important;
             content: "\f112" !important;
         }
@@ -419,16 +445,33 @@ class PP_Capabilities_Admin_UI {
 
     // perf enhancement: display submenu links without loading framework and plugin code
     function cmeSubmenus() {
-        // First we check if user is administrator and can 'manage_capabilities'.
-        if (current_user_can('administrator') && ! current_user_can('manage_capabilities')) {
-            if ($admin = get_role('administrator')) {
-                $admin->add_cap('manage_capabilities');
+        global $capabilities_toplevel_page;
+        //we need to set primary menu capability to the first menu user has access to
+        $sub_menu_pages = pp_capabilities_sub_menu_lists(true);
+        $user_menu_caps = pp_capabilities_user_can_caps();
+        $menu_cap       = false;
+        $cap_callback   = false;
+        $cap_page_slug  = false;
+        $cap_title      = __('Capabilities', 'capsman-enhanced');
+        if (is_multisite() && is_super_admin()) {
+            $cap_name      = 'read';
+            $cap_callback  = [$this, 'dashboardPage'];
+            $cap_page_slug = 'pp-capabilities-dashboard';
+        } elseif (count($user_menu_caps) > 0) {
+            $cap_name      = $user_menu_caps[0];
+            $cap_index     = str_replace(['manage_capabilities_', 'manage_', '_'], ['', '', '-'], $cap_name);
+            if ($cap_index !== 'capabilities') {
+                $cap_title     .= count($user_menu_caps) === 1 ? ' '. $sub_menu_pages[$cap_index]['title'] : '';
             }
+            $cap_page_slug = $sub_menu_pages[$cap_index]['page'];
+            $cap_callback  = $sub_menu_pages[$cap_index]['callback'];
         }
 
-        $cap_name = (is_multisite() && is_super_admin()) ? 'read' : 'manage_capabilities';
+        $capabilities_toplevel_page = $cap_page_slug;
 
-        $permissions_title = __('Capabilities', 'capsman-enhanced');
+        if (!$cap_name) {
+            return;
+        }
 
         $menu_order = 72;
 
@@ -441,35 +484,21 @@ class PP_Capabilities_Admin_UI {
         }
 
         add_menu_page(
-            $permissions_title,
-            $permissions_title,
+            $cap_title,
+            $cap_title,
             $cap_name,
-            'pp-capabilities-roles',
-            'cme_fakefunc',
+            $cap_page_slug,
+            $cap_callback,
             'dashicons-admin-network',
             $menu_order
         );
 
-        add_submenu_page('pp-capabilities-roles',  __('Roles', 'capsman-enhanced'), __('Roles', 'capsman-enhanced'), $cap_name, 'pp-capabilities-roles', 'cme_fakefunc');
-		add_submenu_page('pp-capabilities-roles',  $permissions_title, $permissions_title, $cap_name, 'pp-capabilities', 'cme_fakefunc');
-        add_submenu_page('pp-capabilities-roles',  __('Editor Features', 'capsman-enhanced'), __('Editor Features', 'capsman-enhanced'), $cap_name, 'pp-capabilities-editor-features', 'cme_fakefunc');
-        add_submenu_page('pp-capabilities-roles',  __('Admin Features', 'capsman-enhanced'), __('Admin Features', 'capsman-enhanced'), $cap_name, 'pp-capabilities-admin-features', 'cme_fakefunc');
-        add_submenu_page('pp-capabilities-roles',  __('Profile Features', 'capsman-enhanced'), __('Profile Features', 'capsman-enhanced'), $cap_name, 'pp-capabilities-profile-features', 'cme_fakefunc');
-        add_submenu_page('pp-capabilities-roles',  __('Admin Menus', 'capsman-enhanced'), __('Admin Menus', 'capsman-enhanced'), $cap_name, 'pp-capabilities-admin-menus', 'cme_fakefunc');
-        add_submenu_page('pp-capabilities-roles',  __('Nav Menus', 'capsman-enhanced'), __('Nav Menus', 'capsman-enhanced'), $cap_name, 'pp-capabilities-nav-menus', 'cme_fakefunc');
-        add_submenu_page('pp-capabilities-roles',  __('Backup', 'capsman-enhanced'), __('Backup', 'capsman-enhanced'), $cap_name, 'pp-capabilities-backup', 'cme_fakefunc');
-        add_submenu_page('pp-capabilities-roles',  __('Settings', 'capsman-enhanced'), __('Settings', 'capsman-enhanced'), $cap_name, 'pp-capabilities-settings', 'cme_fakefunc');
-
-        if (!defined('PUBLISHPRESS_CAPS_PRO_VERSION')) {
-            add_submenu_page(
-                'pp-capabilities-roles',
-                __('Upgrade to Pro', 'capsman-enhanced'),
-                __('Upgrade to Pro', 'capsman-enhanced'),
-                'manage_capabilities',
-                'capsman-enhanced',
-                'cme_fakefunc'
-            );
+        foreach ($sub_menu_pages as $feature => $subpage_option) {
+            if ($subpage_option['dashboard_control'] === false || pp_capabilities_feature_enabled($feature)) {
+                add_submenu_page($cap_page_slug, $subpage_option['title'], $subpage_option['title'], $subpage_option['capabilities'], $subpage_option['page'], $subpage_option['callback']);
+            }
         }
+
     }
 
 
@@ -518,6 +547,87 @@ class PP_Capabilities_Admin_UI {
                     die();
                 }
             }
+        }
+    }
+
+    /**
+     * Ajax for saving a feature from dashboard page
+     * 
+     * Copied from PublishPress Blocks
+     *
+     * @return boolean,void     Return false if failure, echo json on success
+     */
+    public function saveDashboardFeature()
+    {
+        if ((!is_multisite() || !is_super_admin()) && !current_user_can('administrator') && !current_user_can('manage_capabilities_dashboard')) {
+            wp_send_json( __('No permission!', 'capsman-enhanced'), 403 );
+            return false;
+        }
+
+        if (
+            ! wp_verify_nonce(
+                sanitize_key( $_POST['nonce'] ),
+                'pp-capabilities-dashboard-nonce'
+            )
+        ) {
+            wp_send_json( __('Invalid nonce token!', 'capsman-enhanced'), 400 );
+        }
+
+        if( empty( $_POST['feature'] ) || ! $_POST['feature'] ) { // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+            wp_send_json( __('Error: wrong data', 'capsman-enhanced'), 400 );
+            return false;
+        }
+
+        $capsman_dashboard_features_status = !empty(get_option('capsman_dashboard_features_status')) ? (array)get_option('capsman_dashboard_features_status') : [];
+    
+
+        $feature = sanitize_text_field( $_POST['feature'] );
+
+        $capsman_dashboard_features_status[$feature]['status'] = (bool) $_POST['new_state'] ? 'on' : 'off';
+        update_option('capsman_dashboard_features_status', $capsman_dashboard_features_status, false);
+
+        wp_send_json( true, 200 );
+    }
+
+    /**
+     * Manages the installation detecting if this is the first time this plugin runs or is an upgrade.
+     * If no version is stored in the options, we treat as a new installation. Otherwise, we check the
+     * last version. If different, it is an upgrade or downgrade.
+     */
+    public function manage_installation()
+    {
+        $option_name = 'PUBLISHPRESS_CAPS_VERSION';
+
+        $previous_version = get_option($option_name);
+        $current_version  = PUBLISHPRESS_CAPS_VERSION;
+
+        if (!apply_filters('pp_capabilities_skip_installation', false, $previous_version, $current_version)) {
+            if (empty($previous_version)) {
+                /**
+                 * Action called when the plugin is installed.
+                 *
+                 * @param string $current_version
+                 */
+                do_action('pp_capabilities_install', $current_version);
+            } elseif (version_compare($previous_version, $current_version, '>')) {
+                /**
+                 * Action called when the plugin is downgraded.
+                 *
+                 * @param string $previous_version
+                 */
+                do_action('pp_capabilities_downgrade', $previous_version);
+            } elseif (version_compare($previous_version, $current_version, '<')) {
+                /**
+                 * Action called when the plugin is upgraded.
+                 *
+                 * @param string $previous_version
+                 */
+                do_action('pp_capabilities_upgrade', $previous_version);
+            }
+        }
+
+        if ($current_version !== $previous_version) {
+            update_option($option_name, $current_version, true);
         }
     }
 }

@@ -1,4 +1,6 @@
 jQuery(document).ready( function($) {
+  var { __: __, _x: _x, _n: _n, _nx: _nx } = wp.i18n;
+
 	$('a.neg-cap').attr('title',cmeAdmin.negationCaption);
 	$('a.neg-type-caps').attr('title',cmeAdmin.typeCapsNegationCaption);
 	//$('td.cap-unreg').attr('title',cmeAdmin.typeCapUnregistered);
@@ -473,5 +475,69 @@ jQuery(document).ready( function($) {
       $(this).closest('.ppc-sidebar-panel').toggleClass('closed');
     }
   });
+
+  /* Start COPIED FROM PP BLOCKS */
+    $(".dashboard-settings-control .slider").bind("click", function (e) {
+      try {
+          e.preventDefault();
+          if ($(this).hasClass("slider--disabled")) {
+              return false;
+          }
+          var checkbox = $(this).parent().find("input");
+          var isChecked = checkbox.is(":checked") ? 1 : 0;
+          var newState = isChecked == 1 ? 0 : 1;
+          var feature = checkbox.data("feature");
+          var slider = checkbox.parent().find(".slider");
+          $.ajax({
+              url: cmeAdmin.ajaxurl,
+              method: "POST",
+              data: { action: "save_dashboard_feature_by_ajax", feature: feature, new_state: newState, nonce: cmeAdmin.nonce },
+              beforeSend: function () {
+                  slider.css("opacity", 0.5);
+              },
+              success: function () {
+                  newState == 1 ? checkbox.prop("checked", true) : checkbox.prop("checked", false);
+                  slider.css("opacity", 1);
+                  switch (feature) {
+                      case "capabilities":
+                          ppcDynamicSubmenu("pp-" + feature, newState);
+                          break;
+                      default:
+                          ppcDynamicSubmenu("pp-capabilities-" + feature, newState);
+                  }
+                  statusMsgNotification = ppcTimerStatus();
+              },
+              error: function (jqXHR, textStatus, errorThrown) {
+                  console.error(jqXHR.responseText);
+                  statusMsgNotification = ppcTimerStatus("error");
+              },
+          });
+      } catch (e) {
+          console.error(e);
+      }
+  });
+  function ppcTimerStatus(type = "success") {
+      setTimeout(function () {
+          var uniqueClass = "ppc-floating-msg-" + Math.round(new Date().getTime() + Math.random() * 100);
+          var message = type === "success" ? __("Changes saved!", "capsman-enhanced") : __(" Error: changes can't be saved.", "capsman-enhanced");
+          var instances = $(".ppc-floating-status").length;
+          $("#wpbody-content").after('<span class="ppc-floating-status ppc-floating-status--' + type + " " + uniqueClass + '">' + message + "</span>");
+          $("." + uniqueClass)
+              .css("bottom", instances * 45)
+              .fadeIn(1e3)
+              .delay(1e4)
+              .fadeOut(1e3, function () {
+                  $(this).remove();
+              });
+      }, 500);
+  }
+  function ppcDynamicSubmenu(slug, newState) {
+      var pMenu = $("#toplevel_page_pp-capabilities-dashboard");
+      var cSubmenu = $(pMenu).find("li." + slug + "-menu-item");
+      if (cSubmenu.length) {
+          newState == 1 ? cSubmenu.removeClass("ppc-hide-menu-item").find("a").removeClass("ppc-hide-menu-item") : cSubmenu.addClass("ppc-hide-menu-item").find("a").addClass("ppc-hide-menu-item");
+      }
+  }
+  /* end COPIED FROM PP BLOCKS */
 
 });

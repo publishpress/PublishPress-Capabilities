@@ -9,7 +9,7 @@ class Pp_Roles_Admin
      * @access   protected
      * @var string
      */
-    protected $capability = 'manage_options';
+    protected $capability = 'manage_capabilities_roles';
 
     /**
      * Roles list table instance
@@ -721,13 +721,21 @@ class Pp_Roles_Admin
                                                 <h2 class="roles-capabilities-title"><?php esc_html_e('Capabilities', 'capsman-enhanced'); ?></h2>
                                                 <p class="description">
                                                 <?php 
+                                                if ($role_action === 'edit' && current_user_can('manage_capabilities') && pp_capabilities_feature_enabled('capabilities')) {
+                                                    $edit_link = '<a href="' . esc_url(add_query_arg(['page' => 'pp-capabilities', 'role' => esc_attr($current_role)], admin_url('admin.php'))) .'">';
+                                                    $closing_tag = '</a>';
+                                                } else {
+                                                    $edit_link = '';
+                                                    $closing_tag = '</a>';
+                                                }
+                                                
                                                     printf(
                                                         esc_html__(
                                                             'These can be edited on the %1s Capabilities screen %2s', 
                                                             'capsman-enhanced'
                                                         ),
-                                                        ($role_action === 'edit') ? '<a href="' . esc_url(add_query_arg(['page' => 'pp-capabilities', 'role' => esc_attr($current_role)], admin_url('admin.php'))) .'">' : '',
-                                                        (esc_html($role_action) === 'edit') ? '</a>' : ''
+                                                        $edit_link,
+                                                        $closing_tag
                                                     );
                                                 ?>
                                                 </p>

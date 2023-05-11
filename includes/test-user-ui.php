@@ -40,7 +40,7 @@ class PP_Capabilities_Test_User_UI extends PP_Capabilities_Test_User
             $actions['ppc_test_user'] = sprintf(
                 '<a href="%s">%s</a>',
                 esc_url($link),
-                esc_html__('Test this user', 'capsman-enhanced')
+                esc_html__('Test user', 'capsman-enhanced')
             );
         }
 
@@ -54,7 +54,7 @@ class PP_Capabilities_Test_User_UI extends PP_Capabilities_Test_User
      */
     public function adminUserEditAction($user)
     {
-        if (current_user_can('manage_capabilities') && current_user_can('edit_user', $user->ID) && $user->ID !== get_current_user_id()) {
+        if (current_user_can('manage_capabilities_user_testing') && current_user_can('edit_user', $user->ID) && $user->ID !== get_current_user_id()) {
             $link = add_query_arg(
                 [
                     'ppc_test_user' => base64_encode($user->ID), 

@@ -432,7 +432,7 @@ div.publishpress-caps-backup td.cme-backup-info .cme-negate {
   text-decoration: line-through;
 }
 
-.cme-backup-info ul.toplevel_page_pp-capabilities {
+.cme-backup-info ul.toplevel_page_pp-capabilities-dashboard {
   display: inline-block;
   padding-left:30px;
 }
@@ -605,7 +605,8 @@ margin-bottom: 10px !important;
     margin-bottom: 10px !important;
 }
 
-body.capabilities_page_pp-capabilities-nav-menus .pp-capability-menus-select .restrict-column {
+body.capabilities_page_pp-capabilities-nav-menus .pp-capability-menus-select .restrict-column,
+body.toplevel_page_pp-capabilities-nav-menus .pp-capability-menus-select .restrict-column {
     width: 70px !important;
 }
 
@@ -614,7 +615,8 @@ body.capabilities_page_pp-capabilities-nav-menus .pp-capability-menus-select .re
 }
 
 
-body.capabilities_page_pp-capabilities-admin-features .pp-capability-menus-select .restrict-column {
+body.capabilities_page_pp-capabilities-admin-features .pp-capability-menus-select .restrict-column,
+body.toplevel_page_pp-capabilities-admin-features .pp-capability-menus-select .restrict-column {
   width: 70px !important;
 }
 
@@ -733,7 +735,8 @@ text-align: center;
     float: right;
 }
 
-body.capabilities_page_pp-capabilities-settings .publishpress-caps-settings .form-table th {
+body.capabilities_page_pp-capabilities-settings .publishpress-caps-settings .form-table th,
+body.toplevel_page_pp-capabilities-settings .publishpress-caps-settings .form-table th {
     width: 300px;
 }
 
@@ -837,7 +840,8 @@ div.ppc-editor-features-classic-toggle {
 
 /* ====================================================== Nav Menu Restriction */
 
-body.capabilities_page_pp-capabilities-nav-menus .pp-capability-menus-select .restrict-column {
+body.capabilities_page_pp-capabilities-nav-menus .pp-capability-menus-select .restrict-column,
+body.toplevel_page_pp-capabilities-nav-menus .pp-capability-menus-select .restrict-column {
     width: 70px !important;
 }
 
@@ -856,7 +860,7 @@ user-select: none;
 .ppc-tool-tip {
     display: inline-block;
     position: relative;
-    cursor: help;
+    cursor: pointer;
 }
 
 .ppc-tool-tip .tool-tip-text {
@@ -988,6 +992,48 @@ user-select: none;
     max-width: 100%;
 }
 
+.pp-capabilities-sidebar .ppc-advertisement-promo .advertisement-box-content .inside ul li {
+    padding-left: 22px;
+}
+
+.pp-capabilities-sidebar .upgrade-btn a {
+    background: #FCB223;
+    color: #000 !important;
+    font-weight: normal;
+    text-decoration: none;
+    padding: 9px 12px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    box-sizing: border-box;
+    border: 1px solid #fca871;
+    break-inside: avoid;
+    white-space: nowrap;
+}
+
+.pp-capabilities-sidebar .upgrade-btn a:hover {
+    background: #fcca46;
+    color: #000 !important;
+}
+
+@media only screen and (min-width: 1075px) {
+    .pp-capabilities-sidebar .ppc-advertisement-promo .upgrade-btn {
+        display: inline-block;
+    }
+}
+
+@media only screen and (max-width: 1074px) {
+    .pp-capabilities-sidebar .ppc-advertisement-promo .upgrade-btn {
+        display: block;
+        margin-top: 20px;
+    }
+
+    .pp-capabilities-sidebar .ppc-advertisement-promo .upgrade-btn a {
+        max-width: 170px;
+    }
+}
+
+
 .ppc-sidebar-panel {
     padding: 0;
     border: 1px solid #655897;
@@ -1107,6 +1153,207 @@ tr.opened .ppc-nav-menu-expand svg {
 .pp-capability-menus-wrapper .fse-nav-menu .menu-closed {
     display: none !important;
 }
+
+/* Start COPIED FROM PP BLOCKS */
+.pp-capability-menus-wrapper.capabilities-dashboard input {
+    float: right;
+}
+
+.publishpress-caps-manage .dashboard-settings-boxes {
+    margin-bottom: 20px;
+    margin-top: 20px;
+    display: grid;
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.publishpress-caps-manage .pp-columns-wrapper:not(.pp-enable-sidebar) .dashboard-settings-boxes {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+@media (max-width: 1200px) {
+    .publishpress-caps-manage .dashboard-settings-boxes {
+        grid-template-columns: repeat(2, 1fr)
+    }
+}
+
+@media (max-width: 979px) {
+    .publishpress-caps-manage .dashboard-settings-boxes {
+        grid-template-columns: repeat(1, 1fr)
+    }
+}
+
+.publishpress-caps-manage .dashboard-settings-boxes .dashboard-settings-box {
+    position: relative;
+    padding: 20px 20px 0;
+    background-color: #fff;
+    box-shadow: 0 10px 30px 0 rgba(160, 166, 190, 0.08);
+    border: 1px solid #dcdcdc
+}
+
+.publishpress-caps-manage .dashboard-settings-boxes .dashboard-settings-box h3 {
+    margin: 0 0 1em;
+    line-height: 1.5em;
+    padding: 0
+}
+
+.publishpress-caps-manage .dashboard-settings-boxes .dashboard-settings-box h3 span {
+    background: #000;
+    padding: 2px 5px;
+    color: #fff;
+    border-radius: 4px;
+    font-size: 0.8em
+}
+
+.publishpress-caps-manage .dashboard-settings-boxes .dashboard-settings-box h3 span.ppc-label-beta {
+    background: #ccc
+}
+
+.publishpress-caps-manage .dashboard-settings-boxes .dashboard-settings-box .dashboard-settings-description {
+    line-height: 1.6em;
+    padding: 0 0 20px;
+    height: 150px
+}
+
+@media (max-width: 979px) {
+    .publishpress-caps-manage .dashboard-settings-boxes .dashboard-settings-box .dashboard-settings-description {
+        height: auto
+    }
+}
+
+.publishpress-caps-manage .dashboard-settings-boxes .dashboard-settings-box .dashboard-settings-control {
+    background: #fbfbfb;
+    margin: 0 -20px;
+    padding: 0 20px;
+    line-height: 60px;
+    border-top: 1px solid #dcdcdc;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-column-gap: 20px
+}
+
+@media (min-width: 980px) {
+    .publishpress-caps-manage .dashboard-settings-boxes .dashboard-settings-box .dashboard-settings-control {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        box-sizing: border-box
+    }
+}
+
+.publishpress-caps-manage .dashboard-settings-boxes .dashboard-settings-box .dashboard-settings-control .ppc-switch-button {
+    float: none;
+    margin: 0
+}
+
+.publishpress-caps-manage .dashboard-settings-boxes .dashboard-settings-box .dashboard-settings-control .ppc-switch-button .switch {
+    margin: 17px 0
+}
+
+
+.ppc-switch-button {
+    float: right;
+    margin-left: 10px;
+    margin-right: 30px;
+    line-height: 27px
+}
+
+.ppc-switch-button .switch {
+    position: relative;
+    display: inline-block;
+    width: 46px;
+    height: 26px;
+    margin: 10px
+}
+
+.ppc-switch-button .switch input {
+    display: none
+}
+
+.ppc-switch-button .switch .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: 0.4s;
+    -moz-transition: 0.4s;
+    -ms-transition: 0.4s;
+    -o-transition: 0.4s;
+    transition: 0.4s;
+    -webkit-border-radius: 40px;
+    -moz-border-radius: 40px;
+    border-radius: 40px;
+    width: auto
+}
+
+.ppc-switch-button .switch .slider:before {
+    position: absolute;
+    content: '';
+    height: 22px;
+    width: 22px;
+    left: 2px;
+    bottom: 2px;
+    background-color: #fff;
+    -webkit-transition: 0.4s;
+    -moz-transition: 0.4s;
+    -ms-transition: 0.4s;
+    -o-transition: 0.4s;
+    transition: 0.4s;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%
+}
+
+.ppc-switch-button .switch input:checked+.slider {
+    background-color: #00d084
+}
+
+.ppc-switch-button .switch input:checked+.slider:before {
+    -webkit-transform: translateX(20px);
+    -moz-transform: translateX(20px);
+    -ms-transform: translateX(20px);
+    -o-transform: translateX(20px);
+    transform: translateX(20px)
+}
+
+.block-item-readonly .ppc-switch-button .switch {
+    opacity: 0.3
+}
+
+
+.ppc-floating-status {
+    position: fixed;
+    bottom: 20px;
+    left: 184px;
+    background: #2c3338;
+    padding: 10px 15px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    transition: all 0.5s ease-out;
+    box-shadow: 0 0 15px #999;
+    z-index: 999;
+}
+@media (max-width: 782px) {
+    .ppc-floating-status {
+        left: 60px;
+    }
+}
+.ppc-floating-status.ppc-floating-status--success {
+    color: #00d084;
+}
+.ppc-floating-status.ppc-floating-status--error {
+    color: #d63638;
+}
+
+.ppc-hide-menu-item {
+    display:none !important
+}
+
+/* end COPIED FROM PP BLOCKS */
 
 @media (min-width: 1200px) {
   .pp-column-right.capabilities-sidebar {
