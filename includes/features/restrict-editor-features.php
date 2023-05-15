@@ -395,7 +395,7 @@ class PP_Capabilities_Post_Features {
                 'preview' =>          ['label' => esc_html__('Preview', 'capsman-enhanced'),          'elements' => '.edit-post-header__settings .block-editor-post-preview__dropdown'],
                 'publish' =>          ['label' => esc_html__('Publish / Update', 'capsman-enhanced'), 'elements' => '.edit-post-header__settings .editor-post-publish-button__button'],
                 'settings' =>         ['label' => esc_html__('Settings', 'capsman-enhanced'),         'elements' => '.edit-post-header__settings .interface-pinned-items button'],
-                'options' =>          ['label' => esc_html__('Options', 'capsman-enhanced'),          'elements' => '.edit-post-header__settings .edit-post-more-menu .components-button'],
+                'options' =>          ['label' => esc_html__('Options', 'capsman-enhanced'),          'elements' => '.edit-post-header__settings .edit-post-more-menu .components-button, .edit-post-header__settings .components-dropdown-menu.interface-more-menu-dropdown'],
             ],
 
             esc_html__('Body', 'capsman-enhanced') => [
