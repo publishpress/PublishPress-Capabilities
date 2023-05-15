@@ -453,6 +453,7 @@ class PP_Capabilities_Admin_UI {
         $cap_callback   = false;
         $cap_page_slug  = false;
         $cap_title      = __('Capabilities', 'capsman-enhanced');
+        $cap_name       = false;
         if (is_multisite() && is_super_admin()) {
             $cap_name      = 'read';
             $cap_callback  = [$this, 'dashboardPage'];
