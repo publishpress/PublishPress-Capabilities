@@ -7,7 +7,7 @@ Tags: capabilities, permissions, admin menus, user roles, user role editor, acce
 Requires at least: 4.9.7
 Tested up to: 6.2
 Requires PHP: 5.6.20
-Stable tag: 2.8.0
+Stable tag: 2.8.1
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -409,6 +409,13 @@ Fixed : Non-administrators with user editing capabilities could add new Administ
 Fixed : Security issue. Please update.
 
 == Changelog ==
+
+= 2.8.1 - 17 May 2023 =
+  * Fixed : Undefined variable $cap_name, #822
+  * Fixed : Full Site Editing admin menus issue with custom link, #807
+  * Fixed : Profile Features table safari styles fix, #770
+  * Fixed : Update dashboard feature texts, #820
+  * Fixed : Editor Feature Options not hiding, #805
 
 = 2.8.0 - 11 May 2023 =
   * Feature : Custom capabilities for each feature/menu, #727
