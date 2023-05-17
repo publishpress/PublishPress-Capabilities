@@ -508,6 +508,11 @@ table#akmin .pp-capability-menus-select .restrict-column {
   clear: none !important;
 }
 
+
+table#akmin .pp-capability-menus-select .restrict-column + .menu-column.ppc-menu-item {
+  width: 100%;
+}
+
 .pp-capability-menus .menu-item-link {
   display: inline;
   color: #0073aa;
@@ -823,11 +828,6 @@ div.ppc-editor-features-classic-toggle {
 
 .pp-capability-menus-wrapper.profile-features tr.empty-features-element td {
     margin-left: 40px;
-}
-
-.pp-capability-menus-wrapper.profile-features table#akmin .pp-capability-menus-select .restrict-column {
-    width: 0;
-    min-width: 70px;
 }
 
 .publishpress-caps-settings .description {
