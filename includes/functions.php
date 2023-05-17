@@ -679,7 +679,7 @@ function pp_capabilities_parse_nav_block($parsed_block, $menu_items, $parent = 0
             'ID'                => $block_id,
             'title'             => ppc_block_menu_icon($parsed_block['blockName']) . ' ' .  $block_attrs['label'],
             'object_id'         => $parsed_block['blockName'],
-            'object'            => 'custom_block',
+            'object'            => 'custom_block_' . sanitize_title_with_dashes($block_attrs['label']),
             'menu_item_parent'  => $parent,
             'ancestor_class'    => $ancestor_class,
             'is_parent_page'    => !empty($inner_blocks) ? 1 : 0,
@@ -964,8 +964,13 @@ if (!is_admin()) {
                     $block_details = $inner_block->parsed_block;
                     $block_name    = isset($block_details['blockName']) ? $block_details['blockName'] : false;
                     $block_attrs   = isset($block_details['attrs']) ? (array)$block_details['attrs'] : false;
+                    $block_label   = (isset($block_attrs['label'])) ? $block_attrs['label'] : false;
+                    $block_id      = isset($block_attrs['id']) ? $block_attrs['id'] : 0;
                     if (in_array($block_name, ['core/site-logo', 'core/site-title', 'core/social-links', 'core/search', 'core/home-link']) && in_array($block_name, $fse_blocked_nav_links)) {
                         //unset core nav block
+                        $removeable_keys[] = $key_offset;
+                    } elseif ($block_label && in_array($block_id . '_custom_block_' . sanitize_title_with_dashes($block_label), $disabled_nav_menu_array)) {
+                        //unset custom block that doesn't have ID identifier
                         $removeable_keys[] = $key_offset;
                     } elseif (is_array($block_attrs) && isset($block_attrs['url']) && in_array($block_attrs['url'], $fse_blocked_nav_links)) {
                         //unset custom links
