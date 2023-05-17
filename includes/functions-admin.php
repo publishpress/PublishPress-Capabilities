@@ -319,32 +319,32 @@ function pp_capabilities_dashboard_options() {
 
     $features['roles'] = [
         'label'        => esc_html__('Roles', 'capsman-enhanced'),
-        'description'  => esc_html__('Create, edit, and delete user roles.', 'capsman-enhanced'),
+        'description'  => esc_html__('Roles allows you to create, edit, and delete all the user roles on your site.', 'capsman-enhanced'),
     ];
 
     $features['capabilities'] = [
         'label'        => esc_html__('Capabilities', 'capsman-enhanced'),
-        'description'  => esc_html__('Add or remove capabilities from any user role.', 'capsman-enhanced'),
+        'description'  => esc_html__('Capabilities allows you to change the permissions for any user role.', 'capsman-enhanced'),
     ];
 
     $features['editor-features'] = [
         'label'        => esc_html__('Editor Features', 'capsman-enhanced'),
-        'description'  => esc_html__('Remove elements from the post editing screen.', 'capsman-enhanced'),
+        'description'  => esc_html__('Editor Features allows you to remove elements from the post editing screen.', 'capsman-enhanced'),
     ];
 
     $features['admin-features'] = [
         'label'        => esc_html__('Admin Features', 'capsman-enhanced'),
-        'description'  => esc_html__('Remove elements from the admin area and toolbar.', 'capsman-enhanced'),
+        'description'  => esc_html__('Admin Features allows you to remove elements from the admin area and toolbar.', 'capsman-enhanced'),
     ];
 
     $features['profile-features'] = [
         'label'        => esc_html__('Profile Features', 'capsman-enhanced'),
-        'description'  => esc_html__('Remove elements from the Profile screen.', 'capsman-enhanced'),
+        'description'  => esc_html__('Profile Features allows you to remove elements from the Profile screen.', 'capsman-enhanced'),
     ];
 
     $features['nav-menus'] = [
         'label'        => esc_html__('Nav Menus', 'capsman-enhanced'),
-        'description'  => esc_html__('Block access to frontend menu links.', 'capsman-enhanced'),
+        'description'  => esc_html__('Nav Menus allows you to block access to frontend menu links.', 'capsman-enhanced'),
     ];
 
     $features['user-testing'] = [
