@@ -445,7 +445,20 @@ class PP_Capabilities_Admin_UI {
 
     // perf enhancement: display submenu links without loading framework and plugin code
     function cmeSubmenus() {
-        global $capabilities_toplevel_page;
+        global $capabilities_toplevel_page, $current_user;
+        
+        //make sure admin doesn't lose access to capabilities screen
+        if (current_user_can('administrator')) {
+            $pp_capabilities = apply_filters('cme_publishpress_capabilities_capabilities', []);
+            $role = get_role('administrator');
+            foreach ($pp_capabilities as $cap) {
+                if (!$role->has_cap($cap)) {
+                    $role->add_cap($cap);
+                    $current_user->allcaps[$cap] = true;
+                }
+            }
+        }   
+        
         //we need to set primary menu capability to the first menu user has access to
         $sub_menu_pages = pp_capabilities_sub_menu_lists(true);
         $user_menu_caps = pp_capabilities_user_can_caps();
@@ -471,16 +484,6 @@ class PP_Capabilities_Admin_UI {
         $capabilities_toplevel_page = $cap_page_slug;
 
         if (!$cap_name) {
-            //make sure admin doesn't lose access to capabilities screen
-            if (current_user_can('administrator')) {
-                $pp_capabilities = apply_filters('cme_publishpress_capabilities_capabilities', []);
-                $role = get_role('administrator');
-                foreach ($pp_capabilities as $cap) {
-                    if (!$role->has_cap($cap)) {
-                        $role->add_cap($cap);
-                    }
-                }
-            }    
             return;
         }
 
