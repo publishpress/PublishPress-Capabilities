@@ -471,6 +471,16 @@ class PP_Capabilities_Admin_UI {
         $capabilities_toplevel_page = $cap_page_slug;
 
         if (!$cap_name) {
+            //make sure admin doesn't lose access to capabilities screen
+            if (current_user_can('administrator')) {
+                $pp_capabilities = apply_filters('cme_publishpress_capabilities_capabilities', []);
+                $role = get_role('administrator');
+                foreach ($pp_capabilities as $cap) {
+                    if (!$role->has_cap($cap)) {
+                        $role->add_cap($cap);
+                    }
+                }
+            }    
             return;
         }
 
