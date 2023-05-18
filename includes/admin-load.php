@@ -448,7 +448,7 @@ class PP_Capabilities_Admin_UI {
         global $capabilities_toplevel_page, $current_user;
         
         //make sure admin doesn't lose access to capabilities screen
-        if (current_user_can('administrator')) {
+        if (!current_user_can('manage_capabilities') && current_user_can('administrator')) {
             $pp_capabilities = apply_filters('cme_publishpress_capabilities_capabilities', []);
             $role = get_role('administrator');
             foreach ($pp_capabilities as $cap) {
