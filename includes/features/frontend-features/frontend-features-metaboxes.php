@@ -38,7 +38,7 @@ class PP_Capabilities_Frontend_Features_Metaboxes
     {
         global $frontend_features_elements;
 
-        if ((!is_multisite() || !is_super_admin()) && !current_user_can('administrator') && !current_user_can('manage_capabilities')) {
+        if ((!is_multisite() || !is_super_admin()) && !current_user_can('administrator') && !current_user_can('manage_capabilities_frontend_features')) {
             return;
         }
 
@@ -123,7 +123,7 @@ class PP_Capabilities_Frontend_Features_Metaboxes
      */
     public function saveFrontendFeaturesData($post_id)
     {
-        if ((!is_multisite() || !is_super_admin()) && !current_user_can('administrator') && !current_user_can('manage_capabilities')) {
+        if ((!is_multisite() || !is_super_admin()) && !current_user_can('administrator') && !current_user_can('manage_capabilities_frontend_features')) {
             return;
         }
         

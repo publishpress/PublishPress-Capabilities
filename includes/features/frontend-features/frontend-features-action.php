@@ -52,7 +52,7 @@ class PP_Capabilities_Frontend_Features_Action
         $security       = isset($_POST['security']) ? sanitize_key($_POST['security']) : '';
         $item_id        = isset($_POST['item_id']) ? sanitize_key($_POST['item_id']) : '';
 
-        if ((!is_multisite() || !is_super_admin()) && !current_user_can('administrator') && !current_user_can('manage_capabilities')) {
+        if ((!is_multisite() || !is_super_admin()) && !current_user_can('administrator') && !current_user_can('manage_capabilities_frontend_features')) {
             $response['message'] = esc_html__('You do not have permission to manage frontend features.', 'capsman-enhanced');
         } elseif (!wp_verify_nonce($security, 'frontend-element-nonce')) {
             $response['message'] = esc_html__('Invalid action. Reload this page and try again.', 'capsman-enhanced');
@@ -110,7 +110,7 @@ class PP_Capabilities_Frontend_Features_Action
         $security       = isset($_POST['security']) ? sanitize_key($_POST['security']) : '';
         $item_id        = isset($_POST['item_id']) ? sanitize_key($_POST['item_id']) : '';
 
-        if ((!is_multisite() || !is_super_admin()) && !current_user_can('administrator') && !current_user_can('manage_capabilities')) {
+        if ((!is_multisite() || !is_super_admin()) && !current_user_can('administrator') && !current_user_can('manage_capabilities_frontend_features')) {
             $response['message'] = esc_html__('You do not have permission to manage frontend features.', 'capsman-enhanced');
         } elseif (!wp_verify_nonce($security, 'bodyclass-nonce')) {
             $response['message'] = esc_html__('Invalid action. Reload this page and try again.', 'capsman-enhanced');
@@ -168,7 +168,7 @@ class PP_Capabilities_Frontend_Features_Action
         $security       = isset($_POST['security']) ? sanitize_key($_POST['security']) : '';
         $item_id        = isset($_POST['item_id']) ? sanitize_key($_POST['item_id']) : '';
 
-        if ((!is_multisite() || !is_super_admin()) && !current_user_can('administrator') && !current_user_can('manage_capabilities')) {
+        if ((!is_multisite() || !is_super_admin()) && !current_user_can('administrator') && !current_user_can('manage_capabilities_frontend_features')) {
             $response['message'] = esc_html__('You do not have permission to manage frontend features.', 'capsman-enhanced');
         } elseif (!wp_verify_nonce($security, 'customstyles-nonce')) {
             $response['message'] = esc_html__('Invalid action. Reload this page and try again.', 'capsman-enhanced');
@@ -224,7 +224,7 @@ class PP_Capabilities_Frontend_Features_Action
         $item_id      = isset($_POST['item_id']) ? sanitize_key($_POST['item_id']) : '';
         $security     = isset($_POST['security']) ? sanitize_key($_POST['security']) : '';
 
-        if ((!is_multisite() || !is_super_admin()) && !current_user_can('administrator') && !current_user_can('manage_capabilities')) {
+        if ((!is_multisite() || !is_super_admin()) && !current_user_can('administrator') && !current_user_can('manage_capabilities_frontend_features')) {
             $response['message'] = esc_html__('You do not have permission to manage frontend features.', 'capsman-enhanced');
         } elseif (!wp_verify_nonce($security, 'frontend-delete' . $item_id .'-nonce')) {
             $response['message'] = esc_html__('Invalid action. Reload this page and try again.', 'capsman-enhanced');

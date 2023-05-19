@@ -299,6 +299,7 @@ function cme_publishpress_capabilities_capabilities($capabilities) {
             'manage_capabilities_editor_features',
             'manage_capabilities_admin_features',
             'manage_capabilities_admin_menus',
+            'manage_capabilities_frontend_features',
             'manage_capabilities_profile_features',
             'manage_capabilities_nav_menus',
             'manage_capabilities_user_testing',
@@ -421,7 +422,7 @@ function pp_capabilities_sub_menu_lists($cme_fakefunc = false) {
     ];
     $sub_menu_pages['frontend-features'] = [
         'title'             => __('Frontend Features', 'capsman-enhanced'),
-        'capabilities'      => $cap_name,
+        'capabilities'      => $super_user ? 'read' : 'manage_capabilities_frontend_features',
         'page'              => 'pp-capabilities-frontend-features',
         'callback'          => $cme_fakefunc ? 'cme_fakefunc' : [$capsman, 'ManageFrontendFeatures'],
         'dashboard_control' => true,

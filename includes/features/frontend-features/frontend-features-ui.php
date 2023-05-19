@@ -488,7 +488,7 @@ class PP_Capabilities_Frontend_Features_UI
                         <p class="frontend-feature-entry-pages">
                             <?php if (!empty($section_array['pages'])) : ?>
                             <strong><?php esc_html_e('Pages', 'capsman-enhanced'); ?>:</strong>
-                            <?php echo esc_html(str_replace(['-', '_'], ' ', join(', ', $section_array['pages']))); ?>
+                            <?php echo esc_html(str_replace(['-', '_'], ' ', join(', ', (array) $section_array['pages']))); ?>
                             <?php endif; ?>
                         </p>
                     </div>
@@ -502,8 +502,8 @@ class PP_Capabilities_Frontend_Features_UI
                     data-section="<?php echo esc_attr($section_slug); ?>"
                     data-label="<?php echo esc_attr($section_array['label']); ?>"
                     data-element="<?php echo esc_attr($section_array['elements']); ?>"
-                    data-pages="<?php echo esc_attr(join(', ', $section_array['pages'])); ?>"
-                    data-post-types="<?php echo esc_attr(join(', ', $section_array['post_types'])); ?>"
+                    data-pages="<?php echo esc_attr(join(', ', (array) $section_array['pages'])); ?>"
+                    data-post-types="<?php echo esc_attr(join(', ', (array) $section_array['post_types'])); ?>"
                     data-id="<?php echo esc_attr($section_id); ?>">
                 <?php esc_html_e('Edit', 'capsman-enhanced'); ?>
                 </div>
@@ -575,7 +575,7 @@ class PP_Capabilities_Frontend_Features_UI
                         <p class="frontend-feature-entry-pages">
                             <?php if (!empty($section_array['pages'])) : ?>
                             <strong><?php esc_html_e('Pages', 'capsman-enhanced'); ?>:</strong>
-                            <?php echo esc_html(str_replace(['-', '_'], ' ', join(', ', $section_array['pages']))); ?>
+                            <?php echo esc_html(str_replace(['-', '_'], ' ', join(', ', (array) $section_array['pages']))); ?>
                             <?php endif; ?>
                         </p>
                     </div>
@@ -589,8 +589,8 @@ class PP_Capabilities_Frontend_Features_UI
                 <div class="button edit-custom-item" 
                     data-section="<?php echo esc_attr($section_slug); ?>"
                     data-label="<?php echo esc_attr($section_array['label']); ?>"
-                    data-pages="<?php echo esc_attr(join(', ', $section_array['pages'])); ?>"
-                    data-post-types="<?php echo esc_attr(join(', ', $section_array['post_types'])); ?>"
+                    data-pages="<?php echo esc_attr(join(', ', (array) $section_array['pages'])); ?>"
+                    data-post-types="<?php echo esc_attr(join(', ', (array) $section_array['post_types'])); ?>"
                     data-id="<?php echo esc_attr($section_id); ?>">
                 <?php esc_html_e('Edit', 'capsman-enhanced'); ?>
                 </div>
