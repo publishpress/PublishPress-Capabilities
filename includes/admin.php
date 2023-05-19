@@ -427,11 +427,7 @@ if (defined('PUBLISHPRESS_REVISIONS_VERSION') && function_exists('rvy_get_option
 						$plugin_caps = [];
 
 						//PublishPress Capabilities Capabilities
-						$plugin_caps['PublishPress Capabilities'] = apply_filters('cme_publishpress_capabilities_capabilities',
-							[
-							    'manage_capabilities',
-                            ]
-						);
+						$plugin_caps['PublishPress Capabilities'] = apply_filters('cme_publishpress_capabilities_capabilities', []);
 
 						if (defined('PUBLISHPRESS_VERSION')) {
 							$plugin_caps['PublishPress Planner'] = apply_filters('cme_publishpress_capabilities',
@@ -1236,6 +1232,12 @@ if (defined('PUBLISHPRESS_REVISIONS_VERSION') && function_exists('rvy_get_option
 								$title_text = $cap_name;
 							}
 
+                            if ($cap_name === 'manage_capabilities_user_testing') {
+                                $warning_message = '&nbsp; <span class="ppc-tool-tip"><span class="dashicons dashicons-info-outline"></span><span class="tool-tip-text"><p>'. sprintf(esc_html__('The User Testing feature also requires the %1$s edit_users %2$s capability.', 'capsman-enhanced'), '<strong>', '</strong>') .'</p><i></i></span></span>';
+                            } else {
+                                $warning_message = '';
+                            }
+
 							$disabled = '';
 							$checked = checked(1, ! empty($rcaps[$cap_name]), false );
 							$cap_title = $title_text;
@@ -1245,7 +1247,7 @@ if (defined('PUBLISHPRESS_REVISIONS_VERSION') && function_exists('rvy_get_option
 							<?php
 							echo esc_html(str_replace( '_', ' ', $cap_name));
 							?>
-							</span></label><a href="#" class="neg-cap" style="visibility: hidden;">&nbsp;x&nbsp;</a>
+							</span></label><?php echo $warning_message; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?><a href="#" class="neg-cap" style="visibility: hidden;">&nbsp;x&nbsp;</a>
 							<?php if ( false !== strpos( $class, 'cap-neg' ) ) :?>
 								<input type="hidden" class="cme-negation-input" name="caps[<?php echo esc_attr($cap_name); ?>]" value="" />
 							<?php endif; ?>

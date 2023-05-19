@@ -3,7 +3,6 @@ namespace PublishPress\Capabilities;
 
 class CoreAdmin {
     function __construct() {
-        add_action('admin_print_scripts', [$this, 'setUpgradeMenuLink'], 50);
 
         if (is_admin()) {
             $autoloadPath = PUBLISHPRESS_CAPS_ABSPATH . '/vendor/autoload.php';
@@ -18,7 +17,7 @@ class CoreAdmin {
                     'message' => 'You\'re using PublishPress Capabilities Free. The Pro version has more features and support. %sUpgrade to Pro%s',
                     'link'    => 'https://publishpress.com/links/capabilities-banner',
                     'screens' => [
-                        ['base' => 'toplevel_page_pp-capabilities-dashboard'],
+                        ['base' => 'capabilities_page_pp-capabilities-dashboard'],
                         ['base' => 'capabilities_page_pp-capabilities'],
                         ['base' => 'capabilities_page_pp-capabilities-roles'],
                         ['base' => 'capabilities_page_pp-capabilities-editor-features'],
@@ -28,10 +27,31 @@ class CoreAdmin {
                         ['base' => 'capabilities_page_pp-capabilities-nav-menus'],
                         ['base' => 'capabilities_page_pp-capabilities-backup'],
                         ['base' => 'capabilities_page_pp-capabilities-settings'],
+                        //all menu could become a top menu page if main top menu is disabled/they're the only menu
+                        ['base' => 'toplevel_page_pp-capabilities-dashboard'],
+                        ['base' => 'toplevel_page_pp-capabilities'],
+                        ['base' => 'toplevel_page_pp-capabilities-roles'],
+                        ['base' => 'toplevel_page_pp-capabilities-editor-features'],
+                        ['base' => 'toplevel_page_pp-capabilities-admin-features'],
+                        ['base' => 'toplevel_page_pp-capabilities-profile-features'],
+                        ['base' => 'toplevel_page_pp-capabilities-nav-menus'],
+                        ['base' => 'toplevel_page_pp-capabilities-backup'],
+                        ['base' => 'toplevel_page_pp-capabilities-settings'],
                     ]
                 ];
     
                 return $settings;
+            });
+            add_filter(
+                \PPVersionNotices\Module\MenuLink\Module::SETTINGS_FILTER,
+                function ($settings) {
+                    $settings['publishpress-capabilities'] = [
+                        'parent' => 'pp-capabilities-dashboard',
+                        'label'  => 'Upgrade to Pro',
+                        'link'   => 'https://publishpress.com/links/capabilities-menu',
+                    ];
+
+                    return $settings;
             });
         }
 
@@ -45,21 +65,6 @@ class CoreAdmin {
         add_action('pp_capabilities_admin_features_after_table_tr', [$this, 'customItemsPromo']);
     }
 
-    function setUpgradeMenuLink() {
-        $url = 'https://publishpress.com/links/capabilities-menu';
-        ?>
-        <style type="text/css">
-        #toplevel_page_pp-capabilities-dashboard ul li:last-of-type a {font-weight: bold !important; color: #FEB123 !important;}
-        </style>
-
-		<script type="text/javascript">
-            jQuery(document).ready(function($) {
-                $('#toplevel_page_pp-capabilities-dashboard ul li:last a').attr('href', '<?php echo esc_url_raw($url);?>').attr('target', '_blank').css('font-weight', 'bold').css('color', '#FEB123');
-            });
-        </script>
-		<?php
-    }
-
     function actCapabilitiesSubmenus($sub_menu_pages, $cme_fakefunc) {
         if (!$cme_fakefunc) {
             //add admin menu after profile features menu
@@ -67,7 +72,7 @@ class CoreAdmin {
             $profile_features_menu   = [];
             $profile_features_menu['admin-menus'] = [
                 'title'             => __('Admin Menus', 'capsman-enhanced'),
-                'capabilities'      => (is_multisite() && is_super_admin()) ? 'read' : 'manage_capabilities',
+                'capabilities'      => (is_multisite() && is_super_admin()) ? 'read' : 'manage_capabilities_admin_menus',
                 'page'              => 'pp-capabilities-admin-menus',
                 'callback'          => [$this, 'AdminMenusPromo'],
                 'dashboard_control' => true,

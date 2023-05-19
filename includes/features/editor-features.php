@@ -129,6 +129,12 @@ $active_tab_text = is_object($active_tab_type_obj)
                                     <li class="editor-features-tab classic-tab nav-tab <?php if (!empty($_REQUEST['ppc-tab']) && ('classic' == $_REQUEST['ppc-tab'])) echo 'nav-tab-active';?>"
                                         data-tab=".editor-features-classic"><a href="#"><?php esc_html_e('Classic', 'capsman-enhanced') ?></a></li>
                                 </ul>
+                            <?php else: ?>
+                                <div class="ppc-editor-features-classic-toggle" style="visibility: hidden;">
+                                <input type="submit" name="editor-features-classic-editor-toggle"
+                                    value="<?php esc_attr_e('show Classic Editor controls', 'capsman-enhanced') ?>"
+                                    class="button-secondary ppc-editor-classic-toggle-button" />
+                                </div>
                             <?php endif; ?>
 
                             </div>

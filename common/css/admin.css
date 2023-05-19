@@ -508,6 +508,11 @@ table#akmin .pp-capability-menus-select .restrict-column {
   clear: none !important;
 }
 
+
+table#akmin .pp-capability-menus-select .restrict-column + .menu-column.ppc-menu-item {
+  width: 100%;
+}
+
 .pp-capability-menus .menu-item-link {
   display: inline;
   color: #0073aa;
@@ -605,7 +610,8 @@ margin-bottom: 10px !important;
     margin-bottom: 10px !important;
 }
 
-body.capabilities_page_pp-capabilities-nav-menus .pp-capability-menus-select .restrict-column {
+body.capabilities_page_pp-capabilities-nav-menus .pp-capability-menus-select .restrict-column,
+body.toplevel_page_pp-capabilities-nav-menus .pp-capability-menus-select .restrict-column {
     width: 70px !important;
 }
 
@@ -614,7 +620,8 @@ body.capabilities_page_pp-capabilities-nav-menus .pp-capability-menus-select .re
 }
 
 
-body.capabilities_page_pp-capabilities-admin-features .pp-capability-menus-select .restrict-column {
+body.capabilities_page_pp-capabilities-admin-features .pp-capability-menus-select .restrict-column,
+body.toplevel_page_pp-capabilities-admin-features .pp-capability-menus-select .restrict-column {
   width: 70px !important;
 }
 
@@ -733,7 +740,8 @@ text-align: center;
     float: right;
 }
 
-body.capabilities_page_pp-capabilities-settings .publishpress-caps-settings .form-table th {
+body.capabilities_page_pp-capabilities-settings .publishpress-caps-settings .form-table th,
+body.toplevel_page_pp-capabilities-settings .publishpress-caps-settings .form-table th {
     width: 300px;
 }
 
@@ -825,11 +833,6 @@ div.ppc-editor-features-classic-toggle {
     margin-left: 40px;
 }
 
-.pp-capability-menus-wrapper.profile-features table#akmin .pp-capability-menus-select .restrict-column {
-    width: 0;
-    min-width: 70px;
-}
-
 .publishpress-caps-settings .description {
     vertical-align: text-bottom;
 }
@@ -840,7 +843,8 @@ div.ppc-editor-features-classic-toggle {
 
 /* ====================================================== Nav Menu Restriction */
 
-body.capabilities_page_pp-capabilities-nav-menus .pp-capability-menus-select .restrict-column {
+body.capabilities_page_pp-capabilities-nav-menus .pp-capability-menus-select .restrict-column,
+body.toplevel_page_pp-capabilities-nav-menus .pp-capability-menus-select .restrict-column {
     width: 70px !important;
 }
 
@@ -859,7 +863,7 @@ user-select: none;
 .ppc-tool-tip {
     display: inline-block;
     position: relative;
-    cursor: help;
+    cursor: pointer;
 }
 
 .ppc-tool-tip .tool-tip-text {

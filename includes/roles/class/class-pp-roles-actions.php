@@ -6,7 +6,7 @@ class Pp_Roles_Actions
     /**
      * @var string
      */
-    protected $capability = 'manage_options';
+    protected $capability = 'manage_capabilities_roles';
 
     /**
      * @var Pp_Roles_Manager
