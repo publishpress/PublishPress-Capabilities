@@ -79,13 +79,11 @@ class PP_Capabilities_Installer
 
     private static function addFrontendFeaturesCapabilities()
     {
-        $eligible_roles  = [];
-        $pp_capabilities = apply_filters('cme_publishpress_capabilities_capabilities', []);
 
         $eligible_roles = ['administrator', 'editor'];
 
         /**
-         * Add capabilities to eligible admin and editor roles
+         * Add frontend features capabilities to admin and editor roles
          */
         foreach ($eligible_roles as $eligible_role) {
             $role = get_role($eligible_role);
