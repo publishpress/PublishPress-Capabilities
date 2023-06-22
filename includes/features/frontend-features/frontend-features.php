@@ -51,6 +51,10 @@ if (!empty($_REQUEST['role'])) {
     $role_caption = translate_user_role($roles[$default_role]);
 }
 
+if (!isset($ppc_other_permissions[$default_role])) {
+    $role_caption .= ' ' . __('Role', 'capsman-enhanced');
+}
+
 $disabled_frontend_items = !empty(get_option('capsman_disabled_frontend_features')) ? (array)get_option('capsman_disabled_frontend_features') : [];
 $disabled_frontend_items = array_key_exists($default_role, $disabled_frontend_items) ? (array)$disabled_frontend_items[$default_role] : [];
 
@@ -177,7 +181,7 @@ $active_tab_slug    = (!empty($_REQUEST['pp_caps_tab'])) ? sanitize_key($_REQUES
                                                                         <input class="check-item check-all-menu-item"
                                                                             type="checkbox" />
                                                                     </td>
-                                                                    <td class="menu-column ppc-menu-item">
+                                                                    <td class="menu-column ppc-menu-item frontend-features">
                                                                     </td>
 
                                                                 </tr>
@@ -195,17 +199,10 @@ $active_tab_slug    = (!empty($_REQUEST['pp_caps_tab'])) ? sanitize_key($_REQUES
                                                                 </tr>
                                                                 <tr class="custom-item-wrapper-tr <?php echo esc_attr($display_title_class); ?>">
                                                                     <td colspan="2" class="custom-item-wrapper-td">
-                                                                        <table class="wp-list-table widefat fixed striped table-view-list custom-items-table">
+                                                                        <table class="wp-list-table widefat striped table-view-list custom-items-table">
                                                                             <thead>
                                                                                 <tr>
-                                                                                    <td class="manage-column column-cb check-column"><?php esc_attr_e('Enable for Role', 'capsman-enhanced') ?></td>
-                                                                                    <th scope="col" class="manage-column column-primary"
-                                                                                    >
-                                                                                        <?php esc_attr_e('Label', 'capsman-enhanced') ?>
-                                                                                    </th>
-                                                                                    <th scope="col" class="manage-column"></th>
-                                                                                    <th scope="col" class="manage-column"></th>
-                                                                                    <th scope="col" class="manage-column"></th>
+                                                                                    <th colspan="5" class="manage-column column-cb check-column"><?php printf(esc_html__('Apply for %1$s', 'capsman-enhanced'), esc_html($role_caption)); ?></th>
                                                                                 </tr>
                                                                             </thead>
                                                                             <tbody>

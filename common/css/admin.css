@@ -509,7 +509,7 @@ table#akmin .pp-capability-menus-select .restrict-column {
 }
 
 
-table#akmin .pp-capability-menus-select .restrict-column + .menu-column.ppc-menu-item {
+table#akmin .pp-capability-menus-select .restrict-column + .menu-column.ppc-menu-item:not(.frontend-features) {
   width: 100%;
 }
 
@@ -1250,10 +1250,6 @@ tr.opened .ppc-nav-menu-expand svg {
     padding: 0 !important;
 }
 
-.pp-capability-menus-wrapper.frontend-features table#akmin .pp-capability-menus-select .restrict-column {
-    min-width: 0;
-}
-
 .pp-capability-menus-wrapper.frontend-features .striped > tbody > :nth-child(odd) {
     background-color: transparent;
 }
@@ -1313,17 +1309,13 @@ tr.opened .ppc-nav-menu-expand svg {
     border-left: none !important;
 }
 
-.custom-items-table .check-column {
-    width: 92px;
-    text-align: center;
+.custom-items-table .manage-column {
+    padding-left: 9px;
 }
 
-.custom-items-table .manage-column:not(.column-primary) {
-    padding-left: 15px !important;
-}
-
-.custom-items-table .column-primary {
-    width: 40%;
+.pp-capability-menus-wrapper.frontend-features table#akmin .pp-capability-menus-select .restrict-column {
+    text-align: left;
+    min-width: initial;
 }
 
 .custom-table-title {
