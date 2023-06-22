@@ -1103,11 +1103,13 @@ user-select: none;
     color: #ffffff;
 }
 
-.publishpress-caps-manage .pp-columns-wrapper.pp-enable-sidebar .pp-column-left {
+body.capabilities_page_pp-capabilities .publishpress-caps-manage .pp-columns-wrapper.pp-enable-sidebar .pp-column-left,
+body.toplevel_page_pp-capabilitie .publishpress-caps-manage .pp-columns-wrapper.pp-enable-sidebar .pp-column-left {
     width: 72%;
 }
 
-.publishpress-caps-manage .pp-columns-wrapper.pp-enable-sidebar .pp-column-right {
+body.capabilities_page_pp-capabilities .pp-columns-wrapper.pp-enable-sidebar .pp-column-right,
+body.toplevel_page_pp-capabilitie .pp-columns-wrapper.pp-enable-sidebar .pp-column-right {
     width: calc(28% - 20px);
 }
 
