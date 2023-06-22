@@ -1559,6 +1559,9 @@ body.capabilities_page_pp-capabilities-frontend-features .pp-capability-menus-se
   .pp-capability-menus-wrapper.profile-features div.pp-column-right {
     padding-top: 80px;
   }
+  .publishpress-caps-manage.publishpress-caps-backup div.pp-column-right {
+    padding-top: 67px;
+  }
 }
 
 @media (max-width: 1199px) {
