@@ -1551,17 +1551,20 @@ body.capabilities_page_pp-capabilities-frontend-features .pp-capability-menus-se
     padding-top: 110px;
   }
   .pp-capability-menus-wrapper.admin-features div.pp-column-right {
-      padding-top: 80px;
+      padding-top: 81px;
   }
   .pp-capability-menus-wrapper.frontend-features div.pp-column-right {
     padding-top: 62px;
+  }
+  .pp-capability-menus-wrapper.capabilities-dashboard div.pp-column-right {
+    padding-top: 21px;
   }
 
   .pp-capability-menus-wrapper.nav-menus div.pp-column-right {
       padding-top: 62px;
   }
   .pp-capability-menus-wrapper.profile-features div.pp-column-right {
-    padding-top: 80px;
+    padding-top: 81px;
   }
   .publishpress-caps-manage.publishpress-caps-backup div.pp-column-right {
     padding-top: 67px;
