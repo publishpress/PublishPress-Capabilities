@@ -73,7 +73,7 @@ class PP_Capabilities_Frontend_Features_Action
             update_option('capsman_frontend_features_hide_elements', $data);
 
             $function_args = [
-                'disabled_frontend_items' => [],
+                'disabled_frontend_items' => ['frontendelements||' . $element_id],
                 'section_array'           => $data[$element_id],
                 'section_slug'            => 'frontendelements',
                 'section_id'              => $element_id,
@@ -129,9 +129,9 @@ class PP_Capabilities_Frontend_Features_Action
             ];
 
             update_option('capsman_frontend_features_body_class', $data);
-
+            
             $function_args = [
-                'disabled_frontend_items' => [],
+                'disabled_frontend_items' => ['bodyclass||' . $element_id],
                 'section_array'           => $data[$element_id],
                 'section_slug'            => 'bodyclass',
                 'section_id'              => $element_id,
@@ -189,7 +189,7 @@ class PP_Capabilities_Frontend_Features_Action
             update_option('capsman_frontend_features_custom_styles', $data);
 
             $function_args = [
-                'disabled_frontend_items' => [],
+                'disabled_frontend_items' => ['customstyles||' . $element_id],
                 'section_array'           => $data[$element_id],
                 'section_slug'            => 'customstyles',
                 'section_id'              => $element_id,
