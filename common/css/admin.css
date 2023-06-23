@@ -536,6 +536,10 @@ table#akmin .pp-capability-menus-select .restrict-column + .menu-column.ppc-menu
   cursor: pointer;
 }
 
+.pp-capability-menus-wrapper.nav-menus .pp-capability-menus-select.fse-nav-menu .ppc-nav-item-title {
+  vertical-align: top;
+}
+
 .pp-capability-menus .menu-item-link:active {
   color: #0073aa;
   border-color: #0073aa;

@@ -178,7 +178,7 @@ $nav_menu_item_option = array_key_exists($default_role, $nav_menu_item_option) ?
                                                                             <?php else : ?>
                                                                             <i class="dashicons dashicons-menu-alt"></i>
                                                                             <?php endif; ?>
-                                                                            <?php echo esc_html(wp_strip_all_tags($menu_name)); ?>
+                                                                            <span class="ppc-nav-item-title"><?php echo esc_html(wp_strip_all_tags($menu_name)); ?></span>
                                                                         </strong></span>
                                                                         </label>
                                                                     </td>
@@ -250,7 +250,9 @@ $nav_menu_item_option = array_key_exists($default_role, $nav_menu_item_option) ?
                                                                                 } ?>
                                                                                 <?php echo $depth_space; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
                                                                                 <?php if ($fse_theme) : ?>
-                                                                                    <?php echo $menu_item->title; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+                                                                                    <span class="ppc-nav-item-title">
+                                                                                        <?php echo $menu_item->title; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+                                                                                    </span>
                                                                                 <?php else : ?>
                                                                                 <?php echo esc_html(wp_strip_all_tags($menu_item->title)); ?>
                                                                                 <?php endif; ?>
