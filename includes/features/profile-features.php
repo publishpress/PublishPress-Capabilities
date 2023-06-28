@@ -40,7 +40,7 @@ if (get_option('cme_profile_features_auto_redirect')) {
 
     <div class="wrap publishpress-caps-manage pressshack-admin-wrapper pp-capability-menus-wrapper profile-features <?php echo (empty($profile_features_elements) ? 'empty-elements' : ''); ?>">
         <div id="icon-capsman-admin" class="icon32"></div>
-        <h2><?php esc_html_e('Profile Features Restrictions', 'capsman-enhanced'); ?></h2>
+        <h2><?php esc_html_e('Profile Feature Restrictions', 'capsman-enhanced'); ?></h2>
 
         <form method="post" id="ppc-profile-features-form" action="admin.php?page=pp-capabilities-profile-features">
             <?php wp_nonce_field('pp-capabilities-profile-features'); ?>
