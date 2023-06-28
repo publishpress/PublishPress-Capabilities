@@ -626,7 +626,7 @@ class CapabilityManager
 	 * @return void
 	 */
 	public function ManageFrontendFeatures() {
-		if ((!is_multisite() || !is_super_admin()) && !current_user_can('administrator') && !current_user_can('manage_capabilities')) {
+		if ((!is_multisite() || !is_super_admin()) && !current_user_can('administrator') && !current_user_can('manage_capabilities_frontend_features')) {
             // TODO: Implement exceptions.
 		    wp_die('<strong>' . esc_html__('You do not have permission to manage frontend features.', 'capsman-enhanced') . '</strong>');
 		}
