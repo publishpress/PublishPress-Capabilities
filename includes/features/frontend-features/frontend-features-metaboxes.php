@@ -84,10 +84,6 @@ class PP_Capabilities_Frontend_Features_Metaboxes
             $post_features = (array) get_post_meta($post->ID, $section_slug, true);
             ?>
             <div class="frontend-feature-metabox">
-                <label
-                    for="<?php echo esc_attr($section_slug); ?>">
-                    <strong><?php echo esc_html($section_title); ?></strong>
-                </label>
                 <select name="<?php echo esc_attr($section_slug); ?>[]"
                     id="<?php echo esc_attr($section_slug); ?>"
                     class="chosen-cpt-select"

@@ -54,7 +54,8 @@ class PP_Capabilities_Frontend_Features_Restrict
             $page_restriction_data = [
                 'custom_styles'     => [],
                 'frontend_elements' => [],
-                'body_class'        => []
+                'body_class'        => [],
+                'element_data'      => []
             ];
 
             $disabled_features = !empty(get_option('capsman_disabled_frontend_features')) ? (array)get_option('capsman_disabled_frontend_features') : [];
@@ -79,13 +80,33 @@ class PP_Capabilities_Frontend_Features_Restrict
 
             // populate global data if there's restricted item for role
             if (!empty($role_disabled_features)) {
-                $ppc_disabled_customstyles     = PP_Capabilities_Frontend_Features_Data::getRestrictedElements($role_disabled_features, 'customstyles');
-                $ppc_disabled_frontendelements = PP_Capabilities_Frontend_Features_Data::getRestrictedElements($role_disabled_features, 'frontendelements');
-                $ppc_disabled_bodyclass        = PP_Capabilities_Frontend_Features_Data::getRestrictedElements($role_disabled_features, 'bodyclass');
+                $frontend_element_data     = PP_Capabilities_Frontend_Features_Data::getFrontendElements();
+                $ppc_disabled_customstyles = [];
+                $ppc_disabled_frontendelements = [];
+                $ppc_disabled_bodyclass = [];
+                foreach ($role_disabled_features as $role_disabled_feature) {
+                    if (isset($frontend_element_data[$role_disabled_feature])) {
+                        $current_data_elements = $frontend_element_data[$role_disabled_feature]['elements'];
+                        if (!empty(trim($current_data_elements['styles']))) {
+                            $ppc_disabled_customstyles[] = $role_disabled_feature;
+                        }
+                        if (!empty(trim($current_data_elements['selector']))) {
+                            $ppc_disabled_frontendelements[] = $role_disabled_feature;
+                        }
+                        if (!empty(trim($current_data_elements['styles']))) {
+                            $ppc_disabled_bodyclass[] = $role_disabled_feature;
+                        }
+                    }
+                }
+                $ppc_disabled_customstyles     = array_filter($ppc_disabled_customstyles);
+                $ppc_disabled_frontendelements = array_filter($ppc_disabled_frontendelements);
+                $ppc_disabled_bodyclass        = array_filter($ppc_disabled_bodyclass);
             
                 $page_restriction_data['custom_styles']     = $ppc_disabled_customstyles;
                 $page_restriction_data['frontend_elements'] = $ppc_disabled_frontendelements;
                 $page_restriction_data['body_class']        = $ppc_disabled_bodyclass;
+
+                $page_restriction_data['element_data']      = $frontend_element_data;
                 
                 do_action('ppc_frontend_features_role_raw_restricted_data', $role_disabled_features);
                 do_action('ppc_frontend_features_role_restricted_data', $page_restriction_data);
@@ -105,42 +126,6 @@ class PP_Capabilities_Frontend_Features_Restrict
     }
 
     /**
-     * Add frontend features body class
-     *
-     * @param array $classes Existing body classes.
-     * @return array Amended body classes.
-     */
-    public function setFrontendBodyClass($classes)
-    {
-        global $ppc_ff_page_restriction_data;
-
-        if (is_array($ppc_ff_page_restriction_data)
-            && isset($ppc_ff_page_restriction_data['body_class'])
-            && !empty($ppc_ff_page_restriction_data['body_class'])
-        ) {
-            $body_class_elements = $ppc_ff_page_restriction_data['body_class'];
-            $body_class_data     = PP_Capabilities_Frontend_Features_Data::getBodyClass();
-            $new_body_class      = [];
-
-            //check all element and add class if enabled for current page
-            foreach ($body_class_elements as $body_class_element) {
-                $element_id = str_replace('bodyclass||', '', $body_class_element);
-                if (isset($body_class_data[$element_id])) {
-                    $current_body_class_data = $body_class_data[$element_id];
-                    //add body class if it's enabled for this page
-                    if ($this->elementEnabledForCurrentPage($current_body_class_data['pages'], $element_id)) {
-                        $current_body_class = explode(' ', $current_body_class_data['elements']);
-                        $new_body_class = array_merge($new_body_class, $current_body_class);
-                    }
-                }
-            }
-            $classes = array_merge($classes, $new_body_class);
-        }
-
-        return $classes;
-    }
-
-    /**
      * Add frontend features header styles css
      */
     public function setFrontendStyles()
@@ -155,16 +140,16 @@ class PP_Capabilities_Frontend_Features_Restrict
             && !empty($ppc_ff_page_restriction_data['custom_styles'])
         ) {
             $custom_styles_elements = $ppc_ff_page_restriction_data['custom_styles'];
-            $custom_styles_data     = PP_Capabilities_Frontend_Features_Data::getCustomStyles();
-            $new_custom_styles      = [];
+            $element_data           = $ppc_ff_page_restriction_data['element_data'];
+
             //check all element and add if enabled for current page
             foreach ($custom_styles_elements as $custom_styles_element) {
-                $element_id = str_replace('customstyles||', '', $custom_styles_element);
-                if (isset($custom_styles_data[$element_id])) {
-                    $current_custom_styles_data = $custom_styles_data[$element_id];
+                $element_id = $custom_styles_element;
+                if (isset($element_data[$element_id])) {
+                    $current_element_data = $element_data[$element_id];
                     //add style if it's enabled for this page
-                    if ($this->elementEnabledForCurrentPage($current_custom_styles_data['pages'], $element_id)) {
-                        $custom_css .= $current_custom_styles_data['elements'];
+                    if ($this->elementEnabledForCurrentPage($current_element_data['pages'], $element_id)) {
+                        $custom_css .= $current_element_data['elements']['styles'];
                     }
                 }
             }
@@ -176,18 +161,17 @@ class PP_Capabilities_Frontend_Features_Restrict
             && !empty($ppc_ff_page_restriction_data['frontend_elements'])
         ) {
             $frontend_elements_elements = $ppc_ff_page_restriction_data['frontend_elements'];
-            $frontend_elements_data     = PP_Capabilities_Frontend_Features_Data::getFrontendElements();
-            $new_frontend_elements      = [];
+            $element_data               = $ppc_ff_page_restriction_data['element_data'];
 
             //check all element and add if enabled for current page
             $frontend_element_selectors = [];
             foreach ($frontend_elements_elements as $frontend_elements_element) {
-                $element_id = str_replace('frontendelements||', '', $frontend_elements_element);
-                if (isset($frontend_elements_data[$element_id])) {
-                    $current_frontend_elements_data = $frontend_elements_data[$element_id];
+                $element_id = $frontend_elements_element;
+                if (isset($element_data[$element_id])) {
+                    $current_element_data = $element_data[$element_id];
                     //add element selector if it's enabled for this page
-                    if ($this->elementEnabledForCurrentPage($current_frontend_elements_data['pages'], $element_id)) {
-                        $frontend_element_selectors[] = $current_frontend_elements_data['elements'];
+                    if ($this->elementEnabledForCurrentPage($current_element_data['pages'], $element_id)) {
+                        $frontend_element_selectors[] = $current_element_data['elements']['selector'];
                     }
                 }
             }
@@ -206,6 +190,43 @@ class PP_Capabilities_Frontend_Features_Restrict
 
         <?php
         endif;
+    }
+
+    /**
+     * Add frontend features body class
+     *
+     * @param array $classes Existing body classes.
+     * @return array Amended body classes.
+     */
+    public function setFrontendBodyClass($classes)
+    {
+        global $ppc_ff_page_restriction_data;
+
+        if (is_array($ppc_ff_page_restriction_data)
+            && isset($ppc_ff_page_restriction_data['body_class'])
+            && !empty($ppc_ff_page_restriction_data['body_class'])
+        ) {
+            $body_class_elements = $ppc_ff_page_restriction_data['body_class'];
+            $element_data        = $ppc_ff_page_restriction_data['element_data'];
+            $new_body_class      = [];
+
+            //check all element and add class if enabled for current page
+            foreach ($body_class_elements as $body_class_element) {
+                $element_id = $body_class_element;
+                if (isset($element_data[$element_id])) {
+                    $current_element_data = $element_data[$element_id];
+                    $current_element_data = $element_data[$element_id];
+                    //add body class if it's enabled for this page
+                    if ($this->elementEnabledForCurrentPage($current_element_data['pages'], $element_id)) {
+                        $current_body_class = explode(' ', $current_element_data['elements']['bodyclass']);
+                        $new_body_class = array_merge($new_body_class, $current_body_class);
+                    }
+                }
+            }
+            $classes = array_merge($classes, $new_body_class);
+        }
+
+        return $classes;
     }
 
     /**

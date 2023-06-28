@@ -59,9 +59,7 @@ $disabled_frontend_items = !empty(get_option('capsman_disabled_frontend_features
 $disabled_frontend_items = array_key_exists($default_role, $disabled_frontend_items) ? (array)$disabled_frontend_items[$default_role] : [];
 
 $frontend_features_elements = PP_Capabilities_Frontend_Features_Data::elementsLayout();
-$icon_list                  = PP_Capabilities_Frontend_Features_Data::elementLayoutItemIcons();
 
-$active_tab_slug    = (!empty($_REQUEST['pp_caps_tab'])) ? sanitize_key($_REQUEST['pp_caps_tab']) : 'customstyles';
 ?>
 
 <div class="wrap publishpress-caps-manage pressshack-admin-wrapper pp-capability-menus-wrapper frontend-features">
@@ -71,8 +69,6 @@ $active_tab_slug    = (!empty($_REQUEST['pp_caps_tab'])) ? sanitize_key($_REQUES
 
     <form method="post" id="ppc-frontend-features-form" action="admin.php?page=pp-capabilities-frontend-features">
         <?php wp_nonce_field('pp-capabilities-frontend-features'); ?>
-        <input type="hidden" name="pp_caps_tab"
-            value="<?php echo esc_attr($active_tab_slug);?>" />
 
         <div class="pp-columns-wrapper pp-enable-sidebar">
             <div class="pp-column-left">
@@ -132,46 +128,14 @@ $active_tab_slug    = (!empty($_REQUEST['pp_caps_tab'])) ? sanitize_key($_REQUES
                                     <div class="pp-capability-menus-wrap">
                                         <div id="pp-capability-menus-general"
                                             class="pp-capability-menus-content editable-role" style="display: block;">
-                                            <div id="ppc-capabilities-wrapper" class="postbox">
 
-                                                <div class="ppc-capabilities-tabs">
-                                                    <ul>
-                                                        <?php
-                                                            foreach ($frontend_features_elements as $section_title => $section_elements) {
-                                                                $section_slug = strtolower(ppc_remove_non_alphanumeric_space_characters($section_title));
-                                                                $icon_name    = isset($icon_list[$section_slug]) ? $icon_list[$section_slug] : '&nbsp;';
-                                                                $active_class = ($section_slug === $active_tab_slug) ? 'ppc-capabilities-tab-active' : '';
-
-                                                                $disabled_count  = count(PP_Capabilities_Frontend_Features_Data::getRestrictedElements($disabled_frontend_items, $section_slug)); ?>
-                                                        <li data-slug="<?php esc_attr_e($section_slug); ?>"
-                                                            data-content="cme-cap-type-tables-<?php esc_attr_e($section_slug); ?>"
-                                                            data-name="<?php esc_attr_e($section_title); ?>"
-                                                            class="<?php esc_attr_e($active_class); ?>">
-                                                            <i
-                                                                class="dashicons dashicons-<?php echo esc_attr($icon_name) ?>"></i>
-                                                            <?php esc_html_e($section_title); ?>
-                                                            <?php if ($disabled_count > 0) : ?>
-                                                            <span class="pp-capabilities-feature-count">
-                                                                <?php echo esc_html__('Enabled:', 'capsman-enhanced') . ' ' . esc_html($disabled_count); ?>
-                                                            </span>
-                                                            <?php endif; ?>
-                                                        </li>
-                                                        <?php
-                                                            }
-                                                                ?>
-                                                    </ul>
-                                                </div>
-
-                                                <div class="ppc-capabilities-content">
                                                     <?php
                                                       $sn = 0;
                                                       foreach ($frontend_features_elements as $section_title => $section_elements) :
                                                           $sn++;
                                                           $section_slug = strtolower(ppc_remove_non_alphanumeric_space_characters($section_title));
-                                                          $active_style = ($section_slug === $active_tab_slug) ? '' : 'display:none;';
                                                             ?>
-                                                    <div id="cme-cap-type-tables-<?php esc_attr_e($section_slug); ?>"
-                                                        style="<?php esc_attr_e($active_style); ?>">
+                                                    <div id="cme-cap-type-tables-<?php esc_attr_e($section_slug); ?>">
                                                         <table
                                                             class="wp-list-table widefat striped pp-capability-menus-select <?php esc_attr_e($section_slug); ?>-table">
                                                             <tfoot>
@@ -193,7 +157,7 @@ $active_tab_slug    = (!empty($_REQUEST['pp_caps_tab'])) ? sanitize_key($_REQUES
                                                                 <tr class="custom-table-title <?php echo esc_attr($display_title_class); ?>">
                                                                     <td colspan="2" class="title-td">
                                                                         <label>
-                                                                            <?php printf(esc_html__('Edit Your %1$s', 'capsman-enhanced'), esc_html($section_title)); ?>
+                                                                            <?php printf(esc_html__('Apply for %1$s', 'capsman-enhanced'), esc_html($role_caption)); ?>
                                                                         </label>
                                                                     </td>
                                                                 </tr>
@@ -201,10 +165,44 @@ $active_tab_slug    = (!empty($_REQUEST['pp_caps_tab'])) ? sanitize_key($_REQUES
                                                                     <td colspan="2" class="custom-item-wrapper-td">
                                                                         <table class="wp-list-table widefat striped table-view-list custom-items-table">
                                                                             <thead>
-                                                                                <tr>
-                                                                                    <th colspan="5" class="manage-column column-cb check-column"><?php printf(esc_html__('Apply for %1$s', 'capsman-enhanced'), esc_html($role_caption)); ?></th>
+                                                                                <tr class="ppc-menu-row parent-menu">
+
+                                                                                    <td class="restrict-column ppc-menu-checkbox">
+                                                                                        <input id="check-all-item"
+                                                                                            class="check-item check-all-menu-item"
+                                                                                            type="checkbox"/>
+                                                                                    </td>
+                                                                                    <td class="menu-column ppc-menu-item" colspan="4">
+                                                                                        <label for="check-all-item">
+                                                                                    <span class="menu-item-link check-all-menu-link">
+                                                                                        <strong>
+                                                                                        <?php esc_html_e('Toggle all', 'capsman-enhanced'); ?>
+                                                                                        </strong>
+                                                                                    </span></label>
+                                                                                    </td>
+
                                                                                 </tr>
                                                                             </thead>
+                                                                            <tfoot>
+                                                                                <tr class="ppc-menu-row parent-menu">
+
+                                                                                    <td class="restrict-column ppc-menu-checkbox">
+                                                                                        <input id="check-all-item-2"
+                                                                                            class="check-item check-all-menu-item"
+                                                                                            type="checkbox"/>
+                                                                                    </td>
+                                                                                    <td class="menu-column ppc-menu-item" colspan="4">
+                                                                                        <label for="check-all-item-2">
+                                                                                        <span class="menu-item-link check-all-menu-link">
+                                                                                        <strong>
+                                                                                            <?php esc_html_e('Toggle all', 'capsman-enhanced'); ?>
+                                                                                        </strong>
+                                                                                        </span>
+                                                                                        </label>
+                                                                                    </td>
+
+                                                                                </tr>
+                                                                            </tfoot>
                                                                             <tbody>
                                                                             <?php
                                                                             foreach ($section_elements as $section_id => $section_array) :
@@ -239,9 +237,7 @@ $active_tab_slug    = (!empty($_REQUEST['pp_caps_tab'])) ? sanitize_key($_REQUES
                                                         endforeach; // $frontend_features_elements section loop
                                                     ?>
                                                     <?php do_action('pp_capabilities_frontend_features_after_table'); ?>
-                                                </div>
                                             </div>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -264,7 +260,7 @@ $active_tab_slug    = (!empty($_REQUEST['pp_caps_tab'])) ? sanitize_key($_REQUES
                 $banner_messages[] = esc_html__('Frontend Features allows you to remove elements from the frontend of your site.', 'capsman-enhanced');
                 $banner_messages[] = '</p><p>';
                 $banner_messages[] = sprintf(esc_html__('%1$s = No change', 'capsman-enhanced'), '<input type="checkbox" title="'. esc_attr__('usage key', 'capsman-enhanced') .'" disabled>') . ' <br />';
-                $banner_messages[] = sprintf(esc_html__('%1$s = This feature is enabled', 'capsman-enhanced'), '<input type="checkbox" title="'. esc_attr__('usage key', 'capsman-enhanced') .'" checked disabled>'). ' <br />';
+                $banner_messages[] = sprintf(esc_html__('%1$s = Apply custom styling', 'capsman-enhanced'), '<input type="checkbox" title="'. esc_attr__('usage key', 'capsman-enhanced') .'" checked disabled>'). ' <br />';
                 $banner_messages[] = '<p>';
                 $banner_messages[] = '<p><a class="button ppc-checkboxes-documentation-link" href="https://publishpress.com/knowledge-base/frontend-features/"target="blank">' . esc_html__('View Documentation', 'capsman-enhanced') . '</a></p>';
                 $banner_title  = __('How to use Frontend Features', 'capsman-enhanced');
