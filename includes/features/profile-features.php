@@ -222,9 +222,9 @@ if (get_option('cme_profile_features_auto_redirect')) {
                 <div class="pp-column-right pp-capabilities-sidebar">
                 <?php 
                 $banner_messages = ['<p>'];
-                $banner_messages[] = '<i class="dashicons dashicons-arrow-right"></i> <a href="'. $refresh_url .'">' . esc_html__('Refresh profile items.', 'capsman-enhanced') .'</a>';
+                $banner_messages[] = '<i class="dashicons dashicons-arrow-right"></i> <a href="'. $refresh_url .'">' . esc_html__('Refresh available profile items for this role', 'capsman-enhanced') .'</a>';
                 $banner_messages[] = '</p>';
-                $banner_title  = __('Update Profile Features', 'capsman-enhanced');
+                $banner_title  = __('Refresh Profile Features', 'capsman-enhanced');
                 pp_capabilities_sidebox_banner($banner_title, $banner_messages);
                 ?>
                 <?php 
