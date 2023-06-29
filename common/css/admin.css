@@ -1254,17 +1254,14 @@ tr.opened .ppc-nav-menu-expand svg {
   z-index: 1;
   padding: 5px 10px;
   background: #fff;
-}
-
-.ppc-button-group-border {
-  border-top: #7e8993 solid 1px !important;
-}
-
-.ppc-button-group label {
   margin: 0 0 0 -1px;
   flex: 1;
   text-align: center;
   white-space: nowrap;
+}
+
+.ppc-button-group-border {
+  border-top: #7e8993 solid 1px !important;
 }
 
 .ppc-button-group label.selected {
@@ -1277,7 +1274,7 @@ tr.opened .ppc-nav-menu-expand svg {
 
 
 .ppc-button-group label:first-child {
-  border-radius: 3px 0 0 3px;
+  border-radius: 3px 0 0 0;
 }
 
 .ppc-button-group input {
