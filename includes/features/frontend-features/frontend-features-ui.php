@@ -356,6 +356,7 @@ class PP_Capabilities_Frontend_Features_UI
                                 indentUnit: 2,
                                 tabSize: 2,
                                 mode: "css",
+                                autoRefresh:true,
                             }
                         );
                         css_editor = wp.codeEditor.initialize( $(".ppc-code-editor-page-css"), editorSettings );
