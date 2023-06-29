@@ -272,17 +272,17 @@ class PP_Capabilities_Frontend_Features_UI
                 </label>
                 <div class="custom-item-output">
                     <?php if (!empty($element_selector)) : ?>
-                        <pre
+                        <strong><?php esc_html_e('Hidden IDs or Classes', 'capsman-enhanced'); ?>:</strong> <pre
                             class="custom-item-display frontend-selector-output"><?php echo esc_html($element_selector); ?>
                         </pre>
                     <?php endif; ?>
                     <?php if (!empty($element_bodyclass)) : ?>
-                        <pre
+                        <strong><?php esc_html_e('Body Class', 'capsman-enhanced'); ?>:</strong> <pre
                             class="custom-item-display frontend-boddyclass-output"><?php echo esc_html($element_bodyclass); ?>
                         </pre>
                     <?php endif; ?>
                     <?php if (!empty($element_styles)) : ?>
-                        <pre
+                        <strong><?php esc_html_e('Custom CSS', 'capsman-enhanced'); ?>:</strong> <pre
                             class="custom-item-display frontend-styles-output"><?php echo esc_html($element_styles); ?>
                         </pre>
                         <div class="css-new-element-update"></div>
