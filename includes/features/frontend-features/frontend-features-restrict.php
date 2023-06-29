@@ -262,12 +262,8 @@ class PP_Capabilities_Frontend_Features_Restrict
 
         if (is_singular() && is_object($post) && isset($post->ID)) {
             //single post
-            $custom_styles     = (array) get_post_meta($post->ID, '_ppc_customstyles', true);
             $frontend_elements = (array) get_post_meta($post->ID, '_ppc_frontendelements', true);
-            $body_class        = (array) get_post_meta($post->ID, '_ppc_bodyclass', true);
-            $post_features     = array_merge($custom_styles, $frontend_elements, $body_class);
-
-            if (in_array($element_id, $post_features)) {
+            if (in_array($element_id, $frontend_elements)) {
                 return true;
             }
         }

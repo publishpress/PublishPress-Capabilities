@@ -128,13 +128,9 @@ class PP_Capabilities_Frontend_Features_Metaboxes
             return;
         }
 
-        $custom_styles     = !empty($_POST['_ppc_customstyles']) ? array_map('sanitize_text_field', $_POST['_ppc_customstyles']) : [];
         $frontend_elements = !empty($_POST['_ppc_frontendelements']) ? array_map('sanitize_text_field', $_POST['_ppc_frontendelements']) : [];
-        $body_class        = !empty($_POST['_ppc_bodyclass']) ? array_map('sanitize_text_field', $_POST['_ppc_bodyclass']) : [];
 
-        update_post_meta($post_id, '_ppc_customstyles', $custom_styles);
         update_post_meta($post_id, '_ppc_frontendelements', $frontend_elements);
-        update_post_meta($post_id, '_ppc_bodyclass', $body_class);
     }
 
     /**
