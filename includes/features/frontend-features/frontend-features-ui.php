@@ -72,7 +72,7 @@ class PP_Capabilities_Frontend_Features_UI
                     <tr class="ppc-menu-row parent-menu">
                         <td colspan="2">
                             <p class="cme-subtext">
-                                <?php esc_html_e('This form allows you to add custom CSS styles, body class to frontend pages and also specify elements IDs or classes to be removed from hidden from selected role.', 'capsman-enhanced'); ?>
+                                <?php esc_html_e('This form allows you to customize the site frontend (for the selected role) by hiding specified element IDs or classes, adding CSS styles, or adding body classes.', 'capsman-enhanced'); ?>
                             </p>
                             <p class="editing-custom-item">
                                 <strong><?php esc_html_e('Editing:', 'capsman-enhanced'); ?></strong> 
