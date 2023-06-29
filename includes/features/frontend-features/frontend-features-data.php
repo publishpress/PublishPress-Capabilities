@@ -27,6 +27,7 @@ class PP_Capabilities_Frontend_Features_Data
     {
         $elements_item = (array)get_option('capsman_frontend_features_elements', []);
         $elements_item = array_filter($elements_item);
+        $elements_item = array_reverse($elements_item);
 
         return $elements_item;
     }
