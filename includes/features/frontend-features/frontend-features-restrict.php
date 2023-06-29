@@ -93,7 +93,7 @@ class PP_Capabilities_Frontend_Features_Restrict
                         if (!empty(trim($current_data_elements['selector']))) {
                             $ppc_disabled_frontendelements[] = $role_disabled_feature;
                         }
-                        if (!empty(trim($current_data_elements['styles']))) {
+                        if (!empty(trim($current_data_elements['bodyclass']))) {
                             $ppc_disabled_bodyclass[] = $role_disabled_feature;
                         }
                     }
