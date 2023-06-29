@@ -108,13 +108,13 @@ class PP_Capabilities_Frontend_Features_UI
                                     <label class="body-class"><input type="radio" name="frontend_feature_active" value=".frontend-element-bodyclass"> <?php esc_html_e('Add Body Class', 'capsman-enhanced'); ?></label>
                                 </div>
                             </div>
-                            <div class="frontend-element-classes frontend-features-toggle hidden-element">
+                            <div class="frontend-element-classes frontend-features-toggle">
                                 <textarea class="frontend-element-new-element frontent-form-field frontendelements-form-element"></textarea><br />
                                 <small>
                                     <?php esc_html_e('IDs or classes to hide. Separate multiple values with a comma (.custom-item-one, .custom-item-two, #new-item-id).', 'capsman-enhanced'); ?>
                                 </small>
                             </div>
-                            <div class="frontend-element-styles frontend-features-toggle">
+                            <div class="frontend-element-styles frontend-features-toggle hidden-element">
 
                                 <div class="code-mirror-before"><div><?php echo htmlentities('<style type="text/css">'); ?></div></div>
                                 <textarea class="frontend-element-new-styles ppc-code-editor-page-css frontendelements-form-styles"></textarea>
