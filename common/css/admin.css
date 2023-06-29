@@ -1271,6 +1271,7 @@ tr.opened .ppc-nav-menu-expand svg {
   border-color: #00d084;
   background: #00d084;
   color: #fff;
+  font-weight: bold;
   z-index: 2;
 }
 
