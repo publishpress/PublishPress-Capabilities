@@ -1268,8 +1268,8 @@ tr.opened .ppc-nav-menu-expand svg {
 }
 
 .ppc-button-group label.selected {
-  border-color: #007cba;
-  background: #008dd4;
+  border-color: #00d084;
+  background: #00d084;
   color: #fff;
   z-index: 2;
 }

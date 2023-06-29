@@ -103,9 +103,9 @@ class PP_Capabilities_Frontend_Features_UI
                             <div class="frontend-element-toggle">
                                 <div class="ppc-button-group"
                                     data-hide-selector=".frontend-features-toggle">
-                                    <label class="element-classes"><input type="radio" name="frontend_feature_active" value=".frontend-element-classes"><?php esc_html_e('Element IDs or Classes', 'capsman-enhanced'); ?></label>
-                                    <label class="custom-css selected"><input type="radio" name="frontend_feature_active" value=".frontend-element-styles" checked> <?php esc_html_e('Custom CSS', 'capsman-enhanced'); ?></label>
-                                    <label class="body-class"><input type="radio" name="frontend_feature_active" value=".frontend-element-bodyclass"> <?php esc_html_e('Body Class', 'capsman-enhanced'); ?></label>
+                                    <label class="element-classes"><input type="radio" name="frontend_feature_active" value=".frontend-element-classes"><?php esc_html_e('Hide IDs or Classes', 'capsman-enhanced'); ?></label>
+                                    <label class="custom-css selected"><input type="radio" name="frontend_feature_active" value=".frontend-element-styles" checked> <?php esc_html_e('Add Custom CSS', 'capsman-enhanced'); ?></label>
+                                    <label class="body-class"><input type="radio" name="frontend_feature_active" value=".frontend-element-bodyclass"> <?php esc_html_e('Add Body Class', 'capsman-enhanced'); ?></label>
                                 </div>
                             </div>
                             <div class="frontend-element-classes frontend-features-toggle hidden-element">
