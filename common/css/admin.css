@@ -1243,7 +1243,7 @@ tr.opened .ppc-nav-menu-expand svg {
   display: inline-flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  width: 100%;
+  width: 99.9%;
 }
 
 .ppc-button-group label {
