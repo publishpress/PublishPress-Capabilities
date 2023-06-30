@@ -981,6 +981,14 @@ user-select: none;
     -webkit-mask-position: left;
 }
 
+.pp-capabilities-sidebar .advertisement-box-content a.advert-link {
+  display: block;
+  margin-top: 10px;
+  font-size: 1em;
+  text-decoration: underline;
+  color: #2271b1;
+}
+
 .pp-capabilities-sidebar .advertisement-box-header {
     background: #655897;
     color: #ffffff;
