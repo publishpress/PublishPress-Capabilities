@@ -21,7 +21,7 @@ class PP_Capabilities_Frontend_Features_Metaboxes
 
     public function __construct()
     {
-        if (is_admin() && pp_capabilities_feature_enabled('frontend-features')) {
+        if (is_admin() && pp_capabilities_feature_enabled('frontend-features') && defined('PUBLISHPRESS_CAPS_PRO_VERSION')) {
             //add frontend features metabox
             add_action('add_meta_boxes', [$this, 'addFrontendFeaturesMetabox']);
             //save frontend metabox settings

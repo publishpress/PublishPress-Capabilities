@@ -56,6 +56,8 @@ class PP_Capabilities_Frontend_Features_Action
             $response['message'] = esc_html__('Invalid action. Reload this page and try again.', 'capsman-enhanced');
         } elseif (empty(trim($custom_label)) || (empty(trim($custom_element_selector)) && empty(trim($custom_element_styles)) && empty(trim($custom_element_bodyclass)))) {
             $response['message'] = esc_html__('All fields are required.', 'capsman-enhanced');
+        } elseif (empty($element_pages) && empty($element_post_types)) {
+            $response['message'] = esc_html__('Load on page types is required.', 'capsman-enhanced');
         } else {
             $element_id       = (!empty($item_id)) ? $item_id : uniqid(true);
             $data             = PP_Capabilities_Frontend_Features_Data::getFrontendElements();

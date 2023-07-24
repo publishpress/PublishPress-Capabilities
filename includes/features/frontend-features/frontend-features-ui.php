@@ -26,40 +26,6 @@ class PP_Capabilities_Frontend_Features_UI
     }
 
     /**
-     * Form element page options
-     *
-     * @return array
-     */
-    public static function getElementFormPageOptions()
-    {
-        $options = [
-          'homepage'      => esc_html__('Homepage', 'capsman-enhanced'),
-          'archive_pages' => esc_html__('Archive Pages', 'capsman-enhanced'),
-          'single_pages'  => esc_html__('Single Pages', 'capsman-enhanced')
-        ];
-      
-        return $options;
-    }
-
-    /**
-     * Form element post type options
-     *
-     * @return array
-     */
-    public static function getElementFormPostTypesOptions()
-    {
-        $post_types = get_post_types(['public' => true], 'objects');
-        unset($post_types['attachment']);
-
-        $options = [];
-        foreach ($post_types as $name => $post_type) {
-            $options[$name] = $post_type->label;
-        }
-      
-        return $options;
-    }
-
-    /**
      * Add News form
      *
      */
@@ -147,20 +113,7 @@ class PP_Capabilities_Frontend_Features_UI
                                 </div>
                             </div>
                             <div class="frontend-element-other-pages frontend-features-pages hidden-element">
-                                <select class="frontend-element-new-element-pages chosen-cpt-select frontendelements-form-pages"
-                                    data-placeholder="<?php esc_attr_e('Select pages...', 'capsman-enhanced'); ?>"
-                                    multiple>
-                                    <?php foreach (self::getElementFormPageOptions() as $value => $label) : ?>
-                                    <option
-                                        value="<?php echo esc_attr($value); ?>">
-                                        <?php echo esc_html($label); ?>
-                                    </option>
-                                    <?php endforeach; ?>
-                                </select>
-                                <br />
-                                <small>
-                                    <?php esc_html_e('You can select page types where this element will be added.', 'capsman-enhanced'); ?>
-                                </small>
+                                <?php do_action('pp_capabilities_frontend_features_pages'); ?>
                             </div>
                             <div class="frontend-element-whole-site frontend-features-pages ppc-button-group-border">
                                 <small>
@@ -175,20 +128,7 @@ class PP_Capabilities_Frontend_Features_UI
                             <?php esc_html_e('Add post metabox:', 'capsman-enhanced'); ?>
                         </th>
                         <td>
-                            <select class="frontend-element-new-element-post-types chosen-cpt-select frontendelements-form-post-types"
-                                data-placeholder="<?php esc_attr_e('Select post types...', 'capsman-enhanced'); ?>"
-                                multiple>
-                                <?php foreach (self::getElementFormPostTypesOptions() as $value => $label) : ?>
-                                <option
-                                    value="<?php echo esc_attr($value); ?>">
-                                    <?php echo esc_html($label); ?>
-                                </option>
-                                <?php endforeach; ?>
-                            </select>
-                            <br />
-                            <small>
-                                <?php esc_html_e('This will add a metabox on the post editing screen. You can use this feature to add body classes only for that post.', 'capsman-enhanced'); ?>
-                            </small>
+                            <?php do_action('pp_capabilities_frontend_features_metabox_post_types'); ?>
                         </td>
                     </tr>
 
