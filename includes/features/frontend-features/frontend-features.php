@@ -257,7 +257,7 @@ $frontend_features_elements = PP_Capabilities_Frontend_Features_Data::elementsLa
             <div class="pp-column-right pp-capabilities-sidebar">
                 <?php 
                 $banner_messages = ['<p>'];
-                $banner_messages[] = esc_html__('Frontend Features allows you to remove elements from the frontend of your site.', 'capsman-enhanced');
+                $banner_messages[] = esc_html__('Frontend Features allows you to add or remove elements from the frontend of your site.', 'capsman-enhanced');
                 $banner_messages[] = '</p><p>';
                 $banner_messages[] = sprintf(esc_html__('%1$s = No change', 'capsman-enhanced'), '<input type="checkbox" title="'. esc_attr__('usage key', 'capsman-enhanced') .'" disabled>') . ' <br />';
                 $banner_messages[] = sprintf(esc_html__('%1$s = Apply custom styling', 'capsman-enhanced'), '<input type="checkbox" title="'. esc_attr__('usage key', 'capsman-enhanced') .'" checked disabled>'). ' <br />';

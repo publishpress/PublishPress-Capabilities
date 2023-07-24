@@ -72,7 +72,7 @@ class PP_Capabilities_Frontend_Features_UI
                     <tr class="ppc-menu-row parent-menu">
                         <td colspan="2">
                             <p class="cme-subtext">
-                                <?php esc_html_e('This form allows you to customize the site frontend (for the selected role) by hiding specified element IDs or classes, adding CSS styles, or adding body classes.', 'capsman-enhanced'); ?>
+                                <?php esc_html_e('his feature allows you to modify the site frontend by hiding IDs or classes, adding CSS styles, or adding body classes.', 'capsman-enhanced'); ?>
                             </p>
                             <p class="editing-custom-item">
                                 <strong><?php esc_html_e('Editing:', 'capsman-enhanced'); ?></strong> 
@@ -111,7 +111,7 @@ class PP_Capabilities_Frontend_Features_UI
                             <div class="frontend-element-classes frontend-features-toggle">
                                 <textarea class="frontend-element-new-element frontent-form-field frontendelements-form-element"></textarea><br />
                                 <small>
-                                    <?php esc_html_e('IDs or classes to hide. Separate multiple values with a comma (.custom-item-one, .custom-item-two, #new-item-id).', 'capsman-enhanced'); ?>
+                                    <?php esc_html_e('Enter IDs or classes to hide. Separate multiple values with a comma (.custom-item-one, .custom-item-two, #new-item-id).', 'capsman-enhanced'); ?>
                                 </small>
                             </div>
                             <div class="frontend-element-styles frontend-features-toggle hidden-element">

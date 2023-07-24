@@ -348,7 +348,7 @@ function pp_capabilities_dashboard_options() {
 
     $features['frontend-features'] = [
         'label'        => esc_html__('Frontend Features', 'capsman-enhanced'),
-        'description'  => esc_html__('Frontend Features allows you to remove elements from the frontend of your site.', 'capsman-enhanced'),
+        'description'  => esc_html__('Frontend Features allows you to add or remove elements from the frontend of your site.', 'capsman-enhanced'),
     ];
 
     $features['profile-features'] = [
