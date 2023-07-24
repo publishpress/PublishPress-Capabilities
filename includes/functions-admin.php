@@ -377,7 +377,7 @@ function pp_capabilities_dashboard_options() {
  * Return list of capabilities sub menus
  *
  * @param boolean $cme_fakefunc
- * @return void
+ * @return array $sub_menu_pages
  */
 function pp_capabilities_sub_menu_lists($cme_fakefunc = false) {
     global $capsman;
