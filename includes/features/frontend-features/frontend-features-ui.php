@@ -235,6 +235,14 @@ class PP_Capabilities_Frontend_Features_UI
                             <?php endif; ?>
                         </p>
                     </div>
+                    <div>
+                        <p class="frontend-feature-entry-post-types">
+                            <?php if (!empty($section_array['post_types'])) : ?>
+                            <strong><?php esc_html_e('Post Type Metabox', 'capsman-enhanced'); ?>:</strong>
+                            <?php echo esc_html(ucwords(str_replace(['-', '_'], ' ', join(', ', (array) $section_array['post_types'])))); ?>
+                            <?php endif; ?>
+                        </p>
+                    </div>
                 </div>
             </td>
             <td>

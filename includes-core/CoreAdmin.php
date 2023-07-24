@@ -64,7 +64,6 @@ class CoreAdmin {
         //Admin features promo
         add_action('pp_capabilities_admin_features_after_table_tr', [$this, 'customItemsPromo']);
 
-
         //Frontend features pages promo
         add_action('pp_capabilities_frontend_features_pages', [$this, 'frontendFeaturesPagesPromo']);
 
