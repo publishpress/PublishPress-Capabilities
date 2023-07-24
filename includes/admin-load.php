@@ -55,7 +55,7 @@ class PP_Capabilities_Admin_UI {
         }
         add_action('init', [$this, 'register_textdomain']);
 
-        if (is_admin() && (isset($_REQUEST['page']) && (in_array($_REQUEST['page'], ['pp-capabilities', 'pp-capabilities-backup', 'pp-capabilities-roles', 'pp-capabilities-admin-menus', 'pp-capabilities-editor-features', 'pp-capabilities-nav-menus', 'pp-capabilities-settings', 'pp-capabilities-admin-features', 'pp-capabilities-profile-features', 'pp-capabilities-dashboard']))
+        if (is_admin() && (isset($_REQUEST['page']) && (in_array($_REQUEST['page'], ['pp-capabilities', 'pp-capabilities-backup', 'pp-capabilities-roles', 'pp-capabilities-admin-menus', 'pp-capabilities-editor-features', 'pp-capabilities-nav-menus', 'pp-capabilities-settings', 'pp-capabilities-admin-features', 'pp-capabilities-profile-features', 'pp-capabilities-dashboard', 'pp-capabilities-frontend-features']))
 
         || (!empty($_REQUEST['action']) && in_array($_REQUEST['action'], ['pp-roles-add-role', 'pp-roles-delete-role', 'pp-roles-hide-role', 'pp-roles-unhide-role']))
         || ( ! empty($_SERVER['SCRIPT_NAME']) && strpos(sanitize_text_field($_SERVER['SCRIPT_NAME']), 'p-admin/plugins.php' ) && ! empty($_REQUEST['action'] ) ) 
@@ -107,6 +107,10 @@ class PP_Capabilities_Admin_UI {
         //profile features integration
         require_once (dirname(CME_FILE) . '/includes/features/restrict-profile-features.php');
         \PublishPress\Capabilities\PP_Capabilities_Profile_Features::instance();
+
+        //frontend features post metabox
+        require_once (dirname(__FILE__) . '/features/frontend-features/frontend-features-metaboxes.php');
+        \PublishPress\Capabilities\PP_Capabilities_Frontend_Features_Metaboxes::instance();
 
         //capabilities settings
         add_action('pp-capabilities-settings-ui', [$this, 'settingsUI']);
@@ -474,8 +478,8 @@ class PP_Capabilities_Admin_UI {
         } elseif (count($user_menu_caps) > 0) {
             $cap_name      = $user_menu_caps[0];
             $cap_index     = str_replace(['manage_capabilities_', 'manage_', '_'], ['', '', '-'], $cap_name);
-            if ($cap_index !== 'capabilities') {
-                $cap_title     .= count($user_menu_caps) === 1 ? ' '. $sub_menu_pages[$cap_index]['title'] : '';
+            if (($cap_index !== 'capabilities') && (count($user_menu_caps) === 1)) {
+                $cap_title = $sub_menu_pages[$cap_index]['title'];
             }
             $cap_page_slug = $sub_menu_pages[$cap_index]['page'];
             $cap_callback  = $sub_menu_pages[$cap_index]['callback'];

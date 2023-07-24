@@ -29,6 +29,9 @@ class PP_Capabilities_Installer
         if (version_compare($currentVersions, '2.8.0', '<')) {
             self::addPluginCapabilities();
         }
+        if (version_compare($currentVersions, '2.9.0', '<')) {
+            self::addFrontendFeaturesCapabilities();
+        }
 
         /**
          * @param string $previousVersion
@@ -70,6 +73,22 @@ class PP_Capabilities_Installer
                 if (!$role->has_cap($cap)) {
                     $role->add_cap($cap);
                 }
+            }
+        }
+    }
+
+    private static function addFrontendFeaturesCapabilities()
+    {
+
+        $eligible_roles = ['administrator', 'editor'];
+
+        /**
+         * Add frontend features capabilities to admin and editor roles
+         */
+        foreach ($eligible_roles as $eligible_role) {
+            $role = get_role($eligible_role);
+            if (!$role->has_cap('manage_capabilities_frontend_features')) {
+                $role->add_cap('manage_capabilities_frontend_features');
             }
         }
     }

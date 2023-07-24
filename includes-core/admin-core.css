@@ -91,7 +91,8 @@ div.pp-capability-menus-wrapper-promo select.ppc-nav-menu-role {
   height: 370px;
 }
 
-tr.pp-promo-blur {
+tr.pp-promo-blur,
+.div-pp-promo-blur {
 filter: blur(1.5px);
 }
 
@@ -115,6 +116,10 @@ filter: blur(1.5px);
   box-sizing: border-box;
   box-shadow: 0 0 25px #ccc;
   z-index: 999;
+}
+
+.frontendelements .pp-promo-overlay-row .pp-promo-upgrade-notice {
+  left: calc(58% - 225px);
 }
 
 .pp-promo-overlay-row .pp-promo-upgrade-notice p {

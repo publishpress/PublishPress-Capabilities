@@ -40,7 +40,7 @@ if (get_option('cme_profile_features_auto_redirect')) {
 
     <div class="wrap publishpress-caps-manage pressshack-admin-wrapper pp-capability-menus-wrapper profile-features <?php echo (empty($profile_features_elements) ? 'empty-elements' : ''); ?>">
         <div id="icon-capsman-admin" class="icon32"></div>
-        <h2><?php esc_html_e('Profile Features Restrictions', 'capsman-enhanced'); ?></h2>
+        <h2><?php esc_html_e('Profile Feature Restrictions', 'capsman-enhanced'); ?></h2>
 
         <form method="post" id="ppc-profile-features-form" action="admin.php?page=pp-capabilities-profile-features">
             <?php wp_nonce_field('pp-capabilities-profile-features'); ?>
@@ -222,9 +222,9 @@ if (get_option('cme_profile_features_auto_redirect')) {
                 <div class="pp-column-right pp-capabilities-sidebar">
                 <?php 
                 $banner_messages = ['<p>'];
-                $banner_messages[] = '<i class="dashicons dashicons-arrow-right"></i> <a href="'. $refresh_url .'">' . esc_html__('Refresh profile items.', 'capsman-enhanced') .'</a>';
+                $banner_messages[] = '<i class="dashicons dashicons-arrow-right"></i> <a href="'. $refresh_url .'">' . esc_html__('Refresh available profile items for this role', 'capsman-enhanced') .'</a>';
                 $banner_messages[] = '</p>';
-                $banner_title  = __('Update Profile Features', 'capsman-enhanced');
+                $banner_title  = __('Refresh Profile Features', 'capsman-enhanced');
                 pp_capabilities_sidebox_banner($banner_title, $banner_messages);
                 ?>
                 <?php 

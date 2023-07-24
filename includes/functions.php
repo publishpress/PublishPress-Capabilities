@@ -8,7 +8,9 @@
  * 
  */
 
-
+//frontend features restrict instance
+require_once (dirname(__FILE__) . '/features/frontend-features/frontend-features-restrict.php');
+\PublishPress\Capabilities\PP_Capabilities_Frontend_Features_Restrict::instance();
 /**
  * Sanitizes a string entry
  *
@@ -403,6 +405,7 @@ function pp_capabilities_admin_pages(){
         'pp-capabilities-backup', 
         'pp-capabilities-settings', 
         'pp-capabilities-admin-features', 
+        'pp-capabilities-frontend-features', 
         'pp-capabilities-profile-features'
     ];
 

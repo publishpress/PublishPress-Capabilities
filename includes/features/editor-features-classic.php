@@ -1,4 +1,4 @@
-<h3 class="editor-features-classic-show" <?php if (empty($_REQUEST['ppc-tab']) || (!empty($_REQUEST['ppc-tab']) && ('classic' != $_REQUEST['ppc-tab']))) echo 'style="display:none;"';?> data-post_type="<?php echo esc_attr($type_obj->name); ?>"><?php echo sprintf( esc_html__('Classic Editor %s Restriction', 'capsman-enhanced'), esc_html__($type_obj->labels->singular_name)); ?></h3>
+<h3 class="editor-features-classic-show" <?php if (empty($_REQUEST['ppc-tab']) || (!empty($_REQUEST['ppc-tab']) && ('classic' != $_REQUEST['ppc-tab']))) echo 'style="display:none;"';?> data-post_type="<?php echo esc_attr($type_obj->name); ?>"><?php echo sprintf( esc_html__('Classic Editor %s Restrictions', 'capsman-enhanced'), esc_html__($type_obj->labels->singular_name)); ?></h3>
 <table class="wp-list-table widefat fixed striped pp-capability-menus-select editor-features-classic" <?php if (empty($_REQUEST['ppc-tab']) || ('classic' != $_REQUEST['ppc-tab'])) echo 'style="display:none;"';?> data-post_type="<?php echo esc_attr($type_obj->name); ?>">
     <?php foreach(['thead', 'tfoot'] as $tag_name):?>
     <<?php echo esc_attr($tag_name);?>>

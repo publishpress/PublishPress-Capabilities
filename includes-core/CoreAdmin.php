@@ -23,6 +23,7 @@ class CoreAdmin {
                         ['base' => 'capabilities_page_pp-capabilities-editor-features'],
                         ['base' => 'capabilities_page_pp-capabilities-admin-features'],
                         ['base' => 'capabilities_page_pp-capabilities-profile-features'],
+                        ['base' => 'capabilities_page_pp-capabilities-frontend-features'],
                         ['base' => 'capabilities_page_pp-capabilities-nav-menus'],
                         ['base' => 'capabilities_page_pp-capabilities-backup'],
                         ['base' => 'capabilities_page_pp-capabilities-settings'],
@@ -62,6 +63,13 @@ class CoreAdmin {
 
         //Admin features promo
         add_action('pp_capabilities_admin_features_after_table_tr', [$this, 'customItemsPromo']);
+
+
+        //Frontend features pages promo
+        add_action('pp_capabilities_frontend_features_pages', [$this, 'frontendFeaturesPagesPromo']);
+
+        //Frontend features promo
+        add_action('pp_capabilities_frontend_features_metabox_post_types', [$this, 'frontendFeaturesPromo']);
     }
 
     function actCapabilitiesSubmenus($sub_menu_pages, $cme_fakefunc) {
@@ -100,5 +108,26 @@ class CoreAdmin {
     function customItemsPromo(){
         wp_enqueue_style('pp-capabilities-admin-core', plugin_dir_url(CME_FILE) . 'includes-core/admin-core.css', [], PUBLISHPRESS_CAPS_VERSION, 'all');
         include (dirname(__FILE__) . '/admin-features-promo.php');
+    }
+
+    function frontendFeaturesPromo(){
+        wp_enqueue_style('pp-capabilities-admin-core', plugin_dir_url(CME_FILE) . 'includes-core/admin-core.css', [], PUBLISHPRESS_CAPS_VERSION, 'all');
+        include (dirname(__FILE__) . '/frontend-features-promo.php');
+    }
+
+    function frontendFeaturesPagesPromo(){
+        ?>
+        <div class="pp-promo-overlay-row div-pp-promo-blur">
+            <select class="chosen-cpt-select frontendelements-form-pages" 
+                data-placeholder="<?php esc_attr_e('Select pages...', 'capsman-enhanced'); ?>" multiple>
+                <option value=""></option>
+            </select>
+            <br />
+            <small>
+                <?php esc_html_e('You can select page types where this element will be added.', 'capsman-enhanced'); ?>
+            </small>
+            <input type="text" style="visibility: hidden;" /> <!-- using this to balance the space needed due to field size -->
+        </div>
+        <?php
     }
 }
