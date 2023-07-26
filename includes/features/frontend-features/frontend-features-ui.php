@@ -38,7 +38,7 @@ class PP_Capabilities_Frontend_Features_UI
                     <tr class="ppc-menu-row parent-menu">
                         <td colspan="2">
                             <p class="cme-subtext">
-                                <?php esc_html_e('his feature allows you to modify the site frontend by hiding IDs or classes, adding CSS styles, or adding body classes.', 'capsman-enhanced'); ?>
+                                <?php esc_html_e('This feature allows you to modify the site frontend by hiding IDs or classes, adding CSS styles, or adding body classes.', 'capsman-enhanced'); ?>
                             </p>
                             <p class="editing-custom-item">
                                 <strong><?php esc_html_e('Editing:', 'capsman-enhanced'); ?></strong> 
@@ -88,7 +88,7 @@ class PP_Capabilities_Frontend_Features_UI
                                 <br />
                                 <div class="css-new-element-clear"></div>
                                 <small>
-                                    <?php esc_html_e('Custom css to be added to frontend pages. Examples: .custom-style-1 { color: red; } #custom-header { background: red; } ', 'capsman-enhanced'); ?>
+                                    <?php esc_html_e('Enter custom CSS to be added to frontend pages. Examples: .custom-style-1 { color: red; } #custom-header { background: red; } ', 'capsman-enhanced'); ?>
                                 </small>
                             </div>
                             <div class="frontend-element-bodyclass frontend-features-toggle hidden-element">
