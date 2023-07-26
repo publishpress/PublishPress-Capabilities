@@ -102,7 +102,8 @@ class PP_Capabilities_Frontend_Features_UI
 
                     <tr class="field-row">
                         <th scope="row">
-                            <?php esc_html_e('Load on page types:', 'capsman-enhanced'); ?>
+                            <?php esc_html_e('Load on page types', 'capsman-enhanced'); ?>
+                            <font color="red">*</font>
                         </th>
                         <td>
                             <div class="frontend-element-toggle">
