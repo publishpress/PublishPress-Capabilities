@@ -494,6 +494,9 @@ jQuery(document).ready( function($) {
     $(target_value).removeClass('hidden-element');
     //add active class to current select
     current_button.addClass('selected');
+    if (target_value === '.frontend-element-styles') {
+      $(".ppc-code-editor-refresh-editor").trigger("click");
+    }
   });
 
     // -------------------------------------------------------------
@@ -518,7 +521,7 @@ jQuery(document).ready( function($) {
       }
 
       if (custom_label == '' || (custom_element_selector == '' && custom_element_styles == '' && custom_element_bodyclass == '')) {
-        button.closest('tr').find('.ppc-post-features-note').html('<div class="ppc-feature-submit-form-error" style="color:red;">' + button.attr('data-required') + '</div>');
+        button.closest('tr').find('.ppc-post-features-note').html('<div class="ppc-feature-submit-form-error updated notice error"><p>' + button.attr('data-required') + '</p></div>');
         $(".ppc-feature-submit-form-error").delay(2000).fadeOut('slow');
         return;
       }
@@ -542,7 +545,7 @@ jQuery(document).ready( function($) {
       $.post(ajaxurl, data, function (response) {
 
         if (response.status == 'error') {
-          button.closest('tr').find('.ppc-post-features-note').html('<div class="ppc-feature-submit-form-error" style="color:red;">' + response.message + '</div>');
+          button.closest('tr').find('.ppc-post-features-note').html('<div class="ppc-feature-submit-form-error updated notice error"><p>' + response.message + '</p></div>');
           $(".ppc-feature-submit-form-error").delay(2000).fadeOut('slow');
         } else {
           var parent_table = $('table.frontendelements-table');
@@ -556,7 +559,7 @@ jQuery(document).ready( function($) {
           $('.frontend-element-new-element-pages').val([]).trigger('chosen:updated');
           $('.frontend-element-new-element-post-types').val([]).trigger('chosen:updated');
 
-          button.closest('tr').find('.ppc-post-features-note').html('<div class="ppc-feature-submit-form-error" style="color:green;">' + response.message + '</div>');
+          button.closest('tr').find('.ppc-post-features-note').html('<div class="ppc-feature-submit-form-error updated notice notice-success"><p>' + response.message + '</p></div>');
           $(".ppc-feature-submit-form-error").delay(5000).fadeOut('slow');
           setTimeout(function () {
             $('.ppc-menu-overlay-item').removeClass('ppc-menu-overlay-item');
@@ -592,8 +595,9 @@ jQuery(document).ready( function($) {
   $(document).on("click", ".frontend-features-delete-item", function (event) {
       if (confirm(cmeAdmin.deleteWarning)) {
         var item = $(this);
-        var item_id      = item.attr('data-id');
-        var security     = item.attr('data-delete-nonce');
+        var item_id       = item.attr('data-id');
+        var security      = item.attr('data-delete-nonce');
+        var item_section  = item.attr('data-section');
 
         item.closest('.ppc-menu-row').fadeOut(300);
 
@@ -720,8 +724,6 @@ jQuery(document).ready( function($) {
     item_form.find('.' + item_section + '-form-element').val('');
 
     if (item_section === 'frontendelements') {
-      $('.frontend-element-toggle .ppc-button-group label.custom-css').trigger('click');
-      
       $('.css-new-element-clear').trigger("click");
       item_form.find('.' + item_section + '-form-element').val('');
       item_form.find('.' + item_section + '-form-bodyclass').val('');

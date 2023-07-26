@@ -54,9 +54,9 @@ class PP_Capabilities_Frontend_Features_UI
                         </th>
                         <td>
                             <input class="frontend-element-new-name frontent-form-field frontendelements-form-label" type="text" /><br />
-                            <small>
+                            <span class="description">
                                 <?php esc_html_e('This will only show here in the WordPress admin area.', 'capsman-enhanced'); ?>
-                            </small>
+                            </span>
                         </td>
                     </tr>
 
@@ -76,9 +76,9 @@ class PP_Capabilities_Frontend_Features_UI
                             </div>
                             <div class="frontend-element-classes frontend-features-toggle">
                                 <textarea class="frontend-element-new-element frontent-form-field frontendelements-form-element"></textarea><br />
-                                <small>
+                                <span class="description">
                                     <?php esc_html_e('Enter IDs or classes to hide. Separate multiple values with a comma (.custom-item-one, .custom-item-two, #new-item-id).', 'capsman-enhanced'); ?>
-                                </small>
+                                </span>
                             </div>
                             <div class="frontend-element-styles frontend-features-toggle hidden-element">
 
@@ -87,15 +87,15 @@ class PP_Capabilities_Frontend_Features_UI
                                 <div class="code-mirror-after"><div><?php echo htmlentities('</style>'); ?></div></div>
                                 <br />
                                 <div class="css-new-element-clear"></div>
-                                <small>
+                                <span class="description">
                                     <?php esc_html_e('Enter custom CSS to be added to frontend pages. Examples: .custom-style-1 { color: red; } #custom-header { background: red; } ', 'capsman-enhanced'); ?>
-                                </small>
+                                </span>
                             </div>
                             <div class="frontend-element-bodyclass frontend-features-toggle hidden-element">
                                 <textarea class="frontend-new-element-class frontendelements-form-field frontendelements-form-bodyclass"></textarea><br />
-                                <small>
+                                <span class="description">
                                     <?php esc_html_e('Enter classes that should be added to the body HTML. Separate multiple values with a space (custom-item-one custom-item-two).', 'capsman-enhanced'); ?>
-                                </small>
+                                </span>
                             </div>
                         </td>
                     </tr>
@@ -117,9 +117,9 @@ class PP_Capabilities_Frontend_Features_UI
                                 <?php do_action('pp_capabilities_frontend_features_pages'); ?>
                             </div>
                             <div class="frontend-element-whole-site frontend-features-pages ppc-button-group-border">
-                                <small>
+                                <span class="description">
                                     <?php esc_html_e('This feature will be added to all pages.', 'capsman-enhanced'); ?>
-                                </small>
+                                </span>
                             </div>
                         </td>
                     </tr>
@@ -227,6 +227,7 @@ class PP_Capabilities_Frontend_Features_UI
                             class="custom-item-display frontend-styles-output"><?php echo esc_html($element_styles); ?>
                         </pre>
                         <div class="css-new-element-update"></div>
+                        <div class="ppc-code-editor-refresh-editor"></div>
                     <?php endif; ?>
                     <div>
                         <p class="frontend-feature-entry-pages">
@@ -324,6 +325,9 @@ class PP_Capabilities_Frontend_Features_UI
                             css_editor.codemirror.setValue(element_value);
                             $(".ppc-code-editor-page-css").val(element_value);
                             $(".ppc-code-editor-page-css").trigger("change");
+                        });
+                        $(document).on("click", ".ppc-code-editor-refresh-editor", function(){
+                            css_editor.codemirror.refresh();
                         });
                     }
                 });
