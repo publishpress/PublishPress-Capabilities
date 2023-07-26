@@ -46,4 +46,6 @@
     <!-- using this to balance the space needed due to field size -->
     <input type="text" style="visibility: hidden; width: 0; display: block;" />
     <input type="text" style="visibility: hidden; width: 0; display: block;" />
+    <input type="text" style="visibility: hidden; width: 0; display: block;" />
+    <input type="text" style="visibility: hidden; width: 0; display: block;" />
 </div>
