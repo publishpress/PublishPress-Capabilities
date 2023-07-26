@@ -82,9 +82,9 @@ class PP_Capabilities_Frontend_Features_UI
                             </div>
                             <div class="frontend-element-styles frontend-features-toggle hidden-element">
 
-                                <div class="code-mirror-before"><div><?php echo htmlentities('<style type="text/css">'); ?></div></div>
+                                <div class="code-mirror-before"><div><?php echo htmlentities('<style type="text/css">'); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></div></div>
                                 <textarea class="frontend-element-new-styles ppc-code-editor-page-css frontendelements-form-styles"></textarea>
-                                <div class="code-mirror-after"><div><?php echo htmlentities('</style>'); ?></div></div>
+                                <div class="code-mirror-after"><div><?php echo htmlentities('</style>'); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></div></div>
                                 <br />
                                 <div class="css-new-element-clear"></div>
                                 <span class="description">
@@ -196,14 +196,14 @@ class PP_Capabilities_Frontend_Features_UI
         <tr
             class="custom-item-row ppc-menu-row child-menu <?php echo esc_attr($section_slug . ' ' . $additional_class); ?>">
             <td class="restrict-column ppc-menu-checkbox">
-                <input id="check-item-<?php echo $section_id; ?>"
+                <input id="check-item-<?php echo esc_attr($section_id); ?>"
                     class="check-item" type="checkbox" name="capsman_disabled_frontend_features[]"
                     value="<?php echo esc_attr($restrict_value); ?>"
                     <?php echo (in_array($restrict_value, $disabled_frontend_items)) ? 'checked' : ''; ?>/>
             </td>
             <td class="menu-column ppc-menu-item primay-td">
 
-                <label for="check-item-<?php echo $section_id; ?>">
+                <label for="check-item-<?php echo esc_attr($section_id); ?>">
                     <span
                         class="content-title-column menu-item-link<?php echo (in_array($restrict_value, $disabled_frontend_items)) ? ' restricted' : ''; ?>">
                         <strong>

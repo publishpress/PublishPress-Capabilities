@@ -40,8 +40,11 @@ $ppc_other_permissions = [
     "ppc_guest" => esc_html__('Logged Out Users', 'capsman-enhanced')
 ];
 
+// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 if (!empty($_REQUEST['role'])) {
+    // phpcs:ignore WordPress.Security.NonceVerification.Recommended
     if (array_key_exists(sanitize_key($_REQUEST['role']), $ppc_other_permissions)) {
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
         $default_role = sanitize_key($_REQUEST['role']);
         $role_caption = $ppc_other_permissions[$default_role];
     } else {
