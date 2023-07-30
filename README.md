@@ -1,4 +1,4 @@
-# Capability-Manager-Enhanced
+# PublishPress Capabilities
 
 
 ## Description
