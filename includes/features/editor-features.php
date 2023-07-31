@@ -66,7 +66,7 @@ $active_tab_text = is_object($active_tab_type_obj)
 
 <div class="wrap publishpress-caps-manage pressshack-admin-wrapper pp-capability-menus-wrapper editor-features">
     <div id="icon-capsman-admin" class="icon32"></div>
-    <h2><?php esc_html_e('Editor Feature Restriction', 'capsman-enhanced'); ?></h2>
+    <h2><?php esc_html_e('Editor Feature Restrictions', 'capsman-enhanced'); ?></h2>
 
     <form method="post" id="ppc-editor-features-form"
             action="admin.php?page=pp-capabilities-editor-features">

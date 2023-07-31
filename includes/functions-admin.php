@@ -7,6 +7,10 @@
  *
  */
 
+
+require_once (dirname(CME_FILE) . '/includes/features/frontend-features/frontend-features-action.php');
+\PublishPress\Capabilities\PP_Capabilities_Frontend_Features_Action::instance();
+
 function cme_fakefunc() {
 }
 
@@ -212,6 +216,10 @@ function pp_capabilities_backup_sections()
    $backup_sections[$cms_id . '_admin_features_backup']['label']     = esc_html__('Admin Features', 'capsman-enhanced');
    $backup_sections[$cms_id . '_admin_features_backup']['options'][] = "capsman_disabled_admin_features";
 
+   //Frontend Features
+   $backup_sections[$cms_id . '_frontend_features_backup']['label']     = esc_html__('Frontend Features', 'capsman-enhanced');
+   $backup_sections[$cms_id . '_frontend_features_backup']['options'][] = "capsman_disabled_frontend_features";
+
    //Profile Features
    $backup_sections[$cms_id . '_profile_features_backup']['label']     = esc_html__('Profile Features', 'capsman-enhanced');
    $backup_sections[$cms_id . '_profile_features_backup']['options'][] = "capsman_disabled_profile_features";
@@ -291,6 +299,7 @@ function cme_publishpress_capabilities_capabilities($capabilities) {
             'manage_capabilities_editor_features',
             'manage_capabilities_admin_features',
             'manage_capabilities_admin_menus',
+            'manage_capabilities_frontend_features',
             'manage_capabilities_profile_features',
             'manage_capabilities_nav_menus',
             'manage_capabilities_user_testing',
@@ -337,6 +346,11 @@ function pp_capabilities_dashboard_options() {
         'description'  => esc_html__('Admin Features allows you to remove elements from the admin area and toolbar.', 'capsman-enhanced'),
     ];
 
+    $features['frontend-features'] = [
+        'label'        => esc_html__('Frontend Features', 'capsman-enhanced'),
+        'description'  => esc_html__('Frontend Features allows you to add or remove elements from the frontend of your site.', 'capsman-enhanced'),
+    ];
+
     $features['profile-features'] = [
         'label'        => esc_html__('Profile Features', 'capsman-enhanced'),
         'description'  => esc_html__('Profile Features allows you to remove elements from the Profile screen.', 'capsman-enhanced'),
@@ -363,7 +377,7 @@ function pp_capabilities_dashboard_options() {
  * Return list of capabilities sub menus
  *
  * @param boolean $cme_fakefunc
- * @return void
+ * @return array $sub_menu_pages
  */
 function pp_capabilities_sub_menu_lists($cme_fakefunc = false) {
     global $capsman;
@@ -404,6 +418,13 @@ function pp_capabilities_sub_menu_lists($cme_fakefunc = false) {
         'capabilities'      => $super_user ? 'read' : 'manage_capabilities_admin_features',
         'page'              => 'pp-capabilities-admin-features',
         'callback'          => $cme_fakefunc ? 'cme_fakefunc' : [$capsman, 'ManageAdminFeatures'],
+        'dashboard_control' => true,
+    ];
+    $sub_menu_pages['frontend-features'] = [
+        'title'             => __('Frontend Features', 'capsman-enhanced'),
+        'capabilities'      => $super_user ? 'read' : 'manage_capabilities_frontend_features',
+        'page'              => 'pp-capabilities-frontend-features',
+        'callback'          => $cme_fakefunc ? 'cme_fakefunc' : [$capsman, 'ManageFrontendFeatures'],
         'dashboard_control' => true,
     ];
     $sub_menu_pages['profile-features'] = [

@@ -8,7 +8,9 @@
  * 
  */
 
-
+//frontend features restrict instance
+require_once (dirname(__FILE__) . '/features/frontend-features/frontend-features-restrict.php');
+\PublishPress\Capabilities\PP_Capabilities_Frontend_Features_Restrict::instance();
 /**
  * Sanitizes a string entry
  *
@@ -403,6 +405,7 @@ function pp_capabilities_admin_pages(){
         'pp-capabilities-backup', 
         'pp-capabilities-settings', 
         'pp-capabilities-admin-features', 
+        'pp-capabilities-frontend-features', 
         'pp-capabilities-profile-features'
     ];
 
@@ -506,6 +509,7 @@ function pp_capabilities_pro_sidebox()
                     <li><?php echo esc_html__('Remove anything on the editing screen', 'capsman-enhanced'); ?></li>
                     <li><?php echo esc_html__('Remove anything in the WordPress admin', 'capsman-enhanced'); ?></li>
                     <li><?php echo esc_html__('Block admin pages by URL', 'capsman-enhanced'); ?></li>
+                    <li><?php echo esc_html__('Target Frontend Features for specific pages', 'capsman-enhanced'); ?></li>
                     <li><?php echo esc_html__('Fast, professional support', 'capsman-enhanced'); ?></li>
                     <li><?php echo esc_html__('No ads inside the plugin', 'capsman-enhanced'); ?></li>
                 </ul>
