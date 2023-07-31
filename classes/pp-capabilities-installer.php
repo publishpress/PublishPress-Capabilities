@@ -51,7 +51,7 @@ class PP_Capabilities_Installer
          */
         foreach ( wp_roles()->roles as $role_name => $role ) {
             $role_object = get_role($role_name);
-            if ($role_object->has_cap('manage_capabilities')) {
+            if (is_object($role_object) && $role_object->has_cap('manage_capabilities')) {
                 $eligible_roles[] = $role_name;
             }
         }
@@ -70,7 +70,7 @@ class PP_Capabilities_Installer
         foreach ($eligible_roles as $eligible_role) {
             $role = get_role($eligible_role);
             foreach ($pp_capabilities as $cap) {
-                if (!$role->has_cap($cap)) {
+                if (is_object($role) && !$role->has_cap($cap)) {
                     $role->add_cap($cap);
                 }
             }
@@ -87,7 +87,7 @@ class PP_Capabilities_Installer
          */
         foreach ($eligible_roles as $eligible_role) {
             $role = get_role($eligible_role);
-            if (!$role->has_cap('manage_capabilities_frontend_features')) {
+            if (is_object($role) && !$role->has_cap('manage_capabilities_frontend_features')) {
                 $role->add_cap('manage_capabilities_frontend_features');
             }
         }
