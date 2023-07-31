@@ -40,8 +40,11 @@ $ppc_other_permissions = [
     "ppc_guest" => esc_html__('Logged Out Users', 'capsman-enhanced')
 ];
 
+// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 if (!empty($_REQUEST['role'])) {
+    // phpcs:ignore WordPress.Security.NonceVerification.Recommended
     if (array_key_exists(sanitize_key($_REQUEST['role']), $ppc_other_permissions)) {
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
         $default_role = sanitize_key($_REQUEST['role']);
         $role_caption = $ppc_other_permissions[$default_role];
     } else {
@@ -138,18 +141,6 @@ $frontend_features_elements = PP_Capabilities_Frontend_Features_Data::elementsLa
                                                     <div id="cme-cap-type-tables-<?php esc_attr_e($section_slug); ?>">
                                                         <table
                                                             class="wp-list-table widefat striped pp-capability-menus-select <?php esc_attr_e($section_slug); ?>-table">
-                                                            <tfoot>
-                                                                <tr class="ppc-menu-row parent-menu custom-item-toggle-row hidden-element">
-
-                                                                    <td class="restrict-column ppc-menu-checkbox">
-                                                                        <input class="check-item check-all-menu-item"
-                                                                            type="checkbox" />
-                                                                    </td>
-                                                                    <td class="menu-column ppc-menu-item frontend-features">
-                                                                    </td>
-
-                                                                </tr>
-                                                            </tfoot>
                                                             <tbody>
                                                                 <?php do_action("pp_capabilities_frontend_features_{$section_slug}_before_subsection_tr"); 
                                                                 $display_title_class = empty($section_elements) ? 'temporarily hidden-element' : ''; 
@@ -175,9 +166,7 @@ $frontend_features_elements = PP_Capabilities_Frontend_Features_Data::elementsLa
                                                                                     <td class="menu-column ppc-menu-item" colspan="4">
                                                                                         <label for="check-all-item">
                                                                                     <span class="menu-item-link check-all-menu-link">
-                                                                                        <strong>
-                                                                                        <?php esc_html_e('Toggle all', 'capsman-enhanced'); ?>
-                                                                                        </strong>
+                                                                                        <strong></strong>
                                                                                     </span></label>
                                                                                     </td>
 
@@ -194,9 +183,7 @@ $frontend_features_elements = PP_Capabilities_Frontend_Features_Data::elementsLa
                                                                                     <td class="menu-column ppc-menu-item" colspan="4">
                                                                                         <label for="check-all-item-2">
                                                                                         <span class="menu-item-link check-all-menu-link">
-                                                                                        <strong>
-                                                                                            <?php esc_html_e('Toggle all', 'capsman-enhanced'); ?>
-                                                                                        </strong>
+                                                                                        <strong></strong>
                                                                                         </span>
                                                                                         </label>
                                                                                     </td>

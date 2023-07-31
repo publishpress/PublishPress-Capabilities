@@ -120,6 +120,7 @@ filter: blur(1.5px);
 
 .frontendelements .pp-promo-overlay-row .pp-promo-upgrade-notice {
   left: calc(58% - 225px);
+  margin-top: -70px;
 }
 
 .pp-promo-overlay-row .pp-promo-upgrade-notice p {

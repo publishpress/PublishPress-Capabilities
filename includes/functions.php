@@ -509,6 +509,7 @@ function pp_capabilities_pro_sidebox()
                     <li><?php echo esc_html__('Remove anything on the editing screen', 'capsman-enhanced'); ?></li>
                     <li><?php echo esc_html__('Remove anything in the WordPress admin', 'capsman-enhanced'); ?></li>
                     <li><?php echo esc_html__('Block admin pages by URL', 'capsman-enhanced'); ?></li>
+                    <li><?php echo esc_html__('Target Frontend Features for specific pages', 'capsman-enhanced'); ?></li>
                     <li><?php echo esc_html__('Fast, professional support', 'capsman-enhanced'); ?></li>
                     <li><?php echo esc_html__('No ads inside the plugin', 'capsman-enhanced'); ?></li>
                 </ul>

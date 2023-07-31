@@ -23,7 +23,7 @@
     <div class="pp-promo-upgrade-notice">
         <p>
             <?php esc_html_e(
-                'You can select page types where this element will be added and also add a metabox on the post editing screen extending this feature to add body classes only for selected post. This feature is available in PublishPress Capabilities Pro.',
+                'You can use Frontend Features to target specific posts and pages. This feature is available in PublishPress Capabilities Pro.',
                 'capsman-enhanced'
             ); ?>
         </p>

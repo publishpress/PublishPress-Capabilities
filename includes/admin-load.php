@@ -310,12 +310,8 @@ class PP_Capabilities_Admin_UI {
                     PUBLISHPRESS_CAPS_VERSION
                 );
 
-                wp_enqueue_script(
-                    'pp-capabilities-jquery-ui',
-                    plugin_dir_url(CME_FILE) . 'common/libs/jquery/jquery-ui.js',
-                    ['jquery'],
-                    PUBLISHPRESS_CAPS_VERSION
-                );
+                // Enqueue jQuery UI script from WordPress core
+                wp_enqueue_script('jquery-ui-core');
 
                 wp_enqueue_script(
                     'pp-capabilities-roles-profile-js',
