@@ -410,7 +410,7 @@ Fixed : Security issue. Please update.
 
 == Changelog ==
 
-= 2.9.0 - 24 Jul 2023 =
+= 2.9.0 - 31 Jul 2023 =
   * Feature : Allow people to target CSS to user roles (Frontend Features), #4
   * Fixed : Error on Backup > Reset Roles, #856
 
