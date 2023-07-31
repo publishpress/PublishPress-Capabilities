@@ -654,7 +654,7 @@ jQuery(document).ready( function($) {
       return;
     }
 
-    item_form.find('.' + item_section + '-form-label').val(item_label);
+    item_form.find('.' + item_section + '-form-label').val(item_label).trigger('change');
     item_form.find('.editing-custom-item').show();
     item_form.find('.cancel-custom-item-edit').attr('style', 'visibility: visible');
     item_form.find('.editing-custom-item .title').html(item_label);
@@ -731,12 +731,14 @@ jQuery(document).ready( function($) {
       item_form.find('.' + item_section + '-form-pages').val([]).trigger('chosen:updated');
       item_form.find('.' + item_section + '-form-post-types').val([]).trigger('chosen:updated');
     }
+
+    item_form.find('.' + item_section + '-form-label').trigger('change');
   });
   
   	// -------------------------------------------------------------
   	//   Lock Frontend Features 'Save changes' button if unsaved custom items exist
   	// -------------------------------------------------------------
-  	$(document).on("keyup paste", ".frontent-form-field", function (event) {
+  	$(document).on("keyup paste change", ".frontent-form-field", function (event) {
     	var lock_button = false;
     	$('.frontend-features-save-button-warning').remove();
 
