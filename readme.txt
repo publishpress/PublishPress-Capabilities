@@ -7,7 +7,7 @@ Tags: capabilities, permissions, admin menus, user roles, user role editor, acce
 Requires at least: 4.9.7
 Tested up to: 6.2
 Requires PHP: 5.6.20
-Stable tag: 2.9.0
+Stable tag: 2.9.1
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -409,6 +409,9 @@ Fixed : Non-administrators with user editing capabilities could add new Administ
 Fixed : Security issue. Please update.
 
 == Changelog ==
+
+= 2.9.1 - 1 Aug 2023 =
+  * Fixed : Fatal error: Uncaught Error: Call to a member function has_cap() on null in Installer class, #880
 
 = 2.9.0 - 31 Jul 2023 =
   * Feature : Allow people to target CSS to user roles (Frontend Features), #4
