@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Plugins - PublishPress Capabilities &#8211; User Role "
 "Access, Editor Permissions, Admin Menus - Stable (latest release)\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2023-07-24 12:30+0000\n"
+"PO-Revision-Date: 2023-08-01 12:21+0000\n"
 "Last-Translator: \n"
 "Language-Team: French (France)\n"
 "Language: fr_FR\n"
@@ -35,7 +35,7 @@ msgstr ""
 msgid "%1$d users moved to default role %2$s."
 msgstr "%1$d utilisateurs/utilisatrices déplacés vers le rôle par défaut %2$s."
 
-#: includes/features/frontend-features/frontend-features.php:263
+#: includes/features/frontend-features/frontend-features.php:250
 #, php-format
 msgid "%1$s = Apply custom styling"
 msgstr ""
@@ -56,7 +56,7 @@ msgstr "%1$s = Permission non accordée %2$s"
 #: includes/features/profile-features.php:234
 #: includes/features/admin-features.php:249 includes/features/nav-menus.php:303
 #: includes/features/editor-features.php:237
-#: includes/features/frontend-features/frontend-features.php:262
+#: includes/features/frontend-features/frontend-features.php:249
 msgid "%1$s = No change"
 msgstr "%1$s = Aucune modification"
 
@@ -177,8 +177,8 @@ msgstr ""
 
 #: includes/features/restrict-editor-features.php:47
 #: includes/roles/roles.php:10
-#: includes/features/frontend-features/frontend-features-ui.php:147
-#: includes/features/frontend-features/frontend-features-ui.php:150
+#: includes/features/frontend-features/frontend-features-ui.php:148
+#: includes/features/frontend-features/frontend-features-ui.php:151
 msgid "Add New"
 msgstr "Ajouter"
 
@@ -204,7 +204,7 @@ msgstr "Ajouter ou supprimer une permission du rôle normalement"
 msgid "Add or remove this capability from the WordPress role"
 msgstr "Ajouter ou supprimer une permission au rôle WordPress"
 
-#: includes/features/frontend-features/frontend-features-ui.php:128
+#: includes/features/frontend-features/frontend-features-ui.php:129
 msgid "Add post metabox:"
 msgstr ""
 
@@ -280,7 +280,7 @@ msgid_plural "All %s"
 msgstr[0] "Tous les %s"
 msgstr[1] "Tous les %s"
 
-#: includes/features/frontend-features/frontend-features-ui.php:146
+#: includes/features/frontend-features/frontend-features-ui.php:147
 #: includes/features/frontend-features/frontend-features-action.php:58
 msgid "All fields are required."
 msgstr ""
@@ -339,7 +339,7 @@ msgstr ""
 msgid "An error occured!"
 msgstr ""
 
-#: includes/features/frontend-features/frontend-features.php:160
+#: includes/features/frontend-features/frontend-features.php:151
 #, php-format
 msgid "Apply for %1$s"
 msgstr ""
@@ -447,7 +447,7 @@ msgstr ""
 msgid "Body"
 msgstr "Corps"
 
-#: includes/features/frontend-features/frontend-features-ui.php:220
+#: includes/features/frontend-features/frontend-features-ui.php:221
 msgid "Body Class"
 msgstr ""
 
@@ -497,7 +497,7 @@ msgstr "peut modifier la visibilité d’une publication"
 msgid "can read posts which are currently published with private visibility"
 msgstr "peut lire les articles publiés avec la visibilité privée"
 
-#: includes/features/frontend-features/frontend-features-ui.php:143
+#: includes/features/frontend-features/frontend-features-ui.php:144
 msgid "Cancel Edit"
 msgstr ""
 
@@ -514,7 +514,7 @@ msgstr "Documentation de Capabilities"
 
 #: includes/functions-admin.php:335 includes/functions-admin.php:403
 #: includes/manager.php:346 includes/manager.php:451
-#: includes/settings-ui.php:32 includes/admin-load.php:472
+#: includes/settings-ui.php:32 includes/admin-load.php:468
 #: includes/roles/class/class-pp-roles-admin.php:721
 #: includes/roles/class/class-pp-roles-list-table.php:172
 msgid "Capabilities"
@@ -682,14 +682,8 @@ msgstr "Créer le rôle"
 msgid "Create this role definition in new (future) sites"
 msgstr "Créer cette définition de rôle dans les nouveaux (futurs) sites"
 
-#: includes/features/frontend-features/frontend-features-ui.php:225
+#: includes/features/frontend-features/frontend-features-ui.php:226
 msgid "Custom CSS"
-msgstr ""
-
-#: includes/features/frontend-features/frontend-features-ui.php:91
-msgid ""
-"Custom css to be added to frontend pages. Examples: .custom-style-1 { color: "
-"red; } #custom-header { background: red; } "
 msgstr ""
 
 #: includes-core/editor-features-promo.php:95
@@ -756,7 +750,7 @@ msgstr "Rôle par défaut"
 #: includes/features/admin-features.php:211
 #: includes/features/editor-features-gutenberg.php:87
 #: includes/features/editor-features-classic.php:90
-#: includes/features/frontend-features/frontend-features-ui.php:269
+#: includes/features/frontend-features/frontend-features-ui.php:271
 #: includes/roles/class/class-pp-roles-admin.php:134
 #: includes/roles/class/class-pp-roles-list-table.php:283
 #: includes/roles/class/class-pp-roles-list-table.php:566
@@ -791,7 +785,7 @@ msgstr "Description ici."
 msgid "Detailed Capabilities for Taxonomies"
 msgstr "Permissions détaillées pour les taxonomies"
 
-#: includes/functions.php:539
+#: includes/functions.php:540
 msgid "Detailed documentation is also available on the plugin website."
 msgstr ""
 "Une documentation détaillée est également disponible sur le site de "
@@ -829,7 +823,7 @@ msgstr "Panneau de publication"
 msgid "Documentation"
 msgstr "Documentation"
 
-#: includes/admin-load.php:350
+#: includes/admin-load.php:346
 msgid "Drag multiple roles selection to change order."
 msgstr ""
 "Faites glisser la sélection de plusieurs rôles pour en modifier l’ordre."
@@ -843,7 +837,7 @@ msgstr ""
 "d’abonné/abonnée a par défaut le niveau le plus bas (0). Le rôle "
 "d’administrateur/administratrice a le niveau 10 par défaut."
 
-#: includes/features/frontend-features/frontend-features-ui.php:260
+#: includes/features/frontend-features/frontend-features-ui.php:262
 #: includes/roles/class/class-pp-roles-list-table.php:231
 msgid "Edit"
 msgstr "Modifier"
@@ -919,6 +913,12 @@ msgid ""
 "values with a space (custom-item-one custom-item-two)."
 msgstr ""
 
+#: includes/features/frontend-features/frontend-features-ui.php:91
+msgid ""
+"Enter custom CSS to be added to frontend pages. Examples: .custom-style-1 { "
+"color: red; } #custom-header { background: red; } "
+msgstr ""
+
 #: includes/features/frontend-features/frontend-features-ui.php:80
 msgid ""
 "Enter IDs or classes to hide. Separate multiple values with a comma (.custom-"
@@ -963,7 +963,7 @@ msgstr "Erreur d’importation des réglages ! Veuillez réessayer."
 msgid "Error: Failed creating the new role."
 msgstr "Erreur : Échec de la création du nouveau rôle."
 
-#: includes/admin-load.php:595
+#: includes/admin-load.php:591
 msgid "Error: wrong data"
 msgstr "Erreur : données incorrectes"
 
@@ -1011,7 +1011,7 @@ msgstr ""
 "permet d’importer facilement les réglages de votre configuration sur un "
 "autre site."
 
-#: includes/functions.php:512
+#: includes/functions.php:513
 msgid "Fast, professional support"
 msgstr "Un support rapide et professionnel"
 
@@ -1024,7 +1024,7 @@ msgid "Featured image"
 msgstr "Image mise en avant"
 
 #: includes/features/frontend-features/frontend-features-ui.php:65
-msgid "Features"
+msgid "Features:"
 msgstr ""
 
 #: includes/admin.php:1018 includes/admin.php:1128 includes/admin.php:1181
@@ -1055,12 +1055,12 @@ msgstr ""
 #: includes/functions-admin.php:220 includes/functions-admin.php:350
 #: includes/functions-admin.php:424
 #: includes/features/frontend-features/frontend-features-metaboxes.php:55
-#: includes/features/frontend-features/frontend-features.php:67
+#: includes/features/frontend-features/frontend-features.php:70
 msgid "Frontend Features"
 msgstr ""
 
 #: includes/functions-admin.php:351
-#: includes/features/frontend-features/frontend-features.php:260
+#: includes/features/frontend-features/frontend-features.php:247
 msgid ""
 "Frontend Features allows you to add or remove elements from the frontend of "
 "your site."
@@ -1134,7 +1134,7 @@ msgstr "En-tête et pied de page"
 msgid "Help"
 msgstr "Aide"
 
-#: includes/features/frontend-features/frontend-features-ui.php:215
+#: includes/features/frontend-features/frontend-features-ui.php:216
 msgid "Hidden IDs or Classes"
 msgstr ""
 
@@ -1146,13 +1146,7 @@ msgstr "Masquer"
 msgid "Hide IDs or Classes"
 msgstr ""
 
-#: includes/features/frontend-features/frontend-features-ui.php:41
-msgid ""
-"his feature allows you to modify the site frontend by hiding IDs or classes, "
-"adding CSS styles, or adding body classes."
-msgstr ""
-
-#: includes/functions.php:758
+#: includes/functions.php:759
 msgid "Home Link"
 msgstr "Lien vers l’accueil"
 
@@ -1168,7 +1162,7 @@ msgstr "Mode d’emploi des permissions"
 msgid "How to use Editor Features"
 msgstr "Mode d’emploi des fonctionnalités de l’éditeur"
 
-#: includes/features/frontend-features/frontend-features.php:266
+#: includes/features/frontend-features/frontend-features.php:253
 msgid "How to use Frontend Features"
 msgstr ""
 
@@ -1204,7 +1198,7 @@ msgstr ""
 msgid "If you like %s, please leave us a %s rating. Thank you!"
 msgstr "Si vous appréciez %s, veuillez nous laisser une note de %s. Merci !"
 
-#: includes/functions.php:528
+#: includes/functions.php:529
 msgid "If you need help or have a new feature request, let us know."
 msgstr ""
 "Si vous avez besoin d’aide ou si vous avez une nouvelle demande de "
@@ -1256,7 +1250,7 @@ msgstr ""
 msgid "Invalid Capabilities"
 msgstr "Permissions invalides"
 
-#: includes/admin-load.php:591
+#: includes/admin-load.php:587
 msgid "Invalid nonce token!"
 msgstr "Jeton de nonce invalide !"
 
@@ -1404,7 +1398,7 @@ msgstr ""
 msgid "Navigation Menu Restrictions"
 msgstr "Restrictions du menu de navigation"
 
-#: includes/functions.php:523
+#: includes/functions.php:524
 #| msgid "PublishPress Capabilities"
 msgid "Need PublishPress Capabilities Support?"
 msgstr "Vous avez besoin du support de PublishPress Capabilities ?"
@@ -1446,7 +1440,7 @@ msgstr ""
 msgid "New role created."
 msgstr "Nouveau rôle créé."
 
-#: includes/functions.php:513
+#: includes/functions.php:514
 msgid "No ads inside the plugin"
 msgstr "Aucune publicité dans l’extension"
 
@@ -1463,7 +1457,7 @@ msgstr ""
 "Aucune boîte méta trouvée pour %1s. %2s Cliquez ici %3s pour visiter l’écran "
 "%4s et rafraîchissez cette page après pour charger la nouvelle boîte méta."
 
-#: includes/admin-load.php:581
+#: includes/admin-load.php:577
 msgid "No permission!"
 msgstr "Aucun droit !"
 
@@ -1518,7 +1512,7 @@ msgstr "Attributs de la page : Tri"
 msgid "Page Boxes"
 msgstr "Cadres de page"
 
-#: includes/functions.php:756
+#: includes/functions.php:757
 msgid "Page Lists"
 msgstr "Listes de pages"
 
@@ -1526,11 +1520,11 @@ msgstr "Listes de pages"
 msgid "Page Template"
 msgstr "Modèle de page"
 
-#: includes/admin-load.php:353
+#: includes/admin-load.php:349
 msgid "Page title"
 msgstr "Titre de la page"
 
-#: includes/features/frontend-features/frontend-features-ui.php:233
+#: includes/features/frontend-features/frontend-features-ui.php:235
 msgid "Pages"
 msgstr ""
 
@@ -1587,7 +1581,7 @@ msgstr "Attributs d’articles"
 msgid "Post Slug"
 msgstr "Slug de publication"
 
-#: includes/features/frontend-features/frontend-features-ui.php:241
+#: includes/features/frontend-features/frontend-features-ui.php:243
 msgid "Post Type Metabox"
 msgstr ""
 
@@ -1680,7 +1674,7 @@ msgstr ""
 msgid "PublishPress Permissions"
 msgstr "PublishPress Permissions"
 
-#: includes/admin-load.php:354
+#: includes/admin-load.php:350
 msgid "Rank Math SEO"
 msgstr "Rank Math SEO"
 
@@ -1736,7 +1730,7 @@ msgstr "Supprimer quoi que ce soit dans l’écran de modification."
 msgid "Remove metaboxes on the editing screen"
 msgstr "Supprimer les boîtes méta de l’écran de modification"
 
-#: includes/functions.php:530
+#: includes/functions.php:531
 msgid "Request Support"
 msgstr "Demande de support"
 
@@ -1799,7 +1793,7 @@ msgstr "Révisions"
 msgid "Right bar"
 msgstr "Barre de droite"
 
-#: includes/features/frontend-features/frontend-features.php:55
+#: includes/features/frontend-features/frontend-features.php:58
 msgid "Role"
 msgstr ""
 
@@ -1866,8 +1860,8 @@ msgstr ""
 #: includes/features/admin-features.php:54
 #: includes/features/admin-features.php:236 includes/features/nav-menus.php:101
 #: includes/features/nav-menus.php:289
-#: includes/features/frontend-features/frontend-features.php:82
-#: includes/features/frontend-features/frontend-features.php:248
+#: includes/features/frontend-features/frontend-features.php:85
+#: includes/features/frontend-features/frontend-features.php:235
 msgid "Save Changes"
 msgstr "Enregistrer les modifications"
 
@@ -1876,7 +1870,7 @@ msgstr "Enregistrer les modifications"
 msgid "Save Draft"
 msgstr "Enregistrer le brouillon"
 
-#: includes/features/frontend-features/frontend-features-ui.php:148
+#: includes/features/frontend-features/frontend-features-ui.php:149
 msgid "Save Edit"
 msgstr ""
 
@@ -1890,7 +1884,7 @@ msgstr "Enregistrer pour tous les types de publication"
 msgid "Screen Options"
 msgstr "Options de l’écran"
 
-#: includes/functions.php:757
+#: includes/functions.php:758
 msgid "Search"
 msgstr "Search"
 
@@ -1944,7 +1938,7 @@ msgstr ""
 msgid "Selected item deleted successfully"
 msgstr ""
 
-#: includes/features/frontend-features/frontend-features-ui.php:112
+#: includes/features/frontend-features/frontend-features-ui.php:113
 msgid "Selected Pages"
 msgstr ""
 
@@ -1987,11 +1981,11 @@ msgstr "Afficher les types de publications privées"
 msgid "Show private taxonomies"
 msgstr "Afficher les taxonomies privées"
 
-#: includes/functions.php:753
+#: includes/functions.php:754
 msgid "Site Logo"
 msgstr "Logo du site"
 
-#: includes/functions.php:754
+#: includes/functions.php:755
 msgid "Site Title"
 msgstr "Titre du site"
 
@@ -1999,7 +1993,7 @@ msgstr "Titre du site"
 msgid "Slug already exists"
 msgstr "Ce slug existe déjà"
 
-#: includes/functions.php:755
+#: includes/functions.php:756
 msgid "Social Links"
 msgstr "Liens sociaux"
 
@@ -2045,6 +2039,10 @@ msgstr[1] "Systèmes %s"
 #: includes/features/restrict-editor-features.php:434
 msgid "Tags"
 msgstr "Étiquettes"
+
+#: includes/functions.php:512
+msgid "Target Frontend Features for specific pages"
+msgstr ""
 
 #: includes/admin.php:214
 msgid "Taxonomies"
@@ -2218,7 +2216,13 @@ msgstr ""
 msgid "This capability is not available for this post type."
 msgstr "Cette permission n’est pas disponible pour ce type de publication."
 
-#: includes/features/frontend-features/frontend-features-ui.php:120
+#: includes/features/frontend-features/frontend-features-ui.php:41
+msgid ""
+"This feature allows you to modify the site frontend by hiding IDs or classes,"
+" adding CSS styles, or adding body classes."
+msgstr ""
+
+#: includes/features/frontend-features/frontend-features-ui.php:121
 msgid "This feature will be added to all pages."
 msgstr ""
 
@@ -2254,17 +2258,18 @@ msgstr ""
 "d’administration de WordPress."
 
 #: includes/features/restrict-editor-features.php:50
-#: includes/features/frontend-features/frontend-features-ui.php:52
 msgid "Title"
 msgstr "Titre"
+
+#: includes/features/frontend-features/frontend-features-ui.php:52
+msgid "Title:"
+msgstr ""
 
 #: includes/features/profile-features.php:103
 #: includes/features/profile-features.php:122
 #: includes/features/admin-features.php:96
 #: includes/features/admin-features.php:115 includes/features/nav-menus.php:127
 #: includes/features/nav-menus.php:147
-#: includes/features/frontend-features/frontend-features.php:179
-#: includes/features/frontend-features/frontend-features.php:198
 msgid "Toggle all"
 msgstr "Tout permuter"
 
@@ -2330,7 +2335,7 @@ msgstr "Mises à jour"
 msgid "Upgrade to Capabilities Pro"
 msgstr "Passez à Capabilities Pro"
 
-#: includes/functions.php:516 includes-core/editor-features-promo.php:79
+#: includes/functions.php:517 includes-core/editor-features-promo.php:79
 #: includes-core/frontend-features-promo.php:32
 #: includes-core/admin-features-promo.php:79
 #: includes-core/admin-menus-promo.php:62
@@ -2345,8 +2350,8 @@ msgstr "Mettre à niveau en Pro"
 #: includes/features/nav-menus.php:304
 #: includes/features/editor-features.php:237
 #: includes/features/editor-features.php:238
-#: includes/features/frontend-features/frontend-features.php:262
-#: includes/features/frontend-features/frontend-features.php:263
+#: includes/features/frontend-features/frontend-features.php:249
+#: includes/features/frontend-features/frontend-features.php:250
 msgid "usage key"
 msgstr "clé d’utilisation"
 
@@ -2377,18 +2382,18 @@ msgstr "Test des utilisateurs et utilisatrices"
 msgid "Users"
 msgstr "Utilisateurs"
 
-#: includes/features/frontend-features/frontend-features-ui.php:249
+#: includes/features/frontend-features/frontend-features-ui.php:251
 msgid "View"
 msgstr ""
 
 #: includes/admin.php:1722 includes/features/profile-features.php:237
 #: includes/features/admin-features.php:252 includes/features/nav-menus.php:306
 #: includes/features/editor-features.php:240
-#: includes/features/frontend-features/frontend-features.php:265
+#: includes/features/frontend-features/frontend-features.php:252
 msgid "View Documentation"
 msgstr "Voir la documentation"
 
-#: includes/functions.php:541
+#: includes/functions.php:542
 msgid "View Knowledge Base"
 msgstr "Voir la base de connaissances"
 
@@ -2429,7 +2434,7 @@ msgstr ""
 "modifications, cela crée également une sauvegarde que vous pouvez utiliser "
 "pour restaurer une configuration antérieure."
 
-#: includes/features/frontend-features/frontend-features-ui.php:111
+#: includes/features/frontend-features/frontend-features-ui.php:112
 msgid "Whole Site"
 msgstr ""
 
@@ -2512,16 +2517,14 @@ msgstr ""
 "Vous pouvez restreindre l’accès aux écrans du menu d’administration. Cette "
 "fonctionnalité est disponible dans PublishPress Capabilities Pro"
 
-#: includes-core/frontend-features-promo.php:25
-msgid ""
-"You can select page types where this element will be added and also add a "
-"metabox on the post editing screen extending this feature to add body "
-"classes only for selected post. This feature is available in PublishPress "
-"Capabilities Pro."
-msgstr ""
-
 #: includes-core/CoreAdmin.php:126
 msgid "You can select page types where this element will be added."
+msgstr ""
+
+#: includes-core/frontend-features-promo.php:25
+msgid ""
+"You can use Frontend Features to target specific posts and pages. This "
+"feature is available in PublishPress Capabilities Pro."
 msgstr ""
 
 #: includes/handler.php:250
