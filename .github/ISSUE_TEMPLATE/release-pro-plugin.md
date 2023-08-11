@@ -1,7 +1,7 @@
 ---
 name: Release the Pro Version (Team Only)
 about: Default checklist for the plugin's release process.
-title: Release PublishPress Revisions Pro v[VERSION]
+title: Release PublishPress Capabilities Pro v[VERSION]
 labels: release
 assignees: ''
 ---
