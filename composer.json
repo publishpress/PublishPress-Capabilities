@@ -29,8 +29,10 @@
     }
   ],
   "scripts": {
-    "build": "builder/docker/scripts/build build",
-    "build-unpacked": "builder/docker/scripts/build build-dir"
+    "build": "ppbuild build",
+    "build:dir": "ppbuild build-dir",
+    "build:clean": "ppbuild clean",
+    "get-version": "ppbuild version"
   },
   "extra": {
     "plugin-name": "capability-manager-enhanced",
