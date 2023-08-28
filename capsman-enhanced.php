@@ -173,5 +173,5 @@ add_action('plugins_loaded', function () {
 	} else {
 		define('CAPSMAN_PERMISSIONS_INSTALLED', true);
 	}
-	do_action('plublishpress_capabilities_loaded');
+	do_action('publishpress_capabilities_loaded');
 }, -10);

@@ -255,7 +255,7 @@ class CapabilityManager
 			add_filter( 'option_' . $role_key, array( &$this, 'reinstate_db_roles' ), PHP_INT_MAX );
 		}
 
-		$action = (defined('PP_CAPABILITIES_COMPAT_MODE')) ? 'init' : 'plublishpress_capabilities_loaded';
+		$action = (defined('PP_CAPABILITIES_COMPAT_MODE')) ? 'init' : 'publishpress_capabilities_loaded';
 		add_action( $action, array( &$this, 'processRoleUpdate' ) );
     }
 
