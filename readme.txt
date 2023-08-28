@@ -416,7 +416,7 @@ Fixed : Security issue. Please update.
   * Changed: Change min PHP version to 7.2.5. If not compatible, the plugin will not execute;
   * Changed: Change min WP version to 5.5. If not compatible, the plugin will not execute;
   * Changed: Updated internal libraries to latest versions;
-  * Changed: Refactor some occurrences of "plugins_loaded" replacing it by a new action: "plublishpress_capabilities_loaded" which runs after the requirements and libraries are loaded, but before the plugin is initialized;
+  * Changed: Refactor some occurrences of "plugins_loaded" replacing it by a new action: "publishpress_capabilities_loaded" which runs after the requirements and libraries are loaded, but before the plugin is initialized;
 
 = 2.9.1 - 1 Aug 2023 =
   * Fixed : Fatal error: Uncaught Error: Call to a member function has_cap() on null in Installer class, #880
