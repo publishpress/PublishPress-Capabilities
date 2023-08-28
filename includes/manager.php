@@ -130,6 +130,13 @@ class CapabilityManager
 	 */
 	public $ID;
 
+	/**
+	 * Module URL.
+	 *
+	 * @var string
+	 */
+	public $mod_url;
+
 	public function __construct()
 	{
 		$this->ID = 'capsman';
@@ -248,7 +255,7 @@ class CapabilityManager
 			add_filter( 'option_' . $role_key, array( &$this, 'reinstate_db_roles' ), PHP_INT_MAX );
 		}
 
-		$action = (defined('PP_CAPABILITIES_COMPAT_MODE')) ? 'init' : 'plugins_loaded';
+		$action = (defined('PP_CAPABILITIES_COMPAT_MODE')) ? 'init' : 'plublishpress_capabilities_loaded';
 		add_action( $action, array( &$this, 'processRoleUpdate' ) );
     }
 
@@ -321,7 +328,7 @@ class CapabilityManager
 	}
 
 	/**
-	 * Adds admin panel menus. (At plugins loading time. This is before plugins_loaded).
+	 * Adds admin panel menus.
 	 * User needs to have 'manage_capabilities' to access this menus.
 	 * This is set as an action in the parent class constructor.
 	 *
