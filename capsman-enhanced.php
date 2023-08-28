@@ -78,7 +78,7 @@ add_action('plugins_loaded', function () {
 	foreach (get_option('active_plugins') as $plugin_file) {
 		if (false !== strpos($plugin_file, 'capsman.php')) {
 			add_action('admin_notices', function () {
-				echo '<div id="message" class="error fade" style="color: black">' . sprintf(esc_html__('%1s Error: %2s  PublishPress Capabilities cannot function because another copy of Capability Manager is active.', 'capsman-enhanced'), '<strong>', '</strong>') . '</div>';
+				echo '<div id="message" class="error fade" style="color: black">' . sprintf(esc_html__('%1s Error: %2s  PublishPress Capabilities cannot function because another copy of the plugin is active.', 'capsman-enhanced'), '<strong>', '</strong>') . '</div>';
 			});
 			return;
 		}
