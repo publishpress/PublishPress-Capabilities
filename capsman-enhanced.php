@@ -145,10 +145,10 @@ add_action('plugins_loaded', function () {
 	if (is_admin()) {
 
 		// @todo: refactor
-		require_once(dirname(__FILE__) . '/includes/functions-admin.php');
+		require_once (dirname(__FILE__) . '/includes/functions-admin.php');
 
 		global $capsman_admin;
-		require_once(dirname(__FILE__) . '/includes/admin-load.php');
+		require_once (dirname(__FILE__) . '/includes/admin-load.php');
 		$capsman_admin = new PP_Capabilities_Admin_UI();
 	}
 
@@ -165,7 +165,7 @@ add_action('plugins_loaded', function () {
 	// @todo: do this in PP Core also
 
 	if (is_multisite())
-		require_once(dirname(__FILE__) . '/includes/network.php');
+		require_once (dirname(__FILE__) . '/includes/network.php');
 
 	// Check if Permissions is installed
 	if (!cme_is_plugin_active('press-permit-core.php') && !cme_is_plugin_active('presspermit-pro.php')) {
