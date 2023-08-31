@@ -25,7 +25,6 @@
  * @copyright   Copyright (C) 2009, 2010 Jordi Canals; modifications Copyright (C) 2022 PublishPress
  * @license		GNU General Public License version 3
  * @link		https://publishpress.com/
- * @version 	2.4.0
  */
 
 global $wp_version;
