@@ -275,6 +275,8 @@ class Capsman_BackupHandler
 	 */
 	function backupToolReset ()
 	{
+        global $current_user;
+
 		check_admin_referer('capsman-reset-defaults');
 	
 		require_once(ABSPATH . 'wp-admin/includes/schema.php');
@@ -291,7 +293,13 @@ class Capsman_BackupHandler
 		}
 
 		populate_roles();
-		$this->cm->setAdminCapability();
+        
+        $pp_capabilities = apply_filters('cme_publishpress_capabilities_capabilities', []);
+        $role = get_role('administrator');
+        foreach ($pp_capabilities as $cap) {
+            $role->add_cap($cap);
+            $current_user->allcaps[$cap] = true;
+        }
 
 		$msg = esc_html__('Roles and Capabilities reset to WordPress defaults', 'capsman-enhanced');
 		
