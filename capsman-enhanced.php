@@ -157,7 +157,7 @@ add_action('plugins_loaded', function () {
 	}
 
 	add_action('init', '_cme_init');
-	add_action( 'init', '_cme_act_pp_active', 9);
+	add_action( 'plugins_loaded', '_cme_act_pp_active', 1);
 
 	add_action('init', '_cme_cap_helper', 49);  // Press Permit Cap Helper, registered at 50, will leave caps which we've already defined
 	//add_action( 'wp_loaded', '_cme_cap_helper_late_init', 99 );	// now instead adding registered_post_type, registered_taxonomy action handlers for latecomers
