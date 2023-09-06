@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Plugins - PublishPress Capabilities &#8211; User Role "
 "Access, Editor Permissions, Admin Menus - Stable (latest release)\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2023-08-01 12:21+0000\n"
+"PO-Revision-Date: 2023-09-06 13:52+0000\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "Language: it_IT\n"
@@ -77,10 +77,14 @@ msgstr "%1$scattura%2$s %3$s"
 msgid "%1$sReturn to Administrator view%2$s"
 msgstr "%1$sTorna alla vista amministratore%2$s"
 
-#: capsman-enhanced.php:55
+#: capsman-enhanced.php:80
+#, fuzzy
+#| msgid ""
+#| "%1s Error: %2s  PublishPress Capabilities cannot function because another "
+#| "copy of Capability Manager is active."
 msgid ""
 "%1s Error: %2s  PublishPress Capabilities cannot function because another "
-"copy of Capability Manager is active."
+"copy of the plugin is active."
 msgstr ""
 "<strong>Errore:</strong> PublishPress Capabilities non può funzionare perché "
 "è attiva un'altra copia di Capability Manager."
@@ -96,10 +100,6 @@ msgstr "%s (livello %s)"
 #: includes/admin.php:1610
 msgid "%s info/purchase"
 msgstr "%s info/acquisto"
-
-#: capsman-enhanced.php:115
-msgid "%s is required for this plugin."
-msgstr "E' necessario %s per l'utilizzo di questo plugin."
 
 #: includes/backup-handler.php:119
 msgid "%s restored from last backup."
@@ -146,11 +146,11 @@ msgstr ""
 "Un backup creato in questa schermata sostituirà qualsiasi backup manuale "
 "precedente, ma non viene sostituito automaticamente."
 
-#: includes/manager.php:1327
+#: includes/manager.php:1334
 msgid "About"
 msgstr "Chi siamo"
 
-#: includes/manager.php:1327
+#: includes/manager.php:1334
 msgid "About PublishPress Capabilities"
 msgstr "Informazioni su PublishPress Capabilities"
 
@@ -189,16 +189,16 @@ msgstr "Aggiungi blocco"
 msgid "Add New Category"
 msgstr "Aggiungi una nuova categoria"
 
-#: includes/manager.php:213
+#: includes/manager.php:220
 msgid "Add or clear custom item entry before saving changes."
 msgstr ""
 "Aggiungi o cancella la voce personalizzata prima di salvare le modifiche."
 
-#: includes/manager.php:211
+#: includes/manager.php:218
 msgid "Add or remove capability from the role normally"
 msgstr "Aggiungi o rimuovi capacità dal ruolo normalmente"
 
-#: includes/manager.php:210
+#: includes/manager.php:217
 msgid "Add or remove this capability from the WordPress role"
 msgstr "Aggiungi o rimuovi questa capacità dal ruolo di WordPress"
 
@@ -227,7 +227,7 @@ msgid "Admin Feature Restrictions"
 msgstr "Restrizioni caratteristiche di amministrazione"
 
 #: includes/functions-admin.php:216 includes/functions-admin.php:345
-#: includes/functions-admin.php:417 includes/manager.php:453
+#: includes/functions-admin.php:417 includes/manager.php:460
 #: includes/roles/class/class-pp-roles-list-table.php:174
 msgid "Admin Features"
 msgstr "Caratteristiche amministrative"
@@ -258,8 +258,8 @@ msgstr "Limitazioni menu di amministrazione"
 msgid "Admin Menu restrictions"
 msgstr "Restrizioni menu amministrazione"
 
-#: includes/functions-admin.php:439 includes/manager.php:454
-#: includes-core/CoreAdmin.php:80
+#: includes/functions-admin.php:439 includes/manager.php:461
+#: includes-core/CoreAdmin.php:76
 #: includes/roles/class/class-pp-roles-list-table.php:176
 msgid "Admin Menus"
 msgstr "Menu amministrazione"
@@ -341,7 +341,7 @@ msgstr ""
 msgid "Apply for %1$s"
 msgstr ""
 
-#: includes/manager.php:212
+#: includes/manager.php:219
 msgid "Are you sure you want to delete this item ?"
 msgstr "Sei sicuro di voler cancellare questo elemento?"
 
@@ -393,7 +393,7 @@ msgstr "Backup ruoli e capacità"
 msgid "Backup Tool for PublishPress Capabilities"
 msgstr "Strumento di backup per %1$sPublishPress Capabilities%2$s"
 
-#: includes/manager.php:1012
+#: includes/manager.php:1019
 msgid "Bad form Received"
 msgstr "E' stato ricevuto un modulo errato"
 
@@ -504,12 +504,12 @@ msgstr ""
 "Non é possibile cancellare il ruolo predefinito. Bisogna che prima effettui "
 "questa <a href=\"%s\">modifica</a>."
 
-#: includes/manager.php:1329
+#: includes/manager.php:1336
 msgid "Capabilites Documentation"
 msgstr "Documentazione di Capabilites"
 
 #: includes/functions-admin.php:335 includes/functions-admin.php:403
-#: includes/manager.php:346 includes/manager.php:451
+#: includes/manager.php:353 includes/manager.php:458
 #: includes/settings-ui.php:32 includes/admin-load.php:468
 #: includes/roles/class/class-pp-roles-admin.php:721
 #: includes/roles/class/class-pp-roles-list-table.php:172
@@ -624,11 +624,11 @@ msgstr "Impostazioni colore"
 msgid "Comments"
 msgstr "Commenti"
 
-#: includes/manager.php:1331
+#: includes/manager.php:1338
 msgid "Contact"
 msgstr "Contatto"
 
-#: includes/manager.php:1331
+#: includes/manager.php:1338
 msgid "Contact the PublishPress team"
 msgstr "Contatta il team di PublishPress"
 
@@ -811,7 +811,7 @@ msgstr "Discussione"
 msgid "Document Panel"
 msgstr "Pannello documenti"
 
-#: includes/manager.php:1329
+#: includes/manager.php:1336
 msgid "Documentation"
 msgstr "Documentazione"
 
@@ -871,7 +871,7 @@ msgid "Editor Feature Restrictions"
 msgstr "Limitazione delle funzioni dell'editor"
 
 #: includes/functions-admin.php:205 includes/functions-admin.php:340
-#: includes/functions-admin.php:410 includes/manager.php:452
+#: includes/functions-admin.php:410 includes/manager.php:459
 #: includes/settings-ui.php:33
 #: includes/roles/class/class-pp-roles-list-table.php:173
 msgid "Editor Features"
@@ -970,11 +970,11 @@ msgstr "Escludi il ruolo dal test utenti"
 msgid "Exclude users in selected roles from User Testing."
 msgstr "Escludere gli utenti dei ruoli selezionati dal test utenti."
 
-#: includes/manager.php:207
+#: includes/manager.php:214
 msgid "Explicitly negate these capabilities by storing as disabled"
 msgstr "Nega esplicitamente queste capacità memorizzandole come disabilitate"
 
-#: includes/manager.php:206
+#: includes/manager.php:213
 msgid "Explicity negate this capability by storing as disabled"
 msgstr "Nega esplicitamente questa capacità memorizzandola come disabilitata"
 
@@ -1179,7 +1179,7 @@ msgid ""
 "will be lost."
 msgstr "I ruoli e le capacità propri di ogni plugin installato saranno persi."
 
-#: includes/manager.php:1316
+#: includes/manager.php:1323
 msgid "If you like %s, please leave us a %s rating. Thank you!"
 msgstr "Se sei soddisfatto di %s, lasciaci una valutazione di %s!"
 
@@ -1369,7 +1369,7 @@ msgid "Nav Menu"
 msgstr "Menu di navigazione"
 
 #: includes/functions-admin.php:360 includes/functions-admin.php:447
-#: includes/manager.php:455
+#: includes/manager.php:462
 #: includes/roles/class/class-pp-roles-list-table.php:177
 msgid "Nav Menus"
 msgstr "Menu navigazione"
@@ -1388,7 +1388,7 @@ msgstr "Limitazioni menu di navigazione"
 msgid "Need PublishPress Capabilities Support?"
 msgstr "Hai bisogno del supporto di PublishPress Capabilities?"
 
-#: includes/backup-handler.php:283
+#: includes/backup-handler.php:285
 msgid "Needed function to create default roles not found!"
 msgstr ""
 "La funzione necessaria per la creazione dei ruoli predefiniti non é stata "
@@ -1416,7 +1416,7 @@ msgstr "Nuovo"
 msgid "New backup saved."
 msgstr "Il nuovo backup é stato salvato."
 
-#: includes/manager.php:971
+#: includes/manager.php:978
 msgid "New capability added to role."
 msgstr "La nuova capacità é stata aggiunta al ruolo."
 
@@ -1573,7 +1573,7 @@ msgstr "Post Slug"
 msgid "Post Type Metabox"
 msgstr ""
 
-#: includes/manager.php:208
+#: includes/manager.php:215
 msgid "Post type registration does not define this capability distinctly"
 msgstr ""
 "La registrazione del tipo di articolo non definisce chiaramente questa "
@@ -1801,7 +1801,7 @@ msgstr ""
 "l'idoneità per l'assegnazione di autore articolo e limita l'applicazione "
 "delle capacità di modifica dell'utente."
 
-#: includes/manager.php:449 includes/roles/class/class-pp-roles-admin.php:177
+#: includes/manager.php:456 includes/roles/class/class-pp-roles-admin.php:177
 #: includes/roles/class/class-pp-roles-list-table.php:170
 msgid "Role Name"
 msgstr "Nome del ruolo"
@@ -1824,7 +1824,7 @@ msgstr ""
 msgid "Roles and Capabilities"
 msgstr "Ruoli e capacità"
 
-#: includes/backup-handler.php:296
+#: includes/backup-handler.php:304
 msgid "Roles and Capabilities reset to WordPress defaults"
 msgstr ""
 "I ruoli e le capacità sono stati ripristinati ai valori predefiniti di "
@@ -1901,7 +1901,7 @@ msgstr "Seleziona %s"
 msgid "Select allowed editor"
 msgstr "Seleziona autore autorizzato"
 
-#: includes-core/CoreAdmin.php:121
+#: includes-core/CoreAdmin.php:117
 msgid "Select pages..."
 msgstr ""
 
@@ -1936,8 +1936,8 @@ msgstr "Impostazioni"
 msgid "Settings saved."
 msgstr "Impostazioni salvate."
 
-#: includes/manager.php:562 includes/manager.php:616 includes/manager.php:664
-#: includes/manager.php:714 includes/manager.php:796
+#: includes/manager.php:569 includes/manager.php:623 includes/manager.php:671
+#: includes/manager.php:721 includes/manager.php:803
 msgid "Settings updated."
 msgstr "Impostazioni aggiornate."
 
@@ -2093,10 +2093,6 @@ msgstr ""
 "Lo \"slug\" è la versione URL-friendly del ruolo. Di solito è tutto "
 "minuscolo e contiene solo lettere, numeri e trattini bassi."
 
-#: capsman-enhanced.php:113
-msgid "The active plugin %s is not compatible with your PHP version."
-msgstr "Il plugin %s non é compatibile con la tua versione PHP."
-
 #: includes/admin.php:1297
 msgid ""
 "The following entries have no effect. Please assign desired capabilities on "
@@ -2133,7 +2129,7 @@ msgstr "Il ruolo non può essere eliminato."
 msgid "The selected %1$s roles were successfully deleted. %2$s"
 msgstr "I ruoli %1$s selezionati sono stati eliminati con successo. %2$s"
 
-#: includes/handler.php:61 includes/handler.php:89 includes/manager.php:983
+#: includes/handler.php:61 includes/handler.php:89 includes/manager.php:990
 msgid "The selected role is not editable."
 msgstr "Il ruolo selezionato non è modificabile."
 
@@ -2187,7 +2183,7 @@ msgstr ""
 "Questa funzionalità è controllata da %s Utilizza le impostazioni della barra "
 "laterale per consentirne il controllo indipendente."
 
-#: includes/manager.php:209
+#: includes/manager.php:216
 msgid "This capability is explicitly negated. Click to add/remove normally."
 msgstr ""
 "Questa capacità è esplicitamente negata. Fai clic per aggiungere/rimuovere "
@@ -2207,7 +2203,7 @@ msgstr ""
 msgid "This feature will be added to all pages."
 msgstr ""
 
-#: capsman-enhanced.php:85
+#: capsman-enhanced.php:109
 msgid "This plugin can be deleted."
 msgstr "Questo plugin può essere eliminato."
 
@@ -2353,7 +2349,7 @@ msgstr "Nome visualizzato dell'utente"
 msgid "User Testing"
 msgstr "Prova utente"
 
-#: includes/manager.php:450
+#: includes/manager.php:457
 #: includes/roles/class/class-pp-roles-list-table.php:171
 msgid "Users"
 msgstr "Utenti"
@@ -2373,7 +2369,7 @@ msgstr "Visualizza la documentazione"
 msgid "View Knowledge Base"
 msgstr "Vedi la documentazione di base"
 
-#: capsman-enhanced.php:112 includes/backup.php:285 includes/backup.php:332
+#: includes/backup.php:285 includes/backup.php:332
 msgid "Warning:"
 msgstr "Attenzione:"
 
@@ -2493,7 +2489,7 @@ msgstr ""
 "Puoi limitare l'accesso alle schermate del menu di amministrazione. Questa "
 "funzionalità è disponibile in PublishPress Capabilities Pro"
 
-#: includes-core/CoreAdmin.php:126
+#: includes-core/CoreAdmin.php:122
 msgid "You can select page types where this element will be added."
 msgstr ""
 
@@ -2511,40 +2507,40 @@ msgstr "Non puoi rimuovere la gestione delle capacità per gli amministratori"
 msgid "You do not have permission to access this page."
 msgstr "Non hai i permessi per accedere a questa pagina."
 
-#: includes/manager.php:578 includes/manager.php:600 includes/manager.php:679
-#: includes/manager.php:730 includes/manager.php:813
+#: includes/manager.php:585 includes/manager.php:607 includes/manager.php:686
+#: includes/manager.php:737 includes/manager.php:820
 msgid "You do not have permission to manage admin features."
 msgstr ""
 "Non hai le autorizzazioni adatte per gestire le caratteristiche "
 "amministrative."
 
-#: includes/manager.php:905 includes/manager.php:939 includes/manager.php:957
+#: includes/manager.php:912 includes/manager.php:946 includes/manager.php:964
 msgid "You do not have permission to manage capabilities."
 msgstr "Non hai le autorizzazioni per gestire le capacità."
 
-#: includes/manager.php:505 includes/manager.php:527
+#: includes/manager.php:512 includes/manager.php:534
 msgid "You do not have permission to manage editor features."
 msgstr "Non hai i permessi per gestire le funzionalità dell'editor."
 
-#: includes/manager.php:631 includes/manager.php:653
+#: includes/manager.php:638 includes/manager.php:660
 #: includes/features/frontend-features/frontend-features-action.php:54
 #: includes/features/frontend-features/frontend-features-action.php:117
 msgid "You do not have permission to manage frontend features."
 msgstr ""
 
-#: includes/manager.php:701
+#: includes/manager.php:708
 msgid "You do not have permission to manage navigation menus."
 msgstr "Non hai i permessi per gestire i menu di navigazione."
 
-#: includes/manager.php:752
+#: includes/manager.php:759
 msgid "You do not have permission to manage profile features."
 msgstr "Non hai i permessi per gestire le caratteristiche del profilo."
 
-#: includes/manager.php:482
+#: includes/manager.php:489
 msgid "You do not have permission to manage roles."
 msgstr "Non hai le autorizzazioni per gestire i ruoli."
 
-#: includes/manager.php:1170
+#: includes/manager.php:1177
 msgid "You do not have permission to perform this action."
 msgstr "Non hai i permessi per effettuare questa azione."
 
@@ -2552,7 +2548,7 @@ msgstr "Non hai i permessi per effettuare questa azione."
 msgid "You do not have permission to restore backup."
 msgstr "Non hai i permessi per ripristinare un backup."
 
-#: includes/manager.php:1132
+#: includes/manager.php:1139
 msgid "You do not have permission to restore roles."
 msgstr "Non hai le autorizzazioni per il ripristino dei ruoli."
 
