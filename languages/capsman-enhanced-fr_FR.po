@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Plugins - PublishPress Capabilities &#8211; User Role "
 "Access, Editor Permissions, Admin Menus - Stable (latest release)\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2023-08-01 12:21+0000\n"
+"PO-Revision-Date: 2023-08-05 10:27+0200\n"
 "Last-Translator: \n"
 "Language-Team: French (France)\n"
 "Language: fr_FR\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Loco https://localise.biz/"
+"X-Generator: Poedit 3.3\n"
 
 #: includes/pp-ui.php:65
 msgid ""
@@ -38,7 +38,7 @@ msgstr "%1$d utilisateurs/utilisatrices déplacés vers le rôle par défaut %2
 #: includes/features/frontend-features/frontend-features.php:250
 #, php-format
 msgid "%1$s = Apply custom styling"
-msgstr ""
+msgstr "%1$s = Appliquer un style personnalisé"
 
 #: includes/admin.php:1680
 msgid "%1$s = Capability denied, even if granted by another role %2$s"
@@ -169,11 +169,11 @@ msgstr "Ajouter un bloc"
 
 #: includes/features/frontend-features/frontend-features-ui.php:74
 msgid "Add Body Class"
-msgstr ""
+msgstr "Ajouter une classe de corps"
 
 #: includes/features/frontend-features/frontend-features-ui.php:73
 msgid "Add Custom CSS"
-msgstr ""
+msgstr "Ajouter CSS personnalisé"
 
 #: includes/features/restrict-editor-features.php:47
 #: includes/roles/roles.php:10
@@ -206,7 +206,7 @@ msgstr "Ajouter ou supprimer une permission au rôle WordPress"
 
 #: includes/features/frontend-features/frontend-features-ui.php:129
 msgid "Add post metabox:"
-msgstr ""
+msgstr "Ajouter une boîte méta de publication :"
 
 #: includes/admin.php:1787
 msgid "Add to role"
@@ -283,7 +283,7 @@ msgstr[1] "Tous les %s"
 #: includes/features/frontend-features/frontend-features-ui.php:147
 #: includes/features/frontend-features/frontend-features-action.php:58
 msgid "All fields are required."
-msgstr ""
+msgstr "Tous les champs sont obligatoires."
 
 #: includes/roles/class/class-pp-roles-admin.php:646
 msgid "All Roles"
@@ -337,12 +337,12 @@ msgstr ""
 #: includes/features/frontend-features/frontend-features-action.php:41
 #: includes/features/frontend-features/frontend-features-action.php:110
 msgid "An error occured!"
-msgstr ""
+msgstr "Une erreur s’est produite !"
 
 #: includes/features/frontend-features/frontend-features.php:151
 #, php-format
 msgid "Apply for %1$s"
-msgstr ""
+msgstr "Appliquer pour %1$s"
 
 #: includes/manager.php:212
 msgid "Are you sure you want to delete this item ?"
@@ -449,7 +449,7 @@ msgstr "Corps"
 
 #: includes/features/frontend-features/frontend-features-ui.php:221
 msgid "Body Class"
-msgstr ""
+msgstr "Classe de corps"
 
 #: includes/roles/class/class-pp-roles-admin.php:303
 #, php-format
@@ -499,7 +499,7 @@ msgstr "peut lire les articles publiés avec la visibilité privée"
 
 #: includes/features/frontend-features/frontend-features-ui.php:144
 msgid "Cancel Edit"
-msgstr ""
+msgstr "Annuler la modification"
 
 #: includes/roles/class/class-pp-roles-actions.php:523
 msgid ""
@@ -524,11 +524,13 @@ msgstr "Permissions"
 msgid "Capabilities allows you change the permissions for any user role."
 msgstr ""
 "Permissions vous permet de modifier les permissions pour tout rôle "
-"d’utilisateur et d’utilisatrice."
+"d’utilisateur/utilisatrice."
 
 #: includes/functions-admin.php:336
 msgid "Capabilities allows you to change the permissions for any user role."
 msgstr ""
+"Permissions vous permet de modifier les permissions pour tout rôle "
+"d’utilisateur/utilisatrice."
 
 #: includes/pp-ui.php:75
 msgid ""
@@ -596,6 +598,8 @@ msgstr "Liste de contrôle"
 #: includes/features/frontend-features/frontend-features-metaboxes.php:77
 msgid "Choose Frontend Features that will apply to this post."
 msgstr ""
+"Choisissez les fonctionnalités de l’interface publique qui s’appliquent à "
+"cette publication."
 
 #: includes/features/editor-features.php:130
 msgid "Classic"
@@ -606,10 +610,8 @@ msgid "Classic editor"
 msgstr "Éditeur classique"
 
 #: includes/features/editor-features-classic.php:1
-#, fuzzy
-#| msgid "Classic Editor %s Restriction"
 msgid "Classic Editor %s Restrictions"
-msgstr "Restriction %s de l’éditeur classique"
+msgstr "Restrictions %s de l’éditeur classique"
 
 #: includes/admin.php:718 includes/admin.php:1019 includes/admin.php:1129
 #: includes/admin.php:1182 includes/admin.php:1397
@@ -684,7 +686,7 @@ msgstr "Créer cette définition de rôle dans les nouveaux (futurs) sites"
 
 #: includes/features/frontend-features/frontend-features-ui.php:226
 msgid "Custom CSS"
-msgstr ""
+msgstr "CSS personnalisé"
 
 #: includes-core/editor-features-promo.php:95
 msgid "Custom item one"
@@ -704,8 +706,8 @@ msgstr ""
 
 #: includes/admin.php:1573
 msgid ""
-"Custom Post Visibility statuses, fully implemented throughout wp-admin <em>"
-"(Pro)</em>"
+"Custom Post Visibility statuses, fully implemented throughout wp-admin "
+"<em>(Pro)</em>"
 msgstr ""
 "États de visibilité de publication personnalisés, entièrement mis en œuvre "
 "dans wp-admin. <em> (Pro)</em>"
@@ -866,7 +868,7 @@ msgstr "Édition"
 
 #: includes/features/frontend-features/frontend-features-ui.php:44
 msgid "Editing:"
-msgstr ""
+msgstr "Édition :"
 
 #: includes/features/restrict-editor-features.php:45
 #: includes/features/restrict-editor-features.php:55
@@ -874,8 +876,6 @@ msgid "Editor"
 msgstr "Éditeur"
 
 #: includes/features/editor-features.php:69
-#, fuzzy
-#| msgid "Editor Feature Restriction"
 msgid "Editor Feature Restrictions"
 msgstr "Restriction des fonctionnalités de l’éditeur"
 
@@ -912,18 +912,25 @@ msgid ""
 "Enter classes that should be added to the body HTML. Separate multiple "
 "values with a space (custom-item-one custom-item-two)."
 msgstr ""
+"Saisissez les classes qui doivent être ajoutées au corps HTML. Séparez les "
+"valeurs multiples par un espace (custom-item-one custom-item-two)."
 
 #: includes/features/frontend-features/frontend-features-ui.php:91
 msgid ""
-"Enter custom CSS to be added to frontend pages. Examples: .custom-style-1 { "
-"color: red; } #custom-header { background: red; } "
+"Enter custom CSS to be added to frontend pages. Examples: .custom-style-1 "
+"{ color: red; } #custom-header { background: red; } "
 msgstr ""
+"Saisissez le CSS personnalisé à ajouter aux pages de l’interface publique. "
+"Exemples : .custom-style-1 { color: red; } #custom-header { background: "
+"red; } "
 
 #: includes/features/frontend-features/frontend-features-ui.php:80
 msgid ""
 "Enter IDs or classes to hide. Separate multiple values with a comma (.custom-"
 "item-one, .custom-item-two, #new-item-id)."
 msgstr ""
+"Saisissez les identifiants ou les classes à masquer. Séparez les valeurs "
+"multiples par une virgule (.custom-item-one, .custom-item-two, #new-item-id)."
 
 #: includes/roles/class/class-pp-roles-admin.php:520
 msgid "Enter the relative path only without domain for login redirect."
@@ -1025,7 +1032,7 @@ msgstr "Image mise en avant"
 
 #: includes/features/frontend-features/frontend-features-ui.php:65
 msgid "Features:"
-msgstr ""
+msgstr "Fonctionnalité :"
 
 #: includes/admin.php:1018 includes/admin.php:1128 includes/admin.php:1181
 #: includes/admin.php:1396
@@ -1047,17 +1054,19 @@ msgstr "Notification dans le pied de page de l’interface publique"
 #: includes/features/frontend-features/frontend-features-action.php:92
 msgid "Frontend element item updated. Save changes to enable for role."
 msgstr ""
+"L’élément de l’interface publique a bien été mis à jour. Enregistrer les "
+"modifications pour activer le rôle."
 
 #: includes/features/frontend-features/frontend-features-data.php:16
 msgid "Frontend Elements"
-msgstr ""
+msgstr "Éléments de l’interface publique"
 
 #: includes/functions-admin.php:220 includes/functions-admin.php:350
 #: includes/functions-admin.php:424
 #: includes/features/frontend-features/frontend-features-metaboxes.php:55
 #: includes/features/frontend-features/frontend-features.php:70
 msgid "Frontend Features"
-msgstr ""
+msgstr "Fonctionnalités de l’interface publique"
 
 #: includes/functions-admin.php:351
 #: includes/features/frontend-features/frontend-features.php:247
@@ -1065,6 +1074,8 @@ msgid ""
 "Frontend Features allows you to add or remove elements from the frontend of "
 "your site."
 msgstr ""
+"Les fonctionnalités de l’interface publique vous permet d’ajouter ou de "
+"supprimer des éléments de l’interface publique de votre site."
 
 #: includes/roles/class/class-pp-roles-admin.php:106
 msgid "General"
@@ -1098,10 +1109,8 @@ msgid "Gutenberg editor"
 msgstr "Éditeur Gutenberg"
 
 #: includes/features/editor-features-gutenberg.php:1
-#, fuzzy
-#| msgid "Gutenberg Editor %s Restriction"
 msgid "Gutenberg Editor %s Restrictions"
-msgstr "Restriction %s de l’éditeur Gutenberg"
+msgstr "Restrictions %s de l’éditeur Gutenberg"
 
 #: includes/admin.php:236
 msgid ""
@@ -1136,7 +1145,7 @@ msgstr "Aide"
 
 #: includes/features/frontend-features/frontend-features-ui.php:216
 msgid "Hidden IDs or Classes"
-msgstr ""
+msgstr "Identifiants ou classes masqués"
 
 #: includes/roles/class/class-pp-roles-list-table.php:302
 msgid "Hide"
@@ -1144,7 +1153,7 @@ msgstr "Masquer"
 
 #: includes/features/frontend-features/frontend-features-ui.php:72
 msgid "Hide IDs or Classes"
-msgstr ""
+msgstr "Masquer identifiants ou classes"
 
 #: includes/functions.php:759
 msgid "Home Link"
@@ -1164,7 +1173,7 @@ msgstr "Mode d’emploi des fonctionnalités de l’éditeur"
 
 #: includes/features/frontend-features/frontend-features.php:253
 msgid "How to use Frontend Features"
-msgstr ""
+msgstr "Mode d’emploi des fonctionnalités de l’interface publique"
 
 #: includes/features/nav-menus.php:307
 msgid "How to use Nav Menus"
@@ -1244,7 +1253,7 @@ msgstr "Sauvegarde initiale de tous les rôles"
 #: includes/features/frontend-features/frontend-features-action.php:56
 #: includes/features/frontend-features/frontend-features-action.php:119
 msgid "Invalid action. Reload this page and try again."
-msgstr ""
+msgstr "Action invalide. Rechargez cette page et réessayez."
 
 #: includes/admin.php:668 includes/admin.php:1292
 msgid "Invalid Capabilities"
@@ -1256,7 +1265,7 @@ msgstr "Jeton de nonce invalide !"
 
 #: includes/features/frontend-features/frontend-features-action.php:121
 msgid "Invalid request!."
-msgstr ""
+msgstr "Demande invalide !"
 
 #: includes/roles/class/class-pp-roles-actions.php:211
 msgid "Invalid role name entry: %s"
@@ -1292,11 +1301,11 @@ msgstr "Charger plus"
 
 #: includes/features/frontend-features/frontend-features-action.php:60
 msgid "Load on page types is required."
-msgstr ""
+msgstr "Le chargement des types de pages est obligatoire."
 
 #: includes/features/frontend-features/frontend-features-ui.php:105
 msgid "Load on page types:"
-msgstr ""
+msgstr "Le chargement des types de pages :"
 
 #: includes/features/nav-menus.php:26
 #: includes/features/frontend-features/frontend-features.php:39
@@ -1435,6 +1444,8 @@ msgstr "Nouvelle permission ajouté au rôle."
 #: includes/features/frontend-features/frontend-features-action.php:94
 msgid "New frontend element added. Save changes to enable for role."
 msgstr ""
+"Le nouvel élément de l’interface publique a été ajouté. Enregistrez les "
+"modifications pour activer le rôle."
 
 #: includes/handler.php:45
 msgid "New role created."
@@ -1526,7 +1537,7 @@ msgstr "Titre de la page"
 
 #: includes/features/frontend-features/frontend-features-ui.php:235
 msgid "Pages"
-msgstr ""
+msgstr "Pages"
 
 #: includes/features/restrict-editor-features.php:481
 msgid "Paragraph"
@@ -1583,7 +1594,7 @@ msgstr "Slug de publication"
 
 #: includes/features/frontend-features/frontend-features-ui.php:243
 msgid "Post Type Metabox"
-msgstr ""
+msgstr "Boîte méta de type de publication"
 
 #: includes/manager.php:208
 msgid "Post type registration does not define this capability distinctly"
@@ -1597,8 +1608,6 @@ msgid "Preview"
 msgstr "Aperçu"
 
 #: includes/features/profile-features.php:43
-#, fuzzy
-#| msgid "Profile Features Restrictions"
 msgid "Profile Feature Restrictions"
 msgstr "Restrictions des fonctionnalités du profil"
 
@@ -1706,11 +1715,11 @@ msgstr "Rétablir"
 
 #: includes/features/profile-features.php:225
 msgid "Refresh available profile items for this role"
-msgstr ""
+msgstr "Actualiser les éléments de profil disponibles pour ce rôle"
 
 #: includes/features/profile-features.php:227
 msgid "Refresh Profile Features"
-msgstr ""
+msgstr "Actualiser les fonctionnalités de profil"
 
 #: includes/admin.php:1581
 msgid "Regulate permissions for Edit Flow post statuses <em>(Pro)</em>"
@@ -1795,7 +1804,7 @@ msgstr "Barre de droite"
 
 #: includes/features/frontend-features/frontend-features.php:58
 msgid "Role"
-msgstr ""
+msgstr "Rôle"
 
 #: includes/admin.php:73
 msgid "Role Capabilities"
@@ -1833,6 +1842,8 @@ msgstr "Rôles"
 msgid ""
 "Roles allows you to create, edit, and delete all the user roles on your site."
 msgstr ""
+"Rôles vous permet de créer, de modifier et de supprimer tous les rôles "
+"d’utilisateur/utilisatrice sur votre site."
 
 #: includes/backup.php:308
 msgid "Roles and Capabilities"
@@ -1872,7 +1883,7 @@ msgstr "Enregistrer le brouillon"
 
 #: includes/features/frontend-features/frontend-features-ui.php:149
 msgid "Save Edit"
-msgstr ""
+msgstr "Enregistrer la modification"
 
 #: includes/features/editor-features.php:115
 #: includes/features/editor-features.php:217
@@ -1904,7 +1915,7 @@ msgstr "voir %1$sUtilisation des rôles%2$s : « Modèle de rôle »."
 #: includes/features/frontend-features/frontend-features-metaboxes.php:90
 #, php-format
 msgid "Select %1$s..."
-msgstr ""
+msgstr "Sélectionnez %1$s..."
 
 #: includes/roles/class/class-pp-roles-admin.php:418
 msgid "Select %s"
@@ -1917,11 +1928,11 @@ msgstr "Sélectionner l’éditeur/éditrice autorisé"
 
 #: includes-core/CoreAdmin.php:121
 msgid "Select pages..."
-msgstr ""
+msgstr "Sélectionnez les pages…"
 
 #: includes-core/frontend-features-promo.php:39
 msgid "Select post types..."
-msgstr ""
+msgstr "Sélectionnez les types de publication…"
 
 #: includes/settings-ui.php:190
 msgid "Select roles..."
@@ -1931,16 +1942,16 @@ msgstr "Sélectionner les rôles…"
 #: includes/roles/class/class-pp-roles-admin.php:289
 msgid "Select the allowed editor options for users in this role."
 msgstr ""
-"Sélectionnez les options d’édition autorisées pour les "
-"utilisateurs/utilisatrices de ce rôle."
+"Sélectionnez les options d’édition autorisées pour les utilisateurs/"
+"utilisatrices de ce rôle."
 
 #: includes/features/frontend-features/frontend-features-action.php:136
 msgid "Selected item deleted successfully"
-msgstr ""
+msgstr "L’élément sélectionné a bien été supprimé."
 
 #: includes/features/frontend-features/frontend-features-ui.php:113
 msgid "Selected Pages"
-msgstr ""
+msgstr "Pages sélectionnées"
 
 #: includes/functions-admin.php:233 includes/functions-admin.php:461
 #: includes/features/restrict-editor-features.php:397
@@ -1971,7 +1982,7 @@ msgstr "Afficher uniquement les changements par rapport aux rôles actuels"
 
 #: includes/features/editor-features.php:135
 msgid "show Classic Editor controls"
-msgstr ""
+msgstr "afficher les contrôles de l’éditeur classique"
 
 #: includes/settings-ui.php:114
 msgid "Show private post types"
@@ -2043,6 +2054,7 @@ msgstr "Étiquettes"
 #: includes/functions.php:512
 msgid "Target Frontend Features for specific pages"
 msgstr ""
+"Cibler des fonctionnalités de l’interface publique pour des pages spécifiques"
 
 #: includes/admin.php:214
 msgid "Taxonomies"
@@ -2218,13 +2230,16 @@ msgstr "Cette permission n’est pas disponible pour ce type de publication."
 
 #: includes/features/frontend-features/frontend-features-ui.php:41
 msgid ""
-"This feature allows you to modify the site frontend by hiding IDs or classes,"
-" adding CSS styles, or adding body classes."
+"This feature allows you to modify the site frontend by hiding IDs or "
+"classes, adding CSS styles, or adding body classes."
 msgstr ""
+"Cette fonctionnalité vous permet de modifier l’interface publique du site en "
+"masquant des ID ou des classes, en ajoutant des styles CSS ou des classes de "
+"corps."
 
 #: includes/features/frontend-features/frontend-features-ui.php:121
 msgid "This feature will be added to all pages."
-msgstr ""
+msgstr "Cette fonctionnalité sera ajoutée à toutes les pages."
 
 #: capsman-enhanced.php:85
 msgid "This plugin can be deleted."
@@ -2235,6 +2250,9 @@ msgid ""
 "This will add a metabox on the post editing screen. You can use this feature "
 "to add body classes only for that post."
 msgstr ""
+"Cela ajoutera une boîte méta à l’écran d’édition de la publication. Vous "
+"pouvez utiliser cette fonctionnalité pour ajouter des classes de corps "
+"uniquement pour cette publication."
 
 #: includes/pp-ui.php:176
 msgid ""
@@ -2246,7 +2264,7 @@ msgstr ""
 
 #: includes/features/frontend-features/frontend-features-ui.php:58
 msgid "This will only show here in the WordPress admin area."
-msgstr ""
+msgstr "Cela n’apparaîtra que dans la zone d’administration de WordPress."
 
 #: includes/settings-ui.php:95
 msgid ""
@@ -2263,7 +2281,7 @@ msgstr "Titre"
 
 #: includes/features/frontend-features/frontend-features-ui.php:52
 msgid "Title:"
-msgstr ""
+msgstr "Titre :"
 
 #: includes/features/profile-features.php:103
 #: includes/features/profile-features.php:122
@@ -2384,7 +2402,7 @@ msgstr "Utilisateurs"
 
 #: includes/features/frontend-features/frontend-features-ui.php:251
 msgid "View"
-msgstr ""
+msgstr "Voir"
 
 #: includes/admin.php:1722 includes/features/profile-features.php:237
 #: includes/features/admin-features.php:252 includes/features/nav-menus.php:306
@@ -2436,7 +2454,7 @@ msgstr ""
 
 #: includes/features/frontend-features/frontend-features-ui.php:112
 msgid "Whole Site"
-msgstr ""
+msgstr "Site entier"
 
 #: includes/roles/class/class-pp-roles-admin.php:122
 msgid "WooCommerce"
@@ -2469,8 +2487,8 @@ msgstr ""
 #: includes/admin.php:1597
 msgid "WPML integration to mirror permissions to translations <em>(Pro)</em>"
 msgstr ""
-"Intégration WPML pour refléter les droits dans les traductions <em> (Pro)"
-"</em>"
+"Intégration WPML pour refléter les droits dans les traductions <em> (Pro)</"
+"em>"
 
 #: includes/features/restrict-admin-features.php:69
 msgid "Yoast SEO"
@@ -2519,13 +2537,16 @@ msgstr ""
 
 #: includes-core/CoreAdmin.php:126
 msgid "You can select page types where this element will be added."
-msgstr ""
+msgstr "Vous pouvez sélectionner les types de page où cet élément sera ajouté."
 
 #: includes-core/frontend-features-promo.php:25
 msgid ""
 "You can use Frontend Features to target specific posts and pages. This "
 "feature is available in PublishPress Capabilities Pro."
 msgstr ""
+"Vous pouvez utiliser les « Fonctionnalités de l’interface publique » pour "
+"cibler des publications et des pages spécifiques. Cette fonctionnalité est "
+"disponible dans PublishPress Capabilities Pro."
 
 #: includes/handler.php:250
 msgid "You cannot remove Manage Capabilities from Administrators"
@@ -2554,6 +2575,7 @@ msgstr "Vous n’êtes pas autorisé à gérer les fonctionnalités de l’édit
 #: includes/features/frontend-features/frontend-features-action.php:117
 msgid "You do not have permission to manage frontend features."
 msgstr ""
+"Vous n’êtes pas autorisé à gérer les fonctionnalités de l’interface publique."
 
 #: includes/manager.php:701
 msgid "You do not have permission to manage navigation menus."

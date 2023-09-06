@@ -81,7 +81,7 @@ class PP_Capabilities_Admin_UI {
             || (defined('DOING_AJAX') && DOING_AJAX && !empty($_REQUEST['action']) && (false !== strpos(sanitize_key($_REQUEST['action']), 'capability-manager-enhanced')))
             ) {
                 if (!class_exists('\PublishPress\WordPressReviews\ReviewsController')) {
-                    include_once PUBLISHPRESS_CAPS_ABSPATH . '/vendor/publishpress/wordpress-reviews/ReviewsController.php';
+                    include_once PUBLISHPRESS_CAPS_ABSPATH . '/lib/vendor/publishpress/wordpress-reviews/ReviewsController.php';
                 }
     
                 if (class_exists('\PublishPress\WordPressReviews\ReviewsController')) {
