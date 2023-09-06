@@ -4,10 +4,10 @@ Contributors: publishpress, kevinB, stevejburge, andergmartins, olatechpro
 Author: PublishPress
 Author URI: https://publishpress.com
 Tags: capabilities, permissions, admin menus, user roles, user role editor, access control, members, edit capabilities, publishpress capabilities, multisite capabilities, roles access, post editing screen, taxonomy capabilities, post permissions, page permisisons, woocommerce capabilities, user testing, user switching, hide metaboxes, hide editor features, media library capabilities, post type permissions, user role capabilities, edit user roles, administrator, editor, subscriber, contributor, author, shop manager
-Requires at least: 4.9.7
+Requires at least: 5.5
+Requires PHP: 7.2.5
 Tested up to: 6.3
-Requires PHP: 5.6.20
-Stable tag: 2.9.1
+Stable tag: 2.10.0
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -409,6 +409,14 @@ Fixed : Non-administrators with user editing capabilities could add new Administ
 Fixed : Security issue. Please update.
 
 == Changelog ==
+
+= 2.10.0 - [UNRELEASED] =
+  * Changed: Replaced Pimple library with a prefixed version of the library to avoid conflicts with other plugins;
+  * Changed: Replaced Psr/Container library with a prefixed version of the library to avoid conflicts with other plugins;
+  * Changed: Change min PHP version to 7.2.5. If not compatible, the plugin will not execute;
+  * Changed: Change min WP version to 5.5. If not compatible, the plugin will not execute;
+  * Changed: Updated internal libraries to latest versions;
+  * Changed: Refactor some occurrences of "plugins_loaded" replacing it by a new action: "publishpress_capabilities_loaded" which runs after the requirements and libraries are loaded, but before the plugin is initialized;
 
 = 2.9.1 - 1 Aug 2023 =
   * Fixed : Fatal error: Uncaught Error: Call to a member function has_cap() on null in Installer class, #880

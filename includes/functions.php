@@ -447,7 +447,7 @@ function pp_capabilities_sidebox_banner($banner_title, $banner_messages)
     //funtion is used which will no longer be true after removing the banner.
     wp_enqueue_style(
         'pp-wordpress-banners-style',
-        plugin_dir_url(CME_FILE) . 'vendor/publishpress/wordpress-banners/assets/css/style.css',
+        plugin_dir_url(CME_FILE) . 'lib/vendor/publishpress/wordpress-banners/assets/css/style.css',
         false,
         PP_WP_BANNERS_VERSION
     );
@@ -487,7 +487,7 @@ function pp_capabilities_pro_sidebox()
     //funtion is used which will no longer be true after removing the banner.
     wp_enqueue_style(
         'pp-wordpress-banners-style',
-        plugin_dir_url(CME_FILE) . 'vendor/publishpress/wordpress-banners/assets/css/style.css',
+        plugin_dir_url(CME_FILE) . 'lib/vendor/publishpress/wordpress-banners/assets/css/style.css',
         false,
         PP_WP_BANNERS_VERSION
     );

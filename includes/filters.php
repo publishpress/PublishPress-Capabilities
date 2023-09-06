@@ -53,7 +53,7 @@ if ( is_admin() ) {
 
 add_filter('plugin_action_links_' . plugin_basename(CME_FILE), '_cme_fltPluginActionLinks', 10, 2);
 
-add_action('plugins_loaded', '_cme_migrate_pp_options');
+add_action('publishpress_capabilities_loaded', '_cme_migrate_pp_options');
 
 
 function _cme_publishpress_roles_js() {
