@@ -410,7 +410,7 @@ Fixed : Security issue. Please update.
 
 == Changelog ==
 
-= 2.10.0 - [UNRELEASED] =
+= 2.10.0 - 6 Sep 2023 =
   * Changed: Replaced Pimple library with a prefixed version of the library to avoid conflicts with other plugins;
   * Changed: Replaced Psr/Container library with a prefixed version of the library to avoid conflicts with other plugins;
   * Changed: Change min PHP version to 7.2.5. If not compatible, the plugin will not execute;
