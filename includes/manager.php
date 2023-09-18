@@ -204,9 +204,11 @@ class CapabilityManager
 		wp_register_style( $this->ID . '_admin', $this->mod_url . '/common/css/admin.css', false, PUBLISHPRESS_CAPS_VERSION);
 		wp_enqueue_style( $this->ID . '_admin');
 
+		wp_enqueue_script('jquery-ui-sortable');
+
 		$suffix = defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ? '.dev' : '';
 		$url = $this->mod_url . "/common/js/admin{$suffix}.js";
-		wp_enqueue_script( 'cme_admin', $url, array('jquery', 'wp-i18n'), PUBLISHPRESS_CAPS_VERSION, true );
+		wp_enqueue_script( 'cme_admin', $url, array('jquery', 'wp-i18n', 'jquery-ui-sortable'), PUBLISHPRESS_CAPS_VERSION, true );
 		wp_localize_script( 'cme_admin', 'cmeAdmin', [
             'ajaxurl' => admin_url('admin-ajax.php'),
             'nonce' => wp_create_nonce('pp-capabilities-dashboard-nonce'),
