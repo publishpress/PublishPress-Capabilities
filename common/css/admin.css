@@ -1169,6 +1169,11 @@ tr.opened .ppc-nav-menu-expand svg {
     display: none !important;
 }
 
+ul.pp-capabilities-description {
+  list-style: circle !important;
+  margin-left: 12px;
+}
+
 .frontend-features-form.simple-form .field-row th {
     width: 155px;
     padding-right: 0;

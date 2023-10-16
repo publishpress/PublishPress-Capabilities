@@ -93,9 +93,12 @@ class PP_Capabilities_Frontend_Features_UI
                             </div>
                             <div class="frontend-element-bodyclass frontend-features-toggle hidden-element">
                                 <textarea class="frontend-new-element-class frontendelements-form-field frontendelements-form-bodyclass"></textarea><br />
-                                <span class="description">
-                                    <?php esc_html_e('Enter classes that should be added to the body HTML. Separate multiple values with a space (custom-item-one custom-item-two).', 'capsman-enhanced'); ?>
-                                </span>
+                                <ul class="pp-capabilities-description description">
+                                    <li><?php esc_html_e('Enter classes to add the body HTML. Do not include the . before the HTML.', 'capsman-enhanced'); ?></li>
+                                    <li><?php esc_html_e('Separate multiple values with a space (custom-style-one custom-style-two).', 'capsman-enhanced'); ?></li>
+                                    <li><?php esc_html_e('You can add the CSS for your classes by clicking "Add Custom CSS".', 'capsman-enhanced'); ?></li>
+                                    <li style="visibility: hidden;margin-top: -50px;"><?php esc_html_e('Enter classes that should be added to the body HTML. Separate multiple values with a space (custom-item-one custom-item-two).', 'capsman-enhanced'); ?></li>
+                                </ul>
                             </div>
                         </td>
                     </tr>
