@@ -804,9 +804,25 @@ if (defined('PUBLISHPRESS_REVISIONS_VERSION') && function_exists('rvy_get_option
 
 									$type_label = (defined('CME_LEGACY_MENU_NAME_LABEL') && !empty($type_obj->labels->menu_name)) ? $type_obj->labels->menu_name : $type_obj->labels->name;
 
+									if (!empty($type_obj->name)) {
+										if ('taxonomy' == $item_type) {
+											$type_tooltip = sprintf(__( 'The slug for this taxonomy is %s', 'capsman-enhanced' ), '<strong>' . esc_html($type_obj->name) . '</strong>' );
+										} else {
+											$type_tooltip = sprintf(__( 'The slug for this post type is %s', 'capsman-enhanced' ), '<strong>' . esc_html($type_obj->name) . '</strong>' );
+										}
+										$type_tooltip_class = 'ppc-tool-tip disabled';
+										$type_tooltip_msg  = '<span class="tool-tip-text">
+										<p>'. $type_tooltip .'</p>
+										<i></i>
+									</span>';
+									} else {
+										$type_tooltip_class = '';
+										$type_tooltip_msg  = '';
+									}
+
 									$row .= "<td>";
 									$row .= '<input type="checkbox" class="pp-row-action-rotate excluded-input"> &nbsp;';
-									$row .= "<a class='cap_type' href='#toggle_type_caps'>" . esc_html($type_label) . '</a>';
+									$row .= "<span class='{$type_tooltip_class}'><a class='cap_type' href='#toggle_type_caps'>" . esc_html($type_label) . '</a> '. $type_tooltip_msg .'</span>';
 									$row .= '<a style="display: none;" href="#" class="neg-type-caps">&nbsp;x&nbsp;</a>';
 									$row .= '</td>';
 
