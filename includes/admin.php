@@ -886,6 +886,11 @@ if (defined('PUBLISHPRESS_REVISIONS_VERSION') && function_exists('rvy_get_option
 														$tool_tip = sprintf(__( 'This capability is %s', 'capsman-enhanced' ), '<strong>' . $cap_name . '</strong>' );
 													}
 
+													if ($cap_name === 'manage_post_tags') {
+														$tool_tip = sprintf(__( 'This capability is controlled by %s', 'capsman-enhanced' ), '<strong>manage_categories</strong>' );
+
+													}
+
                                                     $checkbox = '<div class="ppc-tool-tip disabled"><input type="checkbox" name="caps[' . esc_attr($cap_name) . ']" autocomplete="off" value="1" ' . checked(1, ! empty($rcaps[$cap_name]), false ) . ' />
                                                         <div class="tool-tip-text">
                                                             <p>'. $tool_tip .'</p>
