@@ -348,7 +348,6 @@ if (defined('PUBLISHPRESS_REVISIONS_VERSION') && function_exists('rvy_get_option
 
                         //add users related caps
                         $grouped_caps['Users'] = [
-                            'add_users',
                             'create_users',
                             'delete_users',
                             'edit_users',
