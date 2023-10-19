@@ -150,12 +150,15 @@ class Capsman_PP_UI {
 					
 					<?php else: ?>
 						<div class="agp-vspaced_input">
-						<label for="<?php echo(esc_attr($id));?>" title="<?php echo(esc_attr($key));?>">
+						<span class="ppc-tool-tip disabled"><label for="<?php echo(esc_attr($id));?>">
 						<input name="<?php echo(esc_attr($option_basename) . "-options[]");?>" type="hidden" value="<?php echo(esc_attr($key))?>" />
 						<input name="<?php echo(esc_attr($id));?>" type="checkbox" id="<?php echo(esc_attr($id));?>" autocomplete="off" value="1" <?php checked('1', ! empty($enabled[$key]) );?> /> <?php echo(esc_html($type_obj->label));?>
 						
 						<?php 
-						echo ('</label></div>');
+						echo ('</label><span class="tool-tip-text">
+						<p>'. esc_html($key) .'</p>
+						<i></i>
+					</span></span></div>');
 
 					endif;  // displaying checkbox UI
 					
@@ -245,12 +248,15 @@ class Capsman_PP_UI {
 					
 					<?php else: ?>
 
-						<label for="<?php echo(esc_attr($id));?>" title="<?php echo(esc_attr($taxonomy));?>">
+						<span class="ppc-tool-tip disabled"><label for="<?php echo(esc_attr($id));?>">
 						<input name="<?php echo(esc_attr($option_basename) . '-options[]');?>" type="hidden" value="<?php echo(esc_attr($taxonomy))?>" />
 						<input name="<?php echo(esc_attr($id));?>" type="checkbox" autocomplete="off" id="<?php echo(esc_attr($id));?>" value="1" <?php checked('1', ! empty($enabled[$taxonomy]) );?> /> <?php echo(esc_html($type_obj->label));?>
 						
 						<?php 
-						echo ('</label></div>');
+						echo ('</label><span class="tool-tip-text">
+						<p>'. esc_html($taxonomy) .'</p>
+						<i></i>
+					</span></span></div>');
 
 					endif;  // displaying checkbox UI
 					
@@ -320,12 +326,15 @@ class Capsman_PP_UI {
 					
 					<?php else: ?>
 						<div class="agp-vspaced_input">
-						<label for="<?php echo(esc_attr($id));?>" title="<?php echo(esc_attr($taxonomy));?>">
+						<span class="ppc-tool-tip disabled"><label for="<?php echo(esc_attr($id));?>">
 						<input name="<?php echo(esc_attr($option_basename) . '-options[]');?>" type="hidden" value="<?php echo(esc_attr($taxonomy))?>" />
 						<input name="<?php echo(esc_attr($id));?>" type="checkbox" autocomplete="off" id="<?php echo(esc_attr($id));?>" value="1" <?php checked('1', ! empty($enabled[$taxonomy]) );?> /> <?php echo(esc_html($type_obj->label));?>
 						
 						<?php 
-						echo ('</label></div>');
+						echo ('</label><span class="tool-tip-text">
+						<p>'. esc_html($taxonomy) .'</p>
+						<i></i>
+					</span></span></div>');
 
 					endif;  // displaying checkbox UI
 					
