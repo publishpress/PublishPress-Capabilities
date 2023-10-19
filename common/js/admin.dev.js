@@ -5,7 +5,7 @@ jQuery(document).ready( function($) {
 	$('a.neg-type-caps').attr('title',cmeAdmin.typeCapsNegationCaption);
 	//$('td.cap-unreg').attr('title',cmeAdmin.typeCapUnregistered);
 	$('a.normal-cap').attr('title',cmeAdmin.switchableCaption);
-	$('span.cap-x:not([class*="pp-cap-key"])').attr('title',cmeAdmin.capNegated);
+	$('span.cap-x:not([class*="pp-cap-key"])').html(cmeAdmin.capNegated);
 	$('table.cme-checklist input[class!="cme-check-all"]').not(':disabled').attr('title',cmeAdmin.chkCaption);
 
   if ($('.ppc-checkboxes-documentation-link').length > 0) {
