@@ -140,7 +140,7 @@ $frontend_features_elements = PP_Capabilities_Frontend_Features_Data::elementsLa
                                                             ?>
                                                     <div id="cme-cap-type-tables-<?php esc_attr_e($section_slug); ?>">
                                                         <table
-                                                            class="wp-list-table widefat striped pp-capability-menus-select <?php esc_attr_e($section_slug); ?>-table">
+                                                            class="wp-list-table widefat striped fixed pp-capability-menus-select <?php esc_attr_e($section_slug); ?>-table">
                                                             <tbody>
                                                                 <?php do_action("pp_capabilities_frontend_features_{$section_slug}_before_subsection_tr"); 
                                                                 $display_title_class = empty($section_elements) ? 'temporarily hidden-element' : ''; 

@@ -167,7 +167,9 @@ $nav_menu_item_option = array_key_exists($default_role, $nav_menu_item_option) ?
                                                                     data-menu-id="<?php echo esc_attr($menu_id); ?>"
                                                                     >
 
-                                                                    <td class="menu-column ppc-menu-item parent features-section-header restrict-column ppc-menu-checkbox" style="text-align: left;" colspan="2">
+                                                                    <td class="restrict-column ppc-menu-checkbox">&nbsp;</td>
+
+                                                                    <td class="menu-column ppc-menu-item parent features-section-header restrict-column ppc-menu-checkbox" style="text-align: left;">
 
                                                                         <label for="check-item-<?php echo (int) $sn; ?>">
                                                                         <span class="menu-item-link">
