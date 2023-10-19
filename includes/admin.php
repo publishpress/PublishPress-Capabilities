@@ -1108,7 +1108,7 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 							echo esc_html(str_replace( '_', ' ', $cap_name));
 							?>
 							</span></label><span class="tool-tip-text" style="text-align: center;">
-								<p> <?php echo esc_html($cap_name); ?></p>
+								<p><?php printf(__( 'This capability is %s', 'capsman-enhanced' ), '<strong>' . $cap_name . '</strong>' ); ?></p>
 								<i></i>
 							</span></span><a href="#" class="neg-cap" style="visibility: hidden;">&nbsp;x&nbsp;</a>
 							<?php if ( false !== strpos( $class, 'cap-neg' ) ) :?>
@@ -1280,7 +1280,7 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 							echo esc_html(str_replace( '_', ' ', $cap_name));
 							?>
 							</span></label><span class="tool-tip-text" style="text-align: center;">
-								<p> <?php echo esc_html($cap_name); ?></p>
+								<p><?php printf(__( 'This capability is %s', 'capsman-enhanced' ), '<strong>' . $cap_name . '</strong>' ); ?></p>
 								<i></i>
 							</span></span><?php echo $warning_message; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?><a href="#" class="neg-cap" style="visibility: hidden;">&nbsp;x&nbsp;</a>
 							<?php if ( false !== strpos( $class, 'cap-neg' ) ) :?>
