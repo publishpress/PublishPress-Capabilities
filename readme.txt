@@ -7,7 +7,7 @@ Tags: capabilities, permissions, admin menus, user roles, user role editor, acce
 Requires at least: 5.5
 Requires PHP: 7.2.5
 Tested up to: 6.3
-Stable tag: 2.10.0
+Stable tag: 2.10.1
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -409,6 +409,20 @@ Fixed : Non-administrators with user editing capabilities could add new Administ
 Fixed : Security issue. Please update.
 
 == Changelog ==
+
+= 2.10.1 - 19 Oct 2023 =
+  * Fixed: Replaced
+  * Fixed: Login redirect not working, #843
+  * Fixed: Redirect user loop, #849
+  * Fixed: Alignment for menu items, #780
+  * Update: Update Capabilities old-fashioned tooltips, #818
+  * Fixed: Negate could not be removed, #873
+  * Update: Add a tooltip for manage_post_tags, #919
+  * Update: Remove add_users from the basic Capabilities, install #918
+  * Update: Update Body Class description, #893
+  * Fixed: Profile Features conflict with Advanced Custom Fields: Extended plugin, #910
+  * Fixed: Function pp_capabilities_sub_menu_lists has wrong return type in the function docs, #848
+  * Fixed: Admin loosing Access to Capabilities after role reset, #834
 
 = 2.10.0 - 6 Sep 2023 =
   * Changed: Replaced Pimple library with a prefixed version of the library to avoid conflicts with other plugins;
