@@ -87,7 +87,7 @@ if (get_option('cme_profile_features_auto_redirect')) {
 		                                             class="pp-capability-menus-content editable-role" style="display: block;">
 	
 		                                            <table
-		                                                class="wp-list-table widefat striped pp-capability-menus-select">
+		                                                class="wp-list-table widefat striped fixed pp-capability-menus-select">
                                                         <thead>
                                                             <tr class="ppc-menu-row parent-menu">
 
