@@ -1,7 +1,25 @@
 jQuery(function ($) {
 
+    /**
+     * "Advanced Custom Fields: Extended" plugin changes 
+     * profile UI completely removing the #profile-page selector.
+     */
+    var acf_modified_ui        = false;
+    var profile_wrapper_div    = '';
+    var fields_parent_selector = 'form';
+    if ($('#profile-page').length > 0) {
+        profile_wrapper_div = '#profile-page';
+    } else {
+      profile_wrapper_div    = '.wrap';
+    }
+    
+    if ($('div[class*="acf-column"]').length > 0) {
+      acf_modified_ui        = true;
+      fields_parent_selector = 'form div[class*="acf-column-"]';
+    }
+
   //we need to add class to headers without class
-  $('#profile-page form :header').each(function () {
+  $(profile_wrapper_div + ' form :header').each(function () {
     if (!$(this).attr("class")) {
       var new_header_class = cleanUpStrings($(this).text(), '-');
       $(this).addClass(new_header_class);
@@ -9,7 +27,7 @@ jQuery(function ($) {
   });
   
   //we need to add class to table tr without class
-  $('#profile-page form tr').each(function () {
+  $(profile_wrapper_div + ' form tr').each(function () {
     if (!$(this).attr("class")) {
       var find_first_title    = $(this).find('th').text();
       var find_second_title  = $(this).find('label').text();
@@ -36,7 +54,7 @@ jQuery(function ($) {
   if (window.location.href.indexOf("ppc_profile_element") > -1 && Number(getUrlParameter('ppc_profile_element')) === 1) {
 
     //add spinner
-    $('#profile-page').after('<div class="ppc-profile-fullpage-loader"></div>');
+    $(profile_wrapper_div).after('<div class="ppc-profile-fullpage-loader"></div>');
     //get all page elements
     var element_label_title = '',
         element_th_title    = '',
@@ -47,21 +65,39 @@ jQuery(function ($) {
         child_this          = '';
 
     //add profile page title
-    single_element = '#profile-page .wp-heading-inline';
+    single_element = profile_wrapper_div + ' .wp-heading-inline';
     page_elements[cleanUpStrings(single_element)] =
     {
       'label': ppCapabilitiesProfileData.profile_page_title,
       'elements': single_element,
       'element_type': 'header'
     };
+
+    // add acf nickname and permalink field
+    if (acf_modified_ui) {
+      single_element = profile_wrapper_div + ' #titlediv #titlewrap input';
+      page_elements[cleanUpStrings(single_element)] =
+      {
+        'label': ucWords($(single_element).attr('name')),
+        'elements': single_element,
+        'element_type': 'header'
+      };
+      single_element = profile_wrapper_div + ' #titlediv #edit-slug-box';
+      page_elements[cleanUpStrings(single_element)] =
+      {
+        'label': ucWords($(single_element + ' strong').html()),
+        'elements': single_element,
+        'element_type': 'header'
+      };
+    }
     
     //loop through all profile form parents
-    $('#profile-page form').children().each(function () {
+    $(profile_wrapper_div + ' ' + fields_parent_selector).children().each(function () {
       parent_this = $(this);
       //Make direct entry for page headers
       if (parent_this.is("h1,h2,h3,h4,h5,h6")) {
         //we already added class to all headers for efficiency
-        single_element = '#profile-page .'  + cleanTextWhiteSpace(parent_this.attr("class"), '.');
+        single_element = profile_wrapper_div + ' .'  + cleanTextWhiteSpace(parent_this.attr("class"), '.');
         element_label  = $(single_element).html();
         //add header element
         page_elements[cleanUpStrings(single_element)] =
@@ -76,7 +112,7 @@ jQuery(function ($) {
           child_this = $(this);
           single_element = cleanTextWhiteSpace(child_this.attr("class"), '.');
           if (single_element) {
-            single_element      = '#profile-page .' + single_element;
+            single_element      = profile_wrapper_div + ' .' + single_element;
             element_th_title    = $(single_element).find('th').text();
             element_label_title = $(single_element).find('label').text();
             if (element_th_title) {
@@ -87,26 +123,30 @@ jQuery(function ($) {
               element_label = single_element;
             }
             element_label = element_label.trim();
-            //add table tr element
-            page_elements[cleanUpStrings(single_element)] =
-            {
-              'label': element_label,
-              'elements': single_element,
-              'element_type': 'field'
-            };
+            if (element_label !== '' && typeof element_label !== 'undefined') {
+              //add table tr element
+              page_elements[cleanUpStrings(single_element)] =
+              {
+                'label': element_label,
+                'elements': single_element,
+                'element_type': 'field'
+              };
+            }
           }
         });
       } else if (parent_this.is("div")) {
         //process parent div
-        single_element = '#profile-page .'  + cleanTextWhiteSpace(parent_this.attr("class"), '.');
+        single_element = profile_wrapper_div + ' .'  + cleanTextWhiteSpace(parent_this.attr("class"), '.');
         element_label  = parent_this.find(':header').html();
-        //add whole div element
-        page_elements[cleanUpStrings(single_element)] =
-        {
-          'label': element_label,
-          'elements': single_element,
-          'element_type': 'section'
-        };
+        if (element_label !== '' && typeof element_label !== 'undefined') {
+          //add whole div element
+          page_elements[cleanUpStrings(single_element)] =
+          {
+            'label': element_label,
+            'elements': single_element,
+            'element_type': 'section'
+          };
+        }
         /**
          * We have two problems
          * 1. Rank math is adding new tr via javascript 
@@ -126,7 +166,7 @@ jQuery(function ($) {
          * of a better solution
          */
         if (single_element.indexOf('rank-math-metabox-wrap') >= 0) {
-          single_element = '#profile-page tr.user-url-wrap + tr';
+          single_element = profile_wrapper_div + ' tr.user-url-wrap + tr';
           element_label = ppCapabilitiesProfileData.rankmath_title;//we can't find the title as it's loading after this function
           page_elements[cleanUpStrings(single_element)] =
           {
@@ -139,7 +179,7 @@ jQuery(function ($) {
     });
 
     //add update profile button
-    single_element = '#profile-page input[name=submit]';
+    single_element = profile_wrapper_div + ' input[name=submit]';
     element_label  = $(single_element).val();
     page_elements[cleanUpStrings(single_element)] =
     {
@@ -218,6 +258,17 @@ jQuery(function ($) {
     string = cleanTextWhiteSpace(string);
     string = string.replace(/\W/g, '');
     return string;
+  }
+
+  /**
+   * PHP equivalet of ucword
+   * @param {*} str 
+   * @returns 
+   */
+  function ucWords(str) {
+    return str.split(' ').map(function(word) {
+      return word.charAt(0).toUpperCase() + word.slice(1);
+    }).join(' ');
   }
   
   /**

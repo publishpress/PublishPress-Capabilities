@@ -66,6 +66,15 @@ if (defined('PUBLISHPRESS_REVISIONS_VERSION') && function_exists('rvy_get_option
     $pp_revisions_copy   = false;
     $pp_revisions_revise = false;
 }
+
+$cme_negate_all_tooltip_msg = '<span class="tool-tip-text">
+<p>'. esc_html__('negate all (storing as disabled capabilities)', 'capsman-enhanced') .'</p>
+<i></i>
+</span>';
+$cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
+<p>'. esc_html__('negate none (add/remove all capabilities normally)', 'capsman-enhanced') .'</p>
+<i></i>
+</span>';
 ?>
 <div class="wrap publishpress-caps-manage pressshack-admin-wrapper">
 	<div id="icon-capsman-admin" class="icon32"></div>
@@ -348,7 +357,6 @@ if (defined('PUBLISHPRESS_REVISIONS_VERSION') && function_exists('rvy_get_option
 
                         //add users related caps
                         $grouped_caps['Users'] = [
-                            'add_users',
                             'create_users',
                             'delete_users',
                             'edit_users',
@@ -804,9 +812,25 @@ if (defined('PUBLISHPRESS_REVISIONS_VERSION') && function_exists('rvy_get_option
 
 									$type_label = (defined('CME_LEGACY_MENU_NAME_LABEL') && !empty($type_obj->labels->menu_name)) ? $type_obj->labels->menu_name : $type_obj->labels->name;
 
+									if (!empty($type_obj->name)) {
+										if ('taxonomy' == $item_type) {
+											$type_tooltip = sprintf(__( 'The slug for this taxonomy is %s', 'capsman-enhanced' ), '<strong>' . esc_html($type_obj->name) . '</strong>' );
+										} else {
+											$type_tooltip = sprintf(__( 'The slug for this post type is %s', 'capsman-enhanced' ), '<strong>' . esc_html($type_obj->name) . '</strong>' );
+										}
+										$type_tooltip_class = 'ppc-tool-tip disabled';
+										$type_tooltip_msg  = '<span class="tool-tip-text">
+										<p>'. $type_tooltip .'</p>
+										<i></i>
+									</span>';
+									} else {
+										$type_tooltip_class = '';
+										$type_tooltip_msg  = '';
+									}
+
 									$row .= "<td>";
 									$row .= '<input type="checkbox" class="pp-row-action-rotate excluded-input"> &nbsp;';
-									$row .= "<a class='cap_type' href='#toggle_type_caps'>" . esc_html($type_label) . '</a>';
+									$row .= "<span class='{$type_tooltip_class}'><a class='cap_type' href='#toggle_type_caps'>" . esc_html($type_label) . '</a> '. $type_tooltip_msg .'</span>';
 									$row .= '<a style="display: none;" href="#" class="neg-type-caps">&nbsp;x&nbsp;</a>';
 									$row .= '</td>';
 
@@ -817,10 +841,12 @@ if (defined('PUBLISHPRESS_REVISIONS_VERSION') && function_exists('rvy_get_option
 										$td_classes = array();
 										$checkbox = '';
 										$cap_title = '';
+										$disabled_cap = false;
 
                                         if ($type_obj->name === 'attachment') {
                                             $attachement_cap_position++;
                                         }
+										
 										if ( ! empty($type_obj->cap->$prop) && ( in_array( $type_obj->name, array( 'post', 'page' ) )
 										|| ! in_array( $type_obj->cap->$prop, $default_caps )
 										|| ( ( 'manage_categories' == $type_obj->cap->$prop ) && ( 'manage_terms' == $prop ) && ( 'category' == $type_obj->name ) ) ) ) {
@@ -847,6 +873,7 @@ if (defined('PUBLISHPRESS_REVISIONS_VERSION') && function_exists('rvy_get_option
 												|| $type_obj->cap->$prop == str_replace( '_pages', "_" . _cme_get_plural($type_obj->name, $type_obj), $prop )
 												)
                                             && (!in_array($type_obj->cap->$prop, $grouped_caps_lists)) //capabilitiy not enforced in $grouped_caps_lists
+											&& $type_obj->cap->$prop !== 'manage_post_tags'
 											) {
 												// only present these term caps up top if we are ensuring that they get enforced separately from manage_terms
 												if ( in_array( $prop, array( 'edit_terms', 'delete_terms', 'assign_terms' ) ) && ( ! in_array( $type_obj->name, cme_get_detailed_taxonomies() ) || defined( 'OLD_PRESSPERMIT_ACTIVE' ) ) ) {
@@ -881,6 +908,7 @@ if (defined('PUBLISHPRESS_REVISIONS_VERSION') && function_exists('rvy_get_option
 													$type_caps [$cap_name] = true;
 													$display_row = true;
 													$any_caps = true;
+													$disabled_cap = false;
 												}
 											} else {
 
@@ -888,11 +916,23 @@ if (defined('PUBLISHPRESS_REVISIONS_VERSION') && function_exists('rvy_get_option
 												if ( in_array( $prop, array( 'edit_terms', 'delete_terms', 'assign_terms' ) ) && ( ! in_array( $type_obj->name, cme_get_detailed_taxonomies() ) || defined( 'OLD_PRESSPERMIT_ACTIVE' ) ) ) {
 													continue;
 												}
+
+												if ($type_obj->cap->$prop === 'manage_post_tags') {
+													$type_obj->cap->$prop = 'manage_categories';
+												}
                                                 
+												$disabled_cap = true;
                                                 $display_row = true;
                                                 $cap_name = sanitize_key($type_obj->cap->$prop);
 												$cap_title = '';
-                                                $tool_tip  = sprintf( __( 'This capability is controlled by %s Use the sidebar settings to allow this to be controlled independently.', 'capsman-enhanced' ), '<strong>' . $cap_name . '</strong>.<br /><br />' );
+												
+
+												if ($cap_name === 'manage_categories') {
+													$tool_tip = sprintf(__( 'This capability is controlled by %s', 'capsman-enhanced' ), '<strong>manage_categories</strong>' );
+
+												} else {
+													$tool_tip  = sprintf(__('This capability is controlled by %s Use the sidebar settings to allow this to be controlled independently.', 'capsman-enhanced'), '<strong>' . $cap_name . '</strong>.<br /><br />');
+												}
 
                                                 $checkbox = '<div class="ppc-tool-tip disabled"><input disabled class="disabled" type="checkbox" ' . checked(1, ! empty($rcaps[$cap_name]), false ) . ' />
                                                     <div class="tool-tip-text">
@@ -930,9 +970,9 @@ if (defined('PUBLISHPRESS_REVISIONS_VERSION') && function_exists('rvy_get_option
 
 										$td_class = ( $td_classes ) ? implode(' ', $td_classes) : '';
 
-										$row .= '<td class="' . esc_attr($td_class) . '" title="' . esc_attr($cap_title) . '"' . "><span class='cap-x'>X</span>$checkbox";
+										$row .= '<td class="' . esc_attr($td_class) . '" title="' . esc_attr($cap_title) . '"' . "><span class='ppc-tool-tip disabled cap-x'>X</span>$checkbox";
 
-										if ( false !== strpos( $td_class, 'cap-neg' ) )
+										if ( !$disabled_cap && false !== strpos( $td_class, 'cap-neg' ) )
 											$row .= '<input type="hidden" class="cme-negation-input" name="caps[' . esc_attr($cap_name) . ']" value="" />';
 
 										$row .= "</td>";
@@ -1031,7 +1071,7 @@ if (defined('PUBLISHPRESS_REVISIONS_VERSION') && function_exists('rvy_get_option
                             <td colspan="<?php echo (int) $checks_per_row;?>">
                                 <input type="checkbox" class="cme-check-all" title="<?php esc_attr_e('check / uncheck all', 'capsman-enhanced');?>"> <span><?php _e('Capability Name', 'capsman-enhanced');?></span>
 								<span style="float:right">
-								&nbsp;&nbsp;<a class="cme-neg-all" href="#" title="<?php esc_attr_e('negate all (storing as disabled capabilities)', 'capsman-enhanced');?>">X</a> <a class="cme-switch-all" href="#" title="<?php esc_attr_e('negate none (add/remove all capabilities normally)', 'capsman-enhanced');?>">X</a>
+								&nbsp;&nbsp;<span class="ppc-tool-tip disabled"><a class="cme-neg-all" href="#" >X</a> <?php echo $cme_negate_all_tooltip_msg; ?> </span> <span class="ppc-tool-tip disabled"><a class="cme-switch-all" href="#" >X</a> <?php echo $cme_negate_none_tooltip_msg; ?> </span>
 								</span>
 							</td>
 						</tr>
@@ -1073,12 +1113,15 @@ if (defined('PUBLISHPRESS_REVISIONS_VERSION') && function_exists('rvy_get_option
 							$checked = checked(1, ! empty($rcaps[$cap_name]), false );
 							$cap_title = $title_text;
 							?>
-							<td class="<?php echo esc_attr($class); ?>"><span class="cap-x">X</span><label title="<?php echo esc_attr($cap_title);?>"><input type="checkbox" name="caps[<?php echo esc_attr($cap_name); ?>]" class="pp-single-action-rotate" autocomplete="off" value="1" <?php echo esc_attr($checked) . esc_attr($disabled);?> />
+							<td class="<?php echo esc_attr($class); ?>"><span class="ppc-tool-tip disabled cap-x">X</span><span class="ppc-tool-tip disabled"><label><input type="checkbox" name="caps[<?php echo esc_attr($cap_name); ?>]" class="pp-single-action-rotate" autocomplete="off" value="1" <?php echo esc_attr($checked) . esc_attr($disabled);?> />
 							<span>
 							<?php
 							echo esc_html(str_replace( '_', ' ', $cap_name));
 							?>
-							</span></label><a href="#" class="neg-cap" style="visibility: hidden;">&nbsp;x&nbsp;</a>
+							</span></label><span class="tool-tip-text" style="text-align: center;">
+								<p><?php printf(__( 'This capability is %s', 'capsman-enhanced' ), '<strong>' . $cap_name . '</strong>' ); ?></p>
+								<i></i>
+							</span></span><a href="#" class="neg-cap" style="visibility: hidden;">&nbsp;x&nbsp;</a>
 							<?php if ( false !== strpos( $class, 'cap-neg' ) ) :?>
 								<input type="hidden" class="cme-negation-input" name="caps[<?php echo esc_attr($cap_name); ?>]" value="" />
 							<?php endif; ?>
@@ -1104,7 +1147,7 @@ if (defined('PUBLISHPRESS_REVISIONS_VERSION') && function_exists('rvy_get_option
 							<td colspan="<?php echo (int) $checks_per_row;?>">
 								<input type="checkbox" class="cme-check-all" autocomplete="off" title="<?php esc_attr_e('check / uncheck all', 'capsman-enhanced');?>"> <span><?php _e('Capability Name', 'capsman-enhanced');?></span>
 								<span style="float:right">
-								&nbsp;&nbsp;<a class="cme-neg-all" href="#" title="<?php esc_attr_e('negate all (storing as disabled capabilities)', 'capsman-enhanced');?>">X</a> <a class="cme-switch-all" href="#" title="<?php esc_attr_e('negate none (add/remove all capabilities normally)', 'capsman-enhanced');?>">X</a>
+								&nbsp;&nbsp;<span class="ppc-tool-tip disabled"><a class="cme-neg-all" href="#" >X</a> <?php echo $cme_negate_all_tooltip_msg; ?> </span> <span class="ppc-tool-tip disabled"><a class="cme-switch-all" href="#" >X</a> <?php echo $cme_negate_none_tooltip_msg; ?> </span>
 								</span>
 							</td>
 						</tr>
@@ -1141,7 +1184,7 @@ if (defined('PUBLISHPRESS_REVISIONS_VERSION') && function_exists('rvy_get_option
                             <td colspan="<?php echo (int) $checks_per_row;?>">
                                 <input type="checkbox" class="cme-check-all" autocomplete="off" title="<?php esc_attr_e('check / uncheck all', 'capsman-enhanced');?>"> <span><?php _e('Capability Name', 'capsman-enhanced');?></span>
 								<span style="float:right">
-								&nbsp;&nbsp;<a class="cme-neg-all" href="#" title="<?php esc_attr_e('negate all (storing as disabled capabilities)', 'capsman-enhanced');?>">X</a> <a class="cme-switch-all" href="#" title="<?php esc_attr_e('negate none (add/remove all capabilities normally)', 'capsman-enhanced');?>">X</a>
+								&nbsp;&nbsp;<span class="ppc-tool-tip disabled"><a class="cme-neg-all" href="#" >X</a> <?php echo $cme_negate_all_tooltip_msg; ?> </span> <span class="ppc-tool-tip disabled"><a class="cme-switch-all" href="#" >X</a> <?php echo $cme_negate_none_tooltip_msg; ?> </span>
 								</span>
 							</td>
 						</tr>
@@ -1150,7 +1193,7 @@ if (defined('PUBLISHPRESS_REVISIONS_VERSION') && function_exists('rvy_get_option
 							<td colspan="<?php echo (int) $checks_per_row;?>">
 								<input type="checkbox" class="cme-check-all" autocomplete="off" title="<?php esc_attr_e('check / uncheck all', 'capsman-enhanced');?>"> <span><?php _e('Capability Name', 'capsman-enhanced');?></span>
 								<span style="float:right">
-								&nbsp;&nbsp;<a class="cme-neg-all" href="#" title="<?php esc_attr_e('negate all (storing as disabled capabilities)', 'capsman-enhanced');?>">X</a> <a class="cme-switch-all" href="#" title="<?php esc_attr_e('negate none (add/remove all capabilities normally)', 'capsman-enhanced');?>">X</a>
+								&nbsp;&nbsp;<span class="ppc-tool-tip disabled"><a class="cme-neg-all" href="#" >X</a> <?php echo $cme_negate_all_tooltip_msg; ?> </span> <span class="ppc-tool-tip disabled"><a class="cme-switch-all" href="#" >X</a> <?php echo $cme_negate_none_tooltip_msg; ?> </span>
 								</span>
 							</td>
 						</tr>
@@ -1194,7 +1237,7 @@ if (defined('PUBLISHPRESS_REVISIONS_VERSION') && function_exists('rvy_get_option
                             <td colspan="<?php echo (int) $checks_per_row;?>">
                                 <input type="checkbox" class="cme-check-all" title="<?php esc_attr_e('check / uncheck all', 'capsman-enhanced');?>"> <span><?php _e('Capability Name', 'capsman-enhanced');?></span>
 								<span style="float:right">
-								&nbsp;&nbsp;<a class="cme-neg-all" href="#" title="<?php esc_attr_e('negate all (storing as disabled capabilities)', 'capsman-enhanced');?>">X</a> <a class="cme-switch-all" href="#" title="<?php esc_attr_e('negate none (add/remove all capabilities normally)', 'capsman-enhanced');?>">X</a>
+								&nbsp;&nbsp;<span class="ppc-tool-tip disabled"><a class="cme-neg-all" href="#" >X</a> <?php echo $cme_negate_all_tooltip_msg; ?> </span> <span class="ppc-tool-tip disabled"><a class="cme-switch-all" href="#" >X</a> <?php echo $cme_negate_none_tooltip_msg; ?> </span>
 								</span>
 							</td>
 						</tr>
@@ -1242,12 +1285,15 @@ if (defined('PUBLISHPRESS_REVISIONS_VERSION') && function_exists('rvy_get_option
 							$checked = checked(1, ! empty($rcaps[$cap_name]), false );
 							$cap_title = $title_text;
 							?>
-							<td class="<?php echo esc_attr($class); ?>"><span class="cap-x">X</span><label title="<?php echo esc_attr($cap_title);?>"><input type="checkbox" name="caps[<?php echo esc_attr($cap_name); ?>]" class="pp-single-action-rotate" autocomplete="off" value="1" <?php echo esc_attr($checked) . esc_attr($disabled);?> />
+							<td class="<?php echo esc_attr($class); ?>"><span class="ppc-tool-tip disabled cap-x">X</span><span class="ppc-tool-tip disabled"><label><input type="checkbox" name="caps[<?php echo esc_attr($cap_name); ?>]" class="pp-single-action-rotate" autocomplete="off" value="1" <?php echo esc_attr($checked) . esc_attr($disabled);?> />
 							<span>
 							<?php
 							echo esc_html(str_replace( '_', ' ', $cap_name));
 							?>
-							</span></label><?php echo $warning_message; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?><a href="#" class="neg-cap" style="visibility: hidden;">&nbsp;x&nbsp;</a>
+							</span></label><span class="tool-tip-text" style="text-align: center;">
+								<p><?php printf(__( 'This capability is %s', 'capsman-enhanced' ), '<strong>' . $cap_name . '</strong>' ); ?></p>
+								<i></i>
+							</span></span><?php echo $warning_message; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?><a href="#" class="neg-cap" style="visibility: hidden;">&nbsp;x&nbsp;</a>
 							<?php if ( false !== strpos( $class, 'cap-neg' ) ) :?>
 								<input type="hidden" class="cme-negation-input" name="caps[<?php echo esc_attr($cap_name); ?>]" value="" />
 							<?php endif; ?>
@@ -1273,7 +1319,7 @@ if (defined('PUBLISHPRESS_REVISIONS_VERSION') && function_exists('rvy_get_option
 							<td colspan="<?php echo (int) $checks_per_row;?>">
 								<input type="checkbox" class="cme-check-all" autocomplete="off" title="<?php esc_attr_e('check / uncheck all', 'capsman-enhanced');?>"> <span><?php _e('Capability Name', 'capsman-enhanced');?></span>
 								<span style="float:right">
-								&nbsp;&nbsp;<a class="cme-neg-all" href="#" title="<?php esc_attr_e('negate all (storing as disabled capabilities)', 'capsman-enhanced');?>">X</a> <a class="cme-switch-all" href="#" title="<?php esc_attr_e('negate none (add/remove all capabilities normally)', 'capsman-enhanced');?>">X</a>
+								&nbsp;&nbsp;<span class="ppc-tool-tip disabled"><a class="cme-neg-all" href="#" >X</a> <?php echo $cme_negate_all_tooltip_msg; ?> </span> <span class="ppc-tool-tip disabled"><a class="cme-switch-all" href="#" >X</a> <?php echo $cme_negate_none_tooltip_msg; ?> </span>
 								</span>
 							</td>
 						</tr>
@@ -1337,7 +1383,7 @@ if (defined('PUBLISHPRESS_REVISIONS_VERSION') && function_exists('rvy_get_option
 							$checked = checked(1, ! empty($rcaps[$cap_name]), false );
                             $invalid_caps_capabilities[] = $cap_name;
 						?>
-							<td class="<?php echo esc_attr($class); ?>"><span class="cap-x">X</span><label title="<?php echo esc_attr($title_text);?>"><input type="checkbox" name="caps[<?php echo esc_attr($cap_name); ?>]" class="pp-single-action-rotate" autocomplete="off" value="1" <?php echo esc_attr($checked) . esc_attr($disabled);?> />
+							<td class="<?php echo esc_attr($class); ?>"><span class="ppc-tool-tip disabled cap-x">X</span><label title="<?php echo esc_attr($title_text);?>"><input type="checkbox" name="caps[<?php echo esc_attr($cap_name); ?>]" class="pp-single-action-rotate" autocomplete="off" value="1" <?php echo esc_attr($checked) . esc_attr($disabled);?> />
 							<span>
 							<?php
 							echo esc_html(str_replace( '_', ' ', $cap ));
@@ -1404,7 +1450,7 @@ if (defined('PUBLISHPRESS_REVISIONS_VERSION') && function_exists('rvy_get_option
                             <td colspan="<?php echo (int) $checks_per_row;?>">
                                 <input type="checkbox" class="cme-check-all" title="<?php esc_attr_e('check / uncheck all', 'capsman-enhanced');?>"> <span><?php _e('Capability Name', 'capsman-enhanced');?></span>
 								<span style="float:right">
-								&nbsp;&nbsp;<a class="cme-neg-all" href="#" title="<?php esc_attr_e('negate all (storing as disabled capabilities)', 'capsman-enhanced');?>">X</a> <a class="cme-switch-all" href="#" title="<?php esc_attr_e('negate none (add/remove all capabilities normally)', 'capsman-enhanced');?>">X</a>
+								&nbsp;&nbsp;<span class="ppc-tool-tip disabled"><a class="cme-neg-all" href="#" >X</a> <?php echo $cme_negate_all_tooltip_msg; ?> </span> <span class="ppc-tool-tip disabled"><a class="cme-switch-all" href="#" >X</a> <?php echo $cme_negate_none_tooltip_msg; ?> </span>
 								</span>
 							</td>
 						</tr>
@@ -1466,9 +1512,9 @@ if (defined('PUBLISHPRESS_REVISIONS_VERSION') && function_exists('rvy_get_option
 
 							if ( ! empty($pp_metagroup_caps[$cap_name]) ) {
 								$class .= ' cap-metagroup';
-								$title_text = sprintf( esc_html__( '%s: assigned by Permission Group', 'capsman-enhanced' ), $cap_name );
+								$title_text = sprintf( esc_html__( '%s: assigned by Permission Group', 'capsman-enhanced' ), '<strong>' . $cap_name . '</strong>' );
 							} else {
-								$title_text = $cap_name;
+								$title_text = sprintf(__( 'This capability is %s', 'capsman-enhanced' ), '<strong>' . $cap_name . '</strong>' );
 							}
 
 							$disabled = '';
@@ -1484,12 +1530,15 @@ if (defined('PUBLISHPRESS_REVISIONS_VERSION') && function_exists('rvy_get_option
 								}
 							}
 						?>
-							<td class="<?php echo esc_attr($class); ?>"><span class="cap-x">X</span><label title="<?php echo esc_attr($title_text);?>"><input type="checkbox" name="caps[<?php echo esc_attr($cap_name); ?>]" class="pp-single-action-rotate" autocomplete="off" value="1" <?php echo esc_attr($checked) . ' ' . esc_attr($disabled);?> />
+							<td class="<?php echo esc_attr($class); ?>"><span class="ppc-tool-tip disabled cap-x">X</span><span class="ppc-tool-tip disabled"><label><input type="checkbox" name="caps[<?php echo esc_attr($cap_name); ?>]" class="pp-single-action-rotate" autocomplete="off" value="1" <?php echo esc_attr($checked) . ' ' . esc_attr($disabled);?> />
 							<span>
 							<?php
 							echo esc_html(str_replace( '_', ' ', $cap ));
 							?>
-							</span></label><a href="#" class="neg-cap" style="visibility: hidden;">&nbsp;x&nbsp;</a>
+							</span></label><span class="tool-tip-text" style="text-align: center;">
+								<p><?php echo $title_text; ?></p>
+								<i></i>
+							</span></span><a href="#" class="neg-cap" style="visibility: hidden;">&nbsp;x&nbsp;</a>
 							<?php if ( false !== strpos( $class, 'cap-neg' ) ) :?>
 								<input type="hidden" class="cme-negation-input" name="caps[<?php echo esc_attr($cap_name); ?>]" value="" />
 							<?php endif; ?>
@@ -1520,7 +1569,7 @@ if (defined('PUBLISHPRESS_REVISIONS_VERSION') && function_exists('rvy_get_option
 							<td colspan="<?php echo (int) $checks_per_row;?>">
 								<input type="checkbox" class="cme-check-all" autocomplete="off" title="<?php esc_attr_e('check / uncheck all', 'capsman-enhanced');?>"> <span><?php _e('Capability Name', 'capsman-enhanced');?></span>
 								<span style="float:right">
-								&nbsp;&nbsp;<a class="cme-neg-all" href="#" title="<?php esc_attr_e('negate all (storing as disabled capabilities)', 'capsman-enhanced');?>">X</a> <a class="cme-switch-all" href="#" title="<?php esc_attr_e('negate none (add/remove all capabilities normally)', 'capsman-enhanced');?>">X</a>
+								&nbsp;&nbsp;<span class="ppc-tool-tip disabled"><a class="cme-neg-all" href="#" >X</a> <?php echo $cme_negate_all_tooltip_msg; ?> </span> <span class="ppc-tool-tip disabled"><a class="cme-switch-all" href="#" >X</a> <?php echo $cme_negate_none_tooltip_msg; ?> </span>
 								</span>
 							</td>
 						</tr>

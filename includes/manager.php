@@ -204,16 +204,25 @@ class CapabilityManager
 		wp_register_style( $this->ID . '_admin', $this->mod_url . '/common/css/admin.css', false, PUBLISHPRESS_CAPS_VERSION);
 		wp_enqueue_style( $this->ID . '_admin');
 
+		wp_enqueue_script('jquery-ui-sortable');
+
 		$suffix = defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ? '.dev' : '';
 		$url = $this->mod_url . "/common/js/admin{$suffix}.js";
-		wp_enqueue_script( 'cme_admin', $url, array('jquery', 'wp-i18n'), PUBLISHPRESS_CAPS_VERSION, true );
+		wp_enqueue_script( 'cme_admin', $url, array('jquery', 'wp-i18n', 'jquery-ui-sortable'), PUBLISHPRESS_CAPS_VERSION, true );
+
+		$capNegated = '<span class="tool-tip-text">
+		<p>'. __( 'This capability is explicitly negated. Click to add/remove normally.', 'capsman-enhanced' ) .'</p>
+		<i></i>
+		</span>
+		X';
+
 		wp_localize_script( 'cme_admin', 'cmeAdmin', [
             'ajaxurl' => admin_url('admin-ajax.php'),
             'nonce' => wp_create_nonce('pp-capabilities-dashboard-nonce'),
 			'negationCaption' => __( 'Explicity negate this capability by storing as disabled', 'capsman-enhanced' ),
 			'typeCapsNegationCaption' => __( 'Explicitly negate these capabilities by storing as disabled', 'capsman-enhanced' ),
 			'typeCapUnregistered' => __( 'Post type registration does not define this capability distinctly', 'capsman-enhanced' ),
-			'capNegated' => __( 'This capability is explicitly negated. Click to add/remove normally.', 'capsman-enhanced' ),
+			'capNegated' => $capNegated,
 			'chkCaption' => __( 'Add or remove this capability from the WordPress role', 'capsman-enhanced' ),
 			'switchableCaption' => __( 'Add or remove capability from the role normally', 'capsman-enhanced' ),
 			'deleteWarning' => __( 'Are you sure you want to delete this item ?', 'capsman-enhanced' ),

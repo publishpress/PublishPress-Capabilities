@@ -476,20 +476,8 @@ table#akmin tr td input[type=checkbox] {
   border-bottom: none;
 }
 
-#pp-capability-menu-wrapper table td,
-#pp-capability-menu-wrapper table th {
-  padding: 10px;
-  padding-bottom: 10px;
-  font-size: 13px;
-  line-height: 20px;
-}
-
 #pp-capability-menu-wrapper table td h4.ppc-menu-row-section {
   margin-bottom: 0;
-}
-
-#pp-capability-menu-wrapper table td {
-  padding: 9px;
 }
 
 #pp-capability-menu-wrapper tbody tr:last-of-type td {
@@ -501,16 +489,8 @@ table#akmin tr td input[type=checkbox] {
 }
 
 
-table#akmin .pp-capability-menus-select .restrict-column {
-  min-width: 90px;
-  text-align: center;
-  display: table-cell !important;
-  clear: none !important;
-}
-
-
-table#akmin .pp-capability-menus-select .restrict-column + .menu-column.ppc-menu-item:not(.frontend-features) {
-  width: 100%;
+.pp-capability-menus-select .restrict-column {
+ width: 10px;
 }
 
 .pp-capability-menus .menu-item-link {
@@ -546,7 +526,6 @@ table#akmin .pp-capability-menus-select .restrict-column + .menu-column.ppc-menu
 .pp-capability-menus .check-all-menu-link,
 .pp-capability-menus .check-all-menu-link:active {
   color: #555;
-  margin-left: -48px;
 }
 
 .pp-capability-menus .menu-item-link.restricted,
@@ -612,19 +591,8 @@ margin-bottom: 10px !important;
     margin-bottom: 10px !important;
 }
 
-body.capabilities_page_pp-capabilities-nav-menus .pp-capability-menus-select .restrict-column,
-body.toplevel_page_pp-capabilities-nav-menus .pp-capability-menus-select .restrict-column {
-    width: 70px !important;
-}
-
 .pp-capability-menus-wrapper .features-section-header {
   padding-left: 10px !important;
-}
-
-
-body.capabilities_page_pp-capabilities-admin-features .pp-capability-menus-select .restrict-column,
-body.toplevel_page_pp-capabilities-admin-features .pp-capability-menus-select .restrict-column {
-  width: 70px !important;
 }
 
 .pp-column-right.capabilities-sidebar .button.button-primary {
@@ -844,11 +812,6 @@ div.ppc-editor-features-classic-toggle {
 }
 
 /* ====================================================== Nav Menu Restriction */
-
-body.capabilities_page_pp-capabilities-nav-menus .pp-capability-menus-select .restrict-column,
-body.toplevel_page_pp-capabilities-nav-menus .pp-capability-menus-select .restrict-column {
-    width: 70px !important;
-}
 
 .capabilities_page_pp-capabilities-nav-menus input.ppc-nav-menu-submit {
     margin-bottom: 10px !important;
@@ -1169,6 +1132,11 @@ tr.opened .ppc-nav-menu-expand svg {
     display: none !important;
 }
 
+ul.pp-capabilities-description {
+  list-style: circle !important;
+  margin-left: 12px;
+}
+
 .frontend-features-form.simple-form .field-row th {
     width: 155px;
     padding-right: 0;
@@ -1416,10 +1384,6 @@ tr.opened .ppc-nav-menu-expand svg {
   border-bottom: 1px solid #c3c4c7 !important;
 }
 
-.pp-capability-menus-wrapper.frontend-features .content-title-column  {
-  margin-left: -48px;
-}
-
 .custom-items-table {
     border-top: 1px solid #c3c4c7 !important;
     border-left: none !important;
@@ -1436,10 +1400,6 @@ tr.opened .ppc-nav-menu-expand svg {
 
 .custom-table-title .title-td {
     padding-left: 25px;
-}
-
-body.capabilities_page_pp-capabilities-frontend-features .pp-capability-menus-select .restrict-column {
-  width: 99px !important;
 }
 
 .hidden-element {
