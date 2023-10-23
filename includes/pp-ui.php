@@ -148,7 +148,9 @@ class Capsman_PP_UI {
 						<input name="<?php echo(esc_attr($id));?>" type="hidden" id="<?php echo(esc_attr($id));?>" value="1" />
 						<input name="<?php echo(esc_attr($option_basename) . "-options[]");?>" type="hidden" value="<?php echo(esc_attr($key))?>" />
 					
-					<?php else: ?>
+					<?php else: 
+						$type_tooltip = sprintf(__( 'The slug for this post type is %s', 'capsman-enhanced' ), '<strong>' . esc_html($key) . '</strong>' );
+						?>
 						<div class="agp-vspaced_input">
 						<span class="ppc-tool-tip disabled"><label for="<?php echo(esc_attr($id));?>">
 						<input name="<?php echo(esc_attr($option_basename) . "-options[]");?>" type="hidden" value="<?php echo(esc_attr($key))?>" />
@@ -156,7 +158,7 @@ class Capsman_PP_UI {
 						
 						<?php 
 						echo ('</label><span class="tool-tip-text">
-						<p>'. esc_html($key) .'</p>
+						<p>'. $type_tooltip .'</p>
 						<i></i>
 					</span></span></div>');
 
@@ -246,7 +248,9 @@ class Capsman_PP_UI {
 						<input name="<?php echo(esc_attr($id));?>" type="hidden" id="<?php echo(esc_attr($id));?>" value="1" />
 						<input name="<?php echo(esc_attr($option_basename) . '-options[]');?>" type="hidden" value="<?php echo(esc_attr($taxonomy))?>" />
 					
-					<?php else: ?>
+					<?php else:
+						$type_tooltip = sprintf(__( 'The slug for this taxonomy is %s', 'capsman-enhanced' ), '<strong>' . esc_html($taxonomy) . '</strong>' );
+						?>
 
 						<span class="ppc-tool-tip disabled"><label for="<?php echo(esc_attr($id));?>">
 						<input name="<?php echo(esc_attr($option_basename) . '-options[]');?>" type="hidden" value="<?php echo(esc_attr($taxonomy))?>" />
@@ -254,7 +258,7 @@ class Capsman_PP_UI {
 						
 						<?php 
 						echo ('</label><span class="tool-tip-text">
-						<p>'. esc_html($taxonomy) .'</p>
+						<p>'. $type_tooltip .'</p>
 						<i></i>
 					</span></span></div>');
 
@@ -324,7 +328,9 @@ class Capsman_PP_UI {
 						<input name="<?php echo(esc_attr($id));?>" type="hidden" id="<?php echo(esc_attr($id));?>" value="1" />
 						<input name="<?php echo(esc_attr($option_basename) . '-options[]');?>" type="hidden" value="<?php echo(esc_attr($taxonomy))?>" />
 					
-					<?php else: ?>
+					<?php else:
+						$type_tooltip = sprintf(__( 'The slug for this taxonomy is %s', 'capsman-enhanced' ), '<strong>' . esc_html($taxonomy) . '</strong>' );
+						 ?>
 						<div class="agp-vspaced_input">
 						<span class="ppc-tool-tip disabled"><label for="<?php echo(esc_attr($id));?>">
 						<input name="<?php echo(esc_attr($option_basename) . '-options[]');?>" type="hidden" value="<?php echo(esc_attr($taxonomy))?>" />
@@ -332,7 +338,7 @@ class Capsman_PP_UI {
 						
 						<?php 
 						echo ('</label><span class="tool-tip-text">
-						<p>'. esc_html($taxonomy) .'</p>
+						<p>'. $type_tooltip .'</p>
 						<i></i>
 					</span></span></div>');
 
