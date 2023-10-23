@@ -410,7 +410,7 @@ Fixed : Security issue. Please update.
 
 == Changelog ==
 
-= 2.10.1 - 19 Oct 2023 =
+= 2.10.1 - 23 Oct 2023 =
   * Fixed: Login redirect not working, #843
   * Fixed: Redirect user loop, #849
   * Fixed: Alignment for menu items, #780
