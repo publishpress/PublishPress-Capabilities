@@ -841,10 +841,12 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 										$td_classes = array();
 										$checkbox = '';
 										$cap_title = '';
+										$disabled_cap = false;
 
                                         if ($type_obj->name === 'attachment') {
                                             $attachement_cap_position++;
                                         }
+										
 										if ( ! empty($type_obj->cap->$prop) && ( in_array( $type_obj->name, array( 'post', 'page' ) )
 										|| ! in_array( $type_obj->cap->$prop, $default_caps )
 										|| ( ( 'manage_categories' == $type_obj->cap->$prop ) && ( 'manage_terms' == $prop ) && ( 'category' == $type_obj->name ) ) ) ) {
@@ -871,6 +873,7 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 												|| $type_obj->cap->$prop == str_replace( '_pages', "_" . _cme_get_plural($type_obj->name, $type_obj), $prop )
 												)
                                             && (!in_array($type_obj->cap->$prop, $grouped_caps_lists)) //capabilitiy not enforced in $grouped_caps_lists
+											&& $type_obj->cap->$prop !== 'manage_post_tags'
 											) {
 												// only present these term caps up top if we are ensuring that they get enforced separately from manage_terms
 												if ( in_array( $prop, array( 'edit_terms', 'delete_terms', 'assign_terms' ) ) && ( ! in_array( $type_obj->name, cme_get_detailed_taxonomies() ) || defined( 'OLD_PRESSPERMIT_ACTIVE' ) ) ) {
@@ -895,11 +898,6 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 														$tool_tip = sprintf(__( 'This capability is %s', 'capsman-enhanced' ), '<strong>' . $cap_name . '</strong>' );
 													}
 
-													if ($cap_name === 'manage_post_tags') {
-														$tool_tip = sprintf(__( 'This capability is controlled by %s', 'capsman-enhanced' ), '<strong>manage_categories</strong>' );
-
-													}
-
                                                     $checkbox = '<div class="ppc-tool-tip disabled"><input type="checkbox" name="caps[' . esc_attr($cap_name) . ']" autocomplete="off" value="1" ' . checked(1, ! empty($rcaps[$cap_name]), false ) . ' />
                                                         <div class="tool-tip-text">
                                                             <p>'. $tool_tip .'</p>
@@ -910,6 +908,7 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 													$type_caps [$cap_name] = true;
 													$display_row = true;
 													$any_caps = true;
+													$disabled_cap = false;
 												}
 											} else {
 
@@ -917,11 +916,23 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 												if ( in_array( $prop, array( 'edit_terms', 'delete_terms', 'assign_terms' ) ) && ( ! in_array( $type_obj->name, cme_get_detailed_taxonomies() ) || defined( 'OLD_PRESSPERMIT_ACTIVE' ) ) ) {
 													continue;
 												}
+
+												if ($type_obj->cap->$prop === 'manage_post_tags') {
+													$type_obj->cap->$prop = 'manage_categories';
+												}
                                                 
+												$disabled_cap = true;
                                                 $display_row = true;
                                                 $cap_name = sanitize_key($type_obj->cap->$prop);
 												$cap_title = '';
-                                                $tool_tip  = sprintf( __( 'This capability is controlled by %s Use the sidebar settings to allow this to be controlled independently.', 'capsman-enhanced' ), '<strong>' . $cap_name . '</strong>.<br /><br />' );
+												
+
+												if ($cap_name === 'manage_categories') {
+													$tool_tip = sprintf(__( 'This capability is controlled by %s', 'capsman-enhanced' ), '<strong>manage_categories</strong>' );
+
+												} else {
+													$tool_tip  = sprintf(__('This capability is controlled by %s Use the sidebar settings to allow this to be controlled independently.', 'capsman-enhanced'), '<strong>' . $cap_name . '</strong>.<br /><br />');
+												}
 
                                                 $checkbox = '<div class="ppc-tool-tip disabled"><input disabled class="disabled" type="checkbox" ' . checked(1, ! empty($rcaps[$cap_name]), false ) . ' />
                                                     <div class="tool-tip-text">
@@ -961,7 +972,7 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 
 										$row .= '<td class="' . esc_attr($td_class) . '" title="' . esc_attr($cap_title) . '"' . "><span class='ppc-tool-tip disabled cap-x'>X</span>$checkbox";
 
-										if ( false !== strpos( $td_class, 'cap-neg' ) )
+										if ( !$disabled_cap && false !== strpos( $td_class, 'cap-neg' ) )
 											$row .= '<input type="hidden" class="cme-negation-input" name="caps[' . esc_attr($cap_name) . ']" value="" />';
 
 										$row .= "</td>";
@@ -1108,7 +1119,7 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 							echo esc_html(str_replace( '_', ' ', $cap_name));
 							?>
 							</span></label><span class="tool-tip-text" style="text-align: center;">
-								<p> <?php echo esc_html($cap_name); ?></p>
+								<p><?php printf(__( 'This capability is %s', 'capsman-enhanced' ), '<strong>' . $cap_name . '</strong>' ); ?></p>
 								<i></i>
 							</span></span><a href="#" class="neg-cap" style="visibility: hidden;">&nbsp;x&nbsp;</a>
 							<?php if ( false !== strpos( $class, 'cap-neg' ) ) :?>
@@ -1280,7 +1291,7 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 							echo esc_html(str_replace( '_', ' ', $cap_name));
 							?>
 							</span></label><span class="tool-tip-text" style="text-align: center;">
-								<p> <?php echo esc_html($cap_name); ?></p>
+								<p><?php printf(__( 'This capability is %s', 'capsman-enhanced' ), '<strong>' . $cap_name . '</strong>' ); ?></p>
 								<i></i>
 							</span></span><?php echo $warning_message; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?><a href="#" class="neg-cap" style="visibility: hidden;">&nbsp;x&nbsp;</a>
 							<?php if ( false !== strpos( $class, 'cap-neg' ) ) :?>
@@ -1501,9 +1512,9 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 
 							if ( ! empty($pp_metagroup_caps[$cap_name]) ) {
 								$class .= ' cap-metagroup';
-								$title_text = sprintf( esc_html__( '%s: assigned by Permission Group', 'capsman-enhanced' ), $cap_name );
+								$title_text = sprintf( esc_html__( '%s: assigned by Permission Group', 'capsman-enhanced' ), '<strong>' . $cap_name . '</strong>' );
 							} else {
-								$title_text = $cap_name;
+								$title_text = sprintf(__( 'This capability is %s', 'capsman-enhanced' ), '<strong>' . $cap_name . '</strong>' );
 							}
 
 							$disabled = '';
@@ -1519,12 +1530,15 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 								}
 							}
 						?>
-							<td class="<?php echo esc_attr($class); ?>"><span class="ppc-tool-tip disabled cap-x">X</span><label title="<?php echo esc_attr($title_text);?>"><input type="checkbox" name="caps[<?php echo esc_attr($cap_name); ?>]" class="pp-single-action-rotate" autocomplete="off" value="1" <?php echo esc_attr($checked) . ' ' . esc_attr($disabled);?> />
+							<td class="<?php echo esc_attr($class); ?>"><span class="ppc-tool-tip disabled cap-x">X</span><span class="ppc-tool-tip disabled"><label><input type="checkbox" name="caps[<?php echo esc_attr($cap_name); ?>]" class="pp-single-action-rotate" autocomplete="off" value="1" <?php echo esc_attr($checked) . ' ' . esc_attr($disabled);?> />
 							<span>
 							<?php
 							echo esc_html(str_replace( '_', ' ', $cap ));
 							?>
-							</span></label><a href="#" class="neg-cap" style="visibility: hidden;">&nbsp;x&nbsp;</a>
+							</span></label><span class="tool-tip-text" style="text-align: center;">
+								<p><?php echo $title_text; ?></p>
+								<i></i>
+							</span></span><a href="#" class="neg-cap" style="visibility: hidden;">&nbsp;x&nbsp;</a>
 							<?php if ( false !== strpos( $class, 'cap-neg' ) ) :?>
 								<input type="hidden" class="cme-negation-input" name="caps[<?php echo esc_attr($cap_name); ?>]" value="" />
 							<?php endif; ?>
