@@ -176,6 +176,9 @@ class CapabilityManager
 
         //redirect for profile features capturing
         add_action('admin_init', [$this, 'profileFeaturesCaptureRedirect']);
+
+        //Initialize plugin capabilities class
+        add_action('admin_init', [$this, 'initPluginCapabilities']);
 	}
 
     /**
@@ -1228,6 +1231,16 @@ class CapabilityManager
 
 	function settingsPage() {
 		include ( dirname(CME_FILE) . '/includes/settings.php' );
+	}
+
+	/**
+	 * Initialize plugin capabilities class
+	 *
+	 * @return void
+	 */
+	public function initPluginCapabilities() {
+		require_once dirname(CME_FILE) . '/includes/plugin-capabilities.php';
+		\PublishPress\Capabilities\PP_Capabilities_Plugin_Capabilities::instance();
 	}
 
     /**
