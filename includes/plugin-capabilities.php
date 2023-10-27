@@ -35,6 +35,8 @@ class Plugin_Capabilities
         add_filter('cme_plugin_capabilities', [$this, 'cme_taxopress_capabilities']);
         //WooCommerce
         add_filter('cme_plugin_capabilities', [$this, 'cme_woocommerce_capabilities']);
+        //Echo Knowledge Base
+        add_filter('cme_plugin_capabilities', [$this, 'cme_echo_knowledge_base_capabilities']);
     }
 
     /**
@@ -272,6 +274,34 @@ class Plugin_Capabilities
                 [
                     'simple_tags',
                     'admin_simple_tags'
+                ]
+            );
+        }
+
+        return $plugin_caps;
+    }
+
+    /**
+     * Echo Knowledge Base
+     *
+     * @param array $plugin_caps
+     * 
+     * @return array
+     */
+    public function cme_echo_knowledge_base_capabilities($plugin_caps)
+    {
+
+        if (defined('EPKB_PLUGIN_NAME')) {
+            $plugin_caps['Echo Knowledge Base'] = apply_filters(
+                'cme_echo_knowledge_base_capabilities',
+                [
+                    'admin_eckb_access_manager_page',
+                    'admin_eckb_access_crud_users',
+                    'admin_eckb_access_frontend_editor_write',
+                    'admin_eckb_access_search_analytics_read',
+                    'admin_eckb_access_order_articles_write',
+                    'admin_eckb_access_need_help_read',
+                    'admin_eckb_access_addons_news_read'
                 ]
             );
         }
