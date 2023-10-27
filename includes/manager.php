@@ -1240,7 +1240,7 @@ class CapabilityManager
 	 */
 	public function initPluginCapabilities() {
 		require_once dirname(CME_FILE) . '/includes/plugin-capabilities.php';
-		\PublishPress\Capabilities\PP_Capabilities_Plugin_Capabilities::instance();
+		\PublishPress\Capabilities\Plugin_Capabilities::instance();
 	}
 
     /**

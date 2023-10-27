@@ -2,14 +2,14 @@
 
 namespace PublishPress\Capabilities;
 
-class PP_Capabilities_Plugin_Capabilities
+class Plugin_Capabilities
 {
     private static $instance = null;
 
     public static function instance()
     {
         if (is_null(self::$instance)) {
-            self::$instance = new PP_Capabilities_Plugin_Capabilities();
+            self::$instance = new Plugin_Capabilities();
         }
 
         return self::$instance;
