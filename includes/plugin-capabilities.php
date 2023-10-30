@@ -37,6 +37,8 @@ class Plugin_Capabilities
         add_filter('cme_plugin_capabilities', [$this, 'cme_woocommerce_capabilities']);
         //Echo Knowledge Base
         add_filter('cme_plugin_capabilities', [$this, 'cme_echo_knowledge_base_capabilities']);
+        // Yoast SEO
+        add_filter('cme_plugin_capabilities', [$this, 'cme_yoast_seo_capabilities']);
     }
 
     /**
@@ -302,6 +304,29 @@ class Plugin_Capabilities
                     'admin_eckb_access_order_articles_write',
                     'admin_eckb_access_need_help_read',
                     'admin_eckb_access_addons_news_read'
+                ]
+            );
+        }
+
+        return $plugin_caps;
+    }
+
+    /**
+     * Yoast SEO
+     *
+     * @param array $plugin_caps
+     * 
+     * @return array
+     */
+    public function cme_yoast_seo_capabilities($plugin_caps) {
+        if (defined('WPSEO_FILE')) {
+            $plugin_caps['Yoast SEO'] = apply_filters('cme_yoast_seo_capabilities',
+                [
+                        'view_site_health_checks',
+                        'wpseo_bulk_edit',
+                        'wpseo_edit_advanced_metadata',
+                        'wpseo_manage_options'
+                    
                 ]
             );
         }
