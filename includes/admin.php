@@ -169,7 +169,21 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 
 			$defined = [];
 			$defined['type'] = apply_filters('cme_filterable_post_types', get_post_types(['public' => true, 'show_ui' => true], 'object', 'or'));
+			
+			if (in_array(get_locale(), ['en_EN', 'en_US'])) {
+				$defined['type']['wp_navigation']->label = __('Nav Menus (Block)', 'capability-manager-enhanced');
+			} else {
+				$defined['type']['wp_navigation']->label .= ' (' . __('Block', 'capability-manager-enhanced') . ')';
+			}
+
 			$defined['taxonomy'] = apply_filters('cme_filterable_taxonomies', get_taxonomies(['public' => true, 'show_ui' => true], 'object', 'or'));
+			$defined['taxonomy']['nav_menu'] = get_taxonomy('nav_menu');
+			
+			if (in_array(get_locale(), ['en_EN', 'en_US'])) {
+				$defined['taxonomy']['nav_menu']->label = __('Nav Menus (Legacy)', 'capability-manager-enhanced');
+			} else {
+				$defined['taxonomy']['nav_menu']->label .= ' (' . __('Legacy', 'capability-manager-enhanced') . ')';
+			}
 
 			// bbPress' dynamic role def requires additional code to enforce stored caps
 			$unfiltered['type'] = apply_filters('presspermit_unfiltered_post_types', ['forum','topic','reply','wp_block']);
@@ -810,7 +824,13 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
                                         }
                                     }
 
-									$type_label = (defined('CME_LEGACY_MENU_NAME_LABEL') && !empty($type_obj->labels->menu_name)) ? $type_obj->labels->menu_name : $type_obj->labels->name;
+									if ('wp_navigation' == $type_obj->name) {
+										$type_label = __('Nav Menus (Block)', 'capsman-enhanced');
+									} elseif ('nav_menu' == $type_obj->name) {
+										$type_label = __('Nav Menus (Legacy)', 'capsman-enhanced');
+									} else {
+										$type_label = (defined('CME_LEGACY_MENU_NAME_LABEL') && !empty($type_obj->labels->menu_name)) ? $type_obj->labels->menu_name : $type_obj->labels->name;
+									}
 
 									if (!empty($type_obj->name)) {
 										if ('taxonomy' == $item_type) {
