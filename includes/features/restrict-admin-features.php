@@ -325,7 +325,7 @@ class PP_Capabilities_Admin_Features
             add_action('admin_head', [__CLASS__, 'contextual_help_list_remove'], 999);
         }
         if(in_array('ppc_header_footer||footer_thankyou', $ppc_header_footer)){
-            add_filter( 'admin_footer_text', '__return_false', 999 );
+            add_filter( 'admin_footer_text', '__return_empty_string', 999 );
         }
         if(in_array('ppc_header_footer||footer_upgrade', $ppc_header_footer)){
             add_filter( 'update_footer', '__return_false', 999 );
