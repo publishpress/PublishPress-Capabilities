@@ -48,6 +48,9 @@ if ( $block_read_removal = _cme_is_read_removal_blocked( $this->current ) ) {
 	}
 }
 
+// include extractor plugin capabilites
+require_once (dirname(CME_FILE) . '/includes/extractor-capabilities.php');
+
 require_once (dirname(CME_FILE) . '/includes/roles/roles-functions.php');
 
 require_once( dirname(__FILE__).'/pp-ui.php' );
@@ -436,7 +439,7 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 						foreach($grouped_caps as $grouped_title => $__grouped_caps) {
 							$grouped_title = esc_html($grouped_title);
 
-							$tab_slug = str_replace(' ', '-', strtolower(sanitize_title($grouped_title)));
+							$tab_slug = pp_capabilities_convert_to_slug(sanitize_title($grouped_title));
 							$tab_id = 'cme-cap-type-tables-' . $tab_slug;
 							$tab_active = ($tab_id == $active_tab_id) ? $ppc_tab_active : '';
 
@@ -451,12 +454,16 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 						foreach($plugin_caps as $plugin_title => $__plugin_caps) {
 							$plugin_title = esc_html($plugin_title);
 
-							$tab_slug = str_replace(' ', '-', strtolower(sanitize_title($plugin_title)));
+							$tab_slug = pp_capabilities_convert_to_slug(sanitize_title($plugin_title));
 							$tab_id = 'cme-cap-type-tables-' . $tab_slug;
+							$tab_name = esc_html(str_replace('_', ' ', $plugin_title));
+							// support extractor staging label
+							$tab_name = str_replace('(CAPABILITYEXTRACTOR)', '<span class="capability-extractor-label">CE</span>', $tab_name);
 							$tab_active = ($tab_id == $active_tab_id) ? $ppc_tab_active : '';
 
+							// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 							echo '<li data-slug="' . esc_attr($tab_slug) . '" data-content="' . esc_attr($tab_id) . '" class="' . esc_attr($tab_active) . '">'
-								. esc_html(str_replace('_', ' ', $plugin_title)) .
+								. $tab_name .
 							'</li>';
 						}
 
@@ -486,7 +493,7 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 							if ( ! count( $cap_properties[$cap_type][$item_type] ) )
 								continue;
 
-							$tab_id = "cme-cap-type-tables-$cap_type";
+							$tab_id = "cme-cap-type-tables-" . pp_capabilities_convert_to_slug($cap_type);
 							$div_display = ($tab_id == $active_tab_id) ? 'block' : 'none';
 
 							$any_caps = false;
@@ -842,7 +849,7 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 
 						$_grouped_caps = array_fill_keys($__grouped_caps, true);
 
-						$tab_id = 'cme-cap-type-tables-' . esc_attr(str_replace( ' ', '-', strtolower($grouped_title)));
+						$tab_id = 'cme-cap-type-tables-' . esc_attr(pp_capabilities_convert_to_slug($grouped_title));
 						$div_display = ($tab_id == $active_tab_id) ? 'block' : 'none';
 
 						echo '<div id="' . esc_attr($tab_id) . '" style="display:' . esc_attr($div_display) . '">';
@@ -1008,12 +1015,16 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 
 						$_plugin_caps = array_fill_keys($__plugin_caps, true);
 
-						$tab_id = 'cme-cap-type-tables-' . esc_attr(str_replace( ' ', '-', strtolower($plugin_title)));
+						$tab_id = 'cme-cap-type-tables-' . esc_attr(pp_capabilities_convert_to_slug($plugin_title));
+						$tab_name = esc_html(str_replace('_', ' ', $plugin_title));
+						// support extractor staging label
+						$tab_name = str_replace('(CAPABILITYEXTRACTOR)', '<span class="capability-extractor-label">CE</span>', $tab_name);
 						$div_display = ($tab_id == $active_tab_id) ? 'block' : 'none';
 
 						echo '<div id="' . esc_attr($tab_id) . '" style="display:' . esc_attr($div_display) . '">';
 
-						echo '<h3 class="cme-cap-section">' . sprintf(esc_html__( 'Plugin Capabilities &ndash; %s', 'capsman-enhanced' ), esc_html(str_replace('_', ' ', $plugin_title))) . '</h3>';
+						// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+						echo '<h3 class="cme-cap-section">' . sprintf(esc_html__( 'Plugin Capabilities &ndash; %s', 'capsman-enhanced' ), $tab_name) . '</h3>';
 
 						echo '<div class="ppc-filter-wrapper">';
 							echo '<input type="text" class="regular-text ppc-filter-text" placeholder="' . esc_attr__('Filter by capability', 'capsman-enhanced') . '">';
