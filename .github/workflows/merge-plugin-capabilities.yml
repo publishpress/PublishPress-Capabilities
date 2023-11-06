@@ -1,0 +1,47 @@
+name: Merge Plugin Capabilities
+
+on:
+  pull_request:
+    paths:
+      - 'includes/plugin-capabilities/**'
+    types:
+      - closed
+
+jobs:
+  merge-plugin-capabilities:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Pull latest changes from development branch
+        run: |
+          git checkout development
+          git pull origin development
+        shell: bash
+
+      - name: Merge Plugin Capabilities
+        run: |
+          cat includes/plugin-capabilities/*.php > includes/extractor-capabilities.php
+        shell: bash
+
+      - name: Commit and force-push changes
+        run: |
+          git checkout -b merge-plugin-capabilities
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add includes/extractor-capabilities.php
+          git commit -m "Merge Plugin Capabilities"
+          git push --force origin HEAD:merge-plugin-capabilities
+
+      - name: Open Pull Request For the Merged Plugin Capabilities
+        run: |
+          curl -X POST \
+            -H "Accept: application/vnd.github.v3+json" \
+            -H "Authorization: Bearer ${{ secrets.USER_TOKEN }}" \
+            -d "{\"title\":\"Merge Plugin Capabilities\",\"head\":\"merge-plugin-capabilities\",\"base\":\"development\"}" \
+            "https://api.github.com/repos/${{ github.repository }}/pulls"
+
+permissions:
+  contents: write
+  pull-requests: write
