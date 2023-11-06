@@ -682,7 +682,7 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 													continue;
 												}
 
-												$cap_name = sanitize_key($type_obj->cap->$prop);
+												$cap_name = sanitize_text_field($type_obj->cap->$prop);
 
 												if ( 'taxonomy' == $item_type )
 													$td_classes []= "term-cap";
@@ -725,7 +725,7 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
                                                 
 												$disabled_cap = true;
                                                 $display_row = true;
-                                                $cap_name = sanitize_key($type_obj->cap->$prop);
+                                                $cap_name = sanitize_text_field($type_obj->cap->$prop);
 												$cap_title = '';
 												
 
@@ -879,7 +879,7 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 						</tr>
                         <?php
 						foreach( array_keys($_grouped_caps) as $cap_name ) {
-							$cap_name = sanitize_key($cap_name);
+							$cap_name = sanitize_text_field($cap_name);
 
 							if ( isset( $type_caps[$cap_name] ) || isset($type_metacaps[$cap_name]) ) {
 								continue;
@@ -1049,7 +1049,7 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 						</tr>
                         <?php
 						foreach( array_keys($_plugin_caps) as $cap_name ) {
-							$cap_name = sanitize_key($cap_name);
+							$cap_name = sanitize_text_field($cap_name);
 
 							if ( isset( $type_caps[$cap_name] ) || in_array($cap_name, $grouped_caps_lists) || isset($type_metacaps[$cap_name]) ) {
 								continue;
@@ -1163,7 +1163,7 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 						uasort( $this->capabilities, 'strnatcasecmp' );  // sort by array values, but maintain keys );
 
 						foreach ( $this->capabilities as $cap_name => $cap ) :
-							$cap_name = sanitize_key($cap_name);
+							$cap_name = sanitize_text_field($cap_name);
 
 							if (!isset($type_metacaps[$cap_name]) || empty($rcaps[$cap_name])) {
 								continue;
@@ -1275,7 +1275,7 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 						$additional_caps = apply_filters('publishpress_caps_manage_additional_caps', $this->capabilities);
 
 						foreach ($additional_caps as $cap_name => $cap) :
-							$cap_name = sanitize_key($cap_name);
+							$cap_name = sanitize_text_field($cap_name);
 
 							if ((isset($type_caps[$cap_name]) && !isset($type_metacaps[$cap_name]))
 							|| in_array($cap_name, $grouped_caps_lists)
