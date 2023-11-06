@@ -482,3 +482,26 @@ function pp_capabilities_user_can_caps() {
 
     return $ppc_user_caps;
 }
+
+/**
+ * Convert title to slug
+ *
+ * @param string $title
+ * @param string $separator
+ * @param string $slug_case
+ * 
+ * @return string
+ */
+function pp_capabilities_convert_to_slug($title, $separator = '-', $slug_case = 'strtolower') {
+    
+    if ($slug_case == 'strtolower') {
+        $title = strtolower($title);
+    } elseif ($slug_case == 'ucwords') {
+        $title = ucwords($title);
+    }
+
+    $title = preg_replace('/[^a-zA-Z0-9]+/', $separator, $title);
+    $title = trim($title, $separator);
+
+    return $title;
+}
