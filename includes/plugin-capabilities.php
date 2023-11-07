@@ -19,8 +19,6 @@ class Plugin_Capabilities
     {
         //PublishPress Capabilities
         add_filter('cme_plugin_capabilities', [$this, 'cme_publishpress_capabilities_capabilities']);
-        //PublishPress Planner
-        add_filter('cme_plugin_capabilities', [$this, 'cme_publishpress_capabilities']);
         //PublishPress Authors
         add_filter('cme_plugin_capabilities', [$this, 'cme_multiple_authors_capabilities']);
         //PublishPress Permissions
@@ -33,7 +31,7 @@ class Plugin_Capabilities
         add_filter('cme_plugin_capabilities', [$this, 'cme_wsform_capabilities']);
         //TaxoPress
         add_filter('cme_plugin_capabilities', [$this, 'cme_taxopress_capabilities']);
-        //WooCommerce
+        //WooCommerce`
         add_filter('cme_plugin_capabilities', [$this, 'cme_woocommerce_capabilities']);
         //Echo Knowledge Base
         add_filter('cme_plugin_capabilities', [$this, 'cme_echo_knowledge_base_capabilities']);
@@ -45,7 +43,7 @@ class Plugin_Capabilities
      * PublishPress Capabilities
      *
      * @param array $plugin_caps
-     * 
+     *
      * @return array
      */
     public function cme_publishpress_capabilities_capabilities($plugin_caps)
@@ -57,37 +55,10 @@ class Plugin_Capabilities
     }
 
     /**
-     * PublishPress Planner
-     *
-     * @param array $plugin_caps
-     * 
-     * @return array
-     */
-    public function cme_publishpress_capabilities($plugin_caps)
-    {
-
-        if (defined('PUBLISHPRESS_VERSION')) {
-            $plugin_caps['PublishPress Planner'] = apply_filters(
-                'cme_publishpress_capabilities',
-                [
-                    'edit_metadata',
-                    'edit_post_subscriptions',
-                    'pp_manage_roles',
-                    'pp_set_notification_channel',
-                    'pp_view_calendar',
-                    'pp_view_content_overview',
-                ]
-            );
-        }
-
-        return $plugin_caps;
-    }
-
-    /**
      * PublishPress Authors
      *
      * @param array $plugin_caps
-     * 
+     *
      * @return array
      */
     public function cme_multiple_authors_capabilities($plugin_caps)
@@ -106,7 +77,7 @@ class Plugin_Capabilities
      * PublishPress Permissions
      *
      * @param array $plugin_caps
-     * 
+     *
      * @return array
      */
     public function cme_presspermit_capabilities($plugin_caps)
@@ -157,7 +128,7 @@ class Plugin_Capabilities
      * Gravity Forms
      *
      * @param array $plugin_caps
-     * 
+     *
      * @return array
      */
     public function cme_gravityforms_capabilities($plugin_caps)
@@ -195,7 +166,7 @@ class Plugin_Capabilities
      * WPML
      *
      * @param array $plugin_caps
-     * 
+     *
      * @return array
      */
     public function cme_wpml_capabilities($plugin_caps)
@@ -231,7 +202,7 @@ class Plugin_Capabilities
      * WS Form
      *
      * @param array $plugin_caps
-     * 
+     *
      * @return array
      */
     public function cme_wsform_capabilities($plugin_caps)
@@ -264,7 +235,7 @@ class Plugin_Capabilities
      * TaxoPress
      *
      * @param array $plugin_caps
-     * 
+     *
      * @return array
      */
     public function cme_taxopress_capabilities($plugin_caps)
@@ -287,7 +258,7 @@ class Plugin_Capabilities
      * Echo Knowledge Base
      *
      * @param array $plugin_caps
-     * 
+     *
      * @return array
      */
     public function cme_echo_knowledge_base_capabilities($plugin_caps)
@@ -315,7 +286,7 @@ class Plugin_Capabilities
      * Yoast SEO
      *
      * @param array $plugin_caps
-     * 
+     *
      * @return array
      */
     public function cme_yoast_seo_capabilities($plugin_caps) {
@@ -326,7 +297,7 @@ class Plugin_Capabilities
                         'wpseo_bulk_edit',
                         'wpseo_edit_advanced_metadata',
                         'wpseo_manage_options'
-                    
+
                 ]
             );
         }
@@ -338,7 +309,7 @@ class Plugin_Capabilities
      * WooCommerce
      *
      * @param array $plugin_caps
-     * 
+     *
      * @return array
      */
     public function cme_woocommerce_capabilities($plugin_caps)
