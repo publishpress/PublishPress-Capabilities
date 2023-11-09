@@ -511,7 +511,7 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 							echo '<h3>' .  sprintf($caption_pattern, esc_html($cap_type_names[$cap_type])) . '</h3>';
 
                             if ($cap_type === 'list' && defined('PRESSPERMIT_ACTIVE')) {
-                                echo '<p class="description"> '. esc_html__('Admin listing access is normally provided by the "Edit" capabilities. "List" capabilities apply if the corresponding "Edit" capability is missing, but otherwise have no effect.', 'capsman-enhanced') .' </p>';
+                                echo '<p class="description"> '. esc_html__('Admin listing access is normally provided by the "Edit" capabilities. These "List" capabilities only apply if the corresponding "Edit" capability is missing. Also, these "List" capabilities can grant access, but not deny access.', 'capsman-enhanced') .' </p>';
                             }
 
 							echo '<div class="ppc-filter-wrapper">';
