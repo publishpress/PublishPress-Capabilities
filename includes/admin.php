@@ -214,7 +214,7 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 			$cap_properties['delete']['type'] = array( 'delete_posts', 'delete_others_posts' );
 			$cap_properties['delete']['type'] = array_merge( $cap_properties['delete']['type'], array( 'delete_published_posts', 'delete_private_posts' ) );
 
-            if (defined('PRESSPERMIT_ACTIVE')) {
+            if (defined('PRESSPERMIT_PRO_FILE')) {
                 $cap_properties['list']['type'] = ['list_posts', 'list_others_posts', 'list_published_posts', 'list_private_posts'];
             }
 
@@ -240,7 +240,7 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
                 'taxonomies' => __( 'Taxonomies', 'capsman-enhanced' ),
 			);
 
-            if (defined('PRESSPERMIT_ACTIVE')) {
+            if (defined('PRESSPERMIT_PRO_FILE')) {
                 $cap_type_names['list'] = __('Listing', 'capsman-enhanced');
             }
 
@@ -270,7 +270,7 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 								   'manage_categories'
 								   );
 
-            if (defined('PRESSPERMIT_ACTIVE')) {
+            if (defined('PRESSPERMIT_PRO_FILE')) {
                 $default_caps = array_merge($default_caps, ['list_posts', 'list_others_posts', 'list_published_posts', 'list_private_posts', 'list_pages', 'list_others_pages', 'list_published_pages', 'list_private_pages']);
             }
 
@@ -510,7 +510,7 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 
 							echo '<h3>' .  sprintf($caption_pattern, esc_html($cap_type_names[$cap_type])) . '</h3>';
 
-                            if ($cap_type === 'list' && defined('PRESSPERMIT_ACTIVE')) {
+                            if ($cap_type === 'list' && defined('PRESSPERMIT_PRO_FILE')) {
                                 echo '<p class="description"> '. esc_html__('Admin listing access is normally provided by the "Edit" capabilities. These "List" capabilities only apply if the corresponding "Edit" capability is missing. Also, these "List" capabilities can grant access, but not deny access.', 'capsman-enhanced') .' </p>';
                             }
 
@@ -570,7 +570,7 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
                                         continue;
                                     }
 
-                                    if (defined('PRESSPERMIT_ACTIVE')) {
+                                    if (defined('PRESSPERMIT_PRO_FILE')) {
                                         //add list capabilities
                                         if (isset($type_obj->cap->edit_posts) && !isset($type_obj->cap->list_posts)) {
                                             $type_obj->cap->list_posts = str_replace('edit_', 'list_', $type_obj->cap->edit_posts);
