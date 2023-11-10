@@ -39,6 +39,9 @@ class PP_Capabilities_Admin_UI {
                 ['PublishPress\\Capabilities\\Classes\\PP_Capabilities_Installer', 'runUpgradeTasks']
             );
             add_action('admin_init', [$this, 'manage_installation'], 2000);
+
+            //Add role blocked nav menu indication
+            add_action('wp_nav_menu_item_custom_fields', [$this, 'add_nav_menu_indicator'], 20, 5);
         }
 
         add_filter('cme_publishpress_capabilities_capabilities', 'cme_publishpress_capabilities_capabilities');
@@ -644,4 +647,81 @@ class PP_Capabilities_Admin_UI {
             update_option($option_name, $current_version, true);
         }
     }
+
+
+	/**
+	* Fires just before the move buttons of a nav menu item in the menu editor.
+	* Add role blocked nav menu indication
+	*
+	* @param int       $item_id Menu item ID.
+	* @param \WP_Post  $item    Menu item data object.
+	* @param int       $depth   Depth of menu item. Used for padding.
+	* @param \stdClass $args    An object of menu item arguments.
+	* @param int       $id      Nav menu ID.
+	*/
+	public function add_nav_menu_indicator( $item_id, $item, $depth, $args, $id = null ) {
+        global $capsman;
+
+        if (!is_admin() || !pp_capabilities_feature_enabled('nav-menus')) {
+            return;
+        }
+
+        $nav_menu_item_option = !empty(get_option('capsman_nav_item_menus')) ? (array)get_option('capsman_nav_item_menus') : [];
+
+        if (empty($nav_menu_item_option) || !is_array($nav_menu_item_option)) {
+            return;
+        }
+        
+        $searchPrefix = $item_id . '_';
+
+        $restricted_roles = array_filter(
+            array_map(
+                function ($subArray) use ($searchPrefix) {
+                    return array_filter(
+                        $subArray,
+                        function ($value) use ($searchPrefix) {
+                            return strpos($value, $searchPrefix) === 0;
+                        }
+                    );
+                },
+                $nav_menu_item_option
+            )
+        );
+
+        if (empty($restricted_roles)) {
+            return;
+        }
+        $ppc_other_permissions = [
+            "ppc_users" => esc_html__('Logged In Users', 'capsman-enhanced'), 
+            "ppc_guest" => esc_html__('Logged Out Users', 'capsman-enhanced')
+        ];
+        $wp_roles_obj = wp_roles();
+	    $roles = $wp_roles_obj->get_names();
+        ?>
+        <div class="um-nav-edit">
+            <div class="clear"></div>
+            <h4 style="margin-bottom: 0.6em;"><?php esc_html_e( 'PublishPress Capabilities Menu Restriction', 'capsman-enhanced' ) ?></h4>
+            <p class="description description-wide um-nav-mode"><?php esc_html_e( 'This menu is restricted for the following roles', 'capsman-enhanced' ) ?></p>
+            <ul>
+                <?php foreach (array_keys($restricted_roles) as $role) : 
+                    $role_url = admin_url('admin.php?page=pp-capabilities-nav-menus&role=' . $role . '');
+                    if (array_key_exists($role, $ppc_other_permissions)) {
+                        $role_caption = $ppc_other_permissions[$role];
+                    } else {
+                        if (is_array($roles) && !empty($roles[$role])) {
+                            $role_caption = $roles[$role];
+                        } else {
+                            $role_caption = translate_user_role($role);
+                        }
+                    }
+                    ?>
+                <li style="margin-bottom: 5px;">
+                    <a target="blank" href="<?php echo esc_url($role_url); ?>"><?php echo esc_html($role_caption); ?></a>
+                </li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+
+        <?php
+	}
 }
