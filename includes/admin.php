@@ -912,7 +912,7 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 							}
 
 							$disabled = '';
-							$checked = checked(1, ! empty($rcaps[$cap_name]), false );
+							$checked = !empty($rcaps[$cap_name]) ? 'checked' : '';
 							$cap_title = $title_text;
 							?>
 							<td class="<?php echo esc_attr($class); ?>"><span class="ppc-tool-tip disabled cap-x">X</span><span class="ppc-tool-tip disabled"><label><input type="checkbox" name="caps[<?php echo esc_attr($cap_name); ?>]" class="pp-single-action-rotate" autocomplete="off" value="1" <?php echo esc_attr($checked) . esc_attr($disabled);?> />
@@ -1088,7 +1088,8 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
                             }
 
 							$disabled = '';
-							$checked = checked(1, ! empty($rcaps[$cap_name]), false );
+							$checked = !empty($rcaps[$cap_name]) ? 'checked' : '';
+
 							$cap_title = $title_text;
 							?>
 							<td class="<?php echo esc_attr($class); ?>"><span class="ppc-tool-tip disabled cap-x">X</span><span class="ppc-tool-tip disabled"><label><input type="checkbox" name="caps[<?php echo esc_attr($cap_name); ?>]" class="pp-single-action-rotate" autocomplete="off" value="1" <?php echo esc_attr($checked) . esc_attr($disabled);?> />
@@ -1186,7 +1187,7 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 							$title_text = $cap_name;
 
 							$disabled = '';
-							$checked = checked(1, ! empty($rcaps[$cap_name]), false );
+							$checked = !empty($rcaps[$cap_name]) ? 'checked' : '';
                             $invalid_caps_capabilities[] = $cap_name;
 						?>
 							<td class="<?php echo esc_attr($class); ?>"><span class="ppc-tool-tip disabled cap-x">X</span><label title="<?php echo esc_attr($title_text);?>"><input type="checkbox" name="caps[<?php echo esc_attr($cap_name); ?>]" class="pp-single-action-rotate" autocomplete="off" value="1" <?php echo esc_attr($checked) . esc_attr($disabled);?> />
@@ -1324,7 +1325,7 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 							}
 
 							$disabled = '';
-							$checked = checked(1, ! empty($rcaps[$cap_name]), false );
+							$checked = !empty($rcaps[$cap_name]) ? 'checked' : '';
 
 							if ( 'manage_capabilities' == $cap_name ) {
 								if (!current_user_can('administrator') && (!is_multisite() || !is_super_admin())) {

@@ -169,12 +169,9 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
             'cb'              => '<input type="checkbox"/>', //Render a checkbox instead of text
             'name'            => esc_html__('Role Name', 'capsman-enhanced'),
             'count'           => esc_html__('Users', 'capsman-enhanced'),
-            'capabilities'    => esc_html__('Capabilities', 'capsman-enhanced'),
-            'editor_features' => esc_html__('Editor Features', 'capsman-enhanced'),
-            'admin_features'  => esc_html__('Admin Features', 'capsman-enhanced'),
-            'profile_features'  => esc_html__('Profile Features', 'capsman-enhanced'),
-            'admin_menus'     => esc_html__('Admin Menus', 'capsman-enhanced'),
-            'nav_menus'       => esc_html__('Nav Menus', 'capsman-enhanced'),
+            'role_type'       => esc_html__('Role Type', 'capsman-enhanced'),
+            'default_role'    => esc_html__('Default Role', 'capsman-enhanced'),
+            'admin_access'    => esc_html__('Admin Access', 'capsman-enhanced'),
         ];
 
         return $columns;
@@ -191,12 +188,6 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
         $sortable_columns = [
             'name'          => ['name', true],
             'count'         => ['count', true],
-            'capabilities'  => ['capabilities', true],
-            'editor_features' => ['editor_features', true],
-            'admin_features'  => ['admin_features', true],
-            'profile_features'  => ['profile_features', true],
-            'admin_menus'   => ['admin_menus', true],
-            'nav_menus'     => ['nav_menus', true],
         ];
 
         return $sortable_columns;
@@ -348,11 +339,6 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
         $states = [];
         $role_states = '';
 
-        // If the role is the default role.
-        if ($item['role'] == get_option('default_role')) {
-            $states['default'] = esc_html__('Default Role', 'capsman-enhanced');
-        }
-
         // If the current user has this role.
         if (pp_roles_current_user_has_role($item['role'])) {
             $states['mine'] = esc_html__('Your Role', 'capsman-enhanced');
@@ -404,6 +390,61 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
      *
      * @return string
      */
+    protected function column_role_type($item)
+    {
+        if (!empty($item['is_system'])) {
+            $out = esc_html__('WordPress Core', 'capsman-enhanced');
+        } else {
+            $out = esc_html__('Custom', 'capsman-enhanced');
+        }
+
+        return $out;
+    }
+
+    /**
+     * The action column
+     *
+     * @param $item
+     *
+     * @return string
+     */
+    protected function column_default_role($item)
+    {
+        if ($item['role'] == get_option('default_role')) {
+            $out = '<span class="dashicons dashicons-yes-alt green-check"></span>';
+        } else {
+            $out = '';
+        }
+
+        return $out;
+    }
+
+    /**
+     * The action column
+     *
+     * @param $item
+     *
+     * @return string
+     */
+    protected function column_admin_access($item)
+    {
+
+        if (array_key_exists('read', $item['capabilities'])) {
+            $out = '<span class="dashicons dashicons-yes-alt green-check"></span>';
+        } else {
+            $out = '<span class="dashicons dashicons-no red-check"></span>';
+        }
+
+        return $out;
+    }
+
+    /**
+     * The action column
+     *
+     * @param $item
+     *
+     * @return string
+     */
     protected function column_capabilities($item)
     {
 
@@ -419,127 +460,6 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
                 )
             ),
             number_format_i18n(count((array)$item['capabilities']))
-        );
-    }
-
-    /**
-     * The action column
-     *
-     * @param $item
-     *
-     * @return string
-     */
-    protected function column_editor_features($item)
-    {
-        return sprintf(
-            '<a href="%s">%s</a>',
-            esc_url(
-                add_query_arg(
-                    [
-                        'page' => 'pp-capabilities-editor-features', 
-                        'role' => esc_attr($item['role'])
-                    ], 
-                    admin_url('admin.php')
-                )
-            ),
-            number_format_i18n($item['editor_features'])
-        );
-    }
-
-    /**
-     * The action column
-     *
-     * @param $item
-     *
-     * @return string
-     */
-    protected function column_admin_features($item)
-    {
-        return sprintf(
-            '<a href="%s">%s</a>',
-            esc_url(
-                add_query_arg(
-                    [
-                        'page' => 'pp-capabilities-admin-features', 
-                        'role' => esc_attr($item['role'])
-                    ], 
-                    admin_url('admin.php')
-                )
-            ),
-            number_format_i18n($item['admin_features'])
-        );
-    }
-
-    /**
-     * The action column
-     *
-     * @param $item
-     *
-     * @return string
-     */
-    protected function column_profile_features($item)
-    {
-        return sprintf(
-            '<a href="%s">%s</a>',
-            esc_url(
-                add_query_arg(
-                    [
-                        'page' => 'pp-capabilities-profile-features', 
-                        'role' => esc_attr($item['role'])
-                    ], 
-                    admin_url('admin.php')
-                )
-            ),
-            number_format_i18n($item['profile_features'])
-        );
-    }
-
-    /**
-     * The action column
-     *
-     * @param $item
-     *
-     * @return string
-     */
-    protected function column_admin_menus($item)
-    {
-
-        return sprintf(
-            '<a href="%s">%s</a>',
-            esc_url(
-                add_query_arg(
-                    [
-                        'page' => 'pp-capabilities-admin-menus', 
-                        'role' => esc_attr($item['role'])
-                    ], 
-                    admin_url('admin.php')
-                )
-            ),
-            number_format_i18n($item['admin_menus'])
-        );
-    }
-
-    /**
-     * The action column
-     *
-     * @param $item
-     *
-     * @return string
-     */
-    protected function column_nav_menus($item)
-    {
-        return sprintf(
-            '<a href="%s">%s</a>',
-            esc_url(
-                add_query_arg(
-                    [
-                        'page' => 'pp-capabilities-nav-menus', 
-                        'role' => esc_attr($item['role'])
-                    ], 
-                    admin_url('admin.php')
-                )
-            ),
-            number_format_i18n($item['nav_menus'])
         );
     }
 
