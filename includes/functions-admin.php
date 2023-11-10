@@ -281,6 +281,7 @@ function pp_capabilities_settings_options() {
        'cme_test_user_footer_notice',
        'cme_test_user_excluded_roles',
        'cme_profile_features_auto_redirect',
+       'cme_role_same_page_redirect_cookie',
    ];
 
    return apply_filters('pp_capabilities_settings_options', $settings_options);
