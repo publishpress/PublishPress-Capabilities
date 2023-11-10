@@ -93,7 +93,7 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
         ];
 
         foreach($role_view_filters as $view => $noop){
-            $view_roles = $this->manager->get_roles_for_list_table($view, true, true);
+            $view_roles = $this->manager->get_roles_for_list_table($view, true);
             
             //add role view
             $this->role_views[$view] = ['roles' => $view_roles];
