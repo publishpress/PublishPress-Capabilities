@@ -467,11 +467,9 @@ class CapabilityManager
                         'cb' 			  => '<input type="checkbox"/>',
                         'name'            => esc_html__('Role Name', 'capsman-enhanced'),
 						'count'           => esc_html__('Users', 'capsman-enhanced'),
-						'capabilities'    => esc_html__('Capabilities', 'capsman-enhanced'),
-						'editor_features' => esc_html__('Editor Features', 'capsman-enhanced'),
-						'admin_features'  => esc_html__('Admin Features', 'capsman-enhanced'),
-						'admin_menus'     => esc_html__('Admin Menus', 'capsman-enhanced'),
-						'nav_menus'       => esc_html__('Nav Menus', 'capsman-enhanced'),
+						'role_type'       => esc_html__('Role Type', 'capsman-enhanced'),
+						'default_role'    => esc_html__('Default Role', 'capsman-enhanced'),
+						'admin_access'    => esc_html__('Admin Access', 'capsman-enhanced'),
                     ];
                 }
             );
