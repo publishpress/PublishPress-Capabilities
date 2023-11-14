@@ -80,27 +80,68 @@
                 unset($empty_post_type_feature[$type_obj->name][$section_slug]);
             }
             ?>
-            <tr class="ppc-menu-row parent-menu">
-                <td class="menu-column ppc-menu-item">
-                    <span class="classic menu-item-link<?php echo (in_array($feature_slug, $ce_post_disabled[$type_obj->name])) ? ' restricted' : ''; ?>">
-                    <strong><i class="dashicons dashicons-arrow-right"></i>
-                        <?php 
-                        if(isset($arr_feature['custom_element']) && ($arr_feature['custom_element'] === true)){
-                            echo esc_html($arr_feature['element_label']) . ' <small class="entry">(' . esc_html($arr_feature['element_items']). ')</small> &nbsp; ' 
-                            . '<span class="' . esc_attr($arr_feature['button_class'])  . '" data-id="' . esc_attr($arr_feature['button_data_id'])  . '" data-parent="' . esc_attr($arr_feature['button_data_parent'])  . '"><small>(' . esc_html__('Delete', 'capsman-enhanced') . ')</small></span>';
-                        }else{
-                            echo esc_html(wp_strip_all_tags($arr_feature['label']));
-                        }
-                        ?>
-                    </strong></span>
-                </td>
+            <?php if(isset($arr_feature['custom_element']) && ($arr_feature['custom_element'] === true)) : ?>
+                <tr class="ppc-menu-row parent-menu">
+                    <td class="menu-column ppc-menu-item custom-item-row ppc-flex">
+                        <div class="ppc-flex-item">
+                            <div>
+                                 <span class="classic menu-item-link<?php echo (in_array($feature_slug, $ce_post_disabled[$type_obj->name])) ? ' restricted' : ''; ?>">
+                                    <strong><i class="dashicons dashicons-arrow-right"></i>
+                                        <?php echo esc_html(wp_strip_all_tags($arr_feature['label'])); ?>
+                                    </strong>
+                                </span>
+                            </div>
+                            <div class="custom-item-output">
+                                <div class="custom-item-display">
+                                    <?php echo esc_html($arr_feature['element_items']); ?>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ppc-flex-item">
+                            <div class="button view-custom-item"><?php esc_html_e('View', 'capsman-enhanced'); ?></div>
+                                <?php /*<div class="button edit-custom-item" 
+                                    data-section="<?php echo esc_attr($section_slug); ?>"
+                                    data-label="<?php echo esc_attr($section_array['label']); ?>"
+                                    data-selector="<?php echo esc_attr($element_selector); ?>"
+                                    data-bodyclass="<?php echo esc_attr($element_bodyclass); ?>"
+                                    data-pages="<?php echo esc_attr(join(', ', (array) $section_array['pages'])); ?>"
+                                    data-post-types="<?php echo esc_attr(join(', ', (array) $section_array['post_types'])); ?>"
+                                    data-id="<?php echo esc_attr($section_id); ?>">
+                                    <?php esc_html_e('Edit', 'capsman-enhanced'); ?>
+                                </div> <?php */ ?>
+                                <div 
+                                    class="button <?php echo esc_attr($arr_feature['button_class']); ?> feature-red" 
+                                    data-parent="<?php echo esc_attr($arr_feature['button_data_parent']); ?>" 
+                                    data-id="<?php echo esc_attr($arr_feature['button_data_id']); ?>">
+                                    <?php esc_html_e('Delete', 'capsman-enhanced'); ?>    
+                                </div>
+                            </div>
+                        </div>
+                    </td>
 
-                <td class="restrict-column ppc-menu-checkbox">
-                    <input id="cb_<?php echo esc_attr($type_obj->name) . '-' . esc_attr(str_replace(['#', '.'], '_', $feature_slug));?>" class="check-item" type="checkbox"
-                            name="capsman_feature_restrict_classic_<?php echo esc_attr($type_obj->name);?>[]"
-                            value="<?php echo esc_attr($feature_slug); ?>" <?php checked(in_array($feature_slug, $ce_post_disabled[$type_obj->name]));?> />
-                </td>
-            </tr>
+                    <td class="restrict-column ppc-menu-checkbox">
+                        <input id="cb_<?php echo esc_attr($type_obj->name) . '-' . esc_attr(str_replace(['#', '.'], '_', $feature_slug));?>" class="check-item" type="checkbox"
+                                name="capsman_feature_restrict_classic_<?php echo esc_attr($type_obj->name);?>[]"
+                                value="<?php echo esc_attr($feature_slug); ?>" <?php checked(in_array($feature_slug, $ce_post_disabled[$type_obj->name]));?> />
+                    </td>
+                </tr>
+            <?php else : ?>
+                <tr class="ppc-menu-row parent-menu">
+                    <td class="menu-column ppc-menu-item">
+                        <span class="classic menu-item-link<?php echo (in_array($feature_slug, $ce_post_disabled[$type_obj->name])) ? ' restricted' : ''; ?>">
+                        <strong><i class="dashicons dashicons-arrow-right"></i>
+                            <?php echo esc_html(wp_strip_all_tags($arr_feature['label'])); ?>
+                        </strong></span>
+                    </td>
+
+                    <td class="restrict-column ppc-menu-checkbox">
+                        <input id="cb_<?php echo esc_attr($type_obj->name) . '-' . esc_attr(str_replace(['#', '.'], '_', $feature_slug));?>" class="check-item" type="checkbox"
+                                name="capsman_feature_restrict_classic_<?php echo esc_attr($type_obj->name);?>[]"
+                                value="<?php echo esc_attr($feature_slug); ?>" <?php checked(in_array($feature_slug, $ce_post_disabled[$type_obj->name]));?> />
+                    </td>
+                </tr>
+            <?php endif; ?>
+            
             <?php
         }
          //add class to remove row list
