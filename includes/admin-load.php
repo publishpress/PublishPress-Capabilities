@@ -698,10 +698,10 @@ class PP_Capabilities_Admin_UI {
         $wp_roles_obj = wp_roles();
 	    $roles = $wp_roles_obj->get_names();
         ?>
-        <div class="um-nav-edit">
+        <div class="ppc-nav-edit">
             <div class="clear"></div>
             <h4 style="margin-bottom: 0.6em;"><?php esc_html_e( 'PublishPress Capabilities Menu Restriction', 'capsman-enhanced' ) ?></h4>
-            <p class="description description-wide um-nav-mode"><?php esc_html_e( 'This menu is restricted for the following roles', 'capsman-enhanced' ) ?></p>
+            <p class="description description-wide ppc-nav-mode"><?php esc_html_e( 'This menu is restricted for the following roles', 'capsman-enhanced' ) ?></p>
             <ul>
                 <?php foreach (array_keys($restricted_roles) as $role) : 
                     $role_url = admin_url('admin.php?page=pp-capabilities-nav-menus&role=' . $role . '');

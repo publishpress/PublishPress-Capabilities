@@ -1137,6 +1137,15 @@ ul.pp-capabilities-description {
   margin-left: 12px;
 }
 
+.ppc-flex {
+  display: flex;
+  justify-content: space-between;
+}
+
+.ppc-flex-item .button {
+ margin-right: 10px;
+}
+
 .frontend-features-form.simple-form .field-row th {
     width: 155px;
     padding-right: 0;
@@ -1188,7 +1197,8 @@ ul.pp-capabilities-description {
     color: green;
 }
 
-.frontend-feature-red {
+.frontend-feature-red,
+.feature-red {
     color: red !important;
 }
 
@@ -1205,6 +1215,10 @@ ul.pp-capabilities-description {
     margin-top: 16px;
     margin-bottom: 16px;
     max-width: 480px;
+}
+
+.ppc-capabilities-content.editor-features-content .custom-item-output {
+  margin-left: 12px;
 }
 
 .ppc-post-features-note {

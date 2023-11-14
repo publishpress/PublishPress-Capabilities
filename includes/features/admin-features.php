@@ -185,37 +185,84 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                                                                             value="<?php echo esc_attr($restrict_value); ?>"
                                                                             <?php echo (in_array($restrict_value, $disabled_admin_items)) ? 'checked' : ''; ?>/>
                                                                     </td>
-                                                            		<td class="menu-column ppc-menu-item">
+                                                                    <?php if (isset($section_array['custom_element']) && ($section_array['custom_element'] === true)) : ?>
+                                                                        <td class="menu-column ppc-menu-item custom-item-row ppc-flex">
+                                                                            <div class="ppc-flex-item">
+                                                                                <div>
+                                                                                    <label for="check-item-<?php echo (int) $sn; ?>">
+                                                                                        <span
+                                                                                            class="menu-item-link<?php echo (in_array($restrict_value,
+                                                                                                $disabled_admin_items)) ? ' restricted' : ''; ?>">
+                                                                                        <strong>
+                                                                                            <?php
+                                                                                            if ((isset($section_array['step']) && $section_array['step'] > 0) && isset($section_array['parent']) && !empty($section_array['parent'])) {
+                                                                                                $step_margin = $section_array['step'] * 20;
+                                                                                                echo '<span style="margin-left: ' . (int) $step_margin . 'px;"></span>';
+                                                                                        echo ' &mdash; ';
+                                                                                            } else {
+                                                                                                if (isset($icon_list[$section_id])) {
+                                                                                                    echo '<i class="dashicons dashicons-' . esc_attr($icon_list[$section_id]) . '"></i>';
+                                                                                                } else {
+                                                                                                    echo '&mdash;';
+                                                                                                }
+                                                                                            }
+                                                                                            ?>
+                                                                                            <?php echo esc_html($section_array['element_label']); ?>
+                                                                                        </strong></span>
+                                                                                    </label>
+                                                                                </div>
+                                                                                <div class="custom-item-output">
+                                                                                    <div class="custom-item-display">
+                                                                                        <?php echo esc_html($section_array['element_items']); ?>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="ppc-flex-item">
+                                                                                <div class="button view-custom-item"><?php esc_html_e('View', 'capsman-enhanced'); ?></div>
+                                                                                    <?php /*<div class="button edit-custom-item" 
+                                                                                        data-section="<?php echo esc_attr($section_slug); ?>"
+                                                                                        data-label="<?php echo esc_attr($section_array['label']); ?>"
+                                                                                        data-selector="<?php echo esc_attr($element_selector); ?>"
+                                                                                        data-bodyclass="<?php echo esc_attr($element_bodyclass); ?>"
+                                                                                        data-pages="<?php echo esc_attr(join(', ', (array) $section_array['pages'])); ?>"
+                                                                                        data-post-types="<?php echo esc_attr(join(', ', (array) $section_array['post_types'])); ?>"
+                                                                                        data-id="<?php echo esc_attr($section_id); ?>">
+                                                                                        <?php esc_html_e('Edit', 'capsman-enhanced'); ?>
+                                                                                    </div> <?php */ ?>
+                                                                                    <div 
+                                                                                        class="button <?php echo esc_attr($section_array['button_class']); ?> feature-red"
+                                                                                        data-id="<?php echo esc_attr($section_array['button_data_id']); ?>">
+                                                                                        <?php esc_html_e('Delete', 'capsman-enhanced'); ?>    
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                    <?php else : ?>
+                                                                        <td class="menu-column ppc-menu-item">
 
-                                                                        <label for="check-item-<?php echo (int) $sn; ?>">
-                                                                            <span
-                                                                                class="menu-item-link<?php echo (in_array($restrict_value,
-                                                                                    $disabled_admin_items)) ? ' restricted' : ''; ?>">
-                                                                            <strong>
-                                                                                <?php
-                                                                                if ((isset($section_array['step']) && $section_array['step'] > 0) && isset($section_array['parent']) && !empty($section_array['parent'])) {
-                                                                                    $step_margin = $section_array['step'] * 20;
-                                                                                    echo '<span style="margin-left: ' . (int) $step_margin . 'px;"></span>';
-                                                                            echo ' &mdash; ';
-                                                                                } else {
-                                                                                    if (isset($icon_list[$section_id])) {
-                                                                                        echo '<i class="dashicons dashicons-' . esc_attr($icon_list[$section_id]) . '"></i>';
+                                                                            <label for="check-item-<?php echo (int) $sn; ?>">
+                                                                                <span
+                                                                                    class="menu-item-link<?php echo (in_array($restrict_value,
+                                                                                        $disabled_admin_items)) ? ' restricted' : ''; ?>">
+                                                                                <strong>
+                                                                                    <?php
+                                                                                    if ((isset($section_array['step']) && $section_array['step'] > 0) && isset($section_array['parent']) && !empty($section_array['parent'])) {
+                                                                                        $step_margin = $section_array['step'] * 20;
+                                                                                        echo '<span style="margin-left: ' . (int) $step_margin . 'px;"></span>';
+                                                                                echo ' &mdash; ';
                                                                                     } else {
-                                                                                        echo '&mdash;';
+                                                                                        if (isset($icon_list[$section_id])) {
+                                                                                            echo '<i class="dashicons dashicons-' . esc_attr($icon_list[$section_id]) . '"></i>';
+                                                                                        } else {
+                                                                                            echo '&mdash;';
+                                                                                        }
                                                                                     }
-                                                                                }
-                                                                                ?>
-                                                                                <?php 
-                                                                                if(isset($section_array['custom_element']) && ($section_array['custom_element'] === true)){
-                                                                                    echo esc_html($section_array['element_label']) . ' <small class="entry">(' . esc_html($section_array['element_items']). ')</small> &nbsp; ' 
-                                                                                    . '<span class="' . esc_attr($section_array['button_class'])  . '" data-id="' . esc_attr($section_array['button_data_id'])  . '"><small>(' . esc_html__('Delete', 'capsman-enhanced') . ')</small></span>' . '';
-                                                                                }else{
-                                                                                    echo esc_html($item_name);
-                                                                                }
-                                                                                ?>
-                                                                            </strong></span>
-                                                                        </label>
-                                                                    </td>
+                                                                                    ?>
+                                                                                    <?php echo esc_html($item_name); ?>
+                                                                                </strong></span>
+                                                                            </label>
+                                                                        </td>
+                                                                    <?php endif; ?>
 
                                                                 </tr>
 
