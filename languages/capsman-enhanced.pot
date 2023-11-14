@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PublishPress Capabilities\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-19 14:09+0000\n"
+"POT-Creation-Date: 2023-11-14 10:17+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Kevin Behrens <kevin@publishpress.com>\n"
 "Language-Team: PublishPress <help@publishpress.com>\n"
@@ -45,23 +45,23 @@ msgstr ""
 msgid "%1$s = Apply custom styling"
 msgstr ""
 
-#: includes/admin.php:1715
+#: includes/admin.php:1536
 #, php-format
 msgid "%1$s = Capability denied, even if granted by another role %2$s"
 msgstr ""
 
-#: includes/admin.php:1713
+#: includes/admin.php:1534
 #, php-format
 msgid "%1$s = Capability granted %2$s"
 msgstr ""
 
-#: includes/admin.php:1714
+#: includes/admin.php:1535
 #, php-format
 msgid "%1$s = Capability not granted %2$s"
 msgstr ""
 
 #: includes/features/profile-features.php:234
-#: includes/features/admin-features.php:249 includes/features/nav-menus.php:305
+#: includes/features/admin-features.php:296 includes/features/nav-menus.php:305
 #: includes/features/editor-features.php:237
 #: includes/features/frontend-features/frontend-features.php:249
 #, php-format
@@ -69,18 +69,18 @@ msgid "%1$s = No change"
 msgstr ""
 
 #: includes/features/profile-features.php:235
-#: includes/features/admin-features.php:250 includes/features/nav-menus.php:306
+#: includes/features/admin-features.php:297 includes/features/nav-menus.php:306
 #: includes/features/editor-features.php:238
 #, php-format
 msgid "%1$s = This feature is denied"
 msgstr ""
 
-#: includes/admin.php:1645
+#: includes/admin.php:1466
 #, php-format
 msgid "%1$sbuy%2$s %3$s"
 msgstr ""
 
-#: includes/admin.php:1643
+#: includes/admin.php:1464
 #, php-format
 msgid "%1$sgrab%2$s %3$s"
 msgstr ""
@@ -97,7 +97,7 @@ msgid ""
 "copy of the plugin is active."
 msgstr ""
 
-#: includes/admin.php:1643
+#: includes/admin.php:1464
 #, php-format
 msgid "%s (free install)"
 msgstr ""
@@ -107,7 +107,7 @@ msgstr ""
 msgid "%s (level %s)"
 msgstr ""
 
-#: includes/admin.php:1645
+#: includes/admin.php:1466
 #, php-format
 msgid "%s info/purchase"
 msgstr ""
@@ -134,17 +134,17 @@ msgstr ""
 msgid "%s successfully imported from uploaded data."
 msgstr ""
 
-#: includes/admin.php:893 includes/admin.php:1096 includes/admin.php:1262
-#: includes/admin.php:1504
+#: includes/admin.php:698 includes/admin.php:909 includes/admin.php:1079
+#: includes/admin.php:1322
 #, php-format
 msgid "%s: assigned by Permission Group"
 msgstr ""
 
-#: includes/admin.php:219
+#: includes/admin.php:236
 msgid "&nbsp;"
 msgstr ""
 
-#: includes/roles/class/class-pp-roles-list-table.php:247
+#: includes/roles/class/class-pp-roles-list-table.php:238
 msgid "(non-editable role)"
 msgstr ""
 
@@ -158,11 +158,11 @@ msgid ""
 "never automatically replaced."
 msgstr ""
 
-#: includes/manager.php:1343
+#: includes/manager.php:1354
 msgid "About"
 msgstr ""
 
-#: includes/manager.php:1343
+#: includes/manager.php:1354
 msgid "About PublishPress Capabilities"
 msgstr ""
 
@@ -171,7 +171,7 @@ msgstr ""
 msgid "activate %1$sAdvanced settings%2$s, see Role Usage"
 msgstr ""
 
-#: includes/admin.php:1812
+#: includes/admin.php:1633
 msgid "Add a New Capability"
 msgstr ""
 
@@ -202,15 +202,15 @@ msgstr ""
 msgid "Add New Category"
 msgstr ""
 
-#: includes/manager.php:229
+#: includes/manager.php:232
 msgid "Add or clear custom item entry before saving changes."
 msgstr ""
 
-#: includes/manager.php:227
+#: includes/manager.php:230
 msgid "Add or remove capability from the role normally"
 msgstr ""
 
-#: includes/manager.php:226
+#: includes/manager.php:229
 msgid "Add or remove this capability from the WordPress role"
 msgstr ""
 
@@ -218,19 +218,24 @@ msgstr ""
 msgid "Add post metabox:"
 msgstr ""
 
-#: includes/admin.php:1822
+#: includes/admin.php:1643
 msgid "Add to role"
 msgstr ""
 
-#: includes/admin.php:681
+#: includes/admin.php:477
 msgid "Additional"
 msgstr ""
 
-#: includes/admin.php:1428
+#: includes/admin.php:1246
 msgid "Additional Capabilities"
 msgstr ""
 
-#: includes/settings-ui.php:151
+#: includes/manager.php:472
+#: includes/roles/class/class-pp-roles-list-table.php:174
+msgid "Admin Access"
+msgstr ""
+
+#: includes/settings-ui.php:167
 msgid "Admin Bar modification"
 msgstr ""
 
@@ -238,35 +243,35 @@ msgstr ""
 msgid "Admin Feature Restrictions"
 msgstr ""
 
-#: includes/functions-admin.php:216 includes/functions-admin.php:345
-#: includes/functions-admin.php:417 includes/manager.php:469
-#: includes/roles/class/class-pp-roles-list-table.php:174
+#: includes/functions-admin.php:216 includes/functions-admin.php:346
+#: includes/functions-admin.php:418
+#: includes/roles/class/class-pp-roles-admin.php:642
 msgid "Admin Features"
 msgstr ""
 
-#: includes/functions-admin.php:346 includes/features/admin-features.php:247
+#: includes/functions-admin.php:347 includes/features/admin-features.php:294
 msgid ""
 "Admin Features allows you to remove elements from the admin area and toolbar."
 msgstr ""
 
-#: includes/admin.php:718
+#: includes/admin.php:514
 msgid ""
 "Admin listing access is normally provided by the \"Edit\" capabilities. "
-"\"List\" capabilities apply if the corresponding \"Edit\" capability is "
-"missing, but otherwise have no effect."
+"These \"List\" capabilities only apply if the corresponding \"Edit\" "
+"capability is missing. Also, these \"List\" capabilities can grant access, "
+"but not deny access."
 msgstr ""
 
 #: includes-core/admin-menus-promo.php:29
 msgid "Admin Menu Restrictions"
 msgstr ""
 
-#: includes/functions.php:538
+#: includes/functions.php:542
 msgid "Admin Menu restrictions"
 msgstr ""
 
-#: includes/functions-admin.php:439 includes/manager.php:470
-#: includes-core/CoreAdmin.php:76
-#: includes/roles/class/class-pp-roles-list-table.php:176
+#: includes/functions-admin.php:440 includes-core/CoreAdmin.php:76
+#: includes/roles/class/class-pp-roles-admin.php:644
 msgid "Admin Menus"
 msgstr ""
 
@@ -290,7 +295,7 @@ msgstr[1] ""
 msgid "All fields are required."
 msgstr ""
 
-#: includes/roles/class/class-pp-roles-admin.php:646
+#: includes/roles/class/class-pp-roles-admin.php:665
 msgid "All Roles"
 msgstr ""
 
@@ -298,7 +303,7 @@ msgstr ""
 msgid "all roles"
 msgstr ""
 
-#: includes/pp-ui.php:297
+#: includes/pp-ui.php:301
 msgid ""
 "Allow \"Edit\", \"Delete\" and \"Assign\" capabilities separately from the "
 "\"Manage\" capability."
@@ -310,17 +315,17 @@ msgid ""
 "WordPress."
 msgstr ""
 
-#: includes/pp-ui.php:217
+#: includes/pp-ui.php:219
 msgid ""
 "Allow taxonomy permissions to be controlled separately from other areas of "
 "WordPress."
 msgstr ""
 
-#: includes/settings-ui.php:135
+#: includes/settings-ui.php:151
 msgid "Always show the Classic Editor tab in \"Editor Features\" screen."
 msgstr ""
 
-#: includes/settings-ui.php:226
+#: includes/settings-ui.php:242
 msgid ""
 "Always try to automatically find profile elements. This may cause temporary "
 "issues when updating user roles that do not have access to the WordPress "
@@ -337,7 +342,7 @@ msgstr ""
 msgid "Apply for %1$s"
 msgstr ""
 
-#: includes/manager.php:228
+#: includes/manager.php:231
 msgid "Are you sure you want to delete this item ?"
 msgstr ""
 
@@ -346,12 +351,12 @@ msgstr ""
 msgid "Are you sure you want to delete this role?"
 msgstr ""
 
-#: includes/admin.php:1596
+#: includes/admin.php:1417
 msgid ""
 "Assign custom WP roles supplementally for a specific post type <em>(Pro)</em>"
 msgstr ""
 
-#: includes/admin.php:1592
+#: includes/admin.php:1413
 msgid "Assign standard WP roles supplementally for a specific post type"
 msgstr ""
 
@@ -360,13 +365,13 @@ msgstr ""
 msgid "Auto-backup of all roles (%s)"
 msgstr ""
 
-#: includes/admin.php:1588
+#: includes/admin.php:1409
 msgid ""
 "Automatically define type-specific capabilities for your custom post types "
 "and taxonomies"
 msgstr ""
 
-#: includes/settings-ui.php:221
+#: includes/settings-ui.php:237
 msgid "Automatically refresh profile elements"
 msgstr ""
 
@@ -374,7 +379,7 @@ msgstr ""
 msgid "Available Backups:"
 msgstr ""
 
-#: includes/functions-admin.php:454 includes/backup.php:51
+#: includes/functions-admin.php:455 includes/backup.php:51
 msgid "Backup"
 msgstr ""
 
@@ -386,7 +391,7 @@ msgstr ""
 msgid "Backup Tool for PublishPress Capabilities"
 msgstr ""
 
-#: includes/manager.php:1028
+#: includes/manager.php:1029
 msgid "Bad form Received"
 msgstr ""
 
@@ -400,7 +405,7 @@ msgid ""
 "of your current settings."
 msgstr ""
 
-#: includes/functions.php:542
+#: includes/functions.php:546
 msgid "Block admin pages by URL"
 msgstr ""
 
@@ -441,35 +446,35 @@ msgid ""
 "this role. %1s Click here for more details. %2s"
 msgstr ""
 
-#: includes/admin.php:247
+#: includes/admin.php:264
 msgid "can delete posts which are currently published"
 msgstr ""
 
-#: includes/admin.php:248
+#: includes/admin.php:265
 msgid "can delete posts which are currently published with private visibility"
 msgstr ""
 
-#: includes/admin.php:246
+#: includes/admin.php:263
 msgid "can delete posts which were created by other users"
 msgstr ""
 
-#: includes/admin.php:242
+#: includes/admin.php:259
 msgid "can edit posts which are currently published"
 msgstr ""
 
-#: includes/admin.php:243
+#: includes/admin.php:260
 msgid "can edit posts which are currently published with private visibility"
 msgstr ""
 
-#: includes/admin.php:241
+#: includes/admin.php:258
 msgid "can edit posts which were created by other users"
 msgstr ""
 
-#: includes/admin.php:244
+#: includes/admin.php:261
 msgid "can make a post publicly visible"
 msgstr ""
 
-#: includes/admin.php:239
+#: includes/admin.php:256
 msgid "can read posts which are currently published with private visibility"
 msgstr ""
 
@@ -483,23 +488,22 @@ msgid ""
 "Cannot delete default role. You <a href=\"%s\">have to change it first</a>."
 msgstr ""
 
-#: includes/manager.php:1345
+#: includes/manager.php:1356
 msgid "Capabilites Documentation"
 msgstr ""
 
-#: includes/functions-admin.php:335 includes/functions-admin.php:403
-#: includes/manager.php:362 includes/manager.php:467
-#: includes/settings-ui.php:32 includes/admin-load.php:468
-#: includes/roles/class/class-pp-roles-admin.php:721
-#: includes/roles/class/class-pp-roles-list-table.php:172
+#: includes/functions-admin.php:336 includes/functions-admin.php:404
+#: includes/manager.php:365 includes/settings-ui.php:32
+#: includes/admin-load.php:471
+#: includes/roles/class/class-pp-roles-admin.php:755
 msgid "Capabilities"
 msgstr ""
 
-#: includes/admin.php:1712
+#: includes/admin.php:1533
 msgid "Capabilities allows you change the permissions for any user role."
 msgstr ""
 
-#: includes/functions-admin.php:336
+#: includes/functions-admin.php:337
 msgid "Capabilities allows you to change the permissions for any user role."
 msgstr ""
 
@@ -526,7 +530,7 @@ msgid ""
 "status-specific role."
 msgstr ""
 
-#: includes/admin.php:1776
+#: includes/admin.php:1597
 msgid "Capabilities is Safe to Use"
 msgstr ""
 
@@ -534,9 +538,9 @@ msgstr ""
 msgid "Capabilities Settings"
 msgstr ""
 
-#: includes/admin.php:1061 includes/admin.php:1137 includes/admin.php:1174
-#: includes/admin.php:1183 includes/admin.php:1227 includes/admin.php:1309
-#: includes/admin.php:1440 includes/admin.php:1556
+#: includes/admin.php:874 includes/admin.php:950 includes/admin.php:987
+#: includes/admin.php:996 includes/admin.php:1044 includes/admin.php:1127
+#: includes/admin.php:1258 includes/admin.php:1377
 msgid "Capability Name"
 msgstr ""
 
@@ -545,9 +549,9 @@ msgstr ""
 msgid "Categories"
 msgstr ""
 
-#: includes/admin.php:1061 includes/admin.php:1137 includes/admin.php:1174
-#: includes/admin.php:1183 includes/admin.php:1227 includes/admin.php:1309
-#: includes/admin.php:1440 includes/admin.php:1556
+#: includes/admin.php:874 includes/admin.php:950 includes/admin.php:987
+#: includes/admin.php:996 includes/admin.php:1044 includes/admin.php:1127
+#: includes/admin.php:1258 includes/admin.php:1377
 msgid "check / uncheck all"
 msgstr ""
 
@@ -572,8 +576,8 @@ msgstr ""
 msgid "Classic Editor %s Restrictions"
 msgstr ""
 
-#: includes/admin.php:726 includes/admin.php:1048 includes/admin.php:1161
-#: includes/admin.php:1214 includes/admin.php:1432
+#: includes/admin.php:522 includes/admin.php:861 includes/admin.php:974
+#: includes/admin.php:1031 includes/admin.php:1250
 msgid "Clear"
 msgstr ""
 
@@ -590,11 +594,11 @@ msgstr ""
 msgid "Comments"
 msgstr ""
 
-#: includes/manager.php:1347
+#: includes/manager.php:1358
 msgid "Contact"
 msgstr ""
 
-#: includes/manager.php:1347
+#: includes/manager.php:1358
 msgid "Contact the PublishPress team"
 msgstr ""
 
@@ -607,20 +611,20 @@ msgstr ""
 msgid "Control Allowed Editors"
 msgstr ""
 
-#: includes/admin.php:231
-#: includes/roles/class/class-pp-roles-list-table.php:242
+#: includes/admin.php:248
+#: includes/roles/class/class-pp-roles-list-table.php:233
 msgid "Copy"
 msgstr ""
 
-#: includes/admin.php:1863
+#: includes/admin.php:1684
 msgid "Copy / update this role definition to all sites now"
 msgstr ""
 
-#: includes/admin.php:1866
+#: includes/admin.php:1687
 msgid "Copy option settings to all sites now"
 msgstr ""
 
-#: includes/roles/class/class-pp-roles-admin.php:640
+#: includes/roles/class/class-pp-roles-admin.php:659
 msgid "Copy Role"
 msgstr ""
 
@@ -628,7 +632,7 @@ msgstr ""
 msgid "Coupon Description"
 msgstr ""
 
-#: includes/roles/class/class-pp-roles-admin.php:642
+#: includes/roles/class/class-pp-roles-admin.php:661
 msgid "Create New Role"
 msgstr ""
 
@@ -636,8 +640,12 @@ msgstr ""
 msgid "Create Role"
 msgstr ""
 
-#: includes/admin.php:1860
+#: includes/admin.php:1681
 msgid "Create this role definition in new (future) sites"
+msgstr ""
+
+#: includes/roles/class/class-pp-roles-list-table.php:398
+msgid "Custom"
 msgstr ""
 
 #: includes/features/frontend-features/frontend-features-ui.php:229
@@ -652,33 +660,33 @@ msgstr ""
 msgid "Custom Items"
 msgstr ""
 
-#: includes/admin.php:1612
+#: includes/admin.php:1433
 msgid ""
 "Custom Moderation statuses for access-controlled, multi-step publishing "
 "workflow <em>(Pro)</em>"
 msgstr ""
 
-#: includes/admin.php:1608
+#: includes/admin.php:1429
 msgid ""
 "Custom Post Visibility statuses, fully implemented throughout wp-admin <em>"
 "(Pro)</em>"
 msgstr ""
 
-#: includes/admin.php:1604
+#: includes/admin.php:1425
 msgid "Customize editing permissions per-category or per-post <em>(Pro)</em>"
 msgstr ""
 
-#: includes/admin.php:1600
+#: includes/admin.php:1421
 msgid "Customize reading permissions per-category or per-post"
 msgstr ""
 
-#: includes/admin.php:1620
+#: includes/admin.php:1441
 msgid ""
 "Customize the moderated editing of published content with Revisionary or "
 "Post Forking <em>(Pro)</em>"
 msgstr ""
 
-#: includes/functions-admin.php:389 includes/dashboard.php:25
+#: includes/functions-admin.php:390 includes/dashboard.php:25
 msgid "Dashboard"
 msgstr ""
 
@@ -690,20 +698,21 @@ msgstr ""
 msgid "Date"
 msgstr ""
 
-#: includes/roles/class/class-pp-roles-list-table.php:353
+#: includes/manager.php:471
+#: includes/roles/class/class-pp-roles-list-table.php:173
 msgid "Default Role"
 msgstr ""
 
 #: includes-core/editor-features-promo.php:96
 #: includes-core/editor-features-promo.php:107
 #: includes-core/editor-features-promo.php:117
-#: includes/features/admin-features.php:211
-#: includes/features/editor-features-gutenberg.php:87
-#: includes/features/editor-features-classic.php:90
+#: includes/features/admin-features.php:235
+#: includes/features/editor-features-gutenberg.php:113
+#: includes/features/editor-features-classic.php:116
 #: includes/features/frontend-features/frontend-features-ui.php:274
 #: includes/roles/class/class-pp-roles-admin.php:134
-#: includes/roles/class/class-pp-roles-list-table.php:283
-#: includes/roles/class/class-pp-roles-list-table.php:566
+#: includes/roles/class/class-pp-roles-list-table.php:274
+#: includes/roles/class/class-pp-roles-list-table.php:486
 msgid "Delete"
 msgstr ""
 
@@ -721,7 +730,7 @@ msgid ""
 "irrecoverable."
 msgstr ""
 
-#: includes/admin.php:222
+#: includes/admin.php:239
 msgid "Deletion"
 msgstr ""
 
@@ -729,11 +738,11 @@ msgstr ""
 msgid "Description here."
 msgstr ""
 
-#: includes/pp-ui.php:287
+#: includes/pp-ui.php:291
 msgid "Detailed Capabilities for Taxonomies"
 msgstr ""
 
-#: includes/functions.php:571
+#: includes/functions.php:575
 msgid "Detailed documentation is also available on the plugin website."
 msgstr ""
 
@@ -764,11 +773,11 @@ msgstr ""
 msgid "Document Panel"
 msgstr ""
 
-#: includes/manager.php:1345
+#: includes/manager.php:1356
 msgid "Documentation"
 msgstr ""
 
-#: includes/admin-load.php:346
+#: includes/admin-load.php:349
 msgid "Drag multiple roles selection to change order."
 msgstr ""
 
@@ -779,11 +788,11 @@ msgid ""
 msgstr ""
 
 #: includes/features/frontend-features/frontend-features-ui.php:265
-#: includes/roles/class/class-pp-roles-list-table.php:231
+#: includes/roles/class/class-pp-roles-list-table.php:222
 msgid "Edit"
 msgstr ""
 
-#: includes/roles/class/class-pp-roles-admin.php:638
+#: includes/roles/class/class-pp-roles-admin.php:657
 #, php-format
 msgid "Edit Role: %s"
 msgstr ""
@@ -803,7 +812,7 @@ msgid_plural "Editable %s"
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/admin.php:221 includes/roles/class/class-pp-roles-admin.php:111
+#: includes/admin.php:238 includes/roles/class/class-pp-roles-admin.php:111
 msgid "Editing"
 msgstr ""
 
@@ -820,14 +829,13 @@ msgstr ""
 msgid "Editor Feature Restrictions"
 msgstr ""
 
-#: includes/functions-admin.php:205 includes/functions-admin.php:340
-#: includes/functions-admin.php:410 includes/manager.php:468
-#: includes/settings-ui.php:33
-#: includes/roles/class/class-pp-roles-list-table.php:173
+#: includes/functions-admin.php:205 includes/functions-admin.php:341
+#: includes/functions-admin.php:411 includes/settings-ui.php:33
+#: includes/roles/class/class-pp-roles-admin.php:641
 msgid "Editor Features"
 msgstr ""
 
-#: includes/functions-admin.php:341 includes/features/editor-features.php:235
+#: includes/functions-admin.php:342 includes/features/editor-features.php:235
 msgid ""
 "Editor Features allows you to remove elements from the post editing screen."
 msgstr ""
@@ -836,11 +844,11 @@ msgstr ""
 msgid "Editorial Comments"
 msgstr ""
 
-#: includes/settings-ui.php:130
+#: includes/settings-ui.php:146
 msgid "Enable Classic Editor tab"
 msgstr ""
 
-#: includes/functions.php:535
+#: includes/functions.php:539
 msgid "Enhance the power of PublishPress Capabilities with the Pro version:"
 msgstr ""
 
@@ -896,7 +904,7 @@ msgstr ""
 msgid "Error: Failed creating the new role."
 msgstr ""
 
-#: includes/admin-load.php:591
+#: includes/admin-load.php:594
 msgid "Error: wrong data"
 msgstr ""
 
@@ -904,19 +912,19 @@ msgstr ""
 msgid "Excerpt"
 msgstr ""
 
-#: includes/settings-ui.php:183
+#: includes/settings-ui.php:199
 msgid "Exclude role from User Testing"
 msgstr ""
 
-#: includes/settings-ui.php:204
+#: includes/settings-ui.php:220
 msgid "Exclude users in selected roles from User Testing."
 msgstr ""
 
-#: includes/manager.php:223
+#: includes/manager.php:226
 msgid "Explicitly negate these capabilities by storing as disabled"
 msgstr ""
 
-#: includes/manager.php:222
+#: includes/manager.php:225
 msgid "Explicity negate this capability by storing as disabled"
 msgstr ""
 
@@ -938,7 +946,7 @@ msgid ""
 "easily import the configuration into another site."
 msgstr ""
 
-#: includes/functions.php:544
+#: includes/functions.php:548
 msgid "Fast, professional support"
 msgstr ""
 
@@ -954,20 +962,20 @@ msgstr ""
 msgid "Features:"
 msgstr ""
 
-#: includes/admin.php:1047 includes/admin.php:1160 includes/admin.php:1213
-#: includes/admin.php:1431
+#: includes/admin.php:860 includes/admin.php:973 includes/admin.php:1030
+#: includes/admin.php:1249
 msgid "Filter by capability"
 msgstr ""
 
-#: includes/admin.php:723
+#: includes/admin.php:519
 msgid "Filter by post type"
 msgstr ""
 
-#: includes/admin.php:723
+#: includes/admin.php:519
 msgid "Filter by taxonomy"
 msgstr ""
 
-#: includes/settings-ui.php:167
+#: includes/settings-ui.php:183
 msgid "Front End footer notice"
 msgstr ""
 
@@ -979,14 +987,14 @@ msgstr ""
 msgid "Frontend Elements"
 msgstr ""
 
-#: includes/functions-admin.php:220 includes/functions-admin.php:350
-#: includes/functions-admin.php:424
+#: includes/functions-admin.php:220 includes/functions-admin.php:351
+#: includes/functions-admin.php:425
 #: includes/features/frontend-features/frontend-features-metaboxes.php:55
 #: includes/features/frontend-features/frontend-features.php:70
 msgid "Frontend Features"
 msgstr ""
 
-#: includes/functions-admin.php:351
+#: includes/functions-admin.php:352
 #: includes/features/frontend-features/frontend-features.php:247
 msgid ""
 "Frontend Features allows you to add or remove elements from the frontend of "
@@ -997,17 +1005,17 @@ msgstr ""
 msgid "General"
 msgstr ""
 
-#: includes/admin.php:1793
+#: includes/admin.php:1614
 msgid "Go to the Backup feature"
 msgstr ""
 
-#: includes/admin.php:1624
+#: includes/admin.php:1445
 msgid ""
 "Grant Spectator, Participant or Moderator access to specific bbPress forums "
 "<em>(Pro)</em>"
 msgstr ""
 
-#: includes/admin.php:1628
+#: includes/admin.php:1449
 msgid ""
 "Grant supplemental content permissions to a BuddyPress group <em>(Pro)</em>"
 msgstr ""
@@ -1025,13 +1033,13 @@ msgstr ""
 msgid "Gutenberg Editor %s Restrictions"
 msgstr ""
 
-#: includes/admin.php:245
+#: includes/admin.php:262
 msgid ""
 "has basic deletion capability (but may need other capabilities based on post "
 "status and ownership)"
 msgstr ""
 
-#: includes/admin.php:240
+#: includes/admin.php:257
 msgid ""
 "has basic editing capability (but may need other capabilities based on post "
 "status and ownership)"
@@ -1057,7 +1065,7 @@ msgstr ""
 msgid "Hidden IDs or Classes"
 msgstr ""
 
-#: includes/roles/class/class-pp-roles-list-table.php:302
+#: includes/roles/class/class-pp-roles-list-table.php:293
 msgid "Hide"
 msgstr ""
 
@@ -1065,15 +1073,15 @@ msgstr ""
 msgid "Hide IDs or Classes"
 msgstr ""
 
-#: includes/functions.php:790
+#: includes/functions.php:794
 msgid "Home Link"
 msgstr ""
 
-#: includes/features/admin-features.php:253
+#: includes/features/admin-features.php:300
 msgid "How to use Admin Features"
 msgstr ""
 
-#: includes/admin.php:1743
+#: includes/admin.php:1564
 msgid "How to use Capabilities"
 msgstr ""
 
@@ -1111,12 +1119,12 @@ msgid ""
 "will be lost."
 msgstr ""
 
-#: includes/manager.php:1332
+#: includes/manager.php:1343
 #, php-format
 msgid "If you like %s, please leave us a %s rating. Thank you!"
 msgstr ""
 
-#: includes/functions.php:560
+#: includes/functions.php:564
 msgid "If you need help or have a new feature request, let us know."
 msgstr ""
 
@@ -1134,7 +1142,7 @@ msgid ""
 "exporting the settings on another site using the form above."
 msgstr ""
 
-#: includes/admin.php:1860
+#: includes/admin.php:1681
 msgid "include in new sites"
 msgstr ""
 
@@ -1160,11 +1168,11 @@ msgstr ""
 msgid "Invalid action. Reload this page and try again."
 msgstr ""
 
-#: includes/admin.php:676 includes/admin.php:1327
+#: includes/admin.php:472 includes/admin.php:1145
 msgid "Invalid Capabilities"
 msgstr ""
 
-#: includes/admin-load.php:587
+#: includes/admin-load.php:590
 msgid "Invalid nonce token!"
 msgstr ""
 
@@ -1190,19 +1198,19 @@ msgstr ""
 msgid "Last Manual Backup - %s"
 msgstr ""
 
-#: includes/admin.php:1679
+#: includes/admin.php:1500
 msgid "Level:"
 msgstr ""
 
-#: includes/admin.php:227
+#: includes/admin.php:244
 msgid "Listing"
 msgstr ""
 
-#: includes/roles/class/class-pp-roles-admin.php:764
+#: includes/roles/class/class-pp-roles-admin.php:801
 msgid "Load Less"
 msgstr ""
 
-#: includes/roles/class/class-pp-roles-admin.php:761
+#: includes/roles/class/class-pp-roles-admin.php:798
 msgid "Load More"
 msgstr ""
 
@@ -1214,17 +1222,17 @@ msgstr ""
 msgid "Load on page types:"
 msgstr ""
 
-#: includes/features/nav-menus.php:26
+#: includes/admin-load.php:695 includes/features/nav-menus.php:26
 #: includes/features/frontend-features/frontend-features.php:39
 msgid "Logged In Users"
 msgstr ""
 
-#: includes/features/nav-menus.php:26
+#: includes/admin-load.php:696 includes/features/nav-menus.php:26
 #: includes/features/frontend-features/frontend-features.php:40
 msgid "Logged Out Users"
 msgstr ""
 
-#: includes/functions.php:390
+#: includes/functions.php:394
 msgid "Login permission denied."
 msgstr ""
 
@@ -1255,7 +1263,7 @@ msgstr ""
 msgid "Media Buttons (all)"
 msgstr ""
 
-#: includes/admin.php:1636
+#: includes/admin.php:1457
 msgid "Member support forum"
 msgstr ""
 
@@ -1298,13 +1306,20 @@ msgstr ""
 msgid "Nav Menu"
 msgstr ""
 
-#: includes/functions-admin.php:360 includes/functions-admin.php:447
-#: includes/manager.php:471
-#: includes/roles/class/class-pp-roles-list-table.php:177
+#: includes/functions-admin.php:361 includes/functions-admin.php:448
+#: includes/roles/class/class-pp-roles-admin.php:645
 msgid "Nav Menus"
 msgstr ""
 
-#: includes/functions-admin.php:361 includes/features/nav-menus.php:303
+#: includes/admin.php:610
+msgid "Nav Menus (Block)"
+msgstr ""
+
+#: includes/admin.php:612
+msgid "Nav Menus (Legacy)"
+msgstr ""
+
+#: includes/functions-admin.php:362 includes/features/nav-menus.php:303
 msgid "Nav Menus allows you to block access to frontend menu links."
 msgstr ""
 
@@ -1312,7 +1327,7 @@ msgstr ""
 msgid "Navigation Menu Restrictions"
 msgstr ""
 
-#: includes/functions.php:555
+#: includes/functions.php:559
 msgid "Need PublishPress Capabilities Support?"
 msgstr ""
 
@@ -1320,11 +1335,11 @@ msgstr ""
 msgid "Needed function to create default roles not found!"
 msgstr ""
 
-#: includes/admin.php:71
+#: includes/admin.php:74
 msgid "negate all (storing as disabled capabilities)"
 msgstr ""
 
-#: includes/admin.php:75
+#: includes/admin.php:78
 msgid "negate none (add/remove all capabilities normally)"
 msgstr ""
 
@@ -1337,7 +1352,7 @@ msgstr ""
 msgid "New backup saved."
 msgstr ""
 
-#: includes/manager.php:987
+#: includes/manager.php:988
 msgid "New capability added to role."
 msgstr ""
 
@@ -1349,7 +1364,7 @@ msgstr ""
 msgid "New role created."
 msgstr ""
 
-#: includes/functions.php:545
+#: includes/functions.php:549
 msgid "No ads inside the plugin"
 msgstr ""
 
@@ -1357,20 +1372,20 @@ msgstr ""
 msgid "No changes"
 msgstr ""
 
-#: includes/features/editor-features-gutenberg.php:112
-#: includes/features/editor-features-classic.php:115
+#: includes/features/editor-features-gutenberg.php:152
+#: includes/features/editor-features-classic.php:156
 #, php-format
 msgid ""
 "No metabox found for %1s. %2s Click here %3s to visit the %4s screen and "
 "refresh this page after to load new metabox"
 msgstr ""
 
-#: includes/admin-load.php:577
+#: includes/admin-load.php:580
 msgid "No permission!"
 msgstr ""
 
-#: includes/admin.php:1050 includes/admin.php:1163 includes/admin.php:1216
-#: includes/admin.php:1434
+#: includes/admin.php:863 includes/admin.php:976 includes/admin.php:1033
+#: includes/admin.php:1252
 msgid "No results found. Please try again with a different word."
 msgstr ""
 
@@ -1419,7 +1434,7 @@ msgstr ""
 msgid "Page Boxes"
 msgstr ""
 
-#: includes/functions.php:788
+#: includes/functions.php:792
 msgid "Page Lists"
 msgstr ""
 
@@ -1427,7 +1442,7 @@ msgstr ""
 msgid "Page Template"
 msgstr ""
 
-#: includes/admin-load.php:349
+#: includes/admin-load.php:352
 msgid "Page title"
 msgstr ""
 
@@ -1470,12 +1485,12 @@ msgstr ""
 msgid "Please upload a valid .json file"
 msgstr ""
 
-#: includes/admin.php:1210
+#: includes/admin.php:1027
 #, php-format
 msgid "Plugin Capabilities &ndash; %s"
 msgstr ""
 
-#: includes/admin.php:713
+#: includes/admin.php:509
 #, php-format
 msgid "Post %s Capabilities"
 msgstr ""
@@ -1492,7 +1507,7 @@ msgstr ""
 msgid "Post Type Metabox"
 msgstr ""
 
-#: includes/manager.php:224
+#: includes/manager.php:227
 msgid "Post type registration does not define this capability distinctly"
 msgstr ""
 
@@ -1505,13 +1520,13 @@ msgstr ""
 msgid "Profile Feature Restrictions"
 msgstr ""
 
-#: includes/functions-admin.php:224 includes/functions-admin.php:355
-#: includes/functions-admin.php:431 includes/settings-ui.php:34
-#: includes/roles/class/class-pp-roles-list-table.php:175
+#: includes/functions-admin.php:224 includes/functions-admin.php:356
+#: includes/functions-admin.php:432 includes/settings-ui.php:34
+#: includes/roles/class/class-pp-roles-admin.php:643
 msgid "Profile Features"
 msgstr ""
 
-#: includes/functions-admin.php:356 includes/features/profile-features.php:232
+#: includes/functions-admin.php:357 includes/features/profile-features.php:232
 msgid "Profile Features allows you to remove elements from the Profile screen."
 msgstr ""
 
@@ -1565,11 +1580,15 @@ msgid ""
 "kept."
 msgstr ""
 
-#: includes/admin.php:1586
+#: includes/admin-load.php:703
+msgid "PublishPress Capabilities Menu Restriction"
+msgstr ""
+
+#: includes/admin.php:1407
 msgid "PublishPress Permissions"
 msgstr ""
 
-#: includes/admin-load.php:350
+#: includes/admin-load.php:353
 msgid "Rank Math SEO"
 msgstr ""
 
@@ -1577,7 +1596,7 @@ msgstr ""
 msgid "Read more on Role Level."
 msgstr ""
 
-#: includes/admin.php:220
+#: includes/admin.php:237
 msgid "Reading"
 msgstr ""
 
@@ -1605,23 +1624,23 @@ msgstr ""
 msgid "Refresh Profile Features"
 msgstr ""
 
-#: includes/admin.php:1616
+#: includes/admin.php:1437
 msgid "Regulate permissions for Edit Flow post statuses <em>(Pro)</em>"
 msgstr ""
 
-#: includes/functions.php:541
+#: includes/functions.php:545
 msgid "Remove anything in the WordPress admin"
 msgstr ""
 
-#: includes/functions.php:540
+#: includes/functions.php:544
 msgid "Remove anything on the editing screen"
 msgstr ""
 
-#: includes/functions.php:539
+#: includes/functions.php:543
 msgid "Remove metaboxes on the editing screen"
 msgstr ""
 
-#: includes/functions.php:562
+#: includes/functions.php:566
 msgid "Request Support"
 msgstr ""
 
@@ -1668,7 +1687,7 @@ msgstr ""
 msgid "Restricted:"
 msgstr ""
 
-#: includes/admin.php:235
+#: includes/admin.php:252
 msgid "Revise"
 msgstr ""
 
@@ -1684,7 +1703,7 @@ msgstr ""
 msgid "Role"
 msgstr ""
 
-#: includes/admin.php:82
+#: includes/admin.php:85
 msgid "Role Capabilities"
 msgstr ""
 
@@ -1692,14 +1711,14 @@ msgstr ""
 msgid "Role Level"
 msgstr ""
 
-#: includes/admin.php:1677
+#: includes/admin.php:1498
 msgid ""
 "Role level is mostly deprecated. However, it still determines eligibility "
 "for Post Author assignment and limits the application of user editing "
 "capabilities."
 msgstr ""
 
-#: includes/manager.php:465 includes/roles/class/class-pp-roles-admin.php:177
+#: includes/manager.php:468 includes/roles/class/class-pp-roles-admin.php:177
 #: includes/roles/class/class-pp-roles-list-table.php:170
 msgid "Role Name"
 msgstr ""
@@ -1708,12 +1727,17 @@ msgstr ""
 msgid "Role Slug"
 msgstr ""
 
-#: includes/functions-admin.php:330 includes/functions-admin.php:396
+#: includes/manager.php:470
+#: includes/roles/class/class-pp-roles-list-table.php:172
+msgid "Role Type"
+msgstr ""
+
+#: includes/functions-admin.php:331 includes/functions-admin.php:397
 #: includes/settings-ui.php:31 includes/roles/roles.php:8
 msgid "Roles"
 msgstr ""
 
-#: includes/functions-admin.php:331
+#: includes/functions-admin.php:332
 msgid ""
 "Roles allows you to create, edit, and delete all the user roles on your site."
 msgstr ""
@@ -1734,12 +1758,12 @@ msgstr ""
 msgid "Roles and Capabilities restored from selected auto-backup."
 msgstr ""
 
-#: includes/settings-ui.php:240 includes/admin.php:120 includes/admin.php:1699
+#: includes/settings-ui.php:256 includes/admin.php:123 includes/admin.php:1520
 #: includes-core/admin-menus-promo.php:48
 #: includes/features/profile-features.php:60
 #: includes/features/profile-features.php:214
 #: includes/features/admin-features.php:54
-#: includes/features/admin-features.php:236 includes/features/nav-menus.php:101
+#: includes/features/admin-features.php:283 includes/features/nav-menus.php:101
 #: includes/features/nav-menus.php:291
 #: includes/features/frontend-features/frontend-features.php:85
 #: includes/features/frontend-features/frontend-features.php:235
@@ -1765,7 +1789,7 @@ msgstr ""
 msgid "Screen Options"
 msgstr ""
 
-#: includes/functions.php:789
+#: includes/functions.php:793
 msgid "Search"
 msgstr ""
 
@@ -1775,7 +1799,7 @@ msgstr ""
 msgid "Search results for &#8220;%s&#8221;"
 msgstr ""
 
-#: includes/roles/class/class-pp-roles-list-table.php:747
+#: includes/roles/class/class-pp-roles-list-table.php:667
 msgid "Search Roles"
 msgstr ""
 
@@ -1807,7 +1831,7 @@ msgstr ""
 msgid "Select post types..."
 msgstr ""
 
-#: includes/settings-ui.php:190
+#: includes/settings-ui.php:206
 msgid "Select roles..."
 msgstr ""
 
@@ -1829,7 +1853,11 @@ msgid ""
 "Separate multiple values with a space (custom-style-one custom-style-two)."
 msgstr ""
 
-#: includes/functions-admin.php:233 includes/functions-admin.php:461
+#: includes/settings-ui.php:85
+msgid "Set login redirect cookie"
+msgstr ""
+
+#: includes/functions-admin.php:233 includes/functions-admin.php:462
 #: includes/features/restrict-editor-features.php:397
 msgid "Settings"
 msgstr ""
@@ -1838,12 +1866,12 @@ msgstr ""
 msgid "Settings saved."
 msgstr ""
 
-#: includes/manager.php:578 includes/manager.php:632 includes/manager.php:680
-#: includes/manager.php:730 includes/manager.php:812
+#: includes/manager.php:579 includes/manager.php:633 includes/manager.php:681
+#: includes/manager.php:731 includes/manager.php:813
 msgid "Settings updated."
 msgstr ""
 
-#: includes/settings-ui.php:119
+#: includes/settings-ui.php:135
 msgid ""
 "Show all post types on the \"Editor Features\" screen, even ones normally "
 "hidden in the WordPress admin area."
@@ -1857,19 +1885,19 @@ msgstr ""
 msgid "show Classic Editor controls"
 msgstr ""
 
-#: includes/settings-ui.php:114
+#: includes/settings-ui.php:130
 msgid "Show private post types"
 msgstr ""
 
-#: includes/settings-ui.php:90
+#: includes/settings-ui.php:106
 msgid "Show private taxonomies"
 msgstr ""
 
-#: includes/functions.php:785
+#: includes/functions.php:789
 msgid "Site Logo"
 msgstr ""
 
-#: includes/functions.php:786
+#: includes/functions.php:790
 msgid "Site Title"
 msgstr ""
 
@@ -1877,7 +1905,7 @@ msgstr ""
 msgid "Slug already exists"
 msgstr ""
 
-#: includes/functions.php:787
+#: includes/functions.php:791
 msgid "Social Links"
 msgstr ""
 
@@ -1903,11 +1931,11 @@ msgstr ""
 msgid "Switch to draft"
 msgstr ""
 
-#: includes/admin.php:1866
+#: includes/admin.php:1687
 msgid "sync options to all sites now"
 msgstr ""
 
-#: includes/admin.php:1863
+#: includes/admin.php:1684
 msgid "sync role to all sites now"
 msgstr ""
 
@@ -1923,11 +1951,11 @@ msgstr[1] ""
 msgid "Tags"
 msgstr ""
 
-#: includes/functions.php:543
+#: includes/functions.php:547
 msgid "Target Frontend Features for specific pages"
 msgstr ""
 
-#: includes/admin.php:223
+#: includes/admin.php:240
 msgid "Taxonomies"
 msgstr ""
 
@@ -1943,7 +1971,7 @@ msgstr ""
 msgid "Template"
 msgstr ""
 
-#: includes/admin.php:713
+#: includes/admin.php:509
 #, php-format
 msgid "Term %s Capabilities"
 msgstr ""
@@ -1960,7 +1988,7 @@ msgstr ""
 msgid "Test user"
 msgstr ""
 
-#: includes/functions-admin.php:366
+#: includes/functions-admin.php:367
 msgid ""
 "Test your site by instantly logging in as another user. Available accounts "
 "include any which the current user can edit."
@@ -1989,7 +2017,7 @@ msgid ""
 "lowercase and contains only letters, numbers and underscores."
 msgstr ""
 
-#: includes/admin.php:1332
+#: includes/admin.php:1150
 msgid ""
 "The following entries have no effect. Please assign desired capabilities on "
 "the Editing / Deletion / Reading tabs."
@@ -2029,21 +2057,21 @@ msgstr ""
 msgid "The selected %1$s roles were successfully deleted. %2$s"
 msgstr ""
 
-#: includes/handler.php:61 includes/handler.php:89 includes/manager.php:999
+#: includes/handler.php:61 includes/handler.php:89 includes/manager.php:1000
 msgid "The selected role is not editable."
 msgstr ""
 
-#: includes/admin.php:819
+#: includes/pp-ui.php:152 includes/admin.php:621
 #, php-format
 msgid "The slug for this post type is %s"
 msgstr ""
 
-#: includes/admin.php:817
+#: includes/pp-ui.php:252 includes/pp-ui.php:332 includes/admin.php:619
 #, php-format
 msgid "The slug for this taxonomy is %s"
 msgstr ""
 
-#: includes/admin.php:1268
+#: includes/admin.php:1085
 #, php-format
 msgid ""
 "The User Testing feature also requires the %1$s edit_users %2$s capability."
@@ -2061,7 +2089,7 @@ msgid ""
 "able to access the \"Profile\" screen."
 msgstr ""
 
-#: includes/roles/class/class-pp-roles-admin.php:733
+#: includes/roles/class/class-pp-roles-admin.php:770
 #, php-format
 msgid "These can be edited on the %1s Capabilities screen %2s"
 msgstr ""
@@ -2074,28 +2102,29 @@ msgstr ""
 msgid "This allows you to assign an existing user to multiple roles."
 msgstr ""
 
-#: includes/admin.php:895
+#: includes/admin.php:700 includes/admin.php:924 includes/admin.php:1101
+#: includes/admin.php:1324
 #, php-format
 msgid "This capability is %s"
 msgstr ""
 
-#: includes/admin.php:899
+#: includes/admin.php:733
 #, php-format
 msgid "This capability is controlled by %s"
 msgstr ""
 
-#: includes/admin.php:924
+#: includes/admin.php:736
 #, php-format
 msgid ""
 "This capability is controlled by %s Use the sidebar settings to allow this "
 "to be controlled independently."
 msgstr ""
 
-#: includes/manager.php:214
+#: includes/manager.php:217
 msgid "This capability is explicitly negated. Click to add/remove normally."
 msgstr ""
 
-#: includes/admin.php:942 includes/admin.php:946
+#: includes/admin.php:755 includes/admin.php:759
 msgid "This capability is not available for this post type."
 msgstr ""
 
@@ -2109,6 +2138,10 @@ msgstr ""
 msgid "This feature will be added to all pages."
 msgstr ""
 
+#: includes/admin-load.php:704
+msgid "This menu is restricted for the following roles"
+msgstr ""
+
 #: capsman-enhanced.php:109
 msgid "This plugin can be deleted."
 msgstr ""
@@ -2119,17 +2152,18 @@ msgid ""
 "to add body classes only for that post."
 msgstr ""
 
-#: includes/pp-ui.php:179
+#: includes/pp-ui.php:181
 msgid ""
-"This will add a new capability for creating new posts. Normally, this is "
-"controlled by the \"Edit\" capability."
+"This will cause a new capability to be required for creating posts, and "
+"enable a checkbox column here for role assignments. Normally, post creation "
+"is controlled by the \"Edit\" capability."
 msgstr ""
 
 #: includes/features/frontend-features/frontend-features-ui.php:58
 msgid "This will only show here in the WordPress admin area."
 msgstr ""
 
-#: includes/settings-ui.php:95
+#: includes/settings-ui.php:111
 msgid ""
 "This will show all taxonomies on the \"Capabilities\" screen, even ones "
 "normally hidden in the WordPress admin area."
@@ -2186,7 +2220,7 @@ msgid_plural "Uneditable %s"
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/roles/class/class-pp-roles-list-table.php:265
+#: includes/roles/class/class-pp-roles-list-table.php:256
 msgid "Unhide"
 msgstr ""
 
@@ -2194,11 +2228,11 @@ msgstr ""
 msgid "Unique Capabilities for Post Types"
 msgstr ""
 
-#: includes/pp-ui.php:208
+#: includes/pp-ui.php:210
 msgid "Unique Capabilities for Taxonomies"
 msgstr ""
 
-#: includes/pp-ui.php:187 includes/pp-ui.php:271 includes/pp-ui.php:349
+#: includes/pp-ui.php:189 includes/pp-ui.php:275 includes/pp-ui.php:355
 msgid "Update"
 msgstr ""
 
@@ -2210,22 +2244,22 @@ msgstr ""
 msgid "Updates"
 msgstr ""
 
-#: includes/functions.php:530
+#: includes/functions.php:534
 msgid "Upgrade to Capabilities Pro"
 msgstr ""
 
-#: includes/functions.php:548 includes-core/editor-features-promo.php:79
+#: includes/functions.php:552 includes-core/editor-features-promo.php:79
 #: includes-core/frontend-features-promo.php:32
 #: includes-core/admin-features-promo.php:79
 #: includes-core/admin-menus-promo.php:62
 msgid "Upgrade to Pro"
 msgstr ""
 
-#: includes/admin.php:1713 includes/admin.php:1714 includes/admin.php:1715
+#: includes/admin.php:1534 includes/admin.php:1535 includes/admin.php:1536
 #: includes/features/profile-features.php:234
 #: includes/features/profile-features.php:235
-#: includes/features/admin-features.php:249
-#: includes/features/admin-features.php:250 includes/features/nav-menus.php:305
+#: includes/features/admin-features.php:296
+#: includes/features/admin-features.php:297 includes/features/nav-menus.php:305
 #: includes/features/nav-menus.php:306
 #: includes/features/editor-features.php:237
 #: includes/features/editor-features.php:238
@@ -2234,7 +2268,14 @@ msgstr ""
 msgid "usage key"
 msgstr ""
 
-#: includes/admin.php:940
+#: includes/settings-ui.php:90
+msgid ""
+"Use cookie to determine pages users were viewing before login. This is "
+"useful when login redirect is not working correctly due to wp_get_referer() "
+"limitation."
+msgstr ""
+
+#: includes/admin.php:753
 msgid "Use the sidebar settings to allow this to be controlled independently."
 msgstr ""
 
@@ -2246,27 +2287,30 @@ msgstr ""
 msgid "User Display Name"
 msgstr ""
 
-#: includes/functions-admin.php:365
+#: includes/functions-admin.php:366
 msgid "User Testing"
 msgstr ""
 
-#: includes/manager.php:466
+#: includes/manager.php:469
 #: includes/roles/class/class-pp-roles-list-table.php:171
 msgid "Users"
 msgstr ""
 
+#: includes/features/admin-features.php:221
+#: includes/features/editor-features-gutenberg.php:98
+#: includes/features/editor-features-classic.php:101
 #: includes/features/frontend-features/frontend-features-ui.php:254
 msgid "View"
 msgstr ""
 
-#: includes/admin.php:1757 includes/features/profile-features.php:237
-#: includes/features/admin-features.php:252 includes/features/nav-menus.php:308
+#: includes/admin.php:1578 includes/features/profile-features.php:237
+#: includes/features/admin-features.php:299 includes/features/nav-menus.php:308
 #: includes/features/editor-features.php:240
 #: includes/features/frontend-features/frontend-features.php:252
 msgid "View Documentation"
 msgstr ""
 
-#: includes/functions.php:573
+#: includes/functions.php:577
 msgid "View Knowledge Base"
 msgstr ""
 
@@ -2285,15 +2329,15 @@ msgstr ""
 msgid "Welcome panel"
 msgstr ""
 
-#: includes/settings-ui.php:156
+#: includes/settings-ui.php:172
 msgid "When testing, display a caption and return link in the Admin Bar."
 msgstr ""
 
-#: includes/settings-ui.php:172
+#: includes/settings-ui.php:188
 msgid "When testing, display a return link in the front end footer."
 msgstr ""
 
-#: includes/admin.php:1790
+#: includes/admin.php:1611
 msgid ""
 "Whenever you use PublishPress Capabilities to save changes, it also creates "
 "a backup which you can use to restore a previous configuration."
@@ -2311,7 +2355,11 @@ msgstr ""
 msgid "Word count"
 msgstr ""
 
-#: includes/admin.php:1157
+#: includes/roles/class/class-pp-roles-list-table.php:396
+msgid "WordPress Core"
+msgstr ""
+
+#: includes/admin.php:970
 msgid "WordPress Core Capabilities"
 msgstr ""
 
@@ -2323,13 +2371,13 @@ msgstr ""
 msgid "WordPress Logo"
 msgstr ""
 
-#: includes/admin.php:1789
+#: includes/admin.php:1610
 msgid ""
 "WordPress stores role capabilities in your database, where they remain even "
 "if the plugin is deactivated."
 msgstr ""
 
-#: includes/admin.php:1632
+#: includes/admin.php:1453
 msgid "WPML integration to mirror permissions to translations <em>(Pro)</em>"
 msgstr ""
 
@@ -2347,7 +2395,7 @@ msgstr ""
 msgid "You can add the CSS for your classes by clicking \"Add Custom CSS\"."
 msgstr ""
 
-#: includes/admin.php:1723
+#: includes/admin.php:1544
 #, php-format
 msgid "You can also configure this role as a %sPermission Group%s."
 msgstr ""
@@ -2385,42 +2433,42 @@ msgstr ""
 msgid "You cannot remove Manage Capabilities from Administrators"
 msgstr ""
 
-#: includes/functions.php:465
+#: includes/functions.php:469
 msgid "You do not have permission to access this page."
 msgstr ""
 
-#: includes/manager.php:594 includes/manager.php:616 includes/manager.php:695
-#: includes/manager.php:746 includes/manager.php:829
+#: includes/manager.php:595 includes/manager.php:617 includes/manager.php:696
+#: includes/manager.php:747 includes/manager.php:830
 msgid "You do not have permission to manage admin features."
 msgstr ""
 
-#: includes/manager.php:921 includes/manager.php:955 includes/manager.php:973
+#: includes/manager.php:922 includes/manager.php:956 includes/manager.php:974
 msgid "You do not have permission to manage capabilities."
 msgstr ""
 
-#: includes/manager.php:521 includes/manager.php:543
+#: includes/manager.php:522 includes/manager.php:544
 msgid "You do not have permission to manage editor features."
 msgstr ""
 
-#: includes/manager.php:647 includes/manager.php:669
+#: includes/manager.php:648 includes/manager.php:670
 #: includes/features/frontend-features/frontend-features-action.php:54
 #: includes/features/frontend-features/frontend-features-action.php:117
 msgid "You do not have permission to manage frontend features."
 msgstr ""
 
-#: includes/manager.php:717
+#: includes/manager.php:718
 msgid "You do not have permission to manage navigation menus."
 msgstr ""
 
-#: includes/manager.php:768
+#: includes/manager.php:769
 msgid "You do not have permission to manage profile features."
 msgstr ""
 
-#: includes/manager.php:498
+#: includes/manager.php:499
 msgid "You do not have permission to manage roles."
 msgstr ""
 
-#: includes/manager.php:1186
+#: includes/manager.php:1187
 msgid "You do not have permission to perform this action."
 msgstr ""
 
@@ -2428,7 +2476,7 @@ msgstr ""
 msgid "You do not have permission to restore backup."
 msgstr ""
 
-#: includes/manager.php:1148
+#: includes/manager.php:1149
 msgid "You do not have permission to restore roles."
 msgstr ""
 
@@ -2455,6 +2503,6 @@ msgstr ""
 msgid "Your link has expired, refresh the page and try again."
 msgstr ""
 
-#: includes/roles/class/class-pp-roles-list-table.php:358
+#: includes/roles/class/class-pp-roles-list-table.php:344
 msgid "Your Role"
 msgstr ""
