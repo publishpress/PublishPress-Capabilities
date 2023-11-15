@@ -7,7 +7,7 @@ Tags: capabilities, permissions, admin menus, user roles, user role editor, acce
 Requires at least: 5.5
 Requires PHP: 7.2.5
 Tested up to: 6.3
-Stable tag: 2.10.1
+Stable tag: 2.10.2
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -409,6 +409,43 @@ Fixed : Non-administrators with user editing capabilities could add new Administ
 Fixed : Security issue. Please update.
 
 == Changelog ==
+
+= 2.10.2 - 15 Nov 2023 =
+  * Update: Add view and edit to features custom items, #741
+  * Update: Capabilities screen: distinguish Navigation Block Menus from legacy Nav Menus, #888
+  * Update: Hotfix use create posts capability caption, #960
+  * Update: Return an empty string instead of false in the admin_footer_text filter hook callback, #961
+  * Update: Text update for "Listing" tab, #811
+  * Update: Hide "Listing" tab with Permissions Free, #812
+  * Update: Add settings to choose Role Login Redirect Referrer, #933
+  * Update: Move items from Roles Column to the Roles screen, #817
+  * Update: Add visual indicator on Appearance > Menu items when a nav menu item is hidden for roles, #844
+  * Update: Add support for BetterDocs plugin capabilities tab, #986
+  * Update: Add support for GravityView plugin capabilities tab, #985
+  * Update: Add support for Gravity Forms plugin capabilities tab, #984
+  * Update: Add support for NextGEN Gallery plugin capabilities tab, #983
+  * Update: Add support for BackWPup plugin capabilities tab, #982
+  * Update: Add support for Forminator plugin capabilities tab, #981
+  * Update: Add support for LearnDash LMS plugin capabilities tab, #980
+  * Update: Add support for MailPoet plugin capabilities tab, #979
+  * Update: Add support for Fluent Forms plugin capabilities tab, #978
+  * Update: Add support for All in One SEO plugin capabilities tab, #976
+  * Update: Add support for Smash Balloon Instagram Feed plugin capabilities tab, #977
+  * Update: Add support for Site Kit by Google plugin capabilities tab, #975
+  * Update: Add support for Wordfence Security Duplicate Post plugin capabilities tab, #973
+  * Update: Add support for Smart Slider 3 plugin capabilities tab, #972
+  * Update: Add support for Loco Translate plugin capabilities tab, #971
+  * Update: Add support for Rank Math SEO plugin capabilities tab, #970
+  * Update: Add support for Query Monitor plugin capabilities tab, #969
+  * Update: Add support for Strong Testimonials plugin capabilities tab, #968
+  * Update: Add support for Download Monitor plugin capabilities tab, #967
+  * Update: Add support for Yoast SEO plugin capabilities tab, #966
+  * Update: Add support for Formidable Forms plugin capabilities tab, #958
+  * Update: Add support for Give - Donation plugin capabilities tab, #957
+  * Update: Add support for BuddyPress plugin capabilities tab, #947
+  * Update: Add support for bbPress plugin capabilities tab, #946
+  * Update: Add support for Sunshine Photo Cart plugin capabilities tab, #943
+  * Update: Capabilities Free Translation Updates October 2023, #934
 
 = 2.10.1 - 23 Oct 2023 =
   * Fixed: Login redirect not working, #843
