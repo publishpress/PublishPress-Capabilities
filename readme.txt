@@ -410,7 +410,7 @@ Fixed : Security issue. Please update.
 
 == Changelog ==
 
-= 2.10.2 - 14 Nov 2023 =
+= 2.10.2 - 15 Nov 2023 =
   * Update: Add view and edit to features custom items, #741
   * Update: Capabilities screen: distinguish Navigation Block Menus from legacy Nav Menus, #888
   * Update: Hotfix use create posts capability caption, #960
