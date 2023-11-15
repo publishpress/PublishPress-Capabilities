@@ -176,6 +176,9 @@ class CapabilityManager
 
         //redirect for profile features capturing
         add_action('admin_init', [$this, 'profileFeaturesCaptureRedirect']);
+
+        //Initialize plugin capabilities class
+        add_action('admin_init', [$this, 'initPluginCapabilities']);
 	}
 
     /**
@@ -464,11 +467,9 @@ class CapabilityManager
                         'cb' 			  => '<input type="checkbox"/>',
                         'name'            => esc_html__('Role Name', 'capsman-enhanced'),
 						'count'           => esc_html__('Users', 'capsman-enhanced'),
-						'capabilities'    => esc_html__('Capabilities', 'capsman-enhanced'),
-						'editor_features' => esc_html__('Editor Features', 'capsman-enhanced'),
-						'admin_features'  => esc_html__('Admin Features', 'capsman-enhanced'),
-						'admin_menus'     => esc_html__('Admin Menus', 'capsman-enhanced'),
-						'nav_menus'       => esc_html__('Nav Menus', 'capsman-enhanced'),
+						'role_type'       => esc_html__('Role Type', 'capsman-enhanced'),
+						'default_role'    => esc_html__('Default Role', 'capsman-enhanced'),
+						'admin_access'    => esc_html__('Admin Access', 'capsman-enhanced'),
                     ];
                 }
             );
@@ -1228,6 +1229,16 @@ class CapabilityManager
 
 	function settingsPage() {
 		include ( dirname(CME_FILE) . '/includes/settings.php' );
+	}
+
+	/**
+	 * Initialize plugin capabilities class
+	 *
+	 * @return void
+	 */
+	public function initPluginCapabilities() {
+		require_once dirname(CME_FILE) . '/includes/plugin-capabilities.php';
+		\PublishPress\Capabilities\Plugin_Capabilities::instance();
 	}
 
     /**

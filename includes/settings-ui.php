@@ -77,6 +77,22 @@ class Capabilities_Settings_UI {
                                         <br>
                                     </td>
                                 </tr>
+
+                                    <tr>
+                                    <?php
+                                        $checked = checked(!empty(get_option('cme_role_same_page_redirect_cookie', 0)), true, false);
+                                    ?>
+                                    <th scope="row"><?php esc_html_e('Set login redirect cookie', 'capsman-enhanced'); ?></th>
+                                    <td>
+                                        <label> 
+                                        <input type="checkbox" name="cme_role_same_page_redirect_cookie" id="cme_role_same_page_redirect_cookie" autocomplete="off" value="1" <?php echo $checked;?>>
+                                        <span class="description">
+                                            <?php esc_html_e('Use cookie to determine pages users were viewing before login. This is useful when login redirect is not working correctly due to wp_get_referer() limitation.', 'capsman-enhanced'); ?>
+                                        </span>
+                                        </label>
+                                        <br>
+                                    </td>
+                                </tr>
                                 </tbody>
                             </table>
 

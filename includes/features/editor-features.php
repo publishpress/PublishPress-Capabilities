@@ -178,9 +178,9 @@ $active_tab_text = is_object($active_tab_type_obj)
                                                     </ul>
                                                 </div>
 
-                                                <div class="ppc-capabilities-content">
+                                                <div class="ppc-capabilities-content editor-features-content">
                                                     <?php
-                                                        //we want to remove empty header for row without feature for post typr
+                                                        //we want to remove empty header for row without feature for post type
                                                         $empty_post_type_feature       = [];
                                                         $empty_post_type_feature_class = [];
                                                         foreach($def_post_types as $type_name) {

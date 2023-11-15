@@ -281,6 +281,7 @@ function pp_capabilities_settings_options() {
        'cme_test_user_footer_notice',
        'cme_test_user_excluded_roles',
        'cme_profile_features_auto_redirect',
+       'cme_role_same_page_redirect_cookie',
    ];
 
    return apply_filters('pp_capabilities_settings_options', $settings_options);
@@ -481,4 +482,27 @@ function pp_capabilities_user_can_caps() {
     }
 
     return $ppc_user_caps;
+}
+
+/**
+ * Convert title to slug
+ *
+ * @param string $title
+ * @param string $separator
+ * @param string $slug_case
+ * 
+ * @return string
+ */
+function pp_capabilities_convert_to_slug($title, $separator = '-', $slug_case = 'strtolower') {
+    
+    if ($slug_case == 'strtolower') {
+        $title = strtolower($title);
+    } elseif ($slug_case == 'ucwords') {
+        $title = ucwords($title);
+    }
+
+    $title = preg_replace('/[^a-zA-Z0-9]+/', $separator, $title);
+    $title = trim($title, $separator);
+
+    return $title;
 }

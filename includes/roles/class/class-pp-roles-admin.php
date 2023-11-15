@@ -629,6 +629,25 @@ class Pp_Roles_Admin
 
         $save_button_text = ($role_edit) ? esc_html__('Update Role', 'capsman-enhanced') : esc_html__('Create Role', 'capsman-enhanced');
 
+        $capabilities_counts = (!empty($current['capabilities'])) ? count($current['capabilities']) : 0;
+        $editor_features_counts = (!empty($current['editor_features'])) ? (int) $current['editor_features'] : 0;
+        $admin_features_counts = (!empty($current['admin_features'])) ? (int) $current['admin_features'] : 0;
+        $profile_features_counts = (!empty($current['profile_features'])) ? (int) $current['profile_features'] : 0;
+        $admin_menus_counts = (!empty($current['admin_menus'])) ? (int) $current['admin_menus'] : 0;
+        $nav_menus_counts = (!empty($current['nav_menus'])) ? (int) $current['nav_menus'] : 0;
+
+        if (!empty($current['role'])) {
+            $features_counts = [
+                esc_html__('Editor Features', 'capsman-enhanced') => '<a target="blank" href="' . admin_url('admin.php?page=pp-capabilities-editor-features&role=' . $current['role'] . '') . '">(' . $editor_features_counts . ')</a>',
+                esc_html__('Admin Features', 'capsman-enhanced') => '<a target="blank" href="' . admin_url('admin.php?page=pp-capabilities-admin-features&role=' . $current['role'] . '') . '">(' . $admin_features_counts . ')</a>',
+                esc_html__('Profile Features', 'capsman-enhanced') => '<a target="blank" href="' . admin_url('admin.php?page=pp-capabilities-profile-features&role=' . $current['role'] . '') . '">(' . $profile_features_counts . ')</a>',
+                esc_html__('Admin Menus', 'capsman-enhanced') => '<a target="blank" href="' . admin_url('admin.php?page=pp-capabilities-admin-menus&role=' . $current['role'] . '') . '">(' . $admin_menus_counts . ')</a>',
+                esc_html__('Nav Menus', 'capsman-enhanced') => '<a target="blank" href="' . admin_url('admin.php?page=pp-capabilities-nav-menus&role=' . $current['role'] . '') . '">(' . $nav_menus_counts . ')</a>',
+            ];
+        } else {
+            $features_counts = [];
+        }
+
         pp_capabilities_roles()->notify->display();
         ?>
         <div class="wrap pp-role-edit-wrap <?php echo esc_attr($tab_class); ?>">
@@ -718,9 +737,27 @@ class Pp_Roles_Admin
                                         
                                         <div id="major-publishing-actions">
                                             <div id="publishing-action">
-                                                <h2 class="roles-capabilities-title"><?php esc_html_e('Capabilities', 'capsman-enhanced'); ?></h2>
+                                                <div class="features-counts">
+                                                    <?php if (!empty($features_counts)) : ?>
+                                                        <ul>
+                                                            <?php foreach ($features_counts as $features_title => $features_link) : ?>
+                                                                <li>
+                                                                    <span class="title"><?php echo $features_title; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
+                                                                    <span class="link"><?php echo $features_link; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
+                                                                </li>
+                                                            <?php endforeach; ?>
+                                                        </ul>
+                                                        <hr />
+                                                    <?php endif; ?>
+
+                                                </div>
+                                                <h2 class="roles-capabilities-title">
+                                                <span class="title"><?php esc_html_e('Capabilities', 'capsman-enhanced'); ?></span>
+                                                <span class="link">(<?php echo $capabilities_counts; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>)</span>
+                                                </h2>
                                                 <p class="description">
                                                 <?php 
+                                                
                                                 if ($role_action === 'edit' && current_user_can('manage_capabilities') && pp_capabilities_feature_enabled('capabilities')) {
                                                     $edit_link = '<a href="' . esc_url(add_query_arg(['page' => 'pp-capabilities', 'role' => esc_attr($current_role)], admin_url('admin.php'))) .'">';
                                                     $closing_tag = '</a>';

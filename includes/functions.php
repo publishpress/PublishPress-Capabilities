@@ -297,11 +297,13 @@ function ppc_roles_login_redirect($redirect_to, $request, $user) {
                 break;
             } else if (is_array($role_option) && !empty($role_option) 
                 && !empty($role_option['referer_redirect']) && (int)$role_option['referer_redirect'] > 0
-                && !empty(!empty($_COOKIE['ppc_last_visited_page']))
             ) {
-                //referer url redirect
                 // phpcs:ignore WordPressVIPMinimum.Variables.RestrictedVariables.cache_constraints___COOKIE
-                $redirect_to = esc_url_raw($_COOKIE['ppc_last_visited_page']);
+                $redirect_url = (!empty(get_option('cme_role_same_page_redirect_cookie')) && !empty($_COOKIE['ppc_last_visited_page'])) ? $_COOKIE['ppc_last_visited_page'] : wp_get_referer();
+                if (!empty($redirect_url)) {
+                    //referer url redirect
+                    $redirect_to = esc_url_raw($redirect_url);
+                }
                 break;
             }
         }
@@ -319,6 +321,7 @@ add_filter('login_redirect', 'ppc_roles_login_redirect', 10, 3);
  * @return void
  */
 function ppc_roles_last_visited_page_cookie() {
+    if (!is_user_logged_in() && !empty(get_option('cme_role_same_page_redirect_cookie'))) {
 	?>
     <script type="text/javascript">
         document.addEventListener('DOMContentLoaded', function() {
@@ -338,6 +341,7 @@ function ppc_roles_last_visited_page_cookie() {
         });
     </script>
 	<?php
+    }
 }
 add_action( 'wp_footer', 'ppc_roles_last_visited_page_cookie' );
 

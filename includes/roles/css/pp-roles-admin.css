@@ -1,17 +1,22 @@
-.pp-capability-roles-wrapper table th.column-capabilities,
-.pp-capability-roles-wrapper table th.column-editor_features,
-.pp-capability-roles-wrapper table th.column-admin_features,
-.pp-capability-roles-wrapper table th.column-admin_menus,
-.pp-capability-roles-wrapper table th.column-nav_menus,
-
-.pp-capability-roles-wrapper table td.column-capabilities,
-.pp-capability-roles-wrapper table td.column-editor_features,
-.pp-capability-roles-wrapper table td.column-admin_features,
-.pp-capability-roles-wrapper table td.column-admin_menus,
-.pp-capability-roles-wrapper table td.column-nav_menus {
-    text-align: left;
+.pp-capability-roles-wrapper table td .green-check {
+    color: green;
+    margin-left: 30px;
 }
 
+.pp-capability-roles-wrapper table td .red-check {
+    color: red;
+    margin-left: 30px;
+}
+
+.pp-capability-roles-wrapper .features-counts ul li,
+.pp-capability-roles-wrapper .roles-capabilities-title {
+    display: flex;
+    justify-content: space-between;
+}
+
+.pp-capability-roles-wrapper .roles-capabilities-title {
+    padding-right: 0 !important;
+}
 
 span.pp-caps-action-note {
     color: #444;
@@ -32,7 +37,7 @@ span.pp-caps-action-note {
 }
 
 .ppc-roles-section {
-    min-height: 370px;
+    min-height: 555px;
 }
 
 #poststuff .ppc-roles-section.postbox .inside {
@@ -61,7 +66,7 @@ ul.ppc-roles-tab {
     background-color: #fafafa;
     border-right: 1px solid #eee;
     box-sizing: border-box;
-    min-height: 363px;
+    min-height: 544px;
 }
 .ppc-roles-tab-content {
     float: left;
