@@ -428,8 +428,31 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
      */
     protected function column_admin_access($item)
     {
-
         if (array_key_exists('read', $item['capabilities'])) {
+            $admin_access = true;
+        } else {
+            $admin_access = false;
+        }
+
+        //get PublishPress capabilities role option
+        $role_option = get_option("pp_capabilities_{$item['role']}_role_option", []);
+        if (is_array($role_option) && !empty($role_option) 
+            && !empty($role_option['block_dashboard_access']) 
+            && (int)$role_option['block_dashboard_access'] > 0
+        ) {
+            // role access blocked by capabilities
+            $admin_access = false;
+        } elseif ($item['role'] == 'customer' && (!array_key_exists('view_admin_dashboard', $item['capabilities']) || !array_key_exists('read', $item['capabilities']))) {
+            // role access blocked by woocommerce for customer unless removed by publishpress capabilities
+            if (is_array($role_option) && !empty($role_option) && !empty($role_option['disable_woocommerce_admin_restrictions'])) {
+                $admin_access = true;
+            } else {
+                $admin_access = false;
+            }
+        }
+        
+
+        if ($admin_access) {
             $out = '<span class="dashicons dashicons-yes-alt green-check"></span>';
         } else {
             $out = '<span class="dashicons dashicons-no red-check"></span>';
