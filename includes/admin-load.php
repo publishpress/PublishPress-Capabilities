@@ -667,8 +667,12 @@ class PP_Capabilities_Admin_UI {
         }
 
         $nav_menu_item_option = !empty(get_option('capsman_nav_item_menus')) ? (array)get_option('capsman_nav_item_menus') : [];
+        if (!is_array($nav_menu_item_option)) {
+            return;
+        }
+        $nav_menu_item_option = array_filter($nav_menu_item_option);
 
-        if (empty($nav_menu_item_option) || !is_array($nav_menu_item_option)) {
+        if (empty($nav_menu_item_option)) {
             return;
         }
         
