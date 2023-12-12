@@ -12,8 +12,11 @@ class PP_Capabilities_Test_User
      */
     const AUTH_COOKIE_HOUR_IN_SECONDS = HOUR_IN_SECONDS;
 
+    private static $cookie_name;
+
     public function __construct()
     {
+        self::$cookie_name = defined('PPC_TEST_USER_COOKIE_NAME') ? PPC_TEST_USER_COOKIE_NAME : 'ppc_test_user_tester_' . COOKIEHASH;
         //clear test user cookie on logout and login
         add_action('wp_logout', [$this, 'clearTestUserCookie']);
         add_action('wp_login', [$this, 'clearTestUserCookie']);
@@ -91,7 +94,7 @@ class PP_Capabilities_Test_User
                 $orig_auth_cookie = wp_generate_auth_cookie($current_user->ID, time() + self::AUTH_COOKIE_EXPIRATION, 'logged_in', $token);
 
                 // phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.cookies_setcookie
-                setcookie('ppc_test_user_tester_'.COOKIEHASH, $orig_auth_cookie, time() + self::AUTH_COOKIE_EXPIRATION, COOKIEPATH, COOKIE_DOMAIN, is_ssl(), true);
+                setcookie(self::$cookie_name, $orig_auth_cookie, time() + self::AUTH_COOKIE_EXPIRATION, COOKIEPATH, COOKIE_DOMAIN, is_ssl(), true);
 
                 // Login as the other user
                 wp_set_auth_cookie($request_user_id, false);
@@ -111,7 +114,7 @@ class PP_Capabilities_Test_User
     public function clearTestUserCookie() {
         // Unset the cookie
         // phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.cookies_setcookie
-        setcookie('ppc_test_user_tester_'.COOKIEHASH, 0, time() - self::AUTH_COOKIE_HOUR_IN_SECONDS, COOKIEPATH, COOKIE_DOMAIN, is_ssl(), true);
+        setcookie(self::$cookie_name, 0, time() - self::AUTH_COOKIE_HOUR_IN_SECONDS, COOKIEPATH, COOKIE_DOMAIN, is_ssl(), true);
     }
 
     /**
@@ -119,7 +122,7 @@ class PP_Capabilities_Test_User
      */
     protected static function testerAuth()
     {
-        $auth_key = 'ppc_test_user_tester_'.COOKIEHASH;
+        $auth_key = self::$cookie_name;
         if (isset($_COOKIE[$auth_key]) && !empty($_COOKIE[$auth_key])) {
             // phpcs:ignore WordPressVIPMinimum.Variables.RestrictedVariables.cache_constraints___COOKIE
             return $_COOKIE[$auth_key];

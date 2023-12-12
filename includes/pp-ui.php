@@ -28,6 +28,10 @@ class Capsman_PP_UI {
 			);
 		}
 
+		if (!function_exists('pp_get_enabled_types') || !function_exists('pp_init_cap_caster')) {
+			return [];
+		}
+
 		$pp_filtered_types = pp_get_enabled_types('post');
 		$pp_metagroup_caps = array();
 		$pp_cap_caster = pp_init_cap_caster();
