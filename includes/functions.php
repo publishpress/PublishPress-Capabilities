@@ -693,7 +693,7 @@ function pp_capabilities_parse_nav_block($parsed_block, $menu_items, $parent = 0
     //we don't want current block id in ancestor class
     $ancestor_class = str_replace('ancestor-' . $block_id . '', '', $ancestor_class);
 
-    if (!empty($block_attrs) && isset($block_attrs['kind']) && isset($block_attrs['label']) && isset($block_attrs['id'])) {
+    if (!empty($block_attrs) && isset($block_attrs['kind']) && isset($block_attrs['label']) && isset($block_attrs['url'])) {
         //This block has attributes
         $menu_items[] = (object) [
             'ID'                => $block_id,
