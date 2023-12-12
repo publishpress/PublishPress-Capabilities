@@ -53,7 +53,8 @@ class PP_Capabilities_Profile_Features
             update_option('capsman_profile_features_elements', $profile_features_elements, false);
             update_option('capsman_profile_features_updated', $profile_element_updated, false);
             delete_option('capsman_profile_features_elements_testing_role');
-            if (isset($_COOKIE['ppc_test_user_tester_'.COOKIEHASH]) && !empty($_COOKIE['ppc_test_user_tester_'.COOKIEHASH])) {
+            $cookie_name = defined('PPC_TEST_USER_COOKIE_NAME') ? PPC_TEST_USER_COOKIE_NAME : 'ppc_test_user_tester_' . COOKIEHASH;
+            if (isset($_COOKIE[$cookie_name]) && !empty($_COOKIE[$cookie_name])) {
                 $user = wp_get_current_user();
                 $redirect_url = add_query_arg(
                     [
