@@ -7,7 +7,7 @@ Tags: capabilities, permissions, admin menus, user roles, user role editor, acce
 Requires at least: 5.5
 Requires PHP: 7.2.5
 Tested up to: 6.3
-Stable tag: 2.10.2
+Stable tag: 2.10.3
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -409,6 +409,17 @@ Fixed : Non-administrators with user editing capabilities could add new Administ
 Fixed : Security issue. Please update.
 
 == Changelog ==
+
+= 2.10.3 - 12 Dec 2023 =
+  * Fixed: Nav menu not working in latest WordPress version for FSE theme, #1048
+  * Update: Add ability to define test user cookie name, define('PPC_TEST_USER_COOKIE_NAME', 'replace_this_with_your_cookie_name'); #1033
+  * Fixed: Last update breaking nav-menus.php for some sites, #1037
+  * Fixed: PHP Fatal error: Uncaught Error: Call to undefined function pp_get_enabled_types() on capabilities screen, #1045
+  * Update: Add support for Squirrly SEO (Newton) plugin capabilities tab, #1044
+  * Update: Add support for AMP plugin capabilities tab, #1043
+  * Update: Add support for SEOPress plugin capabilities tab, #1042
+  * Update: Add support for MailOptin - Lite plugin capabilities tab, #1041
+  * Update: Capabilities Translation Updates November 2023, #1036
 
 = 2.10.2 - 15 Nov 2023 =
   * Update: Add view and edit to features custom items, #741
