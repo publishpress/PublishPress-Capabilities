@@ -83,13 +83,13 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
         $current   = ' class="current"';
  
         $role_view_filters = [
-            'all'       => _n_noop('All %s', 'All %s', 'capsman-enhanced'),
-            'mine'      => _n_noop('Mine %s', 'Mine %s', 'capsman-enhanced'),
-            'active'    => _n_noop('Has Users %s', 'Has Users %s', 'capsman-enhanced'),
-            'inactive'  => _n_noop('No Users %s', 'No Users %s', 'capsman-enhanced'),
-            'editable'  => _n_noop('Editable %s', 'Editable %s', 'capsman-enhanced'),
-            'uneditable'=> _n_noop('Uneditable %s', 'Uneditable %s', 'capsman-enhanced'),
-            'system'    => _n_noop('System %s', 'System %s', 'capsman-enhanced'),
+            'all'       => _n_noop('All %s', 'All %s', 'capability-manager-enhanced'),
+            'mine'      => _n_noop('Mine %s', 'Mine %s', 'capability-manager-enhanced'),
+            'active'    => _n_noop('Has Users %s', 'Has Users %s', 'capability-manager-enhanced'),
+            'inactive'  => _n_noop('No Users %s', 'No Users %s', 'capability-manager-enhanced'),
+            'editable'  => _n_noop('Editable %s', 'Editable %s', 'capability-manager-enhanced'),
+            'uneditable'=> _n_noop('Uneditable %s', 'Uneditable %s', 'capability-manager-enhanced'),
+            'system'    => _n_noop('System %s', 'System %s', 'capability-manager-enhanced'),
         ];
 
         foreach($role_view_filters as $view => $noop){
@@ -167,11 +167,11 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
          */
         $columns = [
             'cb'              => '<input type="checkbox"/>', //Render a checkbox instead of text
-            'name'            => esc_html__('Role Name', 'capsman-enhanced'),
-            'count'           => esc_html__('Users', 'capsman-enhanced'),
-            'role_type'       => esc_html__('Role Type', 'capsman-enhanced'),
-            'default_role'    => esc_html__('Default Role', 'capsman-enhanced'),
-            'admin_access'    => esc_html__('Admin Access', 'capsman-enhanced'),
+            'name'            => esc_html__('Role Name', 'capability-manager-enhanced'),
+            'count'           => esc_html__('Users', 'capability-manager-enhanced'),
+            'role_type'       => esc_html__('Role Type', 'capability-manager-enhanced'),
+            'default_role'    => esc_html__('Default Role', 'capability-manager-enhanced'),
+            'admin_access'    => esc_html__('Admin Access', 'capability-manager-enhanced'),
         ];
 
         return $columns;
@@ -219,7 +219,7 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
                         admin_url('admin.php')
                     )
                 ),
-                esc_html__('Edit', 'capsman-enhanced')
+                esc_html__('Edit', 'capability-manager-enhanced')
             );
             
             $actions['copy'] = sprintf(
@@ -230,12 +230,12 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
                         admin_url('admin.php')
                     )
                 ),
-                esc_html__('Copy', 'capsman-enhanced')
+                esc_html__('Copy', 'capability-manager-enhanced')
             );
 
         } else {
             $actions = [
-                'capabilities' => '<span class="pp-caps-action-note">' . esc_html__('(non-editable role)', 'capsman-enhanced') . '</span>',
+                'capabilities' => '<span class="pp-caps-action-note">' . esc_html__('(non-editable role)', 'capability-manager-enhanced') . '</span>',
             ];
 
             if (defined("PRESSPERMIT_ACTIVE")) {
@@ -253,7 +253,7 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
                             '_wpnonce' => wp_create_nonce('bulk-roles')
                         ], 
                         admin_url('admin.php')),
-                        esc_html__('Unhide', 'capsman-enhanced')
+                        esc_html__('Unhide', 'capability-manager-enhanced')
                     );
                 }
             }
@@ -271,7 +271,7 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
                         '_wpnonce' => wp_create_nonce('bulk-roles')
                     ], 
                     admin_url('admin.php')),
-                    esc_html__('Delete', 'capsman-enhanced')
+                    esc_html__('Delete', 'capability-manager-enhanced')
                 ),
             ]);
 
@@ -290,7 +290,7 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
                             '_wpnonce' => wp_create_nonce('bulk-roles')
                         ], 
                         admin_url('admin.php')),
-                        esc_html__('Hide', 'capsman-enhanced')
+                        esc_html__('Hide', 'capability-manager-enhanced')
                     );
                 }
             }
@@ -341,7 +341,7 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
 
         // If the current user has this role.
         if (pp_roles_current_user_has_role($item['role'])) {
-            $states['mine'] = esc_html__('Your Role', 'capsman-enhanced');
+            $states['mine'] = esc_html__('Your Role', 'capability-manager-enhanced');
         }
 
         // If we have states, string them together.
@@ -393,9 +393,9 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
     protected function column_role_type($item)
     {
         if (!empty($item['is_system'])) {
-            $out = esc_html__('WordPress Core', 'capsman-enhanced');
+            $out = esc_html__('WordPress Core', 'capability-manager-enhanced');
         } else {
-            $out = esc_html__('Custom', 'capsman-enhanced');
+            $out = esc_html__('Custom', 'capability-manager-enhanced');
         }
 
         return $out;
@@ -506,7 +506,7 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
     protected function get_bulk_actions()
     {
         $actions = [
-            'pp-roles-delete-role' => esc_html__('Delete', 'capsman-enhanced')
+            'pp-roles-delete-role' => esc_html__('Delete', 'capability-manager-enhanced')
         ];
 
         return $actions;
@@ -687,7 +687,7 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
 
         ?>
         <form class="search-form wp-clearfix" method="get">
-        <?php $this->search_box(esc_html__('Search Roles', 'capsman-enhanced'), 'roles'); ?>
+        <?php $this->search_box(esc_html__('Search Roles', 'capability-manager-enhanced'), 'roles'); ?>
         </form>
         <?php
 

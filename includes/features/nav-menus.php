@@ -23,7 +23,7 @@ $roles        = $capsman->roles;
 $default_role = $capsman->get_last_role();
 
 //add logged in and guest option
-$ppc_other_permissions = ["ppc_users" => esc_html__('Logged In Users', 'capsman-enhanced'), "ppc_guest" => esc_html__('Logged Out Users', 'capsman-enhanced')];
+$ppc_other_permissions = ["ppc_users" => esc_html__('Logged In Users', 'capability-manager-enhanced'), "ppc_guest" => esc_html__('Logged Out Users', 'capability-manager-enhanced')];
 
 if (!empty($_REQUEST['role'])) {
 
@@ -58,7 +58,7 @@ $nav_menu_item_option = array_key_exists($default_role, $nav_menu_item_option) ?
 
     <div class="wrap publishpress-caps-manage pressshack-admin-wrapper pp-capability-menus-wrapper nav-menus">
         <div id="icon-capsman-admin" class="icon32"></div>
-        <h2><?php esc_html_e('Navigation Menu Restrictions', 'capsman-enhanced'); ?></h2>
+        <h2><?php esc_html_e('Navigation Menu Restrictions', 'capability-manager-enhanced'); ?></h2>
 
         <form method="post" id="ppc-nav-menu-form" action="admin.php?page=pp-capabilities-nav-menus">
             <?php wp_nonce_field('pp-capabilities-nav-menus'); ?>
@@ -98,7 +98,7 @@ $nav_menu_item_option = array_key_exists($default_role, $nav_menu_item_option) ?
                                         <img class="loading" src="<?php echo esc_url($capsman->mod_url); ?>/images/wpspin_light.gif" style="display: none">
 
                                         <input type="submit" name="nav-menu-submit"
-                                            value="<?php esc_attr_e('Save Changes', 'capsman-enhanced') ?>"
+                                            value="<?php esc_attr_e('Save Changes', 'capability-manager-enhanced') ?>"
                                             class="button-primary ppc-nav-menu-submit" style="float:right" />
                                     </div>
 
@@ -124,7 +124,7 @@ $nav_menu_item_option = array_key_exists($default_role, $nav_menu_item_option) ?
                                                                     <label for="check-all-item">
                                                                 <span class="menu-item-link check-all-menu-link">
                                                                     <strong>
-                                                                    <?php esc_html_e('Toggle all', 'capsman-enhanced'); ?>
+                                                                    <?php esc_html_e('Toggle all', 'capability-manager-enhanced'); ?>
                                                                     </strong>
                                                                 </span></label>
                                                                 </td>
@@ -144,7 +144,7 @@ $nav_menu_item_option = array_key_exists($default_role, $nav_menu_item_option) ?
                                                                     <label for="check-all-item-2">
                                                                     <span class="menu-item-link check-all-menu-link">
                                                                     <strong>
-                                                                        <?php esc_html_e('Toggle all', 'capsman-enhanced'); ?>
+                                                                        <?php esc_html_e('Toggle all', 'capability-manager-enhanced'); ?>
                                                                     </strong>
                                                                     </span>
                                                                     </label>
@@ -274,7 +274,7 @@ $nav_menu_item_option = array_key_exists($default_role, $nav_menu_item_option) ?
                                                         } else {
                                                             ?>
                                                             <tr>
-                                                                <td colspan="2"> <?php esc_html_e('There are no frontend menu links. To control access to navigation menus, please add menu links.', 'capsman-enhanced'); ?></td>
+                                                                <td colspan="2"> <?php esc_html_e('There are no frontend menu links. To control access to navigation menus, please add menu links.', 'capability-manager-enhanced'); ?></td>
                                                             </tr>
                                                             <?php
                                                         }
@@ -288,7 +288,7 @@ $nav_menu_item_option = array_key_exists($default_role, $nav_menu_item_option) ?
                                         </div>
                                     </div>
                                     <input type="submit" name="nav-menu-submit"
-                                        value="<?php esc_attr_e('Save Changes', 'capsman-enhanced') ?>"
+                                        value="<?php esc_attr_e('Save Changes', 'capability-manager-enhanced') ?>"
                                         class="button-primary ppc-nav-menu-submit"/>
 
                                 </td>
@@ -300,13 +300,13 @@ $nav_menu_item_option = array_key_exists($default_role, $nav_menu_item_option) ?
                 <div class="pp-column-right pp-capabilities-sidebar">
                 <?php 
                 $banner_messages = ['<p>'];
-                $banner_messages[] = esc_html__('Nav Menus allows you to block access to frontend menu links.', 'capsman-enhanced');
+                $banner_messages[] = esc_html__('Nav Menus allows you to block access to frontend menu links.', 'capability-manager-enhanced');
                 $banner_messages[] = '</p><p>';
-                $banner_messages[] = sprintf(esc_html__('%1$s = No change', 'capsman-enhanced'), '<input type="checkbox" title="'. esc_attr__('usage key', 'capsman-enhanced') .'" disabled>') . ' <br />';
-                $banner_messages[] = sprintf(esc_html__('%1$s = This feature is denied', 'capsman-enhanced'), '<input type="checkbox" title="'. esc_attr__('usage key', 'capsman-enhanced') .'" checked disabled>') . ' <br />';
+                $banner_messages[] = sprintf(esc_html__('%1$s = No change', 'capability-manager-enhanced'), '<input type="checkbox" title="'. esc_attr__('usage key', 'capability-manager-enhanced') .'" disabled>') . ' <br />';
+                $banner_messages[] = sprintf(esc_html__('%1$s = This feature is denied', 'capability-manager-enhanced'), '<input type="checkbox" title="'. esc_attr__('usage key', 'capability-manager-enhanced') .'" checked disabled>') . ' <br />';
                 $banner_messages[] = '</p>';
-                $banner_messages[] = '<p><a class="button ppc-checkboxes-documentation-link" href="https://publishpress.com/knowledge-base/nav-menus/"target="blank">' . esc_html__('View Documentation', 'capsman-enhanced') . '</a></p>';
-                $banner_title  = __('How to use Nav Menus', 'capsman-enhanced');
+                $banner_messages[] = '<p><a class="button ppc-checkboxes-documentation-link" href="https://publishpress.com/knowledge-base/nav-menus/"target="blank">' . esc_html__('View Documentation', 'capability-manager-enhanced') . '</a></p>';
+                $banner_title  = __('How to use Nav Menus', 'capability-manager-enhanced');
                 pp_capabilities_sidebox_banner($banner_title, $banner_messages);
                 // add promo sidebar
                 pp_capabilities_pro_sidebox();

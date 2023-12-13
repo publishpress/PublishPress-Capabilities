@@ -5,14 +5,14 @@
         pp_capabilities_roles()->admin->get_roles_edit_ui();
      }else{ ?>
     <div class="wrap">
-        <h1 class="wp-heading-inline"><?php esc_html_e('Roles', 'capsman-enhanced') ?> </h1>
+        <h1 class="wp-heading-inline"><?php esc_html_e('Roles', 'capability-manager-enhanced') ?> </h1>
         <a href="<?php echo esc_url(admin_url('admin.php?page=pp-capabilities-roles&add=new_item')); ?>" class="page-title-action">
-            <?php esc_html_e('Add New', 'capsman-enhanced'); ?>
+            <?php esc_html_e('Add New', 'capability-manager-enhanced'); ?>
         </a>
         <?php
         if (isset($_REQUEST['s']) && $search_str = esc_attr(wp_unslash(sanitize_text_field($_REQUEST['s'])))) {
             /* translators: %s: search keywords */
-            printf(' <span class="subtitle">' . esc_html__('Search results for &#8220;%s&#8221;', 'capsman-enhanced') . '</span>', esc_html($search_str));
+            printf(' <span class="subtitle">' . esc_html__('Search results for &#8220;%s&#8221;', 'capability-manager-enhanced') . '</span>', esc_html($search_str));
         }
 
         //the roles table instance
@@ -30,7 +30,7 @@
                     <?php $table->display(); //Display the table ?>
                 </form>
                 <div class="form-wrap edit-term-notes">
-                    <p><?php esc_html__('Description here.', 'capsman-enhanced') ?></p>
+                    <p><?php esc_html__('Description here.', 'capability-manager-enhanced') ?></p>
                 </div>
             </div>
         </div>

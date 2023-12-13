@@ -800,7 +800,7 @@ jQuery(document).ready( function($) {
   function ppcTimerStatus(type = "success") {
       setTimeout(function () {
           var uniqueClass = "ppc-floating-msg-" + Math.round(new Date().getTime() + Math.random() * 100);
-          var message = type === "success" ? __("Changes saved!", "capsman-enhanced") : __(" Error: changes can't be saved.", "capsman-enhanced");
+          var message = type === "success" ? __("Changes saved!", "capability-manager-enhanced") : __(" Error: changes can't be saved.", "capability-manager-enhanced");
           var instances = $(".ppc-floating-status").length;
           $("#wpbody-content").after('<span class="ppc-floating-status ppc-floating-status--' + type + " " + uniqueClass + '">' + message + "</span>");
           $("." + uniqueClass)

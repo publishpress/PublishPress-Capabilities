@@ -40,7 +40,7 @@ if (get_option('cme_profile_features_auto_redirect')) {
 
     <div class="wrap publishpress-caps-manage pressshack-admin-wrapper pp-capability-menus-wrapper profile-features <?php echo (empty($profile_features_elements) ? 'empty-elements' : ''); ?>">
         <div id="icon-capsman-admin" class="icon32"></div>
-        <h2><?php esc_html_e('Profile Feature Restrictions', 'capsman-enhanced'); ?></h2>
+        <h2><?php esc_html_e('Profile Feature Restrictions', 'capability-manager-enhanced'); ?></h2>
 
         <form method="post" id="ppc-profile-features-form" action="admin.php?page=pp-capabilities-profile-features">
             <?php wp_nonce_field('pp-capabilities-profile-features'); ?>
@@ -57,7 +57,7 @@ if (get_option('cme_profile_features_auto_redirect')) {
                                         <div class="publishpress-filters">
                                             <div class="pp-capabilities-submit-top" style="float:right;">
                                                 <input type="submit" name="profile-features-submit"
-                                                    value="<?php esc_attr_e('Save Changes', 'capsman-enhanced') ?>"
+                                                    value="<?php esc_attr_e('Save Changes', 'capability-manager-enhanced') ?>"
                                                     class="button-primary ppc-profile-features-submit" />
                                             </div>
 
@@ -100,7 +100,7 @@ if (get_option('cme_profile_features_auto_redirect')) {
                                                                     <label for="check-all-item">
                                                                 <span class="menu-item-link check-all-menu-link">
                                                                     <strong>
-                                                                    <?php esc_html_e('Toggle all', 'capsman-enhanced'); ?>
+                                                                    <?php esc_html_e('Toggle all', 'capability-manager-enhanced'); ?>
                                                                     </strong>
                                                                 </span></label>
                                                                 </td>
@@ -119,7 +119,7 @@ if (get_option('cme_profile_features_auto_redirect')) {
                                                                     <label for="check-all-item-2">
                                                                     <span class="menu-item-link check-all-menu-link">
                                                                     <strong>
-                                                                        <?php esc_html_e('Toggle all', 'capsman-enhanced'); ?>
+                                                                        <?php esc_html_e('Toggle all', 'capability-manager-enhanced'); ?>
                                                                     </strong>
                                                                     </span>
                                                                     </label>
@@ -134,9 +134,9 @@ if (get_option('cme_profile_features_auto_redirect')) {
                                                                 <td colspan="2">
                                                                     <?php
                                                                     if ($role_has_user) {
-                                                                        printf(esc_html__('Click %1$s Refresh profile items %2$s to manage elements for this role.', 'capsman-enhanced'), '<a href="'. $refresh_url .'">', '</a>');
+                                                                        printf(esc_html__('Click %1$s Refresh profile items %2$s to manage elements for this role.', 'capability-manager-enhanced'), '<a href="'. $refresh_url .'">', '</a>');
                                                                     } else {
-                                                                        esc_html_e('There are no users in this role. Please select a role that has users and is able to access the "Profile" screen.', 'capsman-enhanced');
+                                                                        esc_html_e('There are no users in this role. Please select a role that has users and is able to access the "Profile" screen.', 'capability-manager-enhanced');
                                                                     }
                                                                     ?>
                                                                 </td>
@@ -211,7 +211,7 @@ if (get_option('cme_profile_features_auto_redirect')) {
                                     </div>
                                     <input type="hidden" name="capsman_profile_features_elements_order" class="capsman_profile_features_elements_order" value=""/>
                                     <input type="submit" name="profile-features-submit"
-                                           value="<?php esc_attr_e('Save Changes', 'capsman-enhanced') ?>"
+                                           value="<?php esc_attr_e('Save Changes', 'capability-manager-enhanced') ?>"
                                            class="button-primary ppc-profile-features-submit"/>
                                 </td>
                             </tr>
@@ -222,20 +222,20 @@ if (get_option('cme_profile_features_auto_redirect')) {
                 <div class="pp-column-right pp-capabilities-sidebar">
                 <?php 
                 $banner_messages = ['<p>'];
-                $banner_messages[] = '<i class="dashicons dashicons-arrow-right"></i> <a href="'. $refresh_url .'">' . esc_html__('Refresh available profile items for this role', 'capsman-enhanced') .'</a>';
+                $banner_messages[] = '<i class="dashicons dashicons-arrow-right"></i> <a href="'. $refresh_url .'">' . esc_html__('Refresh available profile items for this role', 'capability-manager-enhanced') .'</a>';
                 $banner_messages[] = '</p>';
-                $banner_title  = __('Refresh Profile Features', 'capsman-enhanced');
+                $banner_title  = __('Refresh Profile Features', 'capability-manager-enhanced');
                 pp_capabilities_sidebox_banner($banner_title, $banner_messages);
                 ?>
                 <?php 
                 $banner_messages = ['<p>'];
-                $banner_messages[] = esc_html__('Profile Features allows you to remove elements from the Profile screen.', 'capsman-enhanced');
+                $banner_messages[] = esc_html__('Profile Features allows you to remove elements from the Profile screen.', 'capability-manager-enhanced');
                 $banner_messages[] = '</p><p>';
-                $banner_messages[] = sprintf(esc_html__('%1$s = No change', 'capsman-enhanced'), '<input type="checkbox" title="'. esc_attr__('usage key', 'capsman-enhanced') .'" disabled>') . ' <br />';
-                $banner_messages[] = sprintf(esc_html__('%1$s = This feature is denied', 'capsman-enhanced'), '<input type="checkbox" title="'. esc_attr__('usage key', 'capsman-enhanced') .'" checked disabled>') . ' <br />';
+                $banner_messages[] = sprintf(esc_html__('%1$s = No change', 'capability-manager-enhanced'), '<input type="checkbox" title="'. esc_attr__('usage key', 'capability-manager-enhanced') .'" disabled>') . ' <br />';
+                $banner_messages[] = sprintf(esc_html__('%1$s = This feature is denied', 'capability-manager-enhanced'), '<input type="checkbox" title="'. esc_attr__('usage key', 'capability-manager-enhanced') .'" checked disabled>') . ' <br />';
                 $banner_messages[] = '</p>';
-                $banner_messages[] = '<p><a class="button ppc-checkboxes-documentation-link" href="https://publishpress.com/knowledge-base/profile-features-screen/"target="blank">' . esc_html__('View Documentation', 'capsman-enhanced') . '</a></p>';
-                $banner_title  = __('How to use Profile Features', 'capsman-enhanced');
+                $banner_messages[] = '<p><a class="button ppc-checkboxes-documentation-link" href="https://publishpress.com/knowledge-base/profile-features-screen/"target="blank">' . esc_html__('View Documentation', 'capability-manager-enhanced') . '</a></p>';
+                $banner_title  = __('How to use Profile Features', 'capability-manager-enhanced');
                 pp_capabilities_sidebox_banner($banner_title, $banner_messages);
                 // add promo sidebar
                 pp_capabilities_pro_sidebox();

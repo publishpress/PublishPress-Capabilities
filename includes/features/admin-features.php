@@ -34,7 +34,7 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
 
     <div class="wrap publishpress-caps-manage pressshack-admin-wrapper pp-capability-menus-wrapper admin-features">
         <div id="icon-capsman-admin" class="icon32"></div>
-        <h2><?php esc_html_e('Admin Feature Restrictions', 'capsman-enhanced'); ?></h2>
+        <h2><?php esc_html_e('Admin Feature Restrictions', 'capability-manager-enhanced'); ?></h2>
 
         <form method="post" id="ppc-admin-features-form" action="admin.php?page=pp-capabilities-admin-features">
             <?php wp_nonce_field('pp-capabilities-admin-features'); ?>
@@ -51,7 +51,7 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                                         <div class="publishpress-filters">
                                             <div class="pp-capabilities-submit-top" style="float:right;">
                                                 <input type="submit" name="admin-features-submit"
-                                                    value="<?php esc_attr_e('Save Changes', 'capsman-enhanced') ?>"
+                                                    value="<?php esc_attr_e('Save Changes', 'capability-manager-enhanced') ?>"
                                                     class="button-primary ppc-admin-features-submit" />
                                             </div>
 
@@ -93,7 +93,7 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                                                                     <label for="check-all-item">
                                                                 <span class="menu-item-link check-all-menu-link">
                                                                     <strong>
-                                                                    <?php esc_html_e('Toggle all', 'capsman-enhanced'); ?>
+                                                                    <?php esc_html_e('Toggle all', 'capability-manager-enhanced'); ?>
                                                                     </strong>
                                                                 </span></label>
                                                                 </td>
@@ -112,7 +112,7 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                                                                     <label for="check-all-item-2">
                                                                     <span class="menu-item-link check-all-menu-link">
                                                                     <strong>
-                                                                        <?php esc_html_e('Toggle all', 'capsman-enhanced'); ?>
+                                                                        <?php esc_html_e('Toggle all', 'capability-manager-enhanced'); ?>
                                                                     </strong>
                                                                     </span>
                                                                     </label>
@@ -218,7 +218,7 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                                                                                 </div>
                                                                             </div>
                                                                             <div class="ppc-flex-item">
-                                                                                <div class="button view-custom-item"><?php esc_html_e('View', 'capsman-enhanced'); ?></div>
+                                                                                <div class="button view-custom-item"><?php esc_html_e('View', 'capability-manager-enhanced'); ?></div>
                                                                                     <?php /*<div class="button edit-custom-item" 
                                                                                         data-section="<?php echo esc_attr($section_slug); ?>"
                                                                                         data-label="<?php echo esc_attr($section_array['label']); ?>"
@@ -227,12 +227,12 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                                                                                         data-pages="<?php echo esc_attr(join(', ', (array) $section_array['pages'])); ?>"
                                                                                         data-post-types="<?php echo esc_attr(join(', ', (array) $section_array['post_types'])); ?>"
                                                                                         data-id="<?php echo esc_attr($section_id); ?>">
-                                                                                        <?php esc_html_e('Edit', 'capsman-enhanced'); ?>
+                                                                                        <?php esc_html_e('Edit', 'capability-manager-enhanced'); ?>
                                                                                     </div> <?php */ ?>
                                                                                     <div 
                                                                                         class="button <?php echo esc_attr($section_array['button_class']); ?> feature-red"
                                                                                         data-id="<?php echo esc_attr($section_array['button_data_id']); ?>">
-                                                                                        <?php esc_html_e('Delete', 'capsman-enhanced'); ?>    
+                                                                                        <?php esc_html_e('Delete', 'capability-manager-enhanced'); ?>    
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -280,7 +280,7 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                                         </div>
                                     </div>
                                     <input type="submit" name="admin-features-submit"
-                                           value="<?php esc_attr_e('Save Changes', 'capsman-enhanced') ?>"
+                                           value="<?php esc_attr_e('Save Changes', 'capability-manager-enhanced') ?>"
                                            class="button-primary ppc-admin-features-submit"/>
                                 </td>
                             </tr>
@@ -291,13 +291,13 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                 <div class="pp-column-right pp-capabilities-sidebar">
                 <?php 
                 $banner_messages = ['<p>'];
-                $banner_messages[] = esc_html__('Admin Features allows you to remove elements from the admin area and toolbar.', 'capsman-enhanced');
+                $banner_messages[] = esc_html__('Admin Features allows you to remove elements from the admin area and toolbar.', 'capability-manager-enhanced');
                 $banner_messages[] = '</p><p>';
-                $banner_messages[] = sprintf(esc_html__('%1$s = No change', 'capsman-enhanced'), '<input type="checkbox" title="'. esc_attr__('usage key', 'capsman-enhanced') .'" disabled>') . ' <br />';
-                $banner_messages[] = sprintf(esc_html__('%1$s = This feature is denied', 'capsman-enhanced'), '<input type="checkbox" title="'. esc_attr__('usage key', 'capsman-enhanced') .'" checked disabled>') . ' <br />';
+                $banner_messages[] = sprintf(esc_html__('%1$s = No change', 'capability-manager-enhanced'), '<input type="checkbox" title="'. esc_attr__('usage key', 'capability-manager-enhanced') .'" disabled>') . ' <br />';
+                $banner_messages[] = sprintf(esc_html__('%1$s = This feature is denied', 'capability-manager-enhanced'), '<input type="checkbox" title="'. esc_attr__('usage key', 'capability-manager-enhanced') .'" checked disabled>') . ' <br />';
                 $banner_messages[] = '</p>';
-                $banner_messages[] = '<p><a class="button ppc-checkboxes-documentation-link" href="https://publishpress.com/knowledge-base/admin-features-screen/"target="blank">' . esc_html__('View Documentation', 'capsman-enhanced') . '</a></p>';
-                $banner_title  = __('How to use Admin Features', 'capsman-enhanced');
+                $banner_messages[] = '<p><a class="button ppc-checkboxes-documentation-link" href="https://publishpress.com/knowledge-base/admin-features-screen/"target="blank">' . esc_html__('View Documentation', 'capability-manager-enhanced') . '</a></p>';
+                $banner_title  = __('How to use Admin Features', 'capability-manager-enhanced');
                 pp_capabilities_sidebox_banner($banner_title, $banner_messages);
                 // add promo sidebar
                 pp_capabilities_pro_sidebox();

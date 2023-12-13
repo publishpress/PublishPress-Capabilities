@@ -38,7 +38,7 @@ $sidebar_enabled = defined('PUBLISHPRESS_CAPS_PRO_VERSION') ? false : true;
 
 <div class="wrap publishpress-caps-manage publishpress-caps-backup pressshack-admin-wrapper">
     <div id="icon-capsman-admin" class="icon32"></div>
-    <h2><?php esc_html_e('Backup Tool for PublishPress Capabilities', 'capsman-enhanced');?></h2>
+    <h2><?php esc_html_e('Backup Tool for PublishPress Capabilities', 'capability-manager-enhanced');?></h2>
 
 
     <form method="post" action="admin.php?page=pp-capabilities-backup" enctype="multipart/form-data">
@@ -47,10 +47,10 @@ $sidebar_enabled = defined('PUBLISHPRESS_CAPS_PRO_VERSION') ? false : true;
         <div class="pp-columns-wrapper <?php echo ($sidebar_enabled) ? 'pp-enable-sidebar' : ''; ?> clear">
             <div class="pp-column-left">
                 <ul id="publishpress-capability-backup-tabs" class="nav-tab-wrapper">
-                    <li class="nav-tab nav-tab-active"><a href="#ppcb-tab-restore"><?php esc_html_e('Restore', 'capsman-enhanced');?></a></li>
-                    <li class="nav-tab"><a href="#ppcb-tab-backup"><?php esc_html_e('Backup', 'capsman-enhanced');?></a></li>
-                    <li class="nav-tab"><a href="#ppcb-tab-reset"><?php esc_html_e('Reset Roles', 'capsman-enhanced');?></a></li>
-                    <li class="nav-tab"><a href="#ppcb-tab-import-export"><?php esc_html_e('Export / Import', 'capsman-enhanced');?></a></li>
+                    <li class="nav-tab nav-tab-active"><a href="#ppcb-tab-restore"><?php esc_html_e('Restore', 'capability-manager-enhanced');?></a></li>
+                    <li class="nav-tab"><a href="#ppcb-tab-backup"><?php esc_html_e('Backup', 'capability-manager-enhanced');?></a></li>
+                    <li class="nav-tab"><a href="#ppcb-tab-reset"><?php esc_html_e('Reset Roles', 'capability-manager-enhanced');?></a></li>
+                    <li class="nav-tab"><a href="#ppcb-tab-import-export"><?php esc_html_e('Export / Import', 'capability-manager-enhanced');?></a></li>
                 </ul>
 
                 <fieldset>
@@ -59,19 +59,19 @@ $sidebar_enabled = defined('PUBLISHPRESS_CAPS_PRO_VERSION') ? false : true;
                             <td class="content">
 
                                 <div id="ppcb-tab-backup" class="postbox ppc-postbox" style="display:none;">
-                                    <h2><?php esc_html_e('Backup Roles and Capabilities', 'capsman-enhanced'); ?></h2>
+                                    <h2><?php esc_html_e('Backup Roles and Capabilities', 'capability-manager-enhanced'); ?></h2>
                                     <div>
                                         <p class="description">
                                         <?php
                                         $max_auto_backups = (defined('CME_AUTOBACKUPS')) ? (int) CME_AUTOBACKUPS : 20;
-                                        printf(esc_html__('PublishPress Capabilities automatically creates a backup on installation and whenever you save changes. The initial backup and last %d auto-backups are kept.', 'capsman-enhanced'), esc_attr($max_auto_backups));
+                                        printf(esc_html__('PublishPress Capabilities automatically creates a backup on installation and whenever you save changes. The initial backup and last %d auto-backups are kept.', 'capability-manager-enhanced'), esc_attr($max_auto_backups));
                                         ?>
-                                        <?php esc_html_e('A backup created on this screen replaces any previous manual backups, but is never automatically replaced.', 'capsman-enhanced');?>
+                                        <?php esc_html_e('A backup created on this screen replaces any previous manual backups, but is never automatically replaced.', 'capability-manager-enhanced');?>
                                         </p>
 
                                         <div class="pp-caps-backup-button">
                                             <input type="submit" name="save_backup"
-                                                    value="<?php esc_attr_e('Manual Backup', 'capsman-enhanced') ?>"
+                                                    value="<?php esc_attr_e('Manual Backup', 'capability-manager-enhanced') ?>"
                                                     class="button-primary"/>
                                         </div>
                                     </div>
@@ -81,18 +81,18 @@ $sidebar_enabled = defined('PUBLISHPRESS_CAPS_PRO_VERSION') ? false : true;
                                 <?php
                                 $listed_manual_backup = false;
                                 $backup_datestamp = get_option('capsman_backup_datestamp');
-                                $last_caption = ($backup_datestamp) ? sprintf(esc_html__('Last Manual Backup - %s', 'capsman-enhanced'), date('j M Y, g:i a', $backup_datestamp)) : esc_html__('Last Backup', 'capsman-enhanced');
+                                $last_caption = ($backup_datestamp) ? sprintf(esc_html__('Last Manual Backup - %s', 'capability-manager-enhanced'), date('j M Y, g:i a', $backup_datestamp)) : esc_html__('Last Backup', 'capability-manager-enhanced');
                                 ?>
 
                                 <div id="ppcb-tab-restore" class="postbox ppc-postbox">
-                                    <h2><?php esc_html_e('Restore Previous Roles and Capabilities', 'capsman-enhanced'); ?></h2>
+                                    <h2><?php esc_html_e('Restore Previous Roles and Capabilities', 'capability-manager-enhanced'); ?></h2>
                                     <div>
                                         <p class="description">
-                                        <?php esc_html_e('PublishPress Capabilities automatically creates a backup on installation and whenever you save changes.', 'capsman-enhanced');?>
-                                        <?php esc_html_e('On this screen, you can restore an earlier version of your roles and capabilities.', 'capsman-enhanced');?>
+                                        <?php esc_html_e('PublishPress Capabilities automatically creates a backup on installation and whenever you save changes.', 'capability-manager-enhanced');?>
+                                        <?php esc_html_e('On this screen, you can restore an earlier version of your roles and capabilities.', 'capability-manager-enhanced');?>
                                         </p>
 
-                                        <p style="margin-top:15px;"><strong><?php esc_html_e('Available Backups:', 'capsman-enhanced'); ?></strong></p>
+                                        <p style="margin-top:15px;"><strong><?php esc_html_e('Available Backups:', 'capability-manager-enhanced'); ?></strong></p>
 
                                         <table width='100%' class="form-table">
                                             <tr>
@@ -108,12 +108,12 @@ $sidebar_enabled = defined('PUBLISHPRESS_CAPS_PRO_VERSION') ? false : true;
                                                                 $manual_date_caption = date('Y-m-d, g:i a', $backup_datestamp);
                                                                 $last_backup = get_option('capsman_last_backup');
                                                                 if(!$last_backup){
-                                                                    $last_backup = __('all roles', 'capsman-enhanced');
+                                                                    $last_backup = __('all roles', 'capability-manager-enhanced');
                                                                 }
                                                             ?>
                                                                 <li>
                                                                 <input type="radio" name="select_restore" value="restore" id="cme_restore_manual">
-                                                                <label for="cme_restore_manual"><?php printf(esc_html__('Manual backup of %s (%s)', 'capsman-enhanced'), esc_html($last_backup), esc_html($manual_date_caption)); ?></label>
+                                                                <label for="cme_restore_manual"><?php printf(esc_html__('Manual backup of %s (%s)', 'capability-manager-enhanced'), esc_html($last_backup), esc_html($manual_date_caption)); ?></label>
                                                                 </li>
                                                                 <?php
                                                                 $listed_manual_backup = true;
@@ -128,7 +128,7 @@ $sidebar_enabled = defined('PUBLISHPRESS_CAPS_PRO_VERSION') ? false : true;
 
                                                             <li>
                                                             <input type="radio" name="select_restore" value="<?php echo esc_attr($row->option_name);?>" id="<?php echo esc_attr($row->option_name);?>">
-                                                            <label for="<?php echo esc_attr($row->option_name);?>"><?php printf(esc_html__('Auto-backup of all roles (%s)', 'capsman-enhanced'), esc_html($date_caption)); ?></label>
+                                                            <label for="<?php echo esc_attr($row->option_name);?>"><?php printf(esc_html__('Auto-backup of all roles (%s)', 'capability-manager-enhanced'), esc_html($date_caption)); ?></label>
                                                             </li>
                                                         <?php endforeach; ?>
 
@@ -136,7 +136,7 @@ $sidebar_enabled = defined('PUBLISHPRESS_CAPS_PRO_VERSION') ? false : true;
                                                         if ($initial = get_option('capsman_backup_initial')):?>
                                                             <li>
                                                             <input type="radio" name="select_restore" value="restore_initial" id="cme_restore_initial">
-                                                            <label for="cme_restore_initial"><?php esc_html_e('Initial backup of all roles', 'capsman-enhanced'); ?></label>
+                                                            <label for="cme_restore_initial"><?php esc_html_e('Initial backup of all roles', 'capability-manager-enhanced'); ?></label>
                                                             </li>
                                                         <?php endif; ?>
                                                     <!-- </select> -->
@@ -145,7 +145,7 @@ $sidebar_enabled = defined('PUBLISHPRESS_CAPS_PRO_VERSION') ? false : true;
 
                                                     <div class="cme-restore-button">
                                                     <input type="submit" name="restore_backup"
-                                                           value="<?php esc_attr_e('Restore Selected Roles', 'capsman-enhanced') ?>"
+                                                           value="<?php esc_attr_e('Restore Selected Roles', 'capability-manager-enhanced') ?>"
                                                            class="button-primary"/>
 
                                                     <div class="cme-selected-backup-caption"></div>
@@ -154,14 +154,14 @@ $sidebar_enabled = defined('PUBLISHPRESS_CAPS_PRO_VERSION') ? false : true;
 
                                                 <td class="cme-backup-info">
                                                     <div class="cme_backup_info_changes_only" style="display:none">
-                                                    <input type="checkbox" class="cme_backup_info_changes_only" autocomplete="off" checked="checked"> <?php esc_html_e('Show changes from current roles only', 'capsman-enhanced');?>
+                                                    <input type="checkbox" class="cme_backup_info_changes_only" autocomplete="off" checked="checked"> <?php esc_html_e('Show changes from current roles only', 'capability-manager-enhanced');?>
                                                     </div>
 
                                                 <?php
                                                     global $wp_roles;
 
                                                     $backup_datestamp = get_option('capsman_backup_initial_datestamp');
-                                                    $initial_caption = ($backup_datestamp) ? sprintf(esc_html__('Initial Backup - %s', 'capsman-enhanced'), date('j M Y, g:i a', $backup_datestamp)) : esc_html__('Initial Backup', 'capsman-enhanced');
+                                                    $initial_caption = ($backup_datestamp) ? sprintf(esc_html__('Initial Backup - %s', 'capability-manager-enhanced'), date('j M Y, g:i a', $backup_datestamp)) : esc_html__('Initial Backup', 'capability-manager-enhanced');
 
                                                     $backups = array(
                                                         'capsman_backup_initial' => $initial_caption,
@@ -195,7 +195,7 @@ $sidebar_enabled = defined('PUBLISHPRESS_CAPS_PRO_VERSION') ? false : true;
                                                                     if (empty($backup_data[$role_name])) {
                                                                         $role_caption = $role_object->name;
                                                                         ?>
-                                                                        <h4><span class="cme-change cme-minus"><?php echo (esc_html(translate_user_role($role_caption)));?></span> <?php esc_html_e('(this role will be removed if you restore backup)', 'capsman-enhanced');?></h4>
+                                                                        <h4><span class="cme-change cme-minus"><?php echo (esc_html(translate_user_role($role_caption)));?></span> <?php esc_html_e('(this role will be removed if you restore backup)', 'capability-manager-enhanced');?></h4>
                                                                         <?php
                                                                     }
                                                                 }
@@ -224,7 +224,7 @@ $sidebar_enabled = defined('PUBLISHPRESS_CAPS_PRO_VERSION') ? false : true;
                                                                     $role_class = (empty($wp_roles->role_objects[$role_name])) ? 'cme-change cme-plus' : '';
                                                                     ?>
 
-                                                                    <h4 class="<?php echo esc_attr($role_class);?>"><?php printf(esc_html__('%s (level %s)', 'capsman-enhanced'), esc_html(translate_user_role($role_caption)), esc_html($level)); ?></h4>
+                                                                    <h4 class="<?php echo esc_attr($role_class);?>"><?php printf(esc_html__('%s (level %s)', 'capability-manager-enhanced'), esc_html(translate_user_role($role_caption)), esc_html($level)); ?></h4>
 
                                                                     <?php
                                                                     $items = [];
@@ -264,7 +264,7 @@ $sidebar_enabled = defined('PUBLISHPRESS_CAPS_PRO_VERSION') ? false : true;
 
                                                                     <?php if (!$any_changes):?>
                                                                         <span class="pp-restore-caps-no-change">
-                                                                        <?php esc_html_e('No changes', 'capsman-enhanced');?>
+                                                                        <?php esc_html_e('No changes', 'capability-manager-enhanced');?>
                                                                         </span>
                                                                     <?php endif;?>
                                                                 <?php endforeach; ?>
@@ -280,17 +280,17 @@ $sidebar_enabled = defined('PUBLISHPRESS_CAPS_PRO_VERSION') ? false : true;
 
 
                                 <div id="ppcb-tab-reset" class="postbox ppc-postbox" style="display:none;">
-                                    <h2><?php if (!in_array(get_locale(), ['en_EN', 'en_US'])) esc_html_e('Reset WordPress Defaults', 'capsman-enhanced'); else echo 'Reset Roles to WordPress Defaults'; ?></h2>
+                                    <h2><?php if (!in_array(get_locale(), ['en_EN', 'en_US'])) esc_html_e('Reset WordPress Defaults', 'capability-manager-enhanced'); else echo 'Reset Roles to WordPress Defaults'; ?></h2>
                                     <div>
-                                        <p><span class="pp-caps-warning"><?php esc_html_e('Warning:', 'capsman-enhanced'); ?></span> <?php if (!in_array(get_locale(), ['en_EN', 'en_US'])) esc_html_e('Reseting default Roles and Capabilities will set them to the WordPress install defaults.', 'capsman-enhanced'); else echo 'This will delete and/or modify stored role definitions.'; ?>
+                                        <p><span class="pp-caps-warning"><?php esc_html_e('Warning:', 'capability-manager-enhanced'); ?></span> <?php if (!in_array(get_locale(), ['en_EN', 'en_US'])) esc_html_e('Reseting default Roles and Capabilities will set them to the WordPress install defaults.', 'capability-manager-enhanced'); else echo 'This will delete and/or modify stored role definitions.'; ?>
                                             <?php
-                                            esc_html_e('If you have installed any plugin that adds new roles or capabilities, these will be lost.', 'capsman-enhanced') ?>
-                                            <?php if (!in_array(get_locale(), ['en_EN', 'en_US'])) esc_html_e('It is recommended to use this only as a last resource!', 'capsman-enhanced'); else echo('It is recommended to use this only as a last resort!'); ?>
+                                            esc_html_e('If you have installed any plugin that adds new roles or capabilities, these will be lost.', 'capability-manager-enhanced') ?>
+                                            <?php if (!in_array(get_locale(), ['en_EN', 'en_US'])) esc_html_e('It is recommended to use this only as a last resource!', 'capability-manager-enhanced'); else echo('It is recommended to use this only as a last resort!'); ?>
                                         </p>
                                         <p><a class="ak-delete button-primary"
-                                                                         title="<?php echo esc_attr__('Reset Roles and Capabilities to WordPress defaults', 'capsman-enhanced') ?>"
+                                                                         title="<?php echo esc_attr__('Reset Roles and Capabilities to WordPress defaults', 'capability-manager-enhanced') ?>"
                                                                          href="<?php echo esc_url_raw(wp_nonce_url("admin.php?page=pp-capabilities-backup&amp;action=reset-defaults", 'capsman-reset-defaults')); ?>"
-                                                                         onclick="if ( confirm('<?php echo esc_js(__("You are about to reset Roles and Capabilities to WordPress defaults.\n 'Cancel' to stop, 'OK' to reset.", 'capsman-enhanced')); ?>') ) { return true;}return false;"><?php esc_html_e('Reset to WordPress defaults', 'capsman-enhanced') ?></a>
+                                                                         onclick="if ( confirm('<?php echo esc_js(__("You are about to reset Roles and Capabilities to WordPress defaults.\n 'Cancel' to stop, 'OK' to reset.", 'capability-manager-enhanced')); ?>') ) { return true;}return false;"><?php esc_html_e('Reset to WordPress defaults', 'capability-manager-enhanced') ?></a>
 
                                     </div>
                                 </div>
@@ -298,14 +298,14 @@ $sidebar_enabled = defined('PUBLISHPRESS_CAPS_PRO_VERSION') ? false : true;
 
                                 <div id="ppcb-tab-import-export" style="display:none;">
                                     <div class="postbox ppc-postbox">
-                                        <h2><?php esc_html_e('Export Settings', 'capsman-enhanced'); ?></h2>
+                                        <h2><?php esc_html_e('Export Settings', 'capability-manager-enhanced'); ?></h2>
                                         <div>
-                                            <p><?php esc_html_e('Export the plugin settings for this site as a .json file. This allows you to easily import the configuration into another site.', 'capsman-enhanced'); ?></p>
+                                            <p><?php esc_html_e('Export the plugin settings for this site as a .json file. This allows you to easily import the configuration into another site.', 'capability-manager-enhanced'); ?></p>
                                             <ul>
                                                 <li>
                                                     <input id="pp_capabilities_export_roles" name="pp_capabilities_export_section[]" type="checkbox" value="user_roles" checked />
                                                     <label for="pp_capabilities_export_roles">
-                                                        <?php esc_html_e('Roles and Capabilities', 'capsman-enhanced'); ?>
+                                                        <?php esc_html_e('Roles and Capabilities', 'capability-manager-enhanced'); ?>
                                                     </label>
                                                 </li>
                                                 <?php
@@ -322,22 +322,22 @@ $sidebar_enabled = defined('PUBLISHPRESS_CAPS_PRO_VERSION') ? false : true;
                                             </ul>
                                                 <p>
                                                 <input type="submit" name="export_backup"
-                                                        value="<?php esc_attr_e('Export', 'capsman-enhanced') ?>"
+                                                        value="<?php esc_attr_e('Export', 'capability-manager-enhanced') ?>"
                                                         class="button-primary"/>
                                                 </p>
                                         </div>
                                     </div>
                                     <div class="postbox ppc-postbox">
-                                        <h2><?php esc_html_e('Import Settings', 'capsman-enhanced'); ?></h2>
-                                        <p><span class="pp-caps-warning"><?php esc_html_e('Warning:', 'capsman-enhanced'); ?></span> <?php esc_html_e('Please make a \'Manual Backup\' in the backup tab to enable backup restore in case anything goes wrong.', 'capsman-enhanced'); ?>
-                                        <?php esc_html_e('Import the plugin settings from a .json file. This file can be obtained by exporting the settings on another site using the form above.', 'capsman-enhanced'); ?>
-                                        <?php esc_html_e('Before importing, we recommend using the "Backup" tab to create a backup of your current settings.', 'capsman-enhanced'); ?></p>
+                                        <h2><?php esc_html_e('Import Settings', 'capability-manager-enhanced'); ?></h2>
+                                        <p><span class="pp-caps-warning"><?php esc_html_e('Warning:', 'capability-manager-enhanced'); ?></span> <?php esc_html_e('Please make a \'Manual Backup\' in the backup tab to enable backup restore in case anything goes wrong.', 'capability-manager-enhanced'); ?>
+                                        <?php esc_html_e('Import the plugin settings from a .json file. This file can be obtained by exporting the settings on another site using the form above.', 'capability-manager-enhanced'); ?>
+                                        <?php esc_html_e('Before importing, we recommend using the "Backup" tab to create a backup of your current settings.', 'capability-manager-enhanced'); ?></p>
                                         <p>
                                                 <input type="file" name="import_file"/>
                                         </p>
                                         <p>
                                             <input type="submit" name="import_backup"
-                                                    value="<?php esc_attr_e('Import', 'capsman-enhanced') ?>"
+                                                    value="<?php esc_attr_e('Import', 'capability-manager-enhanced') ?>"
                                                     class="button-primary"/>
                                         </p>
                                     </div>

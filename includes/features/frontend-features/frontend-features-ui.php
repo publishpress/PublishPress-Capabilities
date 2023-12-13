@@ -38,10 +38,10 @@ class PP_Capabilities_Frontend_Features_UI
                     <tr class="ppc-menu-row parent-menu">
                         <td colspan="2">
                             <p class="cme-subtext">
-                                <?php esc_html_e('This feature allows you to modify the site frontend by hiding IDs or classes, adding CSS styles, or adding body classes.', 'capsman-enhanced'); ?>
+                                <?php esc_html_e('This feature allows you to modify the site frontend by hiding IDs or classes, adding CSS styles, or adding body classes.', 'capability-manager-enhanced'); ?>
                             </p>
                             <p class="editing-custom-item">
-                                <strong><?php esc_html_e('Editing:', 'capsman-enhanced'); ?></strong> 
+                                <strong><?php esc_html_e('Editing:', 'capability-manager-enhanced'); ?></strong> 
                                 <span class="title"></span>
                             </p>
                         </td>
@@ -49,35 +49,35 @@ class PP_Capabilities_Frontend_Features_UI
 
                     <tr class="field-row">
                         <th scope="row">
-                            <?php esc_html_e('Title:', 'capsman-enhanced'); ?>
+                            <?php esc_html_e('Title:', 'capability-manager-enhanced'); ?>
                             <font color="red">*</font>
                         </th>
                         <td>
                             <input class="frontend-element-new-name frontent-form-field frontendelements-form-label" type="text" /><br />
                             <span class="description">
-                                <?php esc_html_e('This will only show here in the WordPress admin area.', 'capsman-enhanced'); ?>
+                                <?php esc_html_e('This will only show here in the WordPress admin area.', 'capability-manager-enhanced'); ?>
                             </span>
                         </td>
                     </tr>
 
                     <tr class="field-row">
                         <th scope="row">
-                            <?php esc_html_e('Features:', 'capsman-enhanced'); ?>
+                            <?php esc_html_e('Features:', 'capability-manager-enhanced'); ?>
                             <font color="red">*</font>
                         </th>
                         <td>
                             <div class="frontend-element-toggle">
                                 <div class="ppc-button-group"
                                     data-hide-selector=".frontend-features-toggle">
-                                    <label class="element-classes selected"><input type="radio" name="frontend_feature_active" value=".frontend-element-classes" checked><?php esc_html_e('Hide IDs or Classes', 'capsman-enhanced'); ?></label>
-                                    <label class="custom-css"><input type="radio" name="frontend_feature_active" value=".frontend-element-styles"> <?php esc_html_e('Add Custom CSS', 'capsman-enhanced'); ?></label>
-                                    <label class="body-class"><input type="radio" name="frontend_feature_active" value=".frontend-element-bodyclass"> <?php esc_html_e('Add Body Class', 'capsman-enhanced'); ?></label>
+                                    <label class="element-classes selected"><input type="radio" name="frontend_feature_active" value=".frontend-element-classes" checked><?php esc_html_e('Hide IDs or Classes', 'capability-manager-enhanced'); ?></label>
+                                    <label class="custom-css"><input type="radio" name="frontend_feature_active" value=".frontend-element-styles"> <?php esc_html_e('Add Custom CSS', 'capability-manager-enhanced'); ?></label>
+                                    <label class="body-class"><input type="radio" name="frontend_feature_active" value=".frontend-element-bodyclass"> <?php esc_html_e('Add Body Class', 'capability-manager-enhanced'); ?></label>
                                 </div>
                             </div>
                             <div class="frontend-element-classes frontend-features-toggle">
                                 <textarea class="frontend-element-new-element frontent-form-field frontendelements-form-element"></textarea><br />
                                 <span class="description">
-                                    <?php esc_html_e('Enter IDs or classes to hide. Separate multiple values with a comma (.custom-item-one, .custom-item-two, #new-item-id).', 'capsman-enhanced'); ?>
+                                    <?php esc_html_e('Enter IDs or classes to hide. Separate multiple values with a comma (.custom-item-one, .custom-item-two, #new-item-id).', 'capability-manager-enhanced'); ?>
                                 </span>
                             </div>
                             <div class="frontend-element-styles frontend-features-toggle hidden-element">
@@ -88,16 +88,16 @@ class PP_Capabilities_Frontend_Features_UI
                                 <br />
                                 <div class="css-new-element-clear"></div>
                                 <span class="description">
-                                    <?php esc_html_e('Enter custom CSS to be added to frontend pages. Examples: .custom-style-1 { color: red; } #custom-header { background: red; } ', 'capsman-enhanced'); ?>
+                                    <?php esc_html_e('Enter custom CSS to be added to frontend pages. Examples: .custom-style-1 { color: red; } #custom-header { background: red; } ', 'capability-manager-enhanced'); ?>
                                 </span>
                             </div>
                             <div class="frontend-element-bodyclass frontend-features-toggle hidden-element">
                                 <textarea class="frontend-new-element-class frontendelements-form-field frontendelements-form-bodyclass"></textarea><br />
                                 <ul class="pp-capabilities-description description">
-                                    <li><?php esc_html_e('Enter classes to add the body HTML. Do not include the . before the HTML.', 'capsman-enhanced'); ?></li>
-                                    <li><?php esc_html_e('Separate multiple values with a space (custom-style-one custom-style-two).', 'capsman-enhanced'); ?></li>
-                                    <li><?php esc_html_e('You can add the CSS for your classes by clicking "Add Custom CSS".', 'capsman-enhanced'); ?></li>
-                                    <li style="visibility: hidden;margin-top: -50px;"><?php esc_html_e('Enter classes that should be added to the body HTML. Separate multiple values with a space (custom-item-one custom-item-two).', 'capsman-enhanced'); ?></li>
+                                    <li><?php esc_html_e('Enter classes to add the body HTML. Do not include the . before the HTML.', 'capability-manager-enhanced'); ?></li>
+                                    <li><?php esc_html_e('Separate multiple values with a space (custom-style-one custom-style-two).', 'capability-manager-enhanced'); ?></li>
+                                    <li><?php esc_html_e('You can add the CSS for your classes by clicking "Add Custom CSS".', 'capability-manager-enhanced'); ?></li>
+                                    <li style="visibility: hidden;margin-top: -50px;"><?php esc_html_e('Enter classes that should be added to the body HTML. Separate multiple values with a space (custom-item-one custom-item-two).', 'capability-manager-enhanced'); ?></li>
                                 </ul>
                             </div>
                         </td>
@@ -105,15 +105,15 @@ class PP_Capabilities_Frontend_Features_UI
 
                     <tr class="field-row">
                         <th scope="row">
-                            <?php esc_html_e('Load on page types:', 'capsman-enhanced'); ?>
+                            <?php esc_html_e('Load on page types:', 'capability-manager-enhanced'); ?>
                             <font color="red">*</font>
                         </th>
                         <td>
                             <div class="frontend-element-toggle">
                                 <div class="ppc-button-group"
                                     data-hide-selector=".frontend-features-pages">
-                                    <label class="whole-site selected"><input type="radio" name="frontend_feature_pages" value=".frontend-element-whole-site" checked><?php esc_html_e('Whole Site', 'capsman-enhanced'); ?></label>
-                                    <label class="other-pages"><input type="radio" name="frontend_feature_pages" value=".frontend-element-other-pages"> <?php esc_html_e('Selected Pages', 'capsman-enhanced'); ?></label>
+                                    <label class="whole-site selected"><input type="radio" name="frontend_feature_pages" value=".frontend-element-whole-site" checked><?php esc_html_e('Whole Site', 'capability-manager-enhanced'); ?></label>
+                                    <label class="other-pages"><input type="radio" name="frontend_feature_pages" value=".frontend-element-other-pages"> <?php esc_html_e('Selected Pages', 'capability-manager-enhanced'); ?></label>
                                 </div>
                             </div>
                             <div class="frontend-element-other-pages frontend-features-pages hidden-element">
@@ -121,7 +121,7 @@ class PP_Capabilities_Frontend_Features_UI
                             </div>
                             <div class="frontend-element-whole-site frontend-features-pages ppc-button-group-border">
                                 <span class="description">
-                                    <?php esc_html_e('This feature will be added to all pages.', 'capsman-enhanced'); ?>
+                                    <?php esc_html_e('This feature will be added to all pages.', 'capability-manager-enhanced'); ?>
                                 </span>
                             </div>
                         </td>
@@ -129,7 +129,7 @@ class PP_Capabilities_Frontend_Features_UI
 
                     <tr class="field-row frontend-element-other-pages frontend-features-pages hidden-element">
                         <th scope="row">
-                            <?php esc_html_e('Add post metabox:', 'capsman-enhanced'); ?>
+                            <?php esc_html_e('Add post metabox:', 'capability-manager-enhanced'); ?>
                         </th>
                         <td>
                             <?php do_action('pp_capabilities_frontend_features_metabox_post_types'); ?>
@@ -144,14 +144,14 @@ class PP_Capabilities_Frontend_Features_UI
                             <div class="custom-item-submit-buttons">
                                 <div class="cancel-custom-item-edit button button-secondary"
                                     data-section="frontendelements">
-                                    <?php esc_html_e('Cancel Edit', 'capsman-enhanced'); ?></div>
+                                    <?php esc_html_e('Cancel Edit', 'capability-manager-enhanced'); ?></div>
 
                                 <button type="button" class="submit-button frontend-element-form-submit button button-secondary"
-                                    data-required="<?php esc_attr_e('All fields are required.', 'capsman-enhanced'); ?>"
-                                    data-add="<?php esc_attr_e('Add New', 'capsman-enhanced'); ?>"
-                                    data-edit="<?php esc_attr_e('Save Edit', 'capsman-enhanced'); ?>"
+                                    data-required="<?php esc_attr_e('All fields are required.', 'capability-manager-enhanced'); ?>"
+                                    data-add="<?php esc_attr_e('Add New', 'capability-manager-enhanced'); ?>"
+                                    data-edit="<?php esc_attr_e('Save Edit', 'capability-manager-enhanced'); ?>"
                                     data-section="frontendelements">
-                                    <?php esc_html_e('Add New', 'capsman-enhanced'); ?></button>
+                                    <?php esc_html_e('Add New', 'capability-manager-enhanced'); ?></button>
                             </div>
                             <span class="ppc-feature-post-loader spinner"></span>
                             <div class="ppc-post-features-note"></div>
@@ -216,17 +216,17 @@ class PP_Capabilities_Frontend_Features_UI
                 </label>
                 <div class="custom-item-output">
                     <?php if (!empty($element_selector)) : ?>
-                        <strong><?php esc_html_e('Hidden IDs or Classes', 'capsman-enhanced'); ?>:</strong> <pre
+                        <strong><?php esc_html_e('Hidden IDs or Classes', 'capability-manager-enhanced'); ?>:</strong> <pre
                             class="custom-item-display frontend-selector-output"><?php echo esc_html($element_selector); ?>
                         </pre>
                     <?php endif; ?>
                     <?php if (!empty($element_bodyclass)) : ?>
-                        <strong><?php esc_html_e('Body Class', 'capsman-enhanced'); ?>:</strong> <pre
+                        <strong><?php esc_html_e('Body Class', 'capability-manager-enhanced'); ?>:</strong> <pre
                             class="custom-item-display frontend-boddyclass-output"><?php echo esc_html($element_bodyclass); ?>
                         </pre>
                     <?php endif; ?>
                     <?php if (!empty($element_styles)) : ?>
-                        <strong><?php esc_html_e('Custom CSS', 'capsman-enhanced'); ?>:</strong> <pre
+                        <strong><?php esc_html_e('Custom CSS', 'capability-manager-enhanced'); ?>:</strong> <pre
                             class="custom-item-display frontend-styles-output"><?php echo esc_html($element_styles); ?>
                         </pre>
                         <div class="css-new-element-update"></div>
@@ -235,7 +235,7 @@ class PP_Capabilities_Frontend_Features_UI
                     <div>
                         <p class="frontend-feature-entry-pages">
                             <?php if (!empty($section_array['pages'])) : ?>
-                            <strong><?php esc_html_e('Pages', 'capsman-enhanced'); ?>:</strong>
+                            <strong><?php esc_html_e('Pages', 'capability-manager-enhanced'); ?>:</strong>
                             <?php echo esc_html(ucwords(str_replace(['-', '_'], ' ', join(', ', (array) $section_array['pages'])))); ?>
                             <?php endif; ?>
                         </p>
@@ -243,7 +243,7 @@ class PP_Capabilities_Frontend_Features_UI
                     <div>
                         <p class="frontend-feature-entry-post-types">
                             <?php if (!empty($section_array['post_types'])) : ?>
-                            <strong><?php esc_html_e('Post Type Metabox', 'capsman-enhanced'); ?>:</strong>
+                            <strong><?php esc_html_e('Post Type Metabox', 'capability-manager-enhanced'); ?>:</strong>
                             <?php echo esc_html(ucwords(str_replace(['-', '_'], ' ', join(', ', (array) $section_array['post_types'])))); ?>
                             <?php endif; ?>
                         </p>
@@ -251,7 +251,7 @@ class PP_Capabilities_Frontend_Features_UI
                 </div>
             </td>
             <td>
-                <div class="button view-custom-item"><?php esc_html_e('View', 'capsman-enhanced'); ?></div>
+                <div class="button view-custom-item"><?php esc_html_e('View', 'capability-manager-enhanced'); ?></div>
             </td>
             <td>
                 <div class="button edit-custom-item" 
@@ -262,7 +262,7 @@ class PP_Capabilities_Frontend_Features_UI
                     data-pages="<?php echo esc_attr(join(', ', (array) $section_array['pages'])); ?>"
                     data-post-types="<?php echo esc_attr(join(', ', (array) $section_array['post_types'])); ?>"
                     data-id="<?php echo esc_attr($section_id); ?>">
-                <?php esc_html_e('Edit', 'capsman-enhanced'); ?>
+                <?php esc_html_e('Edit', 'capability-manager-enhanced'); ?>
                 </div>
             </td>
             <td>
@@ -271,7 +271,7 @@ class PP_Capabilities_Frontend_Features_UI
                     data-section="<?php echo esc_attr($section_slug); ?>" 
                     data-id="<?php echo esc_attr($section_id); ?>" 
                     data-delete-nonce="<?php echo esc_attr(wp_create_nonce('frontend-delete' . $section_id .'-nonce')); ?>">
-                    <?php esc_html_e('Delete', 'capsman-enhanced'); ?>    
+                    <?php esc_html_e('Delete', 'capability-manager-enhanced'); ?>    
                 </div>
             </td>
         </tr>

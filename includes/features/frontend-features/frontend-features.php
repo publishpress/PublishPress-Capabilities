@@ -36,8 +36,8 @@ $default_role = $capsman->get_last_role();
 
 //add logged in and guest option
 $ppc_other_permissions = [
-    "ppc_users" => esc_html__('Logged In Users', 'capsman-enhanced'),
-    "ppc_guest" => esc_html__('Logged Out Users', 'capsman-enhanced')
+    "ppc_users" => esc_html__('Logged In Users', 'capability-manager-enhanced'),
+    "ppc_guest" => esc_html__('Logged Out Users', 'capability-manager-enhanced')
 ];
 
 // phpcs:ignore WordPress.Security.NonceVerification.Recommended
@@ -55,7 +55,7 @@ if (!empty($_REQUEST['role'])) {
 }
 
 if (!isset($ppc_other_permissions[$default_role])) {
-    $role_caption .= ' ' . __('Role', 'capsman-enhanced');
+    $role_caption .= ' ' . __('Role', 'capability-manager-enhanced');
 }
 
 $disabled_frontend_items = !empty(get_option('capsman_disabled_frontend_features')) ? (array)get_option('capsman_disabled_frontend_features') : [];
@@ -67,7 +67,7 @@ $frontend_features_elements = PP_Capabilities_Frontend_Features_Data::elementsLa
 
 <div class="wrap publishpress-caps-manage pressshack-admin-wrapper pp-capability-menus-wrapper frontend-features">
     <div id="icon-capsman-admin" class="icon32"></div>
-    <h2><?php esc_html_e('Frontend Features', 'capsman-enhanced'); ?>
+    <h2><?php esc_html_e('Frontend Features', 'capability-manager-enhanced'); ?>
     </h2>
 
     <form method="post" id="ppc-frontend-features-form" action="admin.php?page=pp-capabilities-frontend-features">
@@ -82,7 +82,7 @@ $frontend_features_elements = PP_Capabilities_Frontend_Features_Data::elementsLa
                             <div class="publishpress-filters">
                                 <div class="pp-capabilities-submit-top" style="float:right;">
                                     <input type="submit" name="frontend-features-submit"
-                                        value="<?php esc_attr_e('Save Changes', 'capsman-enhanced') ?>"
+                                        value="<?php esc_attr_e('Save Changes', 'capability-manager-enhanced') ?>"
                                         class="button-primary ppc-frontend-features-submit" />
                                 </div>
 
@@ -148,7 +148,7 @@ $frontend_features_elements = PP_Capabilities_Frontend_Features_Data::elementsLa
                                                                 <tr class="custom-table-title <?php echo esc_attr($display_title_class); ?>">
                                                                     <td colspan="2" class="title-td">
                                                                         <label>
-                                                                            <?php printf(esc_html__('Apply for %1$s', 'capsman-enhanced'), esc_html($role_caption)); ?>
+                                                                            <?php printf(esc_html__('Apply for %1$s', 'capability-manager-enhanced'), esc_html($role_caption)); ?>
                                                                         </label>
                                                                     </td>
                                                                 </tr>
@@ -232,7 +232,7 @@ $frontend_features_elements = PP_Capabilities_Frontend_Features_Data::elementsLa
                             <div class="editor-features-footer-meta">
                                 <div style="float:right">
                                     <input type="submit" name="frontend-features-submit"
-                                        value="<?php esc_attr_e('Save Changes', 'capsman-enhanced') ?>"
+                                        value="<?php esc_attr_e('Save Changes', 'capability-manager-enhanced') ?>"
                                         class="button-primary ppc-frontend-features-submit" />
                                 </div>
                             </div>
@@ -244,13 +244,13 @@ $frontend_features_elements = PP_Capabilities_Frontend_Features_Data::elementsLa
             <div class="pp-column-right pp-capabilities-sidebar">
                 <?php 
                 $banner_messages = ['<p>'];
-                $banner_messages[] = esc_html__('Frontend Features allows you to add or remove elements from the frontend of your site.', 'capsman-enhanced');
+                $banner_messages[] = esc_html__('Frontend Features allows you to add or remove elements from the frontend of your site.', 'capability-manager-enhanced');
                 $banner_messages[] = '</p><p>';
-                $banner_messages[] = sprintf(esc_html__('%1$s = No change', 'capsman-enhanced'), '<input type="checkbox" title="'. esc_attr__('usage key', 'capsman-enhanced') .'" disabled>') . ' <br />';
-                $banner_messages[] = sprintf(esc_html__('%1$s = Apply custom styling', 'capsman-enhanced'), '<input type="checkbox" title="'. esc_attr__('usage key', 'capsman-enhanced') .'" checked disabled>'). ' <br />';
+                $banner_messages[] = sprintf(esc_html__('%1$s = No change', 'capability-manager-enhanced'), '<input type="checkbox" title="'. esc_attr__('usage key', 'capability-manager-enhanced') .'" disabled>') . ' <br />';
+                $banner_messages[] = sprintf(esc_html__('%1$s = Apply custom styling', 'capability-manager-enhanced'), '<input type="checkbox" title="'. esc_attr__('usage key', 'capability-manager-enhanced') .'" checked disabled>'). ' <br />';
                 $banner_messages[] = '<p>';
-                $banner_messages[] = '<p><a class="button ppc-checkboxes-documentation-link" href="https://publishpress.com/knowledge-base/frontend-features/"target="blank">' . esc_html__('View Documentation', 'capsman-enhanced') . '</a></p>';
-                $banner_title  = __('How to use Frontend Features', 'capsman-enhanced');
+                $banner_messages[] = '<p><a class="button ppc-checkboxes-documentation-link" href="https://publishpress.com/knowledge-base/frontend-features/"target="blank">' . esc_html__('View Documentation', 'capability-manager-enhanced') . '</a></p>';
+                $banner_title  = __('How to use Frontend Features', 'capability-manager-enhanced');
                 pp_capabilities_sidebox_banner($banner_title, $banner_messages);
                 // add promo sidebar
                 pp_capabilities_pro_sidebox();

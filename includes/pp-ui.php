@@ -59,16 +59,16 @@ class Capsman_PP_UI {
 				echo '<li>';
 				if ( defined( 'PPCE_VERSION' ) || ! defined( 'PRESSPERMIT_ACTIVE' ) ) {
 					if ( pp_capabilities_get_permissions_option( 'advanced_options' ) )
-						$parenthetical = ' (' . sprintf( esc_html__( 'see %1$sRole Usage%2$s: "Pattern Roles"', 'capsman-enhanced' ), "<a href='" . admin_url("admin.php?page={$pp_prefix}-role-usage") . "'>", '</a>' ) . ')';
+						$parenthetical = ' (' . sprintf( esc_html__( 'see %1$sRole Usage%2$s: "Pattern Roles"', 'capability-manager-enhanced' ), "<a href='" . admin_url("admin.php?page={$pp_prefix}-role-usage") . "'>", '</a>' ) . ')';
 					else
-						$parenthetical = ' (' . sprintf( esc_html__( 'activate %1$sAdvanced settings%2$s, see Role Usage', 'capsman-enhanced' ), "<a href='" . admin_url("admin.php?page={$pp_prefix}-settings&pp_tab=advanced") . "'>", '</a>' ). ')';
+						$parenthetical = ' (' . sprintf( esc_html__( 'activate %1$sAdvanced settings%2$s, see Role Usage', 'capability-manager-enhanced' ), "<a href='" . admin_url("admin.php?page={$pp_prefix}-settings&pp_tab=advanced") . "'>", '</a>' ). ')';
 				} else
 					$parenthetical = '';
 
 				if ( defined( 'PRESSPERMIT_ACTIVE' ) )
-					printf( esc_html__( '"Posts" capabilities selected here also define type-specific role assignment for Permission Groups%s.', 'capsman-enhanced' ), $parenthetical ) ;
+					printf( esc_html__( '"Posts" capabilities selected here also define type-specific role assignment for Permission Groups%s.', 'capability-manager-enhanced' ), $parenthetical ) ;
 				else
-					printf( esc_html__( '"Posts" capabilities selected here also define type-specific role assignment for Permit Groups%s.', 'capsman-enhanced' ), $parenthetical ) ;
+					printf( esc_html__( '"Posts" capabilities selected here also define type-specific role assignment for Permit Groups%s.', 'capability-manager-enhanced' ), $parenthetical ) ;
 
 				echo '</li>';
 			}
@@ -76,12 +76,12 @@ class Capsman_PP_UI {
 			$status_hint = '';
 			if ( defined( 'PRESSPERMIT_ACTIVE' ) )
 				if ( defined( 'PPS_VERSION' ) )
-					$status_hint = sprintf( __( 'Capabilities for custom statuses can be manually added here. (See %sPermissions > Post Statuses%s for applicable names). %sSupplemental status-specific roles%s are usually more convenient, though.', 'capsman-enhanced' ), "<a href='" . admin_url("admin.php?page={$pp_prefix}-statuses&show_caps=1") . "'>", '</a>', "<a href='" . admin_url("admin.php?page={$pp_prefix}-groups") . "'>", '</a>' ) ;
+					$status_hint = sprintf( __( 'Capabilities for custom statuses can be manually added here. (See %sPermissions > Post Statuses%s for applicable names). %sSupplemental status-specific roles%s are usually more convenient, though.', 'capability-manager-enhanced' ), "<a href='" . admin_url("admin.php?page={$pp_prefix}-statuses&show_caps=1") . "'>", '</a>', "<a href='" . admin_url("admin.php?page={$pp_prefix}-groups") . "'>", '</a>' ) ;
 				elseif ( pp_capabilities_get_permissions_option( 'display_extension_hints' ) )
-					$status_hint = sprintf( __( 'Capabilities for custom statuses can be manually added here. Or activate the PP Custom Post Statuses extension to assign status-specific supplemental roles.', 'capsman-enhanced' ), "<a href='" . admin_url("admin.php?page={$pp_prefix}-role-usage") . "'>", '</a>' ) ;
+					$status_hint = sprintf( __( 'Capabilities for custom statuses can be manually added here. Or activate the PP Custom Post Statuses extension to assign status-specific supplemental roles.', 'capability-manager-enhanced' ), "<a href='" . admin_url("admin.php?page={$pp_prefix}-role-usage") . "'>", '</a>' ) ;
 			
 			elseif ( defined( 'PP_VERSION' ) )
-				$status_hint = sprintf( __( 'Capabilities for custom statuses can be manually added to a role here (see Conditions > Status > Capability Mapping for applicable names). However, it is usually more convenient to use Permit Groups to assign a supplemental status-specific role.', 'capsman-enhanced' ), "<a href='" . admin_url("admin.php?page={$pp_prefix}-role-usage") . "'>", '</a>' ) ;
+				$status_hint = sprintf( __( 'Capabilities for custom statuses can be manually added to a role here (see Conditions > Status > Capability Mapping for applicable names). However, it is usually more convenient to use Permit Groups to assign a supplemental status-specific role.', 'capability-manager-enhanced' ), "<a href='" . admin_url("admin.php?page={$pp_prefix}-role-usage") . "'>", '</a>' ) ;
 			
 			if ( $status_hint )
 				echo "<li>" . esc_html($status_hint) . "</li>";
@@ -104,7 +104,7 @@ class Capsman_PP_UI {
                     value="<?php echo esc_attr($meta_box_state); ?>"
                 />
                 <div class="postbox-header">
-                    <h2 class="hndle ui-sortable-handle"><?php esc_html_e('Unique Capabilities for Post Types', 'capsman-enhanced'); ?></h2>
+                    <h2 class="hndle ui-sortable-handle"><?php esc_html_e('Unique Capabilities for Post Types', 'capability-manager-enhanced'); ?></h2>
                     <div class="handle-actions">
                         <button type="button" class="handlediv">
                             <span class="toggle-indicator"></span>
@@ -113,7 +113,7 @@ class Capsman_PP_UI {
                 </div>
                 <div class="inside" style="text-align:center;">
                 <?php
-				echo "<p class='cme-hint'>" . esc_html__( 'Allow post type permissions to be controlled separately from other areas of WordPress.', 'capsman-enhanced' ) . "</p>";
+				echo "<p class='cme-hint'>" . esc_html__( 'Allow post type permissions to be controlled separately from other areas of WordPress.', 'capability-manager-enhanced' ) . "</p>";
 				
 				if ( defined( 'PRESSPERMIT_ACTIVE' ) && pp_capabilities_get_permissions_option( 'display_hints' ) ) :?>
 				<div class="cme-subtext" style="margin-top:0">
@@ -153,7 +153,7 @@ class Capsman_PP_UI {
 						<input name="<?php echo(esc_attr($option_basename) . "-options[]");?>" type="hidden" value="<?php echo(esc_attr($key))?>" />
 					
 					<?php else: 
-						$type_tooltip = sprintf(__( 'The slug for this post type is %s', 'capsman-enhanced' ), '<strong>' . esc_html($key) . '</strong>' );
+						$type_tooltip = sprintf(__( 'The slug for this post type is %s', 'capability-manager-enhanced' ), '<strong>' . esc_html($key) . '</strong>' );
 						?>
 						<div class="agp-vspaced_input">
 						<span class="ppc-tool-tip disabled"><label for="<?php echo(esc_attr($id));?>">
@@ -182,7 +182,7 @@ class Capsman_PP_UI {
 					<div style="margin-top:20px;margin-bottom:10px" class="ppc-tool-tip">
 					<label for="pp_define_create_posts_cap">
 					<input name="pp_define_create_posts_cap" type="checkbox" id="pp_define_create_posts_cap" autocomplete="off" value="1" <?php checked('1', $define_create_posts_cap );?> /> <?php esc_html_e('Use the "Create" capability for selected post types');?>
-                    <div class="tool-tip-text"><p><?php esc_attr_e('This will cause a new capability to be required for creating posts, and enable a checkbox column here for role assignments. Normally, post creation is controlled by the "Edit" capability.', 'capsman-enhanced');?></p><i></i></div>
+                    <div class="tool-tip-text"><p><?php esc_attr_e('This will cause a new capability to be required for creating posts, and enable a checkbox column here for role assignments. Normally, post creation is controlled by the "Edit" capability.', 'capability-manager-enhanced');?></p><i></i></div>
 					</label>
 					</div>
 				
@@ -190,7 +190,7 @@ class Capsman_PP_UI {
 				do_action('pp-capabilities-type-specific-ui');
 				?>
 
-				<input type="submit" name="update_filtered_types" value="<?php esc_attr_e('Update', 'capsman-enhanced') ?>" class="button" />
+				<input type="submit" name="update_filtered_types" value="<?php esc_attr_e('Update', 'capability-manager-enhanced') ?>" class="button" />
                 </div>
             </div>
         </div>
@@ -211,7 +211,7 @@ class Capsman_PP_UI {
                     value="<?php echo esc_attr($meta_box_state); ?>"
                 />
                 <div class="postbox-header">
-                    <h2 class="hndle ui-sortable-handle"><?php esc_html_e('Unique Capabilities for Taxonomies', 'capsman-enhanced'); ?></h2>
+                    <h2 class="hndle ui-sortable-handle"><?php esc_html_e('Unique Capabilities for Taxonomies', 'capability-manager-enhanced'); ?></h2>
                     <div class="handle-actions">
                         <button type="button" class="handlediv">
                             <span class="toggle-indicator"></span>
@@ -220,7 +220,7 @@ class Capsman_PP_UI {
                 </div>
                 <div class="inside" style="text-align:center;">
 				<?php
-				echo "<p class='cme-hint'>" . esc_html__( 'Allow taxonomy permissions to be controlled separately from other areas of WordPress.', 'capsman-enhanced' ) . "</p>";
+				echo "<p class='cme-hint'>" . esc_html__( 'Allow taxonomy permissions to be controlled separately from other areas of WordPress.', 'capability-manager-enhanced' ) . "</p>";
 				
 				echo "<table style='width:100%'><tr>";
 				
@@ -253,7 +253,7 @@ class Capsman_PP_UI {
 						<input name="<?php echo(esc_attr($option_basename) . '-options[]');?>" type="hidden" value="<?php echo(esc_attr($taxonomy))?>" />
 					
 					<?php else:
-						$type_tooltip = sprintf(__( 'The slug for this taxonomy is %s', 'capsman-enhanced' ), '<strong>' . esc_html($taxonomy) . '</strong>' );
+						$type_tooltip = sprintf(__( 'The slug for this taxonomy is %s', 'capability-manager-enhanced' ), '<strong>' . esc_html($taxonomy) . '</strong>' );
 						?>
 
 						<span class="ppc-tool-tip disabled"><label for="<?php echo(esc_attr($id));?>">
@@ -276,7 +276,7 @@ class Capsman_PP_UI {
 				</tr>
 				</table>
 				
-				<input type="submit" name="update_filtered_taxonomies" value="<?php esc_attr_e('Update', 'capsman-enhanced') ?>" class="button" />
+				<input type="submit" name="update_filtered_taxonomies" value="<?php esc_attr_e('Update', 'capability-manager-enhanced') ?>" class="button" />
                 </div>
             </div>
         </div>
@@ -292,7 +292,7 @@ class Capsman_PP_UI {
                         value="<?php echo esc_attr($meta_box_state); ?>"
                     />
                     <div class="postbox-header">
-                        <h2 class="hndle ui-sortable-handle"><?php esc_html_e('Detailed Capabilities for Taxonomies', 'capsman-enhanced'); ?></h2>
+                        <h2 class="hndle ui-sortable-handle"><?php esc_html_e('Detailed Capabilities for Taxonomies', 'capability-manager-enhanced'); ?></h2>
                         <div class="handle-actions">
                             <button type="button" class="handlediv">
                                 <span class="toggle-indicator"></span>
@@ -302,7 +302,7 @@ class Capsman_PP_UI {
                     <div class="inside" style="text-align:center;">
                         
 				<?php
-				echo "<p class='cme-hint'>" . esc_html__( 'Allow "Edit", "Delete" and "Assign" capabilities separately from the "Manage" capability.', 'capsman-enhanced' ) . "</p>";
+				echo "<p class='cme-hint'>" . esc_html__( 'Allow "Edit", "Delete" and "Assign" capabilities separately from the "Manage" capability.', 'capability-manager-enhanced' ) . "</p>";
 				
 				echo "<table style='width:100%'><tr>";
 				
@@ -333,7 +333,7 @@ class Capsman_PP_UI {
 						<input name="<?php echo(esc_attr($option_basename) . '-options[]');?>" type="hidden" value="<?php echo(esc_attr($taxonomy))?>" />
 					
 					<?php else:
-						$type_tooltip = sprintf(__( 'The slug for this taxonomy is %s', 'capsman-enhanced' ), '<strong>' . esc_html($taxonomy) . '</strong>' );
+						$type_tooltip = sprintf(__( 'The slug for this taxonomy is %s', 'capability-manager-enhanced' ), '<strong>' . esc_html($taxonomy) . '</strong>' );
 						 ?>
 						<div class="agp-vspaced_input">
 						<span class="ppc-tool-tip disabled"><label for="<?php echo(esc_attr($id));?>">
@@ -356,7 +356,7 @@ class Capsman_PP_UI {
 				</tr>
 				</table>
 				
-				<input type="submit" name="update_detailed_taxonomies" value="<?php esc_attr_e('Update', 'capsman-enhanced') ?>" class="button" />
+				<input type="submit" name="update_detailed_taxonomies" value="<?php esc_attr_e('Update', 'capability-manager-enhanced') ?>" class="button" />
                     </div>
                 </div>
             </div>

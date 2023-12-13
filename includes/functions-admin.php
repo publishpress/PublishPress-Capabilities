@@ -202,7 +202,7 @@ function pp_capabilities_backup_sections()
    $backup_sections = [];
 
    //Editor Features
-   $backup_sections[$cms_id . '_editor_features_backup']['label']    = esc_html__('Editor Features', 'capsman-enhanced');
+   $backup_sections[$cms_id . '_editor_features_backup']['label']    = esc_html__('Editor Features', 'capability-manager-enhanced');
    $classic_editor = pp_capabilities_is_classic_editor_available();
    $def_post_types = array_unique(apply_filters('pp_capabilities_feature_post_types', ['post', 'page']));
    foreach ($def_post_types as $post_type) {
@@ -213,24 +213,24 @@ function pp_capabilities_backup_sections()
    }
 
    //Admin Features
-   $backup_sections[$cms_id . '_admin_features_backup']['label']     = esc_html__('Admin Features', 'capsman-enhanced');
+   $backup_sections[$cms_id . '_admin_features_backup']['label']     = esc_html__('Admin Features', 'capability-manager-enhanced');
    $backup_sections[$cms_id . '_admin_features_backup']['options'][] = "capsman_disabled_admin_features";
 
    //Frontend Features
-   $backup_sections[$cms_id . '_frontend_features_backup']['label']     = esc_html__('Frontend Features', 'capsman-enhanced');
+   $backup_sections[$cms_id . '_frontend_features_backup']['label']     = esc_html__('Frontend Features', 'capability-manager-enhanced');
    $backup_sections[$cms_id . '_frontend_features_backup']['options'][] = "capsman_disabled_frontend_features";
 
    //Profile Features
-   $backup_sections[$cms_id . '_profile_features_backup']['label']     = esc_html__('Profile Features', 'capsman-enhanced');
+   $backup_sections[$cms_id . '_profile_features_backup']['label']     = esc_html__('Profile Features', 'capability-manager-enhanced');
    $backup_sections[$cms_id . '_profile_features_backup']['options'][] = "capsman_disabled_profile_features";
    $backup_sections[$cms_id . '_profile_features_backup']['options'][] = "capsman_profile_features_elements";
 
    //Nav Menu
-   $backup_sections['capsman_nav_menu_backup']['label']     = esc_html__('Nav Menu', 'capsman-enhanced');
+   $backup_sections['capsman_nav_menu_backup']['label']     = esc_html__('Nav Menu', 'capability-manager-enhanced');
    $backup_sections['capsman_nav_menu_backup']['options'][] = "capsman_nav_item_menus";
 
    //settings
-   $backup_sections['capsman_settings_backup']['label']     = esc_html__('Settings', 'capsman-enhanced');
+   $backup_sections['capsman_settings_backup']['label']     = esc_html__('Settings', 'capability-manager-enhanced');
    $backup_sections['capsman_settings_backup']['options']   = pp_capabilities_settings_options();
 
    return apply_filters('pp_capabilities_backup_sections', $backup_sections);
@@ -328,43 +328,43 @@ function pp_capabilities_dashboard_options() {
     $features = [];
 
     $features['roles'] = [
-        'label'        => esc_html__('Roles', 'capsman-enhanced'),
-        'description'  => esc_html__('Roles allows you to create, edit, and delete all the user roles on your site.', 'capsman-enhanced'),
+        'label'        => esc_html__('Roles', 'capability-manager-enhanced'),
+        'description'  => esc_html__('Roles allows you to create, edit, and delete all the user roles on your site.', 'capability-manager-enhanced'),
     ];
 
     $features['capabilities'] = [
-        'label'        => esc_html__('Capabilities', 'capsman-enhanced'),
-        'description'  => esc_html__('Capabilities allows you to change the permissions for any user role.', 'capsman-enhanced'),
+        'label'        => esc_html__('Capabilities', 'capability-manager-enhanced'),
+        'description'  => esc_html__('Capabilities allows you to change the permissions for any user role.', 'capability-manager-enhanced'),
     ];
 
     $features['editor-features'] = [
-        'label'        => esc_html__('Editor Features', 'capsman-enhanced'),
-        'description'  => esc_html__('Editor Features allows you to remove elements from the post editing screen.', 'capsman-enhanced'),
+        'label'        => esc_html__('Editor Features', 'capability-manager-enhanced'),
+        'description'  => esc_html__('Editor Features allows you to remove elements from the post editing screen.', 'capability-manager-enhanced'),
     ];
 
     $features['admin-features'] = [
-        'label'        => esc_html__('Admin Features', 'capsman-enhanced'),
-        'description'  => esc_html__('Admin Features allows you to remove elements from the admin area and toolbar.', 'capsman-enhanced'),
+        'label'        => esc_html__('Admin Features', 'capability-manager-enhanced'),
+        'description'  => esc_html__('Admin Features allows you to remove elements from the admin area and toolbar.', 'capability-manager-enhanced'),
     ];
 
     $features['frontend-features'] = [
-        'label'        => esc_html__('Frontend Features', 'capsman-enhanced'),
-        'description'  => esc_html__('Frontend Features allows you to add or remove elements from the frontend of your site.', 'capsman-enhanced'),
+        'label'        => esc_html__('Frontend Features', 'capability-manager-enhanced'),
+        'description'  => esc_html__('Frontend Features allows you to add or remove elements from the frontend of your site.', 'capability-manager-enhanced'),
     ];
 
     $features['profile-features'] = [
-        'label'        => esc_html__('Profile Features', 'capsman-enhanced'),
-        'description'  => esc_html__('Profile Features allows you to remove elements from the Profile screen.', 'capsman-enhanced'),
+        'label'        => esc_html__('Profile Features', 'capability-manager-enhanced'),
+        'description'  => esc_html__('Profile Features allows you to remove elements from the Profile screen.', 'capability-manager-enhanced'),
     ];
 
     $features['nav-menus'] = [
-        'label'        => esc_html__('Nav Menus', 'capsman-enhanced'),
-        'description'  => esc_html__('Nav Menus allows you to block access to frontend menu links.', 'capsman-enhanced'),
+        'label'        => esc_html__('Nav Menus', 'capability-manager-enhanced'),
+        'description'  => esc_html__('Nav Menus allows you to block access to frontend menu links.', 'capability-manager-enhanced'),
     ];
 
     $features['user-testing'] = [
-        'label'        => esc_html__('User Testing', 'capsman-enhanced'),
-        'description'  => esc_html__('Test your site by instantly logging in as another user. Available accounts include any which the current user can edit.', 'capsman-enhanced'),
+        'label'        => esc_html__('User Testing', 'capability-manager-enhanced'),
+        'description'  => esc_html__('Test your site by instantly logging in as another user. Available accounts include any which the current user can edit.', 'capability-manager-enhanced'),
     ];
 
     $features = apply_filters('pp_capabilities_dashboard_features', $features);
@@ -387,49 +387,49 @@ function pp_capabilities_sub_menu_lists($cme_fakefunc = false) {
 
     $sub_menu_pages = [];
     $sub_menu_pages['dashboard'] = [
-        'title'             => __('Dashboard', 'capsman-enhanced'),
+        'title'             => __('Dashboard', 'capability-manager-enhanced'),
         'capabilities'      => $super_user ? 'read' : 'manage_capabilities_dashboard',
         'page'              => 'pp-capabilities-dashboard',
         'callback'          => $cme_fakefunc ? 'cme_fakefunc' : [$capsman, 'dashboardPage'],
         'dashboard_control' => false,
     ];
     $sub_menu_pages['roles'] = [
-        'title'             => __('Roles', 'capsman-enhanced'),
+        'title'             => __('Roles', 'capability-manager-enhanced'),
         'capabilities'      => $super_user ? 'read' : 'manage_capabilities_roles',
         'page'              => 'pp-capabilities-roles',
         'callback'          => $cme_fakefunc ? 'cme_fakefunc' : [$capsman, 'ManageRoles'],
         'dashboard_control' => true,
     ];
     $sub_menu_pages['capabilities'] = [
-        'title'             => __('Capabilities', 'capsman-enhanced'),
+        'title'             => __('Capabilities', 'capability-manager-enhanced'),
         'capabilities'      => $super_user ? 'read' : 'manage_capabilities',
         'page'              => 'pp-capabilities',
         'callback'          => $cme_fakefunc ? 'cme_fakefunc' : [$capsman, 'generalManager'],
         'dashboard_control' => true,
     ];
     $sub_menu_pages['editor-features'] = [
-        'title'             => __('Editor Features', 'capsman-enhanced'),
+        'title'             => __('Editor Features', 'capability-manager-enhanced'),
         'capabilities'      => $super_user ? 'read' : 'manage_capabilities_editor_features',
         'page'              => 'pp-capabilities-editor-features',
         'callback'          => $cme_fakefunc ? 'cme_fakefunc' : [$capsman, 'ManageEditorFeatures'],
         'dashboard_control' => true,
     ];
     $sub_menu_pages['admin-features'] = [
-        'title'             => __('Admin Features', 'capsman-enhanced'),
+        'title'             => __('Admin Features', 'capability-manager-enhanced'),
         'capabilities'      => $super_user ? 'read' : 'manage_capabilities_admin_features',
         'page'              => 'pp-capabilities-admin-features',
         'callback'          => $cme_fakefunc ? 'cme_fakefunc' : [$capsman, 'ManageAdminFeatures'],
         'dashboard_control' => true,
     ];
     $sub_menu_pages['frontend-features'] = [
-        'title'             => __('Frontend Features', 'capsman-enhanced'),
+        'title'             => __('Frontend Features', 'capability-manager-enhanced'),
         'capabilities'      => $super_user ? 'read' : 'manage_capabilities_frontend_features',
         'page'              => 'pp-capabilities-frontend-features',
         'callback'          => $cme_fakefunc ? 'cme_fakefunc' : [$capsman, 'ManageFrontendFeatures'],
         'dashboard_control' => true,
     ];
     $sub_menu_pages['profile-features'] = [
-        'title'             => __('Profile Features', 'capsman-enhanced'),
+        'title'             => __('Profile Features', 'capability-manager-enhanced'),
         'capabilities'      => $super_user ? 'read' : 'manage_capabilities_profile_features',
         'page'              => 'pp-capabilities-profile-features',
         'callback'          => $cme_fakefunc ? 'cme_fakefunc' : [$capsman, 'ManageProfileFeatures'],
@@ -437,7 +437,7 @@ function pp_capabilities_sub_menu_lists($cme_fakefunc = false) {
     ];
     if ($cme_fakefunc) {
         $sub_menu_pages['admin-menus'] = [
-            'title'             => __('Admin Menus', 'capsman-enhanced'),
+            'title'             => __('Admin Menus', 'capability-manager-enhanced'),
             'capabilities'      => $super_user ? 'read' : 'manage_capabilities_admin_menus',
             'page'              => 'pp-capabilities-admin-menus',
             'callback'          => 'cme_fakefunc',
@@ -445,21 +445,21 @@ function pp_capabilities_sub_menu_lists($cme_fakefunc = false) {
         ];
     }
     $sub_menu_pages['nav-menus'] = [
-        'title'             => __('Nav Menus', 'capsman-enhanced'),
+        'title'             => __('Nav Menus', 'capability-manager-enhanced'),
         'capabilities'      => $super_user ? 'read' : 'manage_capabilities_nav_menus',
         'page'              => 'pp-capabilities-nav-menus',
         'callback'          => $cme_fakefunc ? 'cme_fakefunc' : [$capsman, 'ManageNavMenus'],
         'dashboard_control' => true,
     ];
     $sub_menu_pages['backup'] = [
-        'title'             => __('Backup', 'capsman-enhanced'),
+        'title'             => __('Backup', 'capability-manager-enhanced'),
         'capabilities'      => $super_user ? 'read' : 'manage_capabilities_backup',
         'page'              => 'pp-capabilities-backup',
         'callback'          => $cme_fakefunc ? 'cme_fakefunc' : [$capsman, 'backupTool'],
         'dashboard_control' => false,
     ];
     $sub_menu_pages['settings'] = [
-        'title'             => __('Settings', 'capsman-enhanced'),
+        'title'             => __('Settings', 'capability-manager-enhanced'),
         'capabilities'      => $super_user ? 'read' : 'manage_capabilities_settings',
         'page'              => 'pp-capabilities-settings',
         'callback'          => $cme_fakefunc ? 'cme_fakefunc' : [$capsman, 'settingsPage'],
