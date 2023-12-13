@@ -7,7 +7,7 @@ Tags: capabilities, permissions, admin menus, user roles, user role editor, acce
 Requires at least: 5.5
 Requires PHP: 7.2.5
 Tested up to: 6.3
-Stable tag: 2.10.3
+Stable tag: 2.11.0
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -409,6 +409,9 @@ Fixed : Non-administrators with user editing capabilities could add new Administ
 Fixed : Security issue. Please update.
 
 == Changelog ==
+
+= 2.11.0 - 13 Dec 2023 =
+  * Fixed: Inconsistencies with language files, #311
 
 = 2.10.3 - 12 Dec 2023 =
   * Fixed: Nav menu not working in latest WordPress version for FSE theme, #1048
