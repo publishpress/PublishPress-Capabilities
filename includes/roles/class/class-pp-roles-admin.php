@@ -103,35 +103,35 @@ class Pp_Roles_Admin
         $fields_tabs = [];
 
         $fields_tabs['general'] = [
-            'label' => esc_html__('General', 'capsman-enhanced'),
+            'label' => esc_html__('General', 'capability-manager-enhanced'),
             'icon'  => 'dashicons dashicons-admin-tools',
         ];
 
         $fields_tabs['editing'] = [
-            'label'    => esc_html__('Editing', 'capsman-enhanced'),
+            'label'    => esc_html__('Editing', 'capability-manager-enhanced'),
             'icon'     => 'dashicons dashicons-edit-page',
         ];
 
         $fields_tabs['redirects'] = [
-            'label'    => esc_html__('Redirects', 'capsman-enhanced'),
+            'label'    => esc_html__('Redirects', 'capability-manager-enhanced'),
             'icon'     => 'dashicons dashicons-admin-links',
         ];
 
         if (defined('WC_PLUGIN_FILE')) {
             $fields_tabs['woocommerce'] = [
-                'label'    => esc_html__('WooCommerce', 'capsman-enhanced'),
+                'label'    => esc_html__('WooCommerce', 'capability-manager-enhanced'),
                 'icon'     => 'dashicons dashicons-products',
             ];
         }
         
         $fields_tabs['advanced'] = [
-            'label' => esc_html__('Advanced', 'capsman-enhanced'),
+            'label' => esc_html__('Advanced', 'capability-manager-enhanced'),
             'icon'     => 'dashicons dashicons-admin-generic',
         ];
 
         if ($role_edit && !$current['is_system']) {
             $fields_tabs['delete'] = [
-                'label'    => esc_html__('Delete', 'capsman-enhanced'),
+                'label'    => esc_html__('Delete', 'capability-manager-enhanced'),
                 'icon'     => 'dashicons dashicons-trash',
             ];
         }
@@ -160,9 +160,9 @@ class Pp_Roles_Admin
     {
         $editor_options = [];
 
-        $editor_options['block_editor']       = esc_html__('Gutenberg editor', 'capsman-enhanced');
+        $editor_options['block_editor']       = esc_html__('Gutenberg editor', 'capability-manager-enhanced');
         if (class_exists('Classic_Editor')) {
-            $editor_options['classic_editor'] = esc_html__('Classic editor', 'capsman-enhanced');
+            $editor_options['classic_editor'] = esc_html__('Classic editor', 'capability-manager-enhanced');
         }
 
         $show_block_control = true;
@@ -174,7 +174,7 @@ class Pp_Roles_Admin
 
         //add role_name
         $fields['role_name'] = [
-            'label'     => esc_html__('Role Name', 'capsman-enhanced'),
+            'label'     => esc_html__('Role Name', 'capability-manager-enhanced'),
             'type'      => 'text',
             'value_key' => 'name',
             'tab'       => 'general',
@@ -184,8 +184,8 @@ class Pp_Roles_Admin
 
         //add role_slug
         $fields['role_slug'] = [
-            'label'     => esc_html__('Role Slug', 'capsman-enhanced'),
-            'description' => esc_html__('The "slug" is the URL-friendly version of the role. It is usually all lowercase and contains only letters, numbers and underscores.', 'capsman-enhanced'),
+            'label'     => esc_html__('Role Slug', 'capability-manager-enhanced'),
+            'description' => esc_html__('The "slug" is the URL-friendly version of the role. It is usually all lowercase and contains only letters, numbers and underscores.', 'capability-manager-enhanced'),
             'type'      => 'text',
             'value_key' => 'role',
             'tab'       => 'general',
@@ -196,8 +196,8 @@ class Pp_Roles_Admin
         if ($show_block_control) {
             //add disable_role_user_login
             $fields['disable_role_user_login'] = [
-                'label'        => esc_html__('Block Login', 'capsman-enhanced'),
-                'description'  => esc_html__('Block users in this role from logging into the site.', 'capsman-enhanced'),
+                'label'        => esc_html__('Block Login', 'capability-manager-enhanced'),
+                'description'  => esc_html__('Block users in this role from logging into the site.', 'capability-manager-enhanced'),
                 'type'         => 'checkbox',
                 'value_key'    => 'disable_role_user_login',
                 'tab'          => 'advanced',
@@ -206,8 +206,8 @@ class Pp_Roles_Admin
             ];
             //add block_dashboard_access
             $fields['block_dashboard_access'] = [
-                'label'        => esc_html__('Block Dashboard Access', 'capsman-enhanced'),
-                'description'  => esc_html__('Block users in this role from accessing admin area.', 'capsman-enhanced'),
+                'label'        => esc_html__('Block Dashboard Access', 'capability-manager-enhanced'),
+                'description'  => esc_html__('Block users in this role from accessing admin area.', 'capability-manager-enhanced'),
                 'type'         => 'checkbox',
                 'value_key'    => 'block_dashboard_access',
                 'tab'          => 'advanced',
@@ -218,8 +218,8 @@ class Pp_Roles_Admin
 
         //add role_level
         $fields['role_level'] = [
-            'label'     => esc_html__('Role Level', 'capsman-enhanced'),
-            'description' => esc_html__('Each user role has a level from 0 to 10. The Subscriber role defaults to the lowest level (0). The Administrator role defaults to level 10.', 'capsman-enhanced'),
+            'label'     => esc_html__('Role Level', 'capability-manager-enhanced'),
+            'description' => esc_html__('Each user role has a level from 0 to 10. The Subscriber role defaults to the lowest level (0). The Administrator role defaults to level 10.', 'capability-manager-enhanced'),
             'type'      => 'select',
             'value_key' => 'role_level',
             'tab'       => 'advanced',
@@ -241,8 +241,8 @@ class Pp_Roles_Admin
 
         //add delete_role
         $fields['delete_role'] = [
-            'label'       => esc_html__('Delete role', 'capsman-enhanced'),
-            'description' => esc_html__('Deleting this role will completely remove it from database and is irrecoverable.', 'capsman-enhanced'),
+            'label'       => esc_html__('Delete role', 'capability-manager-enhanced'),
+            'description' => esc_html__('Deleting this role will completely remove it from database and is irrecoverable.', 'capability-manager-enhanced'),
             'type'      => 'button',
             'value_key' => '',
             'tab'       => 'delete',
@@ -251,8 +251,8 @@ class Pp_Roles_Admin
 
         //add login_redirect
         $fields['login_redirect'] = [
-            'label'     => esc_html__('Login Redirect', 'capsman-enhanced'),
-            'description' => esc_html__('Enter the URL users in this role should be redirected to after login.', 'capsman-enhanced'),
+            'label'     => esc_html__('Login Redirect', 'capability-manager-enhanced'),
+            'description' => esc_html__('Enter the URL users in this role should be redirected to after login.', 'capability-manager-enhanced'),
             'type'      => 'url',
             'value_key' => 'login_redirect',
             'tab'       => 'redirects',
@@ -262,8 +262,8 @@ class Pp_Roles_Admin
 
         //add logout_redirect
         $fields['logout_redirect'] = [
-            'label'     => esc_html__('Logout Redirect', 'capsman-enhanced'),
-            'description' => esc_html__('Enter the URL users in this role should be redirected to after logout.', 'capsman-enhanced'),
+            'label'     => esc_html__('Logout Redirect', 'capability-manager-enhanced'),
+            'description' => esc_html__('Enter the URL users in this role should be redirected to after logout.', 'capability-manager-enhanced'),
             'type'      => 'url',
             'value_key' => 'logout_redirect',
             'tab'       => 'redirects',
@@ -273,8 +273,8 @@ class Pp_Roles_Admin
 
         //add disable_code_editor
         $fields['disable_code_editor'] = [
-            'label'        => /* Translators: "Editor" means post editor like Gutenberg */ esc_html__('Disable Code Editor', 'capsman-enhanced'),
-            'description'  => /* Translators: "Editor" means post editor like Gutenberg */ esc_html__('Disable the "Code editor" option for the Gutenberg block editor.', 'capsman-enhanced'),
+            'label'        => /* Translators: "Editor" means post editor like Gutenberg */ esc_html__('Disable Code Editor', 'capability-manager-enhanced'),
+            'description'  => /* Translators: "Editor" means post editor like Gutenberg */ esc_html__('Disable the "Code editor" option for the Gutenberg block editor.', 'capability-manager-enhanced'),
             'type'         => 'checkbox',
             'value_key'    => 'disable_code_editor',
             'tab'          => 'editing',
@@ -285,8 +285,8 @@ class Pp_Roles_Admin
         if (count($editor_options) > 1) {
             //add role_editor
             $fields['role_editor'] = [
-                'label'       => /* Translators: "Editor" means post editor like Gutenberg */ esc_html__('Control Allowed Editors', 'capsman-enhanced'),
-                'description' => /* Translators: "Editor" means post editor like Gutenberg */ esc_html__('Select the allowed editor options for users in this role.', 'capsman-enhanced'),
+                'label'       => /* Translators: "Editor" means post editor like Gutenberg */ esc_html__('Control Allowed Editors', 'capability-manager-enhanced'),
+                'description' => /* Translators: "Editor" means post editor like Gutenberg */ esc_html__('Select the allowed editor options for users in this role.', 'capability-manager-enhanced'),
                 'type'        => 'select',
                 'multiple'    => true,
                 'value_key'   => 'role_editor',
@@ -299,8 +299,8 @@ class Pp_Roles_Admin
         if (defined('WC_PLUGIN_FILE')) {
             //add disable_woocommerce_admin_restrictions
             $fields['disable_woocommerce_admin_restrictions'] = [
-                'label'        => esc_html__('Disable WooCommerce admin restrictions', 'capsman-enhanced'),
-                'description'   => sprintf(esc_html__('By default, WooCommerce prevents most users from accessing the WordPress admin area. When enabled, this setting will remove those restrictions for this role. %1s Click here for more details. %2s', 'capsman-enhanced'), '<a href="https://publishpress.com/knowledge-base/wordpress-admin-area-access-for-woocommerce-users/" target="blank">', '</a>'),
+                'label'        => esc_html__('Disable WooCommerce admin restrictions', 'capability-manager-enhanced'),
+                'description'   => sprintf(esc_html__('By default, WooCommerce prevents most users from accessing the WordPress admin area. When enabled, this setting will remove those restrictions for this role. %1s Click here for more details. %2s', 'capability-manager-enhanced'), '<a href="https://publishpress.com/knowledge-base/wordpress-admin-area-access-for-woocommerce-users/" target="blank">', '</a>'),
                 'type'         => 'checkbox',
                 'value_key'    => 'disable_woocommerce_admin_restrictions',
                 'tab'          => 'woocommerce',
@@ -359,7 +359,7 @@ class Pp_Roles_Admin
                 <?php endif; ?>
                  <?php if ($key === 'role_slug') { ?>
                     <p id="pp-role-slug-exists" class="red-warning" style="display:none;">
-                        <?php esc_html_e('Slug already exists', 'capsman-enhanced'); ?>
+                        <?php esc_html_e('Slug already exists', 'capability-manager-enhanced'); ?>
                         <span class="dashicons dashicons-warning"></span>
                     </p>
                 <?php } ?>
@@ -385,8 +385,8 @@ class Pp_Roles_Admin
                             name="<?php echo esc_attr($key); ?><?php echo $args['multiple'] ? '[]' : '';?>"
                             id="<?php echo esc_attr($key.'-select'); ?>"
                             class="pp-capabilities-role-choosen"
-                            data-placeholder="<?php /* Translators: "Editor" means post editor like Gutenberg */ esc_html_e('Select allowed editor', 'capsman-enhanced'); ?>"
-                            data-message="<?php /* Translators: "Editor" means post editor like Gutenberg */ esc_attr_e('You must select at least one editor for the role when managing allowed editor.',  'capsman-enhanced'); ?>"
+                            data-placeholder="<?php /* Translators: "Editor" means post editor like Gutenberg */ esc_html_e('Select allowed editor', 'capability-manager-enhanced'); ?>"
+                            data-message="<?php /* Translators: "Editor" means post editor like Gutenberg */ esc_attr_e('You must select at least one editor for the role when managing allowed editor.',  'capability-manager-enhanced'); ?>"
                             <?php echo ($args['multiple'] ? 'multiple' : '');?>
                             <?php echo ($args['required'] ? 'required="true"' : '');?>>
                             <?php
@@ -415,7 +415,7 @@ class Pp_Roles_Admin
                         name="<?php echo esc_attr($key); ?><?php echo $args['multiple'] ? '[]' : '';?>"
                         id="<?php echo esc_attr($key); ?>"
                         class="<?php echo (!$args['editable'] ? '' : 'pp-capabilities-role-choosen'); ?>"
-                        data-placeholder="<?php printf(esc_html__('Select %s', 'capsman-enhanced'), esc_html(strtolower($args['label']))); ?>"
+                        data-placeholder="<?php printf(esc_html__('Select %s', 'capability-manager-enhanced'), esc_html(strtolower($args['label']))); ?>"
                         <?php echo ($args['multiple'] ? 'multiple' : '');?>
                         <?php echo ($args['required'] ? 'required="true"' : '');?>>
                         <?php
@@ -438,7 +438,7 @@ class Pp_Roles_Admin
                             <?php echo esc_html($args['description']); ?>
                             <?php if ($key === 'role_level') : ?>
                                 <a href="https://publishpress.com/blog/user-role-levels/" target="blank">
-                                    <?php esc_html_e('Read more on Role Level.',  'capsman-enhanced'); ?>
+                                    <?php esc_html_e('Read more on Role Level.',  'capability-manager-enhanced'); ?>
                                 </a>
                             <?php endif; ?>
                         </p>
@@ -451,7 +451,7 @@ class Pp_Roles_Admin
                         id="<?php echo esc_attr($key); ?>"
                         name="<?php echo esc_attr($key); ?>"
                         value="<?php echo esc_attr($args['label']); ?>"
-                        onclick="return confirm('<?php esc_attr_e('Are you sure you want to delete this role?',  'capsman-enhanced'); ?>');"
+                        onclick="return confirm('<?php esc_attr_e('Are you sure you want to delete this role?',  'capability-manager-enhanced'); ?>');"
                          />
                         <?php if (isset($args['description'])) : ?>
                             <p class="description" style="color: red;"><?php echo esc_html($args['description']); ?></p>
@@ -489,7 +489,7 @@ class Pp_Roles_Admin
                             <?php checked(true, $referer_redirect); ?>
                             <?php echo ($args['required'] ? 'required="true"' : '');?> 
                             <?php echo (!$args['editable'] ? 'readonly="readonly"' : ''); ?>/>
-                            <span class="description"><?php echo esc_html__('Redirect users to the URL they were viewing before login.',  'capsman-enhanced'); ?></span>
+                            <span class="description"><?php echo esc_html__('Redirect users to the URL they were viewing before login.',  'capability-manager-enhanced'); ?></span>
                         </label>
                     </div>
                     <div class="login-redirect-option">
@@ -501,7 +501,7 @@ class Pp_Roles_Admin
                             <?php checked(true, $custom_redirect); ?>
                             <?php echo ($args['required'] ? 'required="true"' : '');?> 
                             <?php echo (!$args['editable'] ? 'readonly="readonly"' : ''); ?>/>
-                            <span class="description"><?php echo esc_html__('Redirect users to a specified URL.',  'capsman-enhanced'); ?></span>
+                            <span class="description"><?php echo esc_html__('Redirect users to a specified URL.',  'capability-manager-enhanced'); ?></span>
                         </label>
                         <div class="custom-url-wrapper" style="<?php esc_attr_e($custom_style); ?>">
                             <div class="pp-roles-internal-links-wrapper activated">
@@ -517,8 +517,8 @@ class Pp_Roles_Admin
                                     data-base="<?php echo esc_attr($base_url); ?>"
                                     data-entry="<?php echo esc_attr($form_url); ?>"
                                     data-home_url="<?php echo esc_url(home_url()); ?>"
-                                    data-message="<?php esc_attr_e('Enter the relative path only without domain for login redirect.',  'capsman-enhanced'); ?>"
-                                    data-required_message="<?php esc_attr_e('You must enter the Login Redirect URL.',  'capsman-enhanced'); ?>"
+                                    data-message="<?php esc_attr_e('Enter the relative path only without domain for login redirect.',  'capability-manager-enhanced'); ?>"
+                                    data-required_message="<?php esc_attr_e('You must enter the Login Redirect URL.',  'capability-manager-enhanced'); ?>"
                                     autocomplete="off"
                                 <?php echo ($args['required'] ? 'required="true"' : '');?> 
                                 <?php echo (!$args['editable'] ? 'readonly="readonly"' : ''); ?>/>
@@ -550,7 +550,7 @@ class Pp_Roles_Admin
                             data-base="<?php echo esc_attr($base_url); ?>"
                             data-entry="<?php echo esc_attr($form_url); ?>"
                             data-home_url="<?php echo esc_url(home_url()); ?>"
-                            data-message="<?php esc_attr_e('Enter the relative path only without domain for logout redirect.',  'capsman-enhanced'); ?>"
+                            data-message="<?php esc_attr_e('Enter the relative path only without domain for logout redirect.',  'capability-manager-enhanced'); ?>"
                             autocomplete="off"
                         <?php echo ($args['required'] ? 'required="true"' : '');?> 
                         <?php echo (!$args['editable'] ? 'readonly="readonly"' : ''); ?>/>
@@ -621,13 +621,13 @@ class Pp_Roles_Admin
         $fields       = apply_filters('pp_roles_fields', self::get_fields($current, $role_edit, $role_copy), $current, $role_edit, $role_copy);
 
         if ($role_copy) {
-            pp_capabilities_roles()->notify->add('info', sprintf( esc_html__('%s role copied. Please click the "Create Role" button to create this new role.', 'capsman-enhanced'), $current['name']));
+            pp_capabilities_roles()->notify->add('info', sprintf( esc_html__('%s role copied. Please click the "Create Role" button to create this new role.', 'capability-manager-enhanced'), $current['name']));
             //update new name and remove slug
             $current['role'] = $current['role'] . '_copy';
             $current['name'] = $current['name'] . ' Copy';
         }
 
-        $save_button_text = ($role_edit) ? esc_html__('Update Role', 'capsman-enhanced') : esc_html__('Create Role', 'capsman-enhanced');
+        $save_button_text = ($role_edit) ? esc_html__('Update Role', 'capability-manager-enhanced') : esc_html__('Create Role', 'capability-manager-enhanced');
 
         $capabilities_counts = (!empty($current['capabilities'])) ? count($current['capabilities']) : 0;
         $editor_features_counts = (!empty($current['editor_features'])) ? (int) $current['editor_features'] : 0;
@@ -638,11 +638,11 @@ class Pp_Roles_Admin
 
         if (!empty($current['role'])) {
             $features_counts = [
-                esc_html__('Editor Features', 'capsman-enhanced') => '<a target="blank" href="' . admin_url('admin.php?page=pp-capabilities-editor-features&role=' . $current['role'] . '') . '">(' . $editor_features_counts . ')</a>',
-                esc_html__('Admin Features', 'capsman-enhanced') => '<a target="blank" href="' . admin_url('admin.php?page=pp-capabilities-admin-features&role=' . $current['role'] . '') . '">(' . $admin_features_counts . ')</a>',
-                esc_html__('Profile Features', 'capsman-enhanced') => '<a target="blank" href="' . admin_url('admin.php?page=pp-capabilities-profile-features&role=' . $current['role'] . '') . '">(' . $profile_features_counts . ')</a>',
-                esc_html__('Admin Menus', 'capsman-enhanced') => '<a target="blank" href="' . admin_url('admin.php?page=pp-capabilities-admin-menus&role=' . $current['role'] . '') . '">(' . $admin_menus_counts . ')</a>',
-                esc_html__('Nav Menus', 'capsman-enhanced') => '<a target="blank" href="' . admin_url('admin.php?page=pp-capabilities-nav-menus&role=' . $current['role'] . '') . '">(' . $nav_menus_counts . ')</a>',
+                esc_html__('Editor Features', 'capability-manager-enhanced') => '<a target="blank" href="' . admin_url('admin.php?page=pp-capabilities-editor-features&role=' . $current['role'] . '') . '">(' . $editor_features_counts . ')</a>',
+                esc_html__('Admin Features', 'capability-manager-enhanced') => '<a target="blank" href="' . admin_url('admin.php?page=pp-capabilities-admin-features&role=' . $current['role'] . '') . '">(' . $admin_features_counts . ')</a>',
+                esc_html__('Profile Features', 'capability-manager-enhanced') => '<a target="blank" href="' . admin_url('admin.php?page=pp-capabilities-profile-features&role=' . $current['role'] . '') . '">(' . $profile_features_counts . ')</a>',
+                esc_html__('Admin Menus', 'capability-manager-enhanced') => '<a target="blank" href="' . admin_url('admin.php?page=pp-capabilities-admin-menus&role=' . $current['role'] . '') . '">(' . $admin_menus_counts . ')</a>',
+                esc_html__('Nav Menus', 'capability-manager-enhanced') => '<a target="blank" href="' . admin_url('admin.php?page=pp-capabilities-nav-menus&role=' . $current['role'] . '') . '">(' . $nav_menus_counts . ')</a>',
             ];
         } else {
             $features_counts = [];
@@ -654,15 +654,15 @@ class Pp_Roles_Admin
             <h1>
             <?php 
             if ($role_edit) {
-                printf( esc_html__('Edit Role: %s', 'capsman-enhanced'), esc_html($current['name']));
+                printf( esc_html__('Edit Role: %s', 'capability-manager-enhanced'), esc_html($current['name']));
             } elseif ($role_copy) {
-                esc_html_e('Copy Role', 'capsman-enhanced');
+                esc_html_e('Copy Role', 'capability-manager-enhanced');
             } else {
-                esc_html_e('Create New Role', 'capsman-enhanced');
+                esc_html_e('Create New Role', 'capability-manager-enhanced');
             }
             ?>
             <a href="<?php echo esc_url(admin_url('admin.php?page=pp-capabilities-roles')); ?>" class="page-title-action">
-                <?php esc_html_e('All Roles', 'capsman-enhanced'); ?>
+                <?php esc_html_e('All Roles', 'capability-manager-enhanced'); ?>
             </a>
             </h1>
             <div class="wp-clearfix"></div>
@@ -752,7 +752,7 @@ class Pp_Roles_Admin
 
                                                 </div>
                                                 <h2 class="roles-capabilities-title">
-                                                <span class="title"><?php esc_html_e('Capabilities', 'capsman-enhanced'); ?></span>
+                                                <span class="title"><?php esc_html_e('Capabilities', 'capability-manager-enhanced'); ?></span>
                                                 <span class="link">(<?php echo $capabilities_counts; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>)</span>
                                                 </h2>
                                                 <p class="description">
@@ -769,7 +769,7 @@ class Pp_Roles_Admin
                                                     printf(
                                                         esc_html__(
                                                             'These can be edited on the %1s Capabilities screen %2s', 
-                                                            'capsman-enhanced'
+                                                            'capability-manager-enhanced'
                                                         ),
                                                         $edit_link,
                                                         $closing_tag
@@ -795,10 +795,10 @@ class Pp_Roles_Admin
 
                                                     <?php if ($sn > 6) :?>
                                                     <div class="roles-capabilities-load-more">
-                                                        <?php echo esc_html__('Load More', 'capsman-enhanced'); ?>
+                                                        <?php echo esc_html__('Load More', 'capability-manager-enhanced'); ?>
                                                     </div>
                                                     <div class="roles-capabilities-load-less" style="display:none;">
-                                                        <?php echo esc_html__('Load Less', 'capsman-enhanced'); ?>
+                                                        <?php echo esc_html__('Load Less', 'capability-manager-enhanced'); ?>
                                                     </div>
                                                     <?php endif;?>
                                                     

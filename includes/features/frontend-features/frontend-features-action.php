@@ -38,7 +38,7 @@ class PP_Capabilities_Frontend_Features_Action
     public static function frontendElementNewEntryAjaxHandler()
     {
         $response['status']  = 'error';
-        $response['message'] = esc_html__('An error occured!', 'capsman-enhanced');
+        $response['message'] = esc_html__('An error occured!', 'capability-manager-enhanced');
         $response['content'] = '';
 
         $custom_label   = isset($_POST['custom_label']) ? sanitize_text_field($_POST['custom_label']) : '';
@@ -51,13 +51,13 @@ class PP_Capabilities_Frontend_Features_Action
         $item_id        = isset($_POST['item_id']) ? sanitize_key($_POST['item_id']) : '';
 
         if ((!is_multisite() || !is_super_admin()) && !current_user_can('administrator') && !current_user_can('manage_capabilities_frontend_features')) {
-            $response['message'] = esc_html__('You do not have permission to manage frontend features.', 'capsman-enhanced');
+            $response['message'] = esc_html__('You do not have permission to manage frontend features.', 'capability-manager-enhanced');
         } elseif (!wp_verify_nonce($security, 'frontend-element-nonce')) {
-            $response['message'] = esc_html__('Invalid action. Reload this page and try again.', 'capsman-enhanced');
+            $response['message'] = esc_html__('Invalid action. Reload this page and try again.', 'capability-manager-enhanced');
         } elseif (empty(trim($custom_label)) || (empty(trim($custom_element_selector)) && empty(trim($custom_element_styles)) && empty(trim($custom_element_bodyclass)))) {
-            $response['message'] = esc_html__('All fields are required.', 'capsman-enhanced');
+            $response['message'] = esc_html__('All fields are required.', 'capability-manager-enhanced');
         } elseif (empty($element_pages) && empty($element_post_types)) {
-            $response['message'] = esc_html__('Load on page types is required.', 'capsman-enhanced');
+            $response['message'] = esc_html__('Load on page types is required.', 'capability-manager-enhanced');
         } else {
             $element_id       = (!empty($item_id)) ? $item_id : uniqid(true);
             $data             = PP_Capabilities_Frontend_Features_Data::getFrontendElements();
@@ -89,9 +89,9 @@ class PP_Capabilities_Frontend_Features_Action
 
             $response['content'] = PP_Capabilities_Frontend_Features_UI::do_pp_capabilities_frontend_features_frontendelements_tr($function_args, false);
             if ($item_id) {
-                $response['message'] = esc_html__('Frontend element item updated. Save changes to enable for role.', 'capsman-enhanced');
+                $response['message'] = esc_html__('Frontend element item updated. Save changes to enable for role.', 'capability-manager-enhanced');
             } else {
-                $response['message'] = esc_html__('New frontend element added. Save changes to enable for role.', 'capsman-enhanced');
+                $response['message'] = esc_html__('New frontend element added. Save changes to enable for role.', 'capability-manager-enhanced');
             }
             $response['status']  = 'success';
         }
@@ -107,18 +107,18 @@ class PP_Capabilities_Frontend_Features_Action
     {
         $response = [];
         $response['status']  = 'error';
-        $response['message'] = esc_html__('An error occured!', 'capsman-enhanced');
+        $response['message'] = esc_html__('An error occured!', 'capability-manager-enhanced');
         $response['content'] = '';
 
         $item_id      = isset($_POST['item_id']) ? sanitize_key($_POST['item_id']) : '';
         $security     = isset($_POST['security']) ? sanitize_key($_POST['security']) : '';
 
         if ((!is_multisite() || !is_super_admin()) && !current_user_can('administrator') && !current_user_can('manage_capabilities_frontend_features')) {
-            $response['message'] = esc_html__('You do not have permission to manage frontend features.', 'capsman-enhanced');
+            $response['message'] = esc_html__('You do not have permission to manage frontend features.', 'capability-manager-enhanced');
         } elseif (!wp_verify_nonce($security, 'frontend-delete' . $item_id .'-nonce')) {
-            $response['message'] = esc_html__('Invalid action. Reload this page and try again.', 'capsman-enhanced');
+            $response['message'] = esc_html__('Invalid action. Reload this page and try again.', 'capability-manager-enhanced');
         } elseif (empty(trim($item_id))) {
-            $response['message'] = esc_html__('Invalid request!.', 'capsman-enhanced');
+            $response['message'] = esc_html__('Invalid request!.', 'capability-manager-enhanced');
         } else {
             $item_deleted = false;
 
@@ -133,7 +133,7 @@ class PP_Capabilities_Frontend_Features_Action
             
             if ($item_deleted) {
                 $response['status']  = 'success';
-                $response['message'] = esc_html__('Selected item deleted successfully', 'capsman-enhanced');
+                $response['message'] = esc_html__('Selected item deleted successfully', 'capability-manager-enhanced');
             }
         }
 

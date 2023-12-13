@@ -1,34 +1,32 @@
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PublishPress Capabilities\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-14 10:17+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"POT-Creation-Date: 2022-10-19 17:36-0400\n"
+"PO-Revision-Date: 2023-12-13 14:51+0000\n"
 "Last-Translator: Kevin Behrens <kevin@publishpress.com>\n"
-"Language-Team: PublishPress <help@publishpress.com>\n"
-"Language: \n"
+"Language-Team: English (United States)\n"
+"Language: en_US\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-KeywordsList: __;_e;_c;__ngettext;_n;pp_po_trigger;_x;_ex;"
-"esc_html__;esc_html_e\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-KeywordsList: __;_e;_c;_x;__ngettext\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Generator: Loco https://localise.biz/\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPath-1: includes\n"
 "X-Poedit-SearchPath-2: includes-core\n"
-"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;"
 
-#: includes/pp-ui.php:65
+#: includes/pp-ui.php:69
 #, php-format
 msgid ""
 "\"Posts\" capabilities selected here also define type-specific role "
 "assignment for Permission Groups%s."
 msgstr ""
 
-#: includes/pp-ui.php:67
+#: includes/pp-ui.php:71
 #, php-format
 msgid ""
 "\"Posts\" capabilities selected here also define type-specific role "
@@ -166,7 +164,7 @@ msgstr ""
 msgid "About PublishPress Capabilities"
 msgstr ""
 
-#: includes/pp-ui.php:60
+#: includes/pp-ui.php:64
 #, php-format
 msgid "activate %1$sAdvanced settings%2$s, see Role Usage"
 msgstr ""
@@ -284,7 +282,7 @@ msgid "Advanced"
 msgstr ""
 
 #: includes/roles/class/class-pp-roles-list-table.php:86
-#, php-format
+#, fuzzy, php-format
 msgid "All %s"
 msgid_plural "All %s"
 msgstr[0] ""
@@ -303,19 +301,19 @@ msgstr ""
 msgid "all roles"
 msgstr ""
 
-#: includes/pp-ui.php:301
+#: includes/pp-ui.php:305
 msgid ""
 "Allow \"Edit\", \"Delete\" and \"Assign\" capabilities separately from the "
 "\"Manage\" capability."
 msgstr ""
 
-#: includes/pp-ui.php:112
+#: includes/pp-ui.php:116
 msgid ""
 "Allow post type permissions to be controlled separately from other areas of "
 "WordPress."
 msgstr ""
 
-#: includes/pp-ui.php:219
+#: includes/pp-ui.php:223
 msgid ""
 "Allow taxonomy permissions to be controlled separately from other areas of "
 "WordPress."
@@ -403,6 +401,10 @@ msgstr ""
 msgid ""
 "Before importing, we recommend using the \"Backup\" tab to create a backup "
 "of your current settings."
+msgstr ""
+
+#: includes/admin.php:179
+msgid "Block"
 msgstr ""
 
 #: includes/functions.php:546
@@ -507,7 +509,7 @@ msgstr ""
 msgid "Capabilities allows you to change the permissions for any user role."
 msgstr ""
 
-#: includes/pp-ui.php:75
+#: includes/pp-ui.php:79
 #, php-format
 msgid ""
 "Capabilities for custom statuses can be manually added here. (See "
@@ -515,14 +517,14 @@ msgid ""
 "specific roles%s are usually more convenient, though."
 msgstr ""
 
-#: includes/pp-ui.php:77
+#: includes/pp-ui.php:81
 msgid ""
 "Capabilities for custom statuses can be manually added here. Or activate the "
 "PP Custom Post Statuses extension to assign status-specific supplemental "
 "roles."
 msgstr ""
 
-#: includes/pp-ui.php:80
+#: includes/pp-ui.php:84
 msgid ""
 "Capabilities for custom statuses can be manually added to a role here (see "
 "Conditions > Status > Capability Mapping for applicable names). However, it "
@@ -712,7 +714,7 @@ msgstr ""
 #: includes/features/frontend-features/frontend-features-ui.php:274
 #: includes/roles/class/class-pp-roles-admin.php:134
 #: includes/roles/class/class-pp-roles-list-table.php:274
-#: includes/roles/class/class-pp-roles-list-table.php:486
+#: includes/roles/class/class-pp-roles-list-table.php:509
 msgid "Delete"
 msgstr ""
 
@@ -738,7 +740,7 @@ msgstr ""
 msgid "Description here."
 msgstr ""
 
-#: includes/pp-ui.php:291
+#: includes/pp-ui.php:295
 msgid "Detailed Capabilities for Taxonomies"
 msgstr ""
 
@@ -1198,6 +1200,10 @@ msgstr ""
 msgid "Last Manual Backup - %s"
 msgstr ""
 
+#: includes/admin.php:188
+msgid "Legacy"
+msgstr ""
+
 #: includes/admin.php:1500
 msgid "Level:"
 msgstr ""
@@ -1222,12 +1228,12 @@ msgstr ""
 msgid "Load on page types:"
 msgstr ""
 
-#: includes/admin-load.php:695 includes/features/nav-menus.php:26
+#: includes/admin-load.php:699 includes/features/nav-menus.php:26
 #: includes/features/frontend-features/frontend-features.php:39
 msgid "Logged In Users"
 msgstr ""
 
-#: includes/admin-load.php:696 includes/features/nav-menus.php:26
+#: includes/admin-load.php:700 includes/features/nav-menus.php:26
 #: includes/features/frontend-features/frontend-features.php:40
 msgid "Logged Out Users"
 msgstr ""
@@ -1311,11 +1317,11 @@ msgstr ""
 msgid "Nav Menus"
 msgstr ""
 
-#: includes/admin.php:610
+#: includes/admin.php:177 includes/admin.php:610
 msgid "Nav Menus (Block)"
 msgstr ""
 
-#: includes/admin.php:612
+#: includes/admin.php:186 includes/admin.php:612
 msgid "Nav Menus (Legacy)"
 msgstr ""
 
@@ -1580,7 +1586,7 @@ msgid ""
 "kept."
 msgstr ""
 
-#: includes/admin-load.php:703
+#: includes/admin-load.php:707
 msgid "PublishPress Capabilities Menu Restriction"
 msgstr ""
 
@@ -1799,11 +1805,11 @@ msgstr ""
 msgid "Search results for &#8220;%s&#8221;"
 msgstr ""
 
-#: includes/roles/class/class-pp-roles-list-table.php:667
+#: includes/roles/class/class-pp-roles-list-table.php:690
 msgid "Search Roles"
 msgstr ""
 
-#: includes/pp-ui.php:58
+#: includes/pp-ui.php:62
 #, php-format
 msgid "see %1$sRole Usage%2$s: \"Pattern Roles\""
 msgstr ""
@@ -2061,12 +2067,12 @@ msgstr ""
 msgid "The selected role is not editable."
 msgstr ""
 
-#: includes/pp-ui.php:152 includes/admin.php:621
+#: includes/pp-ui.php:156 includes/admin.php:621
 #, php-format
 msgid "The slug for this post type is %s"
 msgstr ""
 
-#: includes/pp-ui.php:252 includes/pp-ui.php:332 includes/admin.php:619
+#: includes/pp-ui.php:256 includes/pp-ui.php:336 includes/admin.php:619
 #, php-format
 msgid "The slug for this taxonomy is %s"
 msgstr ""
@@ -2138,7 +2144,7 @@ msgstr ""
 msgid "This feature will be added to all pages."
 msgstr ""
 
-#: includes/admin-load.php:704
+#: includes/admin-load.php:708
 msgid "This menu is restricted for the following roles"
 msgstr ""
 
@@ -2152,7 +2158,7 @@ msgid ""
 "to add body classes only for that post."
 msgstr ""
 
-#: includes/pp-ui.php:181
+#: includes/pp-ui.php:185
 msgid ""
 "This will cause a new capability to be required for creating posts, and "
 "enable a checkbox column here for role assignments. Normally, post creation "
@@ -2205,7 +2211,7 @@ msgstr ""
 msgid "Typography"
 msgstr ""
 
-#: includes/test-user.php:58
+#: includes/test-user.php:61
 msgid "Unable to retrieve user data."
 msgstr ""
 
@@ -2224,15 +2230,15 @@ msgstr[1] ""
 msgid "Unhide"
 msgstr ""
 
-#: includes/pp-ui.php:103
+#: includes/pp-ui.php:107
 msgid "Unique Capabilities for Post Types"
 msgstr ""
 
-#: includes/pp-ui.php:210
+#: includes/pp-ui.php:214
 msgid "Unique Capabilities for Taxonomies"
 msgstr ""
 
-#: includes/pp-ui.php:189 includes/pp-ui.php:275 includes/pp-ui.php:355
+#: includes/pp-ui.php:193 includes/pp-ui.php:279 includes/pp-ui.php:359
 msgid "Update"
 msgstr ""
 
@@ -2495,7 +2501,7 @@ msgid ""
 "editor."
 msgstr ""
 
-#: includes/test-user.php:50
+#: includes/test-user.php:53
 #: includes/roles/class/class-pp-roles-actions.php:162
 #: includes/roles/class/class-pp-roles-actions.php:180
 #: includes/roles/class/class-pp-roles-actions.php:371

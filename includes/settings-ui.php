@@ -28,12 +28,12 @@ class Capabilities_Settings_UI {
             <div class="pp-column-left">
                 <ul id="publishpress-capability-settings-tabs" class="nav-tab-wrapper">
                     <?php do_action('pp_capabilities_settings_before_menu_list'); ?>
-                    <li class="<?php echo esc_attr('nav-tab ' . $first_active_tab); ?>"><a href="#ppcs-tab-roles"><?php esc_html_e('Roles', 'capsman-enhanced');?></a></li>
-                    <li class="nav-tab"><a href="#ppcs-tab-capabilities"><?php esc_html_e('Capabilities', 'capsman-enhanced');?></a></li>
-                    <li class="nav-tab"><a href="#ppcs-tab-editor-features"><?php esc_html_e('Editor Features', 'capsman-enhanced');?></a></li>
-                    <li class="nav-tab"><a href="#ppcs-tab-profile-features"><?php esc_html_e('Profile Features', 'capsman-enhanced');?></a></li>
+                    <li class="<?php echo esc_attr('nav-tab ' . $first_active_tab); ?>"><a href="#ppcs-tab-roles"><?php esc_html_e('Roles', 'capability-manager-enhanced');?></a></li>
+                    <li class="nav-tab"><a href="#ppcs-tab-capabilities"><?php esc_html_e('Capabilities', 'capability-manager-enhanced');?></a></li>
+                    <li class="nav-tab"><a href="#ppcs-tab-editor-features"><?php esc_html_e('Editor Features', 'capability-manager-enhanced');?></a></li>
+                    <li class="nav-tab"><a href="#ppcs-tab-profile-features"><?php esc_html_e('Profile Features', 'capability-manager-enhanced');?></a></li>
                     <?php do_action('pp_capabilities_settings_after_menu_list'); ?>
-                    <li class="nav-tab"><a href="#ppcs-tab-test-user"><?php esc_html_e('Test User', 'capsman-enhanced');?></a></li>
+                    <li class="nav-tab"><a href="#ppcs-tab-test-user"><?php esc_html_e('Test User', 'capability-manager-enhanced');?></a></li>
                 </ul>
 
                 <fieldset>
@@ -50,12 +50,12 @@ class Capabilities_Settings_UI {
                                     <?php
                                         $checked = checked(!empty(get_option('cme_capabilities_add_user_multi_roles', 0)), true, false);
                                     ?>
-                                    <th scope="row"><?php esc_html_e('Multiples roles on "Add New User" screen', 'capsman-enhanced'); ?></th>
+                                    <th scope="row"><?php esc_html_e('Multiples roles on "Add New User" screen', 'capability-manager-enhanced'); ?></th>
                                     <td>
                                         <label> 
                                         <input type="checkbox" name="cme_capabilities_add_user_multi_roles" id="cme_capabilities_add_user_multi_roles" autocomplete="off" value="1" <?php echo $checked;?>>
                                         <span class="description">
-                                            <?php esc_html_e('This allows you to assign a new user to multiples roles.', 'capsman-enhanced'); ?>
+                                            <?php esc_html_e('This allows you to assign a new user to multiples roles.', 'capability-manager-enhanced'); ?>
                                         </span>
                                         </label>
                                         <br>
@@ -66,12 +66,12 @@ class Capabilities_Settings_UI {
                                     <?php
                                         $checked = checked(!empty(get_option('cme_capabilities_edit_user_multi_roles', 0)), true, false);
                                     ?>
-                                    <th scope="row"><?php esc_html_e('Multiples roles on "User Edit" screen', 'capsman-enhanced'); ?></th>
+                                    <th scope="row"><?php esc_html_e('Multiples roles on "User Edit" screen', 'capability-manager-enhanced'); ?></th>
                                     <td>
                                         <label> 
                                         <input type="checkbox" name="cme_capabilities_edit_user_multi_roles" id="cme_capabilities_edit_user_multi_roles" autocomplete="off" value="1" <?php echo $checked;?>>
                                         <span class="description">
-                                            <?php esc_html_e('This allows you to assign an existing user to multiple roles.', 'capsman-enhanced'); ?>
+                                            <?php esc_html_e('This allows you to assign an existing user to multiple roles.', 'capability-manager-enhanced'); ?>
                                         </span>
                                         </label>
                                         <br>
@@ -82,12 +82,12 @@ class Capabilities_Settings_UI {
                                     <?php
                                         $checked = checked(!empty(get_option('cme_role_same_page_redirect_cookie', 0)), true, false);
                                     ?>
-                                    <th scope="row"><?php esc_html_e('Set login redirect cookie', 'capsman-enhanced'); ?></th>
+                                    <th scope="row"><?php esc_html_e('Set login redirect cookie', 'capability-manager-enhanced'); ?></th>
                                     <td>
                                         <label> 
                                         <input type="checkbox" name="cme_role_same_page_redirect_cookie" id="cme_role_same_page_redirect_cookie" autocomplete="off" value="1" <?php echo $checked;?>>
                                         <span class="description">
-                                            <?php esc_html_e('Use cookie to determine pages users were viewing before login. This is useful when login redirect is not working correctly due to wp_get_referer() limitation.', 'capsman-enhanced'); ?>
+                                            <?php esc_html_e('Use cookie to determine pages users were viewing before login. This is useful when login redirect is not working correctly due to wp_get_referer() limitation.', 'capability-manager-enhanced'); ?>
                                         </span>
                                         </label>
                                         <br>
@@ -103,12 +103,12 @@ class Capabilities_Settings_UI {
                                     <?php
                                         $checked = checked(!empty(get_option('cme_capabilities_show_private_taxonomies', 0)), true, false);
                                     ?>
-                                    <th scope="row"> <?php esc_html_e('Show private taxonomies', 'capsman-enhanced'); ?></th>
+                                    <th scope="row"> <?php esc_html_e('Show private taxonomies', 'capability-manager-enhanced'); ?></th>
                                     <td>
                                         <label> 
                                         <input type="checkbox" name="cme_capabilities_show_private_taxonomies" id="cme_capabilities_show_private_taxonomies" autocomplete="off" value="1" <?php echo $checked;?>>
                                         <span class="description">
-                                            <?php esc_html_e('This will show all taxonomies on the "Capabilities" screen, even ones normally hidden in the WordPress admin area.', 'capsman-enhanced'); ?>
+                                            <?php esc_html_e('This will show all taxonomies on the "Capabilities" screen, even ones normally hidden in the WordPress admin area.', 'capability-manager-enhanced'); ?>
                                         </span>
                                         </label>
                                         <br>
@@ -127,12 +127,12 @@ class Capabilities_Settings_UI {
                                     <?php
                                         $checked = checked(!empty(get_option('cme_editor_features_private_post_type', 0)), true, false);
                                     ?>
-                                    <th scope="row"> <?php esc_html_e('Show private post types', 'capsman-enhanced'); ?></th>
+                                    <th scope="row"> <?php esc_html_e('Show private post types', 'capability-manager-enhanced'); ?></th>
                                     <td>
                                         <label> 
                                         <input type="checkbox" name="cme_editor_features_private_post_type" id="cme_editor_features_private_post_type" autocomplete="off" value="1" <?php echo $checked;?>>
                                         <span class="description">
-                                            <?php esc_html_e('Show all post types on the "Editor Features" screen, even ones normally hidden in the WordPress admin area.', 'capsman-enhanced'); ?>
+                                            <?php esc_html_e('Show all post types on the "Editor Features" screen, even ones normally hidden in the WordPress admin area.', 'capability-manager-enhanced'); ?>
                                         </span>
                                         </label>
                                         <br>
@@ -143,12 +143,12 @@ class Capabilities_Settings_UI {
                                     <?php
                                         $checked = checked(!empty(get_option('cme_editor_features_classic_editor_tab', 0)), true, false);
                                     ?>
-                                    <th scope="row"> <?php esc_html_e('Enable Classic Editor tab', 'capsman-enhanced'); ?></th>
+                                    <th scope="row"> <?php esc_html_e('Enable Classic Editor tab', 'capability-manager-enhanced'); ?></th>
                                     <td>
                                         <label> 
                                         <input type="checkbox" name="cme_editor_features_classic_editor_tab" id="cme_editor_features_classic_editor_tab" autocomplete="off" value="1" <?php echo $checked;?>>
                                         <span class="description">
-                                            <?php esc_html_e('Always show the Classic Editor tab in "Editor Features" screen.', 'capsman-enhanced'); ?>
+                                            <?php esc_html_e('Always show the Classic Editor tab in "Editor Features" screen.', 'capability-manager-enhanced'); ?>
                                         </span>
                                         </label>
                                         <br>
@@ -164,12 +164,12 @@ class Capabilities_Settings_UI {
                                     <?php
                                         $checked = checked(!empty(get_option('cme_test_user_admin_bar', 1)), true, false);
                                     ?>
-                                    <th scope="row"> <?php esc_html_e('Admin Bar modification', 'capsman-enhanced'); ?></th>
+                                    <th scope="row"> <?php esc_html_e('Admin Bar modification', 'capability-manager-enhanced'); ?></th>
                                     <td>
                                         <label> 
                                         <input type="checkbox" name="cme_test_user_admin_bar" id="cme_test_user_admin_bar" autocomplete="off" value="1" <?php echo $checked;?>>
                                         <span class="description">
-                                            <?php esc_html_e('When testing, display a caption and return link in the Admin Bar.', 'capsman-enhanced'); ?>
+                                            <?php esc_html_e('When testing, display a caption and return link in the Admin Bar.', 'capability-manager-enhanced'); ?>
                                         </span>
                                         </label>
                                         <br>
@@ -180,12 +180,12 @@ class Capabilities_Settings_UI {
                                     <?php
                                         $checked = checked(!empty(get_option('cme_test_user_footer_notice', 1)), true, false);
                                     ?>
-                                    <th scope="row"> <?php esc_html_e('Front End footer notice', 'capsman-enhanced'); ?></th>
+                                    <th scope="row"> <?php esc_html_e('Front End footer notice', 'capability-manager-enhanced'); ?></th>
                                     <td>
                                         <label> 
                                         <input type="checkbox" name="cme_test_user_footer_notice" id="cme_test_user_footer_notice" autocomplete="off" value="1" <?php echo $checked;?>>
                                         <span class="description">
-                                            <?php esc_html_e('When testing, display a return link in the front end footer.', 'capsman-enhanced'); ?>
+                                            <?php esc_html_e('When testing, display a return link in the front end footer.', 'capability-manager-enhanced'); ?>
                                         </span>
                                         </label>
                                         <br>
@@ -196,14 +196,14 @@ class Capabilities_Settings_UI {
                                     <?php
                                         $excluded_roles = (array) get_option('cme_test_user_excluded_roles', []);
                                     ?>
-                                    <th scope="row"> <?php esc_html_e('Exclude role from User Testing', 'capsman-enhanced'); ?></th>
+                                    <th scope="row"> <?php esc_html_e('Exclude role from User Testing', 'capability-manager-enhanced'); ?></th>
                                     <td>
                                         <label> 
                                             <select 
                                                 name="cme_test_user_excluded_roles[]" 
                                                 id="cme_test_user_excluded_roles"
                                                 class="pp-capabilities-settings-chosen"
-                                                data-placeholder="<?php esc_attr_e('Select roles...', 'capsman-enhanced'); ?>"
+                                                data-placeholder="<?php esc_attr_e('Select roles...', 'capability-manager-enhanced'); ?>"
                                                 multiple
                                             >
                                                 <?php foreach (wp_roles()->roles as $role => $detail) : ?>
@@ -217,7 +217,7 @@ class Capabilities_Settings_UI {
                                             </select>
                                             <br />
                                             <span class="description">
-                                                <?php esc_html_e('Exclude users in selected roles from User Testing.', 'capsman-enhanced'); ?>
+                                                <?php esc_html_e('Exclude users in selected roles from User Testing.', 'capability-manager-enhanced'); ?>
                                             </span>
                                         </label>
                                         <br>
@@ -234,12 +234,12 @@ class Capabilities_Settings_UI {
                                     <?php
                                         $checked = checked(!empty(get_option('cme_profile_features_auto_redirect', 0)), true, false);
                                     ?>
-                                    <th scope="row"> <?php esc_html_e('Automatically refresh profile elements', 'capsman-enhanced'); ?></th>
+                                    <th scope="row"> <?php esc_html_e('Automatically refresh profile elements', 'capability-manager-enhanced'); ?></th>
                                     <td>
                                         <label> 
                                         <input type="checkbox" name="cme_profile_features_auto_redirect" id="cme_profile_features_auto_redirect" autocomplete="off" value="1" <?php echo $checked;?>>
                                         <span class="description">
-                                            <?php esc_html_e('Always try to automatically find profile elements. This may cause temporary issues when updating user roles that do not have access to the WordPress admin area.', 'capsman-enhanced'); ?>
+                                            <?php esc_html_e('Always try to automatically find profile elements. This may cause temporary issues when updating user roles that do not have access to the WordPress admin area.', 'capability-manager-enhanced'); ?>
                                         </span>
                                         </label>
                                         <br>
@@ -253,7 +253,7 @@ class Capabilities_Settings_UI {
                         </tr>
                     </table>
                 </fieldset>
-            <input type="submit" name="submit" id="submit" class="button button-primary" value="<?php esc_attr_e('Save Changes', 'capsman-enhanced');?>">
+            <input type="submit" name="submit" id="submit" class="button button-primary" value="<?php esc_attr_e('Save Changes', 'capability-manager-enhanced');?>">
         </div><!-- .pp-column-left -->
         <div class="pp-column-right pp-capabilities-sidebar">
             <?php pp_capabilities_pro_sidebox(); ?>

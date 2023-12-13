@@ -30,7 +30,7 @@ function admin_roles_page_load()
     wp_enqueue_script('pp-capabilities-chosen-js', plugin_dir_url(CME_FILE) . 'common/libs/chosen-v1.8.7/chosen.jquery.js', ['jquery'], PUBLISHPRESS_CAPS_VERSION);
 
     //Localize
-    wp_localize_script($plugin_name . '_table_edit', 'pp_roles_i18n', ['confirm_delete' => __('Are you sure you want to delete this role?', 'capsman-enhanced')]);
+    wp_localize_script($plugin_name . '_table_edit', 'pp_roles_i18n', ['confirm_delete' => __('Are you sure you want to delete this role?', 'capability-manager-enhanced')]);
     wp_enqueue_style('pp-capabilities-chosen-css', plugin_dir_url(CME_FILE) . 'common/libs/chosen-v1.8.7/chosen.css', false, PUBLISHPRESS_CAPS_VERSION);
 
     //initialize table here to be able to register default WP_List_Table screen options

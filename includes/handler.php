@@ -42,13 +42,13 @@ class CapsmanHandler
 			}
 
 			if (!empty($newrole)) {
-				ak_admin_notify(__('New role created.', 'capsman-enhanced'));
+				ak_admin_notify(__('New role created.', 'capability-manager-enhanced'));
 				$this->cm->set_current_role($newrole);
 			} else {
 				if ( empty($_POST['create-name']) && in_array(get_locale(), ['en_EN', 'en_US']) )
 					ak_admin_error('Error: No role name specified.');
 				else
-					ak_admin_error(__('Error: Failed creating the new role.', 'capsman-enhanced'));
+					ak_admin_error(__('Error: Failed creating the new role.', 'capability-manager-enhanced'));
 			}
 
 		// Save role changes. Already saved at start with self::saveRoleCapabilities()
@@ -58,7 +58,7 @@ class CapsmanHandler
 			}
 			
 			if (!pp_capabilities_is_editable_role(sanitize_key($_POST['current']))) {
-				ak_admin_error(__('The selected role is not editable.', 'capsman-enhanced'));
+				ak_admin_error(__('The selected role is not editable.', 'capability-manager-enhanced'));
 				return;
 			}
 
@@ -86,7 +86,7 @@ class CapsmanHandler
 			}
 
 			if (empty($_POST['current']) || !pp_capabilities_is_editable_role(sanitize_key($_POST['current']))) {
-				ak_admin_error(__('The selected role is not editable.', 'capsman-enhanced'));
+				ak_admin_error(__('The selected role is not editable.', 'capability-manager-enhanced'));
 				return;
 			}
 
@@ -116,15 +116,15 @@ class CapsmanHandler
 				exit;
 			} else {
 				add_action('all_admin_notices', function() {
-					ak_admin_notify(__('Incorrect capability name.', 'capsman-enhanced'));
+					ak_admin_notify(__('Incorrect capability name.', 'capability-manager-enhanced'));
 				});
 			}
 			
 		} elseif ( ! empty($_POST['update_filtered_types']) || ! empty($_POST['update_filtered_taxonomies']) || ! empty($_POST['update_detailed_taxonomies']) ) {
-				ak_admin_notify(__('Type / Taxonomy settings saved.', 'capsman-enhanced'));
+				ak_admin_notify(__('Type / Taxonomy settings saved.', 'capability-manager-enhanced'));
 		} else {
 			if (!apply_filters('publishpress-caps_submission_ok', false)) {
-				ak_admin_error(__('Bad form received.', 'capsman-enhanced'));
+				ak_admin_error(__('Bad form received.', 'capability-manager-enhanced'));
 			}
 		}
 
@@ -247,7 +247,7 @@ class CapsmanHandler
 
 		if ( 'administrator' == $role_name && isset($del_caps['manage_capabilities']) ) {
 			unset($del_caps['manage_capabilities']);
-			ak_admin_error(__('You cannot remove Manage Capabilities from Administrators', 'capsman-enhanced'));
+			ak_admin_error(__('You cannot remove Manage Capabilities from Administrators', 'capability-manager-enhanced'));
 		}
 		
 		// additional safeguard against removal of read capability

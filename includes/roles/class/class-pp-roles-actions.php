@@ -145,7 +145,7 @@ class Pp_Roles_Actions
     {
 
         if (!current_user_can($this->capability)) {
-            $this->notify(esc_html__('You do not have sufficient permissions to perform this action.', 'capsman-enhanced'));
+            $this->notify(esc_html__('You do not have sufficient permissions to perform this action.', 'capability-manager-enhanced'));
         }
     }
 
@@ -159,7 +159,7 @@ class Pp_Roles_Actions
     {
         $checked = isset($_REQUEST[$query_arg]) && wp_verify_nonce(sanitize_key($_REQUEST[$query_arg]), $action);
         if (!$checked) {
-            $this->notify(esc_html__('Your link has expired, refresh the page and try again.', 'capsman-enhanced'));
+            $this->notify(esc_html__('Your link has expired, refresh the page and try again.', 'capability-manager-enhanced'));
         }
     }
 
@@ -177,11 +177,11 @@ class Pp_Roles_Actions
          * Check nonce
          */
         if (!isset($_REQUEST['_wpnonce']) || !wp_verify_nonce(sanitize_key($_REQUEST['_wpnonce']), 'add-role')) {
-            $this->notify(esc_html__('Your link has expired, refresh the page and try again.', 'capsman-enhanced'));
+            $this->notify(esc_html__('Your link has expired, refresh the page and try again.', 'capability-manager-enhanced'));
         }
 
         if (empty($_REQUEST['role_name'])) {
-            $this->notify(esc_html__('Missing parameters, refresh the page and try again.', 'capsman-enhanced'));
+            $this->notify(esc_html__('Missing parameters, refresh the page and try again.', 'capability-manager-enhanced'));
         }
 
         if (empty($_REQUEST['role_slug'])) {
@@ -208,7 +208,7 @@ class Pp_Roles_Actions
          */
         if (!empty($role['error']) && ('invalid_name' == $role['error'])) {
             $out = sprintf(
-                __('Invalid role name entry: %s', 'capsman-enhanced'), 
+                __('Invalid role name entry: %s', 'capability-manager-enhanced'), 
                 esc_html($role['name'])
             );
             $this->notify($out);
@@ -220,7 +220,7 @@ class Pp_Roles_Actions
         if (!empty($role['error']) && ('role_exists' == $role['error'])) {
             //this role already exist
             $out = sprintf(
-                __('The role "%s" already exists. Please choose a different name.', 'capsman-enhanced'),
+                __('The role "%s" already exists. Please choose a different name.', 'capability-manager-enhanced'),
                 esc_html($role['name'])
             );
 
@@ -247,7 +247,7 @@ class Pp_Roles_Actions
         }
         $result = add_role($role['name'], sanitize_text_field($_REQUEST['role_name']), $role_capabilities);
         if (!$result instanceof WP_Role) {
-            if ($this->notify(esc_html__('Something went wrong, the system wasn\'t able to create the role, refresh the page and try again.', 'capsman-enhanced'))) {
+            if ($this->notify(esc_html__('Something went wrong, the system wasn\'t able to create the role, refresh the page and try again.', 'capability-manager-enhanced'))) {
                 return;
             }
         }
@@ -334,7 +334,7 @@ class Pp_Roles_Actions
         /**
          * Notify user and redirect
          */
-        $out = sprintf(esc_html__('The new role %s was created successfully.', 'capsman-enhanced'),  sanitize_text_field($_REQUEST['role_name']));
+        $out = sprintf(esc_html__('The new role %s was created successfully.', 'capability-manager-enhanced'),  sanitize_text_field($_REQUEST['role_name']));
             
         $redirect_url = esc_url_raw(
             add_query_arg( 
@@ -368,11 +368,11 @@ class Pp_Roles_Actions
          * Check nonce
          */
         if (!isset($_REQUEST['_wpnonce']) || !wp_verify_nonce(sanitize_key($_REQUEST['_wpnonce']), 'edit-role')) {
-            $this->notify(esc_html__('Your link has expired, refresh the page and try again.', 'capsman-enhanced'));
+            $this->notify(esc_html__('Your link has expired, refresh the page and try again.', 'capability-manager-enhanced'));
         }
 
         if (empty($_REQUEST['current_role']) || empty($_REQUEST['role_name'])) {
-            $this->notify(esc_html__('Missing parameters, refresh the page and try again.', 'capsman-enhanced'));
+            $this->notify(esc_html__('Missing parameters, refresh the page and try again.', 'capability-manager-enhanced'));
         }
 
         /**
@@ -446,7 +446,7 @@ class Pp_Roles_Actions
         /**
          * Notify user and redirect
          */
-        $out = sprintf( __('%s role updated successfully.', 'capsman-enhanced'),  $new_title);
+        $out = sprintf( __('%s role updated successfully.', 'capability-manager-enhanced'),  $new_title);
             
         $redirect_url = esc_url_raw(
             add_query_arg( 
@@ -488,7 +488,7 @@ class Pp_Roles_Actions
          * Check nonce
          */
         if (!isset($_REQUEST['_wpnonce']) || !wp_verify_nonce(sanitize_key($_REQUEST['_wpnonce']), $nonce_check)) {
-            $this->notify(esc_html__('Your link has expired, refresh the page and try again.', 'capsman-enhanced'));
+            $this->notify(esc_html__('Your link has expired, refresh the page and try again.', 'capability-manager-enhanced'));
         }
 
         /**
@@ -512,7 +512,7 @@ class Pp_Roles_Actions
          * If no roles provided return
          */
         if (empty($roles)) {
-            $this->notify(esc_html__('Missing parameters, refresh the page and try again.', 'capsman-enhanced'));
+            $this->notify(esc_html__('Missing parameters, refresh the page and try again.', 'capability-manager-enhanced'));
         }
 
         $default = get_option('default_role');
@@ -520,7 +520,7 @@ class Pp_Roles_Actions
 		if ( $default == $role ) {
             $this->notify(
                 sprintf(
-                    esc_html__('Cannot delete default role. You <a href="%s">have to change it first</a>.', 'capsman-enhanced'), 
+                    esc_html__('Cannot delete default role. You <a href="%s">have to change it first</a>.', 'capability-manager-enhanced'), 
                     'options-general.php'
                 )
             );
@@ -539,7 +539,7 @@ class Pp_Roles_Actions
             }
 
             if (empty($roles)) {
-                $this->notify(esc_html__('Deleting a system role is not allowed.', 'capsman-enhanced'));
+                $this->notify(esc_html__('Deleting a system role is not allowed.', 'capability-manager-enhanced'));
             }
         }
 
@@ -563,23 +563,23 @@ class Pp_Roles_Actions
 
         if ($deleted) {
             $default_name = (wp_roles()->is_role($default)) ? wp_roles()->role_names[$default] : $default;
-            $users_message = ($user_count) ? sprintf(esc_html__('%1$d users moved to default role %2$s.', 'capsman-enhanced'), (int) $user_count, esc_html($default_name)) : '';
+            $users_message = ($user_count) ? sprintf(esc_html__('%1$d users moved to default role %2$s.', 'capability-manager-enhanced'), (int) $user_count, esc_html($default_name)) : '';
             
             $role_name = (wp_roles()->is_role($roles[0])) ? wp_roles()->role_names[$roles[0]] : $roles[0];
 
             $single = sprintf(
-                esc_html__('The role %1$s was successfully deleted. %2$s', 'capsman-enhanced'), 
+                esc_html__('The role %1$s was successfully deleted. %2$s', 'capability-manager-enhanced'), 
                 esc_html($roles[0]),
                 $users_message
             );
             
             $plural = sprintf(
-                esc_html__('The selected %1$s roles were successfully deleted. %2$s', 'capsman-enhanced'), 
+                esc_html__('The selected %1$s roles were successfully deleted. %2$s', 'capability-manager-enhanced'), 
                 $deleted,
                 $users_message
             );
             
-            $out = _n($single, $plural, $deleted, 'capsman-enhanced');
+            $out = _n($single, $plural, $deleted, 'capability-manager-enhanced');
 
             if ($this->is_ajax()) {
                 wp_send_json_success($out);
@@ -596,7 +596,7 @@ class Pp_Roles_Actions
                 $this->notify($out, 'success', true, $redirect_url);
             }
         } else {
-            $this->notify(esc_html__('The role could not be deleted.', 'capsman-enhanced'));
+            $this->notify(esc_html__('The role could not be deleted.', 'capability-manager-enhanced'));
         }
     }
 
@@ -639,7 +639,7 @@ class Pp_Roles_Actions
          * If no roles provided return
          */
         if (empty($roles)) {
-            $out = __('Missing parameters, refresh the page and try again.', 'capsman-enhanced');
+            $out = __('Missing parameters, refresh the page and try again.', 'capability-manager-enhanced');
             $this->notify($out);
         }
 
@@ -650,7 +650,7 @@ class Pp_Roles_Actions
         $role_name = (wp_roles()->is_role($roles[0])) ? wp_roles()->role_names[$roles[0]] : $roles[0];
 
         $out = sprintf(
-            __('The role %1$s was successfully hidden.', 'capsman-enhanced'), 
+            __('The role %1$s was successfully hidden.', 'capability-manager-enhanced'), 
             $roles[0]
         );
         
@@ -700,7 +700,7 @@ class Pp_Roles_Actions
          * If no roles provided return
          */
         if (empty($roles)) {
-            $this->notify(esc_html__('Missing parameters, refresh the page and try again.', 'capsman-enhanced'));
+            $this->notify(esc_html__('Missing parameters, refresh the page and try again.', 'capability-manager-enhanced'));
         }
 
         $pp_only = (array) pp_capabilities_get_permissions_option('supplemental_role_defs');
@@ -710,7 +710,7 @@ class Pp_Roles_Actions
         $role_name = (wp_roles()->is_role($roles[0])) ? wp_roles()->role_names[$roles[0]] : $roles[0];
 
         $out = sprintf(
-            __('The role %1$s was successfully unhidden.', 'capsman-enhanced'), 
+            __('The role %1$s was successfully unhidden.', 'capability-manager-enhanced'), 
             $roles[0]
         );
         

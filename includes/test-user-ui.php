@@ -40,7 +40,7 @@ class PP_Capabilities_Test_User_UI extends PP_Capabilities_Test_User
             $actions['ppc_test_user'] = sprintf(
                 '<a href="%s">%s</a>',
                 esc_url($link),
-                esc_html__('Test user', 'capsman-enhanced')
+                esc_html__('Test user', 'capability-manager-enhanced')
             );
         }
 
@@ -64,13 +64,13 @@ class PP_Capabilities_Test_User_UI extends PP_Capabilities_Test_User
             );
             ?>
             <tr class="user-test-user-wrap">
-                <th scope="row"><?php esc_html_e('Test user', 'capsman-enhanced'); ?></th>
+                <th scope="row"><?php esc_html_e('Test user', 'capability-manager-enhanced'); ?></th>
                 <td>
                     <?php 
                     printf(
                         '<a href="%s" class="button">%s</a>',
                         esc_url($link),
-                        esc_html__('Test this user', 'capsman-enhanced')
+                        esc_html__('Test this user', 'capability-manager-enhanced')
                     );
                     ?>
                 </td>
@@ -115,7 +115,7 @@ class PP_Capabilities_Test_User_UI extends PP_Capabilities_Test_User
 
                 var switchBackDiv = '<span class="ppc-testing-user top-notice">'
                 + '<?php echo wp_kses(
-                        esc_html__('Testing: ', 'capsman-enhanced'), 
+                        esc_html__('Testing: ', 'capability-manager-enhanced'), 
                         [
                             'a' => ['href' => []],
                         ]
@@ -129,7 +129,7 @@ class PP_Capabilities_Test_User_UI extends PP_Capabilities_Test_User
 
                 <?php
                 $message = sprintf(
-                    esc_html__('%1$sReturn to Administrator view%2$s', 'capsman-enhanced'),
+                    esc_html__('%1$sReturn to Administrator view%2$s', 'capability-manager-enhanced'),
                     sprintf('<a class="pp-capabilities-return" href="%s">', esc_url($this->switchBackLink())),
                     '</a>'
                 );
@@ -176,7 +176,7 @@ class PP_Capabilities_Test_User_UI extends PP_Capabilities_Test_User
                 <span class="dashicons dashicons-admin-users" style="color:#E6A341"></span>
                 <?php
                 $message = sprintf(
-                    esc_html__('Testing as user: %1$s. %2$sReturn to Administrator view%3$s', 'capsman-enhanced'),
+                    esc_html__('Testing as user: %1$s. %2$sReturn to Administrator view%3$s', 'capability-manager-enhanced'),
                     $user->display_name,
                     sprintf('<a href="%s">', esc_url($this->switchBackLink())),
                     '</a>'

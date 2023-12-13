@@ -73,7 +73,7 @@ class CoreAdmin {
             $profile_features_offset = array_search('profile-features', array_keys($sub_menu_pages));
             $profile_features_menu   = [];
             $profile_features_menu['admin-menus'] = [
-                'title'             => __('Admin Menus', 'capsman-enhanced'),
+                'title'             => __('Admin Menus', 'capability-manager-enhanced'),
                 'capabilities'      => (is_multisite() && is_super_admin()) ? 'read' : 'manage_capabilities_admin_menus',
                 'page'              => 'pp-capabilities-admin-menus',
                 'callback'          => [$this, 'AdminMenusPromo'],
@@ -114,12 +114,12 @@ class CoreAdmin {
         ?>
         <div class="pp-promo-overlay-row div-pp-promo-blur">
             <select class="chosen-cpt-select frontendelements-form-pages" 
-                data-placeholder="<?php esc_attr_e('Select pages...', 'capsman-enhanced'); ?>" multiple>
+                data-placeholder="<?php esc_attr_e('Select pages...', 'capability-manager-enhanced'); ?>" multiple>
                 <option value=""></option>
             </select>
             <br />
             <small>
-                <?php esc_html_e('You can select page types where this element will be added.', 'capsman-enhanced'); ?>
+                <?php esc_html_e('You can select page types where this element will be added.', 'capability-manager-enhanced'); ?>
             </small>
             <input type="text" style="visibility: hidden;" /> <!-- using this to balance the space needed due to field size -->
         </div>

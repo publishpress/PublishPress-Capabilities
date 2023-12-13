@@ -13,7 +13,7 @@ class PP_Capabilities_Frontend_Features_Data
         $elements = [];
 
         //Add frontend elements
-        $elements[esc_html__('Frontend Elements', 'capsman-enhanced')] = self::getFrontendElements();
+        $elements[esc_html__('Frontend Elements', 'capability-manager-enhanced')] = self::getFrontendElements();
 
         return apply_filters('pp_capabilities_frontend_features_elements', $elements);
     }
