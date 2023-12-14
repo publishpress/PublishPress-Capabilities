@@ -13,12 +13,11 @@ class Capabilities_Settings_UI {
 
     public function settingsUI() {
         $all_options        = pp_capabilities_settings_options();
+
         if (defined('PUBLISHPRESS_CAPS_PRO_VERSION')) {
-            $first_table_display = 'display:none;';
-            $first_active_tab    = '';
+            $default_tab = (!empty($_REQUEST['pp_tab'])) ? sanitize_key($_REQUEST['pp_tab']) : '';
         } else {
-            $first_table_display = '';
-            $first_active_tab    = 'nav-tab-active';
+            $default_tab = (!empty($_REQUEST['pp_tab'])) ? sanitize_key($_REQUEST['pp_tab']) : 'roles';
         }
 
         $sidebar_enabled = defined('PUBLISHPRESS_CAPS_PRO_VERSION') ? false : true;
@@ -28,12 +27,12 @@ class Capabilities_Settings_UI {
             <div class="pp-column-left">
                 <ul id="publishpress-capability-settings-tabs" class="nav-tab-wrapper">
                     <?php do_action('pp_capabilities_settings_before_menu_list'); ?>
-                    <li class="<?php echo esc_attr('nav-tab ' . $first_active_tab); ?>"><a href="#ppcs-tab-roles"><?php esc_html_e('Roles', 'capability-manager-enhanced');?></a></li>
-                    <li class="nav-tab"><a href="#ppcs-tab-capabilities"><?php esc_html_e('Capabilities', 'capability-manager-enhanced');?></a></li>
-                    <li class="nav-tab"><a href="#ppcs-tab-editor-features"><?php esc_html_e('Editor Features', 'capability-manager-enhanced');?></a></li>
-                    <li class="nav-tab"><a href="#ppcs-tab-profile-features"><?php esc_html_e('Profile Features', 'capability-manager-enhanced');?></a></li>
+                    <li class="nav-tab <?php if ('roles' == $default_tab) echo 'nav-tab-active'?>"><a href="#ppcs-tab-roles"><?php esc_html_e('Roles', 'capability-manager-enhanced');?></a></li>
+                    <li class="nav-tab <?php if ('capabilities' == $default_tab) echo 'nav-tab-active'?>"><a href="#ppcs-tab-capabilities"><?php esc_html_e('Capabilities', 'capability-manager-enhanced');?></a></li>
+                    <li class="nav-tab <?php if ('editor-features' == $default_tab) echo 'nav-tab-active'?>"><a href="#ppcs-tab-editor-features"><?php esc_html_e('Editor Features', 'capability-manager-enhanced');?></a></li>
+                    <li class="nav-tab <?php if ('profile-features' == $default_tab) echo 'nav-tab-active'?>"><a href="#ppcs-tab-profile-features"><?php esc_html_e('Profile Features', 'capability-manager-enhanced');?></a></li>
                     <?php do_action('pp_capabilities_settings_after_menu_list'); ?>
-                    <li class="nav-tab"><a href="#ppcs-tab-test-user"><?php esc_html_e('Test User', 'capability-manager-enhanced');?></a></li>
+                    <li class="nav-tab <?php if ('test-user' == $default_tab) echo 'nav-tab-active'?>"><a href="#ppcs-tab-test-user"><?php esc_html_e('Test User', 'capability-manager-enhanced');?></a></li>
                 </ul>
 
                 <fieldset>
@@ -42,8 +41,8 @@ class Capabilities_Settings_UI {
                             <td class="content">
 
                             <?php do_action('pp_capabilities_settings_before_menu_content'); ?>
-
-                            <table class="form-table" role="presentation" id="ppcs-tab-roles" style="<?php echo esc_attr($first_table_display); ?>">
+ 
+                            <table class="form-table" role="presentation" id="ppcs-tab-roles" style="<?php if ('roles' != $default_tab) echo 'display: none'?>">
                                 <tbody>
 
                                     <tr>
@@ -96,7 +95,7 @@ class Capabilities_Settings_UI {
                                 </tbody>
                             </table>
 
-                            <table class="form-table" role="presentation" id="ppcs-tab-capabilities" style="display:none;">
+                            <table class="form-table" role="presentation" id="ppcs-tab-capabilities" style="<?php if ('capabilities' != $default_tab) echo 'display: none'?>">
                                 <tbody>
 
                                 <tr>
@@ -120,7 +119,7 @@ class Capabilities_Settings_UI {
                                 </tbody>
                             </table>
 
-                            <table class="form-table" role="presentation" id="ppcs-tab-editor-features" style="display:none;">
+                            <table class="form-table" role="presentation" id="ppcs-tab-editor-features" style="<?php if ('editor-features' != $default_tab) echo 'display: none'?>">
                                 <tbody>
 
                                     <tr>
@@ -158,7 +157,7 @@ class Capabilities_Settings_UI {
                                 </tbody>
                             </table>
 
-                            <table class="form-table" role="presentation" id="ppcs-tab-test-user" style="display:none;">
+                            <table class="form-table" role="presentation" id="ppcs-tab-test-user" style="<?php if ('test-user' != $default_tab) echo 'display: none'?>">
                                 <tbody>
                                     <tr>
                                     <?php
@@ -227,7 +226,7 @@ class Capabilities_Settings_UI {
                                 </tbody>
                             </table>
 
-                            <table class="form-table" role="presentation" id="ppcs-tab-profile-features" style="display:none;">
+                            <table class="form-table" role="presentation" id="ppcs-tab-profile-features" style="<?php if ('profile-features' != $default_tab) echo 'display: none'?>">
                                 <tbody>
 
                                     <tr>
