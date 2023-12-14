@@ -410,7 +410,7 @@ Fixed : Security issue. Please update.
 
 == Changelog ==
 
-= 2.11.0 - 13 Dec 2023 =
+= 2.11.0 - 14 Dec 2023 =
   * Fixed: Inconsistencies with language files, #311
 
 = 2.10.3 - 12 Dec 2023 =
