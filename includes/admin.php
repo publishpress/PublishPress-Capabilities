@@ -818,6 +818,9 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 							}
 
 							echo '</table>';
+
+							do_action('publishpress-caps_manager_postcaps_table', $cap_type, $item_type, compact('current', 'rcaps', 'pp_metagroup_caps', 'is_administrator', 'default_caps', 'custom_types', 'defined', 'unfiltered', 'pp_metagroup_caps', 'active_tab_id'));
+
 							echo '</div>';
 
 							if ($item_type == 'taxonomy') {
