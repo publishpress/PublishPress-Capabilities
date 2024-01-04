@@ -7,7 +7,7 @@ Tags: capabilities, permissions, admin menus, user roles, user role editor, acce
 Requires at least: 5.5
 Requires PHP: 7.2.5
 Tested up to: 6.3
-Stable tag: 2.11.0
+Stable tag: 2.11.1
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -410,7 +410,7 @@ Fixed : Security issue. Please update.
 
 == Changelog ==
 
-= 2.11.0 - 14 Dec 2023 =
+= 2.11.1 - 04 Jan 2024 =
   * Fixed: Inconsistencies with language files, #311
 
 = 2.10.3 - 12 Dec 2023 =
