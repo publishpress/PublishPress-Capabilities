@@ -6,7 +6,7 @@ Author URI: https://publishpress.com
 Tags: capabilities, permissions, admin menus, user roles, user role editor, access control, members, edit capabilities, publishpress capabilities, multisite capabilities, roles access, post editing screen, taxonomy capabilities, post permissions, page permisisons, woocommerce capabilities, user testing, user switching, hide metaboxes, hide editor features, media library capabilities, post type permissions, user role capabilities, edit user roles, administrator, editor, subscriber, contributor, author, shop manager
 Requires at least: 5.5
 Requires PHP: 7.2.5
-Tested up to: 6.3
+Tested up to: 6.4
 Stable tag: 2.11.1
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
