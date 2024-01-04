@@ -251,7 +251,7 @@ function _cme_fltPluginActionLinks($links, $file)
 {
 	if ($file == plugin_basename(CME_FILE)) {
 		if (!is_network_admin()) {
-			$links[] = "<a href='" . admin_url("admin.php?page=pp-capabilities") . "'>" . esc_html__('Edit Roles', 'capsman-enhanced') . "</a>";
+			$links[] = "<a href='" . admin_url("admin.php?page=pp-capabilities") . "'>" . esc_html__('Edit Roles', 'capability-manager-enhanced') . "</a>";
 		}
 	}
 

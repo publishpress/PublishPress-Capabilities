@@ -72,11 +72,11 @@
       <div class="pp-promo-upgrade-notice">
          <p>
             <?php esc_html_e('You can block pages by URL or hide Admin elements by entering a CSS class or ID. This feature is available in PublishPress Capabilities Pro.',
-               'capsman-enhanced'); ?>
+               'capability-manager-enhanced'); ?>
          </p>
          <p>
             <a href="https://publishpress.com/links/capabilities-banner" target="_blank">
-            <?php esc_html_e('Upgrade to Pro', 'capsman-enhanced'); ?>
+            <?php esc_html_e('Upgrade to Pro', 'capability-manager-enhanced'); ?>
             </a>
          </p>
       </div>

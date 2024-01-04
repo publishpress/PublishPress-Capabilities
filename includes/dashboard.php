@@ -22,7 +22,7 @@ $sidebar_enabled = defined('PUBLISHPRESS_CAPS_PRO_VERSION') ? false : true;
 
 <div class="wrap publishpress-caps-manage pressshack-admin-wrapper pp-capability-menus-wrapper capabilities-dashboard">
     <h2>
-        <?php esc_html_e('Dashboard', 'capsman-enhanced'); ?>
+        <?php esc_html_e('Dashboard', 'capability-manager-enhanced'); ?>
     </h2>
     <div class="pp-columns-wrapper <?php echo ($sidebar_enabled) ? 'pp-enable-sidebar' : ''; ?> clear">
         <div class="pp-column-left">

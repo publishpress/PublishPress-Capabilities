@@ -3,10 +3,10 @@
  * Plugin Name: PublishPress Capabilities
  * Plugin URI: https://publishpress.com/capability-manager/
  * Description: Manage WordPress role definitions, per-site or network-wide. Organizes post capabilities by post type and operation.
- * Version: 2.10.3
+ * Version: 2.11.1
  * Author: PublishPress
  * Author URI: https://publishpress.com/
- * Text Domain: capsman-enhanced
+ * Text Domain: capability-manager-enhanced
  * Domain Path: /languages/
  * Requires at least: 5.5
  * Requires PHP: 7.2.5
@@ -69,7 +69,7 @@ if (
 add_action('plugins_loaded', function () {
 
 	if (!defined('CAPSMAN_VERSION')) {
-		define('CAPSMAN_VERSION', '2.10.3');
+		define('CAPSMAN_VERSION', '2.11.1');
 		define('CAPSMAN_ENH_VERSION', CAPSMAN_VERSION);
 		define('PUBLISHPRESS_CAPS_VERSION', CAPSMAN_VERSION);
 	}
@@ -77,7 +77,7 @@ add_action('plugins_loaded', function () {
 	foreach (get_option('active_plugins') as $plugin_file) {
 		if (false !== strpos($plugin_file, 'capsman.php')) {
 			add_action('admin_notices', function () {
-				echo '<div id="message" class="error fade" style="color: black">' . sprintf(esc_html__('%1s Error: %2s  PublishPress Capabilities cannot function because another copy of the plugin is active.', 'capsman-enhanced'), '<strong>', '</strong>') . '</div>';
+				echo '<div id="message" class="error fade" style="color: black">' . sprintf(esc_html__('%1s Error: %2s  PublishPress Capabilities cannot function because another copy of the plugin is active.', 'capability-manager-enhanced'), '<strong>', '</strong>') . '</div>';
 			});
 			return;
 		}
@@ -106,7 +106,7 @@ add_action('plugins_loaded', function () {
 			'plugin_row_meta',
 			function ($links, $file) {
 				if ($file == plugin_basename(__FILE__)) {
-					$links[] = '<strong>' . esc_html__('This plugin can be deleted.', 'capsman-enhanced') . '</strong>';
+					$links[] = '<strong>' . esc_html__('This plugin can be deleted.', 'capability-manager-enhanced') . '</strong>';
 				}
 
 				return $links;

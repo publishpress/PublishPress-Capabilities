@@ -37,7 +37,7 @@ function ak_admin_notify( $message = '' )
 {
     if (is_admin() && !did_action('pp_capabilities_error')) {
 	    if ( empty($message) ) {
-		    $message = esc_html__('Settings saved.', 'capsman-enhanced');
+		    $message = esc_html__('Settings saved.', 'capability-manager-enhanced');
     	}
         // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
     	echo '<div id="message" class="updated fade"><p><strong>' . $message . '</strong></p></div>';

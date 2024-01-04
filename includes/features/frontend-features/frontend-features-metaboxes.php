@@ -52,7 +52,7 @@ class PP_Capabilities_Frontend_Features_Metaboxes
             if (!empty($post_types)) {
                 add_meta_box(
                     'ppc_frontend_metabox',
-                    __('Frontend Features', 'capsman-enhanced'),
+                    __('Frontend Features', 'capability-manager-enhanced'),
                     [$this, 'renderFrontendFeaturesMetabox'],
                     $post_types,
                     'side',
@@ -74,7 +74,7 @@ class PP_Capabilities_Frontend_Features_Metaboxes
 
         self::loadFeaturesMetaboxAssets(); ?>
         <p>
-            <?php esc_html_e('Choose Frontend Features that will apply to this post.', 'capsman-enhanced'); ?>
+            <?php esc_html_e('Choose Frontend Features that will apply to this post.', 'capability-manager-enhanced'); ?>
         </p>
         <?php
         foreach ($frontend_features_elements as $section_title => $section_elements) :
@@ -87,7 +87,7 @@ class PP_Capabilities_Frontend_Features_Metaboxes
                 <select name="<?php echo esc_attr($section_slug); ?>[]"
                     id="<?php echo esc_attr($section_slug); ?>"
                     class="chosen-cpt-select"
-                    data-placeholder="<?php printf(esc_attr__('Select %1$s...', 'capsman-enhanced'), esc_html__($section_title)); ?>"
+                    data-placeholder="<?php printf(esc_attr__('Select %1$s...', 'capability-manager-enhanced'), esc_html__($section_title)); ?>"
                     multiple>
                     <?php 
                     foreach ($section_elements as $section_id => $section_array) :

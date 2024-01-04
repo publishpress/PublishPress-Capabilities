@@ -12,7 +12,7 @@ class Capsman_BackupHandler
 
 	function __construct( $manager_obj ) {
 		if ((!is_multisite() || !is_super_admin()) && !current_user_can('administrator') && !current_user_can('manage_capabilities_backup'))
-			wp_die( esc_html__( 'You do not have permission to restore backup.', 'capsman-enhanced' ) );
+			wp_die( esc_html__( 'You do not have permission to restore backup.', 'capability-manager-enhanced' ) );
 	
 		$this->cm = $manager_obj;
 	}
@@ -70,7 +70,7 @@ class Capsman_BackupHandler
 
             //backup datestamp and response
 			update_option($this->cm->ID . '_backup_datestamp', current_time( 'timestamp' ), false );
-			ak_admin_notify(__('New backup saved.', 'capsman-enhanced'));
+			ak_admin_notify(__('New backup saved.', 'capability-manager-enhanced'));
 				
         }
 
@@ -87,9 +87,9 @@ class Capsman_BackupHandler
 				case 'restore_initial':
 					if ($roles = get_option($cm_roles_initial)) {
 						update_option($wp_roles, $roles);
-						ak_admin_notify(__('Roles and Capabilities restored from initial backup.', 'capsman-enhanced'));
+						ak_admin_notify(__('Roles and Capabilities restored from initial backup.', 'capability-manager-enhanced'));
 					} else {
-						ak_admin_error(__('Restore failed. No backup found.', 'capsman-enhanced'));
+						ak_admin_error(__('Restore failed. No backup found.', 'capability-manager-enhanced'));
 					}
 					break;
 
@@ -116,18 +116,18 @@ class Capsman_BackupHandler
                         }
 
                         $restored_backup = array_unique($restored_backup);
-						ak_admin_notify(sprintf(__('%s restored from last backup.', 'capsman-enhanced'), implode(', ', $restored_backup)));
+						ak_admin_notify(sprintf(__('%s restored from last backup.', 'capability-manager-enhanced'), implode(', ', $restored_backup)));
 					} else {
-						ak_admin_error(__('Restore failed. No backup found.', 'capsman-enhanced'));
+						ak_admin_error(__('Restore failed. No backup found.', 'capability-manager-enhanced'));
 					}
 					break;
 
 				default:
                     if ($roles = get_option(sanitize_key($_POST['select_restore']))) {
 						update_option($wp_roles, $roles);
-						ak_admin_notify(__('Roles and Capabilities restored from selected auto-backup.', 'capsman-enhanced'));
+						ak_admin_notify(__('Roles and Capabilities restored from selected auto-backup.', 'capability-manager-enhanced'));
 					} else {
-						ak_admin_error(__('Restore failed. No backup found.', 'capsman-enhanced'));
+						ak_admin_error(__('Restore failed. No backup found.', 'capability-manager-enhanced'));
 					}
 			}
 		}
@@ -137,12 +137,12 @@ class Capsman_BackupHandler
             check_admin_referer('pp-capabilities-backup');
 
             if (empty($_FILES['import_file']['tmp_name']) || empty($_FILES['import_file']['name'])) {
-                ak_admin_error(__( 'Please upload a file to import', 'capsman-enhanced'));
+                ak_admin_error(__( 'Please upload a file to import', 'capability-manager-enhanced'));
                 return;
             }
             
             if (pathinfo(sanitize_text_field($_FILES['import_file']['name']), PATHINFO_EXTENSION) !== 'json') {
-                ak_admin_error(__( 'Please upload a valid .json file', 'capsman-enhanced'));
+                ak_admin_error(__( 'Please upload a valid .json file', 'capability-manager-enhanced'));
                 return;
             }
 
@@ -162,7 +162,7 @@ class Capsman_BackupHandler
             }
 
             if ( ! file_exists( $file['file'] ) ) {
-                ak_admin_error(__( 'Error importing settings! Please try again.', 'capsman-enhanced'));
+                ak_admin_error(__( 'Error importing settings! Please try again.', 'capability-manager-enhanced'));
                 return;
             }
 
@@ -175,7 +175,7 @@ class Capsman_BackupHandler
 
             // Data checks.
             if ( 'array' != gettype( $data ) ) {
-                ak_admin_error(__( 'Error importing settings! Please check that you uploaded a valid json file.', 'capsman-enhanced'));
+                ak_admin_error(__( 'Error importing settings! Please check that you uploaded a valid json file.', 'capability-manager-enhanced'));
                 return;
             }
 
@@ -196,7 +196,7 @@ class Capsman_BackupHandler
 
             $restored_backup = array_unique($restored_backup);
 
-            ak_admin_notify(sprintf(__('%s successfully imported from uploaded data.', 'capsman-enhanced'), implode(', ', $restored_backup)));
+            ak_admin_notify(sprintf(__('%s successfully imported from uploaded data.', 'capability-manager-enhanced'), implode(', ', $restored_backup)));
 
 		}
 	}
@@ -282,7 +282,7 @@ class Capsman_BackupHandler
 		require_once(ABSPATH . 'wp-admin/includes/schema.php');
 
 		if ( ! function_exists('populate_roles') ) {
-			ak_admin_error(__('Needed function to create default roles not found!', 'capsman-enhanced'));
+			ak_admin_error(__('Needed function to create default roles not found!', 'capability-manager-enhanced'));
 			return;
 		}
 
@@ -301,7 +301,7 @@ class Capsman_BackupHandler
             $current_user->allcaps[$cap] = true;
         }
 
-		$msg = esc_html__('Roles and Capabilities reset to WordPress defaults', 'capsman-enhanced');
+		$msg = esc_html__('Roles and Capabilities reset to WordPress defaults', 'capability-manager-enhanced');
 		
 		if ( function_exists( 'pp_populate_roles' ) ) {
 			pp_populate_roles();

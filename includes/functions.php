@@ -1,11 +1,11 @@
 <?php
 /*
  * PublishPress Capabilities [Free]
- * 
+ *
  * Functions available for any URL, which are not contained within a class
- * 
+ *
  * For performance and code separation, do not include functions that are only needed for wp-admin requests
- * 
+ *
  */
 
 //frontend features restrict instance
@@ -84,7 +84,7 @@ function _cme_init()
 {
     require_once(dirname(__FILE__) . '/filters.php');
 
-    load_plugin_textdomain('capsman-enhanced', false, dirname(plugin_basename(__FILE__)) . '/languages');
+    load_plugin_textdomain('capability-manager-enhanced', false, dirname(plugin_basename(__FILE__)) . '/languages');
 }
 
 function cme_is_plugin_active($check_plugin_file)
@@ -288,14 +288,14 @@ function ppc_roles_login_redirect($redirect_to, $request, $user) {
             //get role option
             $role_option = get_option("pp_capabilities_{$user_role}_role_option", []);
 
-            if (is_array($role_option) && !empty($role_option) 
+            if (is_array($role_option) && !empty($role_option)
                 && !empty($role_option['custom_redirect']) && (int)$role_option['custom_redirect'] > 0
                 && !empty($role_option['login_redirect'])
             ) {
                 //custom url redirect
                 $redirect_to = esc_url_raw($role_option['login_redirect']);
                 break;
-            } else if (is_array($role_option) && !empty($role_option) 
+            } else if (is_array($role_option) && !empty($role_option)
                 && !empty($role_option['referer_redirect']) && (int)$role_option['referer_redirect'] > 0
             ) {
                 // phpcs:ignore WordPressVIPMinimum.Variables.RestrictedVariables.cache_constraints___COOKIE
@@ -374,7 +374,7 @@ add_filter('logout_redirect', 'ppc_roles_logout_redirect', 10, 3);
  * Block user role login
  *
  * @param $user (null|WP_User|WP_Error) WP_User if the user is authenticated. WP_Error or null otherwise.
- * 
+ *
  * @return WP_User object if credentials authenticate the user. WP_Error or null otherwise
 */
 function ppc_roles_wp_authenticate_user($user) {
@@ -387,11 +387,11 @@ function ppc_roles_wp_authenticate_user($user) {
         foreach ($user->roles as $user_role) {
             //get role option
             $role_option = get_option("pp_capabilities_{$user_role}_role_option", []);
-            if (is_array($role_option) && !empty($role_option) 
-                && !empty($role_option['disable_role_user_login']) 
+            if (is_array($role_option) && !empty($role_option)
+                && !empty($role_option['disable_role_user_login'])
                 && (int)$role_option['disable_role_user_login'] > 0
             ) {
-                return new WP_Error('ppc_roles_user_banned', __('Login permission denied.', 'capsman-enhanced'));
+                return new WP_Error('ppc_roles_user_banned', __('Login permission denied.', 'capability-manager-enhanced'));
             }
         }
     }
@@ -431,16 +431,16 @@ add_filter('woocommerce_disable_admin_bar', 'ppc_roles_disable_woocommerce_admin
 function pp_capabilities_admin_pages(){
 
     $pp_capabilities_pages = [
-        'pp-capabilities', 
-        'pp-capabilities-dashboard', 
-        'pp-capabilities-roles', 
-        'pp-capabilities-admin-menus', 
-        'pp-capabilities-nav-menus', 
-        'pp-capabilities-editor-features', 
-        'pp-capabilities-backup', 
-        'pp-capabilities-settings', 
-        'pp-capabilities-admin-features', 
-        'pp-capabilities-frontend-features', 
+        'pp-capabilities',
+        'pp-capabilities-dashboard',
+        'pp-capabilities-roles',
+        'pp-capabilities-admin-menus',
+        'pp-capabilities-nav-menus',
+        'pp-capabilities-editor-features',
+        'pp-capabilities-backup',
+        'pp-capabilities-settings',
+        'pp-capabilities-admin-features',
+        'pp-capabilities-frontend-features',
         'pp-capabilities-profile-features'
     ];
 
@@ -452,7 +452,7 @@ function pp_capabilities_admin_pages(){
  *
  */
 function is_pp_capabilities_admin_page(){
-    
+
     $pp_capabilities_pages = pp_capabilities_admin_pages();
 
     $is_pp_capabilities_page = false;
@@ -466,7 +466,7 @@ function is_pp_capabilities_admin_page(){
 
 function pp_capabilities_nav_menu_access_denied()
 {
-    $forbidden = esc_attr__('You do not have permission to access this page.', 'capsman-enhanced');
+    $forbidden = esc_attr__('You do not have permission to access this page.', 'capability-manager-enhanced');
     wp_die(esc_html($forbidden));
 }
 
@@ -517,7 +517,7 @@ function pp_capabilities_pro_sidebox()
     if (defined('PUBLISHPRESS_CAPS_PRO_VERSION')) {
         return;
     }
-    
+
     //the banner style only got enqueue when banner display
     //funtion is used which will no longer be true after removing the banner.
     wp_enqueue_style(
@@ -531,39 +531,39 @@ function pp_capabilities_pro_sidebox()
         <div class="advertisement-box-content postbox">
             <div class="postbox-header">
                 <h3 class="advertisement-box-header hndle is-non-sortable">
-                    <span><?php echo esc_html__('Upgrade to Capabilities Pro', 'capsman-enhanced'); ?></span>
+                    <span><?php echo esc_html__('Upgrade to Capabilities Pro', 'capability-manager-enhanced'); ?></span>
                 </h3>
             </div>
 
             <div class="inside">
-                <p><?php echo esc_html__('Enhance the power of PublishPress Capabilities with the Pro version:', 'capsman-enhanced'); ?>
+                <p><?php echo esc_html__('Enhance the power of PublishPress Capabilities with the Pro version:', 'capability-manager-enhanced'); ?>
                 </p>
                 <ul>
-                    <li><?php echo esc_html__('Admin Menu restrictions', 'capsman-enhanced'); ?></li>
-                    <li><?php echo esc_html__('Remove metaboxes on the editing screen', 'capsman-enhanced'); ?></li>
-                    <li><?php echo esc_html__('Remove anything on the editing screen', 'capsman-enhanced'); ?></li>
-                    <li><?php echo esc_html__('Remove anything in the WordPress admin', 'capsman-enhanced'); ?></li>
-                    <li><?php echo esc_html__('Block admin pages by URL', 'capsman-enhanced'); ?></li>
-                    <li><?php echo esc_html__('Target Frontend Features for specific pages', 'capsman-enhanced'); ?></li>
-                    <li><?php echo esc_html__('Fast, professional support', 'capsman-enhanced'); ?></li>
-                    <li><?php echo esc_html__('No ads inside the plugin', 'capsman-enhanced'); ?></li>
+                    <li><?php echo esc_html__('Admin Menu restrictions', 'capability-manager-enhanced'); ?></li>
+                    <li><?php echo esc_html__('Remove metaboxes on the editing screen', 'capability-manager-enhanced'); ?></li>
+                    <li><?php echo esc_html__('Remove anything on the editing screen', 'capability-manager-enhanced'); ?></li>
+                    <li><?php echo esc_html__('Remove anything in the WordPress admin', 'capability-manager-enhanced'); ?></li>
+                    <li><?php echo esc_html__('Block admin pages by URL', 'capability-manager-enhanced'); ?></li>
+                    <li><?php echo esc_html__('Target Frontend Features for specific pages', 'capability-manager-enhanced'); ?></li>
+                    <li><?php echo esc_html__('Fast, professional support', 'capability-manager-enhanced'); ?></li>
+                    <li><?php echo esc_html__('No ads inside the plugin', 'capability-manager-enhanced'); ?></li>
                 </ul>
                 <div class="upgrade-btn">
-                    <a href="https://publishpress.com/links/capabilities-menu" target="__blank"><?php echo esc_html__('Upgrade to Pro', 'capsman-enhanced'); ?></a>
+                    <a href="https://publishpress.com/links/capabilities-menu" target="__blank"><?php echo esc_html__('Upgrade to Pro', 'capability-manager-enhanced'); ?></a>
                 </div>
             </div>
         </div>
         <div class="advertisement-box-content postbox">
             <div class="postbox-header">
                 <h3 class="advertisement-box-header hndle is-non-sortable">
-                    <span><?php echo esc_html__('Need PublishPress Capabilities Support?', 'capsman-enhanced'); ?></span>
+                    <span><?php echo esc_html__('Need PublishPress Capabilities Support?', 'capability-manager-enhanced'); ?></span>
                 </h3>
             </div>
 
             <div class="inside">
-                <p><?php echo esc_html__('If you need help or have a new feature request, let us know.', 'capsman-enhanced'); ?>
+                <p><?php echo esc_html__('If you need help or have a new feature request, let us know.', 'capability-manager-enhanced'); ?>
                     <a class="advert-link" href="https://wordpress.org/plugins/capability-manager-enhanced/" target="_blank">
-                    <?php echo esc_html__('Request Support', 'capsman-enhanced'); ?> 
+                    <?php echo esc_html__('Request Support', 'capability-manager-enhanced'); ?>
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="linkIcon">
                             <path
                                 d="M18.2 17c0 .7-.6 1.2-1.2 1.2H7c-.7 0-1.2-.6-1.2-1.2V7c0-.7.6-1.2 1.2-1.2h3.2V4.2H7C5.5 4.2 4.2 5.5 4.2 7v10c0 1.5 1.2 2.8 2.8 2.8h10c1.5 0 2.8-1.2 2.8-2.8v-3.6h-1.5V17zM14.9 3v1.5h3.7l-6.4 6.4 1.1 1.1 6.4-6.4v3.7h1.5V3h-6.3z"
@@ -572,9 +572,9 @@ function pp_capabilities_pro_sidebox()
                     </a>
                 </p>
                 <p>
-                <?php echo esc_html__('Detailed documentation is also available on the plugin website.', 'capsman-enhanced'); ?> 
+                <?php echo esc_html__('Detailed documentation is also available on the plugin website.', 'capability-manager-enhanced'); ?>
                     <a class="advert-link" href="https://publishpress.com/docs-category/cme/" target="_blank">
-                    <?php echo esc_html__('View Knowledge Base', 'capsman-enhanced'); ?> 
+                    <?php echo esc_html__('View Knowledge Base', 'capability-manager-enhanced'); ?>
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="linkIcon">
                             <path
                                 d="M18.2 17c0 .7-.6 1.2-1.2 1.2H7c-.7 0-1.2-.6-1.2-1.2V7c0-.7.6-1.2 1.2-1.2h3.2V4.2H7C5.5 4.2 4.2 5.5 4.2 7v10c0 1.5 1.2 2.8 2.8 2.8h10c1.5 0 2.8-1.2 2.8-2.8v-3.6h-1.5V17zM14.9 3v1.5h3.7l-6.4 6.4 1.1 1.1 6.4-6.4v3.7h1.5V3h-6.3z"
@@ -589,17 +589,17 @@ function pp_capabilities_pro_sidebox()
 }
 
 /**
- * Check if current active theme is block 
+ * Check if current active theme is block
  * theme/support full site editing
  *
  * @return bool
  */
-function pp_capabilities_is_block_theme() 
+function pp_capabilities_is_block_theme()
 {
     $is_block_theme = false;
 
-    if (function_exists('wp_is_block_theme') 
-        && function_exists('block_template_part') 
+    if (function_exists('wp_is_block_theme')
+        && function_exists('block_template_part')
         && wp_is_block_theme()
     ) {
         $is_block_theme = true;
@@ -648,7 +648,7 @@ function pp_capabilities_get_fse_navs_sub_items($nav_id)
             $menu_items   = pp_capabilities_parse_nav_block($parsed_block, $menu_items);
         }
     }
-    
+
     return $menu_items;
 }
 
@@ -660,7 +660,7 @@ function pp_capabilities_get_fse_navs_sub_items($nav_id)
  * @param integer $parent
  * @param integer $depth
  * @param string $ancestor_class
- * 
+ *
  * @return array $menu_items
  */
 function pp_capabilities_parse_nav_block($parsed_block, $menu_items, $parent = 0, $depth = 0, $ancestor_class = '') {
@@ -786,18 +786,18 @@ function ppc_block_friend_name($block_name) {
     $friendly_name = $block_name;
 
     $supported_blocks = [
-        'core/site-logo'     => __('Site Logo', 'capsman-enhanced'),
-        'core/site-title'    => __('Site Title', 'capsman-enhanced'),
-        'core/social-links'  => __('Social Links', 'capsman-enhanced'),
-        'core/page-list'     => __('Page Lists', 'capsman-enhanced'),
-        'core/search'        => __('Search', 'capsman-enhanced'),
-        'core/home-link'     => __('Home Link', 'capsman-enhanced'),
+        'core/site-logo'     => __('Site Logo', 'capability-manager-enhanced'),
+        'core/site-title'    => __('Site Title', 'capability-manager-enhanced'),
+        'core/social-links'  => __('Social Links', 'capability-manager-enhanced'),
+        'core/page-list'     => __('Page Lists', 'capability-manager-enhanced'),
+        'core/search'        => __('Search', 'capability-manager-enhanced'),
+        'core/home-link'     => __('Home Link', 'capability-manager-enhanced'),
     ];
 
     if (array_key_exists($block_name, $supported_blocks)) {
         $friendly_name = $supported_blocks[$block_name];
     }
-    
+
     return $friendly_name;
 }
 
@@ -819,7 +819,7 @@ function ppc_block_menu_icon($block_name) {
     if (array_key_exists($block_name, $supported_blocks)) {
         $menu_icon = $supported_blocks[$block_name];
     }
-    
+
     return $menu_icon;
 }
 
@@ -828,9 +828,9 @@ function ppc_block_menu_icon($block_name) {
  */
 if (!is_admin()) {
 
-    /** 
+    /**
      * Classic menu
-     * 
+     *
      * Checks the menu items for their visibility options and
      * removes menu items that are not visible.
      *
@@ -855,7 +855,7 @@ if (!is_admin()) {
             $user_roles[] = 'ppc_guest';
         }
 
-        /* 
+        /*
          * PublishPress Permissions: Restrict Nav Menus for a Permission Group
          * (Integrate PublishPress Capabilities Pro functionality).
          *
@@ -865,14 +865,14 @@ if (!is_admin()) {
          *       Configure Capabilities > Nav Menus as desired for that role.
          */
         /*
-        add_filter('pp_capabilities_nav_menu_apply_role_restrictions', 
+        add_filter('pp_capabilities_nav_menu_apply_role_restrictions',
             function($roles, $menu_object) {
                 if (function_exists('presspermit')) {
                     $permission_group_ids = [12, 14, 15];   // group IDs to restrict
                     $restriction_role = 'subscriber';       // role that has restrictions defined by Capabilities > Nav Menus
 
                     if (array_intersect(
-                        array_keys(presspermit()->getUser()->groups['pp_group']), 
+                        array_keys(presspermit()->getUser()->groups['pp_group']),
                         $permission_group_ids
                     )) {
                         $roles []= $restriction_role;
@@ -918,9 +918,9 @@ if (!is_admin()) {
     }
     add_filter('wp_get_nav_menu_items', 'pp_capabilities_nav_menu_permission', 99, 3);
 
-    /** 
+    /**
      * FSE theme menu
-     * 
+     *
      * Checks the menu items for their visibility options and
      * removes menu items that are not visible.
      *
@@ -1026,7 +1026,7 @@ if (!is_admin()) {
                                 'order'       => 'asc',
                             ]
                         );
-                        
+
                         if (!empty($all_pages)) {
                             $top_level_pages     = [];
                             $pages_with_children = [];
@@ -1085,7 +1085,7 @@ if (!is_admin()) {
                     }
                 }
             }
-            
+
             //unset using block function
             foreach (array_values($removeable_keys) as $removeable_keys) {
                 $inner_blocks->offsetUnset($removeable_keys);
@@ -1301,7 +1301,7 @@ function pp_capabilities_current_url()
  * Check if a feature is enabled
  *
  * @param integer $feature
- * 
+ *
  * @return bool
  */
 function pp_capabilities_feature_enabled($feature) {

@@ -26,7 +26,7 @@ $default_role = $capsman->current;
 
 <div class="wrap publishpress-caps-manage pressshack-admin-wrapper pp-capability-menus-wrapper-promo">
     <div id="icon-capsman-admin" class="icon32"></div>
-    <h2><?php esc_html_e('Admin Menu Restrictions', 'capsman-enhanced'); ?></h2>
+    <h2><?php esc_html_e('Admin Menu Restrictions', 'capability-manager-enhanced'); ?></h2>
 
     <form method="post" id="ppc-admin-menu-form" action="admin.php?page=pp-capabilities-admin-menus">
         <fieldset>
@@ -45,7 +45,7 @@ $default_role = $capsman->current;
                                 ?>
                             </select> &nbsp;
                             <input type="submit" name="admin-menu-submit"
-                                value="<?php esc_attr_e('Save Changes', 'capsman-enhanced') ?>"
+                                value="<?php esc_attr_e('Save Changes', 'capability-manager-enhanced') ?>"
                                 class="button-primary ppc-admin-menu-submit" style="float:right" />
                         </div>
                         <div id="pp-capability-menu-wrapper" class="postbox" style="box-shadow: none;">
@@ -55,11 +55,11 @@ $default_role = $capsman->current;
                                     <img src="<?php echo esc_url_raw(plugin_dir_url(CME_FILE) . 'includes-core/pp-capabilities-admin-menus-mobile.jpg');?>" class="pp-capability-mobile" />
                                     <div class="pp-capability-menus-promo-content">
                                         <p>
-                                            <?php esc_html_e('You can restrict access to admin menu screens. This feature is available in PublishPress Capabilities Pro', 'capsman-enhanced'); ?>
+                                            <?php esc_html_e('You can restrict access to admin menu screens. This feature is available in PublishPress Capabilities Pro', 'capability-manager-enhanced'); ?>
                                         </p>
                                         <p>
                                             <a href="https://publishpress.com/links/capabilities-banner" target="_blank">
-                                                <?php esc_html_e('Upgrade to Pro', 'capsman-enhanced'); ?>
+                                                <?php esc_html_e('Upgrade to Pro', 'capability-manager-enhanced'); ?>
                                             </a>
                                         </p>
                                     </div>

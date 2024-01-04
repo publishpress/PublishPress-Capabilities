@@ -2,12 +2,12 @@
 
 /*
  * PublishPress Capabilities [Free]
- * 
+ *
  * Admin execution controller: menu registration and other filters and actions that need to be loaded for every wp-admin URL
- * 
- * This module should not include full functions related to our own plugin screens.  
+ *
+ * This module should not include full functions related to our own plugin screens.
  * Instead, use these filter and action handlers to load other classes when needed.
- * 
+ *
  */
 class PP_Capabilities_Admin_UI {
     function __construct() {
@@ -61,16 +61,16 @@ class PP_Capabilities_Admin_UI {
         if (is_admin() && (isset($_REQUEST['page']) && (in_array($_REQUEST['page'], ['pp-capabilities', 'pp-capabilities-backup', 'pp-capabilities-roles', 'pp-capabilities-admin-menus', 'pp-capabilities-editor-features', 'pp-capabilities-nav-menus', 'pp-capabilities-settings', 'pp-capabilities-admin-features', 'pp-capabilities-profile-features', 'pp-capabilities-dashboard', 'pp-capabilities-frontend-features']))
 
         || (!empty($_REQUEST['action']) && in_array($_REQUEST['action'], ['pp-roles-add-role', 'pp-roles-delete-role', 'pp-roles-hide-role', 'pp-roles-unhide-role']))
-        || ( ! empty($_SERVER['SCRIPT_NAME']) && strpos(sanitize_text_field($_SERVER['SCRIPT_NAME']), 'p-admin/plugins.php' ) && ! empty($_REQUEST['action'] ) ) 
+        || ( ! empty($_SERVER['SCRIPT_NAME']) && strpos(sanitize_text_field($_SERVER['SCRIPT_NAME']), 'p-admin/plugins.php' ) && ! empty($_REQUEST['action'] ) )
         || ( isset($_GET['action']) && ('reset-defaults' == $_GET['action']) && isset($_REQUEST['_wpnonce']) && wp_verify_nonce(sanitize_key($_REQUEST['_wpnonce']), 'capsman-reset-defaults') )
         || in_array( $pagenow, array( 'users.php', 'user-edit.php', 'profile.php', 'user-new.php' ) )
         ) ) {
             global $capsman;
-            
+
             // Run the plugin
             require_once ( dirname(CME_FILE) . '/framework/lib/formating.php' );
             require_once ( dirname(CME_FILE) . '/framework/lib/users.php' );
-            
+
             require_once ( dirname(CME_FILE) . '/includes/manager.php' );
             $capsman = new CapabilityManager();
         } else {
@@ -86,16 +86,16 @@ class PP_Capabilities_Admin_UI {
                 if (!class_exists('\PublishPress\WordPressReviews\ReviewsController')) {
                     include_once PUBLISHPRESS_CAPS_ABSPATH . '/lib/vendor/publishpress/wordpress-reviews/ReviewsController.php';
                 }
-    
+
                 if (class_exists('\PublishPress\WordPressReviews\ReviewsController')) {
                     $reviews = new \PublishPress\WordPressReviews\ReviewsController(
                         'capability-manager-enhanced',
                         'PublishPress Capabilities',
                         plugin_dir_url(CME_FILE) . 'common/img/capabilities-wp-logo.png'
                     );
-        
+
                     add_filter('publishpress_wp_reviews_display_banner_capability-manager-enhanced', [$this, 'shouldDisplayBanner']);
-        
+
                     $reviews->init();
                 }
             }
@@ -118,7 +118,7 @@ class PP_Capabilities_Admin_UI {
         //capabilities settings
         add_action('pp-capabilities-settings-ui', [$this, 'settingsUI']);
 
-        //clear the "done" flag on new plugin install 
+        //clear the "done" flag on new plugin install
         add_action('activated_plugin', [$this, 'clearProfileFeaturesDoneFlag'], 10, 2);
         //prevent access to admin dashboard
         add_action('admin_init', [$this, 'blockDashboardAccess']);
@@ -126,7 +126,7 @@ class PP_Capabilities_Admin_UI {
 
 	function register_textdomain() {
 
-        $domain       = 'capsman-enhanced';
+        $domain       = 'capability-manager-enhanced';
 		$mofile_custom = sprintf('%s-%s.mo', $domain, get_user_locale());
 		$locations = [
 			trailingslashit( WP_LANG_DIR . '/' . $domain ),
@@ -256,7 +256,7 @@ class PP_Capabilities_Admin_UI {
         if (!in_array($pagenow, ['post.php', 'post-new.php'])) {
             return;
         }
-    
+
         static $def_post_types; // avoid redundant filter application
 
         if (!isset($def_post_types)) {
@@ -276,7 +276,7 @@ class PP_Capabilities_Admin_UI {
                     require_once ( dirname(CME_FILE) . '/includes/features/restrict-editor-features.php' );
                     PP_Capabilities_Post_Features::applyRestrictions($post_type);
                 }
-                
+
                 break;
 
             case 'classic':
@@ -346,11 +346,11 @@ class PP_Capabilities_Admin_UI {
                     'pp-capabilities-roles-profile-js',
                     'ppCapabilitiesProfileData',
                     [
-                        'role_description'  => esc_html__('Drag multiple roles selection to change order.', 'capsman-enhanced'),
+                        'role_description'  => esc_html__('Drag multiple roles selection to change order.', 'capability-manager-enhanced'),
                         'selected_roles'    => $roles,
                         'multi_roles'       => $multi_role ? 1 : 0,
-                        'profile_page_title' => esc_html__('Page title', 'capsman-enhanced'),
-                        'rankmath_title'    => esc_html__('Rank Math SEO', 'capsman-enhanced'),
+                        'profile_page_title' => esc_html__('Page title', 'capability-manager-enhanced'),
+                        'rankmath_title'    => esc_html__('Rank Math SEO', 'capability-manager-enhanced'),
                         'nonce'             => wp_create_nonce('ppc-profile-edit-action')
                     ]
                 );
@@ -415,7 +415,7 @@ class PP_Capabilities_Admin_UI {
     public function action_profile_update($userId, $oldUserData = [])
     {
         // Check if we need to update the user's roles, allowing to set multiple roles.
-        if ((!empty($_REQUEST['_wpnonce']) && wp_verify_nonce(sanitize_key($_REQUEST['_wpnonce']), 'update-user_' . $userId) 
+        if ((!empty($_REQUEST['_wpnonce']) && wp_verify_nonce(sanitize_key($_REQUEST['_wpnonce']), 'update-user_' . $userId)
             || !empty($_REQUEST['_wpnonce_create-user']) && wp_verify_nonce(sanitize_key($_REQUEST['_wpnonce_create-user']), 'create-user'))
             && isset($_POST['pp_roles']) && current_user_can('promote_users')) {
             // Remove the user's roles
@@ -449,7 +449,7 @@ class PP_Capabilities_Admin_UI {
     // perf enhancement: display submenu links without loading framework and plugin code
     function cmeSubmenus() {
         global $capabilities_toplevel_page, $current_user;
-        
+
         //make sure admin doesn't lose access to capabilities screen
         if (!current_user_can('manage_capabilities') && current_user_can('administrator')) {
             $pp_capabilities = apply_filters('cme_publishpress_capabilities_capabilities', []);
@@ -460,15 +460,15 @@ class PP_Capabilities_Admin_UI {
                     $current_user->allcaps[$cap] = true;
                 }
             }
-        }   
-        
+        }
+
         //we need to set primary menu capability to the first menu user has access to
         $sub_menu_pages = pp_capabilities_sub_menu_lists(true);
         $user_menu_caps = pp_capabilities_user_can_caps();
         $menu_cap       = false;
         $cap_callback   = false;
         $cap_page_slug  = false;
-        $cap_title      = __('Capabilities', 'capsman-enhanced');
+        $cap_title      = __('Capabilities', 'capability-manager-enhanced');
         $cap_name       = false;
         if (is_multisite() && is_super_admin()) {
             $cap_name      = 'read';
@@ -527,13 +527,13 @@ class PP_Capabilities_Admin_UI {
     }
 
     /**
-     * Clear the "done" flag on new plugin install 
+     * Clear the "done" flag on new plugin install
      * (forcing another auto-refresh on next Profile Restrictions visit)
      *
      * @param string $plugin       Path to the plugin file relative to the plugins directory.
      * @param bool   $network_wide Whether to enable the plugin for all sites in the network
      * or just the current site. Multisite only. Default false.
-     * 
+     *
      * @return void
      */
     public function clearProfileFeaturesDoneFlag($plugin, $network_wide) {
@@ -556,8 +556,8 @@ class PP_Capabilities_Admin_UI {
             foreach ($user->roles as $user_role) {
                 //get role option
                 $role_option = get_option("pp_capabilities_{$user_role}_role_option", []);
-                if (is_array($role_option) && !empty($role_option) 
-                    && !empty($role_option['block_dashboard_access']) 
+                if (is_array($role_option) && !empty($role_option)
+                    && !empty($role_option['block_dashboard_access'])
                     && (int)$role_option['block_dashboard_access'] > 0
                 ) {
                     wp_safe_redirect(home_url());
@@ -569,7 +569,7 @@ class PP_Capabilities_Admin_UI {
 
     /**
      * Ajax for saving a feature from dashboard page
-     * 
+     *
      * Copied from PublishPress Blocks
      *
      * @return boolean,void     Return false if failure, echo json on success
@@ -577,7 +577,7 @@ class PP_Capabilities_Admin_UI {
     public function saveDashboardFeature()
     {
         if ((!is_multisite() || !is_super_admin()) && !current_user_can('administrator') && !current_user_can('manage_capabilities_dashboard')) {
-            wp_send_json( __('No permission!', 'capsman-enhanced'), 403 );
+            wp_send_json( __('No permission!', 'capability-manager-enhanced'), 403 );
             return false;
         }
 
@@ -587,16 +587,16 @@ class PP_Capabilities_Admin_UI {
                 'pp-capabilities-dashboard-nonce'
             )
         ) {
-            wp_send_json( __('Invalid nonce token!', 'capsman-enhanced'), 400 );
+            wp_send_json( __('Invalid nonce token!', 'capability-manager-enhanced'), 400 );
         }
 
         if( empty( $_POST['feature'] ) || ! $_POST['feature'] ) { // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-            wp_send_json( __('Error: wrong data', 'capsman-enhanced'), 400 );
+            wp_send_json( __('Error: wrong data', 'capability-manager-enhanced'), 400 );
             return false;
         }
 
         $capsman_dashboard_features_status = !empty(get_option('capsman_dashboard_features_status')) ? (array)get_option('capsman_dashboard_features_status') : [];
-    
+
 
         $feature = sanitize_text_field( $_POST['feature'] );
 
@@ -675,7 +675,7 @@ class PP_Capabilities_Admin_UI {
         if (empty($nav_menu_item_option)) {
             return;
         }
-        
+
         $searchPrefix = $item_id . '_';
 
         $restricted_roles = array_filter(
@@ -696,18 +696,18 @@ class PP_Capabilities_Admin_UI {
             return;
         }
         $ppc_other_permissions = [
-            "ppc_users" => esc_html__('Logged In Users', 'capsman-enhanced'), 
-            "ppc_guest" => esc_html__('Logged Out Users', 'capsman-enhanced')
+            "ppc_users" => esc_html__('Logged In Users', 'capability-manager-enhanced'),
+            "ppc_guest" => esc_html__('Logged Out Users', 'capability-manager-enhanced')
         ];
         $wp_roles_obj = wp_roles();
 	    $roles = $wp_roles_obj->get_names();
         ?>
         <div class="ppc-nav-edit">
             <div class="clear"></div>
-            <h4 style="margin-bottom: 0.6em;"><?php esc_html_e( 'PublishPress Capabilities Menu Restriction', 'capsman-enhanced' ) ?></h4>
-            <p class="description description-wide ppc-nav-mode"><?php esc_html_e( 'This menu is restricted for the following roles', 'capsman-enhanced' ) ?></p>
+            <h4 style="margin-bottom: 0.6em;"><?php esc_html_e( 'PublishPress Capabilities Menu Restriction', 'capability-manager-enhanced' ) ?></h4>
+            <p class="description description-wide ppc-nav-mode"><?php esc_html_e( 'This menu is restricted for the following roles', 'capability-manager-enhanced' ) ?></p>
             <ul>
-                <?php foreach (array_keys($restricted_roles) as $role) : 
+                <?php foreach (array_keys($restricted_roles) as $role) :
                     $role_url = admin_url('admin.php?page=pp-capabilities-nav-menus&role=' . $role . '');
                     if (array_key_exists($role, $ppc_other_permissions)) {
                         $role_caption = $ppc_other_permissions[$role];

@@ -1,4 +1,4 @@
-<h3 class="editor-features-classic-show" <?php if (empty($_REQUEST['ppc-tab']) || (!empty($_REQUEST['ppc-tab']) && ('classic' != $_REQUEST['ppc-tab']))) echo 'style="display:none;"';?> data-post_type="<?php echo esc_attr($type_obj->name); ?>"><?php echo sprintf( esc_html__('Classic Editor %s Restrictions', 'capsman-enhanced'), esc_html__($type_obj->labels->singular_name)); ?></h3>
+<h3 class="editor-features-classic-show" <?php if (empty($_REQUEST['ppc-tab']) || (!empty($_REQUEST['ppc-tab']) && ('classic' != $_REQUEST['ppc-tab']))) echo 'style="display:none;"';?> data-post_type="<?php echo esc_attr($type_obj->name); ?>"><?php echo sprintf( esc_html__('Classic Editor %s Restrictions', 'capability-manager-enhanced'), esc_html__($type_obj->labels->singular_name)); ?></h3>
 <table class="wp-list-table widefat fixed striped pp-capability-menus-select editor-features-classic" <?php if (empty($_REQUEST['ppc-tab']) || ('classic' != $_REQUEST['ppc-tab'])) echo 'style="display:none;"';?> data-post_type="<?php echo esc_attr($type_obj->name); ?>">
     <?php foreach(['thead', 'tfoot'] as $tag_name):?>
     <<?php echo esc_attr($tag_name);?>>
@@ -98,7 +98,7 @@
                             </div>
                         </div>
                         <div class="ppc-flex-item">
-                            <div class="button view-custom-item"><?php esc_html_e('View', 'capsman-enhanced'); ?></div>
+                            <div class="button view-custom-item"><?php esc_html_e('View', 'capability-manager-enhanced'); ?></div>
                                 <?php /*<div class="button edit-custom-item" 
                                     data-section="<?php echo esc_attr($section_slug); ?>"
                                     data-label="<?php echo esc_attr($section_array['label']); ?>"
@@ -107,13 +107,13 @@
                                     data-pages="<?php echo esc_attr(join(', ', (array) $section_array['pages'])); ?>"
                                     data-post-types="<?php echo esc_attr(join(', ', (array) $section_array['post_types'])); ?>"
                                     data-id="<?php echo esc_attr($section_id); ?>">
-                                    <?php esc_html_e('Edit', 'capsman-enhanced'); ?>
+                                    <?php esc_html_e('Edit', 'capability-manager-enhanced'); ?>
                                 </div> <?php */ ?>
                                 <div 
                                     class="button <?php echo esc_attr($arr_feature['button_class']); ?> feature-red" 
                                     data-parent="<?php echo esc_attr($arr_feature['button_data_parent']); ?>" 
                                     data-id="<?php echo esc_attr($arr_feature['button_data_id']); ?>">
-                                    <?php esc_html_e('Delete', 'capsman-enhanced'); ?>    
+                                    <?php esc_html_e('Delete', 'capability-manager-enhanced'); ?>    
                                 </div>
                             </div>
                         </div>
@@ -155,7 +155,7 @@
                         <?php printf(
                             esc_html__(
                                 'No metabox found for %1s. %2s Click here %3s to visit the %4s screen and refresh this page after to load new metabox',
-                                'capsman-enhanced'
+                                'capability-manager-enhanced'
                             ), 
                             esc_html($type_obj->labels->singular_name), 
                             '<a href="'. esc_url(admin_url('post-new.php?post_type='.$type_obj->name)) .'">', 
