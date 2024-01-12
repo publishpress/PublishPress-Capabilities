@@ -248,12 +248,16 @@ function pp_capabilities_backup_sections()
  */
 function ppc_add_inline_style($custom_css, $handle = 'ppc-dummy-css-handle')
 {
-    global $ppc_dummy_css_handle;
+   global $ppc_dummy_css_handle;
 
-    if (!empty($ppc_dummy_css_handle)) {
-        // duplicate usage of this function with same handle won't work
-        $handle .= '-' . time(); 
-    }
+   if (!is_array($ppc_dummy_css_handle)) {
+       $ppc_dummy_css_handle = [];
+   }
+
+   if (in_array($handle, $ppc_dummy_css_handle)) {
+       // duplicate usage of this function with same handle won't work
+       $handle .= '-' . time(); 
+   }
 
     $ppc_dummy_css_handle = $handle;
 
@@ -276,12 +280,16 @@ function ppc_add_inline_script($custom_script, $handle = 'ppc-dummy-script-handl
 {
     global $ppc_dummy_script_handle;
 
-    if (!empty($ppc_dummy_script_handle)) {
+    if (!is_array($ppc_dummy_script_handle)) {
+       $ppc_dummy_script_handle = [];
+    }
+
+    if (in_array($handle, $ppc_dummy_script_handle)) {
         // duplicate usage of this function with same handle won't work
         $handle .= '-' . time(); 
     }
 
-    $ppc_dummy_script_handle = $handle;
+    $ppc_dummy_script_handle[] = $handle;
 
     wp_register_script(esc_attr($handle), false, ['jquery']);
     wp_enqueue_script(esc_attr($handle), false, ['jquery']);
