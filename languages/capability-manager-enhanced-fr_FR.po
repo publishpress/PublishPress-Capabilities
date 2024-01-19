@@ -6,7 +6,7 @@ msgstr ""
 "Access, Editor Permissions, Admin Menus - Stable (latest release)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-11-14 10:17+0000\n"
-"PO-Revision-Date: 2023-12-13 14:50+0000\n"
+"PO-Revision-Date: 2023-12-14 21:10+0100\n"
 "Last-Translator: \n"
 "Language-Team: French (France)\n"
 "Language: fr_FR\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Loco https://localise.biz/"
+"X-Generator: Poedit 3.4\n"
 
 #: includes/pp-ui.php:69
 #, php-format
@@ -442,7 +442,7 @@ msgstr ""
 
 #: includes/admin.php:179
 msgid "Block"
-msgstr ""
+msgstr "Bloquer"
 
 #: includes/functions.php:546
 msgid "Block admin pages by URL"
@@ -742,8 +742,8 @@ msgstr ""
 
 #: includes/admin.php:1429
 msgid ""
-"Custom Post Visibility statuses, fully implemented throughout wp-admin <em>"
-"(Pro)</em>"
+"Custom Post Visibility statuses, fully implemented throughout wp-admin "
+"<em>(Pro)</em>"
 msgstr ""
 "États de visibilité de publication personnalisés, entièrement mis en œuvre "
 "dans wp-admin. <em> (Pro)</em>"
@@ -962,12 +962,12 @@ msgstr ""
 
 #: includes/features/frontend-features/frontend-features-ui.php:91
 msgid ""
-"Enter custom CSS to be added to frontend pages. Examples: .custom-style-1 { "
-"color: red; } #custom-header { background: red; } "
+"Enter custom CSS to be added to frontend pages. Examples: .custom-style-1 "
+"{ color: red; } #custom-header { background: red; } "
 msgstr ""
 "Saisissez le CSS personnalisé à ajouter aux pages de l’interface publique. "
-"Exemples : .custom-style-1 { color: red; } #custom-header { background: red; "
-"} "
+"Exemples : .custom-style-1 { color: red; } #custom-header { background: "
+"red; } "
 
 #: includes/features/frontend-features/frontend-features-ui.php:80
 msgid ""
@@ -1336,7 +1336,7 @@ msgstr "Dernière sauvegarde manuelle - %s"
 
 #: includes/admin.php:188
 msgid "Legacy"
-msgstr ""
+msgstr "Ancien"
 
 #: includes/admin.php:1500
 msgid "Level:"
@@ -2017,8 +2017,8 @@ msgstr "Sélectionner les rôles…"
 #: includes/roles/class/class-pp-roles-admin.php:289
 msgid "Select the allowed editor options for users in this role."
 msgstr ""
-"Sélectionnez les options d’édition autorisées pour les "
-"utilisateurs/utilisatrices de ce rôle."
+"Sélectionnez les options d’édition autorisées pour les utilisateurs/"
+"utilisatrices de ce rôle."
 
 #: includes/features/frontend-features/frontend-features-action.php:136
 msgid "Selected item deleted successfully"
@@ -2338,8 +2338,8 @@ msgstr "Cette permission n’est pas disponible pour ce type de publication."
 
 #: includes/features/frontend-features/frontend-features-ui.php:41
 msgid ""
-"This feature allows you to modify the site frontend by hiding IDs or classes,"
-" adding CSS styles, or adding body classes."
+"This feature allows you to modify the site frontend by hiding IDs or "
+"classes, adding CSS styles, or adding body classes."
 msgstr ""
 "Cette fonctionnalité vous permet de modifier l’interface publique du site en "
 "masquant des ID ou des classes, en ajoutant des styles CSS ou des classes de "
@@ -2495,10 +2495,10 @@ msgid ""
 "useful when login redirect is not working correctly due to wp_get_referer() "
 "limitation."
 msgstr ""
-"Utiliser le cookie pour déterminer les pages que les "
-"utilisateurs/utilisatrices ont consultées avant de se connecter. Ceci est "
-"utile lorsque la redirection de connexion ne fonctionne pas correctement à "
-"cause de la limitation de wp_get_referer()."
+"Utiliser le cookie pour déterminer les pages que les utilisateurs/"
+"utilisatrices ont consultées avant de se connecter. Ceci est utile lorsque "
+"la redirection de connexion ne fonctionne pas correctement à cause de la "
+"limitation de wp_get_referer()."
 
 #: includes/admin.php:753
 msgid "Use the sidebar settings to allow this to be controlled independently."
@@ -2618,8 +2618,8 @@ msgstr ""
 #: includes/admin.php:1453
 msgid "WPML integration to mirror permissions to translations <em>(Pro)</em>"
 msgstr ""
-"Intégration WPML pour refléter les droits dans les traductions <em> (Pro)"
-"</em>"
+"Intégration WPML pour refléter les droits dans les traductions <em> (Pro)</"
+"em>"
 
 #: includes/features/restrict-admin-features.php:69
 msgid "Yoast SEO"
