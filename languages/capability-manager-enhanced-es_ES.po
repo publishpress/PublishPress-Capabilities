@@ -6,7 +6,7 @@ msgstr ""
 "Access, Editor Permissions, Admin Menus - Stable (latest release)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-11-14 10:17+0000\n"
-"PO-Revision-Date: 2023-12-13 14:51+0000\n"
+"PO-Revision-Date: 2023-12-14 21:08+0100\n"
 "Last-Translator: \n"
 "Language-Team: Spanish (Spain)\n"
 "Language: es_ES\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Loco https://localise.biz/"
+"X-Generator: Poedit 3.4\n"
 
 #: includes/pp-ui.php:69
 #, php-format
@@ -440,7 +440,7 @@ msgstr ""
 
 #: includes/admin.php:179
 msgid "Block"
-msgstr ""
+msgstr "Bloquear"
 
 #: includes/functions.php:546
 msgid "Block admin pages by URL"
@@ -462,7 +462,7 @@ msgstr "Panel de bloques"
 #: includes/roles/class/class-pp-roles-admin.php:210
 msgid "Block users in this role from accessing admin area."
 msgstr ""
-"Bloquea a usuarios con este perfil el acceso al área de administración."
+"Bloquear a usuarios con este perfil el acceso al área de administración."
 
 #: includes/roles/class/class-pp-roles-admin.php:200
 msgid "Block users in this role from logging into the site."
@@ -739,8 +739,8 @@ msgstr ""
 
 #: includes/admin.php:1429
 msgid ""
-"Custom Post Visibility statuses, fully implemented throughout wp-admin <em>"
-"(Pro)</em>"
+"Custom Post Visibility statuses, fully implemented throughout wp-admin "
+"<em>(Pro)</em>"
 msgstr ""
 "Estados de Custom Post Visibility, totalmente implementados en todo el "
 "escritorio <em>(Pro)</em>"
@@ -957,12 +957,12 @@ msgstr ""
 
 #: includes/features/frontend-features/frontend-features-ui.php:91
 msgid ""
-"Enter custom CSS to be added to frontend pages. Examples: .custom-style-1 { "
-"color: red; } #custom-header { background: red; } "
+"Enter custom CSS to be added to frontend pages. Examples: .custom-style-1 "
+"{ color: red; } #custom-header { background: red; } "
 msgstr ""
 "Introduce el CSS personalizado que se añadirá a las páginas de la vista "
-"pública. Ejemplos: .custom-style-1 { color: red; } #custom-header { "
-"background: red; } "
+"pública. Ejemplos: .custom-style-1 { color: red; } #custom-header "
+"{ background: red; } "
 
 #: includes/features/frontend-features/frontend-features-ui.php:80
 msgid ""
@@ -1134,8 +1134,8 @@ msgstr ""
 msgid ""
 "Grant supplemental content permissions to a BuddyPress group <em>(Pro)</em>"
 msgstr ""
-"Otorgar permisos de contenido suplementario a un grupo de BuddyPress <em>"
-"(Pro)</em>"
+"Otorgar permisos de contenido suplementario a un grupo de BuddyPress "
+"<em>(Pro)</em>"
 
 #: includes/features/editor-features.php:127
 msgid "Gutenberg"
@@ -1328,7 +1328,7 @@ msgstr "Última copia de seguridad manual: %s"
 
 #: includes/admin.php:188
 msgid "Legacy"
-msgstr ""
+msgstr "Heredado"
 
 #: includes/admin.php:1500
 msgid "Level:"
@@ -1785,8 +1785,8 @@ msgstr "Actualiza las características del perfil"
 #: includes/admin.php:1437
 msgid "Regulate permissions for Edit Flow post statuses <em>(Pro)</em>"
 msgstr ""
-"Regular los permisos de los estados de las entradas de Edit Flow <em>(Pro)"
-"</em>"
+"Regular los permisos de los estados de las entradas de Edit Flow <em>(Pro)</"
+"em>"
 
 #: includes/functions.php:545
 msgid "Remove anything in the WordPress admin"
@@ -2331,8 +2331,8 @@ msgstr "Esta capacidad no está disponible para este tipo de contenido."
 
 #: includes/features/frontend-features/frontend-features-ui.php:41
 msgid ""
-"This feature allows you to modify the site frontend by hiding IDs or classes,"
-" adding CSS styles, or adding body classes."
+"This feature allows you to modify the site frontend by hiding IDs or "
+"classes, adding CSS styles, or adding body classes."
 msgstr ""
 "Esta característica te permite modificar la vista pública del sitio "
 "ocultando ID o clases, añadiendo estilos CSS o añadiendo clases de cuerpo."
@@ -2608,8 +2608,8 @@ msgstr ""
 #: includes/admin.php:1453
 msgid "WPML integration to mirror permissions to translations <em>(Pro)</em>"
 msgstr ""
-"Integración de WPML para replicar los permisos a las traducciones <em>(Pro)"
-"</em>"
+"Integración de WPML para replicar los permisos a las traducciones <em>(Pro)</"
+"em>"
 
 #: includes/features/restrict-admin-features.php:69
 msgid "Yoast SEO"
