@@ -20,7 +20,7 @@
         //set empty feature value as true
         $empty_post_type_feature[$type_obj->name][$section_slug] = 1;
         ?>
-        <tr class="ppc-menu-row parent-menu <?php esc_attr_e($type_obj->name); ?> <?php esc_attr_e($section_slug); ?>">
+        <tr class="ppc-menu-row parent-menu <?php echo esc_attr($type_obj->name); ?> <?php echo esc_attr($section_slug); ?>">
             <td colspan="2">
             <h4 class="ppc-menu-row-section"><?php echo esc_html($section_title);?></h4>
             <?php
