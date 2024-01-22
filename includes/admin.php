@@ -689,18 +689,20 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 												else
 													$td_classes []= "post-cap";
 
-												if ( ! empty($pp_metagroup_caps[$cap_name]) )
-													$td_classes []='cm-has-via-pp';
-
 												if ( $is_administrator || current_user_can($cap_name) ) {
+													$chk_classes = [];
+
                                                     $cap_title = '';
-													if ( ! empty($pp_metagroup_caps[$cap_name]) ) {
+													if (! empty($pp_metagroup_caps[$cap_name]) ) {
 														$tool_tip = sprintf(__( '%s: assigned by Permission Group', 'capability-manager-enhanced' ), '<strong>' . $cap_name . '</strong>' );
+														$chk_classes []= 'cm-has-via-pp';
 													} else {
 														$tool_tip = sprintf(__( 'This capability is %s', 'capability-manager-enhanced' ), '<strong>' . $cap_name . '</strong>' );
 													}
 
-                                                    $checkbox = '<div class="ppc-tool-tip disabled"><input type="checkbox" name="caps[' . esc_attr($cap_name) . ']" autocomplete="off" value="1" ' . checked(1, ! empty($rcaps[$cap_name]), false ) . ' />
+													$chk_class = ( $chk_classes ) ? ' class="' . implode(' ', $chk_classes) . '"' : '';
+
+                                                    $checkbox = '<div class="ppc-tool-tip disabled"><input type="checkbox"' . $chk_class . ' name="caps[' . esc_attr($cap_name) . ']" autocomplete="off" value="1" ' . checked(1, ! empty($rcaps[$cap_name]), false ) . ' />
                                                         <div class="tool-tip-text">
                                                             <p>'. $tool_tip .'</p>
                                                             <i></i>
