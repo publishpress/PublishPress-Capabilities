@@ -161,11 +161,11 @@ $active_tab_text = is_object($active_tab_type_obj)
                                                                 $disabled_count += (is_array($ce_post_disabled) && isset($ce_post_disabled[$type_name])) ? count($ce_post_disabled[$type_name]) : 0;
 
                                                                 ?>
-                                                                <li data-slug="<?php esc_attr_e($type_name); ?>" 
-                                                                    data-content="cme-cap-type-tables-<?php esc_attr_e($type_name); ?>" 
-                                                                    data-name="<?php esc_attr_e($type_obj->labels->singular_name); ?>"
-                                                                    class="<?php esc_attr_e($active_class); ?>">
-                                                                    <?php esc_html_e($type_obj->labels->singular_name); ?>
+                                                                <li data-slug="<?php echo esc_attr($type_name); ?>" 
+                                                                    data-content="cme-cap-type-tables-<?php echo esc_attr($type_name); ?>" 
+                                                                    data-name="<?php echo esc_attr($type_obj->labels->singular_name); ?>"
+                                                                    class="<?php echo esc_attr($active_class); ?>">
+                                                                    <?php echo esc_html($type_obj->labels->singular_name); ?>
                                                                     <?php if ($disabled_count > 0) : ?>
                                                                         <span class="pp-capabilities-feature-count">
                                                                             <?php echo esc_html__('Restricted:', 'capability-manager-enhanced') . ' ' . esc_html($disabled_count); ?>
@@ -187,7 +187,7 @@ $active_tab_text = is_object($active_tab_type_obj)
                                                             $type_obj = get_post_type_object($type_name);
                                                             $active_style = ($type_name === $active_tab_slug) ? '' : 'display:none;';
                                                             ?>
-                                                            <div id="cme-cap-type-tables-<?php esc_attr_e($type_name); ?>" style="<?php esc_attr_e($active_style); ?>">
+                                                            <div id="cme-cap-type-tables-<?php echo esc_attr($type_name); ?>" style="<?php echo esc_attr($active_style); ?>">
                                                                 <?php
                                                                 include(dirname(__FILE__) . '/editor-features-gutenberg.php');
 
