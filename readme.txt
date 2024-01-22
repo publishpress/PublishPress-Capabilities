@@ -410,6 +410,9 @@ Fixed : Security issue. Please update.
 
 == Changelog ==
 
+= 2.12.0 =
+  * Change : Cleaner styling for capabilities assigned implicitly by Permission Group
+
 = 2.11.1 - 04 Jan 2024 =
   * Fixed: Inconsistencies with language files, #311
 
