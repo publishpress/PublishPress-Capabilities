@@ -207,6 +207,7 @@ class CapabilityManager
 		if ('pp-capabilities' == $_REQUEST['page']) {
 			wp_register_style( $this->ID . '_admin', $this->mod_url . '/common/css/admin-caps.css', false, PUBLISHPRESS_CAPS_VERSION);
 		} else {
+			// @todo: remove Capabilities-specific styles from admin.css
 			wp_register_style( $this->ID . '_admin', $this->mod_url . '/common/css/admin.css', false, PUBLISHPRESS_CAPS_VERSION);
 		}
 		wp_enqueue_style( $this->ID . '_admin');
