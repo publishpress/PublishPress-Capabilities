@@ -294,6 +294,11 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 			<script type="text/javascript">
 			/* <![CDATA[ */
 			jQuery(document).ready( function($) {
+				if ($('.ppc-capabilities-tabs li.ppc-capabilities-tab-active').hasClass('ppc-full-width')) {
+					$('.capabilities-sidebar').hide();
+					$('#ppc-capabilities-wrapper .ppc-capabilities-content').css('grid-template-columns', '1fr');
+				}
+
 				// Tabs and Content display
 				$('.ppc-capabilities-tabs > ul > li').click( function() {
 					var $pp_tab = $(this).attr('data-content');
