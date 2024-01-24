@@ -386,6 +386,8 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 
 								$tab_id = "cme-cap-type-tables-{$tab_slug}";
 								
+								$classes = [];
+
 								if ($tab_id == $active_tab_id) {
 									$classes []= $ppc_tab_active;
 								}
