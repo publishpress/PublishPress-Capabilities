@@ -297,18 +297,43 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 				// Tabs and Content display
 				$('.ppc-capabilities-tabs > ul > li').click( function() {
 					var $pp_tab = $(this).attr('data-content');
+					var data_slug = $(this).attr('data-slug');
 
-					$("[name='pp_caps_tab']").val($(this).attr('data-slug'));
+					$("[name='pp_caps_tab']").val(data_slug);
 
 					// Show current Content
-					$('.ppc-capabilities-content > div').hide();
+					$('.ppc-capabilities-content > div').not('.capabilities-sidebar').hide();
 					$('#' + $pp_tab).show();
+
+					var post_ops = ['read', 'edit', 'delete', 'list'];
+					$('.capabilities-sidebar .ppc-post-types').toggle(post_ops.indexOf(data_slug,) != -1);
+
+					$('.capabilities-sidebar .ppc-taxonomies').toggle(data_slug == 'taxonomies');
+					$('.capabilities-sidebar .ppc-detailed-taxonomies').toggle(data_slug == 'taxonomies');
+
+					if ($(this).hasClass('ppc-full-width')) {
+						$('.capabilities-sidebar').hide();
+						$('#ppc-capabilities-wrapper .ppc-capabilities-content').css('grid-template-columns', '1fr');
+					} else {
+						$('.capabilities-sidebar').show();
+
+						if ($(window).width() > 1199) {
+							$('#ppc-capabilities-wrapper .ppc-capabilities-content').css('grid-template-columns', '1fr 200px 70px');
+						}
+					}
 
 					$('#' + $pp_tab + '-taxonomy').show();
 
 					// Active current Tab
 					$('.ppc-capabilities-tabs > ul > li').removeClass('ppc-capabilities-tab-active');
 					$(this).addClass('ppc-capabilities-tab-active');
+
+					// Scroll to content area (for responsive display)
+					if ($(window).width() <= 1199) {
+						$([document.documentElement, document.body]).animate({
+							scrollTop: $("#capabilities_content").offset().top - 20
+						}, 500);
+					}
 				});
 			});
 			/* ]]> */
@@ -318,6 +343,8 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 				<div class="ppc-capabilities-tabs">
 					<ul>
 						<?php
+						$full_width_tabs = apply_filters('pp_capabilities_full_width_tabs', []);
+
 						if (empty($_REQUEST['pp_caps_tab']) && !empty($_REQUEST['added'])) {
 							$active_tab_slug = 'additional';
 						} else {
@@ -331,9 +358,19 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 						// caps: edit, delete, read
 						foreach( array_keys($cap_properties) as $cap_type ) {
 							$tab_id = "cme-cap-type-tables-$cap_type";
-							$tab_active = ($tab_id == $active_tab_id) ? $ppc_tab_active : '';
+							$classes = [];
 
-							echo '<li data-slug="'. esc_attr($cap_type) . '"' . ' data-content="cme-cap-type-tables-' . esc_attr($cap_type) . '" class="' . esc_attr($tab_active) . '">'
+							if ($tab_id == $active_tab_id) {
+								$classes []= $ppc_tab_active;
+							}
+
+							if (!empty($full_width_tabs[$cap_type])) {
+								$classes []= 'ppc-full-width';
+							}
+
+							$class = implode(' ', $classes);
+
+							echo '<li data-slug="'. esc_attr($cap_type) . '"' . ' data-content="cme-cap-type-tables-' . esc_attr($cap_type) . '" class="' . esc_attr($class) . '">'
 								. esc_html($cap_type_names[$cap_type]) .
 							'</li>';
 						}
@@ -343,9 +380,18 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 								$tab_slug = esc_attr($tab_slug);
 
 								$tab_id = "cme-cap-type-tables-{$tab_slug}";
-								$tab_active = ($tab_id == $active_tab_id) ? $ppc_tab_active : '';
+								
+								if ($tab_id == $active_tab_id) {
+									$classes []= $ppc_tab_active;
+								}
+	
+								if (!empty($full_width_tabs[$tab_slug])) {
+									$classes []= 'ppc-full-width';
+								}
+	
+								$class = implode(' ', $classes);
 
-								echo '<li data-slug="' . esc_attr($tab_slug) . '"' . ' data-content="' . esc_attr($tab_id) . '" class="' . esc_attr($tab_active) . '">'
+								echo '<li data-slug="' . esc_attr($tab_slug) . '"' . ' data-content="' . esc_attr($tab_id) . '" class="' . esc_attr($class) . '">'
 								. esc_html($tab_caption) .
 								'</li>';
 							}
@@ -479,7 +525,8 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 						?>
 					</ul>
 				</div>
-				<div class="ppc-capabilities-content">
+
+				<div id="capabilities_content" class="ppc-capabilities-content">
 					<?php
 					// caps: read, edit, deletion
 					foreach( array_keys($cap_properties) as $cap_type ) {
@@ -509,10 +556,6 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 							$caption_pattern = ('taxonomy' == $item_type) ? esc_html__('Term %s Capabilities', 'capability-manager-enhanced') : esc_html__('Post %s Capabilities', 'capability-manager-enhanced');
 
 							echo '<h3>' .  sprintf($caption_pattern, esc_html($cap_type_names[$cap_type])) . '</h3>';
-
-                            if ($cap_type === 'list' && defined('PRESSPERMIT_PRO_FILE')) {
-                                echo '<p class="description"> '. esc_html__('Admin listing access is normally provided by the "Edit" capabilities. These "List" capabilities only apply if the corresponding "Edit" capability is missing. Also, these "List" capabilities can grant access, but not deny access.', 'capability-manager-enhanced') .' </p>';
-                            }
 
 							echo '<div class="ppc-filter-wrapper">';
 								echo '<select class="ppc-filter-select">';
@@ -570,7 +613,7 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
                                         continue;
                                     }
 
-                                    if (defined('PRESSPERMIT_PRO_FILE')) {
+                                    if (defined('PRESSPERMIT_VERSION') || defined('PRESSPERMIT_PRO_VERSION')) {
                                         //add list capabilities
                                         if (isset($type_obj->cap->edit_posts) && !isset($type_obj->cap->list_posts)) {
                                             $type_obj->cap->list_posts = str_replace('edit_', 'list_', $type_obj->cap->edit_posts);
@@ -820,6 +863,10 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 							}
 
 							echo '</table>';
+
+							if ($cap_type === 'list' && (defined('PRESSPERMIT_VERSION') || defined('PRESSPERMIT_PRO_VERSION'))) {
+                                echo '<p class="pp-subtext"> '. esc_html__('Admin listing access is normally provided by the "Edit" capabilities. These "List" capabilities only apply if the corresponding "Edit" capability is missing. Also, these "List" capabilities can grant access, but not deny access.', 'capability-manager-enhanced') .' </p>';
+                            }
 
 							do_action('publishpress-caps_manager_postcaps_table', $cap_type, $item_type, compact('current', 'rcaps', 'pp_metagroup_caps', 'is_administrator', 'default_caps', 'custom_types', 'defined', 'unfiltered', 'pp_metagroup_caps', 'active_tab_id'));
 
@@ -1388,6 +1435,142 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 
 						</table>
 					</div>
+
+					<div class="capabilities-sidebar pp-column-right">
+						<?php
+						do_action('publishpress-caps_sidebar_top');
+
+						$banners = new PublishPress\WordPressBanners\BannersMain;
+						
+						$banner_messages = [];
+						$banner_messages[] = esc_html__('Capabilities allows you change the permissions for any user role.', 'capability-manager-enhanced');
+						$banner_messages[] = sprintf(esc_html__('%1$s = Capability granted %2$s', 'capability-manager-enhanced'), '<table class="pp-capabilities-cb-key"><tr><td class="pp-cap-icon pp-cap-icon-checked"><input type="checkbox" title="'. esc_attr__('usage key', 'capability-manager-enhanced') .'" checked disabled></td><td>', '</td></tr>');
+						$banner_messages[] = sprintf(esc_html__('%1$s = Capability not granted %2$s', 'capability-manager-enhanced'), '<tr><td class="pp-cap-icon"><input type="checkbox" title="'. esc_attr__('usage key', 'capability-manager-enhanced') .'" disabled></td><td class="pp-cap-not-checked-definition">', '</td></tr>');
+						$banner_messages[] = sprintf(esc_html__('%1$s = Capability denied, even if granted by another role %2$s', 'capability-manager-enhanced'), '<tr><td class="pp-cap-icon pp-cap-x"><span class="cap-x pp-cap-key" title="'. esc_attr__('usage key', 'capability-manager-enhanced') .'">X</span></td><td class="cap-x-definition">', '</td></tr></table>');
+						if (defined('PRESSPERMIT_ACTIVE') && function_exists('presspermit')) {
+							if ($group = presspermit()->groups()->getMetagroup('wp_role', $this->current)) {
+								$additional_message = sprintf(
+									// back compat with existing language string
+									str_replace(
+										['&lt;strong&gt;', '&lt;/strong&gt;'],
+										['<strong>', '</strong>'],
+										esc_html__('You can also configure this role as a %sPermission Group%s.', 'capability-manager-enhanced')
+									),
+									'<a href="' . esc_url_raw(admin_url("admin.php?page=presspermit-edit-permissions&action=edit&agent_id={$group->ID}")) . '">',
+									'</a>'
+								);
+								$banner_messages[] = '<p class="cme-subtext">' . $additional_message . '</p>';
+							}
+						}
+
+						?>
+						<div class="ppc-sidebar-panel-metabox meta-box-sortables">
+							<?php $meta_box_state = (isset($sidebar_metabox_state['how_to_user_capabilities'])) ? $sidebar_metabox_state['how_to_user_capabilities'] : 'closed';  ?>
+							<div class="postbox ppc-sidebar-panel <?php echo esc_attr($meta_box_state); ?>">
+								<input 
+									name="ppc_metabox_state[how_to_user_capabilities]"
+									type="hidden" 
+									class="metabox-state" 
+									value="<?php echo esc_attr($meta_box_state); ?>"
+								/>
+								<div class="postbox-header">
+									<h2 class="hndle ui-sortable-handle"><?php esc_html_e('How to use Capabilities', 'capability-manager-enhanced'); ?></h2>
+									<div class="handle-actions">
+										<button type="button" class="handlediv">
+											<span class="toggle-indicator"></span>
+										</button>
+									</div>
+								</div>
+								<div class="inside">
+								<?php 
+									$banners->pp_display_banner(
+										'',
+										'',
+										$banner_messages,
+										'https://publishpress.com/knowledge-base/capabilities-screen/',
+										__('View Documentation', 'capability-manager-enhanced'),
+										'',
+										'button ppc-checkboxes-documentation-link'
+									);
+									?>
+								</div>
+							</div>
+						</div>
+
+						<?php
+						$pp_ui->pp_types_ui( $defined['type'] );
+						$pp_ui->pp_taxonomies_ui( $defined['taxonomy'] );
+						?>
+
+						<div class="ppc-sidebar-panel-metabox meta-box-sortables ppc-safe">
+							<?php $meta_box_state = (isset($sidebar_metabox_state['capabilities_safe_to_use'])) ? $sidebar_metabox_state['capabilities_safe_to_use'] : 'closed';  ?>
+							<div class="postbox ppc-sidebar-panel <?php echo esc_attr($meta_box_state); ?>">
+								<input 
+									name="ppc_metabox_state[capabilities_safe_to_use]"
+									type="hidden" 
+									class="metabox-state" 
+									value="<?php echo esc_attr($meta_box_state); ?>"
+								/>
+								<div class="postbox-header">
+									<h2 class="hndle ui-sortable-handle"><?php esc_html_e( 'Capabilities is Safe to Use', 'capability-manager-enhanced' ); ?></h2>
+									<div class="handle-actions">
+										<button type="button" class="handlediv">
+											<span class="toggle-indicator"></span>
+										</button>
+									</div>
+								</div>
+								<div class="inside">
+								<?php
+										$banners->pp_display_banner(
+											'',
+											'',
+											array(
+												__( 'WordPress stores role capabilities in your database, where they remain even if the plugin is deactivated.', 'capability-manager-enhanced' ),
+												__( 'Whenever you use PublishPress Capabilities to save changes, it also creates a backup which you can use to restore a previous configuration.', 'capability-manager-enhanced' )
+											),
+											admin_url( 'admin.php?page=pp-capabilities-backup' ),
+											__( 'Go to the Backup feature', 'capability-manager-enhanced' ),
+											'',
+											'button'
+										);
+									?>
+								</div>
+							</div>
+						</div>
+
+						<div class="ppc-sidebar-panel-metabox meta-box-sortables ppc-add-cap">
+							<?php $meta_box_state = (isset($sidebar_metabox_state['add_capability'])) ? $sidebar_metabox_state['add_capability'] : 'closed';  ?>
+							<div class="postbox ppc-sidebar-panel <?php echo esc_attr($meta_box_state); ?>">
+								<input 
+									name="ppc_metabox_state[add_capability]"
+									type="hidden" 
+									class="metabox-state" 
+									value="<?php echo esc_attr($meta_box_state); ?>"
+								/>
+								<div class="postbox-header">
+									<h2 class="hndle ui-sortable-handle"><?php esc_html_e('Add a New Capability', 'capability-manager-enhanced'); ?></h2>
+									<div class="handle-actions">
+										<button type="button" class="handlediv">
+											<span class="toggle-indicator"></span>
+										</button>
+									</div>
+								</div>
+								<div class="inside" style="text-align:center;">
+									<p>
+										<input type="text" name="capability-name" class="regular-text" placeholder="<?php echo 'capability_name';?>" /><br />
+										<input type="submit" name="AddCap" value="<?php esc_attr_e('Add to role', 'capability-manager-enhanced') ?>" class="button" />
+									</p>
+									<br />
+									<div class="cme-subtext"><?php _e('New capabilities are controlled on the Additonal tab.', 'capability-manager-enhanced');?></div>
+								</div>
+							</div>
+						</div>
+
+						<?php
+							do_action('publishpress-caps_sidebar_bottom');
+						?>
+
+					</div><!-- right sidebar within tab panel -->
 				</div>
 			</div>
 
@@ -1528,137 +1711,6 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 		</p>
 
 		</div><!-- .pp-column-left -->
-		<div class="pp-column-right capabilities-sidebar">
-			<?php
-			do_action('publishpress-caps_sidebar_top');
-
-			$banners = new PublishPress\WordPressBanners\BannersMain;
-            
-            $banner_messages = [];
-            $banner_messages[] = esc_html__('Capabilities allows you change the permissions for any user role.', 'capability-manager-enhanced');
-            $banner_messages[] = sprintf(esc_html__('%1$s = Capability granted %2$s', 'capability-manager-enhanced'), '<table class="pp-capabilities-cb-key"><tr><td class="pp-cap-icon pp-cap-icon-checked"><input type="checkbox" title="'. esc_attr__('usage key', 'capability-manager-enhanced') .'" checked disabled></td><td>', '</td></tr>');
-            $banner_messages[] = sprintf(esc_html__('%1$s = Capability not granted %2$s', 'capability-manager-enhanced'), '<tr><td class="pp-cap-icon"><input type="checkbox" title="'. esc_attr__('usage key', 'capability-manager-enhanced') .'" disabled></td><td class="pp-cap-not-checked-definition">', '</td></tr>');
-            $banner_messages[] = sprintf(esc_html__('%1$s = Capability denied, even if granted by another role %2$s', 'capability-manager-enhanced'), '<tr><td class="pp-cap-icon pp-cap-x"><span class="cap-x pp-cap-key" title="'. esc_attr__('usage key', 'capability-manager-enhanced') .'">X</span></td><td class="cap-x-definition">', '</td></tr></table>');
-            if (defined('PRESSPERMIT_ACTIVE') && function_exists('presspermit')) {
-                if ($group = presspermit()->groups()->getMetagroup('wp_role', $this->current)) {
-                    $additional_message = sprintf(
-                        // back compat with existing language string
-                        str_replace(
-                            ['&lt;strong&gt;', '&lt;/strong&gt;'],
-                            ['<strong>', '</strong>'],
-                            esc_html__('You can also configure this role as a %sPermission Group%s.', 'capability-manager-enhanced')
-                        ),
-                        '<a href="' . esc_url_raw(admin_url("admin.php?page=presspermit-edit-permissions&action=edit&agent_id={$group->ID}")) . '">',
-                        '</a>'
-                    );
-                    $banner_messages[] = '<p class="cme-subtext">' . $additional_message . '</p>';
-                }
-            }
-
-            ?>
-            <div class="ppc-sidebar-panel-metabox meta-box-sortables">
-                <?php $meta_box_state = (isset($sidebar_metabox_state['how_to_user_capabilities'])) ? $sidebar_metabox_state['how_to_user_capabilities'] : 'closed';  ?>
-                <div class="postbox ppc-sidebar-panel <?php echo esc_attr($meta_box_state); ?>">
-                    <input 
-                        name="ppc_metabox_state[how_to_user_capabilities]"
-                        type="hidden" 
-                        class="metabox-state" 
-                        value="<?php echo esc_attr($meta_box_state); ?>"
-                    />
-                    <div class="postbox-header">
-                        <h2 class="hndle ui-sortable-handle"><?php esc_html_e('How to use Capabilities', 'capability-manager-enhanced'); ?></h2>
-                        <div class="handle-actions">
-                            <button type="button" class="handlediv">
-                                <span class="toggle-indicator"></span>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="inside">
-                    <?php 
-                        $banners->pp_display_banner(
-                            '',
-                            '',
-                            $banner_messages,
-                            'https://publishpress.com/knowledge-base/capabilities-screen/',
-                            __('View Documentation', 'capability-manager-enhanced'),
-                            '',
-                            'button ppc-checkboxes-documentation-link'
-                        );
-                        ?>
-                    </div>
-                </div>
-            </div>
-
-            <div class="ppc-sidebar-panel-metabox meta-box-sortables">
-                <?php $meta_box_state = (isset($sidebar_metabox_state['capabilities_safe_to_use'])) ? $sidebar_metabox_state['capabilities_safe_to_use'] : 'closed';  ?>
-                <div class="postbox ppc-sidebar-panel <?php echo esc_attr($meta_box_state); ?>">
-                    <input 
-                        name="ppc_metabox_state[capabilities_safe_to_use]"
-                        type="hidden" 
-                        class="metabox-state" 
-                        value="<?php echo esc_attr($meta_box_state); ?>"
-                    />
-                    <div class="postbox-header">
-                        <h2 class="hndle ui-sortable-handle"><?php esc_html_e( 'Capabilities is Safe to Use', 'capability-manager-enhanced' ); ?></h2>
-                        <div class="handle-actions">
-                            <button type="button" class="handlediv">
-                                <span class="toggle-indicator"></span>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="inside">
-                     <?php
-                            $banners->pp_display_banner(
-                                '',
-                                '',
-                                array(
-                                    __( 'WordPress stores role capabilities in your database, where they remain even if the plugin is deactivated.', 'capability-manager-enhanced' ),
-                                    __( 'Whenever you use PublishPress Capabilities to save changes, it also creates a backup which you can use to restore a previous configuration.', 'capability-manager-enhanced' )
-                                ),
-                                admin_url( 'admin.php?page=pp-capabilities-backup' ),
-                                __( 'Go to the Backup feature', 'capability-manager-enhanced' ),
-                                '',
-                                'button'
-                            );
-                        ?>
-                    </div>
-                </div>
-            </div>
-
-            <div class="ppc-sidebar-panel-metabox meta-box-sortables">
-                <?php $meta_box_state = (isset($sidebar_metabox_state['add_capability'])) ? $sidebar_metabox_state['add_capability'] : 'closed';  ?>
-                <div class="postbox ppc-sidebar-panel <?php echo esc_attr($meta_box_state); ?>">
-                    <input 
-                        name="ppc_metabox_state[add_capability]"
-                        type="hidden" 
-                        class="metabox-state" 
-                        value="<?php echo esc_attr($meta_box_state); ?>"
-                    />
-                    <div class="postbox-header">
-                        <h2 class="hndle ui-sortable-handle"><?php esc_html_e('Add a New Capability', 'capability-manager-enhanced'); ?></h2>
-                        <div class="handle-actions">
-                            <button type="button" class="handlediv">
-                                <span class="toggle-indicator"></span>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="inside" style="text-align:center;">
-                        <p>
-                            <input type="text" name="capability-name" class="regular-text" placeholder="<?php echo 'capability_name';?>" /><br />
-                            <input type="submit" name="AddCap" value="<?php esc_attr_e('Add to role', 'capability-manager-enhanced') ?>" class="button" />
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-			<?php
-				$pp_ui->pp_types_ui( $defined['type'] );
-				$pp_ui->pp_taxonomies_ui( $defined['taxonomy'] );
-
-				do_action('publishpress-caps_sidebar_bottom');
-			?>
-
-		</div><!-- .pp-column-right -->
 	</div><!-- .pp-columns-wrapper -->
 	</td></tr></table> <!-- .akmin -->
 	</fieldset>
