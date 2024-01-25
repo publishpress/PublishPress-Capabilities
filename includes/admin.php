@@ -979,10 +979,7 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 							<?php
 							echo esc_html(str_replace( '_', ' ', $cap_name));
 							?>
-							</span></label><span class="tool-tip-text" style="text-align: center;">
-								<p><?php printf(__( 'This capability is %s', 'capability-manager-enhanced' ), '<strong>' . $cap_name . '</strong>' ); ?></p>
-								<i></i>
-							</span></span><a href="#" class="neg-cap" style="visibility: hidden;">&nbsp;x&nbsp;</a>
+							</span></label></span><a href="#" class="neg-cap" style="visibility: hidden;">&nbsp;x&nbsp;</a>
 							<?php if ( false !== strpos( $class, 'cap-neg' ) ) :?>
 								<input type="hidden" class="cme-negation-input" name="caps[<?php echo esc_attr($cap_name); ?>]" value="" />
 							<?php endif; ?>
@@ -1156,10 +1153,7 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 							<?php
 							echo esc_html(str_replace( '_', ' ', $cap_name));
 							?>
-							</span></label><span class="tool-tip-text" style="text-align: center;">
-								<p><?php printf(__( 'This capability is %s', 'capability-manager-enhanced' ), '<strong>' . $cap_name . '</strong>' ); ?></p>
-								<i></i>
-							</span></span><?php echo $warning_message; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?><a href="#" class="neg-cap" style="visibility: hidden;">&nbsp;x&nbsp;</a>
+							</span></label></span><?php echo $warning_message; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?><a href="#" class="neg-cap" style="visibility: hidden;">&nbsp;x&nbsp;</a>
 							<?php if ( false !== strpos( $class, 'cap-neg' ) ) :?>
 								<input type="hidden" class="cme-negation-input" name="caps[<?php echo esc_attr($cap_name); ?>]" value="" />
 							<?php endif; ?>
@@ -1380,7 +1374,7 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 								$class .= ' cap-metagroup';
 								$title_text = sprintf( esc_html__( '%s: assigned by Permission Group', 'capability-manager-enhanced' ), '<strong>' . $cap_name . '</strong>' );
 							} else {
-								$title_text = sprintf(__( 'This capability is %s', 'capability-manager-enhanced' ), '<strong>' . $cap_name . '</strong>' );
+								$title_text = '';
 							}
 
 							$disabled = '';
@@ -1401,10 +1395,10 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 							<?php
 							echo esc_html(str_replace( '_', ' ', $cap ));
 							?>
-							</span></label><span class="tool-tip-text" style="text-align: center;">
+							</span></label><?php if ($title_text) :?><span class="tool-tip-text" style="text-align: center;">
 								<p><?php echo $title_text; ?></p>
 								<i></i>
-							</span></span><a href="#" class="neg-cap" style="visibility: hidden;">&nbsp;x&nbsp;</a>
+							</span><?php endif;?></span><a href="#" class="neg-cap" style="visibility: hidden;">&nbsp;x&nbsp;</a>
 							<?php if ( false !== strpos( $class, 'cap-neg' ) ) :?>
 								<input type="hidden" class="cme-negation-input" name="caps[<?php echo esc_attr($cap_name); ?>]" value="" />
 							<?php endif; ?>
