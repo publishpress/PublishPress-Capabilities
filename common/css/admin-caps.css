@@ -464,6 +464,7 @@ table.pp-capabilities-cb-key td.pp-cap-x {
     display: inline-block;
     position: relative;
     cursor: pointer;
+    opacity: 90%;
 }
 
 .ppc-tool-tip .tool-tip-text {
