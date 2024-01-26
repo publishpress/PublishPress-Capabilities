@@ -252,7 +252,7 @@ class Capabilities_Settings_UI {
                         </tr>
                     </table>
                 </fieldset>
-            <input type="submit" name="submit" id="submit" class="button button-primary" value="<?php esc_attr_e('Save Changes', 'capability-manager-enhanced');?>">
+            <input type="submit" name="submit" id="submit" class="button button-primary" value="<?php esc_attr_e('Save Changes');?>">
         </div><!-- .pp-column-left -->
         <div class="pp-column-right pp-capabilities-sidebar">
             <?php pp_capabilities_pro_sidebox(); ?>

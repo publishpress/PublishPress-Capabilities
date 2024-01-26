@@ -95,7 +95,7 @@
                         </div>
                     </div>
                     <div class="ppc-flex-item">
-                        <div class="button view-custom-item"><?php esc_html_e('View', 'capability-manager-enhanced'); ?></div>
+                        <div class="button view-custom-item"><?php esc_html_e('View'); ?></div>
                             <?php /*<div class="button edit-custom-item" 
                                 data-section="<?php echo esc_attr($section_slug); ?>"
                                 data-label="<?php echo esc_attr($section_array['label']); ?>"
@@ -110,7 +110,7 @@
                                 class="button <?php echo esc_attr($arr_feature['button_class']); ?> feature-red" 
                                 data-parent="<?php echo esc_attr($arr_feature['button_data_parent']); ?>" 
                                 data-id="<?php echo esc_attr($arr_feature['button_data_id']); ?>">
-                                <?php esc_html_e('Delete', 'capability-manager-enhanced'); ?>    
+                                <?php esc_html_e('Delete'); ?>    
                             </div>
                         </div>
                     </div>

@@ -98,7 +98,7 @@ $nav_menu_item_option = array_key_exists($default_role, $nav_menu_item_option) ?
                                         <img class="loading" src="<?php echo esc_url($capsman->mod_url); ?>/images/wpspin_light.gif" style="display: none">
 
                                         <input type="submit" name="nav-menu-submit"
-                                            value="<?php esc_attr_e('Save Changes', 'capability-manager-enhanced') ?>"
+                                            value="<?php esc_attr_e('Save Changes');?>"
                                             class="button-primary ppc-nav-menu-submit" style="float:right" />
                                     </div>
 
@@ -288,7 +288,7 @@ $nav_menu_item_option = array_key_exists($default_role, $nav_menu_item_option) ?
                                         </div>
                                     </div>
                                     <input type="submit" name="nav-menu-submit"
-                                        value="<?php esc_attr_e('Save Changes', 'capability-manager-enhanced') ?>"
+                                        value="<?php esc_attr_e('Save Changes');?>"
                                         class="button-primary ppc-nav-menu-submit"/>
 
                                 </td>

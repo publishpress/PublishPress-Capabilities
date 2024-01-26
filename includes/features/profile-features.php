@@ -57,7 +57,7 @@ if (get_option('cme_profile_features_auto_redirect')) {
                                         <div class="publishpress-filters">
                                             <div class="pp-capabilities-submit-top" style="float:right;">
                                                 <input type="submit" name="profile-features-submit"
-                                                    value="<?php esc_attr_e('Save Changes', 'capability-manager-enhanced') ?>"
+                                                    value="<?php esc_attr_e('Save Changes');?>"
                                                     class="button-primary ppc-profile-features-submit" />
                                             </div>
 
@@ -211,7 +211,7 @@ if (get_option('cme_profile_features_auto_redirect')) {
                                     </div>
                                     <input type="hidden" name="capsman_profile_features_elements_order" class="capsman_profile_features_elements_order" value=""/>
                                     <input type="submit" name="profile-features-submit"
-                                           value="<?php esc_attr_e('Save Changes', 'capability-manager-enhanced') ?>"
+                                           value="<?php esc_attr_e('Save Changes');?>"
                                            class="button-primary ppc-profile-features-submit"/>
                                 </td>
                             </tr>

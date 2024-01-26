@@ -230,7 +230,7 @@ function pp_capabilities_backup_sections()
    $backup_sections['capsman_nav_menu_backup']['options'][] = "capsman_nav_item_menus";
 
    //settings
-   $backup_sections['capsman_settings_backup']['label']     = esc_html__('Settings', 'capability-manager-enhanced');
+   $backup_sections['capsman_settings_backup']['label']     = esc_html__('Settings');
    $backup_sections['capsman_settings_backup']['options']   = pp_capabilities_settings_options();
 
    return apply_filters('pp_capabilities_backup_sections', $backup_sections);
@@ -413,7 +413,7 @@ function pp_capabilities_sub_menu_lists($cme_fakefunc = false) {
 
     $sub_menu_pages = [];
     $sub_menu_pages['dashboard'] = [
-        'title'             => __('Dashboard', 'capability-manager-enhanced'),
+        'title'             => __('Dashboard'),
         'capabilities'      => $super_user ? 'read' : 'manage_capabilities_dashboard',
         'page'              => 'pp-capabilities-dashboard',
         'callback'          => $cme_fakefunc ? 'cme_fakefunc' : [$capsman, 'dashboardPage'],
@@ -485,7 +485,7 @@ function pp_capabilities_sub_menu_lists($cme_fakefunc = false) {
         'dashboard_control' => false,
     ];
     $sub_menu_pages['settings'] = [
-        'title'             => __('Settings', 'capability-manager-enhanced'),
+        'title'             => __('Settings'),
         'capabilities'      => $super_user ? 'read' : 'manage_capabilities_settings',
         'page'              => 'pp-capabilities-settings',
         'callback'          => $cme_fakefunc ? 'cme_fakefunc' : [$capsman, 'settingsPage'],

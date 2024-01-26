@@ -12,7 +12,7 @@
         <?php
         if (isset($_REQUEST['s']) && $search_str = esc_attr(wp_unslash(sanitize_text_field($_REQUEST['s'])))) {
             /* translators: %s: search keywords */
-            printf(' <span class="subtitle">' . esc_html__('Search results for &#8220;%s&#8221;', 'capability-manager-enhanced') . '</span>', esc_html($search_str));
+            printf(' <span class="subtitle">' . esc_html__('Search results for %s') . '</span>', '&#8220;' . esc_html($search_str) . '&#8221;');
         }
 
         //the roles table instance

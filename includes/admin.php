@@ -120,7 +120,7 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
             <div style="margin-bottom: 20px;">
                 <div class="pp-capabilities-submit-top" style="float:right">
                     <?php
-                    $caption = (in_array(sanitize_key(get_locale()), ['en_EN', 'en_US'])) ? 'Save Capabilities' : __('Save Changes', 'capability-manager-enhanced');
+                    $caption = (in_array(sanitize_key(get_locale()), ['en_EN', 'en_US'])) ? 'Save Capabilities' : __('Save Changes');
                     ?>
                     <input type="submit" name="SaveRole" value="<?php echo esc_attr($caption);?>" class="button-primary" />
                 </div>
@@ -600,7 +600,7 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 									$filter_caption = ('taxonomy' == $item_type) ? __('Filter by taxonomy', 'capability-manager-enhanced') : __('Filter by post type', 'capability-manager-enhanced');
 									echo '<option value="">' . esc_html($filter_caption) . '</option>';
 								echo '</select>';
-								echo ' <button class="button secondary-button ppc-filter-select-reset" type="button">' . esc_html__('Clear', 'capability-manager-enhanced') . '</button>';
+								echo ' <button class="button secondary-button ppc-filter-select-reset" type="button">' . __('Clear') . '</button>';
 							echo '</div>';
 
 							echo "<table class='widefat striped cme-typecaps cme-typecaps-" . esc_attr($cap_type) . "'>";
@@ -948,7 +948,7 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 
 						echo '<div class="ppc-filter-wrapper">';
 							echo '<input type="text" class="regular-text ppc-filter-text" placeholder="' . esc_attr__('Filter by capability', 'capability-manager-enhanced') . '">';
-							echo ' <button class="button secondary-button ppc-filter-text-reset" type="button">' . esc_html__('Clear', 'capability-manager-enhanced') . '</button>';
+							echo ' <button class="button secondary-button ppc-filter-text-reset" type="button">' . __('Clear') . '</button>';
 						echo '</div>';
 						echo '<div class="ppc-filter-no-results" style="display:none;">' . esc_html__( 'No results found. Please try again with a different word.', 'capability-manager-enhanced' ) . '</div>';
 
@@ -1058,7 +1058,7 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 
 						echo '<div class="ppc-filter-wrapper">';
 							echo '<input type="text" class="regular-text ppc-filter-text" placeholder="' . esc_attr__('Filter by capability', 'capability-manager-enhanced') . '">';
-							echo ' <button class="button secondary-button ppc-filter-text-reset" type="button">' . esc_html__('Clear', 'capability-manager-enhanced') . '</button>';
+							echo ' <button class="button secondary-button ppc-filter-text-reset" type="button">' . __('Clear') . '</button>';
 						echo '</div>';
 						echo '<div class="ppc-filter-no-results" style="display:none;">' . esc_html__( 'No results found. Please try again with a different word.', 'capability-manager-enhanced' ) . '</div>';
 
@@ -1115,7 +1115,7 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 
 						echo '<div class="ppc-filter-wrapper">';
 							echo '<input type="text" class="regular-text ppc-filter-text" placeholder="' . esc_attr__('Filter by capability', 'capability-manager-enhanced') . '">';
-							echo ' <button class="button secondary-button ppc-filter-text-reset" type="button">' . esc_html__('Clear', 'capability-manager-enhanced') . '</button>';
+							echo ' <button class="button secondary-button ppc-filter-text-reset" type="button">' . __('Clear') . '</button>';
 						echo '</div>';
 						echo '<div class="ppc-filter-no-results" style="display:none;">' . esc_html__( 'No results found. Please try again with a different word.', 'capability-manager-enhanced' ) . '</div>';
 
@@ -1331,7 +1331,7 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 
 						echo '<div class="ppc-filter-wrapper">';
 							echo '<input type="text" class="regular-text ppc-filter-text" placeholder="' . esc_attr__('Filter by capability', 'capability-manager-enhanced') . '">';
-							echo ' <button class="button secondary-button ppc-filter-text-reset" type="button">' . esc_html__('Clear', 'capability-manager-enhanced') . '</button>';
+							echo ' <button class="button secondary-button ppc-filter-text-reset" type="button">' . __('Clear') . '</button>';
 						echo '</div>';
 						echo '<div class="ppc-filter-no-results" style="display:none;">' . esc_html__( 'No results found. Please try again with a different word.', 'capability-manager-enhanced' ) . '</div>';
 						?>
@@ -1737,7 +1737,7 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 			<input type="hidden" name="current" value="<?php echo esc_attr($default); ?>" />
 
 			<?php
-			$save_caption = (in_array(sanitize_key(get_locale()), ['en_EN', 'en_US'])) ? 'Save Capabilities' : __('Save Changes', 'capability-manager-enhanced');
+			$save_caption = (in_array(sanitize_key(get_locale()), ['en_EN', 'en_US'])) ? 'Save Capabilities' : __('Save Changes');
 			?>
 			<input type="submit" name="SaveRole" value="<?php echo esc_attr($save_caption);?>" class="button-primary" /> &nbsp;
 		</p>

@@ -38,25 +38,25 @@ class PP_Capabilities_Post_Features {
         $elements = [];
 
         $elements[esc_html__('Top Tabs', 'capability-manager-enhanced')] = [
-            '#contextual-help-link-wrap' => ['label' => esc_html__('Help', 'capability-manager-enhanced')],
-            '#screen-options-link-wrap' => ['label' => esc_html__('Screen Options', 'capability-manager-enhanced')],
+            '#contextual-help-link-wrap' => ['label' => esc_html__('Help')],
+            '#screen-options-link-wrap' => ['label' => esc_html__('Screen Options')],
         ];
 
-        $elements[esc_html__('Editor', 'capability-manager-enhanced')] = [
+        $elements[esc_html(_x( 'Editor', 'site editor menu item' ))] = [
             '.page-title-action' => [
                 'label' => esc_html__('Add New', 'capability-manager-enhanced')
             ],
             '#title' => [
-                'label'       => esc_html__('Title', 'capability-manager-enhanced'), 
+                'label'       => esc_html__('Title'), 
                 'elements'    => '#titlediv, #title, #titlewrap', 
                 'support_key' => 'title'
             ],
             '#postdivrich' => [
-                'label'       => esc_html__('Editor', 'capability-manager-enhanced'), 
+                'label'       => esc_html(_x( 'Editor', 'site editor menu item' )), 
                 'support_key' => 'editor'
             ],
             '#pageslugdiv' => [
-                'label' => esc_html__('Permalink', 'capability-manager-enhanced')
+                'label' => esc_html__('Slug', 'capability-manager-enhanced')
             ],
             '#media_buttons' => [
                 'label'       => esc_html__('Media Buttons (all)', 'capability-manager-enhanced'), 
@@ -76,33 +76,33 @@ class PP_Capabilities_Post_Features {
 
         $elements[esc_html__('Publish Box', 'capability-manager-enhanced')] = [
             '#submitdiv' => ['label' => esc_html__('Publish Box', 'capability-manager-enhanced')],
-            '#save-post' => ['label' => esc_html__('Save Draft', 'capability-manager-enhanced')],
-            '#post-preview' => ['label' => esc_html__('Preview', 'capability-manager-enhanced')],
-            '.misc-pub-post-status' => ['label' => esc_html__('Publish Status ', 'capability-manager-enhanced')],
-            '.misc-pub-visibility' => ['label' => esc_html__('Publish Visibility', 'capability-manager-enhanced')],
-            '#sticky-span' => ['label' => esc_html__('Stick this post to the front page', 'capability-manager-enhanced')],
-            '#passworddiv' => ['label' => esc_html__('Password Protect This Post', 'capability-manager-enhanced')],
+            '#save-post' => ['label' => esc_html__('Save Draft')],
+            '#post-preview' => ['label' => esc_html__('Preview')],
+            '.misc-pub-post-status' => ['label' => esc_html__('Status')],
+            '.misc-pub-visibility' => ['label' => esc_html__('Visibility')],
+            '#sticky-span' => ['label' => esc_html__('Stick this post to the front page')],
+            '#passworddiv' => ['label' => esc_html__('Password protected')],
             '#misc-publishing-actions' => ['label' => esc_html__('Publish Actions', 'capability-manager-enhanced')],
-            '.misc-pub-curtime' => ['label' => esc_html__('Publish Schedule', 'capability-manager-enhanced')],
-            '#date' => ['label' => esc_html__('Date', 'capability-manager-enhanced'),                            'elements' => '#date, #datediv, th.column-date, td.date, div.curtime'],
-            '#publish' => ['label' => esc_html__('Publish', 'capability-manager-enhanced')],
+            '.misc-pub-curtime' => ['label' => sprintf(esc_html__('Publish on: %s'), '')],
+            '#date' => ['label' => esc_html__('Date'),     'elements' => '#date, #datediv, th.column-date, td.date, div.curtime'],
+            '#publish' => ['label' => esc_html__('Publish')],
         ];
 
         $elements[esc_html__('Taxonomy Boxes', 'capability-manager-enhanced')] = [
             '#category' => [
-                'label'        => esc_html__('Categories', 'capability-manager-enhanced'),
+                'label'        => esc_html__('Categories'),
                 'elements'     => '#categories, #categorydiv, #categorydivsb, th.column-categories, td.categories, #screen-options-wrap label[for=categorydiv-hide]',
                 'support_key'  => 'category',
                 'support_type' => 'taxonomy'
             ],
             '#category-add-toggle' => [
-                'label'        => esc_html__('Add New Category', 'capability-manager-enhanced'),
+                'label'        => esc_html__('Add New Category'),
                 'elements'     => '#category-add-toggle',
                 'support_key'  => 'category',
                 'support_type' => 'taxonomy'
             ],
             '#post_tag' => [
-                'label'       => esc_html__('Tags', 'capability-manager-enhanced'), 
+                'label'       => esc_html__('Tags'), 
                 'elements'    => '#tags, #tagsdiv,#tagsdivsb,#tagsdiv-post_tag, th.column-tags, td.tags, #screen-options-wrap label[for=tagsdiv-post_tag-hide]',
                 'support_key' => 'post_tag',
                 'support_type' => 'taxonomy'
@@ -125,21 +125,21 @@ class PP_Capabilities_Post_Features {
 
         $elements[esc_html__('Page Boxes', 'capability-manager-enhanced')] = [
             '#pageparentdiv' => [
-                'label'       => esc_html__('Page Attributes', 'capability-manager-enhanced'),
+                'label'       => esc_html__('Page Attributes'),
                 'support_key' => 'page-attributes'
             ],
             '#parent_id' => [
-                'label'       => esc_html__('Parent', 'capability-manager-enhanced'), 
+                'label'       => esc_html__('Parent'), 
                 'elements'    => 'p.parent-id-label-wrapper, #parent_id',
                 'support_key' => 'page-attributes'
             ],
             '#page_template' => [
-                'label' => esc_html__('Page Template', 'capability-manager-enhanced'),
+                'label' => esc_html__('Template'),
                 'elements'    => '#page_template',
                 'support_key' => 'page-attributes'
             ],
             'p.menu-order-label-wrapper' => [
-                'label'       => esc_html__('Order', 'capability-manager-enhanced'),
+                'label'       => esc_html__('Order'),
                 'elements'    => 'p.menu-order-label-wrapper',
                 'support_key' => 'page-attributes'
             ],
@@ -152,11 +152,11 @@ class PP_Capabilities_Post_Features {
                 'support_key' => 'thumbnail'
             ],
             '#slug' => [
-                'label' => esc_html__('Post Slug', 'capability-manager-enhanced'),
+                'label' => esc_html__('Slug'),
                 'elements' => '#slugdiv,#edit-slug-box, #screen-options-wrap label[for=slugdiv-hide]'
             ],
             '#commentstatusdiv' => [
-                'label' => esc_html__('Discussion', 'capability-manager-enhanced'),
+                'label' => esc_html__('Discussion'),
                 'elements'    => '#commentstatusdiv, #screen-options-wrap label[for=commentstatusdiv-hide]',
                 'support_key' => 'comments'
             ],
@@ -383,29 +383,29 @@ class PP_Capabilities_Post_Features {
             esc_html__('Top Bar - Left', 'capability-manager-enhanced') => [
                 'add_block' => ['label' => esc_html__('Add block', 'capability-manager-enhanced'), 'elements' => '.edit-post-header-toolbar .edit-post-header-toolbar__inserter-toggle.has-icon'],
                 'modes' =>     ['label' => esc_html__('Modes', 'capability-manager-enhanced'),     'elements' => '.edit-post-header-toolbar .components-dropdown:first-of-type'],
-                'undo' =>      ['label' => esc_html__('Undo', 'capability-manager-enhanced'),      'elements' => '.edit-post-header-toolbar .editor-history__undo'],
-                'redo' =>      ['label' => esc_html__('Redo', 'capability-manager-enhanced'),      'elements' => '.edit-post-header-toolbar .editor-history__redo'],
-                'details' =>   ['label' => esc_html__('Details', 'capability-manager-enhanced'),   'elements' => '.edit-post-header__toolbar .table-of-contents'],
+                'undo' =>      ['label' => esc_html__('Undo'),                       'elements' => '.edit-post-header-toolbar .editor-history__undo'],
+                'redo' =>      ['label' => esc_html__('Redo'),                       'elements' => '.edit-post-header-toolbar .editor-history__redo'],
+                'details' =>   ['label' => esc_html__('Details'),                     'elements' => '.edit-post-header__toolbar .table-of-contents'],
                 'outline' =>   ['label' => esc_html__('Outline', 'capability-manager-enhanced'),   'elements' => '.edit-post-header__toolbar .edit-post-header-toolbar__list-view-toggle'],
             ],
 
             esc_html__('Top Bar - Right', 'capability-manager-enhanced') => [
-                'save_draft' =>       ['label' => esc_html__('Save Draft', 'capability-manager-enhanced'),       'elements' => '.edit-post-header__settings .components-button.editor-post-save-draft'],
-                'switch_to_draft' =>  ['label' => esc_html__('Switch to draft', 'capability-manager-enhanced'),  'elements' => '.edit-post-header__settings .components-button.editor-post-switch-to-draft'],
-                'preview' =>          ['label' => esc_html__('Preview', 'capability-manager-enhanced'),          'elements' => '.edit-post-header__settings .block-editor-post-preview__dropdown'],
+                'save_draft' =>       ['label' => esc_html__('Save Draft'),                        'elements' => '.edit-post-header__settings .components-button.editor-post-save-draft'],
+                'switch_to_draft' =>  ['label' => esc_html__('Switch to Draft'),                   'elements' => '.edit-post-header__settings .components-button.editor-post-switch-to-draft'],
+                'preview' =>          ['label' => esc_html__('Preview'),                           'elements' => '.edit-post-header__settings .block-editor-post-preview__dropdown'],
                 'publish' =>          ['label' => esc_html__('Publish / Update', 'capability-manager-enhanced'), 'elements' => '.edit-post-header__settings .editor-post-publish-button__button'],
-                'settings' =>         ['label' => esc_html__('Settings', 'capability-manager-enhanced'),         'elements' => '.edit-post-header__settings .interface-pinned-items button'],
+                'settings' =>         ['label' => esc_html__('Settings'),                          'elements' => '.edit-post-header__settings .interface-pinned-items button'],
                 'options' =>          ['label' => esc_html__('Options', 'capability-manager-enhanced'),          'elements' => '.edit-post-header__settings .edit-post-more-menu .components-button, .edit-post-header__settings .components-dropdown-menu.interface-more-menu-dropdown'],
             ],
 
             esc_html__('Body', 'capability-manager-enhanced') => [
                 'edit_title' =>   [
-                    'label'       => esc_html__('Edit title', 'capability-manager-enhanced'), 
+                    'label'       => esc_html__('Title'), 
                     'elements'    => '.wp-block.editor-post-title__block, .wp-block.editor-post-title',
                     'support_key' => 'title'
                 ],
                 'content' =>      [
-                    'label'       => esc_html__('Content', 'capability-manager-enhanced'), 
+                    'label'       => esc_html__('Content'), 
                     'elements'    => '.block-editor-block-list__layout',
                     'support_key' => 'editor'
                 ],
@@ -418,20 +418,20 @@ class PP_Capabilities_Post_Features {
             esc_html__('Document Panel', 'capability-manager-enhanced') => [
                 'status_visibility' => ['label' => esc_html__('Status & visibility', 'capability-manager-enhanced'),   'elements' => 'post-status'],
                 'template'          => [
-                    'label'       => esc_html__('Template', 'capability-manager-enhanced'),
+                    'label'       => esc_html__('Template'),
                     'elements'    => '.components-panel__row.edit-post-post-template'
                 ],
-                'revisions'         => ['label' => esc_html__('Revisions', 'capability-manager-enhanced'), 'elements' => '.editor-post-last-revision__title'],
+                'revisions'         => ['label' => esc_html__('Revisions'), 'elements' => '.editor-post-last-revision__title'],
                 'permalink' =>         ['label' => esc_html__('Permalink', 'capability-manager-enhanced'), 'elements' => '.components-panel__row.edit-post-post-url'],
-                'sticky'    =>         ['label' => esc_html__('Stick to the top of the blog', 'capability-manager-enhanced'), 'elements' => '.components-panel .components-panel__body.edit-post-post-status .edit-post-post-url + .components-panel__row'],
+                'sticky'    =>         ['label' => esc_html__( 'Stick this post to the front page' ) , 'elements' => '.components-panel .components-panel__body.edit-post-post-status .edit-post-post-url + .components-panel__row'],
                 'categories' =>        [
-                    'label'        => esc_html__('Categories', 'capability-manager-enhanced'), 
+                    'label'        => esc_html__('Categories'), 
                     'elements'     => 'taxonomy-panel-category',
                     'support_key'  => 'category',
                     'support_type' => 'taxonomy'
                 ],
                 'tags' =>              [
-                    'label'        => esc_html__('Tags', 'capability-manager-enhanced'),
+                    'label'        => esc_html__('Tags'),
                     'elements'     => 'taxonomy-panel-post_tag',
                     'support_key'  => 'post_tag',
                     'support_type' => 'taxonomy'
@@ -460,12 +460,12 @@ class PP_Capabilities_Post_Features {
                 'support_key' => 'thumbnail'
             ],
             'excerpt'         => [
-                'label'       => esc_html__('Excerpt', 'capability-manager-enhanced'),
+                'label'       => esc_html__('Excerpt'),
                 'elements'    => 'post-excerpt',
                 'support_key' => 'excerpt'
             ],
             'discussion'      => [
-                'label'       => esc_html__('Discussion', 'capability-manager-enhanced'), 
+                'label'       => esc_html__('Discussion'), 
                 'elements'    => 'discussion-panel',
                 'support_key' => 'comments'
             ],
