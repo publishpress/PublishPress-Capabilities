@@ -490,7 +490,38 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 						$grouped_caps = apply_filters('cme_grouped_capabilities', $grouped_caps);
 
 						foreach($grouped_caps as $grouped_title => $__grouped_caps) {
-							$grouped_title = esc_html($grouped_title);
+							switch ($grouped_title) {
+								case 'Comments' :
+									$grouped_title = __('Comments');
+									break;
+
+								case 'Media' :
+									$grouped_title = __('Media');
+									break;
+
+								case 'Users' :
+									$grouped_title = __('Users');
+									break;
+
+								case 'Themes' :
+									$grouped_title = __('Themes');
+									break;
+
+								case 'Plugins' :
+									$grouped_title = __('Plugins');
+									break;
+
+								case 'Multisite' :
+									$grouped_title = esc_html__('Multisite', 'capability-manager-enhanced');
+									break;
+
+								case 'Admin' :
+									$grouped_title = esc_html__('Admin', 'capability-manager-enhanced');
+									break;
+											
+								default:
+									$grouped_title = esc_html($grouped_title);
+							}
 
 							$tab_slug = pp_capabilities_convert_to_slug(sanitize_title($grouped_title));
 							$tab_id = 'cme-cap-type-tables-' . $tab_slug;
