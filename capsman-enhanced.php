@@ -12,7 +12,7 @@
  * Requires PHP: 7.2.5
  * License: GPLv3
  *
- * Copyright (c) 2023 PublishPress
+ * Copyright (c) 2024 PublishPress
  *
  * ------------------------------------------------------------------------------
  * Based on Capability Manager
@@ -22,7 +22,7 @@
  *
  * @package 	capability-manager-enhanced
  * @author		PublishPress
- * @copyright   Copyright (C) 2009, 2010 Jordi Canals; modifications Copyright (C) 2023 PublishPress
+ * @copyright   Copyright (C) 2009, 2010 Jordi Canals; modifications Copyright (C) 2024 PublishPress
  * @license		GNU General Public License version 3
  * @link		https://publishpress.com/
  */
