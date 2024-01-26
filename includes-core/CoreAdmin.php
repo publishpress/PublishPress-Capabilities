@@ -10,7 +10,7 @@ class CoreAdmin {
     
             add_filter(\PPVersionNotices\Module\TopNotice\Module::SETTINGS_FILTER, function ($settings) {
                 $settings['capabilities'] = [
-                    'message' => 'You\'re using PublishPress Capabilities Free. The Pro version has more features and support. %sUpgrade to Pro%s',
+                    'message' => __("You're using PublishPress Capabilities Free. The Pro version has more features and support. %sUpgrade to Pro%s", 'capability-manager-enhanced'),
                     'link'    => 'https://publishpress.com/links/capabilities-banner',
                     'screens' => [
                         ['base' => 'capabilities_page_pp-capabilities-dashboard'],
