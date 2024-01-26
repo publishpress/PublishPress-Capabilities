@@ -2,14 +2,14 @@
 # This file is distributed under the GPLv3.
 msgid ""
 msgstr ""
-"Project-Id-Version: PublishPress Capabilities 2.12.1-rc3\n"
+"Project-Id-Version: PublishPress Capabilities 2.12.1-rc4\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/project\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-01-26T14:59:04+00:00\n"
+"POT-Creation-Date: 2024-01-26T19:23:46+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.8.1\n"
 "X-Domain: capability-manager-enhanced\n"
@@ -60,6 +60,10 @@ msgstr ""
 
 #: includes-core/admin-menus-promo.php:58
 msgid "You can restrict access to admin menu screens. This feature is available in PublishPress Capabilities Pro"
+msgstr ""
+
+#: includes-core/CoreAdmin.php:13
+msgid "You're using PublishPress Capabilities Free. The Pro version has more features and support. %sUpgrade to Pro%s"
 msgstr ""
 
 #: includes-core/CoreAdmin.php:76
