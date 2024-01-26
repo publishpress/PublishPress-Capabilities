@@ -7,7 +7,7 @@ Tags: capabilities, permissions, admin menus, user roles, user role editor, acce
 Requires at least: 5.5
 Requires PHP: 7.2.5
 Tested up to: 6.4
-Stable tag: 2.11.1
+Stable tag: 2.12.1
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -410,13 +410,13 @@ Fixed : Security issue. Please update.
 
 == Changelog ==
 
-= 2.12.1 =
+= 2.12.1 - 25 Jan 2024 =
   * Change : Improved use of screen space on Capabilties tab panels
   * Change : In mobile view, scroll to panel for clicked Capabilities tab
-  * Change : Display right sidebar metaboxes only where they're relevant
+  * Change : Display right sidebar metaboxes inside tab panel, but only where they're relevant
   * Change : In Add Capability sidebar metabox, mention that new capabilities will show up on Additional tab
-
-= 2.12.0 =
+  * Change : Use 90% opacity for Capabilities tool tip
+  * Change : Don't display "This capability is" tool tip if capability name is already displayed next to checkbox 
   * Change : Cleaner styling for capabilities assigned implicitly by Permission Group
 
 = 2.11.1 - 04 Jan 2024 =
