@@ -72,23 +72,17 @@ div.cme-cap-type-tables {
 border: 1px solid black;
 }
 
-/*
-table.cme-typecaps {
-
-}
-*/
-
-table .cme-typecaps td:first-of-type {
+table .cme-typecaps tbody tr td:nth-child(1)
+{
 text-align: left;
+min-width: 160px;
+width: 25%;
 }
 
 table .cme-typecaps td {
 text-align: center;
 height: 2em;
-}
-
-table .cme-typecaps th:first-of-type {
-	width: 160px;
+width: 12%;
 }
 
 table .cme-typecaps th {
