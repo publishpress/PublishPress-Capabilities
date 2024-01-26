@@ -359,7 +359,7 @@ class CapabilityManager
 
 	public function cme_menu() {
 
-        global $submenu, $capabilities_toplevel_page;
+        global $menu, $submenu, $capabilities_toplevel_page;
         
         //we need to set primary menu capability to the first menu user has access to
         $sub_menu_pages = pp_capabilities_sub_menu_lists();
@@ -367,7 +367,9 @@ class CapabilityManager
         $menu_cap       = false;
         $cap_callback   = false;
         $cap_page_slug  = false;
-        $cap_title      = __('Capabilities', 'capability-manager-enhanced');
+        $cap_title      = 'Capabilities'; // Pass title into add_menu_page() untranslated so hook name, body class and current_screen are not translated
+		$cap_title_i8n = __('Capabilities', 'capability-manager-enhanced');
+
         $cap_name       = false;
         if (is_multisite() && is_super_admin()) {
             $cap_name      = 'read';
@@ -378,6 +380,7 @@ class CapabilityManager
             $cap_index     = str_replace(['manage_capabilities_', 'manage_', '_'], ['', '', '-'], $cap_name);
             if (($cap_index !== 'capabilities') && (count($user_menu_caps) === 1)) {
                 $cap_title = $sub_menu_pages[$cap_index]['title'];
+				$using_submenu_title = true;
             }
             $cap_page_slug = $sub_menu_pages[$cap_index]['page'];
             $cap_callback  = $sub_menu_pages[$cap_index]['callback'];
@@ -408,6 +411,17 @@ class CapabilityManager
             'dashicons-admin-network',
             $menu_order
         );
+
+		// Translate plugin menu title if needed. Title was passed untranslated to avoid translating hook name, body class, current screen
+		if (($cap_title != $cap_title_i8n) && empty($using_submenu_title)) {
+			if (!empty($menu) && is_array($menu) && !defined('PP_CAPABILITIES_DISABLE_MENU_TRANSLATION_SUPPORT')) {
+				foreach ($menu as $k => $m) {
+					if (is_array($m) && isset($m[5]) && ('toplevel_page_pp-capabilities-dashboard' == $m[5])) {
+						$menu[$k][0] = $cap_title_i8n;
+					}
+				}
+			}
+		}
 
         $dashboard_screen = (isset($_GET['page']) && $_GET['page'] === $cap_page_slug) ? true : false;
         $submenu_slugs              = [];
