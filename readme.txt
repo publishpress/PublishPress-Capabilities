@@ -410,6 +410,12 @@ Fixed : Security issue. Please update.
 
 == Changelog ==
 
+= 2.12.1 =
+  * Change : Improved use of screen space on Capabilties tab panels
+  * Change : In mobile view, scroll to panel for clicked Capabilities tab
+  * Change : Display right sidebar metaboxes only where they're relevant
+  * Change : In Add Capability sidebar metabox, mention that new capabilities will show up on Additional tab
+
 = 2.12.0 =
   * Change : Cleaner styling for capabilities assigned implicitly by Permission Group
 

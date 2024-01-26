@@ -94,7 +94,7 @@ class Capsman_PP_UI {
 	function pp_types_ui( $defined_types ) {
         global $sidebar_metabox_state;
         ?>
-        <div class="ppc-sidebar-panel-metabox meta-box-sortables">
+        <div class="ppc-sidebar-panel-metabox meta-box-sortables ppc-post-types">
             <?php $meta_box_state = (isset($sidebar_metabox_state['unique_capabilities_for_post_types'])) ? $sidebar_metabox_state['unique_capabilities_for_post_types'] : 'closed';  ?>
             <div class="postbox ppc-sidebar-panel <?php echo esc_attr($meta_box_state); ?>">
                 <input 
@@ -104,7 +104,7 @@ class Capsman_PP_UI {
                     value="<?php echo esc_attr($meta_box_state); ?>"
                 />
                 <div class="postbox-header">
-                    <h2 class="hndle ui-sortable-handle"><?php esc_html_e('Unique Capabilities for Post Types', 'capability-manager-enhanced'); ?></h2>
+                    <h2 class="hndle ui-sortable-handle"><?php esc_html_e('Unique Post Type Capabilities', 'capability-manager-enhanced'); ?></h2>
                     <div class="handle-actions">
                         <button type="button" class="handlediv">
                             <span class="toggle-indicator"></span>
@@ -201,7 +201,7 @@ class Capsman_PP_UI {
 	function pp_taxonomies_ui( $defined_taxonomies ) {
         global $sidebar_metabox_state;
 		?>
-        <div class="ppc-sidebar-panel-metabox meta-box-sortables">
+        <div class="ppc-sidebar-panel-metabox meta-box-sortables ppc-taxonomies" style="display:none;">
             <?php $meta_box_state = (isset($sidebar_metabox_state['unique_capabilities_for_taxonomies'])) ? $sidebar_metabox_state['unique_capabilities_for_taxonomies'] : 'closed';  ?>
             <div class="postbox ppc-sidebar-panel <?php echo esc_attr($meta_box_state); ?>">
                 <input 
@@ -211,7 +211,7 @@ class Capsman_PP_UI {
                     value="<?php echo esc_attr($meta_box_state); ?>"
                 />
                 <div class="postbox-header">
-                    <h2 class="hndle ui-sortable-handle"><?php esc_html_e('Unique Capabilities for Taxonomies', 'capability-manager-enhanced'); ?></h2>
+                    <h2 class="hndle ui-sortable-handle"><?php esc_html_e('Unique Taxonomy Capabilities', 'capability-manager-enhanced'); ?></h2>
                     <div class="handle-actions">
                         <button type="button" class="handlediv">
                             <span class="toggle-indicator"></span>
@@ -281,8 +281,7 @@ class Capsman_PP_UI {
             </div>
         </div>
 
-
-        <div class="ppc-sidebar-panel-metabox meta-box-sortables">
+        <div class="ppc-sidebar-panel-metabox meta-box-sortables ppc-detailed-taxonomies" style="display:none;">
                 <?php $meta_box_state = (isset($sidebar_metabox_state['detailed_capabilities_for_taxonomies'])) ? $sidebar_metabox_state['detailed_capabilities_for_taxonomies'] : 'closed';  ?>
                 <div class="postbox ppc-sidebar-panel <?php echo esc_attr($meta_box_state); ?>">
                     <input 
@@ -292,7 +291,7 @@ class Capsman_PP_UI {
                         value="<?php echo esc_attr($meta_box_state); ?>"
                     />
                     <div class="postbox-header">
-                        <h2 class="hndle ui-sortable-handle"><?php esc_html_e('Detailed Capabilities for Taxonomies', 'capability-manager-enhanced'); ?></h2>
+                        <h2 class="hndle ui-sortable-handle"><?php esc_html_e('Detailed Taxonomy Capabilities', 'capability-manager-enhanced'); ?></h2>
                         <div class="handle-actions">
                             <button type="button" class="handlediv">
                                 <span class="toggle-indicator"></span>
