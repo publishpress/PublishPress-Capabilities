@@ -45,7 +45,7 @@ $default_role = $capsman->current;
                                 ?>
                             </select> &nbsp;
                             <input type="submit" name="admin-menu-submit"
-                                value="<?php esc_attr_e('Save Changes', 'capability-manager-enhanced') ?>"
+                                value="<?php esc_attr_e('Save Changes');?>"
                                 class="button-primary ppc-admin-menu-submit" style="float:right" />
                         </div>
                         <div id="pp-capability-menu-wrapper" class="postbox" style="box-shadow: none;">

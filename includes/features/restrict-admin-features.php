@@ -59,8 +59,8 @@ class PP_Capabilities_Admin_Features
         $title['menu-toggle']      = esc_html__('Mobile Menu Toggle', 'capability-manager-enhanced');
         $title['wp-logo']          = esc_html__('WordPress Logo', 'capability-manager-enhanced');
         $title['wp-logo-external'] = esc_html__('WordPress External Links', 'capability-manager-enhanced');
-        $title['updates']          = esc_html__('Updates', 'capability-manager-enhanced');
-        $title['comments']         = esc_html__('Comments', 'capability-manager-enhanced');
+        $title['updates']          = esc_html__('Updates');
+        $title['comments']         = esc_html__('Comments');
         $title['top-secondary']    = esc_html__('Right bar', 'capability-manager-enhanced');
         $title['user-actions']     = esc_html__('User actions', 'capability-manager-enhanced');
         $title['new-content']      = esc_html__('New', 'capability-manager-enhanced');
@@ -78,8 +78,8 @@ class PP_Capabilities_Admin_Features
      */
     public static function formatHeaderFooter()
     {
-        $elements_item['screen_options'] = ['label'  => esc_html__('Screen Options', 'capability-manager-enhanced'), 'action' => 'ppc_header_footer'];
-        $elements_item['screen_help'] = ['label'  => esc_html__('Help', 'capability-manager-enhanced'), 'action' => 'ppc_header_footer'];
+        $elements_item['screen_options'] = ['label'  => esc_html__('Screen Options'), 'action' => 'ppc_header_footer'];
+        $elements_item['screen_help'] = ['label'  => esc_html__('Help'), 'action' => 'ppc_header_footer'];
         $elements_item['footer_thankyou'] = ['label'  => esc_html__('Thank you for creating with WordPress', 'capability-manager-enhanced'), 'action' => 'ppc_header_footer'];
         $elements_item['footer_upgrade'] = ['label'  => sprintf( esc_html__( 'Version %s' ), get_bloginfo('version'), 'capability-manager-enhanced' ), 'action' => 'ppc_header_footer'];
 

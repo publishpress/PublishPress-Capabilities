@@ -426,6 +426,7 @@ class CapabilityManager
         $dashboard_screen = (isset($_GET['page']) && $_GET['page'] === $cap_page_slug) ? true : false;
         $submenu_slugs              = [];
         $submenu_slugs_conditions   = [];
+
         foreach ($sub_menu_pages as $feature => $subpage_option) {
             if ($subpage_option['dashboard_control'] === false 
                 || pp_capabilities_feature_enabled($feature)
@@ -485,7 +486,7 @@ class CapabilityManager
                     return [
                         'cb' 			  => '<input type="checkbox"/>',
                         'name'            => esc_html__('Role Name', 'capability-manager-enhanced'),
-						'count'           => esc_html__('Users', 'capability-manager-enhanced'),
+						'count'           => esc_html__('Users'),
 						'role_type'       => esc_html__('Role Type', 'capability-manager-enhanced'),
 						'default_role'    => esc_html__('Default Role', 'capability-manager-enhanced'),
 						'admin_access'    => esc_html__('Admin Access', 'capability-manager-enhanced'),

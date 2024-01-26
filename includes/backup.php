@@ -337,7 +337,7 @@ $sidebar_enabled = defined('PUBLISHPRESS_CAPS_PRO_VERSION') ? false : true;
                                         </p>
                                         <p>
                                             <input type="submit" name="import_backup"
-                                                    value="<?php esc_attr_e('Import', 'capability-manager-enhanced') ?>"
+                                                    value="<?php esc_attr_e('Import'); ?>"
                                                     class="button-primary"/>
                                         </p>
                                     </div>

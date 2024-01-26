@@ -93,7 +93,7 @@
         <td class="menu-column ppc-menu-item">
                 <span class="gutenberg menu-item-link">
                 <strong><i class="dashicons dashicons-arrow-right"></i> <?php esc_html_e('Custom item one', 'capability-manager-enhanced'); ?> <small>(.custom-plugin-item, #custom-plugin-item)</small> &nbsp; <span
-                        class="ppc-custom-features-delete"><small>(<?php esc_html_e('Delete', 'capability-manager-enhanced'); ?>)</small></span></strong></span>
+                        class="ppc-custom-features-delete"><small>(<?php esc_html_e('Delete'); ?>)</small></span></strong></span>
         </td>
 
         <td class="restrict-column ppc-menu-checkbox">
@@ -104,7 +104,7 @@
         <td class="menu-column ppc-menu-item">
                 <span class="gutenberg menu-item-link restricted">
                 <strong><i class="dashicons dashicons-arrow-right"></i> <?php esc_html_e('Permalink: Descriptive Caption', 'capability-manager-enhanced'); ?> <small>(.editor-post-link p)</small> &nbsp; <span
-                        class="ppc-custom-features-delete"><small>(<?php esc_html_e('Delete', 'capability-manager-enhanced'); ?>)</small></span>                </strong></span>
+                        class="ppc-custom-features-delete"><small>(<?php esc_html_e('Delete'); ?>)</small></span>                </strong></span>
         </td>
 
         <td class="restrict-column ppc-menu-checkbox">
@@ -114,7 +114,7 @@
     <tr class="ppc-menu-row parent-menu pp-promo-overlay-row pp-promo-blur">
         <td class="menu-column ppc-menu-item">
                 <span class="gutenberg menu-item-link">
-                <strong><i class="dashicons dashicons-arrow-right"></i> <?php esc_html_e('Page Attributes: Order', 'capability-manager-enhanced'); ?> <small>(.editor-page-attributes__order)</small> &nbsp; <span class="ppc-custom-features-delete"><small>(<?php esc_html_e('Delete', 'capability-manager-enhanced'); ?>)</small></span>                </strong></span>
+                <strong><i class="dashicons dashicons-arrow-right"></i> <?php esc_html_e('Page Attributes: Order', 'capability-manager-enhanced'); ?> <small>(.editor-page-attributes__order)</small> &nbsp; <span class="ppc-custom-features-delete"><small>(<?php esc_html_e('Delete'); ?>)</small></span>                </strong></span>
         </td>
 
         <td class="restrict-column ppc-menu-checkbox">

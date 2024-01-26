@@ -251,7 +251,7 @@ class PP_Capabilities_Frontend_Features_UI
                 </div>
             </td>
             <td>
-                <div class="button view-custom-item"><?php esc_html_e('View', 'capability-manager-enhanced'); ?></div>
+                <div class="button view-custom-item"><?php esc_html_e('View'); ?></div>
             </td>
             <td>
                 <div class="button edit-custom-item" 
@@ -262,7 +262,7 @@ class PP_Capabilities_Frontend_Features_UI
                     data-pages="<?php echo esc_attr(join(', ', (array) $section_array['pages'])); ?>"
                     data-post-types="<?php echo esc_attr(join(', ', (array) $section_array['post_types'])); ?>"
                     data-id="<?php echo esc_attr($section_id); ?>">
-                <?php esc_html_e('Edit', 'capability-manager-enhanced'); ?>
+                <?php esc_html_e('Edit'); ?>
                 </div>
             </td>
             <td>
@@ -271,7 +271,7 @@ class PP_Capabilities_Frontend_Features_UI
                     data-section="<?php echo esc_attr($section_slug); ?>" 
                     data-id="<?php echo esc_attr($section_id); ?>" 
                     data-delete-nonce="<?php echo esc_attr(wp_create_nonce('frontend-delete' . $section_id .'-nonce')); ?>">
-                    <?php esc_html_e('Delete', 'capability-manager-enhanced'); ?>    
+                    <?php esc_html_e('Delete'); ?>    
                 </div>
             </td>
         </tr>

@@ -51,7 +51,7 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                                         <div class="publishpress-filters">
                                             <div class="pp-capabilities-submit-top" style="float:right;">
                                                 <input type="submit" name="admin-features-submit"
-                                                    value="<?php esc_attr_e('Save Changes', 'capability-manager-enhanced') ?>"
+                                                    value="<?php esc_attr_e('Save Changes');?>"
                                                     class="button-primary ppc-admin-features-submit" />
                                             </div>
 
@@ -218,7 +218,7 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                                                                                 </div>
                                                                             </div>
                                                                             <div class="ppc-flex-item">
-                                                                                <div class="button view-custom-item"><?php esc_html_e('View', 'capability-manager-enhanced'); ?></div>
+                                                                                <div class="button view-custom-item"><?php esc_html_e('View'); ?></div>
                                                                                     <?php /*<div class="button edit-custom-item" 
                                                                                         data-section="<?php echo esc_attr($section_slug); ?>"
                                                                                         data-label="<?php echo esc_attr($section_array['label']); ?>"
@@ -232,7 +232,7 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                                                                                     <div 
                                                                                         class="button <?php echo esc_attr($section_array['button_class']); ?> feature-red"
                                                                                         data-id="<?php echo esc_attr($section_array['button_data_id']); ?>">
-                                                                                        <?php esc_html_e('Delete', 'capability-manager-enhanced'); ?>    
+                                                                                        <?php esc_html_e('Delete'); ?>    
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -280,7 +280,7 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                                         </div>
                                     </div>
                                     <input type="submit" name="admin-features-submit"
-                                           value="<?php esc_attr_e('Save Changes', 'capability-manager-enhanced') ?>"
+                                           value="<?php esc_attr_e('Save Changes');?>"
                                            class="button-primary ppc-admin-features-submit"/>
                                 </td>
                             </tr>

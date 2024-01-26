@@ -131,7 +131,7 @@ class Pp_Roles_Admin
 
         if ($role_edit && !$current['is_system']) {
             $fields_tabs['delete'] = [
-                'label'    => esc_html__('Delete', 'capability-manager-enhanced'),
+                'label'    => esc_html__('Delete'),
                 'icon'     => 'dashicons dashicons-trash',
             ];
         }

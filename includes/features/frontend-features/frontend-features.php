@@ -82,7 +82,7 @@ $frontend_features_elements = PP_Capabilities_Frontend_Features_Data::elementsLa
                             <div class="publishpress-filters">
                                 <div class="pp-capabilities-submit-top" style="float:right;">
                                     <input type="submit" name="frontend-features-submit"
-                                        value="<?php esc_attr_e('Save Changes', 'capability-manager-enhanced') ?>"
+                                        value="<?php esc_attr_e('Save Changes');?>"
                                         class="button-primary ppc-frontend-features-submit" />
                                 </div>
 
@@ -232,7 +232,7 @@ $frontend_features_elements = PP_Capabilities_Frontend_Features_Data::elementsLa
                             <div class="editor-features-footer-meta">
                                 <div style="float:right">
                                     <input type="submit" name="frontend-features-submit"
-                                        value="<?php esc_attr_e('Save Changes', 'capability-manager-enhanced') ?>"
+                                        value="<?php esc_attr_e('Save Changes');?>"
                                         class="button-primary ppc-frontend-features-submit" />
                                 </div>
                             </div>
