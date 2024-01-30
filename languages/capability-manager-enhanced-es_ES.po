@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: Plugins - PublishPress Capabilities &#8211; User Role "
 "Access, Editor Permissions, Admin Menus - Stable (latest release)\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/project\n"
-"POT-Creation-Date: 2024-01-26T15:28:24+00:00\n"
-"PO-Revision-Date: 2024-01-26 18:34+0100\n"
+"POT-Creation-Date: 2024-01-26T19:23:46+00:00\n"
+"PO-Revision-Date: 2024-01-26 21:54+0100\n"
 "Last-Translator: \n"
 "Language-Team: Spanish (Spain)\n"
 "Language: es_ES\n"
@@ -80,6 +80,14 @@ msgid ""
 msgstr ""
 "Puedes restringir el acceso a las pantallas del menú de administración. Esta "
 "característica está disponible en PublishPress Capabilities Pro"
+
+#: includes-core/CoreAdmin.php:13
+msgid ""
+"You're using PublishPress Capabilities Free. The Pro version has more "
+"features and support. %sUpgrade to Pro%s"
+msgstr ""
+"Estas utilizando la versión gratuita de PublishPress Capabilities. La "
+"versión Pro tiene muchas más características y soporte. %sActualiza a Pro%s"
 
 #: includes-core/CoreAdmin.php:76 includes/functions-admin.php:466
 #: includes/roles/class/class-pp-roles-admin.php:644
