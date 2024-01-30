@@ -539,6 +539,8 @@ function pp_capabilities_pro_sidebox()
                 <p><?php echo esc_html__('Enhance the power of PublishPress Capabilities with the Pro version:', 'capability-manager-enhanced'); ?>
                 </p>
                 <ul>
+                    <li><?php echo esc_html__('Control Access to Custom Statuses', 'capability-manager-enhanced'); ?></li>
+                    <li><?php echo esc_html__('Control Access to Visibility Statuses', 'capability-manager-enhanced'); ?></li>
                     <li><?php echo esc_html__('Admin Menu restrictions', 'capability-manager-enhanced'); ?></li>
                     <li><?php echo esc_html__('Remove metaboxes on the editing screen', 'capability-manager-enhanced'); ?></li>
                     <li><?php echo esc_html__('Remove anything on the editing screen', 'capability-manager-enhanced'); ?></li>
