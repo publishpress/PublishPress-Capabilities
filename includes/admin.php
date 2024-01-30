@@ -605,7 +605,9 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 
 							echo "<table class='widefat striped cme-typecaps cme-typecaps-" . esc_attr($cap_type) . "'>";
 
-							echo '<thead><tr><th></th>';
+							echo '<thead><tr><th class="pp-header-checkall">';
+							echo '<input type="checkbox" name="pp_toggle_all" class="excluded-input" autocomplete="off"> &nbsp;';
+							echo '</th>';
 
 							// label cap properties
 							foreach( $cap_properties[$cap_type][$item_type] as $prop ) {
