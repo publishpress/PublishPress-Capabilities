@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-01-30T03:43:04+00:00\n"
+"POT-Creation-Date: 2024-01-30T05:19:17+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.8.1\n"
 "X-Domain: capability-manager-enhanced\n"
@@ -50,7 +50,7 @@ msgstr ""
 #: includes-core/admin-menus-promo.php:62
 #: includes-core/editor-features-promo.php:79
 #: includes-core/frontend-features-promo.php:32
-#: includes/functions.php:552
+#: includes/functions.php:554
 msgid "Upgrade to Pro"
 msgstr ""
 
@@ -1423,62 +1423,70 @@ msgid "Enhance the power of PublishPress Capabilities with the Pro version:"
 msgstr ""
 
 #: includes/functions.php:542
-msgid "Admin Menu restrictions"
+msgid "Control Access to Custom Statuses"
 msgstr ""
 
 #: includes/functions.php:543
-msgid "Remove metaboxes on the editing screen"
+msgid "Control Access to Visibility Statuses"
 msgstr ""
 
 #: includes/functions.php:544
-msgid "Remove anything on the editing screen"
+msgid "Admin Menu restrictions"
 msgstr ""
 
 #: includes/functions.php:545
-msgid "Remove anything in the WordPress admin"
+msgid "Remove metaboxes on the editing screen"
 msgstr ""
 
 #: includes/functions.php:546
-msgid "Block admin pages by URL"
+msgid "Remove anything on the editing screen"
 msgstr ""
 
 #: includes/functions.php:547
-msgid "Target Frontend Features for specific pages"
+msgid "Remove anything in the WordPress admin"
 msgstr ""
 
 #: includes/functions.php:548
-msgid "Fast, professional support"
+msgid "Block admin pages by URL"
 msgstr ""
 
 #: includes/functions.php:549
+msgid "Target Frontend Features for specific pages"
+msgstr ""
+
+#: includes/functions.php:550
+msgid "Fast, professional support"
+msgstr ""
+
+#: includes/functions.php:551
 msgid "No ads inside the plugin"
 msgstr ""
 
-#: includes/functions.php:559
+#: includes/functions.php:561
 msgid "Need PublishPress Capabilities Support?"
 msgstr ""
 
-#: includes/functions.php:564
+#: includes/functions.php:566
 msgid "If you need help or have a new feature request, let us know."
 msgstr ""
 
-#: includes/functions.php:566
+#: includes/functions.php:568
 msgid "Request Support"
 msgstr ""
 
-#: includes/functions.php:575
+#: includes/functions.php:577
 msgid "Detailed documentation is also available on the plugin website."
 msgstr ""
 
-#: includes/functions.php:577
+#: includes/functions.php:579
 msgid "View Knowledge Base"
 msgstr ""
 
-#: includes/functions.php:791
+#: includes/functions.php:793
 msgid "Social Links"
 msgstr ""
 
-#: includes/functions.php:792
+#: includes/functions.php:794
 msgid "Page Lists"
 msgstr ""
 
