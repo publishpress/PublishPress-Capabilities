@@ -69,7 +69,7 @@ if (
 add_action('plugins_loaded', function () {
 
 	if (!defined('CAPSMAN_VERSION')) {
-		define('CAPSMAN_VERSION', '2.12.1-rc5');
+		define('CAPSMAN_VERSION', '2.12.1');
 		define('CAPSMAN_ENH_VERSION', CAPSMAN_VERSION);
 		define('PUBLISHPRESS_CAPS_VERSION', CAPSMAN_VERSION);
 	}
