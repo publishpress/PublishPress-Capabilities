@@ -419,6 +419,7 @@ Fixed : Security issue. Please update.
   * Change : Use 90% opacity for Capabilities tool tip
   * Change : Don't display "This capability is" tool tip if capability name is already displayed next to checkbox 
   * Change : Cleaner styling for capabilities assigned implicitly by Permission Group
+  * Change : Update Pro promo sidebar on Capabilities Dashboard to mention Custom Statuses, Custom Visibility
   * Lang: Some tab captions on Capabilities screen were not translated
   * Lang: Default WordPress strings (Edit, Settings, etc.) used by plugin were made to rely on plugin language files
 
