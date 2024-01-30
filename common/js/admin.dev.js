@@ -277,6 +277,11 @@ jQuery(document).ready( function($) {
       clicked_box.addClass('interacted');
    });
 
+
+   $(document).on('click', 'input[name="pp_toggle_all"]', function (event) {
+    $(this).closest('table.cme-typecaps').find('input[type="checkbox"]:visible').not('.excluded-input').not('.disabled').prop('checked', $(this).prop('checked'));
+   });
+
    /**
     * Capabilities checkmark rotate
     */
