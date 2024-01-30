@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: Plugins - PublishPress Capabilities &#8211; User Role "
 "Access, Editor Permissions, Admin Menus - Stable (latest release)\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/project\n"
-"POT-Creation-Date: 2024-01-26T15:28:24+00:00\n"
-"PO-Revision-Date: 2024-01-26 19:56+0100\n"
+"POT-Creation-Date: 2024-01-26T19:23:46+00:00\n"
+"PO-Revision-Date: 2024-01-26 21:57+0100\n"
 "Last-Translator: \n"
 "Language-Team: French (France)\n"
 "Language: fr_FR\n"
@@ -79,6 +79,14 @@ msgid ""
 msgstr ""
 "Vous pouvez restreindre l’accès aux écrans du menu d’administration. Cette "
 "fonctionnalité est disponible dans PublishPress Capabilities Pro"
+
+#: includes-core/CoreAdmin.php:13
+msgid ""
+"You're using PublishPress Capabilities Free. The Pro version has more "
+"features and support. %sUpgrade to Pro%s"
+msgstr ""
+"Vous utilisez la version gratuite de PublishPress Capabilities. La version "
+"Pro offre plus de fonctionnalités et de support. Passer en version Pro%s"
 
 #: includes-core/CoreAdmin.php:76 includes/functions-admin.php:466
 #: includes/roles/class/class-pp-roles-admin.php:644
@@ -1047,7 +1055,6 @@ msgstr "Enregistrer pour tous les types de publication"
 #: includes/features/editor-features.php:121
 #: includes/features/editor-features.php:221
 #: includes/features/editor-features.php:223
-#| msgid "Classic Editor %s Restrictions"
 msgid "Save %s Restrictions"
 msgstr "Enregistrer les restrictions %s"
 
@@ -1424,7 +1431,6 @@ msgid "Top Tabs"
 msgstr "Onglets supérieurs"
 
 #: includes/features/restrict-editor-features.php:59
-#| msgid "Post Slug"
 msgid "Slug"
 msgstr "Slug"
 
@@ -1953,7 +1959,6 @@ msgstr ""
 "zones de WordPress."
 
 #: includes/pp-ui.php:294
-#| msgid "Roles and Capabilities"
 msgid "Detailed Taxonomy Capabilities"
 msgstr "Permissions de taxonomie détaillées"
 
