@@ -204,7 +204,12 @@ class CapabilityManager
 		wp_register_style( $this->ID . 'framework_admin', $this->mod_url . '/framework/styles/admin.css', false, PUBLISHPRESS_CAPS_VERSION);
 		wp_enqueue_style( $this->ID . 'framework_admin');
 
-		wp_register_style( $this->ID . '_admin', $this->mod_url . '/common/css/admin.css', false, PUBLISHPRESS_CAPS_VERSION);
+		if ('pp-capabilities' == $_REQUEST['page']) {
+			wp_register_style( $this->ID . '_admin', $this->mod_url . '/common/css/admin-caps.css', false, PUBLISHPRESS_CAPS_VERSION);
+		} else {
+			// @todo: remove Capabilities-specific styles from admin.css
+			wp_register_style( $this->ID . '_admin', $this->mod_url . '/common/css/admin.css', false, PUBLISHPRESS_CAPS_VERSION);
+		}
 		wp_enqueue_style( $this->ID . '_admin');
 
 		wp_enqueue_script('jquery-ui-sortable');
@@ -354,7 +359,7 @@ class CapabilityManager
 
 	public function cme_menu() {
 
-        global $submenu, $capabilities_toplevel_page;
+        global $menu, $submenu, $capabilities_toplevel_page;
         
         //we need to set primary menu capability to the first menu user has access to
         $sub_menu_pages = pp_capabilities_sub_menu_lists();
@@ -362,7 +367,9 @@ class CapabilityManager
         $menu_cap       = false;
         $cap_callback   = false;
         $cap_page_slug  = false;
-        $cap_title      = __('Capabilities', 'capability-manager-enhanced');
+        $cap_title      = 'Capabilities'; // Pass title into add_menu_page() untranslated so hook name, body class and current_screen are not translated
+		$cap_title_i8n = __('Capabilities', 'capability-manager-enhanced');
+
         $cap_name       = false;
         if (is_multisite() && is_super_admin()) {
             $cap_name      = 'read';
@@ -373,6 +380,7 @@ class CapabilityManager
             $cap_index     = str_replace(['manage_capabilities_', 'manage_', '_'], ['', '', '-'], $cap_name);
             if (($cap_index !== 'capabilities') && (count($user_menu_caps) === 1)) {
                 $cap_title = $sub_menu_pages[$cap_index]['title'];
+				$using_submenu_title = true;
             }
             $cap_page_slug = $sub_menu_pages[$cap_index]['page'];
             $cap_callback  = $sub_menu_pages[$cap_index]['callback'];
@@ -404,9 +412,21 @@ class CapabilityManager
             $menu_order
         );
 
+		// Translate plugin menu title if needed. Title was passed untranslated to avoid translating hook name, body class, current screen
+		if (($cap_title != $cap_title_i8n) && empty($using_submenu_title)) {
+			if (!empty($menu) && is_array($menu) && !defined('PP_CAPABILITIES_DISABLE_MENU_TRANSLATION_SUPPORT')) {
+				foreach ($menu as $k => $m) {
+					if (is_array($m) && isset($m[5]) && ('toplevel_page_pp-capabilities-dashboard' == $m[5])) {
+						$menu[$k][0] = $cap_title_i8n;
+					}
+				}
+			}
+		}
+
         $dashboard_screen = (isset($_GET['page']) && $_GET['page'] === $cap_page_slug) ? true : false;
         $submenu_slugs              = [];
         $submenu_slugs_conditions   = [];
+
         foreach ($sub_menu_pages as $feature => $subpage_option) {
             if ($subpage_option['dashboard_control'] === false 
                 || pp_capabilities_feature_enabled($feature)
@@ -466,7 +486,7 @@ class CapabilityManager
                     return [
                         'cb' 			  => '<input type="checkbox"/>',
                         'name'            => esc_html__('Role Name', 'capability-manager-enhanced'),
-						'count'           => esc_html__('Users', 'capability-manager-enhanced'),
+						'count'           => esc_html__('Users'),
 						'role_type'       => esc_html__('Role Type', 'capability-manager-enhanced'),
 						'default_role'    => esc_html__('Default Role', 'capability-manager-enhanced'),
 						'admin_access'    => esc_html__('Admin Access', 'capability-manager-enhanced'),

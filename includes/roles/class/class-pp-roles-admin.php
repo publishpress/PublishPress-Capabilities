@@ -131,7 +131,7 @@ class Pp_Roles_Admin
 
         if ($role_edit && !$current['is_system']) {
             $fields_tabs['delete'] = [
-                'label'    => esc_html__('Delete', 'capability-manager-enhanced'),
+                'label'    => esc_html__('Delete'),
                 'icon'     => 'dashicons dashicons-trash',
             ];
         }
@@ -397,7 +397,7 @@ class Pp_Roles_Admin
                                     $selected_option = (isset($args['value']) && $select_key == $args['value']) ? true : false;
                                 }
                                 ?>
-                                <option value="<?php esc_attr_e($select_key); ?>"
+                                <option value="<?php echo esc_attr($select_key); ?>"
                                         <?php selected(true, $selected_option); ?>>
                                         <?php echo esc_html($select_label); ?>
                                 </option>
@@ -426,7 +426,7 @@ class Pp_Roles_Admin
                                 $selected_option = (isset($args['value']) && $select_key == $args['value']) ? true : false;
                             }
                             ?>
-                            <option value="<?php esc_attr_e($select_key); ?>"
+                            <option value="<?php echo esc_attr($select_key); ?>"
                                     <?php echo (!$args['editable'] && !$selected_option ? 'disabled' : ''); ?>
                                     <?php selected(true, $selected_option); ?>>
                                     <?php echo esc_html($select_label); ?>
@@ -503,7 +503,7 @@ class Pp_Roles_Admin
                             <?php echo (!$args['editable'] ? 'readonly="readonly"' : ''); ?>/>
                             <span class="description"><?php echo esc_html__('Redirect users to a specified URL.',  'capability-manager-enhanced'); ?></span>
                         </label>
-                        <div class="custom-url-wrapper" style="<?php esc_attr_e($custom_style); ?>">
+                        <div class="custom-url-wrapper" style="<?php echo esc_attr($custom_style); ?>">
                             <div class="pp-roles-internal-links-wrapper activated">
                                 <div class="base-url">
                                     <?php esc_html_e(home_url()); ?>
@@ -689,12 +689,12 @@ class Pp_Roles_Admin
                                             foreach ($fields_tabs as $key => $args) {
                                                 $active_tab = ($key === $default_tab) ? ' active' : '';
                                                 ?>
-                                                <li class="<?php esc_attr_e($active_tab); ?>" 
-                                                    data-tab="<?php esc_attr_e($key); ?>"
+                                                <li class="<?php echo esc_attr($active_tab); ?>" 
+                                                    data-tab="<?php echo esc_attr($key); ?>"
                                                     >
                                                     <a href="#">
-                                                        <span class="<?php esc_attr_e($args['icon']); ?>"></span>
-                                                        <span><?php esc_html_e($args['label']); ?></span>
+                                                        <span class="<?php echo esc_attr($args['icon']); ?>"></span>
+                                                        <span><?php echo esc_html($args['label']); ?></span>
                                                     </a>
                                                 </li>
                                                 <?php

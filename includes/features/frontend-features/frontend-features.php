@@ -82,7 +82,7 @@ $frontend_features_elements = PP_Capabilities_Frontend_Features_Data::elementsLa
                             <div class="publishpress-filters">
                                 <div class="pp-capabilities-submit-top" style="float:right;">
                                     <input type="submit" name="frontend-features-submit"
-                                        value="<?php esc_attr_e('Save Changes', 'capability-manager-enhanced') ?>"
+                                        value="<?php esc_attr_e('Save Changes');?>"
                                         class="button-primary ppc-frontend-features-submit" />
                                 </div>
 
@@ -138,9 +138,9 @@ $frontend_features_elements = PP_Capabilities_Frontend_Features_Data::elementsLa
                                                           $sn++;
                                                           $section_slug = strtolower(ppc_remove_non_alphanumeric_space_characters($section_title));
                                                             ?>
-                                                    <div id="cme-cap-type-tables-<?php esc_attr_e($section_slug); ?>">
+                                                    <div id="cme-cap-type-tables-<?php echo esc_attr($section_slug); ?>">
                                                         <table
-                                                            class="wp-list-table widefat striped fixed pp-capability-menus-select <?php esc_attr_e($section_slug); ?>-table">
+                                                            class="wp-list-table widefat striped fixed pp-capability-menus-select <?php echo esc_attr($section_slug); ?>-table">
                                                             <tbody>
                                                                 <?php do_action("pp_capabilities_frontend_features_{$section_slug}_before_subsection_tr"); 
                                                                 $display_title_class = empty($section_elements) ? 'temporarily hidden-element' : ''; 
@@ -232,7 +232,7 @@ $frontend_features_elements = PP_Capabilities_Frontend_Features_Data::elementsLa
                             <div class="editor-features-footer-meta">
                                 <div style="float:right">
                                     <input type="submit" name="frontend-features-submit"
-                                        value="<?php esc_attr_e('Save Changes', 'capability-manager-enhanced') ?>"
+                                        value="<?php esc_attr_e('Save Changes');?>"
                                         class="button-primary ppc-frontend-features-submit" />
                                 </div>
                             </div>

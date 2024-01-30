@@ -539,6 +539,8 @@ function pp_capabilities_pro_sidebox()
                 <p><?php echo esc_html__('Enhance the power of PublishPress Capabilities with the Pro version:', 'capability-manager-enhanced'); ?>
                 </p>
                 <ul>
+                    <li><?php echo esc_html__('Control Access to Custom Statuses', 'capability-manager-enhanced'); ?></li>
+                    <li><?php echo esc_html__('Control Access to Visibility Statuses', 'capability-manager-enhanced'); ?></li>
                     <li><?php echo esc_html__('Admin Menu restrictions', 'capability-manager-enhanced'); ?></li>
                     <li><?php echo esc_html__('Remove metaboxes on the editing screen', 'capability-manager-enhanced'); ?></li>
                     <li><?php echo esc_html__('Remove anything on the editing screen', 'capability-manager-enhanced'); ?></li>
@@ -786,12 +788,12 @@ function ppc_block_friend_name($block_name) {
     $friendly_name = $block_name;
 
     $supported_blocks = [
-        'core/site-logo'     => __('Site Logo', 'capability-manager-enhanced'),
-        'core/site-title'    => __('Site Title', 'capability-manager-enhanced'),
+        'core/site-logo'     => __('Logo'),
+        'core/site-title'    => __('Site Title'),
         'core/social-links'  => __('Social Links', 'capability-manager-enhanced'),
         'core/page-list'     => __('Page Lists', 'capability-manager-enhanced'),
-        'core/search'        => __('Search', 'capability-manager-enhanced'),
-        'core/home-link'     => __('Home Link', 'capability-manager-enhanced'),
+        'core/search'        => __('Search'),
+        'core/home-link'     => _x( 'Home', 'nav menu home label' ),
     ];
 
     if (array_key_exists($block_name, $supported_blocks)) {

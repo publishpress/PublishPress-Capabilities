@@ -168,7 +168,7 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
         $columns = [
             'cb'              => '<input type="checkbox"/>', //Render a checkbox instead of text
             'name'            => esc_html__('Role Name', 'capability-manager-enhanced'),
-            'count'           => esc_html__('Users', 'capability-manager-enhanced'),
+            'count'           => esc_html__('Users'),
             'role_type'       => esc_html__('Role Type', 'capability-manager-enhanced'),
             'default_role'    => esc_html__('Default Role', 'capability-manager-enhanced'),
             'admin_access'    => esc_html__('Admin Access', 'capability-manager-enhanced'),
@@ -219,7 +219,7 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
                         admin_url('admin.php')
                     )
                 ),
-                esc_html__('Edit', 'capability-manager-enhanced')
+                esc_html__('Edit')
             );
             
             $actions['copy'] = sprintf(
@@ -271,7 +271,7 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
                         '_wpnonce' => wp_create_nonce('bulk-roles')
                     ], 
                     admin_url('admin.php')),
-                    esc_html__('Delete', 'capability-manager-enhanced')
+                    esc_html__('Delete')
                 ),
             ]);
 
@@ -290,7 +290,7 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
                             '_wpnonce' => wp_create_nonce('bulk-roles')
                         ], 
                         admin_url('admin.php')),
-                        esc_html__('Hide', 'capability-manager-enhanced')
+                        esc_html__('Hide')
                     );
                 }
             }
@@ -506,7 +506,7 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
     protected function get_bulk_actions()
     {
         $actions = [
-            'pp-roles-delete-role' => esc_html__('Delete', 'capability-manager-enhanced')
+            'pp-roles-delete-role' => esc_html__('Delete')
         ];
 
         return $actions;

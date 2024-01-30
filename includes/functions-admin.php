@@ -230,7 +230,7 @@ function pp_capabilities_backup_sections()
    $backup_sections['capsman_nav_menu_backup']['options'][] = "capsman_nav_item_menus";
 
    //settings
-   $backup_sections['capsman_settings_backup']['label']     = esc_html__('Settings', 'capability-manager-enhanced');
+   $backup_sections['capsman_settings_backup']['label']     = esc_html__('Settings');
    $backup_sections['capsman_settings_backup']['options']   = pp_capabilities_settings_options();
 
    return apply_filters('pp_capabilities_backup_sections', $backup_sections);
@@ -248,6 +248,19 @@ function pp_capabilities_backup_sections()
  */
 function ppc_add_inline_style($custom_css, $handle = 'ppc-dummy-css-handle')
 {
+   global $ppc_dummy_css_handle;
+
+   if (!is_array($ppc_dummy_css_handle)) {
+       $ppc_dummy_css_handle = [];
+   }
+
+   if (in_array($handle, $ppc_dummy_css_handle)) {
+       // duplicate usage of this function with same handle won't work
+       $handle .= '-' . time(); 
+   }
+
+    $ppc_dummy_css_handle = $handle;
+
     wp_register_style(esc_attr($handle), false);
     wp_enqueue_style(esc_attr($handle));
     wp_add_inline_style(esc_attr($handle), $custom_css);
@@ -265,6 +278,19 @@ function ppc_add_inline_style($custom_css, $handle = 'ppc-dummy-css-handle')
  */
 function ppc_add_inline_script($custom_script, $handle = 'ppc-dummy-script-handle')
 {
+    global $ppc_dummy_script_handle;
+
+    if (!is_array($ppc_dummy_script_handle)) {
+       $ppc_dummy_script_handle = [];
+    }
+
+    if (in_array($handle, $ppc_dummy_script_handle)) {
+        // duplicate usage of this function with same handle won't work
+        $handle .= '-' . time(); 
+    }
+
+    $ppc_dummy_script_handle[] = $handle;
+
     wp_register_script(esc_attr($handle), false, ['jquery']);
     wp_enqueue_script(esc_attr($handle), false, ['jquery']);
     wp_add_inline_script(esc_attr($handle), $custom_script);
@@ -387,7 +413,7 @@ function pp_capabilities_sub_menu_lists($cme_fakefunc = false) {
 
     $sub_menu_pages = [];
     $sub_menu_pages['dashboard'] = [
-        'title'             => __('Dashboard', 'capability-manager-enhanced'),
+        'title'             => __('Dashboard'),
         'capabilities'      => $super_user ? 'read' : 'manage_capabilities_dashboard',
         'page'              => 'pp-capabilities-dashboard',
         'callback'          => $cme_fakefunc ? 'cme_fakefunc' : [$capsman, 'dashboardPage'],
@@ -459,7 +485,7 @@ function pp_capabilities_sub_menu_lists($cme_fakefunc = false) {
         'dashboard_control' => false,
     ];
     $sub_menu_pages['settings'] = [
-        'title'             => __('Settings', 'capability-manager-enhanced'),
+        'title'             => __('Settings'),
         'capabilities'      => $super_user ? 'read' : 'manage_capabilities_settings',
         'page'              => 'pp-capabilities-settings',
         'callback'          => $cme_fakefunc ? 'cme_fakefunc' : [$capsman, 'settingsPage'],

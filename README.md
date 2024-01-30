@@ -7,11 +7,7 @@ Manage WordPress role definitions, per-site or network-wide. Organizes post capa
 
 ## Documentation
 
-https://publishpress.com/docs/
-
-## How to report bugs or send suggestions
-
-Feel free to email us via [help@publishpress.com](mailto:help@publishpress.com). We would love to hear you, and will work hard to help you.
+[https://publishpress.com/docs/](https://publishpress.com/knowledge-base/)
 
 ### Guidelines
 
