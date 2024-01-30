@@ -603,7 +603,7 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 								echo ' <button class="button secondary-button ppc-filter-select-reset" type="button">' . esc_html__('Clear') . '</button>';
 							echo '</div>';
 
-							echo "<table class='widefat striped cme-typecaps cme-typecaps-" . esc_attr($cap_type) . "'>";
+							echo "<table class='widefat striped cme-typecaps cme-typecaps-basic cme-typecaps-" . esc_attr($cap_type) . "'>";
 
 							echo '<thead><tr><th class="pp-header-checkall">';
 							echo '<input type="checkbox" name="pp_toggle_all" class="excluded-input" autocomplete="off"> &nbsp;';

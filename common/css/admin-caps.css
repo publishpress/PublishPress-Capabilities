@@ -72,9 +72,17 @@ div.cme-cap-type-tables {
 border: 1px solid black;
 }
 
+table.cme-typecaps .pp-header-checkall {
+text-align: left;
+}
+
 table .cme-typecaps tbody tr td:nth-child(1)
 {
 text-align: left;
+}
+
+table .cme-typecaps-basic tbody tr td:nth-child(1)
+{
 min-width: 160px;
 width: 25%;
 }
