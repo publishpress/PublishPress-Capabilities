@@ -124,6 +124,7 @@ jQuery(document).ready( function($) {
 
 	$('a.cme-fix-read-cap').click(function(){
 		$('input[name="caps[read]"]').prop('checked', true);
+		$('input[name="caps[read]"].cme-negation-input').remove();
 		$('input[name="SaveRole"]').trigger('click');
 		return false;
 	});
