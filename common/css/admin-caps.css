@@ -397,6 +397,10 @@ table#akmin tr td input[type=checkbox] {
 	display: inline-block;
 }
 
+#ppc-capabilities-wrapper .ppc-capabilities-content > div > h3 a {
+	color: inherit;
+}
+
 .pp-columns-wrapper .pp-sidebar-box {
   font-size: inherit;
 }
