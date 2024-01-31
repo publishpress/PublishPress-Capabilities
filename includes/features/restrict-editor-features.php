@@ -387,6 +387,7 @@ class PP_Capabilities_Post_Features {
                 'redo' =>      ['label' => esc_html__('Redo'),                       'elements' => '.edit-post-header-toolbar .editor-history__redo'],
                 'details' =>   ['label' => esc_html__('Details'),                     'elements' => '.edit-post-header__toolbar .table-of-contents'],
                 'outline' =>   ['label' => esc_html__('Outline', 'capability-manager-enhanced'),   'elements' => '.edit-post-header__toolbar .edit-post-header-toolbar__list-view-toggle'],
+                'document_overview' =>   ['label' => esc_html__('Document Overview', 'capability-manager-enhanced'),   'elements' => '.edit-post-header__toolbar .edit-post-header-toolbar__document-overview-toggle'],
             ],
 
             esc_html__('Top Bar - Right', 'capability-manager-enhanced') => [
