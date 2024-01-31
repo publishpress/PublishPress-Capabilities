@@ -1146,27 +1146,42 @@ ul.pp-capabilities-description {
  margin-right: 10px;
 }
 
-.frontend-features-form.simple-form .field-row th {
+.ppc-custom-item-parent-table {
+  border: 1px solid #c3c4c7;
+}
+
+.ppc-custom-features-table {
+  width: 100%;
+  border: none !important;
+}
+
+.frontend-features-form.simple-form .field-row th,
+.ppc-custom-features-table .field-row th {
     width: 155px;
     padding-right: 0;
     padding-top: 0;
     padding-bottom: 0;
     vertical-align: baseline;
     border: none !important;
+    text-align: left;
 }
 
-.frontend-features-form.simple-form .field-row td {
+.frontend-features-form.simple-form .field-row td,
+.ppc-custom-features-table .field-row td {
     padding-left: 0;
     padding-top: 0;
     padding-bottom: 0;
 }
 
 .frontend-features-form.simple-form .field-row input,
-.frontend-features-form.simple-form .field-row textarea {
+.frontend-features-form.simple-form .field-row textarea,
+.ppc-custom-features-table .field-row input,
+.ppc-custom-features-table .field-row textarea {
     width: 100%;
 }
 
-.frontend-features-form.simple-form .field-row textarea {
+.frontend-features-form.simple-form .field-row textarea
+.ppc-custom-features-table .field-row textarea {
     resize: none;
     height: 30px;
     vertical-align: top;
