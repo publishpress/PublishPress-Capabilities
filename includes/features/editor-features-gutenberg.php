@@ -76,9 +76,15 @@
                 // phpcs:ignore WordPressVIPMinimum.Variables.VariableAnalysis.UndefinedUnsetVariable
                 unset($empty_post_type_feature[$type_obj->name][$section_slug]);
             }
+
+            if (isset($arr_feature['custom_element']) && ($arr_feature['custom_element'] === true)) {
+                $additional_class = 'custom-item-' . $arr_feature['button_data_id'];
+            } else {
+                $additional_class = '';
+            }
         ?>
         <?php if(isset($arr_feature['custom_element']) && ($arr_feature['custom_element'] === true)) : ?>
-            <tr class="ppc-menu-row parent-menu">
+            <tr class="ppc-menu-row parent-menu <?php echo esc_attr($additional_class); ?>">
                 <td class="menu-column ppc-menu-item custom-item-row ppc-flex">
                     <div class="ppc-flex-item">
                         <div>
@@ -96,16 +102,13 @@
                     </div>
                     <div class="ppc-flex-item">
                         <div class="button view-custom-item"><?php esc_html_e('View'); ?></div>
-                            <?php /*<div class="button edit-custom-item" 
+                            <div class="button edit-features-custom-item" 
                                 data-section="<?php echo esc_attr($section_slug); ?>"
-                                data-label="<?php echo esc_attr($section_array['label']); ?>"
-                                data-selector="<?php echo esc_attr($element_selector); ?>"
-                                data-bodyclass="<?php echo esc_attr($element_bodyclass); ?>"
-                                data-pages="<?php echo esc_attr(join(', ', (array) $section_array['pages'])); ?>"
-                                data-post-types="<?php echo esc_attr(join(', ', (array) $section_array['post_types'])); ?>"
-                                data-id="<?php echo esc_attr($section_id); ?>">
+                                data-label="<?php echo esc_attr($arr_feature['label']); ?>"
+                                data-element="<?php echo esc_attr($arr_feature['element_items']); ?>"
+                                data-id="<?php echo esc_attr($arr_feature['button_data_id']); ?>">
                                 <?php esc_html_e('Edit', 'capability-manager-enhanced'); ?>
-                            </div> <?php */ ?>
+                            </div>
                             <div 
                                 class="button <?php echo esc_attr($arr_feature['button_class']); ?> feature-red" 
                                 data-parent="<?php echo esc_attr($arr_feature['button_data_parent']); ?>" 

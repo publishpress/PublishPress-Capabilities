@@ -173,9 +173,15 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                                                                 if($item_action === 'ppc_dashboard_widget'){
                                                                     $restrict_value .= '||'.$section_array['context'];
                                                                 }
+
+                                                                if (isset($section_array['custom_element']) && ($section_array['custom_element'] === true)) {
+                                                                    $additional_class = 'custom-item-' . $section_array['button_data_id'];
+                                                                } else {
+                                                                    $additional_class = '';
+                                                                }
                                                                 ?>
 
-                                                                <tr class="ppc-menu-row child-menu <?php echo esc_attr($section_slug); ?>">
+                                                                <tr class="ppc-menu-row child-menu <?php echo esc_attr($section_slug); ?> <?php echo esc_attr($additional_class); ?>">
 
                                                                     <td class="restrict-column ppc-menu-checkbox">
                                                                         <input
@@ -219,16 +225,13 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                                                                             </div>
                                                                             <div class="ppc-flex-item">
                                                                                 <div class="button view-custom-item"><?php esc_html_e('View'); ?></div>
-                                                                                    <?php /*<div class="button edit-custom-item" 
+                                                                                    <div class="button edit-features-custom-item <?php echo esc_attr($section_array['edit_class']); ?>" 
                                                                                         data-section="<?php echo esc_attr($section_slug); ?>"
                                                                                         data-label="<?php echo esc_attr($section_array['label']); ?>"
-                                                                                        data-selector="<?php echo esc_attr($element_selector); ?>"
-                                                                                        data-bodyclass="<?php echo esc_attr($element_bodyclass); ?>"
-                                                                                        data-pages="<?php echo esc_attr(join(', ', (array) $section_array['pages'])); ?>"
-                                                                                        data-post-types="<?php echo esc_attr(join(', ', (array) $section_array['post_types'])); ?>"
-                                                                                        data-id="<?php echo esc_attr($section_id); ?>">
+                                                                                        data-element="<?php echo esc_attr($section_array['element_items']); ?>"
+                                                                                        data-id="<?php echo esc_attr($section_array['button_data_id']); ?>">
                                                                                         <?php esc_html_e('Edit', 'capability-manager-enhanced'); ?>
-                                                                                    </div> <?php */ ?>
+                                                                                    </div>
                                                                                     <div 
                                                                                         class="button <?php echo esc_attr($section_array['button_class']); ?> feature-red"
                                                                                         data-id="<?php echo esc_attr($section_array['button_data_id']); ?>">

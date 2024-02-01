@@ -1394,7 +1394,8 @@ ul.pp-capabilities-description {
     color: green;
 }
 
-.cancel-custom-item-edit {
+.cancel-custom-item-edit,
+.cancel-custom-features-item-edit {
     color: red !important;
     cursor: pointer;
     visibility: hidden;
