@@ -86,7 +86,7 @@ msgid ""
 "features and support. %sUpgrade to Pro%s"
 msgstr ""
 "Vous utilisez la version gratuite de PublishPress Capabilities. La version "
-"Pro offre plus de fonctionnalités et de support. Passer en version Pro%s"
+"Pro offre plus de fonctionnalités et de support. %sPasser en version Pro%s"
 
 #: includes-core/CoreAdmin.php:76 includes/functions-admin.php:466
 #: includes/roles/class/class-pp-roles-admin.php:644
