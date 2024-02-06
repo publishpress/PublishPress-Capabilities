@@ -7,7 +7,7 @@ Tags: capabilities, permissions, admin menus, user roles, user role editor, acce
 Requires at least: 5.5
 Requires PHP: 7.2.5
 Tested up to: 6.4
-Stable tag: 2.12.1
+Stable tag: 2.12.2
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -410,6 +410,9 @@ Fixed : Security issue. Please update.
 
 == Changelog ==
 
+= 2.12.2 - 6 Feb 2024 =
+  * Fixed : French translation caused "Upgrade to Pro" banner to be rendered incorrectly
+
 = 2.12.1 - 30 Jan 2024 =
   * Change : Improved use of screen space on Capabilties tab panels
   * Change : In mobile view, scroll to panel for clicked Capabilities tab
@@ -419,6 +422,7 @@ Fixed : Security issue. Please update.
   * Change : Use 90% opacity for Capabilities tool tip
   * Change : Don't display "This capability is" tool tip if capability name is already displayed next to checkbox 
   * Change : Cleaner styling for capabilities assigned implicitly by Permission Group
+  * Change : Update Pro promo sidebar on Capabilities Dashboard to mention Custom Statuses, Custom Visibility
   * Lang: Some tab captions on Capabilities screen were not translated
   * Lang: Default WordPress strings (Edit, Settings, etc.) used by plugin were made to rely on plugin language files
 
