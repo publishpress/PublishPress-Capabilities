@@ -298,6 +298,17 @@ class PP_Capabilities_Admin_UI {
     function adminScripts() {
         global $publishpress;
 
+        // Include global style and script
+        wp_enqueue_style('cme-admin-global-css', plugin_dir_url(CME_FILE) . 'common/css/global.css', [], PUBLISHPRESS_CAPS_VERSION);
+        wp_enqueue_script('cme-admin-global-js', plugin_dir_url(CME_FILE) . 'common/js/global.js', ['jquery'],  PUBLISHPRESS_CAPS_VERSION);
+        wp_localize_script(
+            'cme-admin-global-js',
+            'ppCapabilitiesGlobalData',
+            [
+                'nonce' => wp_create_nonce('ppc-test-user-admin-bar-action')
+            ]
+        );
+
         if (function_exists('get_current_screen') && (!defined('PUBLISHPRESS_VERSION') || empty($publishpress) || empty($publishpress->modules) || empty($publishpress->modules->roles))) {
             $screen = get_current_screen();
 
