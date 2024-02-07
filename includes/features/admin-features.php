@@ -130,7 +130,7 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                                                         foreach ($admin_features_elements as $section_title => $section_elements) :
                                                             $sn++;
                                                             $section_slug = strtolower(ppc_remove_non_alphanumeric_space_characters($section_title));
-                                                            $icon_name    = isset($icon_list[$section_slug]) ? $icon_list[$section_slug] : '&mdash;';
+                                                            $icon_name    = 'open-folder';//isset($icon_list[$section_slug]) ? $icon_list[$section_slug] : '<i class="dashicons dashicons-arrow-right"></i>';
                                                             ?>
 
                                                             <tr class="ppc-menu-row parent-menu <?php echo esc_attr($section_slug); ?>">
@@ -204,12 +204,12 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                                                                                             if ((isset($section_array['step']) && $section_array['step'] > 0) && isset($section_array['parent']) && !empty($section_array['parent'])) {
                                                                                                 $step_margin = $section_array['step'] * 20;
                                                                                                 echo '<span style="margin-left: ' . (int) $step_margin . 'px;"></span>';
-                                                                                        echo ' &mdash; ';
+                                                                                        echo ' <i class="dashicons dashicons-arrow-right"></i> ';
                                                                                             } else {
                                                                                                 if (isset($icon_list[$section_id])) {
                                                                                                     echo '<i class="dashicons dashicons-' . esc_attr($icon_list[$section_id]) . '"></i>';
                                                                                                 } else {
-                                                                                                    echo '&mdash;';
+                                                                                                    echo '<i class="dashicons dashicons-arrow-right"></i>';
                                                                                                 }
                                                                                             }
                                                                                             ?>
@@ -252,12 +252,12 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                                                                                     if ((isset($section_array['step']) && $section_array['step'] > 0) && isset($section_array['parent']) && !empty($section_array['parent'])) {
                                                                                         $step_margin = $section_array['step'] * 20;
                                                                                         echo '<span style="margin-left: ' . (int) $step_margin . 'px;"></span>';
-                                                                                echo ' &mdash; ';
+                                                                                echo ' <i class="dashicons dashicons-arrow-right"></i> ';
                                                                                     } else {
                                                                                         if (isset($icon_list[$section_id])) {
                                                                                             echo '<i class="dashicons dashicons-' . esc_attr($icon_list[$section_id]) . '"></i>';
                                                                                         } else {
-                                                                                            echo '&mdash;';
+                                                                                            echo '<i class="dashicons dashicons-arrow-right"></i>';
                                                                                         }
                                                                                     }
                                                                                     ?>
