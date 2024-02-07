@@ -174,6 +174,22 @@ class Capabilities_Settings_UI {
                                         <br>
                                     </td>
                                     </tr>
+                                    
+                                    <tr>
+                                    <?php
+                                        $checked = checked(!empty(get_option('cme_test_user_admin_bar_search', 1)), true, false);
+                                    ?>
+                                    <th scope="row"> <?php esc_html_e('Admin Bar search', 'capability-manager-enhanced'); ?></th>
+                                    <td>
+                                        <label> 
+                                        <input type="checkbox" name="cme_test_user_admin_bar_search" id="cme_test_user_admin_bar_search" autocomplete="off" value="1" <?php echo $checked;?>>
+                                        <span class="description">
+                                            <?php esc_html_e('Add option to search and test user in the Admin Bar.', 'capability-manager-enhanced'); ?>
+                                        </span>
+                                        </label>
+                                        <br>
+                                    </td>
+                                    </tr>
 
                                     <tr>
                                     <?php

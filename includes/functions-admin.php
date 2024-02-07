@@ -304,6 +304,7 @@ function pp_capabilities_settings_options() {
        'cme_capabilities_edit_user_multi_roles',
        'cme_editor_features_classic_editor_tab',
        'cme_test_user_admin_bar',
+       'cme_test_user_admin_bar_search',
        'cme_test_user_footer_notice',
        'cme_test_user_excluded_roles',
        'cme_profile_features_auto_redirect',
