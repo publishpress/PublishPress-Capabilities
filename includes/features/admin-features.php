@@ -125,10 +125,16 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
 
                                                         <?php
                                                         $icon_list = (array)PP_Capabilities_Admin_Features::elementLayoutItemIcons();
-
+                                                        $title_lists = apply_filters('pp_capabilities_admin_features_titles', []);
                                                         $sn = 0;
                                                         foreach ($admin_features_elements as $section_title => $section_elements) :
                                                             $sn++;
+                                                            if (is_array($title_lists) && isset($title_lists[$section_title])) {
+                                                                $translated_title = $title_lists[$section_title];
+                                                            } else {
+                                                                $translated_title = $section_title;
+                                                            }
+
                                                             $section_slug = strtolower(ppc_remove_non_alphanumeric_space_characters($section_title));
                                                             $icon_name    = 'open-folder';//isset($icon_list[$section_slug]) ? $icon_list[$section_slug] : '<i class="dashicons dashicons-arrow-right"></i>';
                                                             ?>
@@ -147,14 +153,14 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
 		                                                                    <label for="check-item-<?php echo (int) $sn; ?>">
 		                                                            <strong class="menu-column ppc-menu-item menu-item-link<?php echo (in_array($restrict_value,
 		                                                                            $disabled_admin_items)) ? ' restricted' : ''; ?>">
-		                                                                <i class="dashicons dashicons-<?php echo esc_attr($icon_name) ?>"></i> <?php echo esc_html($section_title); ?>
+		                                                                <i class="dashicons dashicons-<?php echo esc_attr($icon_name) ?>"></i> <?php echo esc_html($translated_title); ?>
 		                                                            </strong>
 		                                                        </label>
 		                                                        </td>
 		                                                        <?php else : ?>
 		                                                                <td class="features-section-header" colspan="2">
 		                                                                    <strong><i
-		                                                                            class="dashicons dashicons-<?php echo esc_attr($icon_name) ?>"></i> <?php echo esc_html($section_title); ?>
+		                                                                            class="dashicons dashicons-<?php echo esc_attr($icon_name) ?>"></i> <?php echo esc_html($translated_title); ?>
 		                                                                    </strong>
 		                                                                </td>
 		                                                        <?php endif; ?>

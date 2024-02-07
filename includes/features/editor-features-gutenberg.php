@@ -13,14 +13,20 @@
 
     <tbody>
     <?php
+    $title_lists = apply_filters('pp_capabilities_editor_features_titles', []);
     foreach ($gutenberg_elements as $section_title => $arr) {
+        if (is_array($title_lists) && isset($title_lists[$section_title])) {
+            $translated_title = $title_lists[$section_title];
+        } else {
+            $translated_title = $section_title;
+        }
         $section_slug = strtolower(ppc_remove_non_alphanumeric_space_characters($section_title));
         //set empty feature value as true
         $empty_post_type_feature[$type_obj->name][$section_slug] = 1;
         ?>
         <tr class="ppc-menu-row parent-menu <?php echo esc_attr($type_obj->name); ?> <?php echo esc_attr($section_slug); ?>">
             <td colspan="2">
-            <h4 class="ppc-menu-row-section"><i class="dashicons dashicons-open-folder"></i> <?php echo esc_html($section_title);?></h4>
+            <h4 class="ppc-menu-row-section"><i class="dashicons dashicons-open-folder"></i> <?php echo esc_html($translated_title);?></h4>
             <?php
             /**
 	         * Add support for section description
