@@ -210,6 +210,7 @@ class PP_Capabilities_Frontend_Features_UI
                     <span
                         class="content-title-column menu-item-link<?php echo (in_array($restrict_value, $disabled_frontend_items)) ? ' restricted' : ''; ?>">
                         <strong>
+                            <i class="dashicons dashicons-arrow-right"></i>
                             <?php echo esc_html($section_array['label']); ?>
                         </strong>
                     </span>

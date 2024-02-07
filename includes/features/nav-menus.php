@@ -174,11 +174,9 @@ $nav_menu_item_option = array_key_exists($default_role, $nav_menu_item_option) ?
                                                                         <label for="check-item-<?php echo (int) $sn; ?>">
                                                                         <span class="menu-item-link">
                                                                         <strong>
-                                                                        <i class="dashicons dashicons-welcome-widgets-menus"></i> 
-                                                                            <?php if ($fse_theme) : ?>
-                                                                                <span class="ppc-nav-menu-expand"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M10.8622 8.04053L14.2805 12.0286L10.8622 16.0167L9.72327 15.0405L12.3049 12.0286L9.72327 9.01672L10.8622 8.04053Z"></path></svg></span>
-                                                                            <?php else : ?>
-                                                                            <i class="dashicons dashicons-menu-alt"></i>
+                                                                        <i class="dashicons dashicons-open-folder"></i> 
+                                                                            <?php if (!$fse_theme) : ?>
+                                                                                <i class="dashicons dashicons-arrow-right"></i>
                                                                             <?php endif; ?>
                                                                             <span class="ppc-nav-item-title"><?php echo esc_html(wp_strip_all_tags($menu_name)); ?></span>
                                                                         </strong></span>

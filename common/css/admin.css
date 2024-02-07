@@ -117,7 +117,7 @@ text-decoration: none;
 }
 
 span.cap-x, a.cme-neg-all {
-    color: red;
+    color: #EA3323;
     font-size: 1.5em;
     padding-left: 1px;
     padding-right: 2px;
@@ -146,7 +146,7 @@ text-decoration: line-through !important;
 }
 
 td.cap-yes span {
-color:green;font-weight:bold;
+color:#5ECD89;font-weight:bold;
 }
 
 td.cap-no {
@@ -196,7 +196,7 @@ vertical-align: bottom;
 }
 
 a.type-off, a.neg-cap, a.cme-neg-all, a.neg-type-caps {
-color: #800;
+color: #EA3323;
 }
 
 a.type-on, a.cap-on, a.cme-switch-all {
@@ -403,7 +403,7 @@ div.publishpress-caps-backup td.cme-backup-info li.cme-change {
 
 div.publishpress-caps-backup td.cme-backup-info .cme-plus {
   font-weight: bold;
-  color: green;
+  color: #5ECD89;
 }
 
 .cme-backup-info ul.pp-restore-caps {
@@ -507,6 +507,14 @@ table#akmin tr td input[type=checkbox] {
   -moz-transition: all 0.25s ease-out;
   -o-transition: all 0.25s ease-out;
   transition: all 0.25s ease-out;
+}
+
+.pp-capability-menus .dashicons-open-folder {
+  color: #0073aa;
+}
+
+.pp-capability-menus .menu-item-link.restricted .dashicons-open-folder {
+  color: crimson;
 }
 
 .pp-capability-menus-wrapper:not(.nav-menus) .pp-capability-menus .menu-item-link:hover,
@@ -1209,7 +1217,7 @@ ul.pp-capabilities-description {
 }
 
 .frontend-feature-entry-pages {
-    color: green;
+    color: #5ECD89;
 }
 
 .frontend-feature-red,
@@ -1365,8 +1373,8 @@ ul.pp-capabilities-description {
 }
 
 .pp-capability-menus-wrapper.frontend-features .restrict-column input[type=checkbox]:checked:focus {
-    border-color: green;
-    box-shadow: 0 0 0 1px green;
+  border-color: inherit;
+  box-shadow: inherit;
 }
 
 .pp-capability-menus-wrapper.frontend-features .restrict-column input[type=checkbox]:checked::before {
@@ -1374,7 +1382,7 @@ ul.pp-capabilities-description {
 }
 
 .pp-capability-menus-wrapper.frontend-features .pp-capability-menus .menu-item-link.restricted:active {
-    color: green;
+    color: #5ECD89;
 }
 
 .pp-capability-menus-wrapper.frontend-features .pp-capability-menus .menu-item-link.restricted {
@@ -1391,7 +1399,7 @@ ul.pp-capabilities-description {
 }
 
 .editing-custom-item span.title {
-    color: green;
+    color: #5ECD89;
 }
 
 .cancel-custom-item-edit,

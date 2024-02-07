@@ -3,11 +3,10 @@
     <?php foreach(['thead', 'tfoot'] as $tag_name):?>
     <<?php echo esc_attr($tag_name);?>>
     <tr>
-        <th class="menu-column"></th>
-
         <th class="restrict-column ppc-menu-row"> 
             <input class="check-item gutenberg check-all-menu-item" type="checkbox" data-pp_type="<?php echo esc_attr($type_obj->name);?>" />
         </th>
+        <th class="menu-column"></th>
     </tr>
     </<?php echo esc_attr($tag_name);?>>
     <?php endforeach;?>
@@ -22,7 +21,7 @@
         ?>
         <tr class="ppc-menu-row parent-menu <?php echo esc_attr($type_obj->name); ?> <?php echo esc_attr($section_slug); ?>">
             <td colspan="2">
-            <h4 class="ppc-menu-row-section"><?php echo esc_html($section_title);?></h4>
+            <h4 class="ppc-menu-row-section"><i class="dashicons dashicons-open-folder"></i> <?php echo esc_html($section_title);?></h4>
             <?php
             /**
 	         * Add support for section description
@@ -88,6 +87,11 @@
             ?>
             <?php if(isset($arr_feature['custom_element']) && ($arr_feature['custom_element'] === true)) : ?>
                 <tr class="ppc-menu-row parent-menu <?php echo esc_attr($additional_class); ?>">
+                    <td class="restrict-column ppc-menu-checkbox">
+                        <input id="cb_<?php echo esc_attr($type_obj->name) . '-' . esc_attr(str_replace(['#', '.'], '_', $feature_slug));?>" class="check-item" type="checkbox"
+                                name="capsman_feature_restrict_classic_<?php echo esc_attr($type_obj->name);?>[]"
+                                value="<?php echo esc_attr($feature_slug); ?>" <?php checked(in_array($feature_slug, $ce_post_disabled[$type_obj->name]));?> />
+                    </td>
                     <td class="menu-column ppc-menu-item custom-item-row ppc-flex">
                         <div class="ppc-flex-item">
                             <div>
@@ -121,26 +125,19 @@
                             </div>
                         </div>
                     </td>
-
+                </tr>
+            <?php else : ?>
+                <tr class="ppc-menu-row parent-menu">
                     <td class="restrict-column ppc-menu-checkbox">
                         <input id="cb_<?php echo esc_attr($type_obj->name) . '-' . esc_attr(str_replace(['#', '.'], '_', $feature_slug));?>" class="check-item" type="checkbox"
                                 name="capsman_feature_restrict_classic_<?php echo esc_attr($type_obj->name);?>[]"
                                 value="<?php echo esc_attr($feature_slug); ?>" <?php checked(in_array($feature_slug, $ce_post_disabled[$type_obj->name]));?> />
                     </td>
-                </tr>
-            <?php else : ?>
-                <tr class="ppc-menu-row parent-menu">
                     <td class="menu-column ppc-menu-item">
                         <span class="classic menu-item-link<?php echo (in_array($feature_slug, $ce_post_disabled[$type_obj->name])) ? ' restricted' : ''; ?>">
                         <strong><i class="dashicons dashicons-arrow-right"></i>
                             <?php echo esc_html(wp_strip_all_tags($arr_feature['label'])); ?>
                         </strong></span>
-                    </td>
-
-                    <td class="restrict-column ppc-menu-checkbox">
-                        <input id="cb_<?php echo esc_attr($type_obj->name) . '-' . esc_attr(str_replace(['#', '.'], '_', $feature_slug));?>" class="check-item" type="checkbox"
-                                name="capsman_feature_restrict_classic_<?php echo esc_attr($type_obj->name);?>[]"
-                                value="<?php echo esc_attr($feature_slug); ?>" <?php checked(in_array($feature_slug, $ce_post_disabled[$type_obj->name]));?> />
                     </td>
                 </tr>
             <?php endif; ?>
