@@ -1150,6 +1150,10 @@ ul.pp-capabilities-description {
   justify-content: space-between;
 }
 
+.ppc-flex-item {
+  flex-basis: -moz-available;
+}
+
 .ppc-flex-item .button {
  margin-right: 10px;
 }
