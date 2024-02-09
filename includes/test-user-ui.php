@@ -35,7 +35,7 @@ class PP_Capabilities_Test_User_UI extends PP_Capabilities_Test_User
         $wp_admin_bar->add_menu(
             array(
                 'id'    => 'pp_capabilities_test_user',
-                'title' => esc_html__('Test Users', 'capability-manager-enhanced'),
+                'title' => esc_html__('User Testing', 'capability-manager-enhanced'),
                 'href'  => '#',
             )
         );
