@@ -7,7 +7,7 @@ Tags: capabilities, permissions, admin menus, user roles, user role editor, acce
 Requires at least: 5.5
 Requires PHP: 7.2.5
 Tested up to: 6.4
-Stable tag: 2.12.2
+Stable tag: 2.13.0
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -409,6 +409,19 @@ Fixed : Non-administrators with user editing capabilities could add new Administ
 Fixed : Security issue. Please update.
 
 == Changelog ==
+
+= 2.13.0 - 12 Feb 2024 =
+  * Update : Add edit to features custom items, #996
+  * Update : Option to add Test User to the admin toolbar, #1047
+  * Update : Add demo content for Frontend Features and Admin Feature, #871
+  * Fixed : Broken tooltip in Admin Menus, #1125
+  * Fixed : Capabilities Media tab not working in french, #1119
+  * Fixed : Frontend feature not working in french, #1118
+  * Update : Standard approach to all UI elements in Capabilities, #1029
+  * Update : Match Custom Visibility to other statuses, #1061
+  * Update : Match the Capabilities Custom Statuses heading to other tabs, #1058
+  * Update : Hide Document Overview using Editor Feature, #1040
+  * Fixed : Read Capability not working, #1039
 
 = 2.12.2 - 6 Feb 2024 =
   * Fixed : French translation caused "Upgrade to Pro" banner to be rendered incorrectly
