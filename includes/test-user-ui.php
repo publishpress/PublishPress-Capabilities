@@ -107,13 +107,18 @@ class PP_Capabilities_Test_User_UI extends PP_Capabilities_Test_User
 
                     if ( ! empty( $user_query->results ) ) {
                         $role_users = [];
+                        $user_lists = [];
                         foreach ( $user_query->results as $user ) {
                             if (PP_Capabilities_Test_User::canTestUser($user)) {
                                 foreach ($user->roles as $role) {
-                                    if (isset($role_users[$role])) {
-                                        $role_users[$role] = array_merge($role_users[$role], [$user]);
-                                    } else {
-                                        $role_users[$role] = [$user];
+                                    if (!in_array($user, $user_lists)) {
+                                        if (isset($role_users[$role])) {
+                                            $role_users[$role] = array_merge($role_users[$role], [$user]);
+                                            $user_lists[] = $user;
+                                        } else {
+                                            $role_users[$role] = [$user];
+                                            $user_lists[] = $user;
+                                        }
                                     }
                                 }
                             }
