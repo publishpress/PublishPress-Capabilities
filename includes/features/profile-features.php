@@ -189,7 +189,7 @@ if (get_option('cme_profile_features_auto_redirect')) {
                                                                             <span
                                                                                 class="menu-item-link<?php echo (in_array($restrict_value, $disabled_profile_items)) ? ' restricted' : ''; ?>">
                                                                             <strong>
-                                                                                 <?php echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &mdash;'; ?> 
+                                                                                 <?php echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i class="dashicons dashicons-arrow-right"></i>'; ?> 
                                                                                 <?php echo esc_html($item_name); ?>
                                                                             </strong></span>
                                                                         </label>

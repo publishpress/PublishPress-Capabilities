@@ -125,12 +125,18 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
 
                                                         <?php
                                                         $icon_list = (array)PP_Capabilities_Admin_Features::elementLayoutItemIcons();
-
+                                                        $title_lists = apply_filters('pp_capabilities_admin_features_titles', []);
                                                         $sn = 0;
                                                         foreach ($admin_features_elements as $section_title => $section_elements) :
                                                             $sn++;
+                                                            if (is_array($title_lists) && isset($title_lists[$section_title])) {
+                                                                $translated_title = $title_lists[$section_title];
+                                                            } else {
+                                                                $translated_title = $section_title;
+                                                            }
+
                                                             $section_slug = strtolower(ppc_remove_non_alphanumeric_space_characters($section_title));
-                                                            $icon_name    = isset($icon_list[$section_slug]) ? $icon_list[$section_slug] : '&mdash;';
+                                                            $icon_name    = 'open-folder';//isset($icon_list[$section_slug]) ? $icon_list[$section_slug] : '<i class="dashicons dashicons-arrow-right"></i>';
                                                             ?>
 
                                                             <tr class="ppc-menu-row parent-menu <?php echo esc_attr($section_slug); ?>">
@@ -147,14 +153,14 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
 		                                                                    <label for="check-item-<?php echo (int) $sn; ?>">
 		                                                            <strong class="menu-column ppc-menu-item menu-item-link<?php echo (in_array($restrict_value,
 		                                                                            $disabled_admin_items)) ? ' restricted' : ''; ?>">
-		                                                                <i class="dashicons dashicons-<?php echo esc_attr($icon_name) ?>"></i> <?php echo esc_html($section_title); ?>
+		                                                                <i class="dashicons dashicons-<?php echo esc_attr($icon_name) ?>"></i> <?php echo esc_html($translated_title); ?>
 		                                                            </strong>
 		                                                        </label>
 		                                                        </td>
 		                                                        <?php else : ?>
 		                                                                <td class="features-section-header" colspan="2">
 		                                                                    <strong><i
-		                                                                            class="dashicons dashicons-<?php echo esc_attr($icon_name) ?>"></i> <?php echo esc_html($section_title); ?>
+		                                                                            class="dashicons dashicons-<?php echo esc_attr($icon_name) ?>"></i> <?php echo esc_html($translated_title); ?>
 		                                                                    </strong>
 		                                                                </td>
 		                                                        <?php endif; ?>
@@ -173,9 +179,15 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                                                                 if($item_action === 'ppc_dashboard_widget'){
                                                                     $restrict_value .= '||'.$section_array['context'];
                                                                 }
+
+                                                                if (isset($section_array['custom_element']) && ($section_array['custom_element'] === true)) {
+                                                                    $additional_class = 'custom-item-' . $section_array['button_data_id'];
+                                                                } else {
+                                                                    $additional_class = '';
+                                                                }
                                                                 ?>
 
-                                                                <tr class="ppc-menu-row child-menu <?php echo esc_attr($section_slug); ?>">
+                                                                <tr class="ppc-menu-row child-menu <?php echo esc_attr($section_slug); ?> <?php echo esc_attr($additional_class); ?>">
 
                                                                     <td class="restrict-column ppc-menu-checkbox">
                                                                         <input
@@ -198,12 +210,12 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                                                                                             if ((isset($section_array['step']) && $section_array['step'] > 0) && isset($section_array['parent']) && !empty($section_array['parent'])) {
                                                                                                 $step_margin = $section_array['step'] * 20;
                                                                                                 echo '<span style="margin-left: ' . (int) $step_margin . 'px;"></span>';
-                                                                                        echo ' &mdash; ';
+                                                                                        echo ' <i class="dashicons dashicons-arrow-right"></i> ';
                                                                                             } else {
                                                                                                 if (isset($icon_list[$section_id])) {
                                                                                                     echo '<i class="dashicons dashicons-' . esc_attr($icon_list[$section_id]) . '"></i>';
                                                                                                 } else {
-                                                                                                    echo '&mdash;';
+                                                                                                    echo '<i class="dashicons dashicons-arrow-right"></i>';
                                                                                                 }
                                                                                             }
                                                                                             ?>
@@ -219,16 +231,13 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                                                                             </div>
                                                                             <div class="ppc-flex-item">
                                                                                 <div class="button view-custom-item"><?php esc_html_e('View'); ?></div>
-                                                                                    <?php /*<div class="button edit-custom-item" 
+                                                                                    <div class="button edit-features-custom-item <?php echo esc_attr($section_array['edit_class']); ?>" 
                                                                                         data-section="<?php echo esc_attr($section_slug); ?>"
                                                                                         data-label="<?php echo esc_attr($section_array['label']); ?>"
-                                                                                        data-selector="<?php echo esc_attr($element_selector); ?>"
-                                                                                        data-bodyclass="<?php echo esc_attr($element_bodyclass); ?>"
-                                                                                        data-pages="<?php echo esc_attr(join(', ', (array) $section_array['pages'])); ?>"
-                                                                                        data-post-types="<?php echo esc_attr(join(', ', (array) $section_array['post_types'])); ?>"
-                                                                                        data-id="<?php echo esc_attr($section_id); ?>">
+                                                                                        data-element="<?php echo esc_attr($section_array['element_items']); ?>"
+                                                                                        data-id="<?php echo esc_attr($section_array['button_data_id']); ?>">
                                                                                         <?php esc_html_e('Edit', 'capability-manager-enhanced'); ?>
-                                                                                    </div> <?php */ ?>
+                                                                                    </div>
                                                                                     <div 
                                                                                         class="button <?php echo esc_attr($section_array['button_class']); ?> feature-red"
                                                                                         data-id="<?php echo esc_attr($section_array['button_data_id']); ?>">
@@ -249,12 +258,12 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
                                                                                     if ((isset($section_array['step']) && $section_array['step'] > 0) && isset($section_array['parent']) && !empty($section_array['parent'])) {
                                                                                         $step_margin = $section_array['step'] * 20;
                                                                                         echo '<span style="margin-left: ' . (int) $step_margin . 'px;"></span>';
-                                                                                echo ' &mdash; ';
+                                                                                echo ' <i class="dashicons dashicons-arrow-right"></i> ';
                                                                                     } else {
                                                                                         if (isset($icon_list[$section_id])) {
                                                                                             echo '<i class="dashicons dashicons-' . esc_attr($icon_list[$section_id]) . '"></i>';
                                                                                         } else {
-                                                                                            echo '&mdash;';
+                                                                                            echo '<i class="dashicons dashicons-arrow-right"></i>';
                                                                                         }
                                                                                     }
                                                                                     ?>

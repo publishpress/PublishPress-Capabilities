@@ -121,7 +121,7 @@ text-decoration: none;
 }
 
 span.cap-x, a.cme-neg-all {
-    color: red;
+    color: #EA3323;
     font-size: 1.5em;
     padding-left: 1px;
     padding-right: 2px;
@@ -150,7 +150,7 @@ text-decoration: line-through !important;
 }
 
 td.cap-yes span {
-color:green;font-weight:bold;
+color:#5ECD89;font-weight:bold;
 }
 
 td.cap-no {
@@ -200,7 +200,7 @@ vertical-align: bottom;
 }
 
 a.type-off, a.neg-cap, a.cme-neg-all, a.neg-type-caps {
-color: #800;
+color: #EA3323;
 }
 
 a.type-on, a.cap-on, a.cme-switch-all {
@@ -395,6 +395,10 @@ table#akmin tr td input[type=checkbox] {
 #ppc-capabilities-wrapper .ppc-capabilities-content > div > h3 {
 	margin-top: 0;
 	display: inline-block;
+}
+
+#ppc-capabilities-wrapper .ppc-capabilities-content > div > h3 a {
+	color: inherit;
 }
 
 .pp-columns-wrapper .pp-sidebar-box {

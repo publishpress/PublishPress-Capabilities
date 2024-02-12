@@ -15,6 +15,143 @@ class PP_Capabilities_Test_User_UI extends PP_Capabilities_Test_User
 
         add_action('wp_footer', [$this, 'switchBackNotice']);
         add_action('all_admin_notices', [$this, 'switchBackNotice']);
+        // Add Test User to admin bar
+        add_action( 'wp_before_admin_bar_render', [$this, 'adminBarSearch'], 1);
+        // Test User search ajax handler
+        add_action('wp_ajax_ppc_search_test_user_by_ajax', [$this, 'searchTestUsers']);
+    }
+
+    /**
+     * Add Test User to admin bar
+     *
+     * @return void
+     */
+    public function adminBarSearch() {
+        global $wp_admin_bar;
+        if (!current_user_can('manage_capabilities_user_testing') || !is_admin_bar_showing() || PP_Capabilities_Test_User::testerAuth() || empty(get_option('cme_test_user_admin_bar_search', 1))) {
+            return;
+        }
+
+        $wp_admin_bar->add_menu(
+            array(
+                'id'    => 'pp_capabilities_test_user',
+                'title' => esc_html__('User Testing', 'capability-manager-enhanced'),
+                'href'  => '#',
+            )
+        );
+
+        $wp_admin_bar->add_menu(
+            array(
+                'id'     => 'pp_capabilities_test_user_form',
+                'parent' => 'pp_capabilities_test_user',
+                'title'  => '
+                <div class="ppc-test-user-admin-bar-form">
+                <input
+                    class="search-test-user"
+                        type="text"
+                        placeholder="' . __('Search user...', 'capability-manager-enhanced' ) . '"/>
+                <button class="test-user-btn button"><span class="search-text">' . __( 'Search', 'capability-manager-enhanced' ) . '</span> <span class="spinner ppc-test-user-search-spinner" style="display: none;"></span></button>
+                
+                <div class="ppc-test-user-search-response"></div>
+            </div>',
+            )
+        );
+
+    }
+
+    /**
+     * Test User search ajax handler
+     *
+     * @return void
+     */
+    public function searchTestUsers() {
+
+        $response['status']  = 'error';
+        $response['message'] = __('No results found.', 'capability-manager-enhanced');
+        $response['content'] = '';
+
+        $security       = isset($_POST['security']) ? sanitize_key($_POST['security']) : false;
+        $search_text    = isset($_POST['search_text']) ? sanitize_key($_POST['search_text']) : '';
+        if (!$security 
+            || !wp_verify_nonce($security, 'ppc-test-user-admin-bar-action') 
+            || !current_user_can('manage_capabilities_user_testing')
+        ) {
+            $response['message'] = __('Permission denied.', 'capability-manager-enhanced');
+        } else {
+            $response['status']  = 'success';
+            $excluded_roles = (array) get_option('cme_test_user_excluded_roles', []);
+                
+            $roles = wp_roles()->roles;
+            $editable = function_exists('get_editable_roles') ? 
+                            array_keys(get_editable_roles()) : 
+                            array_keys(apply_filters('editable_roles', $roles));
+            
+            $included_roles = [];
+            foreach ($editable as $role_name) {
+                if (!in_array($role_name, $excluded_roles)) {
+                    $included_roles[] = $role_name;
+                }
+            }
+
+            if (!empty($included_roles)) {
+                $user_args = ['number' => 10];
+
+                if (!empty(trim($search_text))) {
+                    $user_args['search'] = '*' . trim($search_text) . '*';
+                }
+
+                if (!empty(array_filter($included_roles))) {
+                    $user_args['role__in'] = $included_roles;
+
+                    $user_query = new WP_User_Query($user_args);
+
+                    if ( ! empty( $user_query->results ) ) {
+                        $role_users = [];
+                        $user_lists = [];
+                        foreach ( $user_query->results as $user ) {
+                            if (PP_Capabilities_Test_User::canTestUser($user)) {
+                                foreach ($user->roles as $role) {
+                                    if (!in_array($user, $user_lists)) {
+                                        if (isset($role_users[$role])) {
+                                            $role_users[$role] = array_merge($role_users[$role], [$user]);
+                                            $user_lists[] = $user;
+                                        } else {
+                                            $role_users[$role] = [$user];
+                                            $user_lists[] = $user;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        if (!empty($role_users)) {
+                            $response_content = '';
+                            foreach ($role_users as $role_slug => $user_lists) {
+                                $role_name = !empty($roles[$role_slug]['name']) ? translate_user_role($roles[$role_slug]['name']) : $role_slug;
+                                $response_content .= '<h2>'. $role_name .'</h2>';
+                                foreach ($user_lists as $user) {
+                                    $link = add_query_arg(
+                                        [
+                                            'ppc_test_user' => base64_encode($user->ID), 
+                                            '_wpnonce'      => wp_create_nonce('ppc-test-user')
+                                        ], 
+                                        admin_url('users.php')
+                                    );
+                                    $response_content .= '
+                                        <p class="result">
+                                            <a href="' . esc_url($link) . '">' . $user->display_name . '</a>
+                                        </p>
+                                    ';
+                                }
+                            }
+                            $response['content'] = $response_content;
+                        }
+                    }
+                }
+            }
+        }
+        
+        wp_send_json($response);
     }
 
     /**
