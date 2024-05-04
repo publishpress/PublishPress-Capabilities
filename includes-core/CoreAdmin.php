@@ -43,7 +43,7 @@ class CoreAdmin {
                 function ($settings) {
                     $settings['publishpress-capabilities'] = [
                         'parent' => 'pp-capabilities-dashboard',
-                        'label'  => 'Upgrade to Pro',
+                        'label'  => __('Upgrade to Pro', 'capability-manager-enhanced'),
                         'link'   => 'https://publishpress.com/links/capabilities-menu',
                     ];
 
