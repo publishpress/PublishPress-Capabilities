@@ -259,7 +259,7 @@ function ppc_add_inline_style($custom_css, $handle = 'ppc-dummy-css-handle')
        $handle .= '-' . time(); 
    }
 
-    $ppc_dummy_css_handle = $handle;
+    $ppc_dummy_css_handle[] = $handle;
 
     wp_register_style(esc_attr($handle), false);
     wp_enqueue_style(esc_attr($handle));
