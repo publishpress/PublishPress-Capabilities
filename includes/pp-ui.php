@@ -181,7 +181,7 @@ class Capsman_PP_UI {
 				
 					<div style="margin-top:20px;margin-bottom:10px" class="ppc-tool-tip">
 					<label for="pp_define_create_posts_cap">
-					<input name="pp_define_create_posts_cap" type="checkbox" id="pp_define_create_posts_cap" autocomplete="off" value="1" <?php checked('1', $define_create_posts_cap );?> /> <?php esc_html_e('Use the "Create" capability for selected post types');?>
+					<input name="pp_define_create_posts_cap" type="checkbox" id="pp_define_create_posts_cap" autocomplete="off" value="1" <?php checked('1', $define_create_posts_cap );?> /> <?php esc_html_e('Use the "Create" capability for selected post types', 'capability-manager-enhanced');?>
                     <div class="tool-tip-text"><p><?php esc_attr_e('This will cause a new capability to be required for creating posts, and enable a checkbox column here for role assignments. Normally, post creation is controlled by the "Edit" capability.', 'capability-manager-enhanced');?></p><i></i></div>
 					</label>
 					</div>
