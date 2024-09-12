@@ -214,7 +214,7 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 			$cap_properties['delete']['type'] = array( 'delete_posts', 'delete_others_posts' );
 			$cap_properties['delete']['type'] = array_merge( $cap_properties['delete']['type'], array( 'delete_published_posts', 'delete_private_posts' ) );
 
-            if (defined('PRESSPERMIT_PRO_FILE')) {
+            if (defined('PRESSPERMIT_VERSION') && defined('PRESSPERMIT_COLLAB_VERSION')) {
                 $cap_properties['list']['type'] = ['list_posts', 'list_others_posts', 'list_published_posts', 'list_private_posts'];
             }
 
@@ -240,7 +240,7 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
                 'taxonomies' => __( 'Taxonomies', 'capability-manager-enhanced' ),
 			);
 
-            if (defined('PRESSPERMIT_PRO_FILE')) {
+            if (defined('PRESSPERMIT_VERSION') && defined('PRESSPERMIT_COLLAB_VERSION')) {
                 $cap_type_names['list'] = __('Listing', 'capability-manager-enhanced');
             }
 
@@ -270,7 +270,7 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 								   'manage_categories'
 								   );
 
-            if (defined('PRESSPERMIT_PRO_FILE')) {
+            if (defined('PRESSPERMIT_PRO_FILE') && defined('PRESSPERMIT_COLLAB_VERSION')) {
                 $default_caps = array_merge($default_caps, ['list_posts', 'list_others_posts', 'list_published_posts', 'list_private_posts', 'list_pages', 'list_others_pages', 'list_published_pages', 'list_private_pages']);
             }
 
@@ -904,7 +904,7 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 
 							echo '</table>';
 
-							if ($cap_type === 'list' && (defined('PRESSPERMIT_VERSION') || defined('PRESSPERMIT_PRO_VERSION'))) {
+							if ($cap_type === 'list' && defined('PRESSPERMIT_VERSION') && defined('PRESSPERMIT_COLLAB_VERSION')) {
                                 echo '<p class="pp-subtext"> '. esc_html__('Admin listing access is normally provided by the "Edit" capabilities. These "List" capabilities only apply if the corresponding "Edit" capability is missing. Also, these "List" capabilities can grant access, but not deny access.', 'capability-manager-enhanced') .' </p>';
                             }
 
