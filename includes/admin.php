@@ -757,8 +757,8 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 												|| $type_obj->cap->$prop == str_replace( '_posts', "_" . _cme_get_plural($type_obj->name, $type_obj), $prop )
 												|| $type_obj->cap->$prop == str_replace( '_pages', "_" . _cme_get_plural($type_obj->name, $type_obj), $prop )
 												)
-                                            && (!in_array($type_obj->cap->$prop, $grouped_caps_lists)) //capabilitiy not enforced in $grouped_caps_lists
-											&& $type_obj->cap->$prop !== 'manage_post_tags'
+                                            && (!in_array($type_obj->cap->$prop, $grouped_caps_lists)) //capability not enforced in $grouped_caps_lists
+											&& (('manage_post_tags' != $type_obj->cap->$prop) || (defined('PRESSPERMIT_ACTIVE') && in_array( $type_obj->name, cme_get_assisted_taxonomies())))
 											) {
 												// only present these term caps up top if we are ensuring that they get enforced separately from manage_terms
 												if ( in_array( $prop, array( 'edit_terms', 'delete_terms', 'assign_terms' ) ) && ( ! in_array( $type_obj->name, cme_get_detailed_taxonomies() ) || defined( 'OLD_PRESSPERMIT_ACTIVE' ) ) ) {
@@ -813,8 +813,7 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
                                                 $cap_name = sanitize_text_field($type_obj->cap->$prop);
 												$cap_title = '';
 												
-
-												if ($cap_name === 'manage_categories') {
+												if (($cap_name === 'manage_categories') && !defined('PRESSPERMIT_ACTIVE')) {
 													$tool_tip = sprintf(__( 'This capability is controlled by %s', 'capability-manager-enhanced' ), '<strong>manage_categories</strong>' );
 
 												} else {
