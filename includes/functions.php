@@ -168,6 +168,11 @@ function pp_capabilities_get_post_type()
 {
     global $post, $typenow, $current_screen;
 
+    // Check the global $current_screen object - set in screen.php
+    if ($current_screen && $current_screen->post_type) {
+        return $current_screen->post_type;
+    }
+
     // We have a post so we can just get the post type from that.
     if ($post && $post->post_type) {
         return $post->post_type;
@@ -176,11 +181,6 @@ function pp_capabilities_get_post_type()
     // Check the global $typenow - set in admin.php
     if ($typenow) {
         return $typenow;
-    }
-
-    // Check the global $current_screen object - set in screen.php
-    if ($current_screen && $current_screen->post_type) {
-        return $current_screen->post_type;
     }
 
     if (isset($_GET['post']) && !is_array($_GET['post'])) {
