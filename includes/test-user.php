@@ -81,7 +81,7 @@ class PP_Capabilities_Test_User
                     /**
                      * Action called before redirecting user back
                      *
-                     * @param integer $original_user_id The original user ID. This is the User that's been logged in back to
+                     * @param integer $original_user_id The original user ID. This is the User that's been logged in back.
                      * @param integer $request_user_id The tested account user ID
                      */
                     do_action('pp_capabilities_test_user_restored', $original_user_id, $request_user_id);
