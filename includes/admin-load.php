@@ -481,6 +481,16 @@ class PP_Capabilities_Admin_UI {
         $cap_page_slug  = false;
         $cap_title      = __('Capabilities', 'capability-manager-enhanced');
         $cap_name       = false;
+
+        //remove caps that doesn't have menu
+        if (in_array('manage_capabilities_user_testing', $user_menu_caps)) {
+            $cap_key = array_search('manage_capabilities_user_testing', $user_menu_caps);
+            if ($cap_key !== false) {
+                unset($user_menu_caps[$cap_key]);
+                $user_menu_caps = array_filter($user_menu_caps);
+            }
+        }
+
         if (is_multisite() && is_super_admin()) {
             $cap_name      = 'read';
             $cap_callback  = [$this, 'dashboardPage'];
