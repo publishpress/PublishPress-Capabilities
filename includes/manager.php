@@ -369,8 +369,17 @@ class CapabilityManager
         $cap_page_slug  = false;
         $cap_title      = 'Capabilities'; // Pass title into add_menu_page() untranslated so hook name, body class and current_screen are not translated
 		$cap_title_i8n = __('Capabilities', 'capability-manager-enhanced');
-
         $cap_name       = false;
+
+        //remove caps that doesn't have menu
+        if (in_array('manage_capabilities_user_testing', $user_menu_caps)) {
+            $cap_key = array_search('manage_capabilities_user_testing', $user_menu_caps);
+            if ($cap_key !== false) {
+                unset($user_menu_caps[$cap_key]);
+                $user_menu_caps = array_filter($user_menu_caps);
+            }
+        }
+		
         if (is_multisite() && is_super_admin()) {
             $cap_name      = 'read';
             $cap_callback  = [$this, 'dashboardPage'];
