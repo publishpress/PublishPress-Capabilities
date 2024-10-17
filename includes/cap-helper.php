@@ -294,14 +294,12 @@ class CME_Cap_Helper {
 				}
 				$tx_caps = (array) $wp_taxonomies[$taxonomy]->cap;
 
-
 				// Optionally, also force edit_terms and delete_terms to be distinct from manage_terms, and force a distinct assign_terms capability
 				if ( in_array( $taxonomy, $detailed_taxonomies ) ) {
 					foreach( $tx_detail_caps as $cap_property => $replacement_cap_format ) {
 						$tx_cap_usage = array_count_values($tx_caps);
-
 						// If a unique edit/delete capability is already defined, don't change the definition
-						if (!empty($tx_caps[$cap_property]) 
+						if ( !empty($tx_caps[$cap_property]) 
 						&& (empty($this->all_taxonomy_caps[$tx_caps[$cap_property]]) || $this->all_taxonomy_caps[$tx_caps[$cap_property]] == 1) 
 						&& ($tx_cap_usage[$tx_caps[$cap_property]] == 1)
 						&& !defined('CAPSMAN_LEGACY_DETAILED_TAX_CAPS')
@@ -310,7 +308,7 @@ class CME_Cap_Helper {
 							$custom_detailed_taxonomy_caps = true;
 							$generated_cap_name = str_replace('_terms', "_{$plural_type}", $replacement_cap_format);
 
-							if (!get_option("cme_migrated_taxonomy_caps")) {
+							if (!empty(get_option("cme_migrated_taxonomy_caps"))) {
 								foreach ($wp_roles->roles as $role_name => $role) {
 									if (!empty($role['capabilities'][$generated_cap_name])) {
 										$_role = get_role($role_name);
@@ -340,9 +338,8 @@ class CME_Cap_Helper {
 							}
 						}
 					}
-
 					if (!empty($custom_detailed_taxonomy_caps)) {
-						update_option("cme_migrated_taxonomy_caps", true);
+						update_option("cme_migrated_taxonomy_caps", '1');
 					}
 				}
 				
