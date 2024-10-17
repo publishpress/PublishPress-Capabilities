@@ -1392,7 +1392,7 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 						uasort( $this->capabilities, 'strnatcasecmp' );  // sort by array values, but maintain keys );
 
 						$additional_caps = apply_filters('publishpress_caps_manage_additional_caps', $this->capabilities);
-
+						$caps_empty = true;
 						foreach ($additional_caps as $cap_name => $cap) :
 							$cap_name = sanitize_text_field($cap_name);
 
@@ -1454,6 +1454,8 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 									$disabled = ' disabled ';
 								}
 							}
+							
+						$caps_empty = false;
 						?>
 							<td class="<?php echo esc_attr($class); ?>"><span class="ppc-tool-tip disabled cap-x">X</span><span class="ppc-tool-tip disabled"><label><input type="checkbox" name="caps[<?php echo esc_attr($cap_name); ?>]" class="pp-single-action-rotate" autocomplete="off" value="1" <?php echo esc_attr($checked) . ' ' . esc_attr($disabled);?> />
 							<span>
@@ -1489,7 +1491,15 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 							}
 						}
 						?>
-
+						<?php if ($caps_empty) : ?>
+							<tr>
+								<td colspan="<?php echo (int) $checks_per_row;?>">
+									<div>
+										<?php esc_html_e( 'You have no additional capabilities.', 'capability-manager-enhanced' ); ?>
+									</div>
+								</td>
+							</tr>
+						<?php endif; ?>
 						<tr class="cme-bulk-select">
 							<td colspan="<?php echo (int) $checks_per_row;?>">
 								<input type="checkbox" class="cme-check-all" autocomplete="off" title="<?php esc_attr_e('check / uncheck all', 'capability-manager-enhanced');?>"> <span><?php _e('Capability Name', 'capability-manager-enhanced');?></span>
