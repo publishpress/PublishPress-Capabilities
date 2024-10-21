@@ -37,6 +37,9 @@ if ($sidebar_metabox_state == '' || !is_array($sidebar_metabox_state)) {
     $sidebar_metabox_state['how_to_user_capabilities'] = 'opened';
 }
 
+if (!isset($sidebar_metabox_state['multi_site'])) {
+    $sidebar_metabox_state['multi_site'] = 'opened';
+}
 $roles = $this->roles;
 $default = $this->current;
 
@@ -1642,6 +1645,31 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 							</div>
 						</div>
 
+						<?php if (is_multisite() && is_super_admin() && is_main_site()) : ?>
+							<div class="ppc-sidebar-panel-metabox meta-box-sortables ppc-multi-site">
+								<?php $meta_box_state = (isset($sidebar_metabox_state['multi_site'])) ? $sidebar_metabox_state['multi_site'] : 'closed';  ?>
+								<div class="postbox ppc-sidebar-panel <?php echo esc_attr($meta_box_state); ?>">
+									<input 
+										name="ppc_metabox_state[multi_site]"
+										type="hidden" 
+										class="metabox-state" 
+										value="<?php echo esc_attr($meta_box_state); ?>"
+									/>
+									<div class="postbox-header">
+										<h2 class="hndle ui-sortable-handle"><?php esc_html_e('Multisite', 'capability-manager-enhanced'); ?></h2>
+										<div class="handle-actions">
+											<button type="button" class="handlediv">
+												<span class="toggle-indicator"></span>
+											</button>
+										</div>
+									</div>
+									<div class="inside">
+										<?php cme_network_role_ui( $default ); ?>
+									</div>
+								</div>
+							</div>
+						<?php endif; ?>
+
 						<?php
 							do_action('publishpress-caps_sidebar_bottom');
 						?>
@@ -1771,11 +1799,6 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 
 			</div>
 
-		<?php
-		$support_pp_only_roles = defined('PRESSPERMIT_ACTIVE');
-		cme_network_role_ui( $default );
-		?>
-
 		<p class="submit" style="padding-top:0;">
 			<input type="hidden" name="action" value="update" />
 			<input type="hidden" name="current" value="<?php echo esc_attr($default); ?>" />
@@ -1804,8 +1827,6 @@ function cme_network_role_ui( $default ) {
 		return false;
 	}
 	?>
-
-	<div style="float:right;margin-left:10px;margin-right:10px">
 		<?php
 		if ( ! $autocreate_roles = get_site_option( 'cme_autocreate_roles' ) )
 			$autocreate_roles = array();
@@ -1819,7 +1840,6 @@ function cme_network_role_ui( $default ) {
 		<div>
 		<label for="cme_net_sync_options" title="<?php echo esc_attr__('Copy option settings to all sites now', 'capability-manager-enhanced');?>"><input type="checkbox" name="cme_net_sync_options" id="cme_net_sync_options" autocomplete="off" value="1"> <?php esc_html_e('sync options to all sites now', 'capability-manager-enhanced'); ?> </label>
 		</div>
-	</div>
 <?php
 	return true;
 }
