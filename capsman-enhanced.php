@@ -173,3 +173,10 @@ add_action('plugins_loaded', function () {
 	}
 	do_action('publishpress_capabilities_loaded');
 }, -10);
+
+register_activation_hook(
+    __FILE__,
+    function () {
+        update_option('pp_capabilities_activated', true);
+    }
+);
