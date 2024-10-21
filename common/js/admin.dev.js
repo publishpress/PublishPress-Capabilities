@@ -31,8 +31,8 @@ jQuery(document).ready( function($) {
 	//$('table.cme-typecaps span.cap-x,table.cme-checklist span.cap-x,table.cme-checklist td.cap-neg span').live( 'click', function(e) {
 	$(document).on( 'click', 'table.cme-typecaps span.cap-x,table.cme-checklist span.cap-x,table.cme-checklist td.cap-neg span', function(e) {
 		$(this).closest('td').removeClass('cap-neg').removeClass('cap-yes').addClass('cap-no');
-		$(this).parent().find('input[type="checkbox"]').prop('checked',false);
-		$(this).parent().find('input.cme-negation-input').remove();
+		$(this).closest('td').find('input[type="checkbox"]').prop('checked',false);
+		$(this).closest('td').find('input.cme-negation-input').remove();
 
 		// Also apply for any other checkboxes with the same name
 		var cap_name_attr = $(this).next('input[type="checkbox"]').attr('name');
@@ -41,8 +41,8 @@ jQuery(document).ready( function($) {
 			cap_name_attr = $(this).next('label').find('input[type="checkbox"]').attr('name');
 		}
 
-		$('input[name="' + cap_name_attr + '"]').parent().closest('td').removeClass('cap-neg').removeClass('cap-yes').addClass('cap-no');
-		$('input[name="' + cap_name_attr + '"]').prop('checked',false).parent().find('input.cme-negation-input').remove();
+		$('input[name="' + cap_name_attr + '"]').closest('td').removeClass('cap-neg').removeClass('cap-yes').addClass('cap-no');
+		$('input[name="' + cap_name_attr + '"]').prop('checked',false).closest('td').find('input.cme-negation-input').remove();
 
     if ($(this).closest('td').hasClass('capability-checkbox-rotate')) {
       $(this).closest('td').find('input[type="checkbox"]').prop('checked', true);
@@ -51,8 +51,8 @@ jQuery(document).ready( function($) {
         $('tr.unfiltered_upload').find('td').removeClass('cap-neg').removeClass('cap-yes').addClass('cap-no');
 		    $('tr.unfiltered_upload').find('input[type="checkbox"]').prop('checked',false);
         $('tr.unfiltered_upload').find('input.cme-negation-input').remove();
-        $('input[name="caps[unfiltered_upload]"]').parent().closest('td').removeClass('cap-neg').removeClass('cap-yes').addClass('cap-no');
-		    $('input[name="caps[unfiltered_upload]"]').prop('checked', true).parent().find('input.cme-negation-input').remove();
+        $('input[name="caps[unfiltered_upload]"]').closest('td').removeClass('cap-neg').removeClass('cap-yes').addClass('cap-no');
+		    $('input[name="caps[unfiltered_upload]"]').prop('checked', true).closest('td').find('input.cme-negation-input').remove();
       }
     } 
 
@@ -61,8 +61,8 @@ jQuery(document).ready( function($) {
     }
 
     if ($(this).closest('tr').hasClass('unfiltered_upload')) {
-      $('input[name="caps[upload_files]"]').parent().closest('td').removeClass('cap-neg').removeClass('cap-yes').addClass('cap-no');
-      $('input[name="caps[upload_files]"]').prop('checked', true).parent().find('input.cme-negation-input').remove();
+      $('input[name="caps[upload_files]"]').closest('td').removeClass('cap-neg').removeClass('cap-yes').addClass('cap-no');
+      $('input[name="caps[upload_files]"]').prop('checked', true).closest('td').find('input.cme-negation-input').remove();
     }
 		return false;
 	});
