@@ -42,8 +42,8 @@ class PP_Capabilities_Frontend_Features_Action
         $response['content'] = '';
 
         $custom_label   = isset($_POST['custom_label']) ? sanitize_text_field($_POST['custom_label']) : '';
-        $custom_element_selector = isset($_POST['custom_element_selector']) ? sanitize_textarea_field($_POST['custom_element_selector']) : '';
-        $custom_element_styles = isset($_POST['custom_element_styles']) ? sanitize_textarea_field($_POST['custom_element_styles']) : '';
+        $custom_element_selector = isset($_POST['custom_element_selector']) ? stripslashes_deep(sanitize_textarea_field($_POST['custom_element_selector'])) : '';
+        $custom_element_styles = isset($_POST['custom_element_styles']) ? stripslashes_deep(sanitize_textarea_field($_POST['custom_element_styles'])) : '';
         $custom_element_bodyclass = isset($_POST['custom_element_bodyclass']) ? sanitize_textarea_field($_POST['custom_element_bodyclass']) : '';
         $element_pages  = (isset($_POST['element_pages']) && is_array($_POST['element_pages'])) ? array_map('sanitize_text_field', $_POST['element_pages']) : [];
         $element_post_types  = (isset($_POST['element_post_types']) && is_array($_POST['element_post_types'])) ? array_map('sanitize_text_field', $_POST['element_post_types']) : [];

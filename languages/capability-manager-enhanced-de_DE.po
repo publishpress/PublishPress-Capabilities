@@ -661,13 +661,13 @@ msgstr ""
 #, fuzzy
 #| msgid "Delete Role"
 msgid "Create New Role"
-msgstr "Rolle löschen"
+msgstr "Neue Rolle erstellen"
 
 #: includes/roles/class/class-pp-roles-admin.php:630
 #, fuzzy
 #| msgid "Delete Role"
 msgid "Create Role"
-msgstr "Rolle löschen"
+msgstr "Rolle erstellen"
 
 #: includes/admin.php:1681
 msgid "Create this role definition in new (future) sites"

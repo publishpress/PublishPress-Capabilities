@@ -252,7 +252,7 @@ class PP_Capabilities_Post_Features {
         // apply the stored restrictions by css
         if ($restrict_elements = array_unique($restrict_elements)) {
             //add inline styles
-            ppc_add_inline_style('' . implode(',', array_map('esc_attr', $restrict_elements)) . ' {display:none !important;}');
+            ppc_add_inline_style('' . implode(',', $restrict_elements) . ' {display:none !important;}');
         }
     }
 
@@ -349,7 +349,7 @@ class PP_Capabilities_Post_Features {
             );
 
             //add inline styles
-            ppc_add_inline_style('' . implode(',', array_map('esc_attr', $restrict_elements)) . ' {display:none !important;}');
+            ppc_add_inline_style('' . implode(',', $restrict_elements) . ' {display:none !important;}');
         }
     }
 
@@ -381,22 +381,24 @@ class PP_Capabilities_Post_Features {
     {
         $elements = [
             esc_html__('Top Bar - Left', 'capability-manager-enhanced') => [
-                'add_block' => ['label' => esc_html__('Add block', 'capability-manager-enhanced'), 'elements' => '.edit-post-header-toolbar .edit-post-header-toolbar__inserter-toggle.has-icon'],
+                'add_block' => ['label' => esc_html__('Add block', 'capability-manager-enhanced'), 'elements' => '.edit-post-header-toolbar .editor-document-tools__inserter-toggle'],
                 'modes' =>     ['label' => esc_html__('Modes', 'capability-manager-enhanced'),     'elements' => '.edit-post-header-toolbar .components-dropdown:first-of-type'],
                 'undo' =>      ['label' => esc_html__('Undo'),                       'elements' => '.edit-post-header-toolbar .editor-history__undo'],
                 'redo' =>      ['label' => esc_html__('Redo'),                       'elements' => '.edit-post-header-toolbar .editor-history__redo'],
-                'details' =>   ['label' => esc_html__('Details'),                     'elements' => '.edit-post-header__toolbar .table-of-contents'],
-                'outline' =>   ['label' => esc_html__('Outline', 'capability-manager-enhanced'),   'elements' => '.edit-post-header__toolbar .edit-post-header-toolbar__list-view-toggle'],
-                'document_overview' =>   ['label' => esc_html__('Document Overview', 'capability-manager-enhanced'),   'elements' => '.edit-post-header__toolbar .edit-post-header-toolbar__document-overview-toggle'],
+                'details' =>   ['label' => esc_html__('Details'),                     'elements' => '.edit-post-header-toolbar .table-of-contents'],
+                'outline' =>   ['label' => esc_html__('Outline', 'capability-manager-enhanced'),   'elements' => '.edit-post-header-toolbar .editor-document-tools__list-view-toggle'],
+                'document_overview' =>   ['label' => esc_html__('Document Overview', 'capability-manager-enhanced'),   'elements' => '.edit-post-header-toolbar .editor-document-tools__document-overview-toggle'],
+                'document_bar_title' =>   ['label' => esc_html__('Document Bar Title', 'capability-manager-enhanced'),   'elements' => '.editor-header__toolbar .editor-header__center .editor-document-bar'],
             ],
 
             esc_html__('Top Bar - Right', 'capability-manager-enhanced') => [
-                'save_draft' =>       ['label' => esc_html__('Save Draft'),                        'elements' => '.edit-post-header__settings .components-button.editor-post-save-draft'],
-                'switch_to_draft' =>  ['label' => esc_html__('Switch to Draft'),                   'elements' => '.edit-post-header__settings .components-button.editor-post-switch-to-draft'],
-                'preview' =>          ['label' => esc_html__('Preview'),                           'elements' => '.edit-post-header__settings .block-editor-post-preview__dropdown'],
-                'publish' =>          ['label' => esc_html__('Publish / Update', 'capability-manager-enhanced'), 'elements' => '.edit-post-header__settings .editor-post-publish-button__button'],
-                'settings' =>         ['label' => esc_html__('Settings'),                          'elements' => '.edit-post-header__settings .interface-pinned-items button'],
-                'options' =>          ['label' => esc_html__('Options', 'capability-manager-enhanced'),          'elements' => '.edit-post-header__settings .edit-post-more-menu .components-button, .edit-post-header__settings .components-dropdown-menu.interface-more-menu-dropdown'],
+                'save_draft' =>       ['label' => esc_html__('Save Draft'),                        'elements' => '.editor-header__settings .components-button.editor-post-save-draft'],
+                'switch_to_draft' =>  ['label' => esc_html__('Switch to Draft'),                   'elements' => '.editor-header__settings .components-button.editor-post-switch-to-draft'],
+                'preview' =>          ['label' => esc_html__('Preview'),                           'elements' => '.editor-header__settings .editor-preview-dropdown, .editor-header__settings .editor-header__post-preview-button'],
+                'view' =>          ['label' => esc_html__('View'),                           'elements' => '.editor-header__settings .editor-header__post-preview-button + a.components-button'],
+                'publish' =>          ['label' => esc_html__('Publish / Update', 'capability-manager-enhanced'), 'elements' => '.editor-header__settings .editor-post-publish-button__button'],
+                'settings' =>         ['label' => esc_html__('Settings'),                          'elements' => '.editor-header__settings .interface-pinned-items button'],
+                'options' =>          ['label' => esc_html__('Options', 'capability-manager-enhanced'),          'elements' => '.editor-header__settings .components-dropdown-menu button[aria-label="Options"]'],
             ],
 
             esc_html__('Body', 'capability-manager-enhanced') => [
@@ -417,6 +419,7 @@ class PP_Capabilities_Post_Features {
             ],
 
             esc_html__('Document Panel', 'capability-manager-enhanced') => [
+                'setting_panel' => ['label' => esc_html__('Settings Panel', 'capability-manager-enhanced'),   'elements' => 'div.interface-interface-skeleton__sidebar[aria-label="Editor settings"]'],
                 'status_visibility' => ['label' => esc_html__('Status & visibility', 'capability-manager-enhanced'),   'elements' => 'post-status'],
                 'template'          => [
                     'label'       => esc_html__('Template'),

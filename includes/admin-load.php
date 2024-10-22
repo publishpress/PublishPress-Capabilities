@@ -26,6 +26,9 @@ class PP_Capabilities_Admin_UI {
         add_action('init', [$this, 'featureRestrictionsGutenberg'], PHP_INT_MAX - 1);
 
         if (is_admin()) {
+            // Redirect on plugin activation
+            add_action('admin_init', [$this, 'redirect_on_activate'], 2000);
+            
             add_action('admin_init', [$this, 'featureRestrictionsClassic'], PHP_INT_MAX - 1);
             add_action('wp_ajax_save_dashboard_feature_by_ajax', [$this, 'saveDashboardFeature']);
 
@@ -481,6 +484,16 @@ class PP_Capabilities_Admin_UI {
         $cap_page_slug  = false;
         $cap_title      = __('Capabilities', 'capability-manager-enhanced');
         $cap_name       = false;
+
+        //remove caps that doesn't have menu
+        if (in_array('manage_capabilities_user_testing', $user_menu_caps)) {
+            $cap_key = array_search('manage_capabilities_user_testing', $user_menu_caps);
+            if ($cap_key !== false) {
+                unset($user_menu_caps[$cap_key]);
+                $user_menu_caps = array_filter($user_menu_caps);
+            }
+        }
+
         if (is_multisite() && is_super_admin()) {
             $cap_name      = 'read';
             $cap_callback  = [$this, 'dashboardPage'];
@@ -738,5 +751,19 @@ class PP_Capabilities_Admin_UI {
         </div>
 
         <?php
-	}
+	}     
+
+    /**
+    * Redirect user on plugin activation
+    *
+    * @return void
+    */
+    public function redirect_on_activate()
+    {
+        if (get_option('pp_capabilities_activated')) {
+            delete_option('pp_capabilities_activated');
+            wp_safe_redirect(admin_url("admin.php?page=pp-capabilities-dashboard"));
+            exit;
+        }
+    }
 }

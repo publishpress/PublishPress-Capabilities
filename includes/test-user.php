@@ -55,6 +55,7 @@ class PP_Capabilities_Test_User
 
         $request_user_id = isset($_GET['ppc_test_user']) ? (int) base64_decode(sanitize_text_field($_GET['ppc_test_user'])) : 0;
         $ppc_return_back = isset($_GET['ppc_return_back']) ? (int) sanitize_text_field($_GET['ppc_return_back']) : 0;
+        $current_user_id = get_current_user_id();
         $request_user    = get_userdata($request_user_id);
         
         if (!$request_user || (is_object($request_user) && !isset($request_user->ID))) {
@@ -77,6 +78,14 @@ class PP_Capabilities_Test_User
                     // Unset the cookie
                     $this->clearTestUserCookie();
 
+                    /**
+                     * Action called before redirecting user back
+                     *
+                     * @param integer $original_user_id The original user ID. This is the User that's been logged in back.
+                     * @param integer $request_user_id The tested account user ID
+                     */
+                    do_action('pp_capabilities_test_user_restored', $original_user_id, $request_user_id);
+
                     //redirect back to admin dashboard
                     wp_safe_redirect($redirect_url);
                     exit;
@@ -89,6 +98,8 @@ class PP_Capabilities_Test_User
                     $redirect_url = admin_url();
                 }
 
+                $original_user_id = $current_user_id;
+                
                 // Create and set auth cookie for current user before switching
                 $token = function_exists('wp_get_session_token') ? wp_get_session_token() : '';
                 $orig_auth_cookie = wp_generate_auth_cookie($current_user->ID, time() + self::AUTH_COOKIE_EXPIRATION, 'logged_in', $token);
@@ -98,6 +109,15 @@ class PP_Capabilities_Test_User
 
                 // Login as the other user
                 wp_set_auth_cookie($request_user_id, false);
+
+                /**
+                 * Action called before redirecting user after setting
+                 * authentication for testing user.
+                 *
+                 * @param integer $request_user_id The tested account user ID. This is the User that's been logged in to.
+                 * @param integer $original_user_id The original user ID
+                 */
+                do_action('pp_capabilities_test_user_authenticated', $request_user_id, $original_user_id);
 
                 //redirect user to admin dashboard
                 wp_safe_redirect($redirect_url);

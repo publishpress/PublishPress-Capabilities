@@ -37,6 +37,9 @@ if ($sidebar_metabox_state == '' || !is_array($sidebar_metabox_state)) {
     $sidebar_metabox_state['how_to_user_capabilities'] = 'opened';
 }
 
+if (!isset($sidebar_metabox_state['multi_site'])) {
+    $sidebar_metabox_state['multi_site'] = 'opened';
+}
 $roles = $this->roles;
 $default = $this->current;
 
@@ -214,7 +217,7 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 			$cap_properties['delete']['type'] = array( 'delete_posts', 'delete_others_posts' );
 			$cap_properties['delete']['type'] = array_merge( $cap_properties['delete']['type'], array( 'delete_published_posts', 'delete_private_posts' ) );
 
-            if (defined('PRESSPERMIT_PRO_FILE')) {
+            if (defined('PRESSPERMIT_VERSION') && defined('PRESSPERMIT_COLLAB_VERSION')) {
                 $cap_properties['list']['type'] = ['list_posts', 'list_others_posts', 'list_published_posts', 'list_private_posts'];
             }
 
@@ -240,7 +243,7 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
                 'taxonomies' => __( 'Taxonomies', 'capability-manager-enhanced' ),
 			);
 
-            if (defined('PRESSPERMIT_PRO_FILE')) {
+            if (defined('PRESSPERMIT_VERSION') && defined('PRESSPERMIT_COLLAB_VERSION')) {
                 $cap_type_names['list'] = __('Listing', 'capability-manager-enhanced');
             }
 
@@ -270,7 +273,7 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 								   'manage_categories'
 								   );
 
-            if (defined('PRESSPERMIT_PRO_FILE')) {
+            if (defined('PRESSPERMIT_PRO_FILE') && defined('PRESSPERMIT_COLLAB_VERSION')) {
                 $default_caps = array_merge($default_caps, ['list_posts', 'list_others_posts', 'list_published_posts', 'list_private_posts', 'list_pages', 'list_others_pages', 'list_published_pages', 'list_private_pages']);
             }
 
@@ -757,8 +760,8 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 												|| $type_obj->cap->$prop == str_replace( '_posts', "_" . _cme_get_plural($type_obj->name, $type_obj), $prop )
 												|| $type_obj->cap->$prop == str_replace( '_pages', "_" . _cme_get_plural($type_obj->name, $type_obj), $prop )
 												)
-                                            && (!in_array($type_obj->cap->$prop, $grouped_caps_lists)) //capabilitiy not enforced in $grouped_caps_lists
-											&& $type_obj->cap->$prop !== 'manage_post_tags'
+                                            && (!in_array($type_obj->cap->$prop, $grouped_caps_lists)) //capability not enforced in $grouped_caps_lists
+											&& (('manage_post_tags' != $type_obj->cap->$prop) || (defined('PRESSPERMIT_ACTIVE') && in_array( $type_obj->name, cme_get_assisted_taxonomies())))
 											) {
 												// only present these term caps up top if we are ensuring that they get enforced separately from manage_terms
 												if ( in_array( $prop, array( 'edit_terms', 'delete_terms', 'assign_terms' ) ) && ( ! in_array( $type_obj->name, cme_get_detailed_taxonomies() ) || defined( 'OLD_PRESSPERMIT_ACTIVE' ) ) ) {
@@ -813,8 +816,7 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
                                                 $cap_name = sanitize_text_field($type_obj->cap->$prop);
 												$cap_title = '';
 												
-
-												if ($cap_name === 'manage_categories') {
+												if (($cap_name === 'manage_categories') && !defined('PRESSPERMIT_ACTIVE')) {
 													$tool_tip = sprintf(__( 'This capability is controlled by %s', 'capability-manager-enhanced' ), '<strong>manage_categories</strong>' );
 
 												} else {
@@ -904,7 +906,7 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 
 							echo '</table>';
 
-							if ($cap_type === 'list' && (defined('PRESSPERMIT_VERSION') || defined('PRESSPERMIT_PRO_VERSION'))) {
+							if ($cap_type === 'list' && defined('PRESSPERMIT_VERSION') && defined('PRESSPERMIT_COLLAB_VERSION')) {
                                 echo '<p class="pp-subtext"> '. esc_html__('Admin listing access is normally provided by the "Edit" capabilities. These "List" capabilities only apply if the corresponding "Edit" capability is missing. Also, these "List" capabilities can grant access, but not deny access.', 'capability-manager-enhanced') .' </p>';
                             }
 
@@ -1393,7 +1395,7 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 						uasort( $this->capabilities, 'strnatcasecmp' );  // sort by array values, but maintain keys );
 
 						$additional_caps = apply_filters('publishpress_caps_manage_additional_caps', $this->capabilities);
-
+						$caps_empty = true;
 						foreach ($additional_caps as $cap_name => $cap) :
 							$cap_name = sanitize_text_field($cap_name);
 
@@ -1455,6 +1457,8 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 									$disabled = ' disabled ';
 								}
 							}
+							
+						$caps_empty = false;
 						?>
 							<td class="<?php echo esc_attr($class); ?>"><span class="ppc-tool-tip disabled cap-x">X</span><span class="ppc-tool-tip disabled"><label><input type="checkbox" name="caps[<?php echo esc_attr($cap_name); ?>]" class="pp-single-action-rotate" autocomplete="off" value="1" <?php echo esc_attr($checked) . ' ' . esc_attr($disabled);?> />
 							<span>
@@ -1490,7 +1494,15 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 							}
 						}
 						?>
-
+						<?php if ($caps_empty) : ?>
+							<tr>
+								<td colspan="<?php echo (int) $checks_per_row;?>">
+									<div>
+										<?php esc_html_e( 'You have no additional capabilities.', 'capability-manager-enhanced' ); ?>
+									</div>
+								</td>
+							</tr>
+						<?php endif; ?>
 						<tr class="cme-bulk-select">
 							<td colspan="<?php echo (int) $checks_per_row;?>">
 								<input type="checkbox" class="cme-check-all" autocomplete="off" title="<?php esc_attr_e('check / uncheck all', 'capability-manager-enhanced');?>"> <span><?php _e('Capability Name', 'capability-manager-enhanced');?></span>
@@ -1633,6 +1645,31 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 							</div>
 						</div>
 
+						<?php if (is_multisite() && is_super_admin() && is_main_site()) : ?>
+							<div class="ppc-sidebar-panel-metabox meta-box-sortables ppc-multi-site">
+								<?php $meta_box_state = (isset($sidebar_metabox_state['multi_site'])) ? $sidebar_metabox_state['multi_site'] : 'closed';  ?>
+								<div class="postbox ppc-sidebar-panel <?php echo esc_attr($meta_box_state); ?>">
+									<input 
+										name="ppc_metabox_state[multi_site]"
+										type="hidden" 
+										class="metabox-state" 
+										value="<?php echo esc_attr($meta_box_state); ?>"
+									/>
+									<div class="postbox-header">
+										<h2 class="hndle ui-sortable-handle"><?php esc_html_e('Multisite', 'capability-manager-enhanced'); ?></h2>
+										<div class="handle-actions">
+											<button type="button" class="handlediv">
+												<span class="toggle-indicator"></span>
+											</button>
+										</div>
+									</div>
+									<div class="inside">
+										<?php cme_network_role_ui( $default ); ?>
+									</div>
+								</div>
+							</div>
+						<?php endif; ?>
+
 						<?php
 							do_action('publishpress-caps_sidebar_bottom');
 						?>
@@ -1762,11 +1799,6 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 
 			</div>
 
-		<?php
-		$support_pp_only_roles = defined('PRESSPERMIT_ACTIVE');
-		cme_network_role_ui( $default );
-		?>
-
 		<p class="submit" style="padding-top:0;">
 			<input type="hidden" name="action" value="update" />
 			<input type="hidden" name="current" value="<?php echo esc_attr($default); ?>" />
@@ -1795,22 +1827,19 @@ function cme_network_role_ui( $default ) {
 		return false;
 	}
 	?>
-
-	<div style="float:right;margin-left:10px;margin-right:10px">
 		<?php
 		if ( ! $autocreate_roles = get_site_option( 'cme_autocreate_roles' ) )
 			$autocreate_roles = array();
 		?>
 		<div style="margin-bottom: 5px">
-		<label for="cme_autocreate_role" title="<?php esc_attr_e('Create this role definition in new (future) sites', 'capability-manager-enhanced');?>"><input type="checkbox" name="cme_autocreate_role" id="cme_autocreate_role" autocomplete="off" value="1" <?php echo checked(in_array($default, $autocreate_roles));?>> <?php esc_html_e('include in new sites', 'capability-manager-enhanced'); ?> </label>
+		<label for="cme_autocreate_role" title="<?php esc_attr_e('Create this role definition in new (future) sites', 'capability-manager-enhanced');?>"><input type="checkbox" name="cme_autocreate_role" id="cme_autocreate_role" autocomplete="off" value="1" <?php echo checked(in_array($default, $autocreate_roles));?>> <?php esc_html_e('Include in new sites.', 'capability-manager-enhanced'); ?> </label>
 		</div>
 		<div>
-		<label for="cme_net_sync_role" title="<?php echo esc_attr__('Copy / update this role definition to all sites now', 'capability-manager-enhanced');?>"><input type="checkbox" name="cme_net_sync_role" id="cme_net_sync_role" autocomplete="off" value="1"> <?php esc_html_e('sync role to all sites now', 'capability-manager-enhanced'); ?> </label>
+		<label for="cme_net_sync_role" title="<?php echo esc_attr__('Copy / update this role definition to all sites now', 'capability-manager-enhanced');?>"><input type="checkbox" name="cme_net_sync_role" id="cme_net_sync_role" autocomplete="off" value="1"> <?php esc_html_e('Sync role to all sites.', 'capability-manager-enhanced'); ?> </label>
 		</div>
 		<div>
-		<label for="cme_net_sync_options" title="<?php echo esc_attr__('Copy option settings to all sites now', 'capability-manager-enhanced');?>"><input type="checkbox" name="cme_net_sync_options" id="cme_net_sync_options" autocomplete="off" value="1"> <?php esc_html_e('sync options to all sites now', 'capability-manager-enhanced'); ?> </label>
+		<label for="cme_net_sync_options" title="<?php echo esc_attr__('Copy option settings to all sites now', 'capability-manager-enhanced');?>"><input type="checkbox" name="cme_net_sync_options" id="cme_net_sync_options" autocomplete="off" value="1"> <?php esc_html_e('Sync options to all sites.', 'capability-manager-enhanced'); ?> </label>
 		</div>
-	</div>
 <?php
 	return true;
 }

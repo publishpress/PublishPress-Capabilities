@@ -44,7 +44,14 @@ class PP_Capabilities_Frontend_Features_Restrict
 
         $cache_key = 'ppc_ff_page_restriction_cache';
 
-        $page_restriction_data = wp_cache_get($cache_key, 'data');
+        /**
+         * Filter if frontend feature should use cache data. 
+         * Check https://github.com/publishpress/PublishPress-Capabilities/issues/1152
+         * @var mixed
+         */
+        $use_cache_data = apply_filters('pp_capabilities_frontend_feature_cache', true);
+
+        $page_restriction_data = $use_cache_data ? wp_cache_get($cache_key, 'data') : false;
 
         if ($page_restriction_data && is_array($page_restriction_data)) {
             //use cache data
