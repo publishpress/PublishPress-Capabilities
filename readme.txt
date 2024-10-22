@@ -3,32 +3,30 @@
 Contributors: publishpress, kevinB, stevejburge, andergmartins, olatechpro
 Author: PublishPress
 Author URI: https://publishpress.com
-Tags: capabilities, permissions, admin menus, user roles, user role editor, access control, members, edit capabilities, publishpress capabilities, multisite capabilities, roles access, post editing screen, taxonomy capabilities, post permissions, page permisisons, woocommerce capabilities, user testing, user switching, hide metaboxes, hide editor features, media library capabilities, post type permissions, user role capabilities, edit user roles, administrator, editor, subscriber, contributor, author, shop manager
+Tags: capabilities, permissions, admin menus, user roles, user role editor
 Requires at least: 5.5
 Requires PHP: 7.2.5
-Tested up to: 6.4
-Stable tag: 2.13.0
+Tested up to: 6.6
+Stable tag: 2.14.0
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
-PublishPress Capabilities is the best plugin to control permissions, user roles, and admin menus. You can manage who has access to your WordPress site.
+PublishPress Capabilities is the access control plugin. You can manage permissions, user roles, admin menus and more.
 
 == Description ==
 
-PublishPress Capabilities gives you control over all the capabilities and permissions on your WordPress site. We built this user role editor plugin so you have an EASY and POWERFUL way to manage users.
+PublishPress Capabilities is the access control plugin for WordPress. You can control all the capabilities and permissions on your WordPress site. We built this user role editor plugin so you have an EASY and POWERFUL way to manage users.
 
 You can use PublishPress Capabilities **manage all your WordPress user roles**, from Administrators and Editors to Authors, Contributors, Subscribers and custom roles. Each use role can have the exact capabilities that your site needs.
 
 PublishPress Capabilities can clean up your post editing screen, admin area, and even the Profile screen. You can decide what authors see when they're writing posts. You can **hide any feature on the Gutenberg or Classic Editor screens**. You can remove items in the WordPress dashboard and inside user accounts screens.
 
-The Pro version of PublishPress Capabilities enables you to stop users from accessing any admin menu link and any frontend menu link.
-
-PublishPress Capabilities is **safe to use**. Every time you change your site's permissions, this plugin will take a backup that you can restore if anything goes wrong. You can use these backups to migrate your roles and permissions from one site to another.
+The Pro version of PublishPress Capabilities has many extra features, including the ability to control admin menu links and frontend menu links.
 
 ## PublishPress Capabilities Pro ##
 
 > <strong>Upgrade to Capabilities Pro</strong><br />
-> This plugin is the free version of PublishPress Capabilities. The Pro version of Capabilities has all the features you need to control permissions for your WordPress users. With Capabilities Pro you can manage access to posts, pages, media and custom post types. <a href="https://publishpress.com/capabilities" title="Capabilities Pro">Click here to control access to your WordPress site with Capabilities Pro!</a>
+This plugin is the free version of PublishPress Capabilities. The Pro version of Capabilities has all the features you need to control permissions for your WordPress users. With Capabilities Pro you can manage access to posts, pages, media and custom post types. <a href="https://publishpress.com/capabilities" title="Capabilities Pro">Click here to control access to your WordPress site with Capabilities Pro!</a>
 
 ## The Key Features of PublishPress Capabilities ##
 
@@ -36,9 +34,10 @@ PublishPress Capabilities is **safe to use**. Every time you change your site's 
 2. **Capabilities**: You can control all WordPress and plugin capabilities.
 3. **Editor Features**: You decide what users see when they're writing posts in Gutenberg or the Classic Editor.
 4. **Admin Features**: You can remove items from the WordPress admin, toolbar, and even dashboard widgets.
+5. **Frontend Features**: This feature allows you to modify the site's frontend by hiding or adding CSS.
 5. **Profile Features**: You can hide features for users in the "Profile" screen.
-6. **Nav Menus**: You can restrict access to navigation menus by user role, or logged in status.
-7. **Admin menus**: You can stop users from accessing any admin menu link.
+7. **Admin Menus (Pro version)**: You can stop users from accessing any admin menu link.
+8. **Nav Menus**: You can restrict access to navigation menus by user role, or logged in status.
 
 ## Feature 1. Roles##
 
@@ -78,17 +77,17 @@ WordPress has a feature called “metaboxes”. This is a strange name, but you 
 
 [Click here to learn about removing toolbar items and dashboard widgets](https://publishpress.com/knowledge-base/how-to-use-admin-features/).
 
-## Feature 5. Profile Features ##
+## Feature 5. Frontend Features ##
+
+The "Frontend Features" screen allows you to modify the features that show on the frontend of your website. You can choose to  hide IDs or classes, add CSS styles, or add body classes. All of these changes can be targeted to specific user roles.
+
+[Click here to learn about frontend changes](https://publishpress.com/knowledge-base/frontend-features/).
+
+## Feature 6. Profile Features ##
 
 “Profile Features” allows you to hide features in the "Profile" screen. You can decide what users see in their accounts.  This “Profile” area is used as a dumping ground for the settings of many different plugins.
 
 [Click here to learn about the Profile Features option](https://publishpress.com/knowledge-base/profile-features/).
-
-## Feature 6. Nav Menu Restrictions ##
-
-PublishPress Capabilities enables you to restrict access to navigation menus by roles, logged in and logged out users. This is useful because a default WordPress site does not give you way to control the visibility of your links.
-
-[Click to see how to block frontend menu access](https://publishpress.com/knowledge-base/nav-menus/).
 
 ## Feature 7. WordPress Admin Menu Restrictions (Pro version) ##
 
@@ -96,9 +95,17 @@ With PublishPress Capabilities you can restrict access to admin menu screens by 
 
 [Click to see how to block Admin menu access](https://publishpress.com/knowledge-base/admin-menus/).
 
-## Backup and Restore User Roles and Capabilities ##
+## Feature 8. Nav Menu Restrictions ##
 
-PublishPress Capabilities offers you the ability to back up and restore your permissions. This feature is very helpful if you want to test out changes on your site, or if you've installed a new plugin that has changed your site's permissions.
+PublishPress Capabilities enables you to restrict access to navigation menus by roles, logged in and logged out users. This is useful because a default WordPress site does not give you way to control the visibility of your links.
+
+[Click to see how to block frontend menu access](https://publishpress.com/knowledge-base/nav-menus/).
+
+## PublishPress Capabilities is Safe to Use ##
+
+PublishPress Capabilities is completely **safe to use**. Every time you change your site's permissions, this plugin will take a backup that you can restore if anything goes wrong. You can use these backups to migrate your roles and permissions from one site to another.
+
+This security feature is also very helpful if you want to test out changes on your site, or if you've installed a new plugin that has changed your site's permissions.
 
 Every time you change your permissions, the PublishPress Capabilities plugin will now automatically create a backup. If you make a mistake, go to the "Backup" menu link and you'll be able to roll back to a previous version.
 
@@ -139,7 +146,7 @@ Join PublishPress and you'll get access to these nine Pro plugins:
 * [PublishPress Capabilities Pro](https://publishpress.com/capabilities) is the plugin to manage your WordPress user roles, permissions, and capabilities.
 * [PublishPress Checklists Pro](https://publishpress.com/checklists) enables you to define tasks that must be completed before content is published.
 * [PublishPress Future Pro](https://publishpress.com/future) is the plugin for scheduling changes to your posts.
-* [PublishPress Permissions Pro](https://publishpress.com/permissions)  is the plugin for advanced WordPress permissions.
+* [PublishPress Permissions Pro](https://publishpress.com/permissions)  is the plugin for restricted content and advanced WordPress permissions.
 * [PublishPress Planner Pro](https://publishpress.com/publishpress) is the plugin for managing and scheduling WordPress content.
 * [PublishPress Revisions Pro](https://publishpress.com/revisions) allows you to update your published pages with teamwork and precision.
 * [PublishPress Series Pro](https://publishpress.com/series) enables you to group content together into a series 
@@ -409,6 +416,28 @@ Fixed : Non-administrators with user editing capabilities could add new Administ
 Fixed : Security issue. Please update.
 
 == Changelog ==
+
+= 2.14.0 - 22 Oct 2024 =
+  * Update : Editor feature not working due to duplicate inline css, #1148
+  * Fixed : Editor Features not working for some items, #1145
+  * Update : Redirect new users to the "Dashboard" screen, #1150
+  * Fixed : Changing a capability from disabled to enabled not working when clicking the label, #1173
+  * Update : Move multisite settings to the sidebar, #1146
+  * Fixed : PHP warning about status capabilities, #1143
+  * Fixed : Unnecesary  database updates on init, #1139
+  * Fixed : Double queries in admin pages, #1140
+  * Update : Update the WooCommerce capabilties, #1135
+  * Update : Add a mesage if the "Additional" tab is empty, #1137
+  * Fixed : Warning: Undefined array key "user-testing", #1174
+  * Update : Show Wordfence capabilities tab for both Wordfence main and Login Security plugin, #1136
+  * Update : New filter "add_filter('pp_capabilities_frontend_feature_cache', '__return_false);" to disable Frontend feature data cache, #1152
+  * Update : Add a hook on after user testing action, #1160
+  * Fixed : pp_capabilities_get_post_type returns wrong post type, #1161
+  * Fixed : Editor Features custom item adding slashes to double quote(""), #689
+  * Fixed : Compatibility issue with Justified Image Grid, #1165
+  * Update : Permissions Compat: Allow direct assignment of manage_post_tags if unique taxonomy caps enabled for Tags, #1163
+  * Update : Capabilities screen: "Listing" tab should not require Pro version of Permissions, #1158
+  * Update : Translation Updates Capanilities v.2.13.0, #1134
 
 = 2.13.0 - 12 Feb 2024 =
   * Update : Add edit to features custom items, #996

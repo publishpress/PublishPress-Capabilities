@@ -1832,13 +1832,13 @@ function cme_network_role_ui( $default ) {
 			$autocreate_roles = array();
 		?>
 		<div style="margin-bottom: 5px">
-		<label for="cme_autocreate_role" title="<?php esc_attr_e('Create this role definition in new (future) sites', 'capability-manager-enhanced');?>"><input type="checkbox" name="cme_autocreate_role" id="cme_autocreate_role" autocomplete="off" value="1" <?php echo checked(in_array($default, $autocreate_roles));?>> <?php esc_html_e('include in new sites', 'capability-manager-enhanced'); ?> </label>
+		<label for="cme_autocreate_role" title="<?php esc_attr_e('Create this role definition in new (future) sites', 'capability-manager-enhanced');?>"><input type="checkbox" name="cme_autocreate_role" id="cme_autocreate_role" autocomplete="off" value="1" <?php echo checked(in_array($default, $autocreate_roles));?>> <?php esc_html_e('Include in new sites.', 'capability-manager-enhanced'); ?> </label>
 		</div>
 		<div>
-		<label for="cme_net_sync_role" title="<?php echo esc_attr__('Copy / update this role definition to all sites now', 'capability-manager-enhanced');?>"><input type="checkbox" name="cme_net_sync_role" id="cme_net_sync_role" autocomplete="off" value="1"> <?php esc_html_e('sync role to all sites now', 'capability-manager-enhanced'); ?> </label>
+		<label for="cme_net_sync_role" title="<?php echo esc_attr__('Copy / update this role definition to all sites now', 'capability-manager-enhanced');?>"><input type="checkbox" name="cme_net_sync_role" id="cme_net_sync_role" autocomplete="off" value="1"> <?php esc_html_e('Sync role to all sites.', 'capability-manager-enhanced'); ?> </label>
 		</div>
 		<div>
-		<label for="cme_net_sync_options" title="<?php echo esc_attr__('Copy option settings to all sites now', 'capability-manager-enhanced');?>"><input type="checkbox" name="cme_net_sync_options" id="cme_net_sync_options" autocomplete="off" value="1"> <?php esc_html_e('sync options to all sites now', 'capability-manager-enhanced'); ?> </label>
+		<label for="cme_net_sync_options" title="<?php echo esc_attr__('Copy option settings to all sites now', 'capability-manager-enhanced');?>"><input type="checkbox" name="cme_net_sync_options" id="cme_net_sync_options" autocomplete="off" value="1"> <?php esc_html_e('Sync options to all sites.', 'capability-manager-enhanced'); ?> </label>
 		</div>
 <?php
 	return true;
