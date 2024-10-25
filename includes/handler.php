@@ -53,7 +53,7 @@ class CapsmanHandler
 
 		// Save role changes. Already saved at start with self::saveRoleCapabilities()
 		} elseif ( ! empty($_POST['SaveRole']) && !empty($_POST['current'])) {
-			if ( MULTISITE ) {
+			if ( defined( 'MULTISITE' ) && MULTISITE ) {
 				( method_exists( $wp_roles, 'for_site' ) ) ? $wp_roles->for_site() : $wp_roles->reinit();
 			}
 			
@@ -81,7 +81,7 @@ class CapsmanHandler
 			}
 		// Create New Capability and adds it to current role.
 		} elseif (!empty($_POST['AddCap']) && !empty($_POST['current']) && !empty($_POST['capability-name'])) {
-			if ( MULTISITE ) {
+			if ( defined( 'MULTISITE' ) && MULTISITE ) {
 				( method_exists( $wp_roles, 'for_site' ) ) ? $wp_roles->for_site() : $wp_roles->reinit();
 			}
 
