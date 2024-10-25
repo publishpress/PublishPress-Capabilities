@@ -150,7 +150,7 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 				$pp_ui->show_capability_hints( $default );
 			}
 
-			if ( MULTISITE ) {
+			if ( defined( 'MULTISITE' ) && MULTISITE ) {
 				global $wp_roles;
 				global $wpdb;
 
