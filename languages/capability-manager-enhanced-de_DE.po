@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PublishPress Capabilities\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-04-19 17:22-0400\n"
-"PO-Revision-Date: 2023-12-13 14:52+0000\n"
+"PO-Revision-Date: 2024-11-07 17:32+0100\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -14,12 +14,12 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;_c;_x;__ngettext;esc_html__;esc_html_e\n"
 "X-Poedit-Basepath: ..\n"
-"X-Generator: Loco https://localise.biz/\n"
+"X-Generator: Poedit 3.5\n"
+"X-Loco-Version: 2.6.6; wp-6.3.1\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPath-1: includes\n"
 "X-Poedit-SearchPath-2: includes-core\n"
 "X-Poedit-SearchPath-3: classes\n"
-"X-Loco-Version: 2.6.6; wp-6.3.1"
 
 #: includes/pp-ui.php:69
 #, php-format
@@ -144,12 +144,8 @@ msgid "%s: assigned by Permission Group"
 msgstr ""
 
 #: includes/admin.php:236
-#, fuzzy
 msgid "&nbsp;"
-msgstr ""
-"<strong>Hinweis:</strong> Zum Darstellen von Revisionen, fügen Sie den "
-"folgenden Code zu foliopress-wysiwyg hinzu:<br />&nbsp;&nbsp;if ( strpos( "
-"$_SERVER[‚REQUEST_URI‘], ‚admin.php?page=rvy-revisions‘ ) ) return;"
+msgstr "&nbsp;"
 
 #: includes/roles/class/class-pp-roles-list-table.php:238
 msgid "(non-editable role)"
@@ -398,10 +394,8 @@ msgid "Backup Roles and Capabilities"
 msgstr "Backup der Rollen und Berechtigungen"
 
 #: includes/backup.php:41
-#, fuzzy
-#| msgid "Backup Roles and Capabilities"
 msgid "Backup Tool for PublishPress Capabilities"
-msgstr "Backup der Rollen und Berechtigungen"
+msgstr "Backup-Werkzeug für PublishPress Capabilities"
 
 #: includes/manager.php:1029
 msgid "Bad form Received"
@@ -503,8 +497,8 @@ msgstr ""
 msgid ""
 "Cannot delete default role. You <a href=\"%s\">have to change it first</a>."
 msgstr ""
-"Standardrolle (default) konnte nicht gelöscht werden. Zuerst <a href=\"%s\">"
-"ändern</a>."
+"Standardrolle (default) konnte nicht gelöscht werden. Zuerst <a "
+"href=\"%s\">ändern</a>."
 
 #: includes/manager.php:1356
 msgid "Capabilites Documentation"
@@ -607,10 +601,8 @@ msgid "Click %1$s Refresh profile items %2$s to manage elements for this role."
 msgstr ""
 
 #: includes/features/restrict-editor-features.php:483
-#, fuzzy
-#| msgid "Settings saved."
 msgid "Color settings"
-msgstr "Einstellungen gespeichert"
+msgstr "Farbeinstellungen"
 
 #: includes/features/restrict-admin-features.php:63
 msgid "Comments"
@@ -697,8 +689,8 @@ msgstr ""
 
 #: includes/admin.php:1429
 msgid ""
-"Custom Post Visibility statuses, fully implemented throughout wp-admin <em>"
-"(Pro)</em>"
+"Custom Post Visibility statuses, fully implemented throughout wp-admin "
+"<em>(Pro)</em>"
 msgstr ""
 
 #: includes/admin.php:1425
@@ -724,17 +716,13 @@ msgid "Dashboard widgets"
 msgstr ""
 
 #: includes/features/restrict-editor-features.php:87
-#, fuzzy
 msgid "Date"
-msgstr "Veröffentlichungsdatum aktualisieren"
+msgstr "Datum"
 
 #: includes/manager.php:471
 #: includes/roles/class/class-pp-roles-list-table.php:173
-#, fuzzy
-#| msgid "Delete Role"
 msgid "Default Role"
-msgstr ""
-"Rolle wurde gelöscht. %1$d Benutzer auf Standardrolle (default) gesetzt %2$s."
+msgstr "Standardrolle"
 
 #: includes-core/editor-features-promo.php:96
 #: includes-core/editor-features-promo.php:107
@@ -747,7 +735,7 @@ msgstr ""
 #: includes/roles/class/class-pp-roles-list-table.php:274
 #: includes/roles/class/class-pp-roles-list-table.php:509
 msgid "Delete"
-msgstr "Rolle löschen"
+msgstr "Löschen"
 
 #: includes/roles/class/class-pp-roles-admin.php:244
 #, fuzzy
@@ -766,10 +754,8 @@ msgid ""
 msgstr ""
 
 #: includes/admin.php:239
-#, fuzzy
-#| msgid "Delete"
 msgid "Deletion"
-msgstr "Rolle löschen"
+msgstr "Löschen"
 
 #: includes/roles/roles.php:33
 msgid "Description here."
@@ -807,9 +793,8 @@ msgid "Discussion"
 msgstr ""
 
 #: includes/features/restrict-editor-features.php:418
-#, fuzzy
 msgid "Document Panel"
-msgstr "ausführen"
+msgstr ""
 
 #: includes/manager.php:1356
 #, fuzzy
@@ -853,9 +838,8 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: includes/admin.php:238 includes/roles/class/class-pp-roles-admin.php:111
-#, fuzzy
 msgid "Editing"
-msgstr "Hindern sie Prüfer daran, die Revisionen anderer zu bearbeiten"
+msgstr ""
 
 #: includes/features/frontend-features/frontend-features-ui.php:44
 msgid "Editing:"
@@ -863,9 +847,8 @@ msgstr ""
 
 #: includes/features/restrict-editor-features.php:45
 #: includes/features/restrict-editor-features.php:55
-#, fuzzy
 msgid "Editor"
-msgstr "Redakteur: "
+msgstr "Redakteur"
 
 #: includes/features/editor-features.php:69
 msgid "Editor Feature Restrictions"
@@ -907,8 +890,8 @@ msgstr ""
 
 #: includes/features/frontend-features/frontend-features-ui.php:91
 msgid ""
-"Enter custom CSS to be added to frontend pages. Examples: .custom-style-1 { "
-"color: red; } #custom-header { background: red; } "
+"Enter custom CSS to be added to frontend pages. Examples: .custom-style-1 "
+"{ color: red; } #custom-header { background: red; } "
 msgstr ""
 
 #: includes/features/frontend-features/frontend-features-ui.php:80
@@ -979,10 +962,8 @@ msgid "Export / Import"
 msgstr ""
 
 #: includes/backup.php:301
-#, fuzzy
-#| msgid "Settings saved."
 msgid "Export Settings"
-msgstr "Einstellungen gespeichert"
+msgstr "Einstellungen exportieren"
 
 #: includes/backup.php:303
 msgid ""
@@ -1168,10 +1149,9 @@ msgstr ""
 "Manager erstellt wurden, werden gelöscht!"
 
 #: includes/manager.php:1343
-#, fuzzy, php-format
+#, php-format
 msgid "If you like %s, please leave us a %s rating. Thank you!"
-msgstr ""
-"Gefällt dir PublishPress %s, dann lass uns eine %s Bewertung da. Danke!"
+msgstr "Gefällt dir %s, dann lass uns eine %s Bewertung da. Danke!"
 
 #: includes/functions.php:564
 msgid "If you need help or have a new feature request, let us know."
@@ -1182,10 +1162,8 @@ msgid "Import"
 msgstr ""
 
 #: includes/backup.php:331
-#, fuzzy
-#| msgid "Settings saved."
 msgid "Import Settings"
-msgstr "Einstellungen gespeichert"
+msgstr "Einstellungen importieren"
 
 #: includes/backup.php:333
 msgid ""
@@ -1202,10 +1180,8 @@ msgid "Incorrect capability name."
 msgstr "Berechtigungsname ist nicht zulässig."
 
 #: includes/backup.php:164
-#, fuzzy
-#| msgid "Backup"
 msgid "Initial Backup"
-msgstr "Sichern"
+msgstr ""
 
 #: includes/backup.php:164
 #, php-format
@@ -1243,10 +1219,8 @@ msgid "It is recommended to use this only as a last resource!"
 msgstr "Es wird empfohlen, dies als letzte Möglichkeit anzuwenden!"
 
 #: includes/backup.php:84
-#, fuzzy
-#| msgid "Backup"
 msgid "Last Backup"
-msgstr "Sichern"
+msgstr ""
 
 #: includes/backup.php:84
 #, php-format
@@ -1259,7 +1233,7 @@ msgstr ""
 
 #: includes/admin.php:1500
 msgid "Level:"
-msgstr "Berechtigungslevel:"
+msgstr "Berechtigungslevel"
 
 #: includes/admin.php:244
 msgid "Listing"
@@ -1408,9 +1382,8 @@ msgstr ""
 
 #: includes/features/restrict-admin-features.php:66
 #: includes/features/restrict-admin-features.php:67
-#, fuzzy
 msgid "New"
-msgstr "FEHLER: Rolle konnte nicht angelegt werden."
+msgstr "Neu"
 
 #: includes/backup-handler.php:73
 msgid "New backup saved."
@@ -1433,10 +1406,8 @@ msgid "No ads inside the plugin"
 msgstr ""
 
 #: includes/backup.php:267
-#, fuzzy
-#| msgid "Save Changes"
 msgid "No changes"
-msgstr "Einstellungen speichern"
+msgstr "Keine Änderungen"
 
 #: includes/features/editor-features-gutenberg.php:152
 #: includes/features/editor-features-classic.php:156
@@ -1581,9 +1552,8 @@ msgstr ""
 
 #: includes/features/restrict-editor-features.php:80
 #: includes/features/restrict-editor-features.php:395
-#, fuzzy
 msgid "Preview"
-msgstr "Voransicht"
+msgstr "Vorschau"
 
 #: includes/features/profile-features.php:43
 msgid "Profile Feature Restrictions"
@@ -1630,9 +1600,8 @@ msgid "Publish Visibility"
 msgstr ""
 
 #. Author of the plugin
-#, fuzzy
 msgid "PublishPress"
-msgstr "Überschriften für PublishPress Revisions Einstellungen anzeigen"
+msgstr ""
 
 #. Name of the plugin
 msgid "PublishPress Capabilities"
@@ -1781,10 +1750,8 @@ msgid "Role Capabilities"
 msgstr "Berechtigungen"
 
 #: includes/roles/class/class-pp-roles-admin.php:221
-#, fuzzy
-#| msgid "Level:"
 msgid "Role Level"
-msgstr "Berechtigungslevel:"
+msgstr "Berechtigungslevel"
 
 #: includes/admin.php:1498
 msgid ""
@@ -1799,10 +1766,8 @@ msgid "Role Name"
 msgstr ""
 
 #: includes/roles/class/class-pp-roles-admin.php:187
-#, fuzzy
-#| msgid "Role"
 msgid "Role Slug"
-msgstr "Rolle"
+msgstr "Rolle (Slug)"
 
 #: includes/manager.php:470
 #: includes/roles/class/class-pp-roles-list-table.php:172
@@ -1820,26 +1785,21 @@ msgid ""
 msgstr ""
 
 #: includes/backup.php:308
-#, fuzzy
-#| msgid "Role Capabilities"
 msgid "Roles and Capabilities"
-msgstr "Rollen und Berechtigungen auf Wordpress Standard zurücksetzen"
+msgstr "Rollen und Berechtigungen"
 
 #: includes/backup-handler.php:304
 msgid "Roles and Capabilities reset to WordPress defaults"
 msgstr "Rollen und Berechtigungen auf Wordpress Standard zurücksetzen"
 
 #: includes/backup-handler.php:90
-#, fuzzy
-#| msgid "Roles and Capabilities restored from last backup."
 msgid "Roles and Capabilities restored from initial backup."
-msgstr "Rollen und Berechtigungen der letzten Sicherung wiederhergestellt."
+msgstr "Rollen und Berechtigungen aus initialer Sicherung wiederhergestellt."
 
 #: includes/backup-handler.php:128
-#, fuzzy
-#| msgid "Roles and Capabilities restored from last backup."
 msgid "Roles and Capabilities restored from selected auto-backup."
-msgstr "Rollen und Berechtigungen der letzten Sicherung wiederhergestellt."
+msgstr ""
+"Rollen und Berechtigungen aus ausgewählter Sicherung wiederhergestellt."
 
 #: includes/settings-ui.php:256 includes/admin.php:123 includes/admin.php:1520
 #: includes-core/admin-menus-promo.php:48
@@ -1851,7 +1811,7 @@ msgstr "Rollen und Berechtigungen der letzten Sicherung wiederhergestellt."
 #: includes/features/frontend-features/frontend-features.php:85
 #: includes/features/frontend-features/frontend-features.php:235
 msgid "Save Changes"
-msgstr "Einstellungen speichern"
+msgstr "Änderungen speichern"
 
 #: includes/features/restrict-editor-features.php:79
 #: includes/features/restrict-editor-features.php:393
@@ -1953,10 +1913,8 @@ msgstr "Einstellungen gespeichert"
 
 #: includes/manager.php:579 includes/manager.php:633 includes/manager.php:681
 #: includes/manager.php:731 includes/manager.php:813
-#, fuzzy
-#| msgid "Settings saved."
 msgid "Settings updated."
-msgstr "Einstellungen gespeichert"
+msgstr "Einstellungen gespeichert."
 
 #: includes/settings-ui.php:135
 msgid ""
@@ -2055,9 +2013,8 @@ msgid "TaxoPress - Settings"
 msgstr ""
 
 #: includes/features/restrict-editor-features.php:421
-#, fuzzy
 msgid "Template"
-msgstr "Ungültiges Seiten Template."
+msgstr "Template"
 
 #: includes/admin.php:509
 #, fuzzy, php-format
@@ -2093,10 +2050,8 @@ msgid "Testing: "
 msgstr ""
 
 #: includes/features/restrict-editor-features.php:484
-#, fuzzy
-#| msgid "Settings saved."
 msgid "Text settings"
-msgstr "Einstellungen gespeichert"
+msgstr ""
 
 #: includes/features/restrict-admin-features.php:83
 msgid "Thank you for creating with WordPress"
@@ -2221,8 +2176,8 @@ msgstr ""
 
 #: includes/features/frontend-features/frontend-features-ui.php:41
 msgid ""
-"This feature allows you to modify the site frontend by hiding IDs or classes,"
-" adding CSS styles, or adding body classes."
+"This feature allows you to modify the site frontend by hiding IDs or "
+"classes, adding CSS styles, or adding body classes."
 msgstr ""
 
 #: includes/features/frontend-features/frontend-features-ui.php:124
@@ -2234,9 +2189,8 @@ msgid "This menu is restricted for the following roles"
 msgstr ""
 
 #: capsman-enhanced.php:109
-#, fuzzy
 msgid "This plugin can be deleted."
-msgstr "<strong>Dieses Plugin kann gelöscht werden.</strong>"
+msgstr "Dieses Plugin kann gelöscht werden."
 
 #: includes-core/frontend-features-promo.php:44
 msgid ""
@@ -2330,10 +2284,8 @@ msgid "Update"
 msgstr ""
 
 #: includes/roles/class/class-pp-roles-admin.php:630
-#, fuzzy
-#| msgid "Delete Role"
 msgid "Update Role"
-msgstr "Rolle löschen"
+msgstr "Rolle aktualisieren"
 
 #: includes/features/restrict-admin-features.php:62
 msgid "Updates"
@@ -2391,9 +2343,8 @@ msgstr ""
 
 #: includes/manager.php:469
 #: includes/roles/class/class-pp-roles-list-table.php:171
-#, fuzzy
 msgid "Users"
-msgstr "Momentane Nutzer anzeigen (%d)"
+msgstr ""
 
 #: includes/features/admin-features.php:221
 #: includes/features/editor-features-gutenberg.php:98
@@ -2459,10 +2410,8 @@ msgid "WordPress Core"
 msgstr ""
 
 #: includes/admin.php:970
-#, fuzzy
-#| msgid "Role Capabilities"
 msgid "WordPress Core Capabilities"
-msgstr "Berechtigungen"
+msgstr "WordPress Core Berechtigungen"
 
 #: includes/features/restrict-admin-features.php:61
 msgid "WordPress External Links"
@@ -2608,7 +2557,5 @@ msgid "Your link has expired, refresh the page and try again."
 msgstr ""
 
 #: includes/roles/class/class-pp-roles-list-table.php:344
-#, fuzzy
-#| msgid "Role"
 msgid "Your Role"
-msgstr "Rolle"
+msgstr ""
