@@ -7,7 +7,7 @@ Tags: capabilities, permissions, admin menus, user roles, user role editor
 Requires at least: 5.5
 Requires PHP: 7.2.5
 Tested up to: 6.6
-Stable tag: 2.14.0
+Stable tag: 2.15.0
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -416,6 +416,13 @@ Fixed : Non-administrators with user editing capabilities could add new Administ
 Fixed : Security issue. Please update.
 
 == Changelog ==
+
+= 2.15.0 - 13 Nov 2024 =
+  * Feature : Reorder and rename admin menus for roles [PRO], #254
+  * Fixed : Fatal error: Uncaught Error: Undefined constant "MULTISITE", #1187
+  * Update : German translation Update, #1192
+  * Update : Brazil Translation for PRO, #1191
+  * Update : Capabilities FREE Translation Updates v. 2.14.0, #1186
 
 = 2.14.0 - 22 Oct 2024 =
   * Update : Editor feature not working due to duplicate inline css, #1148

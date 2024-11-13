@@ -10,7 +10,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-10-22 09:43+0000\n"
+"POT-Creation-Date: 2024-11-12 14:42+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: Loco https://localise.biz/\n"
 "X-Domain: capability-manager-enhanced\n"
@@ -1096,7 +1096,7 @@ msgid ""
 msgstr ""
 
 #: includes/admin.php:1835
-msgid "include in new sites"
+msgid "Include in new sites."
 msgstr ""
 
 #: includes/handler.php:119
@@ -1814,11 +1814,11 @@ msgid "Status & visibility"
 msgstr ""
 
 #: includes/admin.php:1841
-msgid "sync options to all sites now"
+msgid "Sync options to all sites."
 msgstr ""
 
 #: includes/admin.php:1838
-msgid "sync role to all sites now"
+msgid "Sync role to all sites."
 msgstr ""
 
 #: includes/roles/class/class-pp-roles-list-table.php:92

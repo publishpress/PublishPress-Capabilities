@@ -360,11 +360,11 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
                     ['page' => 'pp-capabilities-roles', 'add' => 'new_item', 'role_action' => 'edit', 'role' => esc_attr($item['role'])], 
                     admin_url('admin.php')
                 ), 
-                esc_html($item['name']), 
+                esc_html(translate_user_role($item['name'])), 
                 $role_states
             );
         } else {
-            $out = esc_html($item['name']);
+            $out = esc_html(translate_user_role($item['name']));
         }
 
         return $out;
@@ -380,7 +380,7 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
     protected function column_text($item)
     {
 
-        return !empty($item['name']) ? $item['name'] : '&mdash;';
+        return !empty($item['name']) ? translate_user_role($item['name']) : '&mdash;';
     }
 
     /**
@@ -625,7 +625,7 @@ class PP_Capabilities_Roles_List_Table extends WP_List_Table
         if ((!empty($_REQUEST['s'])) && $search = sanitize_text_field($_REQUEST['s'])) {
             $data_filtered = [];
             foreach ($data as $item) {
-                if ($this->str_contains($item['role'], $search, false) || $this->str_contains($item['name'], $search, false)) {
+                if ($this->str_contains($item['role'], $search, false) || $this->str_contains(translate_user_role($item['name']), $search, false)) {
                     $data_filtered[] = $item;
                 }
             }
