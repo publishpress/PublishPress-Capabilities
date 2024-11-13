@@ -417,7 +417,7 @@ Fixed : Security issue. Please update.
 
 == Changelog ==
 
-= 2.15.0 - 12 Nov 2024 =
+= 2.15.0 - 13 Nov 2024 =
   * Feature : Reorder and rename admin menus for roles [PRO], #254
   * Fixed : Fatal error: Uncaught Error: Undefined constant "MULTISITE", #1187
   * Update : German translation Update, #1192
