@@ -6,7 +6,7 @@ Author URI: https://publishpress.com
 Tags: capabilities, permissions, admin menus, user roles, user role editor
 Requires at least: 5.5
 Requires PHP: 7.2.5
-Tested up to: 6.6
+Tested up to: 6.7
 Stable tag: 2.15.0
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -21,7 +21,7 @@ You can use PublishPress Capabilities **manage all your WordPress user roles**, 
 
 PublishPress Capabilities can clean up your post editing screen, admin area, and even the Profile screen. You can decide what authors see when they're writing posts. You can **hide any feature on the Gutenberg or Classic Editor screens**. You can remove items in the WordPress dashboard and inside user accounts screens.
 
-The Pro version of PublishPress Capabilities has many extra features, including the ability to control admin menu links and frontend menu links.
+The Pro version of PublishPress Capabilities has many extra features, including the ability to edit admin menu links and control frontend menu links.
 
 ## PublishPress Capabilities Pro ##
 
@@ -36,7 +36,7 @@ This plugin is the free version of PublishPress Capabilities. The Pro version of
 4. **Admin Features**: You can remove items from the WordPress admin, toolbar, and even dashboard widgets.
 5. **Frontend Features**: This feature allows you to modify the site's frontend by hiding or adding CSS.
 5. **Profile Features**: You can hide features for users in the "Profile" screen.
-7. **Admin Menus (Pro version)**: You can stop users from accessing any admin menu link.
+7. **Admin Menus (Pro version)**: You can edit admin menu links and control who can access them.
 8. **Nav Menus**: You can restrict access to navigation menus by user role, or logged in status.
 
 ## Feature 1. Roles##
@@ -91,7 +91,7 @@ The "Frontend Features" screen allows you to modify the features that show on th
 
 ## Feature 7. WordPress Admin Menu Restrictions (Pro version) ##
 
-With PublishPress Capabilities you can restrict access to admin menu screens by user roles. This is useful because many plugin do not have any way to control who can access their admin screens.
+With PublishPress Capabilities you can edit all your admin menu links. You can also restrict access to admin menu screens by user roles. This is useful because many plugin do not have any way to control who can access their admin screens.
 
 [Click to see how to block Admin menu access](https://publishpress.com/knowledge-base/admin-menus/).
 
