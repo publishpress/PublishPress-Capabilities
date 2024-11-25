@@ -423,10 +423,10 @@ class PP_Capabilities_Post_Features {
                 'status_visibility' => ['label' => esc_html__('Status & visibility', 'capability-manager-enhanced'),   'elements' => 'post-status'],
                 'template'          => [
                     'label'       => esc_html__('Template'),
-                    'elements'    => '.components-panel__row.edit-post-post-template'
+                    'elements'    => '.editor-post-panel__row:has(button[aria-label="Template options"])'
                 ],
                 'revisions'         => ['label' => esc_html__('Revisions'), 'elements' => '.editor-post-last-revision__title'],
-                'permalink' =>         ['label' => esc_html__('Permalink', 'capability-manager-enhanced'), 'elements' => '.components-panel__row.edit-post-post-url'],
+                'permalink' =>         ['label' => esc_html__('Permalink', 'capability-manager-enhanced'), 'elements' => '.editor-post-panel__row:has(.editor-post-url__panel-dropdown)'],
                 'sticky'    =>         ['label' => esc_html__( 'Stick this post to the front page' ) , 'elements' => '.components-panel .components-panel__body.edit-post-post-status .edit-post-post-url + .components-panel__row'],
                 'categories' =>        [
                     'label'        => esc_html__('Categories'), 
