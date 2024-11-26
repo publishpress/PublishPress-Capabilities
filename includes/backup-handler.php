@@ -252,18 +252,7 @@ class Capsman_BackupHandler
 	 */
     function santize_import_data($data){
 
-        $sanitized_data = [];
-
-        if (is_array($data)) {
-            foreach ($data as $data_key => $data_content) {
-                $new_key           = sanitize_key($data_key);
-                $new_content       = is_array($data_content) ? array_map('sanitize_text_field', $data_content) : sanitize_text_field($data_content);
-                //return sanitized data
-                $sanitized_data[$new_key] = $new_content;
-            }
-        }else{
-            $sanitized_data = sanitize_text_field($data);
-        }
+        $sanitized_data = map_deep($data, 'sanitize_text_field');
 
         return $sanitized_data;
     }
