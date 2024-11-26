@@ -7,7 +7,7 @@ Tags: capabilities, permissions, admin menus, user roles, user role editor
 Requires at least: 5.5
 Requires PHP: 7.2.5
 Tested up to: 6.7
-Stable tag: 2.15.0
+Stable tag: 2.16.0
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -416,6 +416,19 @@ Fixed : Non-administrators with user editing capabilities could add new Administ
 Fixed : Security issue. Please update.
 
 == Changelog ==
+
+= 2.16.0 - 26 Nov 2024 =
+  * Fixed : Admin menu with count losing their counts html part after renaming menu, #1219
+  * Fixed : Cannot Rename Menu on Omnisend Plugin, #1217
+  * Fixed : Editor Feature not working Permalink and Template, #1198
+  * Update : Support for custom menu items, #183
+  * Update : Allow users in Admin Menus to see the required capabilities, #1200
+  * Fixed : Admin menu icon not working in Import / Export feature, #1205
+  * Update : Change "Admin Menu Restrictions" to "Admin Menus", #1212
+  * Update : Text update for dashboard, #1207
+  * Fixed : PHP Warning: Undefined array key 2, #1197
+  * Update : Brazil Translations for Capabilities Pro, #1213
+  * Update : Capabilities Translation Updates V 2.15.0, #1210
 
 = 2.15.0 - 13 Nov 2024 =
   * Feature : Reorder and rename admin menus for roles [PRO], #254
