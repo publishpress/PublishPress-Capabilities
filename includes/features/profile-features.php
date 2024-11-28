@@ -150,6 +150,10 @@ if (get_option('cme_profile_features_auto_redirect')) {
                                                                 $restrict_value = $section_array['elements'];
                                                                 $element_type   = $section_array['element_type'];
 
+                                                                if (!is_array($section_array) || empty($section_array)) {
+                                                                     continue; 
+                                                                }
+
                                                                 if (in_array($element_type, ['section', 'header'])) :
                                                                 ?>
                                                                 <tr class="ppc-menu-row parent-menu ppc-sortable-row <?php echo esc_attr($section_id); ?>"
