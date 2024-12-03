@@ -207,7 +207,6 @@ class Plugin_Capabilities
      */
     public function cme_wsform_capabilities($plugin_caps)
     {
-
         if (defined('WS_FORM_VERSION')) {
             $plugin_caps['WS Form'] = apply_filters(
                 'cme_wsform_capabilities',
@@ -223,6 +222,13 @@ class Plugin_Capabilities
                     'edit_submission',
                     'export_submission',
                     'read_submission',
+                    'create_form_style',
+                    'delete_form_style',
+                    'edit_form_style',
+                    'export_form_style',
+                    'import_form_style',
+                    'publish_form_style',
+                    'read_form_style',
                     'manage_options_wsform',
                 ]
             );
