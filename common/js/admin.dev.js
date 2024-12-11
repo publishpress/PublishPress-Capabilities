@@ -195,23 +195,31 @@ jQuery(document).ready( function($) {
   });
 
   /**
-     * Roles tab toggle
+     * Tooltip click toggle
      */
-   $(document).on('click', '.ppc-roles-tab li', function (event) {
+   $(document).on('click', '.ppc-tool-tip.click-tooltip', function (event) {
       event.preventDefault();
-
-      var clicked_tab = $(this).attr('data-tab');
-
-      //remove active class from all tabs
-      $('.ppc-roles-tab li').removeClass('active');
-      //add active class to current tab
-      $(this).addClass('active');
-
-      //hide all tabs contents
-      $('.pp-roles-tab-tr').hide();
-      //show this current tab contents
-     $('.pp-roles-' + clicked_tab + '-tab').show();
+      $(this).toggleClass('is-active');
    });
+
+   /**
+      * Roles tab toggle
+      */
+    $(document).on('click', '.ppc-roles-tab li', function (event) {
+       event.preventDefault();
+ 
+       var clicked_tab = $(this).attr('data-tab');
+ 
+       //remove active class from all tabs
+       $('.ppc-roles-tab li').removeClass('active');
+       //add active class to current tab
+       $(this).addClass('active');
+ 
+       //hide all tabs contents
+       $('.pp-roles-tab-tr').hide();
+       //show this current tab contents
+      $('.pp-roles-' + clicked_tab + '-tab').show();
+    });
   
    /**
     * Roles capabilities load more button
