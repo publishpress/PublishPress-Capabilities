@@ -66,6 +66,7 @@ class CME_Cap_Helper {
 				if ( ! isset( $this->all_type_caps[$cap_name] ) ) {
 					$this->all_type_caps[$cap_name] = 1;
 				} else {
+					$this->all_type_caps[$cap_name] = (int) $this->all_type_caps[$cap_name];
 					$this->all_type_caps[$cap_name]++;
 				}
 			}

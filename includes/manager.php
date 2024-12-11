@@ -555,7 +555,7 @@ class CapabilityManager
 		$roles = array_keys($this->roles);
 
 		if (!isset($this->current)) {
-			if (empty($_POST) && !empty($_REQUEST['role'])) {
+			if ('POST' !== $_SERVER['REQUEST_METHOD'] && !empty($_REQUEST['role'])) {
 				$this->set_current_role(sanitize_key($_REQUEST['role']));
 			}
 		}
@@ -628,7 +628,7 @@ class CapabilityManager
 		$roles = array_keys($this->roles);
 
 		if (!isset($this->current)) {
-			if (empty($_POST) && !empty($_REQUEST['role'])) {
+			if ('POST' !== $_SERVER['REQUEST_METHOD'] && !empty($_REQUEST['role'])) {
 				$this->set_current_role(sanitize_key($_REQUEST['role']));
 			}
 		}
@@ -681,7 +681,7 @@ class CapabilityManager
 		$roles = array_keys($this->roles);
 
 		if (!isset($this->current)) {
-			if (empty($_POST) && !empty($_REQUEST['role'])) {
+			if ('POST' !== $_SERVER['REQUEST_METHOD'] && !empty($_REQUEST['role'])) {
 				$this->set_current_role(sanitize_key($_REQUEST['role']));
 			}
 		}
@@ -729,7 +729,7 @@ class CapabilityManager
 		$roles = array_keys($this->roles);
 
 		if (!isset($this->current)) {
-			if (empty($_POST) && !empty($_REQUEST['role'])) {
+			if ('POST' !== $_SERVER['REQUEST_METHOD'] && !empty($_REQUEST['role'])) {
 				$this->set_current_role(sanitize_key($_REQUEST['role']));
 			}
 		}
@@ -780,7 +780,7 @@ class CapabilityManager
 		$roles = array_keys($this->roles);
 
 		if (!isset($this->current)) {
-			if (empty($_POST) && !empty($_REQUEST['role'])) {
+			if ('POST' !== $_SERVER['REQUEST_METHOD'] && !empty($_REQUEST['role'])) {
 				$this->set_current_role(sanitize_key($_REQUEST['role']));
 			}
 		}
@@ -1022,7 +1022,7 @@ class CapabilityManager
 		$roles = array_keys($this->roles);
 
 		if ( ! isset($this->current) ) { // By default, we manage the default role
-			if (empty($_POST) && !empty($_REQUEST['role'])) {
+			if ('POST' !== $_SERVER['REQUEST_METHOD'] && !empty($_REQUEST['role'])) {
 				$role = sanitize_key($_REQUEST['role']);
 
 				if (!pp_capabilities_is_editable_role($role)) {
