@@ -861,7 +861,8 @@ user-select: none;
     box-shadow: 0 2px 5px rgb(0 0 0 / 10%), 0 0 56px rgb(0 0 0 / 8%);
 }
 
-.ppc-tool-tip:hover .tool-tip-text {
+.ppc-tool-tip:not(.click-tooltip):hover .tool-tip-text,
+.ppc-tool-tip.is-active .tool-tip-text {
     display: block;
 }
 
@@ -1447,6 +1448,7 @@ ul.pp-capabilities-description {
 
 .hidden-element {
     display: none !important;
+    visibility: hidden !important;
 }
 
 .capability-extractor-label {
