@@ -112,11 +112,6 @@ class Pp_Roles_Admin
             'icon'     => 'dashicons dashicons-edit-page',
         ];
 
-        $fields_tabs['redirects'] = [
-            'label'    => esc_html__('Redirects', 'capability-manager-enhanced'),
-            'icon'     => 'dashicons dashicons-admin-links',
-        ];
-
         if (defined('WC_PLUGIN_FILE')) {
             $fields_tabs['woocommerce'] = [
                 'label'    => esc_html__('WooCommerce', 'capability-manager-enhanced'),
@@ -247,28 +242,6 @@ class Pp_Roles_Admin
             'value_key' => '',
             'tab'       => 'delete',
             'editable'  => true,
-        ];
-
-        //add login_redirect
-        $fields['login_redirect'] = [
-            'label'     => esc_html__('Login Redirect', 'capability-manager-enhanced'),
-            'description' => esc_html__('Enter the URL users in this role should be redirected to after login.', 'capability-manager-enhanced'),
-            'type'      => 'url',
-            'value_key' => 'login_redirect',
-            'tab'       => 'redirects',
-            'editable'  => true,
-            'required'  => false,
-        ];
-
-        //add logout_redirect
-        $fields['logout_redirect'] = [
-            'label'     => esc_html__('Logout Redirect', 'capability-manager-enhanced'),
-            'description' => esc_html__('Enter the URL users in this role should be redirected to after logout.', 'capability-manager-enhanced'),
-            'type'      => 'url',
-            'value_key' => 'logout_redirect',
-            'tab'       => 'redirects',
-            'editable'  => true,
-            'required'  => false,
         ];
 
         //add disable_code_editor
@@ -469,97 +442,6 @@ class Pp_Roles_Admin
                         <?php if (isset($args['description'])) : ?>
                             <span class="description"><?php echo $args['description']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
                         <?php endif; ?>
-                <?php  elseif ($args['key'] === 'login_redirect') :
-                        $referer_redirect = (is_array($current) && isset($current['referer_redirect']) && (int)$current['referer_redirect'] > 0) ? true : false;
-                        $custom_redirect = (is_array($current) && isset($current['custom_redirect']) && (int)$current['custom_redirect'] > 0) ? true : false;
-                        $custom_style    = (!$custom_redirect) ? 'display:none;' : '';
-
-                        $form_url = $args['value'];
-                        $base_url = '';
-                        if (!empty($form_url)) {
-                            $base_url = str_replace(home_url(), '', $form_url);
-                        }
-                    ?>
-                    <div class="login-redirect-option">
-                        <label>
-                            <input name="referer_redirect" 
-                            id="referer_redirect" 
-                            type="checkbox"
-                            value="1"
-                            <?php checked(true, $referer_redirect); ?>
-                            <?php echo ($args['required'] ? 'required="true"' : '');?> 
-                            <?php echo (!$args['editable'] ? 'readonly="readonly"' : ''); ?>/>
-                            <span class="description"><?php echo esc_html__('Redirect users to the URL they were viewing before login.',  'capability-manager-enhanced'); ?></span>
-                        </label>
-                    </div>
-                    <div class="login-redirect-option">
-                        <label>
-                            <input name="custom_redirect" 
-                            id="custom_redirect" 
-                            type="checkbox"
-                            value="1"
-                            <?php checked(true, $custom_redirect); ?>
-                            <?php echo ($args['required'] ? 'required="true"' : '');?> 
-                            <?php echo (!$args['editable'] ? 'readonly="readonly"' : ''); ?>/>
-                            <span class="description"><?php echo esc_html__('Redirect users to a specified URL.',  'capability-manager-enhanced'); ?></span>
-                        </label>
-                        <div class="custom-url-wrapper" style="<?php echo esc_attr($custom_style); ?>">
-                            <div class="pp-roles-internal-links-wrapper activated">
-                                <div class="base-url">
-                                    <?php esc_html_e(home_url()); ?>
-                                </div>
-                                <div class="base-input">
-                                    <input name="<?php echo esc_attr($key); ?>" 
-                                    id="<?php echo esc_attr($key); ?>"
-                                    type="text"
-                                    value="<?php echo esc_attr($base_url); ?>"
-                                    data-original_base="<?php echo esc_attr($base_url); ?>"
-                                    data-base="<?php echo esc_attr($base_url); ?>"
-                                    data-entry="<?php echo esc_attr($form_url); ?>"
-                                    data-home_url="<?php echo esc_url(home_url()); ?>"
-                                    data-message="<?php esc_attr_e('Enter the relative path only without domain for login redirect.',  'capability-manager-enhanced'); ?>"
-                                    data-required_message="<?php esc_attr_e('You must enter the Login Redirect URL.',  'capability-manager-enhanced'); ?>"
-                                    autocomplete="off"
-                                <?php echo ($args['required'] ? 'required="true"' : '');?> 
-                                <?php echo (!$args['editable'] ? 'readonly="readonly"' : ''); ?>/>
-                                </div>
-                            </div>
-                            <?php if (isset($args['description'])) : ?>
-                                <p class="description"><?php echo esc_html($args['description']); ?></p>
-                            <?php endif; ?>
-                        </div>
-                    </div>
-                <?php  elseif ($args['key'] === 'logout_redirect') : ?>
-                    <?php 
-                        $form_url = $args['value'];
-                        $base_url = '';
-                        if (!empty($form_url)) {
-                            $base_url = str_replace(home_url(), '', $form_url);
-                        }
-                    ?>
-                    <div class="pp-roles-internal-links-wrapper activated">
-                        <div class="base-url">
-                            <?php esc_html_e(home_url()); ?>
-                        </div>
-                        <div class="base-input">
-                            <input name="<?php echo esc_attr($key); ?>" 
-                            id="<?php echo esc_attr($key); ?>"
-                            type="text"
-                            value="<?php echo esc_attr($base_url); ?>"
-                            data-original_base="<?php echo esc_attr($base_url); ?>"
-                            data-base="<?php echo esc_attr($base_url); ?>"
-                            data-entry="<?php echo esc_attr($form_url); ?>"
-                            data-home_url="<?php echo esc_url(home_url()); ?>"
-                            data-message="<?php esc_attr_e('Enter the relative path only without domain for logout redirect.',  'capability-manager-enhanced'); ?>"
-                            autocomplete="off"
-                        <?php echo ($args['required'] ? 'required="true"' : '');?> 
-                        <?php echo (!$args['editable'] ? 'readonly="readonly"' : ''); ?>/>
-                        </div>
-                    </div>
-                            <?php if (isset($args['description'])) : ?>
-                                <p class="description"><?php echo esc_html($args['description']); ?></p>
-                            <?php endif; ?>
-                    </div>
                 <?php else : ?>
                     <input name="<?php echo esc_attr($key); ?>" 
                         id="<?php echo esc_attr($key); ?>"

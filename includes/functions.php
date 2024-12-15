@@ -274,6 +274,62 @@ add_action('init', 'ppc_test_user_init');
 
 
 /**
+* Redirect user after registration.
+*
+* @param int $user_id The user ID.
+*/
+function ppc_role_redirect_after_registration($user_id) {
+    $user = get_user_by('ID', $user_id);
+    
+    if (pp_capabilities_feature_enabled('redirects') && is_object($user) && isset($user->roles) && is_array($user->roles)) {
+        $role_redirects = !empty(get_option('capsman_role_redirects')) ? (array)get_option('capsman_role_redirects') : [];
+        
+        foreach ($user->roles as $user_role) {
+            //get role option
+            $role_option = array_key_exists($user_role, $role_redirects) ? (array)$role_redirects[$user_role] : [];
+            if (is_array($role_option) && !empty($role_option) && !empty($role_option['registration_redirect'])) {
+                $redirect_to = esc_url_raw($role_option['registration_redirect']);
+                // Login the user automatically.
+                wp_set_current_user($user_id);
+                wp_set_auth_cookie($user_id);
+
+                wp_safe_redirect($redirect_to);
+                exit;
+            }
+        }
+    }
+}
+add_action('user_register', 'ppc_role_redirect_after_registration', PHP_INT_MAX);
+
+/**
+ * Redirect after WooCommerce registration.
+ *
+ * @param string $redirect_to URL to redirect to.
+ * @return string
+ */
+function woocommerce_registration_redirect($redirect_to) {
+    $user_id = get_current_user_id();
+    $user = get_user_by('ID', $user_id);
+
+    if (pp_capabilities_feature_enabled('redirects') && is_object($user) && isset($user->roles) && is_array($user->roles)) {
+        $role_redirects = !empty(get_option('capsman_role_redirects')) ? (array)get_option('capsman_role_redirects') : [];
+        
+        foreach ($user->roles as $user_role) {
+            //get role option
+            $role_option = array_key_exists($user_role, $role_redirects) ? (array)$role_redirects[$user_role] : [];
+            if (is_array($role_option) && !empty($role_option) && !empty($role_option['registration_redirect'])) {
+                $redirect_to = esc_url_raw($role_option['registration_redirect']);
+                break;
+            }
+        }
+    }
+
+    return $redirect_to;
+}
+add_filter('woocommerce_registration_redirect', 'woocommerce_registration_redirect', 11);
+
+
+/**
  * Redirect user to configured role login redirect
  *
  * @param string $redirect_to URL to redirect to.
@@ -283,12 +339,19 @@ add_action('init', 'ppc_test_user_init');
  */
 function ppc_roles_login_redirect($redirect_to, $request, $user) {
 
-    if (pp_capabilities_feature_enabled('roles') && isset($user->roles) && is_array($user->roles)) {
+    if (pp_capabilities_feature_enabled('redirects') && isset($user->roles) && is_array($user->roles)) {
+        $role_redirects = !empty(get_option('capsman_role_redirects')) ? (array)get_option('capsman_role_redirects') : [];
+        $is_first_login = get_user_meta($user->ID, '_ppc_first_login', true);
         foreach ($user->roles as $user_role) {
             //get role option
-            $role_option = get_option("pp_capabilities_{$user_role}_role_option", []);
+            $role_option = array_key_exists($user_role, $role_redirects) ? (array)$role_redirects[$user_role] : [];
 
-            if (is_array($role_option) && !empty($role_option)
+            if ($is_first_login === '' && is_array($role_option) && !empty($role_option) && !empty($role_option['first_login_redirect'])) {
+                // first login redirect
+                $redirect_to = esc_url_raw($role_option['first_login_redirect']);
+                update_user_meta($user->ID, '_ppc_first_login', current_time('mysql'));
+                break;
+            } elseif (is_array($role_option) && !empty($role_option)
                 && !empty($role_option['custom_redirect']) && (int)$role_option['custom_redirect'] > 0
                 && !empty($role_option['login_redirect'])
             ) {
@@ -311,7 +374,55 @@ function ppc_roles_login_redirect($redirect_to, $request, $user) {
 
     return $redirect_to;
 }
-add_filter('login_redirect', 'ppc_roles_login_redirect', 10, 3);
+add_filter('login_redirect', 'ppc_roles_login_redirect', 10, 3);   
+
+
+/**
+* Redirect after WooCommerce login.
+*
+* @param string $redirect URL to redirect to.
+* @param WP_User $user User object.
+* @return string
+*/
+function ppc_roles_woocommerce_login_redirect($redirect_to, $user) {
+
+    if (pp_capabilities_feature_enabled('redirects') && isset($user->roles) && is_array($user->roles)) {
+        $role_redirects = !empty(get_option('capsman_role_redirects')) ? (array)get_option('capsman_role_redirects') : [];
+        $is_first_login = get_user_meta($user->ID, '_ppc_first_login', true);
+        foreach ($user->roles as $user_role) {
+            //get role option
+            $role_option = array_key_exists($user_role, $role_redirects) ? (array)$role_redirects[$user_role] : [];
+
+            if ($is_first_login === '' && is_array($role_option) && !empty($role_option) && !empty($role_option['first_login_redirect'])) {
+                // first login redirect
+                $redirect_to = esc_url_raw($role_option['first_login_redirect']);
+                update_user_meta($user->ID, '_ppc_first_login', current_time('mysql'));
+                break;
+            } elseif (is_array($role_option) && !empty($role_option)
+                && !empty($role_option['custom_redirect']) && (int)$role_option['custom_redirect'] > 0
+                && !empty($role_option['login_redirect'])
+            ) {
+                //custom url redirect
+                $redirect_to = esc_url_raw($role_option['login_redirect']);
+                break;
+            } else if (is_array($role_option) && !empty($role_option)
+                && !empty($role_option['referer_redirect']) && (int)$role_option['referer_redirect'] > 0
+            ) {
+                // phpcs:ignore WordPressVIPMinimum.Variables.RestrictedVariables.cache_constraints___COOKIE
+                $redirect_url = (!empty(get_option('cme_role_same_page_redirect_cookie')) && !empty($_COOKIE['ppc_last_visited_page'])) ? $_COOKIE['ppc_last_visited_page'] : wp_get_referer();
+                if (!empty($redirect_url)) {
+                    //referer url redirect
+                    $redirect_to = esc_url_raw($redirect_url);
+                }
+                break;
+            }
+        }
+    }
+
+   return $redirect_to;
+}
+add_filter('woocommerce_login_redirect', 'ppc_roles_woocommerce_login_redirect', 10, 2);
+
 
 /**
  * We can no longer relied on wp_get_referer() due to it non
@@ -355,10 +466,11 @@ add_action( 'wp_footer', 'ppc_roles_last_visited_page_cookie' );
  */
 function ppc_roles_logout_redirect($redirect_to, $request, $user) {
 
-    if (pp_capabilities_feature_enabled('roles') && isset($user->roles) && is_array($user->roles)) {
+    if (pp_capabilities_feature_enabled('redirects') && isset($user->roles) && is_array($user->roles)) {
+        $role_redirects = !empty(get_option('capsman_role_redirects')) ? (array)get_option('capsman_role_redirects') : [];
         foreach ($user->roles as $user_role) {
             //get role option
-            $role_option = get_option("pp_capabilities_{$user_role}_role_option", []);
+            $role_option = array_key_exists($user_role, $role_redirects) ? (array)$role_redirects[$user_role] : [];
             if (is_array($role_option) && !empty($role_option) && !empty($role_option['logout_redirect'])) {
                 $redirect_to = esc_url_raw($role_option['logout_redirect']);
                 break;
@@ -441,6 +553,7 @@ function pp_capabilities_admin_pages(){
         'pp-capabilities-settings',
         'pp-capabilities-admin-features',
         'pp-capabilities-frontend-features',
+        'pp-capabilities-redirects',
         'pp-capabilities-profile-features'
     ];
 
