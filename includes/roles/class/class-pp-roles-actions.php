@@ -256,10 +256,6 @@ class Pp_Roles_Actions
         //update role options
         $role_option    = [];
         $role_option['role_editor']         = (!empty($_REQUEST['role_editor']) && is_array(($_REQUEST['role_editor']))) ? array_map('sanitize_text_field', $_REQUEST['role_editor']) : [];
-        $role_option['login_redirect']      = !empty($_REQUEST['login_redirect']) ? home_url(str_replace(home_url(), '', sanitize_text_field($_REQUEST['login_redirect']))) : '';
-        $role_option['logout_redirect']     = !empty($_REQUEST['logout_redirect']) ? home_url(str_replace(home_url(), '', sanitize_text_field($_REQUEST['logout_redirect']))) : '';
-        $role_option['referer_redirect']    = !empty($_REQUEST['referer_redirect']) ? (int) $_REQUEST['referer_redirect'] : 0;
-        $role_option['custom_redirect']     = !empty($_REQUEST['custom_redirect']) ? (int) $_REQUEST['custom_redirect'] : 0;
         $role_option['disable_code_editor'] = !empty($_REQUEST['disable_code_editor']) ? (int) $_REQUEST['disable_code_editor'] : 0;
         $role_option['disable_role_user_login'] = !empty($_REQUEST['disable_role_user_login']) ? (int) $_REQUEST['disable_role_user_login'] : 0;
         $role_option['block_dashboard_access'] = !empty($_REQUEST['block_dashboard_access']) ? (int) $_REQUEST['block_dashboard_access'] : 0;
@@ -310,6 +306,13 @@ class Pp_Roles_Actions
            if (is_array($disabled_profile_items) && array_key_exists($copied_role, $disabled_profile_items)) {
                $disabled_profile_items[$role_slug] = $disabled_profile_items[$copied_role];
                update_option('capsman_disabled_profile_features', $disabled_profile_items, false);
+           }
+
+           //Redirects Features
+           $role_redirects = !empty(get_option('capsman_role_redirects')) ? (array)get_option('capsman_role_redirects') : [];
+           if (is_array($role_redirects) && array_key_exists($copied_role, $role_redirects)) {
+               $role_redirects[$role_slug] = $role_redirects[$copied_role];
+               update_option('capsman_role_redirects', $role_redirects, false);
            }
 
 
@@ -424,10 +427,6 @@ class Pp_Roles_Actions
         //update role options
         $role_option    = [];
         $role_option['role_editor']         = (!empty($_REQUEST['role_editor']) && is_array(($_REQUEST['role_editor']))) ? array_map('sanitize_text_field', $_REQUEST['role_editor']) : [];
-        $role_option['login_redirect']      = !empty($_REQUEST['login_redirect']) ? home_url(str_replace(home_url(), '', sanitize_text_field($_REQUEST['login_redirect']))) : '';
-        $role_option['logout_redirect']     = !empty($_REQUEST['logout_redirect']) ? home_url(str_replace(home_url(), '', sanitize_text_field($_REQUEST['logout_redirect']))) : '';
-        $role_option['referer_redirect']    = !empty($_REQUEST['referer_redirect']) ? (int) $_REQUEST['referer_redirect'] : 0;
-        $role_option['custom_redirect']     = !empty($_REQUEST['custom_redirect']) ? (int) $_REQUEST['custom_redirect'] : 0;
         $role_option['disable_code_editor'] = !empty($_REQUEST['disable_code_editor']) ? (int) $_REQUEST['disable_code_editor'] : 0;
         $role_option['disable_role_user_login'] = !empty($_REQUEST['disable_role_user_login']) ? (int) $_REQUEST['disable_role_user_login'] : 0;
         $role_option['block_dashboard_access'] = !empty($_REQUEST['block_dashboard_access']) ? (int) $_REQUEST['block_dashboard_access'] : 0;

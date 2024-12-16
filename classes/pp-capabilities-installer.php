@@ -32,6 +32,9 @@ class PP_Capabilities_Installer
         if (version_compare($currentVersions, '2.9.0', '<')) {
             self::addFrontendFeaturesCapabilities();
         }
+        if (version_compare($currentVersions, '2.17.0', '<')) {
+            self::addRedirectsCapabilities();
+        }
 
         /**
          * @param string $previousVersion
@@ -90,6 +93,49 @@ class PP_Capabilities_Installer
             if (is_object($role) && !$role->has_cap('manage_capabilities_frontend_features')) {
                 $role->add_cap('manage_capabilities_frontend_features');
             }
+        }
+    }
+
+    private static function addRedirectsCapabilities()
+    {
+
+        $eligible_roles = ['administrator', 'editor'];
+
+        /**
+         * Add redirect capabilities to admin and editor roles
+         */
+        foreach ($eligible_roles as $eligible_role) {
+            $role = get_role($eligible_role);
+            if (is_object($role) && !$role->has_cap('manage_capabilities_redirects')) {
+                $role->add_cap('manage_capabilities_redirects');
+            }
+        }
+        
+        /**
+         * Migrate roles redirect setting to new option
+         * 
+         */
+        $role_redirects = !empty(get_option('capsman_role_redirects')) ? (array)get_option('capsman_role_redirects') : [];
+        foreach ( wp_roles()->roles as $role_name => $role ) {
+            //get role option
+            $role_option = get_option("pp_capabilities_{$role_name}_role_option", []);
+            if (is_array($role_option) && !empty($role_option)) {
+                if (isset($role_option['login_redirect'])) {
+                    $role_redirects[$role_name]['login_redirect'] = $role_option['login_redirect'];
+                }
+                if (isset($role_option['logout_redirect'])) {
+                    $role_redirects[$role_name]['logout_redirect'] = $role_option['logout_redirect'];
+                }
+                if (isset($role_option['referer_redirect'])) {
+                    $role_redirects[$role_name]['referer_redirect'] = $role_option['referer_redirect'];
+                }
+                if (isset($role_option['custom_redirect'])) {
+                    $role_redirects[$role_name]['custom_redirect'] = $role_option['custom_redirect'];
+                }
+            }
+        }
+        if (!empty($role_redirects)) {
+            update_option('capsman_role_redirects', $role_redirects);
         }
     }
 

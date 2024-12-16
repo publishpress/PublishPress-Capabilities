@@ -157,26 +157,6 @@ jQuery(document).ready(function ($) {
   });
  
   /**
-   * Roles login redirect options
-   */
-   $(document).on('change', '.login-redirect-option #referer_redirect', function () {
-     $('.login-redirect-option .custom-url-wrapper').hide();
-     $('.login-redirect-option #custom_redirect').prop('checked', false);
-  });
- 
-  /**
-   * Roles login redirect options
-   */
-   $(document).on('change', '.login-redirect-option #custom_redirect', function (event) {
-     if ($(this).prop('checked')) {
-       $('.login-redirect-option .custom-url-wrapper').show();
-     } else {
-       $('.login-redirect-option .custom-url-wrapper').hide();
-     }
-     $('.login-redirect-option #referer_redirect').prop('checked', false);
-  });
- 
-  /**
    * Roles allowed editor manage toggle
    */
    $(document).on('change', '.allowed-editor-toggle', function () {
@@ -197,21 +177,6 @@ jQuery(document).ready(function ($) {
     let error_message = '';
     let error_report  = false;
     $('.role-submit-response').html('');
-
-    //add required custom redirect link error message
-    if ($('#custom_redirect').prop('checked') && isEmptyOrSpaces($('#login_redirect').val())) {
-      error_report = true;
-      error_message += '- ' + $('#login_redirect').attr('data-required_message') + '<br />';
-    }
-
-    //add custom url validation warning
-    $('.pp-roles-internal-links-wrapper .base-input input').each(function () {
-      var base_url = $(this).attr('data-base');
-      if (!isEmptyOrSpaces(base_url) && base_url.includes('://')) {
-        error_report = true;
-        error_message += '- ' + $(this).attr('data-message') + '<br />';
-      }
-    });
     
     //add allowed editor option validation
     if ($('.allowed-editor-toggle').prop('checked') && $('#role_editor-select').val().length === 0) {
@@ -225,30 +190,6 @@ jQuery(document).ready(function ($) {
     }
 
   });
- 
-  /**
-   * Role custom url change syc
-   */
-   $('.pp-roles-internal-links-wrapper .base-input input').on('keyup', function (e) {
-    var current_input   = $(this);
-    var current_wrapper = current_input.closest('.pp-roles-internal-links-wrapper');
-    var current_entry   = current_input.val();
-    
-     current_wrapper.find('.base-input input')
-       .attr('data-base', current_entry)
-       .attr('data-entry', current_wrapper.find('.base-input input').attr('data-home_url') + current_entry);
-  });
-  /**
-   * Prevent click on custom url base link
-   */
-   $('.pp-roles-internal-links-wrapper .base-url a').on('click', function (e) {
-     e.preventDefault();
-     return false;
-   });
-
-  function isEmptyOrSpaces(str) {
-    return str === null || str.match(/^ *$/) !== null;
-  }
 
 
   function is_role_slug_exist() {
