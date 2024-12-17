@@ -193,7 +193,7 @@ class CapabilityManager
 		if (empty($_REQUEST['page']) 
 		|| !in_array( 
 			$_REQUEST['page'], 
-			['pp-capabilities', 'pp-capabilities-backup', 'pp-capabilities-roles', 'pp-capabilities-admin-menus', 'pp-capabilities-editor-features', 'pp-capabilities-nav-menus', 'pp-capabilities-settings', 'pp-capabilities-admin-features', 'pp-capabilities-profile-features', 'pp-capabilities-dashboard', 'pp-capabilities-frontend-features']
+			['pp-capabilities', 'pp-capabilities-backup', 'pp-capabilities-roles', 'pp-capabilities-admin-menus', 'pp-capabilities-editor-features', 'pp-capabilities-nav-menus', 'pp-capabilities-settings', 'pp-capabilities-admin-features', 'pp-capabilities-profile-features', 'pp-capabilities-dashboard', 'pp-capabilities-frontend-features', 'pp-capabilities-redirects']
 			)
 		) {
 			return;
@@ -555,7 +555,7 @@ class CapabilityManager
 		$roles = array_keys($this->roles);
 
 		if (!isset($this->current)) {
-			if (empty($_POST) && !empty($_REQUEST['role'])) {
+			if ('POST' !== $_SERVER['REQUEST_METHOD'] && !empty($_REQUEST['role'])) {
 				$this->set_current_role(sanitize_key($_REQUEST['role']));
 			}
 		}
@@ -628,7 +628,7 @@ class CapabilityManager
 		$roles = array_keys($this->roles);
 
 		if (!isset($this->current)) {
-			if (empty($_POST) && !empty($_REQUEST['role'])) {
+			if ('POST' !== $_SERVER['REQUEST_METHOD'] && !empty($_REQUEST['role'])) {
 				$this->set_current_role(sanitize_key($_REQUEST['role']));
 			}
 		}
@@ -681,7 +681,7 @@ class CapabilityManager
 		$roles = array_keys($this->roles);
 
 		if (!isset($this->current)) {
-			if (empty($_POST) && !empty($_REQUEST['role'])) {
+			if ('POST' !== $_SERVER['REQUEST_METHOD'] && !empty($_REQUEST['role'])) {
 				$this->set_current_role(sanitize_key($_REQUEST['role']));
 			}
 		}
@@ -729,7 +729,7 @@ class CapabilityManager
 		$roles = array_keys($this->roles);
 
 		if (!isset($this->current)) {
-			if (empty($_POST) && !empty($_REQUEST['role'])) {
+			if ('POST' !== $_SERVER['REQUEST_METHOD'] && !empty($_REQUEST['role'])) {
 				$this->set_current_role(sanitize_key($_REQUEST['role']));
 			}
 		}
@@ -780,7 +780,7 @@ class CapabilityManager
 		$roles = array_keys($this->roles);
 
 		if (!isset($this->current)) {
-			if (empty($_POST) && !empty($_REQUEST['role'])) {
+			if ('POST' !== $_SERVER['REQUEST_METHOD'] && !empty($_REQUEST['role'])) {
 				$this->set_current_role(sanitize_key($_REQUEST['role']));
 			}
 		}
@@ -844,6 +844,70 @@ class CapabilityManager
 		}
 
         include(dirname(CME_FILE) . '/includes/features/profile-features.php');
+    }
+
+	
+	/**
+	 * Manage Redirect
+	 *
+	 * @return void
+	 */
+	public function ManageRedirects() {
+		if ((!is_multisite() || !is_super_admin()) && !current_user_can('administrator') && !current_user_can('manage_capabilities_redirects')) {
+            // TODO: Implement exceptions.
+		    wp_die('<strong>' . esc_html__('You do not have permission to manage redirect.', 'capability-manager-enhanced') . '</strong>');
+		}
+
+		$this->generateNames();
+		$roles = array_keys($this->roles);
+
+		if (!isset($this->current)) {
+			if ('POST' !== $_SERVER['REQUEST_METHOD'] && !empty($_REQUEST['role'])) {
+				$this->set_current_role(sanitize_key($_REQUEST['role']));
+			}
+		}
+
+		if (!isset($this->current) || !get_role($this->current)) {
+			$this->current = get_option('default_role');
+		}
+
+		if (!in_array($this->current, $roles)) {
+			$this->current = array_shift($roles);
+		}
+
+		if (!empty($_SERVER['REQUEST_METHOD']) && ('POST' == $_SERVER['REQUEST_METHOD']) && isset($_POST['redirects-features-submit']) && !empty($_REQUEST['_wpnonce'])) {
+			if (!wp_verify_nonce(sanitize_key($_REQUEST['_wpnonce']), 'pp-capabilities-redirects-features')) {
+				wp_die('<strong>' . esc_html__('Invalid form. Reload this page and try again.', 'capability-manager-enhanced') . '</strong>');
+			} else {
+				$features_role = sanitize_key($_POST['ppc-redirects-features-role']);
+				
+				$this->set_current_role($features_role);
+
+				$custom_redirect = !empty($_POST['custom_redirect']) ? (int) $_POST['custom_redirect'] : 0;
+				$referer_redirect = !empty($_POST['referer_redirect']) ? (int) $_POST['referer_redirect'] : 0;
+				$login_redirect = !empty($_POST['login_redirect']) ? home_url(str_replace(home_url(), '', sanitize_text_field($_POST['login_redirect']))) : '';
+				$logout_redirect = !empty($_POST['logout_redirect']) ? home_url(str_replace(home_url(), '', sanitize_text_field($_POST['logout_redirect']))) : '';
+				$registration_redirect = !empty($_POST['registration_redirect']) ? home_url(str_replace(home_url(), '', sanitize_text_field($_POST['registration_redirect']))) : '';
+				$first_login_redirect = !empty($_POST['first_login_redirect']) ? home_url(str_replace(home_url(), '', sanitize_text_field($_POST['first_login_redirect']))) : '';
+
+				$role_redirects = !empty(get_option('capsman_role_redirects')) ? (array)get_option('capsman_role_redirects') : [];
+
+				$role_redirects[$features_role] = [
+					'custom_redirect' => $custom_redirect,
+					'referer_redirect' => $referer_redirect,
+					'login_redirect' => $login_redirect,
+					'logout_redirect' => $logout_redirect,
+					'registration_redirect' => $registration_redirect,
+					'first_login_redirect' => $first_login_redirect
+				];
+
+				update_option('capsman_role_redirects', $role_redirects);
+				
+	            ak_admin_notify(__('Settings updated.', 'capability-manager-enhanced'));
+			}
+		}
+
+        include(dirname(CME_FILE) . '/includes/redirects/redirects.php');
     }
 
 
@@ -1022,7 +1086,7 @@ class CapabilityManager
 		$roles = array_keys($this->roles);
 
 		if ( ! isset($this->current) ) { // By default, we manage the default role
-			if (empty($_POST) && !empty($_REQUEST['role'])) {
+			if ('POST' !== $_SERVER['REQUEST_METHOD'] && !empty($_REQUEST['role'])) {
 				$role = sanitize_key($_REQUEST['role']);
 
 				if (!pp_capabilities_is_editable_role($role)) {

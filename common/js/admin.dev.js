@@ -195,23 +195,127 @@ jQuery(document).ready( function($) {
   });
 
   /**
-     * Roles tab toggle
+     * Tooltip click toggle
      */
-   $(document).on('click', '.ppc-roles-tab li', function (event) {
+   $(document).on('click', '.ppc-tool-tip.click-tooltip', function (event) {
       event.preventDefault();
-
-      var clicked_tab = $(this).attr('data-tab');
-
-      //remove active class from all tabs
-      $('.ppc-roles-tab li').removeClass('active');
-      //add active class to current tab
-      $(this).addClass('active');
-
-      //hide all tabs contents
-      $('.pp-roles-tab-tr').hide();
-      //show this current tab contents
-     $('.pp-roles-' + clicked_tab + '-tab').show();
+      $(this).toggleClass('is-active');
    });
+
+   /**
+      * Roles tab toggle
+      */
+    $(document).on('click', '.ppc-roles-tab li', function (event) {
+       event.preventDefault();
+ 
+       var clicked_tab = $(this).attr('data-tab');
+ 
+       //remove active class from all tabs
+       $('.ppc-roles-tab li').removeClass('active');
+       //add active class to current tab
+       $(this).addClass('active');
+ 
+       //hide all tabs contents
+       $('.pp-roles-tab-tr').hide();
+       //show this current tab contents
+      $('.pp-roles-' + clicked_tab + '-tab').show();
+    });
+
+    /**
+       * Redirects tab toggle
+       */
+     $(document).on('click', '.ppc-redirects-tab li', function (event) {
+        event.preventDefault();
+  
+        var clicked_tab = $(this).attr('data-tab');
+  
+        //remove active class from all tabs
+        $('.ppc-redirects-tab li').removeClass('active');
+        //add active class to current tab
+        $(this).addClass('active');
+  
+        //hide all tabs contents
+        $('.pp-redirects-tab-tr').hide();
+        //show this current tab contents
+       $('.pp-redirects-' + clicked_tab + '-tab').show();
+     });
+ 
+     /**
+      * Redirects login redirect options
+      */
+      $(document).on('change', '.login-redirect-option #referer_redirect', function () {
+        $('.login-redirect-option .custom-url-wrapper').hide();
+        $('.login-redirect-option #custom_redirect').prop('checked', false);
+     });
+    
+     /**
+      * Redirects login redirect options
+      */
+      $(document).on('change', '.login-redirect-option #custom_redirect', function (event) {
+        if ($(this).prop('checked')) {
+          $('.login-redirect-option .custom-url-wrapper').show();
+        } else {
+          $('.login-redirect-option .custom-url-wrapper').hide();
+        }
+        $('.login-redirect-option #referer_redirect').prop('checked', false);
+     });
+ 
+     /**
+      * Role custom url change syc
+      */
+      $('.pp-roles-internal-links-wrapper .base-input input').on('keyup', function (e) {
+       var current_input   = $(this);
+       var current_wrapper = current_input.closest('.pp-roles-internal-links-wrapper');
+       var current_entry   = current_input.val();
+       
+        current_wrapper.find('.base-input input')
+          .attr('data-base', current_entry)
+          .attr('data-entry', current_wrapper.find('.base-input input').attr('data-home_url') + current_entry);
+     });
+     /**
+      * Prevent click on custom url base link
+      */
+      $('.pp-roles-internal-links-wrapper .base-url a').on('click', function (e) {
+        e.preventDefault();
+        return false;
+      });
+  
+   /**
+   * Role submit required field validation
+   */
+  $('.pp-capability-roles-wrapper .submit-role-form').on('click', function (e) {
+
+    let error_message = '';
+    let error_report  = false;
+    $('.role-submit-response').html('');
+
+    //add required custom redirect link error message
+    if ($('#custom_redirect').prop('checked') && isEmptyOrSpaces($('#login_redirect').val())) {
+      error_report = true;
+      error_message += '- ' + $('#login_redirect').attr('data-required_message') + '<br />';
+    }
+
+    //add custom url validation warning
+    $('.pp-roles-internal-links-wrapper .base-input input').each(function () {
+      var base_url = $(this).attr('data-base');
+      if (!isEmptyOrSpaces(base_url) && base_url.includes('://')) {
+        error_report = true;
+        error_message += '- ' + $(this).attr('data-message') + '<br />';
+      }
+    });
+    
+    //add allowed editor option validation
+    if ($('.allowed-editor-toggle').prop('checked') && $('#role_editor-select').val().length === 0) {
+      error_report = true;
+      error_message += '- ' + $('#role_editor-select').attr('data-message') + '<br />';
+    }
+
+    if (error_report) {
+      e.preventDefault();
+      $('.role-submit-response').html(error_message);
+    }
+
+  });
   
    /**
     * Roles capabilities load more button
@@ -826,5 +930,9 @@ jQuery(document).ready( function($) {
       }
   }
   /* end COPIED FROM PP BLOCKS */
+
+  function isEmptyOrSpaces(str) {
+    return str === null || str.match(/^ *$/) !== null;
+  }
 
 });

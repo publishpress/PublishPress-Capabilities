@@ -225,6 +225,10 @@ function pp_capabilities_backup_sections()
    $backup_sections[$cms_id . '_profile_features_backup']['options'][] = "capsman_disabled_profile_features";
    $backup_sections[$cms_id . '_profile_features_backup']['options'][] = "capsman_profile_features_elements";
 
+   //Redirects
+   $backup_sections[$cms_id . '_redirects_backup']['label']     = esc_html__('Redirects', 'capability-manager-enhanced');
+   $backup_sections[$cms_id . '_redirects_backup']['options'][] = "capsman_role_redirects";
+
    //Nav Menu
    $backup_sections['capsman_nav_menu_backup']['label']     = esc_html__('Nav Menu', 'capability-manager-enhanced');
    $backup_sections['capsman_nav_menu_backup']['options'][] = "capsman_nav_item_menus";
@@ -329,6 +333,7 @@ function cme_publishpress_capabilities_capabilities($capabilities) {
             'manage_capabilities_admin_menus',
             'manage_capabilities_frontend_features',
             'manage_capabilities_profile_features',
+            'manage_capabilities_redirects',
             'manage_capabilities_nav_menus',
             'manage_capabilities_user_testing',
             'manage_capabilities_backup',
@@ -382,6 +387,11 @@ function pp_capabilities_dashboard_options() {
     $features['profile-features'] = [
         'label'        => esc_html__('Profile Features', 'capability-manager-enhanced'),
         'description'  => esc_html__('Profile Features allows you to remove elements from the Profile screen.', 'capability-manager-enhanced'),
+    ];
+
+    $features['redirects'] = [
+        'label'        => esc_html__('Redirects', 'capability-manager-enhanced'),
+        'description'  => esc_html__('Redirects allows you to redirect users in a role after Registration, Login or Logout.', 'capability-manager-enhanced'),
     ];
 
     $features['nav-menus'] = [
@@ -460,6 +470,13 @@ function pp_capabilities_sub_menu_lists($cme_fakefunc = false) {
         'capabilities'      => $super_user ? 'read' : 'manage_capabilities_profile_features',
         'page'              => 'pp-capabilities-profile-features',
         'callback'          => $cme_fakefunc ? 'cme_fakefunc' : [$capsman, 'ManageProfileFeatures'],
+        'dashboard_control' => true,
+    ];
+    $sub_menu_pages['redirects'] = [
+        'title'             => __('Redirects', 'capability-manager-enhanced'),
+        'capabilities'      => $super_user ? 'read' : 'manage_capabilities_redirects',
+        'page'              => 'pp-capabilities-redirects',
+        'callback'          => $cme_fakefunc ? 'cme_fakefunc' : [$capsman, 'ManageRedirects'],
         'dashboard_control' => true,
     ];
     if ($cme_fakefunc) {

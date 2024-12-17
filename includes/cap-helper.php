@@ -66,6 +66,7 @@ class CME_Cap_Helper {
 				if ( ! isset( $this->all_type_caps[$cap_name] ) ) {
 					$this->all_type_caps[$cap_name] = 1;
 				} else {
+					$this->all_type_caps[$cap_name] = (int) $this->all_type_caps[$cap_name];
 					$this->all_type_caps[$cap_name]++;
 				}
 			}
@@ -230,7 +231,9 @@ class CME_Cap_Helper {
 		$core_taxonomies = array( 'category' );
 		foreach( $core_taxonomies as $taxonomy ) {
 			foreach( array_keys($tx_specific_caps) as $cap_property ) {
-				$core_tx_caps[ $wp_taxonomies[$taxonomy]->cap->$cap_property ] = true;
+				if (isset($wp_taxonomies[$taxonomy])) {
+					$core_tx_caps[ $wp_taxonomies[$taxonomy]->cap->$cap_property ] = true;
+				}
 			}
 		}
 		
