@@ -7,7 +7,7 @@ Tags: capabilities, permissions, admin menus, user roles, user role editor
 Requires at least: 5.5
 Requires PHP: 7.2.5
 Tested up to: 6.7
-Stable tag: 2.16.0
+Stable tag: 2.17.0
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -416,6 +416,19 @@ Fixed : Non-administrators with user editing capabilities could add new Administ
 Fixed : Security issue. Please update.
 
 == Changelog ==
+
+= 2.17.0 = - 17 Dec 2024 =
+  * Feature : Create a new "Redirects" screen, #1201
+  * Update : Allow admin to add new menu, sub menu and separators, #1195
+  * Fixed : Support for custom icons in Admin Menus, #1225
+  * Update : Update WSForm capabilities, #1215
+  * Update : Add a heading for custom CSS in Editor Features, #1224
+  * Update : Small text change for Editor Features, #1223
+  * Fixed : Cannot access offset of type string on string Profile Feature, #1227
+  * Fixed : Cannot select role in dropdown when $_POST has values, #1231
+  * Fixed : ErrorException: Warning: foreach() argument must be of type array|object, string given, #1233
+  * Fixed : "Undefined array key" and "Attempt to read property on null" errors, #1235
+  * Compat : Statuses Pro (custom Revision statuses)
 
 = 2.16.0 - 26 Nov 2024 =
   * Fixed : Admin menu with count losing their counts html part after renaming menu, #1219
