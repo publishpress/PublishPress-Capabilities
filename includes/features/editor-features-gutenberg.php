@@ -156,7 +156,7 @@
                     <p class="cme-subtext">
                         <?php printf(
                             esc_html__(
-                                'No metaboxed found for %1s. %2s Click here %3s to visit the Posts screen and refresh this page afterwards to load the new metaboxes.',
+                                'No metaboxes found for %1s. %2s Click here %3s to visit the Posts screen and refresh this page afterwards to load the new metaboxes.',
                                 'capability-manager-enhanced'
                             ), 
                             esc_html($type_obj->labels->singular_name), 

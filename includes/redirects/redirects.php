@@ -320,7 +320,7 @@ $fields = [
                 $banner_messages = ['<p>'];
                 $banner_messages[] = esc_html__('Redirect Features allows you to redirect users in a role after Registration, Login or Logout.', 'capability-manager-enhanced');
                 $banner_messages[] = '</p>';
-                $banner_messages[] = '<p><a class="button ppc-checkboxes-documentation-link" href="https://publishpress.com/knowledge-base/redirect-features-screen/"target="blank">' . esc_html__('View Documentation', 'capability-manager-enhanced') . '</a></p>';
+                $banner_messages[] = '<p><a class="button ppc-checkboxes-documentation-link" href="https://publishpress.com/knowledge-base/redirects/"target="blank">' . esc_html__('View Documentation', 'capability-manager-enhanced') . '</a></p>';
                 $banner_title  = __('How to use Redirect Features', 'capability-manager-enhanced');
                 pp_capabilities_sidebox_banner($banner_title, $banner_messages);
                 // add promo sidebar
