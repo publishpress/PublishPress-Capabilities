@@ -30,7 +30,7 @@
                     <?php $table->display(); //Display the table ?>
                 </form>
                 <div class="form-wrap edit-term-notes">
-                    <p><?php esc_html__('Description here.', 'capability-manager-enhanced') ?></p>
+                    <p><?php esc_html_e('Description here.', 'capability-manager-enhanced') ?></p>
                 </div>
             </div>
         </div>
