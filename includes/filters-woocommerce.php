@@ -13,7 +13,12 @@ class CME_WooCommerce {
 		}
 		
 		// Ensure orders can be edited or added based the edit_orders / create_orders capability
-		add_action( '_admin_menu', array( &$this, 'support_order_caps' ), 1 );
+		/**
+		 * I believe this is outdated as order doesn't have it own menu and this implementation
+		 * is causing shop order to lose parent menu (woocommerce) when on order page.
+		 * I'll just comment out till I know the important of this implementation and the alternative
+		 */
+		//add_action( '_admin_menu', array( &$this, 'support_order_caps' ), 1 );
 	}
 	
 	function implement_duplicate_product_cap( $cap ) {
