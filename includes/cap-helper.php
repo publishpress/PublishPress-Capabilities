@@ -311,7 +311,7 @@ class CME_Cap_Helper {
 							$custom_detailed_taxonomy_caps = true;
 							$generated_cap_name = str_replace('_terms', "_{$plural_type}", $replacement_cap_format);
 
-							if (!empty(get_option("cme_migrated_taxonomy_caps"))) {
+							if (!get_option("cme_migrated_taxonomy_caps")) {
 								foreach ($wp_roles->roles as $role_name => $role) {
 									if (!empty($role['capabilities'][$generated_cap_name])) {
 										$_role = get_role($role_name);

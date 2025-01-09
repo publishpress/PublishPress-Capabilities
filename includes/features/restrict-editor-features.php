@@ -393,7 +393,7 @@ class PP_Capabilities_Post_Features {
 
             esc_html__('Top Bar - Right', 'capability-manager-enhanced') => [
                 'save_draft' =>       ['label' => esc_html__('Save Draft'),                        'elements' => '.editor-header__settings .components-button.editor-post-save-draft'],
-                'switch_to_draft' =>  ['label' => esc_html__('Switch to Draft'),                   'elements' => '.editor-header__settings .components-button.editor-post-switch-to-draft'],
+                'switch_to_draft' =>  ['label' => esc_html__('Switch to Draft', 'capability-manager-enhanced'),                   'elements' => '.editor-header__settings .components-button.editor-post-switch-to-draft'],
                 'preview' =>          ['label' => esc_html__('Preview'),                           'elements' => '.editor-header__settings .editor-preview-dropdown, .editor-header__settings .editor-header__post-preview-button'],
                 'view' =>          ['label' => esc_html__('View'),                           'elements' => '.editor-header__settings .editor-header__post-preview-button + a.components-button'],
                 'publish' =>          ['label' => esc_html__('Publish / Update', 'capability-manager-enhanced'), 'elements' => '.editor-header__settings .editor-post-publish-button__button'],
