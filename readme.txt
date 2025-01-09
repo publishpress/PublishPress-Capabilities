@@ -7,7 +7,7 @@ Tags: capabilities, permissions, admin menus, user roles, user role editor
 Requires at least: 5.5
 Requires PHP: 7.2.5
 Tested up to: 6.7
-Stable tag: 2.17.0
+Stable tag: 2.18.0
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -416,6 +416,20 @@ Fixed : Non-administrators with user editing capabilities could add new Administ
 Fixed : Security issue. Please update.
 
 == Changelog ==
+
+= 2.18.0 = - 09 Jan 2025 =
+  * Update : Add a button to reset Admin Menus Order and Name to their old names and order, #1268
+  * Fixed : Detailed Taxonomy Capabilities for Custom Taxonomies Not Granted After Page Reload, #1253
+  * Update : "Registration Redirects" feature redirects admin when new users are added from the admin area, #1269
+  * Fixed : Admin Menus compatibility issue with TaxoPress Pro menus, #1252
+  * Fixed : Issue with Capabilities menu order, #1247
+  * Fixed : Issue with WooCommerce menus, #1255
+  * Fixed : Missing "Orders" on WooCommerce area in "Admin Menus", #1254
+  * Fixed : Tooltip goes behind the sidebar menu, #1260
+  * Update : Change text to "Menu Link", #1251
+  * Update : Added a question mark(?) for deleting new admin menu links, #1257
+  * Update : Brazil Translation Capabilities, #1249
+  * Update : Translation Updates Capabilities 2.17.0, #1246
 
 = 2.17.0 = - 17 Dec 2024 =
   * Feature : Create a new "Redirects" screen, #1201
