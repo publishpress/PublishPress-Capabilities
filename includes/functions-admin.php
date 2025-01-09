@@ -465,6 +465,15 @@ function pp_capabilities_sub_menu_lists($cme_fakefunc = false) {
         'callback'          => $cme_fakefunc ? 'cme_fakefunc' : [$capsman, 'ManageFrontendFeatures'],
         'dashboard_control' => true,
     ];
+    if ($cme_fakefunc) {
+        $sub_menu_pages['admin-menus'] = [
+            'title'             => __('Admin Menus', 'capability-manager-enhanced'),
+            'capabilities'      => $super_user ? 'read' : 'manage_capabilities_admin_menus',
+            'page'              => 'pp-capabilities-admin-menus',
+            'callback'          => 'cme_fakefunc',
+            'dashboard_control' => true,
+        ];
+    }
     $sub_menu_pages['profile-features'] = [
         'title'             => __('Profile Features', 'capability-manager-enhanced'),
         'capabilities'      => $super_user ? 'read' : 'manage_capabilities_profile_features',
@@ -479,15 +488,6 @@ function pp_capabilities_sub_menu_lists($cme_fakefunc = false) {
         'callback'          => $cme_fakefunc ? 'cme_fakefunc' : [$capsman, 'ManageRedirects'],
         'dashboard_control' => true,
     ];
-    if ($cme_fakefunc) {
-        $sub_menu_pages['admin-menus'] = [
-            'title'             => __('Admin Menus', 'capability-manager-enhanced'),
-            'capabilities'      => $super_user ? 'read' : 'manage_capabilities_admin_menus',
-            'page'              => 'pp-capabilities-admin-menus',
-            'callback'          => 'cme_fakefunc',
-            'dashboard_control' => true,
-        ];
-    }
     $sub_menu_pages['nav-menus'] = [
         'title'             => __('Nav Menus', 'capability-manager-enhanced'),
         'capabilities'      => $super_user ? 'read' : 'manage_capabilities_nav_menus',
