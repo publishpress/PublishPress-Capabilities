@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: Plugins - PublishPress Capabilities &#8211; User Role "
 "Access, Editor Permissions, Admin Menus - Stable (latest release)\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/project\n"
-"POT-Creation-Date: 2024-12-17 07:53+0000\n"
-"PO-Revision-Date: 2024-12-17 18:10+0100\n"
+"POT-Creation-Date: 2025-01-09 10:49+0000\n"
+"PO-Revision-Date: 2025-01-09 20:53+0100\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "Language: it_IT\n"
@@ -295,11 +295,11 @@ msgstr ""
 msgid "Admin Menu Restrictions"
 msgstr "Limitazioni menu di amministrazione"
 
-#: includes/functions.php:657
+#: includes/functions.php:662
 msgid "Admin Menu restrictions"
 msgstr "Restrizioni menu amministrazione"
 
-#: includes/functions-admin.php:484 includes-core/CoreAdmin.php:76
+#: includes/functions-admin.php:470 includes-core/CoreAdmin.php:76
 #: includes/roles/class/class-pp-roles-admin.php:526
 msgid "Admin Menus"
 msgstr "Menu amministrazione"
@@ -455,7 +455,7 @@ msgstr ""
 msgid "Block"
 msgstr "Blocco"
 
-#: includes/functions.php:661
+#: includes/functions.php:666
 msgid "Block admin pages by URL"
 msgstr "Bloccare le pagine di amministrazione per URL"
 
@@ -664,11 +664,11 @@ msgstr "Contatto"
 msgid "Contact the PublishPress team"
 msgstr "Contatta il team di PublishPress"
 
-#: includes/functions.php:655
+#: includes/functions.php:660
 msgid "Control Access to Custom Statuses"
 msgstr "Controllo dell'accesso agli stati personalizzati"
 
-#: includes/functions.php:656
+#: includes/functions.php:661
 msgid "Control Access to Visibility Statuses"
 msgstr "Controllo dell'accesso agli stati di visibilità"
 
@@ -797,7 +797,7 @@ msgstr "Cancellazione"
 msgid "Description here."
 msgstr "La descrizione qui."
 
-#: includes/functions.php:690
+#: includes/functions.php:695
 msgid "Detailed documentation is also available on the plugin website."
 msgstr ""
 "Una documentazione dettagliata e disponibile anche sul sito web del plugin."
@@ -906,7 +906,7 @@ msgstr "Commenti editoriali"
 msgid "Enable Classic Editor tab"
 msgstr "Abilita la scheda dell'Editor classico"
 
-#: includes/functions.php:652
+#: includes/functions.php:657
 msgid "Enhance the power of PublishPress Capabilities with the Pro version:"
 msgstr ""
 "Aumenta le potenzialità di PublishPress Capabilities con la versione Pro:"
@@ -1037,7 +1037,7 @@ msgstr ""
 "Esporta le impostazioni del plugin per questo sito in un file .json. Ciò "
 "consente di importare facilmente la configurazione in un altro sito."
 
-#: includes/functions.php:663
+#: includes/functions.php:668
 msgid "Fast, professional support"
 msgstr "Supporto rapido e professionale"
 
@@ -1222,7 +1222,7 @@ msgstr "I ruoli e le capacità propri di ogni plugin installato saranno persi."
 msgid "If you like %s, please leave us a %s rating. Thank you!"
 msgstr "Se sei soddisfatto di %s, lasciaci una valutazione di %s!"
 
-#: includes/functions.php:679
+#: includes/functions.php:684
 msgid "If you need help or have a new feature request, let us know."
 msgstr ""
 "Se hai bisogno di aiuto o hai una nuova richiesta di funzionalità, faccelo "
@@ -1339,7 +1339,7 @@ msgstr "Utenti connessi"
 msgid "Logged Out Users"
 msgstr "Utenti disconnessi"
 
-#: includes/functions.php:506
+#: includes/functions.php:511
 msgid "Login permission denied."
 msgstr "Autorizzazione di accesso negata."
 
@@ -1443,7 +1443,7 @@ msgstr ""
 msgid "Navigation Menu Restrictions"
 msgstr "Limitazioni menu di navigazione"
 
-#: includes/functions.php:674
+#: includes/functions.php:679
 msgid "Need PublishPress Capabilities Support?"
 msgstr "Hai bisogno del supporto di PublishPress Capabilities?"
 
@@ -1489,7 +1489,7 @@ msgstr ""
 msgid "New role created."
 msgstr "Il nuovo ruolo é stato creato."
 
-#: includes/functions.php:664
+#: includes/functions.php:669
 msgid "No ads inside the plugin"
 msgstr "Nessuna pubblicità all'interno del plugin"
 
@@ -1560,7 +1560,7 @@ msgstr "Pagina attributi: Ordini"
 msgid "Page Boxes"
 msgstr "Riquadri pagina"
 
-#: includes/functions.php:907
+#: includes/functions.php:912
 msgid "Page Lists"
 msgstr "Elenchi di pagine"
 
@@ -1633,7 +1633,7 @@ msgid "Profile Feature Restrictions"
 msgstr "Restrizioni alle caratteristiche profilo"
 
 #: includes/functions-admin.php:224 includes/functions-admin.php:388
-#: includes/functions-admin.php:469 includes/settings-ui.php:33
+#: includes/functions-admin.php:478 includes/settings-ui.php:33
 #: includes/roles/class/class-pp-roles-admin.php:525
 msgid "Profile Features"
 msgstr "Caratteristiche del profilo"
@@ -1721,7 +1721,7 @@ msgstr ""
 "Reindirizza gli utenti all'URL che stavano esplorando prima dell'accesso."
 
 #: includes/functions-admin.php:229 includes/functions-admin.php:393
-#: includes/functions-admin.php:476
+#: includes/functions-admin.php:485
 msgid "Redirects"
 msgstr "Reindirizza"
 
@@ -1751,19 +1751,19 @@ msgstr ""
 "Regola le autorizzazioni per gli stati dell'articolo in Edit Flow <em>(Pro)</"
 "em>"
 
-#: includes/functions.php:660
+#: includes/functions.php:665
 msgid "Remove anything in the WordPress admin"
 msgstr "Rimuovi qualsiasi cosa nell'amministrazione di WordPress"
 
-#: includes/functions.php:659
+#: includes/functions.php:664
 msgid "Remove anything on the editing screen"
 msgstr "Rimuovi qualsiasi cosa nella schermata di modifica"
 
-#: includes/functions.php:658
+#: includes/functions.php:663
 msgid "Remove metaboxes on the editing screen"
 msgstr "Rimuovi i metabox nella schermata di modifica"
 
-#: includes/functions.php:681
+#: includes/functions.php:686
 msgid "Request Support"
 msgstr "Richiesta di supporto"
 
@@ -2017,7 +2017,7 @@ msgstr "Slug"
 msgid "Slug already exists"
 msgstr "Questo slug esiste già"
 
-#: includes/functions.php:906
+#: includes/functions.php:911
 msgid "Social Links"
 msgstr "Link ai social"
 
@@ -2032,6 +2032,10 @@ msgstr ""
 #: includes/features/restrict-editor-features.php:423
 msgid "Status & visibility"
 msgstr "Stato e visibilità"
+
+#: includes/features/restrict-editor-features.php:396
+msgid "Switch to Draft"
+msgstr "Converti in bozza"
 
 #: includes/admin.php:1841
 msgid "Sync options to all sites."
@@ -2048,7 +2052,7 @@ msgid_plural "System %s"
 msgstr[0] "Sistema %s"
 msgstr[1] "Sistemi %s"
 
-#: includes/functions.php:662
+#: includes/functions.php:667
 msgid "Target Frontend Features for specific pages"
 msgstr "Caratteristiche di frontend mirate per pagine specifiche"
 
@@ -2348,11 +2352,11 @@ msgstr "Aggiorna"
 msgid "Update Role"
 msgstr "Aggiorna ruolo"
 
-#: includes/functions.php:647
+#: includes/functions.php:652
 msgid "Upgrade to Capabilities Pro"
 msgstr "Aggiorna a Capabilities Pro"
 
-#: includes/functions.php:667 includes-core/admin-features-promo.php:79
+#: includes/functions.php:672 includes-core/admin-features-promo.php:79
 #: includes-core/admin-menus-promo.php:62 includes-core/CoreAdmin.php:46
 #: includes-core/editor-features-promo.php:79
 #: includes-core/frontend-features-promo.php:32
@@ -2414,7 +2418,7 @@ msgstr "Prova utente"
 msgid "View Documentation"
 msgstr "Visualizza la documentazione"
 
-#: includes/functions.php:692
+#: includes/functions.php:697
 msgid "View Knowledge Base"
 msgstr "Vedi la documentazione di base"
 
@@ -2567,7 +2571,7 @@ msgstr ""
 msgid "You cannot remove Manage Capabilities from Administrators"
 msgstr "Non puoi rimuovere la gestione delle capacità per gli amministratori"
 
-#: includes/functions.php:582
+#: includes/functions.php:587
 msgid "You do not have permission to access this page."
 msgstr "Non hai i permessi per accedere a questa pagina."
 
@@ -2786,9 +2790,6 @@ msgstr "Il tuo ruolo"
 
 #~ msgid "Stick to the top of the blog"
 #~ msgstr "Metti in evidenza in cima al blog"
-
-#~ msgid "Switch to draft"
-#~ msgstr "Passa alla bozza"
 
 #~ msgid "Tags"
 #~ msgstr "Tag"
