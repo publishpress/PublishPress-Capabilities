@@ -509,7 +509,7 @@ class Pp_Roles_Admin
             $current['name'] = $current['name'] . ' Copy';
         }
 
-        $save_button_text = ($role_edit) ? esc_html__('Update Role', 'capability-manager-enhanced') : esc_html__('Create Role', 'capability-manager-enhanced');
+        $save_button_text = esc_html__('Save Changes', 'capability-manager-enhanced');
 
         $capabilities_counts = (!empty($current['capabilities'])) ? count($current['capabilities']) : 0;
         $editor_features_counts = (!empty($current['editor_features'])) ? (int) $current['editor_features'] : 0;
