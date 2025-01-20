@@ -10,7 +10,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-01-09 10:49+0000\n"
+"POT-Creation-Date: 2025-01-20 09:15+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: Loco https://localise.biz/\n"
 "X-Domain: capability-manager-enhanced\n"
@@ -56,7 +56,7 @@ msgstr ""
 msgid "%1$s = Capability not granted %2$s"
 msgstr ""
 
-#: includes/features/admin-features.php:305
+#: includes/features/admin-features.php:311
 #: includes/features/editor-features.php:237
 #: includes/features/nav-menus.php:303
 #: includes/features/profile-features.php:238
@@ -65,7 +65,7 @@ msgstr ""
 msgid "%1$s = No change"
 msgstr ""
 
-#: includes/features/admin-features.php:306
+#: includes/features/admin-features.php:312
 #: includes/features/editor-features.php:238
 #: includes/features/nav-menus.php:304
 #: includes/features/profile-features.php:239
@@ -250,7 +250,7 @@ msgstr ""
 msgid "Admin Bar search"
 msgstr ""
 
-#: includes/features/admin-features.php:37
+#: includes/features/admin-features.php:42
 msgid "Admin Feature Restrictions"
 msgstr ""
 
@@ -260,7 +260,7 @@ msgstr ""
 msgid "Admin Features"
 msgstr ""
 
-#: includes/functions-admin.php:379 includes/features/admin-features.php:303
+#: includes/functions-admin.php:379 includes/features/admin-features.php:309
 msgid ""
 "Admin Features allows you to remove elements from the admin area and toolbar."
 msgstr ""
@@ -641,10 +641,6 @@ msgstr ""
 msgid "Create New Role"
 msgstr ""
 
-#: includes/roles/class/class-pp-roles-admin.php:512
-msgid "Create Role"
-msgstr ""
-
 #: includes/admin.php:1835
 msgid "Create this role definition in new (future) sites"
 msgstr ""
@@ -722,10 +718,6 @@ msgstr ""
 msgid "Deletion"
 msgstr ""
 
-#: includes/roles/roles.php:33
-msgid "Description here."
-msgstr ""
-
 #: includes/functions.php:695
 msgid "Detailed documentation is also available on the plugin website."
 msgstr ""
@@ -774,7 +766,7 @@ msgid ""
 "lowest level (0). The Administrator role defaults to level 10."
 msgstr ""
 
-#: includes/features/admin-features.php:239
+#: includes/features/admin-features.php:242
 #: includes/features/editor-features-classic.php:123
 #: includes/features/editor-features-gutenberg.php:120
 msgid "Edit"
@@ -1046,6 +1038,18 @@ msgstr ""
 msgid "Hidden IDs or Classes"
 msgstr ""
 
+#: includes/features/restrict-admin-features.php:37
+msgid "Hide Admin Toolbar"
+msgstr ""
+
+#: includes/features/restrict-admin-features.php:38
+msgid "Hide Dashboard Widgets"
+msgstr ""
+
+#: includes/features/restrict-admin-features.php:36
+msgid "Hide Default Items"
+msgstr ""
+
 #: includes/features/frontend-features/frontend-features-ui.php:72
 msgid "Hide IDs or Classes"
 msgstr ""
@@ -1054,7 +1058,7 @@ msgstr ""
 msgid "Hide Twenty Twenty-Three Credit Footer"
 msgstr ""
 
-#: includes/features/admin-features.php:309
+#: includes/features/admin-features.php:315
 msgid "How to use Admin Features"
 msgstr ""
 
@@ -1271,7 +1275,7 @@ msgstr[1] ""
 msgid "Missing parameters, refresh the page and try again."
 msgstr ""
 
-#: includes/features/restrict-admin-features.php:59
+#: includes/features/restrict-admin-features.php:91
 msgid "Mobile Menu Toggle"
 msgstr ""
 
@@ -1332,8 +1336,8 @@ msgstr ""
 msgid "negate none (add/remove all capabilities normally)"
 msgstr ""
 
-#: includes/features/restrict-admin-features.php:66
-#: includes/features/restrict-admin-features.php:67
+#: includes/features/restrict-admin-features.php:98
+#: includes/features/restrict-admin-features.php:99
 msgid "New"
 msgstr ""
 
@@ -1596,6 +1600,10 @@ msgstr ""
 msgid "Regulate permissions for Edit Flow post statuses <em>(Pro)</em>"
 msgstr ""
 
+#: includes/features/restrict-admin-features.php:195
+msgid "Remove Admin Toolbar"
+msgstr ""
+
 #: includes/functions.php:665
 msgid "Remove anything in the WordPress admin"
 msgstr ""
@@ -1659,7 +1667,7 @@ msgstr ""
 msgid "Revise"
 msgstr ""
 
-#: includes/features/restrict-admin-features.php:64
+#: includes/features/restrict-admin-features.php:96
 msgid "Right bar"
 msgstr ""
 
@@ -1720,6 +1728,10 @@ msgstr ""
 
 #: includes/backup-handler.php:128
 msgid "Roles and Capabilities restored from selected auto-backup."
+msgstr ""
+
+#: includes/roles/class/class-pp-roles-admin.php:512
+msgid "Save Changes"
 msgstr ""
 
 #: includes/features/frontend-features/frontend-features-ui.php:152
@@ -1925,7 +1937,7 @@ msgstr ""
 msgid "Text settings"
 msgstr ""
 
-#: includes/features/restrict-admin-features.php:83
+#: includes/features/restrict-admin-features.php:115
 msgid "Thank you for creating with WordPress"
 msgstr ""
 
@@ -2090,8 +2102,7 @@ msgstr ""
 msgid "Title:"
 msgstr ""
 
-#: includes/features/admin-features.php:96
-#: includes/features/admin-features.php:115 includes/features/nav-menus.php:127
+#: includes/features/admin-features.php:162 includes/features/nav-menus.php:127
 #: includes/features/nav-menus.php:147
 #: includes/features/profile-features.php:103
 #: includes/features/profile-features.php:122
@@ -2145,10 +2156,6 @@ msgstr ""
 msgid "Update"
 msgstr ""
 
-#: includes/roles/class/class-pp-roles-admin.php:512
-msgid "Update Role"
-msgstr ""
-
 #: includes/functions.php:652
 msgid "Upgrade to Capabilities Pro"
 msgstr ""
@@ -2161,8 +2168,8 @@ msgid "Upgrade to Pro"
 msgstr ""
 
 #: includes/admin.php:1526 includes/admin.php:1527 includes/admin.php:1528
-#: includes/features/admin-features.php:305
-#: includes/features/admin-features.php:306
+#: includes/features/admin-features.php:311
+#: includes/features/admin-features.php:312
 #: includes/features/editor-features.php:237
 #: includes/features/editor-features.php:238
 #: includes/features/nav-menus.php:303 includes/features/nav-menus.php:304
@@ -2188,11 +2195,11 @@ msgstr ""
 msgid "Use the sidebar settings to allow this to be controlled independently."
 msgstr ""
 
-#: includes/features/restrict-admin-features.php:65
+#: includes/features/restrict-admin-features.php:97
 msgid "User actions"
 msgstr ""
 
-#: includes/features/restrict-admin-features.php:68
+#: includes/features/restrict-admin-features.php:100
 msgid "User Display Name"
 msgstr ""
 
@@ -2201,7 +2208,7 @@ msgstr ""
 msgid "User Testing"
 msgstr ""
 
-#: includes/admin.php:1570 includes/features/admin-features.php:308
+#: includes/admin.php:1570 includes/features/admin-features.php:314
 #: includes/features/editor-features.php:240
 #: includes/features/nav-menus.php:306
 #: includes/features/profile-features.php:241
@@ -2225,7 +2232,7 @@ msgid ""
 "%1$sClick here to fix this now%2$s."
 msgstr ""
 
-#: includes/features/restrict-admin-features.php:133
+#: includes/features/restrict-admin-features.php:165
 msgid "Welcome panel"
 msgstr ""
 
@@ -2263,11 +2270,11 @@ msgstr ""
 msgid "WordPress Core Capabilities"
 msgstr ""
 
-#: includes/features/restrict-admin-features.php:61
+#: includes/features/restrict-admin-features.php:93
 msgid "WordPress External Links"
 msgstr ""
 
-#: includes/features/restrict-admin-features.php:60
+#: includes/features/restrict-admin-features.php:92
 msgid "WordPress Logo"
 msgstr ""
 
@@ -2281,7 +2288,7 @@ msgstr ""
 msgid "WPML integration to mirror permissions to translations <em>(Pro)</em>"
 msgstr ""
 
-#: includes/features/restrict-admin-features.php:69
+#: includes/features/restrict-admin-features.php:101
 msgid "Yoast SEO"
 msgstr ""
 
