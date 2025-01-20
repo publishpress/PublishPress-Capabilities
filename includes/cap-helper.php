@@ -238,14 +238,16 @@ class CME_Cap_Helper {
 		}
 		
 		// count the number of taxonomies that use each capability
-		foreach( $wp_taxonomies as $taxonomy => $tx_obj ) {
+		foreach ( $wp_taxonomies as $taxonomy => $tx_obj ) {
 			$this_tx_caps = (array) $tx_obj->cap;
 
-			foreach( $this_tx_caps as $cap_name ) {
-				if ( ! isset( $this->all_taxonomy_caps[$cap_name] ) ) {
-					$this->all_taxonomy_caps[$cap_name] = 1;
-				} else {
-					$this->all_taxonomy_caps[$cap_name]++;
+			foreach ( $this_tx_caps as $cap_name ) {
+				if ( is_scalar( $cap_name ) ) { 
+					if ( ! isset( $this->all_taxonomy_caps[$cap_name] ) ) {
+						$this->all_taxonomy_caps[$cap_name] = 1;
+					} else {
+						$this->all_taxonomy_caps[$cap_name]++;
+					}
 				}
 			}
 		}
