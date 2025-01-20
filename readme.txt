@@ -425,6 +425,7 @@ Fixed : Security issue. Please update.
   * Fixed : Menu conflict with Learndash on a multisite, #1286
   * Update : Replace "Update Role" with "Save Changes", #1283
   * Fixed : Roles bulk delete not working, #1259
+  * Fixed : PHP Fatal error: Uncaught TypeError: Illegal offset type in isset or empty, #1290
   * Update : Translation Updates for Capabilities 2.18.0, #1278
 
 = 2.18.0 = - 09 Jan 2025 =
