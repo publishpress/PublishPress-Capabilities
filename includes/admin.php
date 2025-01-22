@@ -623,9 +623,18 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 									continue;
 								}
 
-								$tip = ( isset( $cap_tips[$prop] ) ) ? $cap_tips[$prop] : '';
 								$th_class = ( 'taxonomy' == $item_type ) ? 'term-cap' : 'post-cap';
-								echo "<th style='text-align:center;' title='" . esc_attr($tip) . "' class='" . esc_attr($th_class) . "'>";
+
+								$tip_text = '';
+								if ( isset( $cap_tips[$prop] ) ) {
+									$th_class .= ' ppc-tool-tip';
+									$tip_text = '<div class="tool-tip-text">
+										<p>'. $cap_tips[$prop] .'</p>
+										<i></i>
+									</div>';
+								}
+
+								echo "<th style='text-align:center;' class='" . esc_attr($th_class) . "'>" . $tip_text;
 
 								if ( ( 'delete' != $prop ) || ( 'taxonomy' != $item_type ) || cme_get_detailed_taxonomies() ) {
 									echo str_replace('_', '<br />', esc_html(ucwords($prop)));
