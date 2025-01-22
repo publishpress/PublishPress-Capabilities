@@ -422,6 +422,7 @@ Fixed : Security issue. Please update.
   * Update : Add Admin Menus sidebar settings to Show/Hide sub-menus, #1258
   * Fixed : Roles bulk delete not working, #1259
   * Update : Add Sidebar tabs for Admin Features, #1126
+  * Update : Rename the "Reading" tab to "Private", #1295
   * Fixed : Menu conflict with Learndash on a multisite, #1286
   * Update : Replace "Update Role" with "Save Changes", #1283
   * Fixed : Roles bulk delete not working, #1259

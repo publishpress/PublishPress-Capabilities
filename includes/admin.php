@@ -237,7 +237,7 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 
 			$cap_type_names = array(
 				'' => __( '&nbsp;', 'capability-manager-enhanced' ),
-				'read' => __( 'Reading', 'capability-manager-enhanced' ),
+				'read' => __( 'Private', 'capability-manager-enhanced' ),
 				'edit' => __( 'Editing', 'capability-manager-enhanced' ),
 				'delete' => __( 'Deletion', 'capability-manager-enhanced' ),
                 'taxonomies' => __( 'Taxonomies', 'capability-manager-enhanced' ),
@@ -1268,7 +1268,7 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 
 						<div>
 						<span class="cme-subtext">
-							<?php esc_html_e('The following entries have no effect. Please assign desired capabilities on the Editing / Deletion / Reading tabs.', 'capability-manager-enhanced');?>
+							<?php esc_html_e('The following entries have no effect. Please assign desired capabilities on the Editing / Deletion / Private tabs.', 'capability-manager-enhanced');?>
 						</span>
 						</div>
 
