@@ -425,6 +425,7 @@ Fixed : Security issue. Please update.
   * Update : Rename the "Reading" tab to "Private", #1295
   * Update : Improve tooltips over table headers, #1296
   * Update : Add examples for Editor Features, #1127
+  * Update : Only enforce pp_administer_content when Permission plugin is active, #1301
   * Fixed : Menu conflict with Learndash on a multisite, #1286
   * Update : Replace "Update Role" with "Save Changes", #1283
   * Fixed : Roles bulk delete not working, #1259
