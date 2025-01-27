@@ -417,7 +417,7 @@ Fixed : Security issue. Please update.
 
 == Changelog ==
 
-= 2.18.2 = - 20 Jan 2025 =
+= 2.18.2 = - 27 Jan 2025 =
   * Update : Add Admin Menus sidebar settings to Show/Hide menu slugs, #1274
   * Update : Add Admin Menus sidebar settings to Show/Hide sub-menus, #1258
   * Fixed : Roles bulk delete not working, #1259
