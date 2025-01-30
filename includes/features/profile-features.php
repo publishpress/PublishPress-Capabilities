@@ -216,6 +216,7 @@ if (get_option('cme_profile_features_auto_redirect')) {
                                     <input type="hidden" name="capsman_profile_features_elements_order" class="capsman_profile_features_elements_order" value=""/>
                                     <input type="submit" name="profile-features-submit"
                                            value="<?php esc_attr_e('Save Changes');?>"
+                                            style="float: right; margin-top: 10px;"
                                            class="button-primary ppc-profile-features-submit"/>
                                 </td>
                             </tr>

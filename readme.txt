@@ -7,7 +7,7 @@ Tags: capabilities, permissions, admin menus, user roles, user role editor
 Requires at least: 5.5
 Requires PHP: 7.2.5
 Tested up to: 6.7
-Stable tag: 2.18.0
+Stable tag: 2.18.2
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -416,6 +416,23 @@ Fixed : Non-administrators with user editing capabilities could add new Administ
 Fixed : Security issue. Please update.
 
 == Changelog ==
+
+= 2.18.2 = - 30 Jan 2025 =
+  * Update : Add Admin Menus sidebar settings to Show/Hide menu slugs, #1274
+  * Update : Add Admin Menus sidebar settings to Show/Hide sub-menus, #1258
+  * Update : Make sure Admin Menu slug display represent their url path in WordPress menu, #1302
+  * Update : Add placeholder text for Admin Menus with empty label text, #1300
+  * Fixed : Roles bulk delete not working, #1259
+  * Update : Add Sidebar tabs for Admin Features, #1126
+  * Update : Rename the "Reading" tab to "Private", #1295
+  * Update : Improve tooltips over table headers, #1296
+  * Update : Add examples for Editor Features, #1127
+  * Update : Only enforce pp_administer_content when Permission plugin is active, #1301
+  * Fixed : Menu conflict with Learndash on a multisite, #1286
+  * Update : Replace "Update Role" with "Save Changes", #1283
+  * Fixed : Save Changes button in wrong place, #1303
+  * Fixed : PHP Fatal error: Uncaught TypeError: Illegal offset type in isset or empty, #1290
+  * Update : Translation Updates for Capabilities 2.18.0, #1278
 
 = 2.18.0 = - 09 Jan 2025 =
   * Update : Add a button to reset Admin Menus Order and Name to their old names and order, #1268

@@ -34,7 +34,7 @@ $icon_list                  = (array)PP_Capabilities_Admin_Features::elementLayo
 $title_lists                = (array)PP_Capabilities_Admin_Features::elementLayoutItemTitles();
 $section_actions            = (array)PP_Capabilities_Admin_Features::elementLayoutItemActions();
 
-$active_tab_slug = (!empty($_REQUEST['pp_caps_tab'])) ? sanitize_key($_REQUEST['pp_caps_tab']) : 'headerandfooter';
+$active_tab_slug = (!empty($_REQUEST['pp_caps_tab'])) ? sanitize_key($_REQUEST['pp_caps_tab']) : 'admintoolbar';
 ?>
 
     <div class="wrap publishpress-caps-manage pressshack-admin-wrapper pp-capability-menus-wrapper admin-features">
