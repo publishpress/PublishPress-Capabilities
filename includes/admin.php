@@ -1815,7 +1815,7 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 			<?php
 			$save_caption = (in_array(sanitize_key(get_locale()), ['en_EN', 'en_US'])) ? 'Save Capabilities' : esc_html__('Save Changes');
 			?>
-			<input type="submit" name="SaveRole" value="<?php echo esc_attr($save_caption);?>" class="button-primary" /> &nbsp;
+			<input type="submit" name="SaveRole" value="<?php echo esc_attr($save_caption);?>" class="button-primary" style="float: right;" /> &nbsp;
 		</p>
 
 		</div><!-- .pp-column-left -->
