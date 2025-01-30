@@ -237,7 +237,7 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 
 			$cap_type_names = array(
 				'' => __( '&nbsp;', 'capability-manager-enhanced' ),
-				'read' => __( 'Reading', 'capability-manager-enhanced' ),
+				'read' => __( 'Private', 'capability-manager-enhanced' ),
 				'edit' => __( 'Editing', 'capability-manager-enhanced' ),
 				'delete' => __( 'Deletion', 'capability-manager-enhanced' ),
                 'taxonomies' => __( 'Taxonomies', 'capability-manager-enhanced' ),
@@ -623,9 +623,18 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 									continue;
 								}
 
-								$tip = ( isset( $cap_tips[$prop] ) ) ? $cap_tips[$prop] : '';
 								$th_class = ( 'taxonomy' == $item_type ) ? 'term-cap' : 'post-cap';
-								echo "<th style='text-align:center;' title='" . esc_attr($tip) . "' class='" . esc_attr($th_class) . "'>";
+
+								$tip_text = '';
+								if ( isset( $cap_tips[$prop] ) ) {
+									$th_class .= ' ppc-tool-tip';
+									$tip_text = '<div class="tool-tip-text">
+										<p>'. $cap_tips[$prop] .'</p>
+										<i></i>
+									</div>';
+								}
+
+								echo "<th style='text-align:center;' class='" . esc_attr($th_class) . "'>" . $tip_text;
 
 								if ( ( 'delete' != $prop ) || ( 'taxonomy' != $item_type ) || cme_get_detailed_taxonomies() ) {
 									echo str_replace('_', '<br />', esc_html(ucwords($prop)));
@@ -1268,7 +1277,7 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 
 						<div>
 						<span class="cme-subtext">
-							<?php esc_html_e('The following entries have no effect. Please assign desired capabilities on the Editing / Deletion / Reading tabs.', 'capability-manager-enhanced');?>
+							<?php esc_html_e('The following entries have no effect. Please assign desired capabilities on the Editing / Deletion / Private tabs.', 'capability-manager-enhanced');?>
 						</span>
 						</div>
 
@@ -1806,7 +1815,7 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 			<?php
 			$save_caption = (in_array(sanitize_key(get_locale()), ['en_EN', 'en_US'])) ? 'Save Capabilities' : esc_html__('Save Changes');
 			?>
-			<input type="submit" name="SaveRole" value="<?php echo esc_attr($save_caption);?>" class="button-primary" /> &nbsp;
+			<input type="submit" name="SaveRole" value="<?php echo esc_attr($save_caption);?>" class="button-primary" style="float: right;" /> &nbsp;
 		</p>
 
 		</div><!-- .pp-column-left -->

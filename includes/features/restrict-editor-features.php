@@ -196,7 +196,6 @@ class PP_Capabilities_Post_Features {
                     break;
 
                 case 'author':
-                case 'excerpt':
                 case 'trackbacks':
                 case 'comments':
                 case 'revisions':

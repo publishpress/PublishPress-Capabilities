@@ -297,6 +297,9 @@ $active_tab_text = is_object($active_tab_type_obj)
     .pp-capability-menus-wrapper.editor-features #ppc-capabilities-wrapper .ppc-capabilities-content > div {
         padding-bottom: 0 !important;
     }
+    .ppc-flex-item {
+        max-width: 350px;
+    }
 </style>
 
 <script type="text/javascript">

@@ -473,6 +473,10 @@ table.pp-capabilities-cb-key td.pp-cap-x {
     opacity: 90%;
 }
 
+th.ppc-tool-tip {
+  display: table-cell;
+}
+
 .ppc-tool-tip .tool-tip-text {
     display: none;
     min-width: 250px; 

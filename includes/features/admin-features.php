@@ -29,7 +29,12 @@ $default_role = $capsman->get_last_role();
 $disabled_admin_items = !empty(get_option('capsman_disabled_admin_features')) ? (array)get_option('capsman_disabled_admin_features') : [];
 $disabled_admin_items = array_key_exists($default_role, $disabled_admin_items) ? (array)$disabled_admin_items[$default_role] : [];
 
-$admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
+$admin_features_elements    = PP_Capabilities_Admin_Features::elementsLayout();
+$icon_list                  = (array)PP_Capabilities_Admin_Features::elementLayoutItemIcons();
+$title_lists                = (array)PP_Capabilities_Admin_Features::elementLayoutItemTitles();
+$section_actions            = (array)PP_Capabilities_Admin_Features::elementLayoutItemActions();
+
+$active_tab_slug = (!empty($_REQUEST['pp_caps_tab'])) ? sanitize_key($_REQUEST['pp_caps_tab']) : 'admintoolbar';
 ?>
 
     <div class="wrap publishpress-caps-manage pressshack-admin-wrapper pp-capability-menus-wrapper admin-features">
@@ -38,6 +43,7 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
 
         <form method="post" id="ppc-admin-features-form" action="admin.php?page=pp-capabilities-admin-features">
             <?php wp_nonce_field('pp-capabilities-admin-features'); ?>
+            <input type="hidden" name="pp_caps_tab" value="<?php echo esc_attr($active_tab_slug);?>" />
 
             <div class="pp-columns-wrapper pp-enable-sidebar clear">
                 <div class="pp-column-left">
@@ -78,219 +84,219 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
 		                                    <div class="pp-capability-menus-wrap">
 		                                        <div id="pp-capability-menus-general"
 		                                             class="pp-capability-menus-content editable-role" style="display: block;">
-	
-		                                            <table
-		                                                class="wp-list-table widefat striped pp-capability-menus-select">
-                                                        <thead>
-                                                            <tr class="ppc-menu-row parent-menu">
 
-                                                                <td class="restrict-column ppc-menu-checkbox">
-                                                                    <input id="check-all-item"
-                                                                        class="check-item check-all-menu-item"
-                                                                        type="checkbox"/>
-                                                                </td>
-                                                                <td class="menu-column ppc-menu-item">
-                                                                    <label for="check-all-item">
-                                                                <span class="menu-item-link check-all-menu-link">
-                                                                    <strong>
-                                                                    <?php esc_html_e('Toggle all', 'capability-manager-enhanced'); ?>
-                                                                    </strong>
-                                                                </span></label>
-                                                                </td>
-
-                                                            </tr>
-                                                        </thead>
-                                                        <tfoot>
-                                                            <tr class="ppc-menu-row parent-menu">
-
-                                                                <td class="restrict-column ppc-menu-checkbox">
-                                                                    <input id="check-all-item-2"
-                                                                        class="check-item check-all-menu-item"
-                                                                        type="checkbox"/>
-                                                                </td>
-                                                                <td class="menu-column ppc-menu-item">
-                                                                    <label for="check-all-item-2">
-                                                                    <span class="menu-item-link check-all-menu-link">
-                                                                    <strong>
-                                                                        <?php esc_html_e('Toggle all', 'capability-manager-enhanced'); ?>
-                                                                    </strong>
-                                                                    </span>
-                                                                    </label>
-                                                                </td>
-
-                                                            </tr>
-                                                        </tfoot>
-
-                                                        <tbody>
-
-                                                        <?php
-                                                        $icon_list = (array)PP_Capabilities_Admin_Features::elementLayoutItemIcons();
-                                                        $title_lists = apply_filters('pp_capabilities_admin_features_titles', []);
-                                                        $sn = 0;
-                                                        foreach ($admin_features_elements as $section_title => $section_elements) :
-                                                            $sn++;
-                                                            if (is_array($title_lists) && isset($title_lists[$section_title])) {
-                                                                $translated_title = $title_lists[$section_title];
-                                                            } else {
-                                                                $translated_title = $section_title;
-                                                            }
-
-                                                            $section_slug = strtolower(ppc_remove_non_alphanumeric_space_characters($section_title));
-                                                            $icon_name    = 'open-folder';//isset($icon_list[$section_slug]) ? $icon_list[$section_slug] : '<i class="dashicons dashicons-arrow-right"></i>';
-                                                            ?>
-
-                                                            <tr class="ppc-menu-row parent-menu <?php echo esc_attr($section_slug); ?>">
-		                                                        <?php if ($section_slug === 'admintoolbar') :
-		                                                            $restrict_value = 'ppc_adminbar||admintoolbar';
-		                                                       	?>
-		                                                        <td class="features-section-header restrict-column ppc-menu-checkbox" style="text-align: left;" colspan="2">
-		                                                            <input
-		                                                                    id="check-item-<?php echo (int) $sn; ?>"
-		                                                                    class="check-item" type="checkbox"
-		                                                                    name="capsman_disabled_admin_features[]"
-		                                                                    value="<?php echo esc_attr($restrict_value); ?>"
-		                                                                    <?php echo (in_array($restrict_value, $disabled_admin_items)) ? 'checked' : ''; ?>/>
-		                                                                    <label for="check-item-<?php echo (int) $sn; ?>">
-		                                                            <strong class="menu-column ppc-menu-item menu-item-link<?php echo (in_array($restrict_value,
-		                                                                            $disabled_admin_items)) ? ' restricted' : ''; ?>">
-		                                                                <i class="dashicons dashicons-<?php echo esc_attr($icon_name) ?>"></i> <?php echo esc_html($translated_title); ?>
-		                                                            </strong>
-		                                                        </label>
-		                                                        </td>
-		                                                        <?php else : ?>
-		                                                                <td class="features-section-header" colspan="2">
-		                                                                    <strong><i
-		                                                                            class="dashicons dashicons-<?php echo esc_attr($icon_name) ?>"></i> <?php echo esc_html($translated_title); ?>
-		                                                                    </strong>
-		                                                                </td>
-		                                                        <?php endif; ?>
-
-                                                            </tr>
-                                                            <?php do_action("pp_capabilities_admin_features_{$section_slug}_before_subsection_tr"); ?>
-                                                            <?php
-                                                            foreach ($section_elements as $section_id => $section_array) :
-                                                                $sn++;
-                                                                if (!$section_id) {
-                                                                    continue;
-                                                                }
-                                                                $item_name      = $section_array['label'];
-                                                                $item_action    = $section_array['action'];
-                                                                $restrict_value = $item_action.'||'.$section_id;
-                                                                if($item_action === 'ppc_dashboard_widget'){
-                                                                    $restrict_value .= '||'.$section_array['context'];
-                                                                }
-
-                                                                if (isset($section_array['custom_element']) && ($section_array['custom_element'] === true)) {
-                                                                    $additional_class = 'custom-item-' . $section_array['button_data_id'];
-                                                                } else {
-                                                                    $additional_class = '';
-                                                                }
-                                                                ?>
-
-                                                                <tr class="ppc-menu-row child-menu <?php echo esc_attr($section_slug); ?> <?php echo esc_attr($additional_class); ?>">
-
-                                                                    <td class="restrict-column ppc-menu-checkbox">
-                                                                        <input
-                                                                            id="check-item-<?php echo (int) $sn; ?>"
-                                                                            class="check-item" type="checkbox"
-                                                                            name="capsman_disabled_admin_features[]"
-                                                                            value="<?php echo esc_attr($restrict_value); ?>"
-                                                                            <?php echo (in_array($restrict_value, $disabled_admin_items)) ? 'checked' : ''; ?>/>
-                                                                    </td>
-                                                                    <?php if (isset($section_array['custom_element']) && ($section_array['custom_element'] === true)) : ?>
-                                                                        <td class="menu-column ppc-menu-item custom-item-row ppc-flex">
-                                                                            <div class="ppc-flex-item">
-                                                                                <div>
-                                                                                    <label for="check-item-<?php echo (int) $sn; ?>">
-                                                                                        <span
-                                                                                            class="menu-item-link<?php echo (in_array($restrict_value,
-                                                                                                $disabled_admin_items)) ? ' restricted' : ''; ?>">
-                                                                                        <strong>
-                                                                                            <?php
-                                                                                            if ((isset($section_array['step']) && $section_array['step'] > 0) && isset($section_array['parent']) && !empty($section_array['parent'])) {
-                                                                                                $step_margin = $section_array['step'] * 20;
-                                                                                                echo '<span style="margin-left: ' . (int) $step_margin . 'px;"></span>';
-                                                                                        echo ' <i class="dashicons dashicons-arrow-right"></i> ';
-                                                                                            } else {
-                                                                                                if (isset($icon_list[$section_id])) {
-                                                                                                    echo '<i class="dashicons dashicons-' . esc_attr($icon_list[$section_id]) . '"></i>';
-                                                                                                } else {
-                                                                                                    echo '<i class="dashicons dashicons-arrow-right"></i>';
-                                                                                                }
-                                                                                            }
-                                                                                            ?>
-                                                                                            <?php echo esc_html($section_array['element_label']); ?>
-                                                                                        </strong></span>
-                                                                                    </label>
-                                                                                </div>
-                                                                                <div class="custom-item-output">
-                                                                                    <div class="custom-item-display">
-                                                                                        <?php echo esc_html($section_array['element_items']); ?>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="ppc-flex-item">
-                                                                                <div class="button view-custom-item"><?php esc_html_e('View'); ?></div>
-                                                                                    <div class="button edit-features-custom-item <?php echo esc_attr($section_array['edit_class']); ?>" 
-                                                                                        data-section="<?php echo esc_attr($section_slug); ?>"
-                                                                                        data-label="<?php echo esc_attr($section_array['label']); ?>"
-                                                                                        data-element="<?php echo esc_attr($section_array['element_items']); ?>"
-                                                                                        data-id="<?php echo esc_attr($section_array['button_data_id']); ?>">
-                                                                                        <?php esc_html_e('Edit', 'capability-manager-enhanced'); ?>
-                                                                                    </div>
-                                                                                    <div 
-                                                                                        class="button <?php echo esc_attr($section_array['button_class']); ?> feature-red"
-                                                                                        data-id="<?php echo esc_attr($section_array['button_data_id']); ?>">
-                                                                                        <?php esc_html_e('Delete'); ?>    
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </td>
-                                                                    <?php else : ?>
-                                                                        <td class="menu-column ppc-menu-item">
-
-                                                                            <label for="check-item-<?php echo (int) $sn; ?>">
-                                                                                <span
-                                                                                    class="menu-item-link<?php echo (in_array($restrict_value,
-                                                                                        $disabled_admin_items)) ? ' restricted' : ''; ?>">
-                                                                                <strong>
-                                                                                    <?php
-                                                                                    if ((isset($section_array['step']) && $section_array['step'] > 0) && isset($section_array['parent']) && !empty($section_array['parent'])) {
-                                                                                        $step_margin = $section_array['step'] * 20;
-                                                                                        echo '<span style="margin-left: ' . (int) $step_margin . 'px;"></span>';
-                                                                                echo ' <i class="dashicons dashicons-arrow-right"></i> ';
-                                                                                    } else {
-                                                                                        if (isset($icon_list[$section_id])) {
-                                                                                            echo '<i class="dashicons dashicons-' . esc_attr($icon_list[$section_id]) . '"></i>';
-                                                                                        } else {
-                                                                                            echo '<i class="dashicons dashicons-arrow-right"></i>';
-                                                                                        }
-                                                                                    }
-                                                                                    ?>
-                                                                                    <?php echo esc_html($item_name); ?>
-                                                                                </strong></span>
-                                                                            </label>
-                                                                        </td>
-                                                                    <?php endif; ?>
-
-                                                                </tr>
-
+                                                    <div id="ppc-capabilities-wrapper" class="postbox">
+                                                        <div class="ppc-capabilities-tabs">
+                                                            <ul>
                                                                 <?php
-                                                            endforeach; // $section_elements subsection loop
-                                                        endforeach; // $admin_features_elements section loop
-                                                		?>
-		                                                <?php do_action('pp_capabilities_admin_features_after_table_tr'); ?>
-		                                                </tbody>
-		                                            </table>
+                                                                    $sn = 0;
+                                                                    foreach ($admin_features_elements as $section_title => $section_elements) {
+                                                                        $sn++;
+                                                                        if (is_array($title_lists) && isset($title_lists[$section_title])) {
+                                                                            $translated_title = $title_lists[$section_title];
+                                                                        } else {
+                                                                            $translated_title = $section_title;
+                                                                        }
+
+                                                                        $feature_action = is_array($section_actions) && isset($section_actions[$section_title]) ? $section_actions[$section_title] : '';
+
+                                                                        $section_slug = strtolower(ppc_remove_non_alphanumeric_space_characters($section_title));
+
+                                                                        $active_class = ($section_slug === $active_tab_slug) ? 'ppc-capabilities-tab-active' : '';
+
+                                                                        $disabled_count  = count(PP_Capabilities_Admin_Features::adminFeaturesRestrictedElements($disabled_admin_items, $feature_action));
+
+                                                                        $count_html = ($disabled_count > 0) ? '('. $disabled_count .')' : '';
+                                                                        ?>
+                                                                        <li data-slug="<?php echo esc_attr($section_slug); ?>" 
+                                                                            data-content="cme-cap-type-tables-<?php echo esc_attr($section_slug); ?>" 
+                                                                            data-name="<?php echo esc_attr($translated_title); ?>"
+                                                                            class="<?php echo esc_attr($active_class); ?>"
+                                                                            style="display: flex;justify-content: space-between;">
+                                                                            <div>
+                                                                                <?php echo esc_html($translated_title); ?>
+                                                                            </div> 
+                                                                            <div style="color:#a00;">
+                                                                                <?php echo esc_html($count_html); ?>
+                                                                            </div>
+                                                                        </li>
+                                                                        <?php
+                                                                    }
+                                                                ?>
+                                                            </ul>
+                                                        </div>
+
+                                                        <div class="ppc-capabilities-content admin-features-content">
+                                                            <?php
+                                                            foreach ($admin_features_elements as $section_title => $section_elements) :
+                                                                $sn++;
+                                                                if (is_array($title_lists) && isset($title_lists[$section_title])) {
+                                                                    $translated_title = $title_lists[$section_title];
+                                                                } else {
+                                                                    $translated_title = $section_title;
+                                                                }
+
+                                                                $section_slug = strtolower(ppc_remove_non_alphanumeric_space_characters($section_title));
+
+                                                                $active_style = ($section_slug === $active_tab_slug) ? '' : 'display:none;';
+                                                                ?>
+                                                                <div id="cme-cap-type-tables-<?php echo esc_attr($section_slug); ?>" style="<?php echo esc_attr($active_style); ?>">
+
+                                                                    <h3 class="admin-features-title">
+                                                                        <?php echo esc_html($translated_title);?>
+                                                                    </h3>
+
+                                                                    <table class="wp-list-table widefat fixed striped pp-capability-menus-select section-table">
+                                                                        <?php foreach(['thead', 'tfoot'] as $tag_name):?>
+                                                                            <<?php echo esc_attr($tag_name);?>>
+                                                                                <tr class="ppc-menu-row parent-menu">
+                                                                                    <th class="restrict-column ppc-menu-checkbox">
+                                                                                        <input id="check-all-item"
+                                                                                            class="check-item check-all-menu-item"
+                                                                                            type="checkbox"  data-pp_type="<?php echo esc_attr($section_slug);?>"/>
+                                                                                    </th>
+                                                                                    <th class="menu-column ppc-menu-item">
+                                                                                        <label for="check-all-item">
+                                                                                            <span class="menu-item-link check-all-menu-link">
+                                                                                                <strong>
+                                                                                                <?php esc_html_e('Toggle all', 'capability-manager-enhanced'); ?>
+                                                                                                </strong>
+                                                                                            </span>
+                                                                                        </label>
+                                                                                    </th>
+                                                                                </tr>
+                                                                            </<?php echo esc_attr($tag_name);?>>
+                                                                        <?php endforeach;?>
+
+                                                                        <tbody>
+                                                                            <?php do_action("pp_capabilities_admin_features_{$section_slug}_before_subsection_tr"); ?>
+                                                                            <?php
+                                                                            foreach ($section_elements as $section_id => $section_array) :
+                                                                                $sn++;
+                                                                                if (!$section_id) {
+                                                                                    continue;
+                                                                                }
+                                                                                $item_name      = $section_array['label'];
+                                                                                $item_action    = $section_array['action'];
+                                                                                $restrict_value = $item_action.'||'.$section_id;
+                                                                                if($item_action === 'ppc_dashboard_widget'){
+                                                                                    $restrict_value .= '||'.$section_array['context'];
+                                                                                }
+
+                                                                                if (isset($section_array['custom_element']) && ($section_array['custom_element'] === true)) {
+                                                                                    $additional_class = 'custom-item-' . $section_array['button_data_id'];
+                                                                                } else {
+                                                                                    $additional_class = '';
+                                                                                }
+                                                                                ?>
+                                                                                <tr class="ppc-menu-row child-menu <?php echo esc_attr($section_slug); ?> <?php echo esc_attr($additional_class); ?>">
+                                                                                    <td class="restrict-column ppc-menu-checkbox">
+                                                                                        <input
+                                                                                            id="check-item-<?php echo (int) $sn; ?>"
+                                                                                            class="check-item" type="checkbox"
+                                                                                            name="capsman_disabled_admin_features[]"
+                                                                                            value="<?php echo esc_attr($restrict_value); ?>"
+                                                                                            <?php echo (in_array($restrict_value, $disabled_admin_items)) ? 'checked' : ''; ?>/>
+                                                                                    </td>
+
+                                                                                    <?php if (isset($section_array['custom_element']) && ($section_array['custom_element'] === true)) : ?>
+                                                                                        <td class="menu-column ppc-menu-item custom-item-row ppc-flex">
+                                                                                            <div class="ppc-flex-item">
+                                                                                                <div>
+                                                                                                    <label for="check-item-<?php echo (int) $sn; ?>">
+                                                                                                        <span
+                                                                                                            class="menu-item-link<?php echo (in_array($restrict_value,
+                                                                                                                    $disabled_admin_items)) ? ' restricted' : ''; ?>">
+                                                                                                            <strong>
+                                                                                                                <?php
+                                                                                                                if ((isset($section_array['step']) && $section_array['step'] > 0) && isset($section_array['parent']) && !empty($section_array['parent'])) {
+                                                                                                                    $step_margin = $section_array['step'] * 20;
+                                                                                                                    echo '<span style="margin-left: ' . (int) $step_margin . 'px;"></span>';
+                                                                                                            echo ' <i class="dashicons dashicons-arrow-right"></i> ';
+                                                                                                                } else {
+                                                                                                                    if (isset($icon_list[$section_id])) {
+                                                                                                                        echo '<i class="dashicons dashicons-' . esc_attr($icon_list[$section_id]) . '"></i>';
+                                                                                                                    } else {
+                                                                                                                        echo '<i class="dashicons dashicons-arrow-right"></i>';
+                                                                                                                    }
+                                                                                                                }
+                                                                                                                ?>
+                                                                                                                <?php echo esc_html($section_array['element_label']); ?>
+                                                                                                                </strong>
+                                                                                                            </span>
+                                                                                                        </label>
+                                                                                                    </div>
+                                                                                                    <div class="custom-item-output">
+                                                                                                        <div class="custom-item-display">
+                                                                                                            <?php echo esc_html($section_array['element_items']); ?>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div class="ppc-flex-item">
+                                                                                                    <div class="button view-custom-item"><?php esc_html_e('View'); ?></div>
+                                                                                                        <div class="button edit-features-custom-item <?php echo esc_attr($section_array['edit_class']); ?>" 
+                                                                                                            data-section="<?php echo esc_attr($section_slug); ?>"
+                                                                                                            data-label="<?php echo esc_attr($section_array['label']); ?>"
+                                                                                                            data-element="<?php echo esc_attr($section_array['element_items']); ?>"
+                                                                                                            data-id="<?php echo esc_attr($section_array['button_data_id']); ?>">
+                                                                                                            <?php esc_html_e('Edit', 'capability-manager-enhanced'); ?>
+                                                                                                        </div>
+                                                                                                        <div 
+                                                                                                            class="button <?php echo esc_attr($section_array['button_class']); ?> feature-red"
+                                                                                                            data-id="<?php echo esc_attr($section_array['button_data_id']); ?>">
+                                                                                                            <?php esc_html_e('Delete'); ?>    
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                        </td>
+                                                                                    <?php else : ?>
+                                                                                        <td class="menu-column ppc-menu-item">
+
+                                                                                            <label for="check-item-<?php echo (int) $sn; ?>">
+                                                                                                <span
+                                                                                                    class="menu-item-link<?php echo (in_array($restrict_value,
+                                                                                                            $disabled_admin_items)) ? ' restricted' : ''; ?>">
+                                                                                                    <strong>
+                                                                                                        <?php
+                                                                                                        if ((isset($section_array['step']) && $section_array['step'] > 0) && isset($section_array['parent']) && !empty($section_array['parent'])) {
+                                                                                                            $step_margin = $section_array['step'] * 20;
+                                                                                                            echo '<span style="margin-left: ' . (int) $step_margin . 'px;"></span>';
+                                                                                                    echo ' <i class="dashicons dashicons-arrow-right"></i> ';
+                                                                                                        } else {
+                                                                                                            if (isset($icon_list[$section_id])) {
+                                                                                                                echo '<i class="dashicons dashicons-' . esc_attr($icon_list[$section_id]) . '"></i>';
+                                                                                                            } else {
+                                                                                                                echo '<i class="dashicons dashicons-arrow-right"></i>';
+                                                                                                            }
+                                                                                                        }
+                                                                                                        ?>
+                                                                                                        <?php echo esc_html($item_name); ?>
+                                                                                                    </strong>
+                                                                                                </span>
+                                                                                            </label>
+                                                                                        </td>
+                                                                                    <?php endif; ?>
+                                                                                </tr>
+                                                                            <?php
+                                                                            endforeach; // $section_elements subsection loop
+                                                                            ?>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            <?php
+                                                            endforeach; // $admin_features_elements section loop
+                                                            do_action('pp_capabilities_admin_features_after_table_tr');
+                                                            ?>
+                                                        </div>
+                                                    </div>
 		                                            <?php do_action('pp_capabilities_admin_features_after_table'); ?>
 		                                        </div>
-
                                             </div>
                                         </div>
                                     </div>
                                     <input type="submit" name="admin-features-submit"
                                            value="<?php esc_attr_e('Save Changes');?>"
-                                           class="button-primary ppc-admin-features-submit"/>
+                                           class="button-primary ppc-admin-features-submit" style="float:right"/>
                                 </td>
                             </tr>
                         </table>
@@ -315,14 +321,67 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
             </div><!-- .pp-columns-wrapper -->
         </form>
 
+        <style>
+            span.menu-item-link {
+                webkit-user-select: none; /* Safari */
+                -moz-user-select: none; /* Firefox */
+                -ms-user-select: none; /* IE10+/Edge */
+                user-select: none; /* Standard */
+            }
+
+            input.check-all-menu-item {margin-top: 5px !important;}
+
+            table#akmin .pp-capability-menus-select .restrict-column {
+                text-align: right !important;
+            }
+            table#akmin .pp-capability-menus-select tr:first-of-type {
+                border-right: 1px solid #c3c4c7;
+            }
+            table#akmin .pp-capability-menus-select tr:first-of-type th {
+                border-top: 1px solid #c3c4c7;
+            }
+            .pp-column-left .nav-tab-wrapper,
+            .pp-column-left .postbox {
+                border: unset;
+            }
+            .pp-capability-menus {
+                overflow: initial;
+            }
+            .pp-capability-menus-wrapper.admin-features #pp-capability-menus-general #ppc-capabilities-wrapper {
+                border: 1px solid #c3c4c7;
+            }
+            .pp-capability-menus-wrapper.admin-features #ppc-capabilities-wrapper .ppc-capabilities-content > div {
+                padding-bottom: 0 !important;
+            }
+            .ppc-flex-item {
+                flex-basis: -moz-available;
+                max-width: 350px;
+            }
+        </style>
+
         <script type="text/javascript">
             /* <![CDATA[ */
             jQuery(document).ready(function($) {
 
+                // Tabs and Content display
+                $('.ppc-capabilities-tabs > ul > li').click( function() {
+                    var $pp_tab = $(this).attr('data-content');
+
+                    $("[name='pp_caps_tab']").val($(this).attr('data-slug'));
+
+                    // Show current Content
+                    $('.ppc-capabilities-content > div').hide();
+                    $('#' + $pp_tab).show();
+
+                    // Active current Tab
+                    $('.ppc-capabilities-tabs > ul > li').removeClass('ppc-capabilities-tab-active');
+                    $(this).addClass('ppc-capabilities-tab-active');
+                });
+
                 // -------------------------------------------------------------
                 //   reload page for instant reflection if user is updating own role
                 // -------------------------------------------------------------
-                <?php if(!empty($ppc_page_reload) && (int)$ppc_page_reload === 1){ ?>
+                <?php if(isset($ppc_page_reload) && !empty($ppc_page_reload) && (int)$ppc_page_reload === 1){ ?>
                 window.location = '<?php echo esc_url_raw(admin_url('admin.php?page=pp-capabilities-admin-features&role=' . $default_role . '')); ?>'
                 <?php } ?>
 
@@ -342,11 +401,11 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
 
                         //toggle all checkbox
                         if ($(this).hasClass('check-all-menu-item')) {
-                            $("input[type='checkbox'][name='capsman_disabled_admin_features[]']").prop('checked', true)
-                            $('.menu-item-link').addClass('restricted')
+                            $(this).closest('table.section-table').find("input[type='checkbox'][name='capsman_disabled_admin_features[]']").prop('checked', true)
+                            $(this).closest('table.section-table').find('.menu-item-link').addClass('restricted')
                         } else {
-                            $('.check-all-menu-link').removeClass('restricted')
-                            $('.check-all-menu-item').prop('checked', false)
+                            $(this).closest('table.section-table').find('.check-all-menu-link').removeClass('restricted')
+                            $(this).closest('table.section-table').find('.check-all-menu-item').prop('checked', false)
                         }
 
                     } else {
@@ -355,11 +414,11 @@ $admin_features_elements = PP_Capabilities_Admin_Features::elementsLayout();
 
                         //toggle all checkbox
                         if ($(this).hasClass('check-all-menu-item')) {
-                            $("input[type='checkbox'][name='capsman_disabled_admin_features[]']").prop('checked', false)
-                            $('.menu-item-link').removeClass('restricted')
+                            $(this).closest('table.section-table').find("input[type='checkbox'][name='capsman_disabled_admin_features[]']").prop('checked', false)
+                            $(this).closest('table.section-table').find('.menu-item-link').removeClass('restricted')
                         } else {
-                            $('.check-all-menu-link').removeClass('restricted')
-                            $('.check-all-menu-item').prop('checked', false)
+                            $(this).closest('table.section-table').find('.check-all-menu-link').removeClass('restricted')
+                            $(this).closest('table.section-table').find('.check-all-menu-item').prop('checked', false)
                         }
 
                     }

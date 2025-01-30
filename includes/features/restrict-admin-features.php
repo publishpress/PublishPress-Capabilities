@@ -12,16 +12,48 @@ class PP_Capabilities_Admin_Features
     {
         $elements = [];
 
-        //Add header and footer
-        $elements[esc_html__('Header and Footer', 'capability-manager-enhanced')] = self::formatHeaderFooter();
-
         //Add toolbar
         $elements[esc_html__('Admin Toolbar', 'capability-manager-enhanced')] = self::formatAdminToolbar();
+
+        //Add header and footer
+        $elements[esc_html__('Header and Footer', 'capability-manager-enhanced')] = self::formatHeaderFooter();
 
         //Add dashboard widget
         $elements[esc_html__('Dashboard widgets', 'capability-manager-enhanced')] = self::formatDashboardWidgets();
 
         return apply_filters('pp_capabilities_admin_features_elements', $elements);
+    }
+
+    /**
+     * Retrieve all items title.
+     *
+     * @return array Items titles.
+     */
+    public static function elementLayoutItemTitles()
+    {
+        $titles = [];
+        
+        $titles['Header and Footer']    = esc_html__('Hide Default Items', 'capability-manager-enhanced');
+        $titles['Admin Toolbar']        = esc_html__('Hide Admin Toolbar', 'capability-manager-enhanced');
+        $titles['Dashboard widgets']    = esc_html__('Hide Dashboard Widgets', 'capability-manager-enhanced');
+
+        return apply_filters('pp_capabilities_admin_features_titles', $titles);
+    }
+
+    /**
+     * Retrieve all items action.
+     *
+     * @return array Items action.
+     */
+    public static function elementLayoutItemActions()
+    {
+        $actions = [];
+        
+        $actions['Header and Footer']    = 'ppc_header_footer';
+        $actions['Admin Toolbar']        = 'ppc_adminbar';
+        $actions['Dashboard widgets']    = 'ppc_dashboard_widget';
+
+        return apply_filters('pp_capabilities_admin_features_actions', $actions);
     }
 
     /**
@@ -155,6 +187,18 @@ class PP_Capabilities_Admin_Features
     {
         global $toolbar_items;
 
+        if (!is_array($toolbar_items)) {
+            $toolbar_items = [];
+        }
+        
+        $toolbar_items['admintoolbar'] = [
+            'label'    => esc_html__('Remove Admin Toolbar', 'capability-manager-enhanced'),
+            'parent'   => '',
+            'step'     => 999999999999,
+            'position' => 999999999999,
+            'action'   => 'ppc_adminbar'
+        ];
+
         $toolbars    = (array)$GLOBALS['ppcAdminBar'];
         $toolbarTree = self::formatAdminToolbarTree($toolbars);
         //set toolbar element with steps
@@ -192,6 +236,10 @@ class PP_Capabilities_Admin_Features
     public static function setAdminToolbarElement(array $toolbarTrees, $steps = 1, $step_list = [])
     {
         global $toolbar_items;
+
+        if (!is_array($toolbar_items)) {
+            $toolbar_items = [];
+        }
 
         $position = 0;
         foreach ($toolbarTrees as $toolbarTree) {

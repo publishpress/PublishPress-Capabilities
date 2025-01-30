@@ -20,19 +20,15 @@
         $table->prepare_items();
         pp_capabilities_roles()->notify->display();
         ?>
+        <form action="" method="post">
+            <hr class="wp-header-end">
+            <div id="ajax-response"></div>
 
-        <hr class="wp-header-end">
-        <div id="ajax-response"></div>
-
-        <div id="col-container" class="wp-clearfix">
-            <div class="col-wrap">
-                <form action="" method="post">
+            <div id="col-container" class="wp-clearfix">
+                <div class="col-wrap">
                     <?php $table->display(); //Display the table ?>
-                </form>
+                </div>
             </div>
-        </div>
-        <form method="get">
-            <?php $table->inline_edit() ?>
         </form>
     </div>
     <?php } ?>
