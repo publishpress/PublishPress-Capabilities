@@ -13,7 +13,7 @@ add_action('init', function() {
                 foreach (['cme_', 'capsman', 'pp_capabilities', 'presspermit'] as $prefix) {
                     if (0 === strpos($option_name, $prefix)) {
                         $value = isset($_POST[$option_name]) ? $_POST[$option_name] : '';// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-                        $value = is_array($value) ? array_map('sanitize_text_field', $value) : sanitize_text_field($value);
+                        $value = is_array($value) ? map_deep($value, 'sanitize_text_field') : sanitize_text_field($value);
             
                         if (!is_array($value)) {
                             $value = trim($value);
