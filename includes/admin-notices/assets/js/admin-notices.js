@@ -244,7 +244,6 @@ jQuery(document).ready(function ($) {
           notice_html += $(element).prop('outerHTML')
           notice_html += '</div>';
           whitelisted_notices_count++;
-          $(element).remove();
         });
       }
 
