@@ -300,6 +300,10 @@ class Capabilities_Settings_UI {
                                                   echo join(' | ', $table_tabs); 
                                                   ?>
                                             </div>
+                                            
+                                            <p class="description">
+                                                <?php esc_html_e('The Admin Notices feature attempts to clean up the WordPress admin area. This will not remove any messages that appear when you perform an action. This feature can move extra messages and advertisements to the Admin Notices area.', 'capability-manager-enhanced'); ?>
+                                            </p
                                         </td>
                                     </tr>
                                     <!-- tab-content -->
@@ -319,7 +323,7 @@ class Capabilities_Settings_UI {
                                                         <?php checked($toolbar_access, true);?>
                                                     >
                                                     <span class="description">
-                                                        <?php printf(esc_html__('Enable %1s access to admin notices toolbar', 'capability-manager-enhanced'), esc_html($detail['name'])); ?>
+                                                        <?php printf(esc_html__('Enable %1s access to the Admin Notices area.', 'capability-manager-enhanced'), esc_html($detail['name'])); ?>
                                                     </span>
                                                 </label>
                                                 <br>
@@ -330,7 +334,7 @@ class Capabilities_Settings_UI {
                                         <?php
                                             $notice_type_remove = !empty($admin_notice_settings[$role]['notice_type_remove']) ? $admin_notice_settings[$role]['notice_type_remove'] : [];
                                         ?>
-                                            <th scope="row"> <?php esc_html_e('Notification to remove from WordPress admin pages', 'capability-manager-enhanced'); ?></th>
+                                            <th scope="row"> <?php esc_html_e('Notifications to remove from WordPress admin pages', 'capability-manager-enhanced'); ?></th>
                                             <td>
                                                 <?php foreach ($notice_type_options as $option_key => $option_label) : ?>
                                                 <label>
@@ -343,7 +347,7 @@ class Capabilities_Settings_UI {
                                                 <?php endforeach; ?>
                                                 
                                                 <span class="description">
-                                                    <?php printf(esc_html__('Select the notification type that should be removed from all %1s WordPress admin pages.', 'capability-manager-enhanced'), esc_html($detail['name'])); ?>
+                                                    <?php printf(esc_html__('Select the notification types that should be hidden when %1s are viewing WordPress admin screens.', 'capability-manager-enhanced'), esc_html($detail['name'])); ?>
                                                 </span>
                                             </td>
                                         </tr>
@@ -352,7 +356,7 @@ class Capabilities_Settings_UI {
                                         <?php
                                             $notice_type_display = !empty($admin_notice_settings[$role]['notice_type_display']) ? $admin_notice_settings[$role]['notice_type_display'] : [];
                                         ?>
-                                            <th scope="row"> <?php esc_html_e('Notification to display in the notification center', 'capability-manager-enhanced'); ?></th>
+                                            <th scope="row"> <?php esc_html_e('Notifications to display in the Admin Notices area.', 'capability-manager-enhanced'); ?></th>
                                             <td>
                                                 <?php foreach ($notice_type_options as $option_key => $option_label) : ?>
                                                 <label>
@@ -365,7 +369,7 @@ class Capabilities_Settings_UI {
                                                 <?php endforeach; ?>
                                                 
                                                 <span class="description">
-                                                    <?php printf(esc_html__('Select the notification type that should be displayed in the notification center after been removed from the %1s WordPress admin pages.', 'capability-manager-enhanced'), esc_html($detail['name'])); ?>
+                                                    <?php esc_html_e('Select the notification types that should be displayed in the Admin Notices area after been removed from the WordPress admin screens.', 'capability-manager-enhanced'); ?>
                                                 </span>
                                             </td>
                                         </tr>

@@ -98,12 +98,7 @@ jQuery(document).ready(function ($) {
 
   // Parse notices from hidden container
   function parseNotices() {
-    const $container = $('.ppc-admin-notices-selector');
-    if (!$container.length) {
-      return [];
-    }
-
-    const notices = $container.find('div[id^="message"], div[class*="notice"], div[class*="updated"], div[class*="error"], div[class*="warning"], div[class*="info"]');
+    const notices = $('div[id^="message"], div[class*="notice"], div[class*="updated"], div[class*="error"], div[class*="warning"], div[class*="info"]');
 
     return notices;
   }
@@ -190,6 +185,15 @@ jQuery(document).ready(function ($) {
         return true;
       } else if ($el.is('#message') && remove_types.includes('success')) {
         // Add other success notice without class but #message id
+        active_notices.push(element);
+        success_count++;
+        // add notice ID if notice type is configured to be display in noice center
+        if (panel_types.includes('success')) {
+          panel_notice_ids.push(notice_id)
+        }
+        return true;
+      } else if ($el.is('.notice') && remove_types.includes('success')) {
+        // let categorize any remaining notice as success notice
         active_notices.push(element);
         success_count++;
         // add notice ID if notice type is configured to be display in noice center
@@ -355,8 +359,10 @@ jQuery(document).ready(function ($) {
       $overlay.fadeOut(200);
     } else {
       if (!initialize_notice) {
-        $('#ppc-admin-notices-panel .ppc-admin-notices-panel-content').html(notice_html);
-        updateAdminNoticesCounts();
+        if (notice_html && notice_html !== '') {
+          $('#ppc-admin-notices-panel .ppc-admin-notices-panel-content').html(notice_html);
+          updateAdminNoticesCounts();
+        }
         initialize_notice = true;
       }
       $panel.addClass('open');

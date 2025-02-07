@@ -407,7 +407,7 @@ function pp_capabilities_dashboard_options() {
 
     $features['admin-notices'] = [
         'label'        => esc_html__('Admin Notices', 'capability-manager-enhanced'),
-        'description'  => esc_html__('Remove all Admin Noticies from WordPress Admin Pages and organize them to a single area.', 'capability-manager-enhanced'),
+        'description'  => esc_html__('Remove Admin Notices from WordPress admin screen and organize them in to a single area.', 'capability-manager-enhanced'),
     ];
 
     $features = apply_filters('pp_capabilities_dashboard_features', $features);
