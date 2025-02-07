@@ -78,6 +78,10 @@
     padding-left: 15px !important;
 }
 
+.ppc-notice-action {
+    display: none;
+}
+
 .ppc-admin-notices-panel-content .ppc-panel-notice-item .ppc-notice-action {
     display: flex;
     gap: 12px;
