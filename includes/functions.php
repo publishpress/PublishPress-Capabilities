@@ -272,6 +272,19 @@ function ppc_test_user_init () {
 }
 add_action('init', 'ppc_test_user_init');
 
+/**
+ * Implement admin notices feature
+ *
+ * @return void
+ */
+function ppc_admin_notices_init () {
+    if (pp_capabilities_feature_enabled('admin-notices')) {
+        require_once(PUBLISHPRESS_CAPS_ABSPATH . '/includes/admin-notices/admin-notices.php');
+        PP_Capabilities_Admin_Notices::init();
+    }
+}
+add_action('init', 'ppc_admin_notices_init');
+
 
 /**
 * Redirect user after registration.

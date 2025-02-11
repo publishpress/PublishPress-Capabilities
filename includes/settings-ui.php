@@ -21,6 +21,9 @@ class Capabilities_Settings_UI {
         }
 
         $sidebar_enabled = defined('PUBLISHPRESS_CAPS_PRO_VERSION') ? false : true;
+
+        // TODO: Organize settings tab to an array with label, key and enable/disable options
+        $admin_notice_tab_style = pp_capabilities_feature_enabled('admin-notices') ? '' : 'display: none;';
         ?>
 
         <div class="pp-columns-wrapper <?php echo ($sidebar_enabled) ? 'pp-enable-sidebar' : ''; ?> clear">
@@ -31,6 +34,7 @@ class Capabilities_Settings_UI {
                     <li class="nav-tab <?php if ('capabilities' == $default_tab) echo 'nav-tab-active'?>"><a href="#ppcs-tab-capabilities"><?php esc_html_e('Capabilities', 'capability-manager-enhanced');?></a></li>
                     <li class="nav-tab <?php if ('editor-features' == $default_tab) echo 'nav-tab-active'?>"><a href="#ppcs-tab-editor-features"><?php esc_html_e('Editor Features', 'capability-manager-enhanced');?></a></li>
                     <li class="nav-tab <?php if ('profile-features' == $default_tab) echo 'nav-tab-active'?>"><a href="#ppcs-tab-profile-features"><?php esc_html_e('Profile Features', 'capability-manager-enhanced');?></a></li>
+                    <li class="nav-tab <?php if ('admin-notices' == $default_tab) echo 'nav-tab-active'?>" style="<?php echo esc_attr($admin_notice_tab_style); ?>"><a href="#ppcs-tab-admin-notices"><?php esc_html_e('Admin Notices', 'capability-manager-enhanced');?></a></li>
                     <?php do_action('pp_capabilities_settings_after_menu_list'); ?>
                     <li class="nav-tab <?php if ('test-user' == $default_tab) echo 'nav-tab-active'?>"><a href="#ppcs-tab-test-user"><?php esc_html_e('User Testing', 'capability-manager-enhanced');?></a></li>
                 </ul>
@@ -264,11 +268,122 @@ class Capabilities_Settings_UI {
                                 </tbody>
                             </table>
 
+                            <table class="form-table" role="presentation" id="ppcs-tab-admin-notices" style="<?php if ('admin-notices' != $default_tab) echo 'display: none'?>">
+                                <?php
+                                    $notice_type_options = [
+                                        'success' => esc_html__('Success notices', 'capability-manager-enhanced'),
+                                        'error'  => esc_html__('Error notices', 'capability-manager-enhanced'),
+                                        'warning' => esc_html__('Warning notices', 'capability-manager-enhanced'),
+                                        'info' => esc_html__('Info notices', 'capability-manager-enhanced'), 
+                                    ];
+
+                                    $admin_notice_settings = (array) get_option('cme_admin_notice_options', []);
+                                ?>
+                                <tbody>
+                                    <!-- table-tab -->
+                                    <tr>
+                                        <td colspan="2" style="padding-left: 0;padding-top: 0;">
+                                            <?php 
+                                            $table_default_tab = '';
+                                            $table_tabs = [];
+                                            foreach (wp_roles()->roles as $role => $detail) : 
+                                                if ($table_default_tab == '') {
+                                                    $table_default_tab = $role;
+                                                }
+                                                $active_class = ($table_default_tab == $role) ? 'active' : '';
+
+                                                $table_tabs[] = '<a href="#" class="' . $active_class . '" data-content=".pp-admin-notices-settings-' . $role . '-content">' . esc_html($detail['name']) . '</a>';        
+                                            endforeach; ?>
+                                            <div class="ppc-settings-subtab">
+                                                <?php 
+                                                  // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                  echo join(' | ', $table_tabs); 
+                                                  ?>
+                                            </div>
+                                            
+                                            <p class="description">
+                                                <?php esc_html_e('The Admin Notices feature attempts to clean up the WordPress admin area. This will not remove any messages that appear when you perform an action. This feature can move extra messages and advertisements to the Admin Notices area.', 'capability-manager-enhanced'); ?>
+                                            </p
+                                        </td>
+                                    </tr>
+                                    <!-- tab-content -->
+                                    <?php foreach (wp_roles()->roles as $role => $detail) :
+                                        $visibility_class = ($table_default_tab == $role) ? '' : 'hidden-element';
+                                        ?>
+                                        <tr class="ppc-settings-tab-content pp-admin-notices-settings-<?php echo esc_attr($role); ?>-content <?php echo esc_attr($visibility_class); ?>">
+                                            <?php
+                                                $toolbar_access = !empty($admin_notice_settings[$role]['enable_toolbar_access']);
+                                            ?>
+                                            <th scope="row"><?php esc_html_e('Notification center access', 'capability-manager-enhanced'); ?></th>
+                                            <td>
+                                                <label>
+                                                    <input type="checkbox" 
+                                                        name="cme_admin_notice_options[<?php echo esc_attr($role); ?>][enable_toolbar_access]" id="cme_admin_notice_options_<?php echo esc_attr($role); ?>_enable_toolbar_access" 
+                                                        value="1" 
+                                                        <?php checked($toolbar_access, true);?>
+                                                    >
+                                                    <span class="description">
+                                                        <?php printf(esc_html__('Enable %1s access to the Admin Notices area.', 'capability-manager-enhanced'), esc_html($detail['name'])); ?>
+                                                    </span>
+                                                </label>
+                                                <br>
+                                            </td>
+                                        </tr>
+
+                                        <tr class="ppc-settings-tab-content pp-admin-notices-settings-<?php echo esc_attr($role); ?>-content <?php echo esc_attr($visibility_class); ?>">
+                                        <?php
+                                            $notice_type_remove = !empty($admin_notice_settings[$role]['notice_type_remove']) ? $admin_notice_settings[$role]['notice_type_remove'] : [];
+                                        ?>
+                                            <th scope="row"> <?php esc_html_e('Notifications to remove from WordPress admin pages', 'capability-manager-enhanced'); ?></th>
+                                            <td>
+                                                <?php foreach ($notice_type_options as $option_key => $option_label) : ?>
+                                                <label>
+                                                    <input type="checkbox" 
+                                                        name="cme_admin_notice_options[<?php echo esc_attr($role); ?>][notice_type_remove][]" id="cme_admin_notice_options_<?php echo esc_attr($role); ?>_notice_type_remove_<?php echo esc_attr($option_key); ?>" 
+                                                        value="<?php echo esc_attr($option_key); ?>" 
+                                                        <?php checked(in_array($option_key, $notice_type_remove), true); ?>> <?php echo esc_html($option_label); ?>
+                                                </label>
+                                                <br><br>
+                                                <?php endforeach; ?>
+                                                
+                                                <span class="description">
+                                                    <?php printf(esc_html__('Select the notification types that should be hidden when %1s are viewing WordPress admin screens.', 'capability-manager-enhanced'), esc_html($detail['name'])); ?>
+                                                </span>
+                                            </td>
+                                        </tr>
+
+                                        <tr class="ppc-settings-tab-content pp-admin-notices-settings-<?php echo esc_attr($role); ?>-content <?php echo esc_attr($visibility_class); ?>">
+                                        <?php
+                                            $notice_type_display = !empty($admin_notice_settings[$role]['notice_type_display']) ? $admin_notice_settings[$role]['notice_type_display'] : [];
+                                        ?>
+                                            <th scope="row"> <?php esc_html_e('Notifications to display in the Admin Notices area.', 'capability-manager-enhanced'); ?></th>
+                                            <td>
+                                                <?php foreach ($notice_type_options as $option_key => $option_label) : ?>
+                                                <label>
+                                                    <input type="checkbox" 
+                                                        name="cme_admin_notice_options[<?php echo esc_attr($role); ?>][notice_type_display][]" id="cme_admin_notice_options_<?php echo esc_attr($role); ?>_notice_type_display_<?php echo esc_attr($option_key); ?>" 
+                                                        value="<?php echo esc_attr($option_key); ?>" 
+                                                        <?php checked(in_array($option_key, $notice_type_display), true); ?>> <?php echo esc_html($option_label); ?>
+                                                </label>
+                                                <br><br>
+                                                <?php endforeach; ?>
+                                                
+                                                <span class="description">
+                                                    <?php esc_html_e('Select the notification types that should be displayed in the Admin Notices area after been removed from the WordPress admin screens.', 'capability-manager-enhanced'); ?>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
+
+                                </tbody>
+                            </table>
+
                             </td>
                         </tr>
                     </table>
                 </fieldset>
             <input type="submit" name="submit" id="submit" class="button button-primary" value="<?php esc_attr_e('Save Changes');?>">
+            <input type="hidden" name="pp_tab" id="pp_tab" value="<?php echo esc_attr($default_tab); ?>" />
         </div><!-- .pp-column-left -->
         <div class="pp-column-right pp-capabilities-sidebar">
             <?php pp_capabilities_pro_sidebox(); ?>
@@ -280,6 +395,11 @@ class Capabilities_Settings_UI {
 
             $('#publishpress-capability-settings-tabs').find('li').click(function (e) {
                 e.preventDefault();
+                let active_tab_value = $(this).find('a').attr('href'); 
+                let active_tab = active_tab_value.replace('#ppcs-tab-', '');
+
+                $('#pp_tab').val(active_tab);
+
                 $('#publishpress-capability-settings-tabs').children('li').filter('.nav-tab-active').removeClass('nav-tab-active');
                 $(this).addClass('nav-tab-active');
 
