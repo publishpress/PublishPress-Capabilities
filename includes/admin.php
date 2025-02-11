@@ -256,16 +256,16 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
             }
 
 			$cap_tips = array(
-				'read_private' => esc_attr__( 'can read posts which are currently published with private visibility', 'capability-manager-enhanced' ),
-				'edit' => esc_attr__( 'has basic editing capability (but may need other capabilities based on post status and ownership)', 'capability-manager-enhanced' ),
-				'edit_others' => esc_attr__( 'can edit posts which were created by other users', 'capability-manager-enhanced' ),
-				'edit_published' => esc_attr__( 'can edit posts which are currently published', 'capability-manager-enhanced' ),
-				'edit_private' => esc_attr__( 'can edit posts which are currently published with private visibility', 'capability-manager-enhanced' ),
-				'publish' => esc_attr__( 'can make a post publicly visible', 'capability-manager-enhanced' ),
-				'delete' => esc_attr__( 'has basic deletion capability (but may need other capabilities based on post status and ownership)', 'capability-manager-enhanced' ),
-				'delete_others' => esc_attr__( 'can delete posts which were created by other users', 'capability-manager-enhanced' ),
-				'delete_published' => esc_attr__( 'can delete posts which are currently published', 'capability-manager-enhanced' ),
-				'delete_private' => esc_attr__( 'can delete posts which are currently published with private visibility', 'capability-manager-enhanced' ),
+				'read_private' => esc_attr__( 'Can read posts which are currently published with private visibility.', 'capability-manager-enhanced' ),
+				'edit' => esc_attr__( 'Has basic editing capability (but may need other capabilities based on post status and ownership).', 'capability-manager-enhanced' ),
+				'edit_others' => esc_attr__( 'Can edit posts which were created by other users.', 'capability-manager-enhanced' ),
+				'edit_published' => esc_attr__( 'Can edit posts which are currently published.', 'capability-manager-enhanced' ),
+				'edit_private' => esc_attr__( 'Can edit posts which are currently published with private visibility.', 'capability-manager-enhanced' ),
+				'publish' => esc_attr__( 'Can make a post publicly visible.', 'capability-manager-enhanced' ),
+				'delete' => esc_attr__( 'Has basic deletion capability (but may need other capabilities based on post status and ownership).', 'capability-manager-enhanced' ),
+				'delete_others' => esc_attr__( 'Can delete posts which were created by other users.', 'capability-manager-enhanced' ),
+				'delete_published' => esc_attr__( 'Can delete posts which are currently published.', 'capability-manager-enhanced' ),
+				'delete_private' => esc_attr__( 'Can delete posts which are currently published with private visibility.', 'capability-manager-enhanced' ),
 			);
 
 			$default_caps = array( 'read_private_posts', 'edit_posts', 'edit_others_posts', 'edit_published_posts', 'edit_private_posts', 'publish_posts', 'delete_posts', 'delete_others_posts', 'delete_published_posts', 'delete_private_posts',
