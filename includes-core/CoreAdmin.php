@@ -58,7 +58,11 @@ class CoreAdmin {
         add_action('pp_capabilities_features_classic_after_table_tr', [$this, 'metaboxesPromo']);
 
         //Admin features promo
-        add_action('pp_capabilities_admin_features_after_table_tr', [$this, 'customItemsPromo']);
+        add_filter('pp_capabilities_admin_features_elements', [$this, 'adminFeaturesElements'], 50);
+        add_filter('pp_capabilities_admin_features_icons', [$this, 'adminFeatureIcons']);
+        add_filter('pp_capabilities_admin_features_titles', [$this, 'adminFeatureTitles']);
+        add_action('pp_capabilities_admin_features_blockedbyurl_before_subsection_tr', [$this, 'adminFeaturePromo']);
+        add_action('pp_capabilities_admin_features_hidecsselement_before_subsection_tr', [$this, 'adminFeaturePromo']);
 
         //Frontend features pages promo
         add_action('pp_capabilities_frontend_features_pages', [$this, 'frontendFeaturesPagesPromo']);
@@ -99,8 +103,30 @@ class CoreAdmin {
         wp_enqueue_style('pp-capabilities-admin-core', plugin_dir_url(CME_FILE) . 'includes-core/admin-core.css', [], PUBLISHPRESS_CAPS_VERSION, 'all');
         include (dirname(__FILE__) . '/editor-features-promo.php');
     }
+    function adminFeaturesElements($elements) {
+        $elements['Hide CSS Element'] = [];
+        $elements['Blocked by URL'] = [];
 
-    function customItemsPromo(){
+        return $elements;
+    }
+    
+    function adminFeatureIcons($icons) {
+
+        $icons['hidecsselement']    = 'hidden';
+        $icons['blockedbyurl']      = 'admin-links';
+
+        return $icons;
+    }
+    
+    function adminFeatureTitles($titles) {
+
+        $titles['Hide CSS Element'] = esc_html__('Hide CSS Elements', 'capability-manager-enhanced');
+        $titles['Blocked by URL']   = __('Block by URL', 'capability-manager-enhanced');
+
+        return $titles;
+    }
+
+    function adminFeaturePromo(){
         wp_enqueue_style('pp-capabilities-admin-core', plugin_dir_url(CME_FILE) . 'includes-core/admin-core.css', [], PUBLISHPRESS_CAPS_VERSION, 'all');
         include (dirname(__FILE__) . '/admin-features-promo.php');
     }
