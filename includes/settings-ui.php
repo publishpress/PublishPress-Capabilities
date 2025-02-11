@@ -280,35 +280,45 @@ class Capabilities_Settings_UI {
                                     $admin_notice_settings = (array) get_option('cme_admin_notice_options', []);
                                 ?>
                                 <tbody>
-                                    <!-- table-tab -->
                                     <tr>
                                         <td colspan="2" style="padding-left: 0;padding-top: 0;">
-                                            <?php 
-                                            $table_default_tab = '';
-                                            $table_tabs = [];
-                                            foreach (wp_roles()->roles as $role => $detail) : 
-                                                if ($table_default_tab == '') {
-                                                    $table_default_tab = $role;
-                                                }
-                                                $active_class = ($table_default_tab == $role) ? 'active' : '';
-
-                                                $table_tabs[] = '<a href="#" class="' . $active_class . '" data-content=".pp-admin-notices-settings-' . $role . '-content">' . esc_html($detail['name']) . '</a>';        
-                                            endforeach; ?>
-                                            <div class="ppc-settings-subtab">
-                                                <?php 
-                                                  // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                                  echo join(' | ', $table_tabs); 
-                                                  ?>
-                                            </div>
-                                            
                                             <p class="description">
                                                 <?php esc_html_e('The Admin Notices feature attempts to clean up the WordPress admin area. This will not remove any messages that appear when you perform an action. This feature can move extra messages and advertisements to the Admin Notices area.', 'capability-manager-enhanced'); ?>
-                                            </p
+                                            </p>
+                                            <p style="margin-top: 10px;">
+                                                <label>
+                                                    <span><?php esc_html_e('Select Role', 'capability-manager-enhanced'); ?>:</span>
+                                                    <select class="ppc-settings-role-subtab">
+                                                        <?php 
+                                                        $table_default_tab_role = '';
+                                                        $table_tabs = [];
+                                                        foreach (wp_roles()->roles as $role => $detail) : 
+                                                            if ($table_default_tab_role == '') {
+                                                                $table_default_tab_role = $role;
+                                                            }
+                                                            $active_option = ($table_default_tab_role == $role);
+                                                            ?>
+                                                            <option 
+                                                                value="tab1" 
+                                                                data-content="<?php echo esc_attr('.pp-admin-notices-settings-' . $role . '-content'); ?>"
+                                                                <?php selected($active_option, true); ?>
+                                                            >
+                                                                <?php echo esc_html($detail['name']); ?>
+                                                            </option>
+                                                            <?php     
+                                                        endforeach; ?>
+                                                        
+                                                            <?php 
+                                                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                            echo join(' | ', $table_tabs); 
+                                                            ?>
+                                                    </select>
+                                                </label>
+                                            </p>
                                         </td>
                                     </tr>
-                                    <!-- tab-content -->
                                     <?php foreach (wp_roles()->roles as $role => $detail) :
-                                        $visibility_class = ($table_default_tab == $role) ? '' : 'hidden-element';
+                                        $visibility_class = ($table_default_tab_role == $role) ? '' : 'hidden-element';
                                         ?>
                                         <tr class="ppc-settings-tab-content pp-admin-notices-settings-<?php echo esc_attr($role); ?>-content <?php echo esc_attr($visibility_class); ?>">
                                             <?php

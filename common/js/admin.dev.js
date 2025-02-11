@@ -866,17 +866,19 @@ jQuery(document).ready( function($) {
     });
       
     // -------------------------------------------------------------
-    //   Settings sub tab click
+    //   Settings sub tab change
     // -------------------------------------------------------------
-    $(document).on('click', '.ppc-settings-subtab a', function (e) {
+    $(document).on('change', '.ppc-settings-role-subtab', function (e) {
       e.preventDefault();
-      var current_content = $(this).attr('data-content');
-
-      $('.ppc-settings-subtab a').removeClass('active');
+  
+      var selectedOption = $(this).find(':selected');
+      var current_content = selectedOption.data('content');
+  
       $('.ppc-settings-tab-content').addClass('hidden-element');
-
-      $(this).addClass('active');
-      $(current_content).removeClass('hidden-element');
+  
+      if (current_content) {
+          $(current_content).removeClass('hidden-element');
+      }
     });
 
 
