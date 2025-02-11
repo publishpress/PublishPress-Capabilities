@@ -55,7 +55,7 @@ $default_role = $capsman->current;
                                     <img src="<?php echo esc_url_raw(plugin_dir_url(CME_FILE) . 'includes-core/pp-capabilities-admin-menus-mobile.jpg');?>" class="pp-capability-mobile" />
                                     <div class="pp-capability-menus-promo-content">
                                         <p>
-                                            <?php esc_html_e('You can restrict access to admin menu screens. This feature is available in PublishPress Capabilities Pro', 'capability-manager-enhanced'); ?>
+                                            <?php esc_html_e('You can restrict access to admin menu screens. You can also edit, change, add, or remove links from the WordPress admin menu. This feature is available in PublishPress Capabilities Pro.', 'capability-manager-enhanced'); ?>
                                         </p>
                                         <p>
                                             <a href="https://publishpress.com/links/capabilities-banner" target="_blank">
