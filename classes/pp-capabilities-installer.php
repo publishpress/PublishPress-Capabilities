@@ -36,7 +36,7 @@ class PP_Capabilities_Installer
         if (version_compare($currentVersions, '2.17.0', '<')) {
             self::addRedirectsCapabilities();
         }
-        if (version_compare($currentVersions, '2.18.3', '<')) {
+        if (version_compare($currentVersions, '2.19.0', '<')) {
             self::addAdminNoticesSettings();
         }
 
