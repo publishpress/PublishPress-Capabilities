@@ -418,7 +418,7 @@ Fixed : Security issue. Please update.
 
 == Changelog ==
 
-= 2.19.0 = - 12 Feb 2025 =
+= 2.19.0 = - 13 Feb 2025 =
   * Feature : Ability to hide admin notices, #135
   * Fixed : Broken layout for Admin Features in Free version, #1308
   * Fixed : ACF and Custom Post Type UI submenu missing after reorder, #1324
