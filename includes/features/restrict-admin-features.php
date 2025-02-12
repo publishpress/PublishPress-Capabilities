@@ -13,13 +13,13 @@ class PP_Capabilities_Admin_Features
         $elements = [];
 
         //Add toolbar
-        $elements[esc_html__('Admin Toolbar', 'capability-manager-enhanced')] = self::formatAdminToolbar();
+        $elements['Admin Toolbar'] = self::formatAdminToolbar();
 
         //Add header and footer
-        $elements[esc_html__('Header and Footer', 'capability-manager-enhanced')] = self::formatHeaderFooter();
+        $elements['Header and Footer'] = self::formatHeaderFooter();
 
         //Add dashboard widget
-        $elements[esc_html__('Dashboard widgets', 'capability-manager-enhanced')] = self::formatDashboardWidgets();
+        $elements['Dashboard widgets'] = self::formatDashboardWidgets();
 
         return apply_filters('pp_capabilities_admin_features_elements', $elements);
     }

@@ -10,7 +10,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-02-12 13:10+0000\n"
+"POT-Creation-Date: 2025-02-12 23:48+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: Loco https://localise.biz/\n"
 "X-Domain: capability-manager-enhanced\n"
@@ -286,18 +286,14 @@ msgstr ""
 msgid "Admin Menus"
 msgstr ""
 
-#: includes/admin-notices/admin-notices.php:275
+#: includes/admin-notices/admin-notices.php:270
 msgid "Admin notice status updated successfully."
 msgstr ""
 
 #: includes/functions-admin.php:409 includes/settings-ui.php:37
 #: includes/admin-notices/admin-notices.php:180
-#: includes/admin-notices/admin-notices.php:223
+#: includes/admin-notices/admin-notices.php:218
 msgid "Admin Notices"
-msgstr ""
-
-#: includes/features/restrict-admin-features.php:16
-msgid "Admin Toolbar"
 msgstr ""
 
 #: includes/roles/class/class-pp-roles-admin.php:123
@@ -353,7 +349,7 @@ msgid ""
 "admin area."
 msgstr ""
 
-#: includes/admin-notices/admin-notices.php:238
+#: includes/admin-notices/admin-notices.php:233
 #: includes/features/frontend-features/frontend-features-action.php:41
 #: includes/features/frontend-features/frontend-features-action.php:110
 msgid "An error occured!"
@@ -574,10 +570,6 @@ msgstr ""
 msgid "Capability Name"
 msgstr ""
 
-#: includes/admin-notices/admin-notices.php:205
-msgid "Captured Notices"
-msgstr ""
-
 #: includes/admin.php:1010 includes/admin.php:1083 includes/admin.php:1120
 #: includes/admin.php:1129 includes/admin.php:1177 includes/admin.php:1257
 #: includes/admin.php:1388 includes/admin.php:1517
@@ -608,6 +600,10 @@ msgstr ""
 #: includes/features/profile-features.php:137
 #, php-format
 msgid "Click %1$s Refresh profile items %2$s to manage elements for this role."
+msgstr ""
+
+#: includes/settings-ui.php:360 includes/settings-ui.php:382
+msgid "Click here for more on notice types."
 msgstr ""
 
 #: includes/features/restrict-editor-features.php:486
@@ -710,10 +706,6 @@ msgstr ""
 msgid "Dashboard"
 msgstr ""
 
-#: includes/features/restrict-admin-features.php:22
-msgid "Dashboard widgets"
-msgstr ""
-
 #: includes/manager.php:500
 #: includes/roles/class/class-pp-roles-list-table.php:173
 msgid "Default Role"
@@ -763,10 +755,6 @@ msgstr ""
 msgid "Display this notice"
 msgstr ""
 
-#: includes/admin-notices/admin-notices.php:209
-msgid "Displayed Notices"
-msgstr ""
-
 #: includes/admin-notices/admin-notices.php:77
 msgid "Displayed notices will no longer be removed from admin pages."
 msgstr ""
@@ -812,7 +800,7 @@ msgstr ""
 msgid "Edit Roles"
 msgstr ""
 
-#: includes/admin-notices/admin-notices.php:224
+#: includes/admin-notices/admin-notices.php:219
 msgid "Edit the settings."
 msgstr ""
 
@@ -1074,22 +1062,12 @@ msgid_plural "Has Users %s"
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/features/restrict-admin-features.php:19
-msgid "Header and Footer"
-msgstr ""
-
 #: includes/features/frontend-features/frontend-features-ui.php:220
 msgid "Hidden IDs or Classes"
 msgstr ""
 
-#: includes/admin-notices/admin-notices.php:213
+#: includes/admin-notices/admin-notices.php:205
 msgid "Hidden Notices"
-msgstr ""
-
-#: includes/admin-notices/admin-notices.php:78
-msgid ""
-"Hidden notices will be removed completely from admin pages and Capabilities "
-"admin notice notification."
 msgstr ""
 
 #: includes/features/restrict-admin-features.php:37
@@ -1112,7 +1090,7 @@ msgstr ""
 msgid "Hide IDs or Classes"
 msgstr ""
 
-#: includes/admin-notices/admin-notices.php:74
+#: includes/admin-notices/admin-notices.php:75
 msgid "Hide this notice"
 msgstr ""
 
@@ -1210,7 +1188,7 @@ msgstr ""
 msgid "Initial backup of all roles"
 msgstr ""
 
-#: includes/admin-notices/admin-notices.php:249
+#: includes/admin-notices/admin-notices.php:244
 #: includes/features/frontend-features/frontend-features-action.php:56
 #: includes/features/frontend-features/frontend-features-action.php:119
 msgid "Invalid action. Reload this page and try again."
@@ -1220,7 +1198,7 @@ msgstr ""
 msgid "Invalid Capabilities"
 msgstr ""
 
-#: includes/admin-notices/admin-notices.php:251
+#: includes/admin-notices/admin-notices.php:246
 msgid "Invalid form."
 msgstr ""
 
@@ -1705,6 +1683,20 @@ msgstr ""
 msgid "Remove metaboxes on the editing screen"
 msgstr ""
 
+#: includes/admin-notices/admin-notices.php:74
+msgid "Remove this notice"
+msgstr ""
+
+#: includes/admin-notices/admin-notices.php:209
+msgid "Removed Notices"
+msgstr ""
+
+#: includes/admin-notices/admin-notices.php:78
+msgid ""
+"Removed notices will be removed completely from admin pages and Capabilities "
+"admin notice notification."
+msgstr ""
+
 #: includes/functions.php:699
 msgid "Request Support"
 msgstr ""
@@ -1752,12 +1744,8 @@ msgstr ""
 msgid "Restricted:"
 msgstr ""
 
-#: includes/admin-notices/admin-notices.php:75
-msgid "Revert displayed notice"
-msgstr ""
-
 #: includes/admin-notices/admin-notices.php:76
-msgid "Revert hidden notice"
+msgid "Revert removed notice"
 msgstr ""
 
 #: includes/admin.php:255
@@ -1902,8 +1890,8 @@ msgstr ""
 #: includes/settings-ui.php:360
 #, php-format
 msgid ""
-"Select the notification types that should be hidden when %1s are viewing "
-"WordPress admin screens."
+"Select the notification types that should be hidden when a user in the %1s "
+"role is viewing WordPress admin screens."
 msgstr ""
 
 #: includes/features/frontend-features/frontend-features-action.php:136
@@ -2067,10 +2055,9 @@ msgstr ""
 
 #: includes/settings-ui.php:286
 msgid ""
-"The Admin Notices feature attempts to clean up the WordPress admin area. "
-"This will not remove any messages that appear when you perform an action. "
-"This feature can move extra messages and advertisements to the Admin Notices "
-"area."
+"The feature attempts to clean up the WordPress admin area by organizing "
+"extra messages and advertisements into the Admin Notices area. This will not "
+"remove any messages that appear when you perform an action."
 msgstr ""
 
 #: includes/admin.php:1280
@@ -2133,7 +2120,7 @@ msgid ""
 "The User Testing feature also requires the %1$s edit_users %2$s capability."
 msgstr ""
 
-#: includes/admin-notices/admin-notices.php:224
+#: includes/admin-notices/admin-notices.php:219
 msgid "There are currently no admin notices."
 msgstr ""
 
@@ -2484,7 +2471,7 @@ msgstr ""
 msgid "You do not have permission to manage admin features."
 msgstr ""
 
-#: includes/admin-notices/admin-notices.php:247
+#: includes/admin-notices/admin-notices.php:242
 msgid "You do not have permission to manage admin notices."
 msgstr ""
 

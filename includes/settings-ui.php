@@ -283,7 +283,7 @@ class Capabilities_Settings_UI {
                                     <tr>
                                         <td colspan="2" style="padding-left: 0;padding-top: 0;">
                                             <p class="description">
-                                                <?php esc_html_e('The Admin Notices feature attempts to clean up the WordPress admin area. This will not remove any messages that appear when you perform an action. This feature can move extra messages and advertisements to the Admin Notices area.', 'capability-manager-enhanced'); ?>
+                                                <?php esc_html_e('The feature attempts to clean up the WordPress admin area by organizing extra messages and advertisements into the Admin Notices area. This will not remove any messages that appear when you perform an action.', 'capability-manager-enhanced'); ?>
                                             </p>
                                             <p style="margin-top: 10px;">
                                                 <label>
@@ -357,7 +357,7 @@ class Capabilities_Settings_UI {
                                                 <?php endforeach; ?>
                                                 
                                                 <span class="description">
-                                                    <?php printf(esc_html__('Select the notification types that should be hidden when %1s are viewing WordPress admin screens.', 'capability-manager-enhanced'), esc_html($detail['name'])); ?>
+                                                    <?php printf(esc_html__('Select the notification types that should be hidden when a user in the %1s role is viewing WordPress admin screens.', 'capability-manager-enhanced'), esc_html($detail['name'])); ?> <a target="_blank" href="https://publishpress.com/knowledge-base/notice-types"><?php esc_html_e('Click here for more on notice types.', 'capability-manager-enhanced'); ?></a>
                                                 </span>
                                             </td>
                                         </tr>
@@ -379,7 +379,7 @@ class Capabilities_Settings_UI {
                                                 <?php endforeach; ?>
                                                 
                                                 <span class="description">
-                                                    <?php esc_html_e('Select the notification types that should be displayed in the Admin Notices area after been removed from the WordPress admin screens.', 'capability-manager-enhanced'); ?>
+                                                    <?php esc_html_e('Select the notification types that should be displayed in the Admin Notices area after been removed from the WordPress admin screens.', 'capability-manager-enhanced'); ?> <a target="_blank" href="https://publishpress.com/knowledge-base/notice-types"><?php esc_html_e('Click here for more on notice types.', 'capability-manager-enhanced'); ?></a>
                                                 </span>
                                             </td>
                                         </tr>

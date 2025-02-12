@@ -233,7 +233,7 @@ $active_tab_slug = (!empty($_REQUEST['pp_caps_tab'])) ? sanitize_key($_REQUEST['
                                                                                                         </div>
                                                                                                     </div>
                                                                                                 </div>
-                                                                                                <div class="ppc-flex-item">
+                                                                                                <div class="ppc-flex-item" style="max-width: unset;">
                                                                                                     <div class="button view-custom-item"><?php esc_html_e('View'); ?></div>
                                                                                                         <div class="button edit-features-custom-item <?php echo esc_attr($section_array['edit_class']); ?>" 
                                                                                                             data-section="<?php echo esc_attr($section_slug); ?>"
@@ -357,7 +357,7 @@ $active_tab_slug = (!empty($_REQUEST['pp_caps_tab'])) ? sanitize_key($_REQUEST['
             }
             .ppc-flex-item {
                 flex-basis: -moz-available;
-                max-width: 350px;
+                max-width: 250px;
             }
         </style>
 
