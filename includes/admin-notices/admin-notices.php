@@ -75,7 +75,7 @@ if (!class_exists('PP_Capabilities_Admin_Notices')) {
                     'remove_whitelist_label' => esc_html__('Hide this notice', 'capability-manager-enhanced'),
                     'remove_blacklist_label' => esc_html__('Move to Hidden Notices', 'capability-manager-enhanced'),
                     'whitelist_note' => esc_html__('Displayed notices will no longer be removed from admin pages.', 'capability-manager-enhanced'),
-                    'blacklist_note' => esc_html__('Silenced notices will be removed completely from admin pages and Capabilities admin notice notification.', 'capability-manager-enhanced'),
+                    'blacklist_note' => esc_html__('Silenced notices will be removed from WordPress admin screens and you won\'t be notified if they appear again.', 'capability-manager-enhanced'),
                 ]
             );
 
@@ -206,7 +206,7 @@ if (!class_exists('PP_Capabilities_Admin_Notices')) {
                         </label>
                         <label class="blacklisted-notices" style="display: none;">
                             <input type="radio" name="admin_notices_tab" value=".blacklisted-notices-item">
-                            <?php esc_html_e('Silenced Notice', 'capability-manager-enhanced'); ?><span class="tab-notice-count"></span>
+                            <?php esc_html_e('Silenced Notices', 'capability-manager-enhanced'); ?><span class="tab-notice-count"></span>
                         </label>
                     </div>
                 </div>
