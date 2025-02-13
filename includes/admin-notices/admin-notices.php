@@ -73,7 +73,7 @@ if (!class_exists('PP_Capabilities_Admin_Notices')) {
                     'whitelist_label' => esc_html__('Display this notice', 'capability-manager-enhanced'),
                     'blacklist_label' => esc_html__('Remove this notice', 'capability-manager-enhanced'),
                     'remove_whitelist_label' => esc_html__('Hide this notice', 'capability-manager-enhanced'),
-                    'remove_blacklist_label' => esc_html__('Revert removed notice', 'capability-manager-enhanced'),
+                    'remove_blacklist_label' => esc_html__('Move to Hidden Notices', 'capability-manager-enhanced'),
                     'whitelist_note' => esc_html__('Displayed notices will no longer be removed from admin pages.', 'capability-manager-enhanced'),
                     'blacklist_note' => esc_html__('Removed notices will be removed completely from admin pages and Capabilities admin notice notification.', 'capability-manager-enhanced'),
                 ]

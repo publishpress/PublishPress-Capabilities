@@ -19,6 +19,10 @@
     right: 0;
 }
 
+#wpadminbar .ppc-admin-notices-toolbar-item a.ab-item {
+    background: #2c3338;
+}
+
 .ppc-admin-notices-toolbar-item.hidden {
     display: none !important;
 }
@@ -248,35 +252,4 @@
     padding-bottom: 10px;
     padding-top: 5px;
     text-align: right;
-}
-
-.ppc-shown-notice-item .ppc-notice-action .whitelist.undo {
-    color: #655897;
-    background: #fff;
-    border: 1px solid #655897;
-    border-radius: 5px;
-    padding: 5px;
-    text-decoration: none;
-}
-
-.ppc-shown-notice-item .ppc-notice-action .whitelist.undo::before {
-    content: "\f530";
-    font-family: dashicons;
-    display: inline-block;
-    line-height: 1;
-    font-weight: 400;
-    font-style: normal;
-    speak: never;
-    text-decoration: inherit;
-    text-transform: none;
-    text-rendering: auto;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    width: 20px;
-    height: 20px;
-    font-size: 20px;
-    vertical-align: top;
-    text-align: center;
-    transition: color .1s ease-in;
-    margin-right: 5px;
 }
