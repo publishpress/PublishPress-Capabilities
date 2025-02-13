@@ -51,12 +51,15 @@ jQuery(document).ready(function ($) {
   });
 
   // Whitelust/Blacklist action button
-  $(document).on('click', '.ppc-panel-notice-item .ppc-notice-action a', function (e) {
+  $(document).on('click', '.ppc-panel-notice-item .ppc-notice-action a, .ppc-shown-notice-item .ppc-notice-action a', function (e) {
     e.preventDefault();
     let button = $(this);
-    let notice_item = button.closest('.ppc-panel-notice-item');
     let action_type = button.hasClass('whitelist') ? 'whitelist' : 'blacklist';
     let action_option = button.hasClass('undo') ? 'undo' : 'default';
+    let notice_item = button.closest('.ppc-panel-notice-item');
+    if (action_type == 'whitelist' && action_option == 'undo') {
+      notice_item = button.closest('.ppc-shown-notice-item');
+    }
     let notice_id = notice_item.attr('data-notice-id');
 
     notice_item.fadeOut(300);
@@ -66,11 +69,19 @@ jQuery(document).ready(function ($) {
       if (action_option == 'undo') {
         notice_item.find('.ppc-notice-action .whitelist').removeClass('undo');
         notice_item.find('.ppc-notice-action .whitelist').html(ppcAdminNoticesData.whitelist_label);
-        notice_item.addClass('active-notices-item hidden-element');
+        notice_item.removeClass('ppc-shown-notice-item');
+        notice_item.wrap('<div class="ppc-panel-notice-item active-notices-item hidden-element" data-notice-id="' + notice_id + '"></div>');
+        $('.ppc-admin-notices-panel-content').prepend(notice_item.closest('.ppc-panel-notice-item').prop('outerHTML'));
+        notice_item.closest('.ppc-panel-notice-item').remove();
       } else {
         notice_item.find('.ppc-notice-action .whitelist').addClass('undo');
         notice_item.find('.ppc-notice-action .whitelist').html(ppcAdminNoticesData.remove_whitelist_label);
         notice_item.addClass('whitelisted-notices-item hidden-element');
+        var new_item = notice_item.clone().children();
+        new_item.addClass('ppc-shown-notice-item');
+        new_item.attr('data-notice-id', notice_id);
+        $('.ppc-admin-notices-selector').prepend(new_item);
+        notice_item.remove();
       }
     } else {
       if (action_option == 'undo') {
@@ -112,11 +123,13 @@ jQuery(document).ready(function ($) {
     const blacklist_notices = ppcAdminNoticesData.admin_notice_data.blacklist_notices ? ppcAdminNoticesData.admin_notice_data.blacklist_notices : [];
 
     if (notices.length === 0 || remove_types == '' || remove_types.length === 0) {
+      // show our wrapped notices
+      $('.ppc-admin-notices-selector').show();
       // Simply return if no notice type is set for removal or no notice on the screen
       return;
     }
 
-    let success_count = error_count = warning_count = info_count = active_notices_count = whitelisted_notices_count = blacklisted_notices_count = 0;
+    let success_count = error_count = warning_count = info_count = active_notices_count = blacklisted_notices_count = 0;
     let active_notices = [];
     let whitelisted_notices = [];
     let blacklisted_notices = [];
@@ -138,7 +151,6 @@ jQuery(document).ready(function ($) {
       } else if (notice_whitelist) {
         // add whitelist notices to the right list
         whitelisted_notices.push(element);
-        whitelisted_notices_count++;
         panel_notice_ids.push(notice_id);
         return true;
       } else if (notice_blacklist) {
@@ -205,20 +217,24 @@ jQuery(document).ready(function ($) {
     });
 
     if (!initialize_notice) {
+      var active_tab = false;
+      var additional_class = '';
       // add active notices to panel if not empty
       if (active_notices.length > 0) {
+        additional_class = active_tab ? 'hidden-element' : '';
         $.each(active_notices, function (index, element) {
           let notice_id = simpleHashId($(element).text().trim());
 
           if (panel_notice_ids.includes(notice_id)) {
-            if ($(element).is('.notice')) {
+            //if ($(element).is('.notice')) 
+            {
               let notice_action_html = '<div class="ppc-notice-action">';
               notice_action_html += '<div class="action-item-wrap"><div class="ppc-tool-tip down-notice"><div class="dashicons dashicons-editor-help"></div><div class="tool-tip-text"><p>' + ppcAdminNoticesData.whitelist_note + '</p><i></i></div></div><a href="#" class="whitelist">' + ppcAdminNoticesData.whitelist_label + '</a></div>';
               notice_action_html += '<div class="action-item-wrap"><div class="ppc-tool-tip down-notice"><div class="dashicons dashicons-editor-help"></div><div class="tool-tip-text"><p>' + ppcAdminNoticesData.blacklist_note + '</p><i></i></div></div><a href="#" class="blacklist">' + ppcAdminNoticesData.blacklist_label + '</a></div>';
               notice_action_html += '</div>';
               $(element).append(notice_action_html);
             }
-            notice_html += '<div class="ppc-panel-notice-item active-notices-item" data-notice-id="' + notice_id + '">';
+            notice_html += '<div class="ppc-panel-notice-item active-notices-item ' + additional_class + '" data-notice-id="' + notice_id + '">';
             notice_html += $(element).prop('outerHTML')
             notice_html += '</div>';
           }
@@ -226,6 +242,7 @@ jQuery(document).ready(function ($) {
           // all noitces that reached this place needed to be removed even if not included in the notice panel
           $(element).remove();
         });
+        active_tab = true;
       }
 
       // add all whitelisted notices to panel so they can be undo in their tab
@@ -233,45 +250,46 @@ jQuery(document).ready(function ($) {
         $.each(whitelisted_notices, function (index, element) {
           let notice_id = simpleHashId($(element).text().trim());
 
-          if ($(element).is('.notice')) {
+          //if ($(element).is('.notice')) 
+          {
             let notice_action_html = '<div class="ppc-notice-action">';
             notice_action_html += '<div class="action-item-wrap"><div class="ppc-tool-tip down-notice"><div class="dashicons dashicons-editor-help"></div><div class="tool-tip-text"><p>' + ppcAdminNoticesData.whitelist_note + '</p><i></i></div></div><a href="#" class="whitelist undo">' + ppcAdminNoticesData.remove_whitelist_label + '</a></div>';
             notice_action_html += '<div class="action-item-wrap"><div class="ppc-tool-tip down-notice"><div class="dashicons dashicons-editor-help"></div><div class="tool-tip-text"><p>' + ppcAdminNoticesData.blacklist_note + '</p><i></i></div></div><a href="#" class="blacklist">' + ppcAdminNoticesData.blacklist_label + '</a></div>';
             notice_action_html += '</div>';
+            $(element).addClass('ppc-shown-notice-item').attr('data-notice-id', notice_id);
             $(element).append(notice_action_html);
           }
-          notice_html += '<div class="ppc-panel-notice-item whitelisted-notices-item hidden-element" data-notice-id="' + notice_id + '">';
-          notice_html += $(element).prop('outerHTML')
-          notice_html += '</div>';
-          whitelisted_notices_count++;
         });
       }
 
       // add all blacklisted notices to panel so they can be undo in their tab
       if (blacklisted_notices.length > 0) {
+        additional_class = active_tab ? 'hidden-element' : '';
         $.each(blacklisted_notices, function (index, element) {
           let notice_id = simpleHashId($(element).text().trim());
 
-          if ($(element).is('.notice')) {
+          //if ($(element).is('.notice')) 
+          {
             let notice_action_html = '<div class="ppc-notice-action">';
             notice_action_html += '<div class="action-item-wrap"><div class="ppc-tool-tip down-notice"><div class="dashicons dashicons-editor-help"></div><div class="tool-tip-text"><p>' + ppcAdminNoticesData.whitelist_note + '</p><i></i></div></div><a href="#" class="whitelist">' + ppcAdminNoticesData.whitelist_label + '</a></div>';
             notice_action_html += '<div class="action-item-wrap"><div class="ppc-tool-tip down-notice"><div class="dashicons dashicons-editor-help"></div><div class="tool-tip-text"><p>' + ppcAdminNoticesData.blacklist_note + '</p><i></i></div></div><a href="#" class="blacklist undo">' + ppcAdminNoticesData.remove_blacklist_label + '</a></div>';
             notice_action_html += '</div>';
             $(element).append(notice_action_html);
           }
-          notice_html += '<div class="ppc-panel-notice-item blacklisted-notices-item hidden-element" data-notice-id="' + notice_id + '">';
+          notice_html += '<div class="ppc-panel-notice-item blacklisted-notices-item ' + additional_class + '" data-notice-id="' + notice_id + '">';
           notice_html += $(element).prop('outerHTML')
           notice_html += '</div>';
           blacklisted_notices_count++;
           $(element).remove();
         });
+        active_tab = true;
       }
     }
 
-    updateAdminNoticesCounts(success_count, error_count, warning_count, info_count, active_notices_count, whitelisted_notices_count, blacklisted_notices_count);
+    updateAdminNoticesCounts(success_count, error_count, warning_count, info_count, active_notices_count, blacklisted_notices_count);
   }
 
-  function updateAdminNoticesCounts(success_count = false, error_count = false, warning_count = false, info_count = false, active_notices_count = false, whitelisted_notices_count = false, blacklisted_notices_count = false) {
+  function updateAdminNoticesCounts(success_count = false, error_count = false, warning_count = false, info_count = false, active_notices_count = false, blacklisted_notices_count = false) {
     // Update toolbar count
     if (!success_count) {
       success_count = $('.ppc-panel-notice-item.active-notices-item .notice-success, .ppc-panel-notice-item.active-notices-item .updated').length;
@@ -313,39 +331,58 @@ jQuery(document).ready(function ($) {
     }
 
     // update tab count/display
+    var active_notices_counter = active_notices_count;
     if (!active_notices_count) {
       active_notices_count = $('.ppc-panel-notice-item.active-notices-item').length;
+      active_notices_counter = ' (' + active_notices_count + ')';
     }
-    if (!whitelisted_notices_count) {
-      whitelisted_notices_count = $('.ppc-panel-notice-item.whitelisted-notices-item').length;
-    }
+    var blacklisted_notices_counter = blacklisted_notices_count;
     if (!blacklisted_notices_count) {
       blacklisted_notices_count = $('.ppc-panel-notice-item.blacklisted-notices-item').length;
+      blacklisted_notices_counter = ' (' + blacklisted_notices_count + ')';
     }
-    $('.admin-notices-tab .active-notices .tab-notice-count').html(active_notices_count);
-    $('.admin-notices-tab .whitelisted-notices .tab-notice-count').html(whitelisted_notices_count);
-    $('.admin-notices-tab .blacklisted-notices .tab-notice-count').html(blacklisted_notices_count);
+    $('.admin-notices-tab .active-notices .tab-notice-count').html(active_notices_counter);
+    $('.admin-notices-tab .blacklisted-notices .tab-notice-count').html(blacklisted_notices_counter);
+    
     // show/or hide tabs if atleast 2 tabs has notices
     let tab_counts = 0;
+
+    var active_tab = false;
+    $('.admin-notices-tab label').removeClass('selected');
     // active tab show/hide
     if (active_notices_count > 0) {
       $('.admin-notices-tab .active-notices').show();
-      tab_counts++;
-    }
-    // whitelisted tab show/hide
-    if (whitelisted_notices_count > 0) {
-      $('.admin-notices-tab .whitelisted-notices').show();
+      if (!active_tab) {
+        $('.admin-notices-tab .active-notices').trigger('click');
+        active_tab = true;
+      }
       tab_counts++;
     }
     // blacklisted tab show/hide
     if (blacklisted_notices_count > 0) {
       $('.admin-notices-tab .blacklisted-notices').show();
+      if (!active_tab) {
+        $('.admin-notices-tab .blacklisted-notices').trigger('click');
+        active_tab = true;
+      }
       tab_counts++;
     }
     // all tab show/hide
-    if (tab_counts > 1) {
+    if (tab_counts > 1 || tab_counts > 0 && active_notices_count === 0) {
       $('.admin-notices-tab').show();
+      $('.ppc-admin-notices-panel-none').hide();
+    } else if (tab_counts === 0) {
+      $('.ppc-admin-notices-panel-none').show();
+    } else {
+      $('.ppc-admin-notices-panel-none').hide();
     }
+
+    if (!active_tab) {
+      $('.admin-notices-tab').hide();
+    }
+
+    // show our wrapped notices
+    $('.ppc-admin-notices-selector').show();
   }
 
   // Toggle panel with animation
@@ -360,6 +397,7 @@ jQuery(document).ready(function ($) {
       if (!initialize_notice) {
         if (notice_html && notice_html !== '') {
           $('#ppc-admin-notices-panel .ppc-admin-notices-panel-content').html(notice_html);
+          $('.ppc-admin-notices-panel-none').hide();
           updateAdminNoticesCounts();
         }
         initialize_notice = true;
