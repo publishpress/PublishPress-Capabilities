@@ -12,6 +12,7 @@ class PP_Capabilities_Installer
     public static function runInstallTasks($currentVersion)
     {
         self::addPluginCapabilities();
+        self::addAdminNoticesSettings();
 
         /**
          * @param string $currentVersion
@@ -34,6 +35,9 @@ class PP_Capabilities_Installer
         }
         if (version_compare($currentVersions, '2.17.0', '<')) {
             self::addRedirectsCapabilities();
+        }
+        if (version_compare($currentVersions, '2.19.0', '<')) {
+            self::addAdminNoticesSettings();
         }
 
         /**
@@ -137,6 +141,17 @@ class PP_Capabilities_Installer
         if (!empty($role_redirects)) {
             update_option('capsman_role_redirects', $role_redirects);
         }
+    }
+
+    private static function addAdminNoticesSettings() {
+
+        $admin_notice_settings = [];
+        foreach ( wp_roles()->roles as $role_name => $role ) {
+            $admin_notice_settings[$role_name]['enable_toolbar_access'] = true;
+            $admin_notice_settings[$role_name]['notice_type_remove'] =  ['success', 'error', 'warning', 'info'];
+            $admin_notice_settings[$role_name]['notice_type_display'] =  ['success', 'error', 'warning', 'info'];
+        }
+        update_option('cme_admin_notice_options', $admin_notice_settings);
     }
 
 }

@@ -31,7 +31,7 @@ $sidebar_enabled = defined('PUBLISHPRESS_CAPS_PRO_VERSION') ? false : true;
                     <?php foreach (pp_capabilities_dashboard_options() as $feature => $option) : ?>
                         <?php 
                             $feature_capability = 'manage_capabilities';
-                            if ($feature !== 'capabilities') {
+                            if (!in_array($feature, ['capabilities', 'admin-notices'])) {
                                 $feature_capability .= '_' . str_replace('-', '_', $feature);
                             }
 

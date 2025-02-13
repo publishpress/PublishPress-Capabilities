@@ -28,6 +28,7 @@ $default_role = $capsman->get_last_role();
 
 $disabled_admin_items = !empty(get_option('capsman_disabled_admin_features')) ? (array)get_option('capsman_disabled_admin_features') : [];
 $disabled_admin_items = array_key_exists($default_role, $disabled_admin_items) ? (array)$disabled_admin_items[$default_role] : [];
+$disabled_admin_items = array_filter($disabled_admin_items);
 
 $admin_features_elements    = PP_Capabilities_Admin_Features::elementsLayout();
 $icon_list                  = (array)PP_Capabilities_Admin_Features::elementLayoutItemIcons();
@@ -232,7 +233,7 @@ $active_tab_slug = (!empty($_REQUEST['pp_caps_tab'])) ? sanitize_key($_REQUEST['
                                                                                                         </div>
                                                                                                     </div>
                                                                                                 </div>
-                                                                                                <div class="ppc-flex-item">
+                                                                                                <div class="ppc-flex-item" style="max-width: unset;">
                                                                                                     <div class="button view-custom-item"><?php esc_html_e('View'); ?></div>
                                                                                                         <div class="button edit-features-custom-item <?php echo esc_attr($section_array['edit_class']); ?>" 
                                                                                                             data-section="<?php echo esc_attr($section_slug); ?>"
@@ -297,6 +298,7 @@ $active_tab_slug = (!empty($_REQUEST['pp_caps_tab'])) ? sanitize_key($_REQUEST['
                                     <input type="submit" name="admin-features-submit"
                                            value="<?php esc_attr_e('Save Changes');?>"
                                            class="button-primary ppc-admin-features-submit" style="float:right"/>
+                                    <div class="clear"></div>
                                 </td>
                             </tr>
                         </table>
@@ -355,7 +357,7 @@ $active_tab_slug = (!empty($_REQUEST['pp_caps_tab'])) ? sanitize_key($_REQUEST['
             }
             .ppc-flex-item {
                 flex-basis: -moz-available;
-                max-width: 350px;
+                max-width: 250px;
             }
         </style>
 

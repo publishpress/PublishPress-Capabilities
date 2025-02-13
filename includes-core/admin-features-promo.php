@@ -69,7 +69,7 @@
 </tr>
 <tr class="ppc-menu-row parent-menu pp-promo-overlay-row">
    <td colspan="2">
-      <div class="pp-promo-upgrade-notice">
+      <div class="pp-promo-upgrade-notice" style="left: calc(50% - 145px);">
          <p>
             <?php esc_html_e('You can block pages by URL or hide Admin elements by entering a CSS class or ID. This feature is available in PublishPress Capabilities Pro.',
                'capability-manager-enhanced'); ?>

@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: Plugins - PublishPress Capabilities &#8211; User Role "
 "Access, Editor Permissions, Admin Menus - Stable (latest release)\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/project\n"
-"POT-Creation-Date: 2025-01-09 10:49+0000\n"
-"PO-Revision-Date: 2025-01-09 20:53+0100\n"
+"POT-Creation-Date: 2025-01-20 09:15+0000\n"
+"PO-Revision-Date: 2025-01-30 19:33+0100\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "Language: it_IT\n"
@@ -59,7 +59,7 @@ msgstr "%1$s = capacità concessa %2$s"
 msgid "%1$s = Capability not granted %2$s"
 msgstr "%1$s = capacità non concessa %2$s"
 
-#: includes/features/admin-features.php:305
+#: includes/features/admin-features.php:311
 #: includes/features/editor-features.php:237
 #: includes/features/nav-menus.php:303
 #: includes/features/profile-features.php:238
@@ -68,7 +68,7 @@ msgstr "%1$s = capacità non concessa %2$s"
 msgid "%1$s = No change"
 msgstr "%1$s = nessuna modifica"
 
-#: includes/features/admin-features.php:306
+#: includes/features/admin-features.php:312
 #: includes/features/editor-features.php:238
 #: includes/features/nav-menus.php:304
 #: includes/features/profile-features.php:239
@@ -262,7 +262,7 @@ msgstr "Modifica barra di amministrazione"
 msgid "Admin Bar search"
 msgstr "Ricerca nella barra di amministrazione"
 
-#: includes/features/admin-features.php:37
+#: includes/features/admin-features.php:42
 msgid "Admin Feature Restrictions"
 msgstr "Restrizioni caratteristiche di amministrazione"
 
@@ -272,7 +272,7 @@ msgstr "Restrizioni caratteristiche di amministrazione"
 msgid "Admin Features"
 msgstr "Caratteristiche amministrative"
 
-#: includes/functions-admin.php:379 includes/features/admin-features.php:303
+#: includes/functions-admin.php:379 includes/features/admin-features.php:309
 msgid ""
 "Admin Features allows you to remove elements from the admin area and toolbar."
 msgstr ""
@@ -702,10 +702,6 @@ msgstr "Descrizione del coupon"
 msgid "Create New Role"
 msgstr "Crea un nuovo ruolo"
 
-#: includes/roles/class/class-pp-roles-admin.php:512
-msgid "Create Role"
-msgstr "Crea ruolo"
-
 #: includes/admin.php:1835
 msgid "Create this role definition in new (future) sites"
 msgstr "Crea la definizione di questo ruolo nei nuovi (futuri) siti"
@@ -793,10 +789,6 @@ msgstr ""
 msgid "Deletion"
 msgstr "Cancellazione"
 
-#: includes/roles/roles.php:33
-msgid "Description here."
-msgstr "La descrizione qui."
-
 #: includes/functions.php:695
 msgid "Detailed documentation is also available on the plugin website."
 msgstr ""
@@ -851,7 +843,7 @@ msgstr ""
 "come impostazione predefinita il livello più basso (0). Il ruolo "
 "amministratore ha come impostazione predefinita il livello 10."
 
-#: includes/features/admin-features.php:239
+#: includes/features/admin-features.php:242
 #: includes/features/editor-features-classic.php:123
 #: includes/features/editor-features-gutenberg.php:120
 msgid "Edit"
@@ -1163,6 +1155,18 @@ msgstr "Header e footer"
 msgid "Hidden IDs or Classes"
 msgstr "ID o classi nascoste"
 
+#: includes/features/restrict-admin-features.php:37
+msgid "Hide Admin Toolbar"
+msgstr "Nascondi la barra degli strumenti di amministrazione"
+
+#: includes/features/restrict-admin-features.php:38
+msgid "Hide Dashboard Widgets"
+msgstr "Nascondi i widget della bacheca"
+
+#: includes/features/restrict-admin-features.php:36
+msgid "Hide Default Items"
+msgstr "Nascondi gli elementi predefiniti"
+
 #: includes/features/frontend-features/frontend-features-ui.php:72
 msgid "Hide IDs or Classes"
 msgstr "Nascondi ID o classi"
@@ -1171,7 +1175,7 @@ msgstr "Nascondi ID o classi"
 msgid "Hide Twenty Twenty-Three Credit Footer"
 msgstr "Nascondere il credito di Twenty Twenty-Three nel footer"
 
-#: includes/features/admin-features.php:309
+#: includes/features/admin-features.php:315
 msgid "How to use Admin Features"
 msgstr "Come si usano le funzioni di amministrazione"
 
@@ -1396,7 +1400,7 @@ msgstr[1] "Miei %s"
 msgid "Missing parameters, refresh the page and try again."
 msgstr "Ci sono dei parametri mancanti, ricarica la pagina e prova ancora."
 
-#: includes/features/restrict-admin-features.php:59
+#: includes/features/restrict-admin-features.php:91
 msgid "Mobile Menu Toggle"
 msgstr "Mostra/nascondi menu mobile"
 
@@ -1462,8 +1466,8 @@ msgid "negate none (add/remove all capabilities normally)"
 msgstr ""
 "nessuna negazione (aggiungere/rimuovere tutte le funzionalità normalmente)"
 
-#: includes/features/restrict-admin-features.php:66
-#: includes/features/restrict-admin-features.php:67
+#: includes/features/restrict-admin-features.php:98
+#: includes/features/restrict-admin-features.php:99
 msgid "New"
 msgstr "Nuovo"
 
@@ -1751,6 +1755,10 @@ msgstr ""
 "Regola le autorizzazioni per gli stati dell'articolo in Edit Flow <em>(Pro)</"
 "em>"
 
+#: includes/features/restrict-admin-features.php:195
+msgid "Remove Admin Toolbar"
+msgstr "Rimuovi la barra degli strumenti di amministrazione"
+
 #: includes/functions.php:665
 msgid "Remove anything in the WordPress admin"
 msgstr "Rimuovi qualsiasi cosa nell'amministrazione di WordPress"
@@ -1818,7 +1826,7 @@ msgstr "Limitato:"
 msgid "Revise"
 msgstr "Rivedi"
 
-#: includes/features/restrict-admin-features.php:64
+#: includes/features/restrict-admin-features.php:96
 msgid "Right bar"
 msgstr "Barra destra"
 
@@ -1888,6 +1896,10 @@ msgstr "Ruoli e capacità sono stati ripristinati dal backup iniziale."
 msgid "Roles and Capabilities restored from selected auto-backup."
 msgstr ""
 "Ruoli e capacità sono stati ripristinati dal backup automatico selezionato."
+
+#: includes/roles/class/class-pp-roles-admin.php:512
+msgid "Save Changes"
+msgstr "Salva modifiche"
 
 #: includes/features/frontend-features/frontend-features-ui.php:152
 msgid "Save Edit"
@@ -2102,7 +2114,7 @@ msgstr "Testando: "
 msgid "Text settings"
 msgstr "Impostazioni del testo"
 
-#: includes/features/restrict-admin-features.php:83
+#: includes/features/restrict-admin-features.php:115
 msgid "Thank you for creating with WordPress"
 msgstr "Grazie per aver creato con WordPress"
 
@@ -2293,8 +2305,7 @@ msgstr ""
 msgid "Title:"
 msgstr "Titolo:"
 
-#: includes/features/admin-features.php:96
-#: includes/features/admin-features.php:115 includes/features/nav-menus.php:127
+#: includes/features/admin-features.php:162 includes/features/nav-menus.php:127
 #: includes/features/nav-menus.php:147
 #: includes/features/profile-features.php:103
 #: includes/features/profile-features.php:122
@@ -2348,10 +2359,6 @@ msgstr "Capacità della tassonomia individuale"
 msgid "Update"
 msgstr "Aggiorna"
 
-#: includes/roles/class/class-pp-roles-admin.php:512
-msgid "Update Role"
-msgstr "Aggiorna ruolo"
-
 #: includes/functions.php:652
 msgid "Upgrade to Capabilities Pro"
 msgstr "Aggiorna a Capabilities Pro"
@@ -2364,8 +2371,8 @@ msgid "Upgrade to Pro"
 msgstr "Aggiorna a Pro"
 
 #: includes/admin.php:1526 includes/admin.php:1527 includes/admin.php:1528
-#: includes/features/admin-features.php:305
-#: includes/features/admin-features.php:306
+#: includes/features/admin-features.php:311
+#: includes/features/admin-features.php:312
 #: includes/features/editor-features.php:237
 #: includes/features/editor-features.php:238
 #: includes/features/nav-menus.php:303 includes/features/nav-menus.php:304
@@ -2396,11 +2403,11 @@ msgstr ""
 "Utilizza le impostazioni della barra laterale per poterla controllare in "
 "modo indipendente."
 
-#: includes/features/restrict-admin-features.php:65
+#: includes/features/restrict-admin-features.php:97
 msgid "User actions"
 msgstr "Azioni utente"
 
-#: includes/features/restrict-admin-features.php:68
+#: includes/features/restrict-admin-features.php:100
 msgid "User Display Name"
 msgstr "Nome visualizzato dell'utente"
 
@@ -2409,7 +2416,7 @@ msgstr "Nome visualizzato dell'utente"
 msgid "User Testing"
 msgstr "Prova utente"
 
-#: includes/admin.php:1570 includes/features/admin-features.php:308
+#: includes/admin.php:1570 includes/features/admin-features.php:314
 #: includes/features/editor-features.php:240
 #: includes/features/nav-menus.php:306
 #: includes/features/profile-features.php:241
@@ -2435,7 +2442,7 @@ msgstr ""
 "Attenzione: Questo ruolo non può accedere alla bacheca senza le capacità di "
 "lettura. %1$sFai clic qui per risolvere ora%2$s."
 
-#: includes/features/restrict-admin-features.php:133
+#: includes/features/restrict-admin-features.php:165
 msgid "Welcome panel"
 msgstr "Pannello di benvenuto"
 
@@ -2480,11 +2487,11 @@ msgstr "Core WordPress"
 msgid "WordPress Core Capabilities"
 msgstr "Capacità di base di WordPress"
 
-#: includes/features/restrict-admin-features.php:61
+#: includes/features/restrict-admin-features.php:93
 msgid "WordPress External Links"
 msgstr "Link esterni a WordPress"
 
-#: includes/features/restrict-admin-features.php:60
+#: includes/features/restrict-admin-features.php:92
 msgid "WordPress Logo"
 msgstr "Logo WordPress"
 
@@ -2502,7 +2509,7 @@ msgstr ""
 "Integrazione con WPML per trasmettere le autorizzazioni alle traduzioni "
 "<em>(Pro)</em>"
 
-#: includes/features/restrict-admin-features.php:69
+#: includes/features/restrict-admin-features.php:101
 msgid "Yoast SEO"
 msgstr "Yoast SEO"
 
@@ -2667,6 +2674,15 @@ msgstr "Il tuo link è scaduto, ricarica la pagina e prova ancora."
 msgid "Your Role"
 msgstr "Il tuo ruolo"
 
+#~ msgid "Create Role"
+#~ msgstr "Crea ruolo"
+
+#~ msgid "Description here."
+#~ msgstr "La descrizione qui."
+
+#~ msgid "Update Role"
+#~ msgstr "Aggiorna ruolo"
+
 #~ msgid "Save %s Restrictions"
 #~ msgstr "Salva le restrizioni %s"
 
@@ -2768,9 +2784,6 @@ msgstr "Il tuo ruolo"
 
 #~ msgid "Revisions"
 #~ msgstr "Revisioni"
-
-#~ msgid "Save Changes"
-#~ msgstr "Salva modifiche"
 
 #~ msgid "Save Draft"
 #~ msgstr "Salva bozza"

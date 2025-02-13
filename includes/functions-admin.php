@@ -313,6 +313,7 @@ function pp_capabilities_settings_options() {
        'cme_test_user_excluded_roles',
        'cme_profile_features_auto_redirect',
        'cme_role_same_page_redirect_cookie',
+       'cme_admin_notice_options',
    ];
 
    return apply_filters('pp_capabilities_settings_options', $settings_options);
@@ -402,6 +403,11 @@ function pp_capabilities_dashboard_options() {
     $features['user-testing'] = [
         'label'        => esc_html__('User Testing', 'capability-manager-enhanced'),
         'description'  => esc_html__('Test your site by instantly logging in as another user. Available accounts include any which the current user can edit.', 'capability-manager-enhanced'),
+    ];
+
+    $features['admin-notices'] = [
+        'label'        => esc_html__('Admin Notices', 'capability-manager-enhanced'),
+        'description'  => esc_html__('Remove Admin Notices from WordPress admin screen and organize them in to a single area.', 'capability-manager-enhanced'),
     ];
 
     $features = apply_filters('pp_capabilities_dashboard_features', $features);

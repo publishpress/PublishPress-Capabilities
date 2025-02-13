@@ -864,6 +864,22 @@ jQuery(document).ready( function($) {
       	$(this).closest('form').find('input[type=submit]').attr('disabled', false);
     	}
     });
+      
+    // -------------------------------------------------------------
+    //   Settings sub tab change
+    // -------------------------------------------------------------
+    $(document).on('change', '.ppc-settings-role-subtab', function (e) {
+      e.preventDefault();
+  
+      var selectedOption = $(this).find(':selected');
+      var current_content = selectedOption.data('content');
+  
+      $('.ppc-settings-tab-content').addClass('hidden-element');
+  
+      if (current_content) {
+          $(current_content).removeClass('hidden-element');
+      }
+    });
 
 
   /* Start COPIED FROM PP BLOCKS */
