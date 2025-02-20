@@ -17,9 +17,8 @@ if (!class_exists('PP_Capabilities_Admin_Notices')) {
             $hooks = ['admin_notices', 'user_admin_notices', 'network_admin_notices'];
             foreach ($hooks as $hook) {
                 add_action($hook, [$this, 'start_hook_capture'], PHP_INT_MIN);
+                add_action($hook, [$this, 'end_hook_capture'], PHP_INT_MAX - 1);
             }
-            // Close admin menu custom opening div
-            add_action('all_admin_notices', [$this, 'end_hook_capture'], PHP_INT_MAX - 1);
             // Add admin notices to admin toolbar
             add_action('admin_bar_menu', [$this, 'add_toolbar_item'], 998);
             // Render our toolbar panel in the footer
