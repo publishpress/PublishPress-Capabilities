@@ -74,7 +74,7 @@ if (!class_exists('PP_Capabilities_Admin_Notices')) {
                     'remove_whitelist_label' => esc_html__('Hide this notice', 'capability-manager-enhanced'),
                     'remove_blacklist_label' => esc_html__('Move to Hidden Notices', 'capability-manager-enhanced'),
                     'whitelist_note' => esc_html__('Displayed notices will no longer be removed from admin pages.', 'capability-manager-enhanced'),
-                    'blacklist_note' => esc_html__('Silenced notices will be removed from WordPress admin screens and you won\'t be notified if they appear again.', 'capability-manager-enhanced'),
+                    'blacklist_note' => esc_html__('This notice will be moved to the "Silenced Notices" tab and you will not receive a notification if it appears again.', 'capability-manager-enhanced'),
                 ]
             );
 
