@@ -426,7 +426,7 @@ Fixed : Security issue. Please update.
 
 == Changelog ==
 
-= 2.19.1 = - 20 Feb 2025 =
+= 2.19.1 = - 25 Feb 2025 =
   * Fixed : Conflict with Gravity Forms, #1347
   * Update : Hidden notice text, #1329
   * Fixed : Custom submenu not showing after created, #1345
