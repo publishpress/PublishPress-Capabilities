@@ -217,7 +217,7 @@ if (!class_exists('PP_Capabilities_Admin_Notices')) {
                     <h4><?php esc_html_e('Admin Notices', 'capability-manager-enhanced'); ?></h4>
                     <p><?php esc_html_e('There are currently no admin notices.', 'capability-manager-enhanced'); ?> <a target="_blank" href="<?php echo esc_url(admin_url('admin.php?page=pp-capabilities-settings&pp_tab=admin-notices')); ?>"><?php esc_html_e('Edit the settings.', 'capability-manager-enhanced'); ?></a></p>
                 </div>
-                <div class="ppc-admin-notices-panel-content"></div>
+                <div class="ppc-admin-notices-panel-content"><?php esc_html_e('Admin Notices', 'capability-manager-enhanced'); ?></div>
             </div>
             <?php
         }

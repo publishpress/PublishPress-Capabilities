@@ -10,7 +10,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-02-13 16:59+0000\n"
+"POT-Creation-Date: 2025-02-20 15:04+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: Loco https://localise.biz/\n"
 "X-Domain: capability-manager-enhanced\n"
@@ -286,13 +286,13 @@ msgstr ""
 msgid "Admin Menus"
 msgstr ""
 
-#: includes/admin-notices/admin-notices.php:270
+#: includes/admin-notices/admin-notices.php:269
 msgid "Admin notice status updated successfully."
 msgstr ""
 
 #: includes/functions-admin.php:409 includes/settings-ui.php:37
-#: includes/admin-notices/admin-notices.php:180
-#: includes/admin-notices/admin-notices.php:218
+#: includes/admin-notices/admin-notices.php:179
+#: includes/admin-notices/admin-notices.php:217
 msgid "Admin Notices"
 msgstr ""
 
@@ -349,7 +349,7 @@ msgid ""
 "admin area."
 msgstr ""
 
-#: includes/admin-notices/admin-notices.php:233
+#: includes/admin-notices/admin-notices.php:232
 #: includes/features/frontend-features/frontend-features-action.php:41
 #: includes/features/frontend-features/frontend-features-action.php:110
 msgid "An error occured!"
@@ -751,11 +751,11 @@ msgstr ""
 msgid "Disable WooCommerce admin restrictions"
 msgstr ""
 
-#: includes/admin-notices/admin-notices.php:73
+#: includes/admin-notices/admin-notices.php:72
 msgid "Display this notice"
 msgstr ""
 
-#: includes/admin-notices/admin-notices.php:77
+#: includes/admin-notices/admin-notices.php:76
 msgid "Displayed notices will no longer be removed from admin pages."
 msgstr ""
 
@@ -800,7 +800,7 @@ msgstr ""
 msgid "Edit Roles"
 msgstr ""
 
-#: includes/admin-notices/admin-notices.php:219
+#: includes/admin-notices/admin-notices.php:218
 msgid "Edit the settings."
 msgstr ""
 
@@ -1066,7 +1066,7 @@ msgstr[1] ""
 msgid "Hidden IDs or Classes"
 msgstr ""
 
-#: includes/admin-notices/admin-notices.php:205
+#: includes/admin-notices/admin-notices.php:204
 msgid "Hidden Notices"
 msgstr ""
 
@@ -1090,7 +1090,7 @@ msgstr ""
 msgid "Hide IDs or Classes"
 msgstr ""
 
-#: includes/admin-notices/admin-notices.php:75
+#: includes/admin-notices/admin-notices.php:74
 msgid "Hide this notice"
 msgstr ""
 
@@ -1188,7 +1188,7 @@ msgstr ""
 msgid "Initial backup of all roles"
 msgstr ""
 
-#: includes/admin-notices/admin-notices.php:244
+#: includes/admin-notices/admin-notices.php:243
 #: includes/features/frontend-features/frontend-features-action.php:56
 #: includes/features/frontend-features/frontend-features-action.php:119
 msgid "Invalid action. Reload this page and try again."
@@ -1198,7 +1198,7 @@ msgstr ""
 msgid "Invalid Capabilities"
 msgstr ""
 
-#: includes/admin-notices/admin-notices.php:246
+#: includes/admin-notices/admin-notices.php:245
 msgid "Invalid form."
 msgstr ""
 
@@ -1332,7 +1332,7 @@ msgstr ""
 msgid "Modes"
 msgstr ""
 
-#: includes/admin-notices/admin-notices.php:76
+#: includes/admin-notices/admin-notices.php:75
 msgid "Move to Hidden Notices"
 msgstr ""
 
@@ -1928,18 +1928,12 @@ msgstr ""
 msgid "Show private taxonomies"
 msgstr ""
 
-#: includes/admin-notices/admin-notices.php:74
+#: includes/admin-notices/admin-notices.php:73
 msgid "Silence this notice"
 msgstr ""
 
-#: includes/admin-notices/admin-notices.php:209
+#: includes/admin-notices/admin-notices.php:208
 msgid "Silenced Notices"
-msgstr ""
-
-#: includes/admin-notices/admin-notices.php:78
-msgid ""
-"Silenced notices will be removed from WordPress admin screens and you won't "
-"be notified if they appear again."
 msgstr ""
 
 #: includes/features/frontend-features/frontend-features-data.php:38
@@ -2120,7 +2114,7 @@ msgid ""
 "The User Testing feature also requires the %1$s edit_users %2$s capability."
 msgstr ""
 
-#: includes/admin-notices/admin-notices.php:219
+#: includes/admin-notices/admin-notices.php:218
 msgid "There are currently no admin notices."
 msgstr ""
 
@@ -2186,6 +2180,12 @@ msgstr ""
 
 #: includes/admin-load.php:732
 msgid "This menu is restricted for the following roles"
+msgstr ""
+
+#: includes/admin-notices/admin-notices.php:77
+msgid ""
+"This notice will be moved to the \"Silenced Notices\" tab and you will not "
+"receive a notification if it appears again."
 msgstr ""
 
 #: capsman-enhanced.php:109
@@ -2471,7 +2471,7 @@ msgstr ""
 msgid "You do not have permission to manage admin features."
 msgstr ""
 
-#: includes/admin-notices/admin-notices.php:242
+#: includes/admin-notices/admin-notices.php:241
 msgid "You do not have permission to manage admin notices."
 msgstr ""
 

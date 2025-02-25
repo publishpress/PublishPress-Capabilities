@@ -7,7 +7,7 @@ Tags: capabilities, permissions, admin menus, user roles, user role editor
 Requires at least: 5.5
 Requires PHP: 7.2.5
 Tested up to: 6.7
-Stable tag: 2.19.0
+Stable tag: 2.19.1
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -38,6 +38,8 @@ This plugin is the free version of PublishPress Capabilities. The Pro version of
 5. **Profile Features**: You can hide features for users in the "Profile" screen.
 7. **Admin Menus (Pro version)**: You can edit admin menu links and control who can access them.
 8. **Nav Menus**: You can restrict access to navigation menus by user role, or logged in status.
+9. **User Testing**: Safely test any user's account without resetting their password.
+10. **Admin Notices**: Organize all the message and advertisements in your admin area.
 
 ## Feature 1. Roles##
 
@@ -101,6 +103,18 @@ PublishPress Capabilities enables you to restrict access to navigation menus by 
 
 [Click to see how to block frontend menu access](https://publishpress.com/knowledge-base/nav-menus/).
 
+## Feature 9. User Testing / User Switching ##
+
+If you run a WordPress website which allows users to log in, you probably spend a lot of time answering account questions or solving website bugs for your users. Site administrators often have to browse their site and see exactly what the user sees. They need to test the user's account without resetting their password. This is possible with PublishPress Capabilities.
+
+[Click here to learn about user testing](https://publishpress.com/knowledge-base/user-testing/).
+
+## Feature 10. Admin Notices ##
+
+This feature helps organize messages and advertisements in your WordPress admin area. It helps remove clutter from your WordPress experience. This feature will organize all these admin notices into a new area in the top-right corner of your screen. This "Admin Notices" area will show all the notices in a clean, organized area. Nothing is changed about the notices so you can deal with them as normal. The only difference is that you won't be pestered by these notices on your main admin dashboard.
+
+[Click here to learn about Admin Notices](https://publishpress.com/knowledge-base/admin-notices-feature/.
+
 ## PublishPress Capabilities is Safe to Use ##
 
 PublishPress Capabilities is completely **safe to use**. Every time you change your site's permissions, this plugin will take a backup that you can restore if anything goes wrong. You can use these backups to migrate your roles and permissions from one site to another.
@@ -128,12 +142,6 @@ We mentioned earlier that PublishPress Capabilities has special support for WooC
 PublishPress Capabilities allows you to control permissions on a single site or across your whole network. Every time you update permissions in PublishPress Capabilities, you can choose to sync those changes across your multisite network.
 
 [Click here to learn about multisite permissions](https://publishpress.com/knowledge-base/multisite-network/).
-
-## User Testing / User Switching ##
-
-If you run a WordPress website which allows users to log in, you probably spend a lot of time answering account questions or solving website bugs for your users. Site administrators often have to browse their site and see exactly what the user sees. They need to test the user's account without resetting their password. This is possible with PublishPress Capabilities.
-
-[Click here to learn about user testing](https://publishpress.com/knowledge-base/user-testing/).
 
 ## Join PublishPress and get the Pro plugins ##
 
@@ -417,6 +425,13 @@ Fixed : Non-administrators with user editing capabilities could add new Administ
 Fixed : Security issue. Please update.
 
 == Changelog ==
+
+= 2.19.1 = - 25 Feb 2025 =
+  * Fixed : Conflict with Gravity Forms, #1347
+  * Update : Hidden notice text, #1329
+  * Fixed : Custom submenu not showing after created, #1345
+  * Fixed : Submenu overwrite when create 2 submenus, #1346
+  * Update : Translation Updates Capabilities 2.19 ES-FR-IT, #1343
 
 = 2.19.0 = - 13 Feb 2025 =
   * Feature : Ability to hide admin notices, #135
