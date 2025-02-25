@@ -17,9 +17,8 @@ if (!class_exists('PP_Capabilities_Admin_Notices')) {
             $hooks = ['admin_notices', 'user_admin_notices', 'network_admin_notices'];
             foreach ($hooks as $hook) {
                 add_action($hook, [$this, 'start_hook_capture'], PHP_INT_MIN);
+                add_action($hook, [$this, 'end_hook_capture'], PHP_INT_MAX - 1);
             }
-            // Close admin menu custom opening div
-            add_action('all_admin_notices', [$this, 'end_hook_capture'], PHP_INT_MAX - 1);
             // Add admin notices to admin toolbar
             add_action('admin_bar_menu', [$this, 'add_toolbar_item'], 998);
             // Render our toolbar panel in the footer
@@ -75,7 +74,7 @@ if (!class_exists('PP_Capabilities_Admin_Notices')) {
                     'remove_whitelist_label' => esc_html__('Hide this notice', 'capability-manager-enhanced'),
                     'remove_blacklist_label' => esc_html__('Move to Hidden Notices', 'capability-manager-enhanced'),
                     'whitelist_note' => esc_html__('Displayed notices will no longer be removed from admin pages.', 'capability-manager-enhanced'),
-                    'blacklist_note' => esc_html__('Silenced notices will be removed from WordPress admin screens and you won\'t be notified if they appear again.', 'capability-manager-enhanced'),
+                    'blacklist_note' => esc_html__('This notice will be moved to the "Silenced Notices" tab and you will not receive a notification if it appears again.', 'capability-manager-enhanced'),
                 ]
             );
 
@@ -210,7 +209,7 @@ if (!class_exists('PP_Capabilities_Admin_Notices')) {
                         </label>
                     </div>
                 </div>
-                <div class="ppc-admin-notices-panel-none empty-notices-message">
+                <div class="ppc-admin-notices-panel-none empty-notices-message" style="display: none;">
                     <svg width="170" height="170" viewBox="0 0 170 170" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="85" cy="85" r="85" fill="#a8a8a8"></circle>
                         <path d="M97.6667 78.6665H72.3333C70.5917 78.6665 69.1667 80.0915 69.1667 81.8332C69.1667 83.5748 70.5917 84.9998 72.3333 84.9998H97.6667C99.4083 84.9998 100.833 83.5748 100.833 81.8332C100.833 80.0915 99.4083 78.6665 97.6667 78.6665ZM107.167 56.4998H104V53.3332C104 51.5915 102.575 50.1665 100.833 50.1665C99.0917 50.1665 97.6667 51.5915 97.6667 53.3332V56.4998H72.3333V53.3332C72.3333 51.5915 70.9083 50.1665 69.1667 50.1665C67.425 50.1665 66 51.5915 66 53.3332V56.4998H62.8333C61.1536 56.4998 59.5427 57.1671 58.355 58.3548C57.1673 59.5426 56.5 61.1535 56.5 62.8332V107.167C56.5 108.846 57.1673 110.457 58.355 111.645C59.5427 112.833 61.1536 113.5 62.8333 113.5H107.167C110.65 113.5 113.5 110.65 113.5 107.167V62.8332C113.5 59.3498 110.65 56.4998 107.167 56.4998ZM104 107.167H66C64.2583 107.167 62.8333 105.742 62.8333 104V72.3332H107.167V104C107.167 105.742 105.742 107.167 104 107.167ZM88.1667 91.3332H72.3333C70.5917 91.3332 69.1667 92.7582 69.1667 94.4998C69.1667 96.2415 70.5917 97.6665 72.3333 97.6665H88.1667C89.9083 97.6665 91.3333 96.2415 91.3333 94.4998C91.3333 92.7582 89.9083 91.3332 88.1667 91.3332Z" fill="#8E8E8E"></path>
@@ -218,7 +217,7 @@ if (!class_exists('PP_Capabilities_Admin_Notices')) {
                     <h4><?php esc_html_e('Admin Notices', 'capability-manager-enhanced'); ?></h4>
                     <p><?php esc_html_e('There are currently no admin notices.', 'capability-manager-enhanced'); ?> <a target="_blank" href="<?php echo esc_url(admin_url('admin.php?page=pp-capabilities-settings&pp_tab=admin-notices')); ?>"><?php esc_html_e('Edit the settings.', 'capability-manager-enhanced'); ?></a></p>
                 </div>
-                <div class="ppc-admin-notices-panel-content"></div>
+                <div class="ppc-admin-notices-panel-content"><?php esc_html_e('Admin Notices', 'capability-manager-enhanced'); ?></div>
             </div>
             <?php
         }
