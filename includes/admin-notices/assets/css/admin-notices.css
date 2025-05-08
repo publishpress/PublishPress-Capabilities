@@ -18,10 +18,6 @@
     right: 0;
 }
 
-#wpadminbar .ppc-admin-notices-toolbar-item a.ab-item {
-    background: #2c3338;
-}
-
 .ppc-admin-notices-toolbar-item.hidden {
     display: none !important;
 }
