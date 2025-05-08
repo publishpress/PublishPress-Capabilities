@@ -770,7 +770,7 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 												|| $type_obj->cap->$prop == str_replace( '_pages', "_" . _cme_get_plural($type_obj->name, $type_obj), $prop )
 												)
                                             && (!in_array($type_obj->cap->$prop, $grouped_caps_lists)) //capability not enforced in $grouped_caps_lists
-											&& (('manage_post_tags' != $type_obj->cap->$prop) || (defined('PRESSPERMIT_ACTIVE') && in_array( $type_obj->name, cme_get_assisted_taxonomies())))
+											&& (('manage_post_tags' != $type_obj->cap->$prop) || ('post_tag' == $type_obj->name))
 											) {
 												// only present these term caps up top if we are ensuring that they get enforced separately from manage_terms
 												if ( in_array( $prop, array( 'edit_terms', 'delete_terms', 'assign_terms' ) ) && ( ! in_array( $type_obj->name, cme_get_detailed_taxonomies() ) || defined( 'OLD_PRESSPERMIT_ACTIVE' ) ) ) {
@@ -816,10 +816,6 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 													continue;
 												}
 
-												if ($type_obj->cap->$prop === 'manage_post_tags') {
-													$type_obj->cap->$prop = 'manage_categories';
-												}
-                                                
 												$disabled_cap = true;
                                                 $display_row = true;
                                                 $cap_name = sanitize_text_field($type_obj->cap->$prop);
