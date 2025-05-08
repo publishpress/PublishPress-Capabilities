@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: Plugins - PublishPress Capabilities &#8211; User Role "
 "Access, Editor Permissions, Admin Menus - Stable (latest release)\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/project\n"
-"POT-Creation-Date: 2025-02-13 16:59+0000\n"
-"PO-Revision-Date: 2025-02-14 12:31+0100\n"
+"POT-Creation-Date: 2025-02-20 15:04+0000\n"
+"PO-Revision-Date: 2025-02-25 19:35+0100\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "Language: it_IT\n"
@@ -304,13 +304,13 @@ msgstr "Restrizioni menu amministrazione"
 msgid "Admin Menus"
 msgstr "Menu amministrazione"
 
-#: includes/admin-notices/admin-notices.php:270
+#: includes/admin-notices/admin-notices.php:269
 msgid "Admin notice status updated successfully."
 msgstr "Stato degli avvisi dell'amministratore aggiornato correttamente."
 
 #: includes/functions-admin.php:409 includes/settings-ui.php:37
-#: includes/admin-notices/admin-notices.php:180
-#: includes/admin-notices/admin-notices.php:218
+#: includes/admin-notices/admin-notices.php:179
+#: includes/admin-notices/admin-notices.php:217
 msgid "Admin Notices"
 msgstr "Avvisi dell'amministratore"
 
@@ -378,7 +378,7 @@ msgstr ""
 "causare problemi temporanei quando si aggiornano i ruoli degli utenti che "
 "non hanno accesso all'area di amministrazione di WordPress."
 
-#: includes/admin-notices/admin-notices.php:233
+#: includes/admin-notices/admin-notices.php:232
 #: includes/features/frontend-features/frontend-features-action.php:41
 #: includes/features/frontend-features/frontend-features-action.php:110
 msgid "An error occured!"
@@ -825,11 +825,11 @@ msgstr ""
 msgid "Disable WooCommerce admin restrictions"
 msgstr "Disabilita le restrizioni amministrative di WooCommerce"
 
-#: includes/admin-notices/admin-notices.php:73
+#: includes/admin-notices/admin-notices.php:72
 msgid "Display this notice"
 msgstr "Visualizza questo avviso"
 
-#: includes/admin-notices/admin-notices.php:77
+#: includes/admin-notices/admin-notices.php:76
 msgid "Displayed notices will no longer be removed from admin pages."
 msgstr ""
 "Gli avvisi visualizzati non verranno più rimossi dalle pagine di "
@@ -879,7 +879,7 @@ msgstr "Modifica il ruolo: %s"
 msgid "Edit Roles"
 msgstr "Modifica ruoli"
 
-#: includes/admin-notices/admin-notices.php:219
+#: includes/admin-notices/admin-notices.php:218
 msgid "Edit the settings."
 msgstr "Modifica impostazioni."
 
@@ -1185,7 +1185,7 @@ msgstr[1] "Hanno utenti %s"
 msgid "Hidden IDs or Classes"
 msgstr "ID o classi nascoste"
 
-#: includes/admin-notices/admin-notices.php:205
+#: includes/admin-notices/admin-notices.php:204
 msgid "Hidden Notices"
 msgstr "Avvisi nascosti"
 
@@ -1209,7 +1209,7 @@ msgstr "Nascondi gli elementi predefiniti"
 msgid "Hide IDs or Classes"
 msgstr "Nascondi ID o classi"
 
-#: includes/admin-notices/admin-notices.php:75
+#: includes/admin-notices/admin-notices.php:74
 msgid "Hide this notice"
 msgstr "Nascondi questo avviso"
 
@@ -1312,7 +1312,7 @@ msgstr "Backup iniziale - %s"
 msgid "Initial backup of all roles"
 msgstr "Backup iniziali di tutti i ruoli"
 
-#: includes/admin-notices/admin-notices.php:244
+#: includes/admin-notices/admin-notices.php:243
 #: includes/features/frontend-features/frontend-features-action.php:56
 #: includes/features/frontend-features/frontend-features-action.php:119
 msgid "Invalid action. Reload this page and try again."
@@ -1322,7 +1322,7 @@ msgstr "Azione non valida. Ricarica la pagina e riprova."
 msgid "Invalid Capabilities"
 msgstr "Capacità non valide"
 
-#: includes/admin-notices/admin-notices.php:246
+#: includes/admin-notices/admin-notices.php:245
 msgid "Invalid form."
 msgstr "Modulo non valido."
 
@@ -1459,7 +1459,7 @@ msgstr "Mostra/nascondi menu mobile"
 msgid "Modes"
 msgstr "Modalità"
 
-#: includes/admin-notices/admin-notices.php:76
+#: includes/admin-notices/admin-notices.php:75
 msgid "Move to Hidden Notices"
 msgstr "Sposta negli avvisi nascosti"
 
@@ -2111,21 +2111,13 @@ msgstr "Mostra i tipi di contenuto privati"
 msgid "Show private taxonomies"
 msgstr "Mostra le tassonomie private"
 
-#: includes/admin-notices/admin-notices.php:74
+#: includes/admin-notices/admin-notices.php:73
 msgid "Silence this notice"
 msgstr "Silenzia questo avviso"
 
-#: includes/admin-notices/admin-notices.php:209
+#: includes/admin-notices/admin-notices.php:208
 msgid "Silenced Notices"
 msgstr "Avvisi silenziati"
-
-#: includes/admin-notices/admin-notices.php:78
-msgid ""
-"Silenced notices will be removed from WordPress admin screens and you won't "
-"be notified if they appear again."
-msgstr ""
-"Gli avvisi silenziati verranno rimossi dalle schermate di amministrazione di "
-"WordPress e non verrai informato se appaiono nuovamente."
 
 #: includes/features/frontend-features/frontend-features-data.php:38
 msgid "Site Dark Mode"
@@ -2319,7 +2311,7 @@ msgstr ""
 "La funzionalità di test degli utenti richiede anche la capacità %1$s "
 "edit_users %2$s."
 
-#: includes/admin-notices/admin-notices.php:219
+#: includes/admin-notices/admin-notices.php:218
 msgid "There are currently no admin notices."
 msgstr "Non ci sono attualmente avvisi dell'amministratore."
 
@@ -2396,6 +2388,14 @@ msgstr "Questa funzionalità verrà aggiunta a tutte le pagine."
 #: includes/admin-load.php:732
 msgid "This menu is restricted for the following roles"
 msgstr "Questo menu è limitato ai seguenti ruoli"
+
+#: includes/admin-notices/admin-notices.php:77
+msgid ""
+"This notice will be moved to the \"Silenced Notices\" tab and you will not "
+"receive a notification if it appears again."
+msgstr ""
+"Questo avviso verrà spostato nella scheda \"Avvisi silenziati\" e non "
+"riceverai una notifica se dovesse comparire di nuovo."
 
 #: capsman-enhanced.php:109
 msgid "This plugin can be deleted."
@@ -2729,7 +2729,7 @@ msgstr ""
 "Non hai le autorizzazioni adatte per gestire le caratteristiche "
 "amministrative."
 
-#: includes/admin-notices/admin-notices.php:242
+#: includes/admin-notices/admin-notices.php:241
 msgid "You do not have permission to manage admin notices."
 msgstr "Non hai i permessi per gestire gli avvisi amministrativi."
 
