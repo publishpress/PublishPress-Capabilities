@@ -348,12 +348,12 @@ jQuery(document).ready(function ($) {
     let tab_counts = 0;
 
     var active_tab = false;
-    $('.admin-notices-tab label').removeClass('selected');
+   // $('.admin-notices-tab label').removeClass('selected');
     // active tab show/hide
     if (active_notices_count > 0) {
       $('.admin-notices-tab .active-notices').show();
       if (!active_tab) {
-        $('.admin-notices-tab .active-notices').trigger('click');
+       // $('.admin-notices-tab .active-notices').trigger('click');
         active_tab = true;
       }
       tab_counts++;
@@ -362,7 +362,7 @@ jQuery(document).ready(function ($) {
     if (blacklisted_notices_count > 0) {
       $('.admin-notices-tab .blacklisted-notices').show();
       if (!active_tab) {
-        $('.admin-notices-tab .blacklisted-notices').trigger('click');
+        //$('.admin-notices-tab .blacklisted-notices').trigger('click');
         active_tab = true;
       }
       tab_counts++;
