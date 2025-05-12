@@ -143,10 +143,10 @@ jQuery(document).ready(function ($) {
       let notice_blacklist = blacklist_notices.includes(notice_id);
 
       if (
-        $el.is('.hidden, .hide-if-js, .update-message, [aria-hidden="true"]')
+        $el.is('.hidden, .hide-if-js, .update-message, [aria-hidden="true"], .woocommerce-message')
         || $el.css('display') === 'none'
       ) {
-        // a notice with hidden class or attribute should be skipped cos it could be a dynamic notice
+        // an excluded notice or notice with hidden class or attribute should be skipped cos it could be a dynamic notice
         return true;
       } else if (notice_whitelist) {
         // add whitelist notices to the right list
@@ -226,7 +226,7 @@ jQuery(document).ready(function ($) {
           let notice_id = simpleHashId($(element).text().trim());
 
           if (panel_notice_ids.includes(notice_id)) {
-            //if ($(element).is('.notice')) 
+            //if ($(element).is('.notice'))
             {
               let notice_action_html = '<div class="ppc-notice-action">';
               notice_action_html += '<div class="action-item-wrap"><div class="ppc-tool-tip down-notice"><div class="dashicons dashicons-editor-help"></div><div class="tool-tip-text"><p>' + ppcAdminNoticesData.whitelist_note + '</p><i></i></div></div><a href="#" class="whitelist">' + ppcAdminNoticesData.whitelist_label + '</a></div>';
@@ -250,7 +250,7 @@ jQuery(document).ready(function ($) {
         $.each(whitelisted_notices, function (index, element) {
           let notice_id = simpleHashId($(element).text().trim());
 
-          //if ($(element).is('.notice')) 
+          //if ($(element).is('.notice'))
           {
             let notice_action_html = '<div class="ppc-notice-action">';
             notice_action_html += '<div class="action-item-wrap"><div class="ppc-tool-tip down-notice"><div class="dashicons dashicons-editor-help"></div><div class="tool-tip-text"><p>' + ppcAdminNoticesData.whitelist_note + '</p><i></i></div></div><a href="#" class="whitelist undo">' + ppcAdminNoticesData.remove_whitelist_label + '</a></div>';
@@ -268,7 +268,7 @@ jQuery(document).ready(function ($) {
         $.each(blacklisted_notices, function (index, element) {
           let notice_id = simpleHashId($(element).text().trim());
 
-          //if ($(element).is('.notice')) 
+          //if ($(element).is('.notice'))
           {
             let notice_action_html = '<div class="ppc-notice-action">';
             notice_action_html += '<div class="action-item-wrap"><div class="ppc-tool-tip down-notice"><div class="dashicons dashicons-editor-help"></div><div class="tool-tip-text"><p>' + ppcAdminNoticesData.whitelist_note + '</p><i></i></div></div><a href="#" class="whitelist">' + ppcAdminNoticesData.whitelist_label + '</a></div>';
@@ -343,17 +343,17 @@ jQuery(document).ready(function ($) {
     }
     $('.admin-notices-tab .active-notices .tab-notice-count').html(active_notices_counter);
     $('.admin-notices-tab .blacklisted-notices .tab-notice-count').html(blacklisted_notices_counter);
-    
+
     // show/or hide tabs if atleast 2 tabs has notices
     let tab_counts = 0;
 
     var active_tab = false;
-    $('.admin-notices-tab label').removeClass('selected');
+   // $('.admin-notices-tab label').removeClass('selected');
     // active tab show/hide
     if (active_notices_count > 0) {
       $('.admin-notices-tab .active-notices').show();
       if (!active_tab) {
-        $('.admin-notices-tab .active-notices').trigger('click');
+       // $('.admin-notices-tab .active-notices').trigger('click');
         active_tab = true;
       }
       tab_counts++;
@@ -362,7 +362,7 @@ jQuery(document).ready(function ($) {
     if (blacklisted_notices_count > 0) {
       $('.admin-notices-tab .blacklisted-notices').show();
       if (!active_tab) {
-        $('.admin-notices-tab .blacklisted-notices').trigger('click');
+        //$('.admin-notices-tab .blacklisted-notices').trigger('click');
         active_tab = true;
       }
       tab_counts++;

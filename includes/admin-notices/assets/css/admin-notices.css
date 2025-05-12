@@ -8,8 +8,7 @@
     box-shadow: -2px 0 5px rgba(0,0,0,0.1);
     z-index: 99999;
     overflow-y: auto;
-    padding: 20px;
-    padding-left: 2px;
+    padding: 10px;
     transition: right 0.3s ease-in-out;
     scrollbar-color: rgb(51, 51, 51, 0.3) rgb(255, 255, 255);
     scrollbar-width: thin;
@@ -17,10 +16,6 @@
 
 #ppc-admin-notices-panel.open {
     right: 0;
-}
-
-#wpadminbar .ppc-admin-notices-toolbar-item a.ab-item {
-    background: #2c3338;
 }
 
 .ppc-admin-notices-toolbar-item.hidden {
@@ -75,53 +70,62 @@
     margin-bottom: 10px;
 }
 
-.ppc-panel-notice-item .notice, 
-.ppc-panel-notice-item .updated, 
-.ppc-panel-notice-item #message,
-.ppc-shown-notice-item.notice, 
-.ppc-shown-notice-item.updated, 
-.ppc-shown-notice-item#message {
-    padding-left: 15px !important;
-    min-width: 90% !important;
-    margin: 5px 15px 2px !important;
-    padding-right: 38px;
+.ppc-panel-notice-item .notice {
+    font-size: 14px;
+    color: #3c434a;
+    margin: 8px 0 !important;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px 12px;
+}
+
+.ppc-panel-notice-item .notice p {
+    font-size: 14px;
 }
 
 .ppc-panel-notice-item .ppc-notice-action {
     display: flex;
-    gap: 12px;
-    justify-content: end;
-    border-top: 1px solid #eee;
-    padding: 9px 0 10px;
-    font-size: 11px;
-    margin-top: 14px;
+    flex-direction: row;
+    justify-content: right;
+    width: 100%;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    border-top: 1px solid #e6e7ec;
+    padding-top: 10px;
 }
 
 .ppc-admin-notices-panel-none.empty-notices-message {
-    padding: 16px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    text-align: center;
-    font-size: .75rem;
-    font-weight: 500;
-    line-height: 1.334;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%
 }
 
 .ppc-admin-notices-panel-none.empty-notices-message h4 {
     color: #a8a8a8;
     font-size: 24px;
-    font-weight: 700;
+    font-weight: 600;
     margin-bottom: 0;
 }
 
 .ppc-admin-notices-panel-none.empty-notices-message p {
     color: #a8a8a8;
     text-align: center;
-    font-size: 20px;
-    font-weight: 400;
-    padding: 20px;
-    padding-top: 0;
+    font-size: 16px;
+    margin-top: 22px;
+}
+
+.ppc-admin-notices-panel-none.empty-notices-message svg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 170px;
+    width: 170px;
+    background-color: #a8a8a8;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    color: #8e8e8e;
 }
 
 .ppc-tool-tip {
@@ -132,7 +136,7 @@
 
 .ppc-tool-tip .tool-tip-text {
     display: none;
-    min-width: 250px; 
+    min-width: 250px;
     top: -20px;
     left: 50%;
     transform: translate(-50%, -100%);
@@ -201,7 +205,7 @@
     flex-wrap: nowrap;
     width: 102%;
 }
-  
+
 #ppc-admin-notices-panel .admin-notices-button-group label {
     display: inline-block;
     border: #7e8993 solid 1px;
@@ -216,23 +220,23 @@
     white-space: nowrap;
     cursor: pointer;
 }
-  
+
 #ppc-admin-notices-panel .admin-notices-button-group-border {
     border-top: #7e8993 solid 1px !important;
 }
-  
+
 #ppc-admin-notices-panel .admin-notices-button-group label.selected {
     border-color: #00d084;
     background: #00d084;
     color: #fff;
     font-weight: bold;
     z-index: 2;
-}  
-  
+}
+
 #ppc-admin-notices-panel .admin-notices-button-group label:first-child {
     border-radius: 3px 0 0 0;
 }
-  
+
 #ppc-admin-notices-panel .admin-notices-button-group input {
     display: none !important;
 }
@@ -253,3 +257,41 @@
     padding-top: 5px;
     text-align: right;
 }
+
+.action-item-wrap {
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    margin-left: 10px;
+    font-size: 13px;
+    color: #000;
+    padding: 8px 10px;
+}
+
+.action-item-wrap:hover {
+    background-color: #efefef;
+}
+
+.action-item-wrap:active {
+    background-color: #fff;
+}
+
+.action-item-wrap a {
+    text-decoration: none;
+    color: #000;
+}
+
+.action-item-wrap a:hover {
+    color: #395b8a;
+}
+
+.action-item-wrap a:active {
+    color: #000;
+}
+
+.action-item-wrap a:focus {
+    color: #000;
+}
+
+

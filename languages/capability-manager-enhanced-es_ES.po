@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: Plugins - PublishPress Capabilities &#8211; User Role "
 "Access, Editor Permissions, Admin Menus - Stable (latest release)\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/project\n"
-"POT-Creation-Date: 2025-02-13 16:59+0000\n"
-"PO-Revision-Date: 2025-02-14 19:15+0100\n"
+"POT-Creation-Date: 2025-02-20 15:04+0000\n"
+"PO-Revision-Date: 2025-02-25 19:43+0100\n"
 "Last-Translator: \n"
 "Language-Team: Spanish (Spain)\n"
 "Language: es_ES\n"
@@ -305,14 +305,13 @@ msgstr "Restricciones del menú de administración"
 msgid "Admin Menus"
 msgstr "Menú de administración"
 
-#: includes/admin-notices/admin-notices.php:270
-#| msgid "%s role updated successfully."
+#: includes/admin-notices/admin-notices.php:269
 msgid "Admin notice status updated successfully."
 msgstr "El estado de aviso de administración se ha actualizado correctamente."
 
 #: includes/functions-admin.php:409 includes/settings-ui.php:37
-#: includes/admin-notices/admin-notices.php:180
-#: includes/admin-notices/admin-notices.php:218
+#: includes/admin-notices/admin-notices.php:179
+#: includes/admin-notices/admin-notices.php:217
 msgid "Admin Notices"
 msgstr "Avisos de administración"
 
@@ -380,7 +379,7 @@ msgstr ""
 "provocar problemas temporales al actualizar perfiles de usuario que no "
 "tengan acceso al área de administración de WordPress."
 
-#: includes/admin-notices/admin-notices.php:233
+#: includes/admin-notices/admin-notices.php:232
 #: includes/features/frontend-features/frontend-features-action.php:41
 #: includes/features/frontend-features/frontend-features-action.php:110
 msgid "An error occured!"
@@ -835,11 +834,11 @@ msgstr ""
 msgid "Disable WooCommerce admin restrictions"
 msgstr "Desactivar restricciones de administración de WooCommerce"
 
-#: includes/admin-notices/admin-notices.php:73
+#: includes/admin-notices/admin-notices.php:72
 msgid "Display this notice"
 msgstr "Mostrar este aviso"
 
-#: includes/admin-notices/admin-notices.php:77
+#: includes/admin-notices/admin-notices.php:76
 msgid "Displayed notices will no longer be removed from admin pages."
 msgstr ""
 "Los avisos mostrados ya no se eliminarán de las páginas de administración."
@@ -888,7 +887,7 @@ msgstr "Editar el perfil: %s"
 msgid "Edit Roles"
 msgstr "Editar perfiles"
 
-#: includes/admin-notices/admin-notices.php:219
+#: includes/admin-notices/admin-notices.php:218
 msgid "Edit the settings."
 msgstr "Editar los ajustes."
 
@@ -1194,7 +1193,7 @@ msgstr[1] "Tiene usuarios %s"
 msgid "Hidden IDs or Classes"
 msgstr "ID o clases ocultas"
 
-#: includes/admin-notices/admin-notices.php:205
+#: includes/admin-notices/admin-notices.php:204
 msgid "Hidden Notices"
 msgstr "Avisos ocultos"
 
@@ -1218,7 +1217,7 @@ msgstr "Ocultar los elementos por defecto"
 msgid "Hide IDs or Classes"
 msgstr "Oculta ID o clases"
 
-#: includes/admin-notices/admin-notices.php:75
+#: includes/admin-notices/admin-notices.php:74
 msgid "Hide this notice"
 msgstr "Ocultar este aviso"
 
@@ -1323,7 +1322,7 @@ msgstr "Copia de seguridad inicial: %s"
 msgid "Initial backup of all roles"
 msgstr "Copia de seguridad inicial de todos los perfiles"
 
-#: includes/admin-notices/admin-notices.php:244
+#: includes/admin-notices/admin-notices.php:243
 #: includes/features/frontend-features/frontend-features-action.php:56
 #: includes/features/frontend-features/frontend-features-action.php:119
 msgid "Invalid action. Reload this page and try again."
@@ -1333,7 +1332,7 @@ msgstr "Acción no válida. Recarga esta página e inténtalo de nuevo."
 msgid "Invalid Capabilities"
 msgstr "Capacidades no válidas"
 
-#: includes/admin-notices/admin-notices.php:246
+#: includes/admin-notices/admin-notices.php:245
 msgid "Invalid form."
 msgstr "Formulario no válido."
 
@@ -1470,7 +1469,7 @@ msgstr "Alternar menú móvil"
 msgid "Modes"
 msgstr "Modos"
 
-#: includes/admin-notices/admin-notices.php:76
+#: includes/admin-notices/admin-notices.php:75
 msgid "Move to Hidden Notices"
 msgstr "Mover a avisos ocultos"
 
@@ -2124,21 +2123,13 @@ msgstr "Muestra los tipos de contenido privados"
 msgid "Show private taxonomies"
 msgstr "Mostrar las taxonomías privadas"
 
-#: includes/admin-notices/admin-notices.php:74
+#: includes/admin-notices/admin-notices.php:73
 msgid "Silence this notice"
 msgstr "Silenciar este aviso"
 
-#: includes/admin-notices/admin-notices.php:209
+#: includes/admin-notices/admin-notices.php:208
 msgid "Silenced Notices"
 msgstr "Avisos silenciados"
-
-#: includes/admin-notices/admin-notices.php:78
-msgid ""
-"Silenced notices will be removed from WordPress admin screens and you won't "
-"be notified if they appear again."
-msgstr ""
-"Los avisos silenciados se eliminarán de las pantallas de administración de "
-"WordPress y no recibirás ningún aviso si vuelven a aparecer."
 
 #: includes/features/frontend-features/frontend-features-data.php:38
 msgid "Site Dark Mode"
@@ -2333,7 +2324,7 @@ msgstr ""
 "La característica Pruebas de usuario también requiere la capacidad %1$s "
 "edit_users %2$s."
 
-#: includes/admin-notices/admin-notices.php:219
+#: includes/admin-notices/admin-notices.php:218
 msgid "There are currently no admin notices."
 msgstr "Actualmente no hay avisos de administración."
 
@@ -2410,6 +2401,14 @@ msgstr "Esta característica se añadirá a todas las páginas."
 #: includes/admin-load.php:732
 msgid "This menu is restricted for the following roles"
 msgstr "Este menú está restringido a los siguientes perfiles"
+
+#: includes/admin-notices/admin-notices.php:77
+msgid ""
+"This notice will be moved to the \"Silenced Notices\" tab and you will not "
+"receive a notification if it appears again."
+msgstr ""
+"Este aviso se trasladará a la pestaña «Avisos silenciados» y no recibirás "
+"ningún aviso si vuelve a aparecer."
 
 #: capsman-enhanced.php:109
 msgid "This plugin can be deleted."
@@ -2741,7 +2740,7 @@ msgstr "No tienes permiso para acceder a esta página."
 msgid "You do not have permission to manage admin features."
 msgstr "No tienes permisos para gestionar características de administración."
 
-#: includes/admin-notices/admin-notices.php:242
+#: includes/admin-notices/admin-notices.php:241
 msgid "You do not have permission to manage admin notices."
 msgstr "No tienes permisos para gestionar los avisos de administración."
 
