@@ -10,7 +10,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-02-20 15:04+0000\n"
+"POT-Creation-Date: 2025-05-12 12:10+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: Loco https://localise.biz/\n"
 "X-Domain: capability-manager-enhanced\n"
@@ -41,17 +41,17 @@ msgstr ""
 msgid "%1$s = Apply custom styling"
 msgstr ""
 
-#: includes/admin.php:1537
+#: includes/admin.php:1533
 #, php-format
 msgid "%1$s = Capability denied, even if granted by another role %2$s"
 msgstr ""
 
-#: includes/admin.php:1535
+#: includes/admin.php:1531
 #, php-format
 msgid "%1$s = Capability granted %2$s"
 msgstr ""
 
-#: includes/admin.php:1536
+#: includes/admin.php:1532
 #, php-format
 msgid "%1$s = Capability not granted %2$s"
 msgstr ""
@@ -73,12 +73,12 @@ msgstr ""
 msgid "%1$s = This feature is denied"
 msgstr ""
 
-#: includes/admin.php:1767
+#: includes/admin.php:1763
 #, php-format
 msgid "%1$sbuy%2$s %3$s"
 msgstr ""
 
-#: includes/admin.php:1765
+#: includes/admin.php:1761
 #, php-format
 msgid "%1$sgrab%2$s %3$s"
 msgstr ""
@@ -95,7 +95,7 @@ msgid ""
 "copy of the plugin is active."
 msgstr ""
 
-#: includes/admin.php:1765
+#: includes/admin.php:1761
 #, php-format
 msgid "%s (free install)"
 msgstr ""
@@ -105,7 +105,7 @@ msgstr ""
 msgid "%s (level %s)"
 msgstr ""
 
-#: includes/admin.php:1767
+#: includes/admin.php:1763
 #, php-format
 msgid "%s info/purchase"
 msgstr ""
@@ -137,8 +137,8 @@ msgstr ""
 msgid "%s successfully imported from uploaded data."
 msgstr ""
 
-#: includes/admin.php:792 includes/admin.php:1045 includes/admin.php:1212
-#: includes/admin.php:1452
+#: includes/admin.php:792 includes/admin.php:1041 includes/admin.php:1208
+#: includes/admin.php:1448
 #, php-format
 msgid "%s: assigned by Permission Group"
 msgstr ""
@@ -174,7 +174,7 @@ msgstr ""
 msgid "activate %1$sAdvanced settings%2$s, see Role Usage"
 msgstr ""
 
-#: includes/admin.php:1639
+#: includes/admin.php:1635
 msgid "Add a New Capability"
 msgstr ""
 
@@ -221,7 +221,7 @@ msgstr ""
 msgid "Add post metabox:"
 msgstr ""
 
-#: includes/admin.php:1649
+#: includes/admin.php:1645
 msgid "Add to role"
 msgstr ""
 
@@ -229,11 +229,11 @@ msgstr ""
 msgid "Additional"
 msgstr ""
 
-#: includes/admin.php:1376
+#: includes/admin.php:1372
 msgid "Additional Capabilities"
 msgstr ""
 
-#: includes/admin.php:523 includes/admin.php:980
+#: includes/admin.php:523 includes/admin.php:976
 msgid "Admin"
 msgstr ""
 
@@ -265,7 +265,7 @@ msgid ""
 "Admin Features allows you to remove elements from the admin area and toolbar."
 msgstr ""
 
-#: includes/admin.php:919
+#: includes/admin.php:915
 msgid ""
 "Admin listing access is normally provided by the \"Edit\" capabilities. "
 "These \"List\" capabilities only apply if the corresponding \"Edit\" "
@@ -293,6 +293,7 @@ msgstr ""
 #: includes/functions-admin.php:409 includes/settings-ui.php:37
 #: includes/admin-notices/admin-notices.php:179
 #: includes/admin-notices/admin-notices.php:217
+#: includes/admin-notices/admin-notices.php:220
 msgid "Admin Notices"
 msgstr ""
 
@@ -369,12 +370,12 @@ msgstr ""
 msgid "Are you sure you want to delete this role?"
 msgstr ""
 
-#: includes/admin.php:1718
+#: includes/admin.php:1714
 msgid ""
 "Assign custom WP roles supplementally for a specific post type <em>(Pro)</em>"
 msgstr ""
 
-#: includes/admin.php:1714
+#: includes/admin.php:1710
 msgid "Assign standard WP roles supplementally for a specific post type"
 msgstr ""
 
@@ -383,7 +384,7 @@ msgstr ""
 msgid "Auto-backup of all roles (%s)"
 msgstr ""
 
-#: includes/admin.php:1710
+#: includes/admin.php:1706
 msgid ""
 "Automatically define type-specific capabilities for your custom post types "
 "and taxonomies"
@@ -525,7 +526,7 @@ msgstr ""
 msgid "Capabilities"
 msgstr ""
 
-#: includes/admin.php:1534
+#: includes/admin.php:1530
 msgid "Capabilities allows you change the permissions for any user role."
 msgstr ""
 
@@ -556,7 +557,7 @@ msgid ""
 "status-specific role."
 msgstr ""
 
-#: includes/admin.php:1603
+#: includes/admin.php:1599
 msgid "Capabilities is Safe to Use"
 msgstr ""
 
@@ -564,15 +565,15 @@ msgstr ""
 msgid "Capabilities Settings"
 msgstr ""
 
-#: includes/admin.php:1010 includes/admin.php:1083 includes/admin.php:1120
-#: includes/admin.php:1129 includes/admin.php:1177 includes/admin.php:1257
-#: includes/admin.php:1388 includes/admin.php:1517
+#: includes/admin.php:1006 includes/admin.php:1079 includes/admin.php:1116
+#: includes/admin.php:1125 includes/admin.php:1173 includes/admin.php:1253
+#: includes/admin.php:1384 includes/admin.php:1513
 msgid "Capability Name"
 msgstr ""
 
-#: includes/admin.php:1010 includes/admin.php:1083 includes/admin.php:1120
-#: includes/admin.php:1129 includes/admin.php:1177 includes/admin.php:1257
-#: includes/admin.php:1388 includes/admin.php:1517
+#: includes/admin.php:1006 includes/admin.php:1079 includes/admin.php:1116
+#: includes/admin.php:1125 includes/admin.php:1173 includes/admin.php:1253
+#: includes/admin.php:1384 includes/admin.php:1513
 msgid "check / uncheck all"
 msgstr ""
 
@@ -636,11 +637,11 @@ msgstr ""
 msgid "Copy"
 msgstr ""
 
-#: includes/admin.php:1847
+#: includes/admin.php:1843
 msgid "Copy / update this role definition to all sites now"
 msgstr ""
 
-#: includes/admin.php:1850
+#: includes/admin.php:1846
 msgid "Copy option settings to all sites now"
 msgstr ""
 
@@ -656,7 +657,7 @@ msgstr ""
 msgid "Create New Role"
 msgstr ""
 
-#: includes/admin.php:1844
+#: includes/admin.php:1840
 msgid "Create this role definition in new (future) sites"
 msgstr ""
 
@@ -676,27 +677,27 @@ msgstr ""
 msgid "Custom Items"
 msgstr ""
 
-#: includes/admin.php:1734
+#: includes/admin.php:1730
 msgid ""
 "Custom Moderation statuses for access-controlled, multi-step publishing "
 "workflow <em>(Pro)</em>"
 msgstr ""
 
-#: includes/admin.php:1730
+#: includes/admin.php:1726
 msgid ""
 "Custom Post Visibility statuses, fully implemented throughout wp-admin <em>"
 "(Pro)</em>"
 msgstr ""
 
-#: includes/admin.php:1726
+#: includes/admin.php:1722
 msgid "Customize editing permissions per-category or per-post <em>(Pro)</em>"
 msgstr ""
 
-#: includes/admin.php:1722
+#: includes/admin.php:1718
 msgid "Customize reading permissions per-category or per-post"
 msgstr ""
 
-#: includes/admin.php:1742
+#: includes/admin.php:1738
 msgid ""
 "Customize the moderated editing of published content with Revisionary or "
 "Post Forking <em>(Pro)</em>"
@@ -972,8 +973,8 @@ msgstr ""
 msgid "Features:"
 msgstr ""
 
-#: includes/admin.php:996 includes/admin.php:1106 includes/admin.php:1163
-#: includes/admin.php:1379
+#: includes/admin.php:992 includes/admin.php:1102 includes/admin.php:1159
+#: includes/admin.php:1375
 msgid "Filter by capability"
 msgstr ""
 
@@ -1015,17 +1016,17 @@ msgstr ""
 msgid "General"
 msgstr ""
 
-#: includes/admin.php:1620
+#: includes/admin.php:1616
 msgid "Go to the Backup feature"
 msgstr ""
 
-#: includes/admin.php:1746
+#: includes/admin.php:1742
 msgid ""
 "Grant Spectator, Participant or Moderator access to specific bbPress forums "
 "<em>(Pro)</em>"
 msgstr ""
 
-#: includes/admin.php:1750
+#: includes/admin.php:1746
 msgid ""
 "Grant supplemental content permissions to a BuddyPress group <em>(Pro)</em>"
 msgstr ""
@@ -1102,7 +1103,7 @@ msgstr ""
 msgid "How to use Admin Features"
 msgstr ""
 
-#: includes/admin.php:1565
+#: includes/admin.php:1561
 msgid "How to use Capabilities"
 msgstr ""
 
@@ -1163,7 +1164,7 @@ msgid ""
 "exporting the settings on another site using the form above."
 msgstr ""
 
-#: includes/admin.php:1844
+#: includes/admin.php:1840
 msgid "Include in new sites."
 msgstr ""
 
@@ -1194,7 +1195,7 @@ msgstr ""
 msgid "Invalid action. Reload this page and try again."
 msgstr ""
 
-#: includes/admin.php:559 includes/admin.php:1275
+#: includes/admin.php:559 includes/admin.php:1271
 msgid "Invalid Capabilities"
 msgstr ""
 
@@ -1236,7 +1237,7 @@ msgstr ""
 msgid "Legacy"
 msgstr ""
 
-#: includes/admin.php:1801
+#: includes/admin.php:1797
 msgid "Level:"
 msgstr ""
 
@@ -1282,12 +1283,6 @@ msgstr ""
 msgid "Logout Redirect"
 msgstr ""
 
-#. Description of the plugin
-msgid ""
-"Manage WordPress role definitions, per-site or network-wide. Organizes post "
-"capabilities by post type and operation."
-msgstr ""
-
 #: includes/backup.php:74
 msgid "Manual Backup"
 msgstr ""
@@ -1301,7 +1296,7 @@ msgstr ""
 msgid "Media Buttons (all)"
 msgstr ""
 
-#: includes/admin.php:1758
+#: includes/admin.php:1754
 msgid "Member support forum"
 msgstr ""
 
@@ -1344,7 +1339,7 @@ msgstr ""
 msgid "Multiples roles on \"User Edit\" screen"
 msgstr ""
 
-#: includes/admin.php:519 includes/admin.php:976 includes/admin.php:1668
+#: includes/admin.php:519 includes/admin.php:972 includes/admin.php:1664
 msgid "Multisite"
 msgstr ""
 
@@ -1398,7 +1393,7 @@ msgstr ""
 msgid "New backup saved."
 msgstr ""
 
-#: includes/admin.php:1652
+#: includes/admin.php:1648
 msgid "New capabilities are controlled on the Additonal tab."
 msgstr ""
 
@@ -1438,8 +1433,8 @@ msgstr ""
 msgid "No results found."
 msgstr ""
 
-#: includes/admin.php:999 includes/admin.php:1109 includes/admin.php:1166
-#: includes/admin.php:1382
+#: includes/admin.php:995 includes/admin.php:1105 includes/admin.php:1162
+#: includes/admin.php:1378
 msgid "No results found. Please try again with a different word."
 msgstr ""
 
@@ -1534,7 +1529,7 @@ msgstr ""
 msgid "Please upload a valid .json file"
 msgstr ""
 
-#: includes/admin.php:1160
+#: includes/admin.php:1156
 #, php-format
 msgid "Plugin Capabilities &ndash; %s"
 msgstr ""
@@ -1608,11 +1603,17 @@ msgid ""
 "kept."
 msgstr ""
 
+#. Description of the plugin
+msgid ""
+"PublishPress Capabilities is the access control plugin for WordPress. You "
+"can manage all your WordPress user roles, from Administrators to Subscribers."
+msgstr ""
+
 #: includes/admin-load.php:731
 msgid "PublishPress Capabilities Menu Restriction"
 msgstr ""
 
-#: includes/admin.php:1708
+#: includes/admin.php:1704
 msgid "PublishPress Permissions"
 msgstr ""
 
@@ -1661,7 +1662,7 @@ msgstr ""
 msgid "Registration Redirect"
 msgstr ""
 
-#: includes/admin.php:1738
+#: includes/admin.php:1734
 msgid "Regulate permissions for Edit Flow post statuses <em>(Pro)</em>"
 msgstr ""
 
@@ -1754,7 +1755,7 @@ msgstr ""
 msgid "Role Level"
 msgstr ""
 
-#: includes/admin.php:1799
+#: includes/admin.php:1795
 msgid ""
 "Role level is mostly deprecated. However, it still determines eligibility "
 "for Post Author assignment and limits the application of user editing "
@@ -1974,11 +1975,11 @@ msgstr ""
 msgid "Switch to Draft"
 msgstr ""
 
-#: includes/admin.php:1850
+#: includes/admin.php:1846
 msgid "Sync options to all sites."
 msgstr ""
 
-#: includes/admin.php:1847
+#: includes/admin.php:1843
 msgid "Sync role to all sites."
 msgstr ""
 
@@ -2054,7 +2055,7 @@ msgid ""
 "remove any messages that appear when you perform an action."
 msgstr ""
 
-#: includes/admin.php:1280
+#: includes/admin.php:1276
 msgid ""
 "The following entries have no effect. Please assign desired capabilities on "
 "the Editing / Deletion / Private tabs."
@@ -2108,7 +2109,7 @@ msgstr ""
 msgid "The slug for this taxonomy is %s"
 msgstr ""
 
-#: includes/admin.php:1218
+#: includes/admin.php:1214
 #, php-format
 msgid ""
 "The User Testing feature also requires the %1$s edit_users %2$s capability."
@@ -2148,12 +2149,12 @@ msgstr ""
 msgid "This capability is %s"
 msgstr ""
 
-#: includes/admin.php:829
+#: includes/admin.php:825
 #, php-format
 msgid "This capability is controlled by %s"
 msgstr ""
 
-#: includes/admin.php:832
+#: includes/admin.php:828
 #, php-format
 msgid ""
 "This capability is controlled by %s Use the sidebar settings to allow this "
@@ -2164,7 +2165,7 @@ msgstr ""
 msgid "This capability is explicitly negated. Click to add/remove normally."
 msgstr ""
 
-#: includes/admin.php:851 includes/admin.php:855
+#: includes/admin.php:847 includes/admin.php:851
 msgid "This capability is not available for this post type."
 msgstr ""
 
@@ -2284,7 +2285,7 @@ msgstr ""
 msgid "Upgrade to Pro"
 msgstr ""
 
-#: includes/admin.php:1535 includes/admin.php:1536 includes/admin.php:1537
+#: includes/admin.php:1531 includes/admin.php:1532 includes/admin.php:1533
 #: includes/features/admin-features.php:313
 #: includes/features/admin-features.php:314
 #: includes/features/editor-features.php:237
@@ -2308,7 +2309,7 @@ msgstr ""
 msgid "Use the \"Create\" capability for selected post types"
 msgstr ""
 
-#: includes/admin.php:849
+#: includes/admin.php:845
 msgid "Use the sidebar settings to allow this to be controlled independently."
 msgstr ""
 
@@ -2325,7 +2326,7 @@ msgstr ""
 msgid "User Testing"
 msgstr ""
 
-#: includes/admin.php:1579 includes/features/admin-features.php:316
+#: includes/admin.php:1575 includes/features/admin-features.php:316
 #: includes/features/editor-features.php:240
 #: includes/features/nav-menus.php:306
 #: includes/features/profile-features.php:242
@@ -2365,7 +2366,7 @@ msgstr ""
 msgid "When testing, display a return link in the front end footer."
 msgstr ""
 
-#: includes/admin.php:1617
+#: includes/admin.php:1613
 msgid ""
 "Whenever you use PublishPress Capabilities to save changes, it also creates "
 "a backup which you can use to restore a previous configuration."
@@ -2387,7 +2388,7 @@ msgstr ""
 msgid "WordPress Core"
 msgstr ""
 
-#: includes/admin.php:1103
+#: includes/admin.php:1099
 msgid "WordPress Core Capabilities"
 msgstr ""
 
@@ -2399,13 +2400,13 @@ msgstr ""
 msgid "WordPress Logo"
 msgstr ""
 
-#: includes/admin.php:1616
+#: includes/admin.php:1612
 msgid ""
 "WordPress stores role capabilities in your database, where they remain even "
 "if the plugin is deactivated."
 msgstr ""
 
-#: includes/admin.php:1754
+#: includes/admin.php:1750
 msgid "WPML integration to mirror permissions to translations <em>(Pro)</em>"
 msgstr ""
 
@@ -2423,7 +2424,7 @@ msgstr ""
 msgid "You can add the CSS for your classes by clicking \"Add Custom CSS\"."
 msgstr ""
 
-#: includes/admin.php:1545
+#: includes/admin.php:1541
 #, php-format
 msgid "You can also configure this role as a %sPermission Group%s."
 msgstr ""
@@ -2522,7 +2523,7 @@ msgstr ""
 msgid "You do not have sufficient permissions to perform this action."
 msgstr ""
 
-#: includes/admin.php:1510
+#: includes/admin.php:1506
 msgid "You have no additional capabilities."
 msgstr ""
 
