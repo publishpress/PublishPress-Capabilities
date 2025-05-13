@@ -237,7 +237,7 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 
 			$cap_type_names = array(
 				'' => __( '&nbsp;', 'capability-manager-enhanced' ),
-				'read' => __( 'Visibility', 'capability-manager-enhanced' ),
+				'read' => __( 'Private', 'capability-manager-enhanced' ),
 				'edit' => __( 'Editing', 'capability-manager-enhanced' ),
 				'delete' => __( 'Deletion', 'capability-manager-enhanced' ),
                 'taxonomies' => __( 'Taxonomies', 'capability-manager-enhanced' ),
@@ -248,11 +248,11 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
             }
 
             if ($pp_revisions_copy) {
-                $cap_type_names['copy'] = __('Create Revision', 'capability-manager-enhanced');
+                $cap_type_names['copy'] = __('Copy', 'capability-manager-enhanced');
             }
 
             if ($pp_revisions_revise) {
-                $cap_type_names['revise'] = __('Submit Revision', 'capability-manager-enhanced');
+                $cap_type_names['revise'] = __('Revise', 'capability-manager-enhanced');
             }
 
 			$cap_tips = array(
@@ -594,17 +594,9 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 
 							echo "<div id='" . esc_attr($tab_id) . "' style='display:" . esc_attr($div_display) . ";'>";
 
-							if ('taxonomy' == $item_type) {
-								$caption_pattern = esc_html__('Term %s Capabilities', 'capability-manager-enhanced');
-							} else {
-								$caption_pattern = (in_array($cap_type, ['copy', 'revise'])) 
-								? esc_html__('%s Capabilities', 'capability-manager-enhanced')
-							 	: esc_html__('Post %s Capabilities', 'capability-manager-enhanced');
-							}
+							$caption_pattern = ('taxonomy' == $item_type) ? esc_html__('Term %s Capabilities', 'capability-manager-enhanced') : esc_html__('Post %s Capabilities', 'capability-manager-enhanced');
 
-							$cap_type_name = ('taxonomies' == $cap_type) ? esc_html__('Taxonomy', 'capability-manager-enhanced') : $cap_type_names[$cap_type];
-
-							echo '<h3>' .  sprintf($caption_pattern, esc_html($cap_type_name)) . '</h3>';
+							echo '<h3>' .  sprintf($caption_pattern, esc_html($cap_type_names[$cap_type])) . '</h3>';
 
 							echo '<div class="ppc-filter-wrapper">';
 								echo '<select class="ppc-filter-select">';
