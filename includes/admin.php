@@ -1139,6 +1139,8 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 					// caps: plugins
 					$plugin_caps = apply_filters('cme_plugin_capabilities', $plugin_caps);
 
+					$plugin_cap_descriptions = apply_filters('cme_capability_descriptions', []);
+
 					foreach($plugin_caps as $plugin_title => $__plugin_caps) {
 						$plugin_title = esc_html($plugin_title);
 
@@ -1150,7 +1152,7 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 						$tab_name = str_replace('(CAPABILITYEXTRACTOR)', '<span class="capability-extractor-label">CE</span>', $tab_name);
 						$div_display = ($tab_id == $active_tab_id) ? 'block' : 'none';
 
-						echo '<div id="' . esc_attr($tab_id) . '" style="display:' . esc_attr($div_display) . '">';
+						echo '<div id="' . esc_attr($tab_id) . '" style="display:' . esc_attr($div_display) . '" class="cme-plugin-cap-table">';
 
 						// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 						echo '<h3 class="cme-cap-section">' . sprintf(esc_html__( 'Plugin Capabilities &ndash; %s', 'capability-manager-enhanced' ), $tab_name) . '</h3>';
@@ -1169,7 +1171,7 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 
                         ?>
 						<tr class="cme-bulk-select">
-                            <td colspan="<?php echo (int) $checks_per_row;?>">
+                            <td colspan="<?php echo (int) $checks_per_row + 1;?>" style="width: 100%">
                                 <input type="checkbox" class="cme-check-all" title="<?php esc_attr_e('check / uncheck all', 'capability-manager-enhanced');?>"> <span><?php _e('Capability Name', 'capability-manager-enhanced');?></span>
 								<span style="float:right">
 								&nbsp;&nbsp;<span class="ppc-tool-tip disabled"><a class="cme-neg-all" href="#" >X</a> <?php echo $cme_negate_all_tooltip_msg; ?> </span> <span class="ppc-tool-tip disabled"><a class="cme-switch-all" href="#" >X</a> <?php echo $cme_negate_none_tooltip_msg; ?> </span>
@@ -1232,6 +1234,13 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 							<?php endif; ?>
 							</td>
 
+							<td class="pp-cap-description">
+							<?php if (!empty($plugin_cap_descriptions[$cap_name])) {
+								echo $plugin_cap_descriptions[$cap_name];
+							}
+							?>
+							</td>
+
 							<?php
 							++$i;
 						}
@@ -1249,7 +1258,7 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 						?>
 
 						<tr class="cme-bulk-select">
-							<td colspan="<?php echo (int) $checks_per_row;?>">
+							<td colspan="<?php echo (int) $checks_per_row + 1;?>">
 								<input type="checkbox" class="cme-check-all" autocomplete="off" title="<?php esc_attr_e('check / uncheck all', 'capability-manager-enhanced');?>"> <span><?php _e('Capability Name', 'capability-manager-enhanced');?></span>
 								<span style="float:right">
 								&nbsp;&nbsp;<span class="ppc-tool-tip disabled"><a class="cme-neg-all" href="#" >X</a> <?php echo $cme_negate_all_tooltip_msg; ?> </span> <span class="ppc-tool-tip disabled"><a class="cme-switch-all" href="#" >X</a> <?php echo $cme_negate_none_tooltip_msg; ?> </span>
@@ -1325,6 +1334,8 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 							<?php if ( false !== strpos( $class, 'cap-neg' ) ) :?>
 								<input type="hidden" class="cme-negation-input" name="caps[<?php echo esc_attr($cap_name); ?>]" value="" />
 							<?php endif; ?>
+							</td>
+							<td>
 							</td>
 						<?php
 							$i++;
