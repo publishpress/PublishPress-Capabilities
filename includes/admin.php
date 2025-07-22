@@ -74,11 +74,11 @@ if (defined('PUBLISHPRESS_REVISIONS_VERSION') && function_exists('rvy_get_option
 }
 
 $cme_negate_all_tooltip_msg = '<span class="tool-tip-text">
-<p>'. esc_html__('negate all (storing as disabled capabilities)', 'capability-manager-enhanced') .'</p>
+<p>'. esc_html__('Negate All', 'capability-manager-enhanced') .'</p>
 <i></i>
 </span>';
 $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
-<p>'. esc_html__('negate none (add/remove all capabilities normally)', 'capability-manager-enhanced') .'</p>
+<p>'. esc_html__('Negate None', 'capability-manager-enhanced') .'</p>
 <i></i>
 </span>';
 ?>
@@ -175,7 +175,7 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 
 			$defined = [];
 			$defined['type'] = apply_filters('cme_filterable_post_types', get_post_types(['public' => true, 'show_ui' => true], 'object', 'or'));
-			
+
 			if (in_array(get_locale(), ['en_EN', 'en_US'])) {
 				$defined['type']['wp_navigation']->label = __('Nav Menus (Block)', 'capability-manager-enhanced');
 			} else {
@@ -184,7 +184,7 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 
 			$defined['taxonomy'] = apply_filters('cme_filterable_taxonomies', get_taxonomies(['public' => true, 'show_ui' => true], 'object', 'or'));
 			$defined['taxonomy']['nav_menu'] = get_taxonomy('nav_menu');
-			
+
 			if (in_array(get_locale(), ['en_EN', 'en_US'])) {
 				$defined['taxonomy']['nav_menu']->label = __('Nav Menus (Legacy)', 'capability-manager-enhanced');
 			} else {
@@ -388,17 +388,17 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 								$tab_slug = esc_attr($tab_slug);
 
 								$tab_id = "cme-cap-type-tables-{$tab_slug}";
-								
+
 								$classes = [];
 
 								if ($tab_id == $active_tab_id) {
 									$classes []= $ppc_tab_active;
 								}
-	
+
 								if (!empty($full_width_tabs[$tab_slug])) {
 									$classes []= 'ppc-full-width';
 								}
-	
+
 								$class = implode(' ', $classes);
 
 								echo '<li data-slug="' . esc_attr($tab_slug) . '"' . ' data-content="' . esc_attr($tab_id) . '" class="' . esc_attr($class) . '">'
@@ -489,7 +489,7 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 							];
                             $grouped_caps_lists = array_merge($grouped_caps_lists, $grouped_caps['Multisite']);
                         }
-                        
+
 						$grouped_caps = apply_filters('cme_grouped_capabilities', $grouped_caps);
 
 						foreach($grouped_caps as $grouped_title => $__grouped_caps) {
@@ -522,7 +522,7 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 								case 'Admin' :
 									$grouped_title = esc_html__('Admin', 'capability-manager-enhanced');
 									break;
-											
+
 								default:
 									$grouped_title = esc_html($grouped_title);
 							}
@@ -597,7 +597,7 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 							if ('taxonomy' == $item_type) {
 								$caption_pattern = esc_html__('Term %s Capabilities', 'capability-manager-enhanced');
 							} else {
-								$caption_pattern = (in_array($cap_type, ['copy', 'revise'])) 
+								$caption_pattern = (in_array($cap_type, ['copy', 'revise']))
 								? esc_html__('%s Capabilities', 'capability-manager-enhanced')
 							 	: esc_html__('Post %s Capabilities', 'capability-manager-enhanced');
 							}
@@ -659,7 +659,7 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 
 								if (in_array($cap_type, ['copy', 'revise'])) {
 									global $revisionary;
-									
+
 									if (!empty($revisionary) && !empty($revisionary->enabled_post_types) && empty($revisionary->enabled_post_types[$key])) {
 										continue;
 									}
@@ -698,7 +698,7 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
                                             $type_obj->cap->copy_others_posts = str_replace('edit_', 'copy_', $type_obj->cap->edit_others_posts);
                                         }
                                     }
-                        
+
                                     if ($pp_revisions_revise) {
                                         //add revise capabilities
                                         if (isset($type_obj->cap->edit_posts) && !isset($type_obj->cap->revise_posts)) {
@@ -751,7 +751,7 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
                                         if ($type_obj->name === 'attachment') {
                                             $attachement_cap_position++;
                                         }
-										
+
 										if ( ! empty($type_obj->cap->$prop) && ( in_array( $type_obj->name, array( 'post', 'page' ) )
 										|| ! in_array( $type_obj->cap->$prop, $default_caps )
 										|| ( ( 'manage_categories' == $type_obj->cap->$prop ) && ( 'manage_terms' == $prop ) && ( 'category' == $type_obj->name ) ) ) ) {
@@ -828,7 +828,7 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
                                                 $display_row = true;
                                                 $cap_name = sanitize_text_field($type_obj->cap->$prop);
 												$cap_title = '';
-												
+
 												if (($cap_name === 'manage_categories') && !defined('PRESSPERMIT_ACTIVE')) {
 													$tool_tip = sprintf(__( 'This capability is controlled by %s', 'capability-manager-enhanced' ), '<strong>manage_categories</strong>' );
 
@@ -952,9 +952,9 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 					$grouped_caps = apply_filters('cme_grouped_capabilities', $grouped_caps);
 
 					foreach($grouped_caps as $grouped_title => $__grouped_caps) {
-						
+
 						$tab_id = 'cme-cap-type-tables-' . esc_attr(pp_capabilities_convert_to_slug($grouped_title));
-						
+
 						switch ($grouped_title) {
 							case 'Comments' :
 								$grouped_title = __('Comments');
@@ -983,7 +983,7 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 							case 'Admin' :
 								$grouped_title = esc_html__('Admin', 'capability-manager-enhanced');
 								break;
-										
+
 							default:
 								$grouped_title = esc_html($grouped_title);
 						}
@@ -1481,7 +1481,7 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 									$disabled = ' disabled ';
 								}
 							}
-							
+
 						$caps_empty = false;
 						?>
 							<td class="<?php echo esc_attr($class); ?>"><span class="ppc-tool-tip disabled cap-x">X</span><span class="ppc-tool-tip disabled"><label><input type="checkbox" name="caps[<?php echo esc_attr($cap_name); ?>]" class="pp-single-action-rotate" autocomplete="off" value="1" <?php echo esc_attr($checked) . ' ' . esc_attr($disabled);?> />
@@ -1544,7 +1544,7 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 						do_action('publishpress-caps_sidebar_top');
 
 						$banners = new PublishPress\WordPressBanners\BannersMain;
-						
+
 						$banner_messages = [];
 						$banner_messages[] = esc_html__('Capabilities allows you change the permissions for any user role.', 'capability-manager-enhanced');
 						$banner_messages[] = sprintf(esc_html__('%1$s = Capability granted %2$s', 'capability-manager-enhanced'), '<table class="pp-capabilities-cb-key"><tr><td class="pp-cap-icon pp-cap-icon-checked"><input type="checkbox" title="'. esc_attr__('usage key', 'capability-manager-enhanced') .'" checked disabled></td><td>', '</td></tr>');
@@ -1570,10 +1570,10 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 						<div class="ppc-sidebar-panel-metabox meta-box-sortables">
 							<?php $meta_box_state = (isset($sidebar_metabox_state['how_to_user_capabilities'])) ? $sidebar_metabox_state['how_to_user_capabilities'] : 'closed';  ?>
 							<div class="postbox ppc-sidebar-panel <?php echo esc_attr($meta_box_state); ?>">
-								<input 
+								<input
 									name="ppc_metabox_state[how_to_user_capabilities]"
-									type="hidden" 
-									class="metabox-state" 
+									type="hidden"
+									class="metabox-state"
 									value="<?php echo esc_attr($meta_box_state); ?>"
 								/>
 								<div class="postbox-header">
@@ -1585,7 +1585,7 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 									</div>
 								</div>
 								<div class="inside">
-								<?php 
+								<?php
 									$banners->pp_display_banner(
 										'',
 										'',
@@ -1608,10 +1608,10 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 						<div class="ppc-sidebar-panel-metabox meta-box-sortables ppc-safe">
 							<?php $meta_box_state = (isset($sidebar_metabox_state['capabilities_safe_to_use'])) ? $sidebar_metabox_state['capabilities_safe_to_use'] : 'closed';  ?>
 							<div class="postbox ppc-sidebar-panel <?php echo esc_attr($meta_box_state); ?>">
-								<input 
+								<input
 									name="ppc_metabox_state[capabilities_safe_to_use]"
-									type="hidden" 
-									class="metabox-state" 
+									type="hidden"
+									class="metabox-state"
 									value="<?php echo esc_attr($meta_box_state); ?>"
 								/>
 								<div class="postbox-header">
@@ -1644,10 +1644,10 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 						<div class="ppc-sidebar-panel-metabox meta-box-sortables ppc-add-cap">
 							<?php $meta_box_state = (isset($sidebar_metabox_state['add_capability'])) ? $sidebar_metabox_state['add_capability'] : 'closed';  ?>
 							<div class="postbox ppc-sidebar-panel <?php echo esc_attr($meta_box_state); ?>">
-								<input 
+								<input
 									name="ppc_metabox_state[add_capability]"
-									type="hidden" 
-									class="metabox-state" 
+									type="hidden"
+									class="metabox-state"
 									value="<?php echo esc_attr($meta_box_state); ?>"
 								/>
 								<div class="postbox-header">
@@ -1673,10 +1673,10 @@ $cme_negate_none_tooltip_msg = '<span class="tool-tip-text">
 							<div class="ppc-sidebar-panel-metabox meta-box-sortables ppc-multi-site">
 								<?php $meta_box_state = (isset($sidebar_metabox_state['multi_site'])) ? $sidebar_metabox_state['multi_site'] : 'closed';  ?>
 								<div class="postbox ppc-sidebar-panel <?php echo esc_attr($meta_box_state); ?>">
-									<input 
+									<input
 										name="ppc_metabox_state[multi_site]"
-										type="hidden" 
-										class="metabox-state" 
+										type="hidden"
+										class="metabox-state"
 										value="<?php echo esc_attr($meta_box_state); ?>"
 									/>
 									<div class="postbox-header">
