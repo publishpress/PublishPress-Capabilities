@@ -32,7 +32,7 @@ class PP_Capabilities_Admin_Features
     public static function elementLayoutItemTitles()
     {
         $titles = [];
-        
+
         $titles['Header and Footer']    = esc_html__('Hide Default Items', 'capability-manager-enhanced');
         $titles['Admin Toolbar']        = esc_html__('Hide Admin Toolbar', 'capability-manager-enhanced');
         $titles['Dashboard widgets']    = esc_html__('Hide Dashboard Widgets', 'capability-manager-enhanced');
@@ -48,7 +48,7 @@ class PP_Capabilities_Admin_Features
     public static function elementLayoutItemActions()
     {
         $actions = [];
-        
+
         $actions['Header and Footer']    = 'ppc_header_footer';
         $actions['Admin Toolbar']        = 'ppc_adminbar';
         $actions['Dashboard widgets']    = 'ppc_dashboard_widget';
@@ -190,7 +190,7 @@ class PP_Capabilities_Admin_Features
         if (!is_array($toolbar_items)) {
             $toolbar_items = [];
         }
-        
+
         $toolbar_items['admintoolbar'] = [
             'label'    => esc_html__('Remove Admin Toolbar', 'capability-manager-enhanced'),
             'parent'   => '',
@@ -284,22 +284,28 @@ class PP_Capabilities_Admin_Features
 
     /**
      * Get array elements that starts with a specific word
-	 * 
-	 * @param array $restricted_features All restricted elements to check agains.
-	 * @param string $start_with The word to look for in array.
-	 * 
+     *
+     * @param array $restricted_features All restricted elements to check agains.
+     * @param string $start_with The word to look for in array.
+     *
      * @return array Filtered array.
      */
     public static function adminFeaturesRestrictedElements($restricted_elements, $start_with = 'ppc_adminbar')
     {
-		//get all items of the array starting with the specified string.  
-		$new_elements = array_filter( 
-			$restricted_elements,
-			function($value, $key) use ($start_with) {return strpos($value, $start_with) === 0;}, ARRAY_FILTER_USE_BOTH
-		);
+        if (empty($start_with)) {
+            return $restricted_elements;
+        }
 
-		return $new_elements;
-	}
+        $new_elements = array_filter(
+            $restricted_elements,
+            function($value, $key) use ($start_with) {
+                return strpos($value, $start_with) === 0;
+            },
+            ARRAY_FILTER_USE_BOTH
+        );
+
+        return $new_elements;
+    }
 
 
     /**
@@ -308,7 +314,7 @@ class PP_Capabilities_Admin_Features
     public static function adminFeaturedRestriction()
     {
 		global $ppc_disabled_toolbar, $ppc_disabled_widget;
-        
+
         if (is_multisite() && is_super_admin() && !defined('PP_CAPABILITIES_RESTRICT_SUPER_ADMIN')) {
             return;
         }
@@ -347,7 +353,7 @@ class PP_Capabilities_Admin_Features
 		if(is_admin()){
 			$ppc_disabled_widget = self::adminFeaturesRestrictedElements($all_disabled_elements, 'ppc_dashboard_widget');
 			$ppc_header_footer   = self::adminFeaturesRestrictedElements($all_disabled_elements, 'ppc_header_footer');
-            
+
 			//disable widget
 			if(count($ppc_disabled_widget) > 0){
 				add_action( 'wp_dashboard_setup', [ __CLASS__, 'disableDashboardWidgets' ], 99 );
@@ -426,7 +432,7 @@ class PP_Capabilities_Admin_Features
 	 */
 	public static function disableDashboardWidgets() {
 		global $ppc_disabled_widget;
-		
+
 		$widgets = (array)$ppc_disabled_widget;
 
 		if ( count($widgets) === 0 ) {
