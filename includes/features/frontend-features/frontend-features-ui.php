@@ -31,6 +31,7 @@ class PP_Capabilities_Frontend_Features_UI
      */
     public function fontendElementsForm()
     {
+        $pro_icon = ! defined('PUBLISHPRESS_CAPS_PRO_VERSION') ? '<span class="dashicons dashicons-lock"></span> &nbsp;' : '';
         ?>
         <tr class="ppc-menu-row child-menu frontendelements">
             <td colspan="2" class="form-td">
@@ -41,7 +42,7 @@ class PP_Capabilities_Frontend_Features_UI
                                 <?php esc_html_e('This feature allows you to modify the site frontend by hiding IDs or classes, adding CSS styles, or adding body classes.', 'capability-manager-enhanced'); ?>
                             </p>
                             <p class="editing-custom-item">
-                                <strong><?php esc_html_e('Editing:', 'capability-manager-enhanced'); ?></strong> 
+                                <strong><?php esc_html_e('Editing:', 'capability-manager-enhanced'); ?></strong>
                                 <span class="title"></span>
                             </p>
                         </td>
@@ -113,7 +114,7 @@ class PP_Capabilities_Frontend_Features_UI
                                 <div class="ppc-button-group"
                                     data-hide-selector=".frontend-features-pages">
                                     <label class="whole-site selected"><input type="radio" name="frontend_feature_pages" value=".frontend-element-whole-site" checked><?php esc_html_e('Whole Site', 'capability-manager-enhanced'); ?></label>
-                                    <label class="other-pages"><input type="radio" name="frontend_feature_pages" value=".frontend-element-other-pages"> <?php esc_html_e('Selected Pages', 'capability-manager-enhanced'); ?></label>
+                                    <label class="other-pages"><input type="radio" name="frontend_feature_pages" value=".frontend-element-other-pages"> <?php echo $pro_icon; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?><?php esc_html_e('Selected Pages', 'capability-manager-enhanced'); ?></label>
                                 </div>
                             </div>
                             <div class="frontend-element-other-pages frontend-features-pages hidden-element">
@@ -255,7 +256,7 @@ class PP_Capabilities_Frontend_Features_UI
                 <div class="button view-custom-item"><?php esc_html_e('View'); ?></div>
             </td>
             <td>
-                <div class="button edit-custom-item" 
+                <div class="button edit-custom-item"
                     data-section="<?php echo esc_attr($section_slug); ?>"
                     data-label="<?php echo esc_attr($section_array['label']); ?>"
                     data-selector="<?php echo esc_attr($element_selector); ?>"
@@ -267,12 +268,12 @@ class PP_Capabilities_Frontend_Features_UI
                 </div>
             </td>
             <td>
-                <div 
-                    class="button frontend-features-delete-item frontend-feature-red" 
-                    data-section="<?php echo esc_attr($section_slug); ?>" 
-                    data-id="<?php echo esc_attr($section_id); ?>" 
+                <div
+                    class="button frontend-features-delete-item frontend-feature-red"
+                    data-section="<?php echo esc_attr($section_slug); ?>"
+                    data-id="<?php echo esc_attr($section_id); ?>"
                     data-delete-nonce="<?php echo esc_attr(wp_create_nonce('frontend-delete' . $section_id .'-nonce')); ?>">
-                    <?php esc_html_e('Delete'); ?>    
+                    <?php esc_html_e('Delete'); ?>
                 </div>
             </td>
         </tr>
