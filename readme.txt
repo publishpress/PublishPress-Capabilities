@@ -437,6 +437,7 @@ Fixed : Security issue. Please update.
   * Update : Text changes for tooltips, #1408
   * Update : More space for Editor Features "Element IDs or Classes" box, #1398
   * Update : Update lib-status-capabilities to v1.1.2, #1412
+  * Update : Status Edit - capability column headers on Post Access tab not clickable #1402
   * Update : Add a "Pro" nudge to "Selected Pages", #1407
   * Update : Add Pro icons to "Hide CSS Elements" and "Block by URL", #1405
 
