@@ -81,7 +81,7 @@ $active_tab_slug = (!empty($_REQUEST['pp_caps_tab'])) ? sanitize_key($_REQUEST['
                                     </div>
                                     <div id="pp-capability-menu-wrapper" class="postbox">
                                         <div class="pp-capability-menus">
-	
+
 		                                    <div class="pp-capability-menus-wrap">
 		                                        <div id="pp-capability-menus-general"
 		                                             class="pp-capability-menus-content editable-role" style="display: block;">
@@ -108,15 +108,22 @@ $active_tab_slug = (!empty($_REQUEST['pp_caps_tab'])) ? sanitize_key($_REQUEST['
                                                                         $disabled_count  = count(PP_Capabilities_Admin_Features::adminFeaturesRestrictedElements($disabled_admin_items, $feature_action));
 
                                                                         $count_html = ($disabled_count > 0) ? '('. $disabled_count .')' : '';
+                                                                        $pro_icon = '';
+                                                                        if (! defined('PUBLISHPRESS_CAPS_PRO_VERSION') &&
+                                                                            in_array($section_slug, ['hidecsselement', 'blockedbyurl'])
+                                                                        ) {
+                                                                            $pro_icon = ! defined('PUBLISHPRESS_CAPS_PRO_VERSION') ? '<span class="dashicons dashicons-lock"></span> ' : '';
+
+                                                                        }
                                                                         ?>
-                                                                        <li data-slug="<?php echo esc_attr($section_slug); ?>" 
-                                                                            data-content="cme-cap-type-tables-<?php echo esc_attr($section_slug); ?>" 
+                                                                        <li data-slug="<?php echo esc_attr($section_slug); ?>"
+                                                                            data-content="cme-cap-type-tables-<?php echo esc_attr($section_slug); ?>"
                                                                             data-name="<?php echo esc_attr($translated_title); ?>"
                                                                             class="<?php echo esc_attr($active_class); ?>"
                                                                             style="display: flex;justify-content: space-between;">
                                                                             <div>
-                                                                                <?php echo esc_html($translated_title); ?>
-                                                                            </div> 
+                                                                                <?php echo $pro_icon; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?> <?php echo esc_html($translated_title); ?>
+                                                                            </div>
                                                                             <div style="color:#a00;">
                                                                                 <?php echo esc_html($count_html); ?>
                                                                             </div>
@@ -235,17 +242,17 @@ $active_tab_slug = (!empty($_REQUEST['pp_caps_tab'])) ? sanitize_key($_REQUEST['
                                                                                                 </div>
                                                                                                 <div class="ppc-flex-item" style="max-width: unset;">
                                                                                                     <div class="button view-custom-item"><?php esc_html_e('View'); ?></div>
-                                                                                                        <div class="button edit-features-custom-item <?php echo esc_attr($section_array['edit_class']); ?>" 
+                                                                                                        <div class="button edit-features-custom-item <?php echo esc_attr($section_array['edit_class']); ?>"
                                                                                                             data-section="<?php echo esc_attr($section_slug); ?>"
                                                                                                             data-label="<?php echo esc_attr($section_array['label']); ?>"
                                                                                                             data-element="<?php echo esc_attr($section_array['element_items']); ?>"
                                                                                                             data-id="<?php echo esc_attr($section_array['button_data_id']); ?>">
                                                                                                             <?php esc_html_e('Edit', 'capability-manager-enhanced'); ?>
                                                                                                         </div>
-                                                                                                        <div 
+                                                                                                        <div
                                                                                                             class="button <?php echo esc_attr($section_array['button_class']); ?> feature-red"
                                                                                                             data-id="<?php echo esc_attr($section_array['button_data_id']); ?>">
-                                                                                                            <?php esc_html_e('Delete'); ?>    
+                                                                                                            <?php esc_html_e('Delete'); ?>
                                                                                                         </div>
                                                                                                     </div>
                                                                                                 </div>
@@ -306,7 +313,7 @@ $active_tab_slug = (!empty($_REQUEST['pp_caps_tab'])) ? sanitize_key($_REQUEST['
                     </fieldset>
                 </div><!-- .pp-column-left -->
                 <div class="pp-column-right pp-capabilities-sidebar">
-                <?php 
+                <?php
                 $banner_messages = ['<p>'];
                 $banner_messages[] = esc_html__('Admin Features allows you to remove elements from the admin area and toolbar.', 'capability-manager-enhanced');
                 $banner_messages[] = '</p><p>';
