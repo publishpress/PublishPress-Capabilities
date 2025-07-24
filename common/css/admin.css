@@ -842,7 +842,7 @@ user-select: none;
 
 .ppc-tool-tip .tool-tip-text {
     display: none;
-    min-width: 250px; 
+    min-width: 250px;
     top: -20px;
     left: 50%;
     transform: translate(-50%, -100%);
@@ -1343,10 +1343,10 @@ ul.pp-capabilities-description {
   user-select: none;
 }
 
-.pp-capability-menus-wrapper.frontend-features .CodeMirror { 
-  margin-top: 0px; 
-  border: 1px solid #ddd; 
-  border-bottom: none; 
+.pp-capability-menus-wrapper.frontend-features .CodeMirror {
+  margin-top: 0px;
+  border: 1px solid #ddd;
+  border-bottom: none;
   border-top: none;
 }
 
@@ -1552,6 +1552,11 @@ ul.ppc-redirects-tab li.active a {
 
 .pp-redirects-internal-links-wrapper .base-input input[type=text] {
   width: 95% !important;
+}
+
+.pp-version-notice-bold-purple-button a {
+  color: #000000;
+  text-decoration: none;
 }
 
 /* Start COPIED FROM PP BLOCKS */
