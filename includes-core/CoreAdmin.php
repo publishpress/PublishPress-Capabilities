@@ -7,7 +7,7 @@ class CoreAdmin {
         if (is_admin()) {
 
             require_once PUBLISHPRESS_CAPS_ABSPATH . '/lib/vendor/publishpress/wordpress-version-notices/includes.php';
-    
+
             add_filter(\PPVersionNotices\Module\TopNotice\Module::SETTINGS_FILTER, function ($settings) {
                 $settings['capabilities'] = [
                     'message' => __("You're using PublishPress Capabilities Free. The Pro version has more features and support. %sUpgrade to Pro%s", 'capability-manager-enhanced'),
@@ -35,7 +35,7 @@ class CoreAdmin {
                         ['base' => 'toplevel_page_pp-capabilities-settings'],
                     ]
                 ];
-    
+
                 return $settings;
             });
             add_filter(
@@ -69,6 +69,8 @@ class CoreAdmin {
 
         //Frontend features promo
         add_action('pp_capabilities_frontend_features_metabox_post_types', [$this, 'frontendFeaturesPromo']);
+        // Add frontend feature promo to dashboard
+        add_filter('pp_capabilities_dashboard_features', [$this, 'addFeaturesPromotoDashboard']);
     }
 
     function actCapabilitiesSubmenus($sub_menu_pages, $cme_fakefunc) {
@@ -109,7 +111,7 @@ class CoreAdmin {
 
         return $elements;
     }
-    
+
     function adminFeatureIcons($icons) {
 
         $icons['hidecsselement']    = 'hidden';
@@ -117,7 +119,7 @@ class CoreAdmin {
 
         return $icons;
     }
-    
+
     function adminFeatureTitles($titles) {
 
         $titles['Hide CSS Element'] = esc_html__('Hide CSS Elements', 'capability-manager-enhanced');
@@ -136,10 +138,21 @@ class CoreAdmin {
         include (dirname(__FILE__) . '/frontend-features-promo.php');
     }
 
+    function addFeaturesPromotoDashboard($features) {
+
+        $features['admin-menus'] = [
+            'promo'        => 1,
+            'label'        => esc_html__('Admin Menus', 'capabilities-pro'),
+            'description'  => esc_html__('Admin Menus allows you to edit the admin menu links and control who has access.', 'capabilities-pro'),
+        ];
+
+        return $features;
+    }
+
     function frontendFeaturesPagesPromo(){
         ?>
         <div class="pp-promo-overlay-row div-pp-promo-blur">
-            <select class="chosen-cpt-select frontendelements-form-pages" 
+            <select class="chosen-cpt-select frontendelements-form-pages"
                 data-placeholder="<?php esc_attr_e('Select pages...', 'capability-manager-enhanced'); ?>" multiple>
                 <option value=""></option>
             </select>

@@ -842,7 +842,7 @@ user-select: none;
 
 .ppc-tool-tip .tool-tip-text {
     display: none;
-    min-width: 250px; 
+    min-width: 250px;
     top: -20px;
     left: 50%;
     transform: translate(-50%, -100%);
@@ -1343,10 +1343,10 @@ ul.pp-capabilities-description {
   user-select: none;
 }
 
-.pp-capability-menus-wrapper.frontend-features .CodeMirror { 
-  margin-top: 0px; 
-  border: 1px solid #ddd; 
-  border-bottom: none; 
+.pp-capability-menus-wrapper.frontend-features .CodeMirror {
+  margin-top: 0px;
+  border: 1px solid #ddd;
+  border-bottom: none;
   border-top: none;
 }
 
@@ -1554,6 +1554,11 @@ ul.ppc-redirects-tab li.active a {
   width: 95% !important;
 }
 
+.pp-version-notice-bold-purple-button a {
+  color: #000000;
+  text-decoration: none;
+}
+
 /* Start COPIED FROM PP BLOCKS */
 .pp-capability-menus-wrapper.capabilities-dashboard input {
     float: right;
@@ -1649,6 +1654,23 @@ ul.ppc-redirects-tab li.active a {
 
 .publishpress-caps-manage .dashboard-settings-boxes .dashboard-settings-box .dashboard-settings-control .ppc-switch-button .switch {
     margin: 17px 0
+}
+
+.publishpress-caps-manage .dashboard-settings-boxes .dashboard-settings-box--disabled {
+    cursor: pointer;
+}
+
+.publishpress-caps-manage .dashboard-settings-boxes .dashboard-settings-box--disabled:hover {
+    border-color: #fcb223;
+    box-shadow: 0 0 0 4px rgba(252, 178, 35, .2);
+}
+
+.publishpress-caps-manage .dashboard-settings-boxes .dashboard-settings-box h3 span {
+    background: #000;
+    padding: 2px 5px;
+    color: #fff;
+    border-radius: 4px;
+    font-size: .8em;
 }
 
 

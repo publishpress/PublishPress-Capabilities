@@ -16,39 +16,50 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-
-$sidebar_enabled = defined('PUBLISHPRESS_CAPS_PRO_VERSION') ? false : true;
 ?>
 
 <div class="wrap publishpress-caps-manage pressshack-admin-wrapper pp-capability-menus-wrapper capabilities-dashboard">
     <h2>
         <?php esc_html_e('Dashboard', 'capability-manager-enhanced'); ?>
     </h2>
-    <div class="pp-columns-wrapper <?php echo ($sidebar_enabled) ? 'pp-enable-sidebar' : ''; ?> clear">
+    <div class="pp-columns-wrapper clear">
         <div class="pp-column-left">
             <form id="ppc-capabilities-dashboard-form">
                 <div class="dashboard-settings-boxes">
                     <?php foreach (pp_capabilities_dashboard_options() as $feature => $option) : ?>
-                        <?php 
+                        <?php
                             $feature_capability = 'manage_capabilities';
                             if (!in_array($feature, ['capabilities', 'admin-notices'])) {
                                 $feature_capability .= '_' . str_replace('-', '_', $feature);
                             }
-
-                            if (current_user_can($feature_capability)) : ?>
-                            <div class="dashboard-settings-box">
-                                <h3><?php echo esc_html($option['label']); ?></h3>
+                            $promo_feature = !empty($option['promo']);
+                            $additional_class = $promo_feature ? ' dashboard-settings-box--disabled' : '';
+                            if ($promo_feature || current_user_can($feature_capability)) : ?>
+                            <div class="dashboard-settings-box <?php echo esc_attr($additional_class); ?>">
+                                <h3>
+                                    <?php
+                                        echo esc_html($option['label']);
+                                        echo $promo_feature ? ' <span>Pro</span>' : '';
+                                    ?>
+                                </h3>
                                 <div class="dashboard-settings-description"><?php echo esc_html($option['description']); ?></div>
                                 <div class="dashboard-settings-control">
                                     <div class="ppc-switch-button">
                                         <label class="switch">
-                                            <input 
+                                            <input
                                                 type="checkbox"
-                                                value="1" 
-                                                data-feature="<?php echo esc_attr($feature); ?>"
-                                                <?php checked(pp_capabilities_feature_enabled($feature), true); ?>
+                                                value="1"
+                                                <?php
+                                                if ($promo_feature) {
+                                                    echo ' disabled';
+                                                } else {
+                                                    echo 'data-feature="'. esc_attr($feature) .'"';
+                                                    checked(pp_capabilities_feature_enabled($feature), true);
+                                                }
+                                                ?>
                                             />
-                                            <span class="slider"></span>
+                                            <span class="slider<?php
+                                            echo ( $promo_feature ? ' slider--disabled' : '' ); ?>"></span>
                                         </label>
                                     </div>
                                 </div>
@@ -59,7 +70,6 @@ $sidebar_enabled = defined('PUBLISHPRESS_CAPS_PRO_VERSION') ? false : true;
             </form>
         </div><!-- .pp-column-left -->
         <div class="pp-column-right pp-capabilities-sidebar">
-            <?php pp_capabilities_pro_sidebox(); ?>
         </div><!-- .pp-column-right -->
     </div><!-- .pp-columns-wrapper -->
     <?php if (!defined('PUBLISHPRESS_CAPS_PRO_VERSION') || get_option('cme_display_branding')) {

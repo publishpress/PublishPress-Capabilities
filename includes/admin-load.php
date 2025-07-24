@@ -28,7 +28,7 @@ class PP_Capabilities_Admin_UI {
         if (is_admin()) {
             // Redirect on plugin activation
             add_action('admin_init', [$this, 'redirect_on_activate'], 2000);
-            
+
             add_action('admin_init', [$this, 'featureRestrictionsClassic'], PHP_INT_MAX - 1);
             add_action('wp_ajax_save_dashboard_feature_by_ajax', [$this, 'saveDashboardFeature']);
 
@@ -125,6 +125,9 @@ class PP_Capabilities_Admin_UI {
         add_action('activated_plugin', [$this, 'clearProfileFeaturesDoneFlag'], 10, 2);
         //prevent access to admin dashboard
         add_action('admin_init', [$this, 'blockDashboardAccess']);
+        // Add plugin list action links
+        add_filter('plugin_action_links', [$this, 'addPluginActionLinks'], 10, 2);
+        add_filter('plugin_row_meta', [$this, 'addPluginRowMetaLinks'], 10, 2);
     }
 
 	function register_textdomain() {
@@ -751,7 +754,7 @@ class PP_Capabilities_Admin_UI {
         </div>
 
         <?php
-	}     
+	}
 
     /**
     * Redirect user on plugin activation
@@ -765,5 +768,31 @@ class PP_Capabilities_Admin_UI {
             wp_safe_redirect(admin_url("admin.php?page=pp-capabilities-dashboard"));
             exit;
         }
+    }
+
+    public function addPluginActionLinks($links, $file)
+    {
+        if ($file == plugin_basename(CME_FILE) && ! defined('PUBLISHPRESS_CAPS_PRO_VERSION')) {
+            $upgrade_link = ['<a href="https://publishpress.com/links/capabilities-menu"
+            target="_blank" style="font-weight: bold;">
+            ' . __('Upgrade to Pro', 'capability-manager-enhanced') . '
+            </a>'];
+
+            $links = array_merge($upgrade_link, $links);
+        }
+
+        return $links;
+    }
+
+    public function addPluginRowMetaLinks($links, $file)
+    {
+        if ($file == plugin_basename(CME_FILE)) {
+            $links[] = '<a href="' . admin_url('admin.php?page=pp-capabilities-dashboard') . '">' . __('Dashboard', 'capability-manager-enhanced') . '</a>';
+            $links[] = "<a href='" . admin_url("admin.php?page=pp-capabilities") . "'>" . esc_html__('Capabilities', 'capability-manager-enhanced') . "</a>";
+            $links[] = '<a href="' . admin_url('admin.php?page=pp-capabilities-roles') . '">' . __('Roles', 'capability-manager-enhanced') . '</a>';
+            $links[] = "<a href='" . admin_url("admin.php?page=pp-capabilities-settings") . "'>" . esc_html__('Settings', 'capability-manager-enhanced') . "</a>";
+        }
+
+        return $links;
     }
 }

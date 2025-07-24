@@ -185,6 +185,10 @@ td.cap-locked a.neg-cap {
 display: none !important;
 }
 
+table.single-checkbox-table {
+table-layout: initial;
+}
+
 tr.cme-bulk-select td {
 padding-top: 8px;
 padding-bottom: 8px;
@@ -197,6 +201,10 @@ user-select: none;
 
 tr.cme-bulk-select span {
 vertical-align: bottom;
+}
+
+td.pp-cap-description {
+width: 70%;
 }
 
 a.type-off, a.neg-cap, a.cme-neg-all, a.neg-type-caps {
