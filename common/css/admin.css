@@ -1656,6 +1656,23 @@ ul.ppc-redirects-tab li.active a {
     margin: 17px 0
 }
 
+.publishpress-caps-manage .dashboard-settings-boxes .dashboard-settings-box--disabled {
+    cursor: pointer;
+}
+
+.publishpress-caps-manage .dashboard-settings-boxes .dashboard-settings-box--disabled:hover {
+    border-color: #fcb223;
+    box-shadow: 0 0 0 4px rgba(252, 178, 35, .2);
+}
+
+.publishpress-caps-manage .dashboard-settings-boxes .dashboard-settings-box h3 span {
+    background: #000;
+    padding: 2px 5px;
+    color: #fff;
+    border-radius: 4px;
+    font-size: .8em;
+}
+
 
 .ppc-switch-button {
     float: right;

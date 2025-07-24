@@ -9,7 +9,7 @@ jQuery(document).ready( function($) {
 	$('table.cme-checklist input[class!="cme-check-all"]').not(':disabled').attr('title',cmeAdmin.chkCaption);
 
   if ($('.ppc-checkboxes-documentation-link').length > 0) {
-    $('.ppc-checkboxes-documentation-link').attr('target', 'blank'); 
+    $('.ppc-checkboxes-documentation-link').attr('target', 'blank');
   }
 	$('table.cme-checklist a.neg-cap').click( function(e) {
 		$(this).closest('td').removeClass('cap-yes').removeClass('cap-no').addClass('cap-neg');
@@ -18,8 +18,8 @@ jQuery(document).ready( function($) {
 		$(this).after('<input type="hidden" class="cme-negation-input" name="'+cap_name_attr+'" value="" />');
 
 		$('input[name="' + cap_name_attr + '"]').closest('td').removeClass('cap-yes').removeClass('cap-no').addClass('cap-neg');
-    
-    if ($(this).closest('tr').hasClass('unfiltered_upload')) { 
+
+    if ($(this).closest('tr').hasClass('unfiltered_upload')) {
       $('input[name="caps[upload_files]"]').closest('td').addClass('cap-neg');
       $('input[name="caps[upload_files]"]').closest('td').append('<input type="hidden" class="cme-negation-input" name="caps[upload_files]" value="" />');
       $('input[name="caps[upload_files]"]').parent().next('a.neg-cap:visible').click();
@@ -54,7 +54,7 @@ jQuery(document).ready( function($) {
         $('input[name="caps[unfiltered_upload]"]').closest('td').removeClass('cap-neg').removeClass('cap-yes').addClass('cap-no');
 		    $('input[name="caps[unfiltered_upload]"]').prop('checked', true).closest('td').find('input.cme-negation-input').remove();
       }
-    } 
+    }
 
     if ($(this).closest('td').find('input[type="checkbox"]').hasClass('pp-single-action-rotate')) {
       $(this).closest('td').find('input[type="checkbox"]').prop('checked', true);
@@ -207,14 +207,14 @@ jQuery(document).ready( function($) {
       */
     $(document).on('click', '.ppc-roles-tab li', function (event) {
        event.preventDefault();
- 
+
        var clicked_tab = $(this).attr('data-tab');
- 
+
        //remove active class from all tabs
        $('.ppc-roles-tab li').removeClass('active');
        //add active class to current tab
        $(this).addClass('active');
- 
+
        //hide all tabs contents
        $('.pp-roles-tab-tr').hide();
        //show this current tab contents
@@ -226,20 +226,20 @@ jQuery(document).ready( function($) {
        */
      $(document).on('click', '.ppc-redirects-tab li', function (event) {
         event.preventDefault();
-  
+
         var clicked_tab = $(this).attr('data-tab');
-  
+
         //remove active class from all tabs
         $('.ppc-redirects-tab li').removeClass('active');
         //add active class to current tab
         $(this).addClass('active');
-  
+
         //hide all tabs contents
         $('.pp-redirects-tab-tr').hide();
         //show this current tab contents
        $('.pp-redirects-' + clicked_tab + '-tab').show();
      });
- 
+
      /**
       * Redirects login redirect options
       */
@@ -247,7 +247,7 @@ jQuery(document).ready( function($) {
         $('.login-redirect-option .custom-url-wrapper').hide();
         $('.login-redirect-option #custom_redirect').prop('checked', false);
      });
-    
+
      /**
       * Redirects login redirect options
       */
@@ -259,7 +259,7 @@ jQuery(document).ready( function($) {
         }
         $('.login-redirect-option #referer_redirect').prop('checked', false);
      });
- 
+
      /**
       * Role custom url change syc
       */
@@ -267,7 +267,7 @@ jQuery(document).ready( function($) {
        var current_input   = $(this);
        var current_wrapper = current_input.closest('.pp-roles-internal-links-wrapper');
        var current_entry   = current_input.val();
-       
+
         current_wrapper.find('.base-input input')
           .attr('data-base', current_entry)
           .attr('data-entry', current_wrapper.find('.base-input input').attr('data-home_url') + current_entry);
@@ -279,7 +279,7 @@ jQuery(document).ready( function($) {
         e.preventDefault();
         return false;
       });
-  
+
    /**
    * Role submit required field validation
    */
@@ -303,7 +303,7 @@ jQuery(document).ready( function($) {
         error_message += '- ' + $(this).attr('data-message') + '<br />';
       }
     });
-    
+
     //add allowed editor option validation
     if ($('.allowed-editor-toggle').prop('checked') && $('#role_editor-select').val().length === 0) {
       error_report = true;
@@ -316,25 +316,25 @@ jQuery(document).ready( function($) {
     }
 
   });
-  
+
    /**
     * Roles capabilities load more button
     */
     $(document).on('click', '.roles-capabilities-load-more', function (event) {
        event.preventDefault();
- 
+
       $('.roles-capabilities-load-more').hide();
-     
+
       $('.roles-capabilities-load-less').show();
-    
+
       $('ul.pp-roles-capabilities li').show();
    });
-  
+
    /**
     * Capabilities single box click
     */
     $(document).on('change', '.capability-checkbox-rotate input[type="checkbox"]', function (event) {
-     
+
       let clicked_box           = $(this);
       let mark_box_as_x         = false;
       let mark_box_as_checked   = false;
@@ -435,11 +435,11 @@ jQuery(document).ready( function($) {
           $(this).parent().find('input.cme-negation-input').remove();
           // Also apply for any other checkboxes with the same name
           var cap_name_attr = $(this).next('input[type="checkbox"]').attr('name');
-      
+
           if (!cap_name_attr) {
             cap_name_attr = $(this).next('label').find('input[type="checkbox"]').attr('name');
           }
-      
+
           $('input[name="' + cap_name_attr + '"]').parent().closest('td').removeClass('cap-neg').removeClass('cap-yes').addClass('cap-no');
           $('input[name="' + cap_name_attr + '"]').prop('checked', true).parent().find('input.cme-negation-input').remove();
           if ($(this).closest('td').hasClass('upload_files')) {
@@ -459,11 +459,11 @@ jQuery(document).ready( function($) {
           $(this).parent().find('input.cme-negation-input').remove();
           // Also apply for any other checkboxes with the same name
           var cap_name_attr = $(this).next('input[type="checkbox"]').attr('name');
-      
+
           if (!cap_name_attr) {
             cap_name_attr = $(this).next('label').find('input[type="checkbox"]').attr('name');
           }
-      
+
           $('input[name="' + cap_name_attr + '"]').parent().closest('td').removeClass('cap-neg').removeClass('cap-yes').addClass('cap-no');
           $('input[name="' + cap_name_attr + '"]').prop('checked', false).parent().find('input.cme-negation-input').remove();
           if ($(this).closest('td').hasClass('upload_files')) {
@@ -473,12 +473,12 @@ jQuery(document).ready( function($) {
       } else {
         //perform X action if state is blank
         clicked_box.closest('tr').find('td[class!="cap-neg"]').filter('td[class!="cap-unreg"]').each(function () {
-    
+
           var cap_name_attr = $(this).find('input[type="checkbox"]').attr('name');
           if (cap_name_attr) {
             $(this).addClass('cap-neg');
             $(this).append('<input type="hidden" class="cme-negation-input" name="' + cap_name_attr + '" value="" />');
-    
+
             $('input[name="' + cap_name_attr + '"]:not(.disabled)').parent().next('a.neg-cap:visible').click();
             if ($(this).closest('td').hasClass('upload_files')) {
               $('tr.unfiltered_upload').find('a.neg-cap').trigger('click');
@@ -490,13 +490,13 @@ jQuery(document).ready( function($) {
       clicked_box.addClass('interacted');
 
    });
-  
-  
+
+
    /**
     * unfiltered_upload change sync
     */
     $(document).on('change', 'tr.unfiltered_upload input[name="caps[unfiltered_upload]"]', function (event) {
-     
+
       let clicked_box           = $(this);
 
       if (clicked_box.prop('checked')) {
@@ -506,25 +506,25 @@ jQuery(document).ready( function($) {
         $('input[name="caps[upload_files]"]').parent().closest('td').removeClass('cap-neg').removeClass('cap-yes').addClass('cap-no');
         $('input[name="caps[upload_files]"]').prop('checked', false).parent().find('input.cme-negation-input').remove();
       }
-      
+
     });
 
     /**
      * Other capabilities checkmark rotate
      */
      $(document).on('click', '.pp-single-action-rotate', function (event) {
-       
+
        let clicked_input     = $(this);
        var checked_fields     = false;
        var unchecked_fields   = false;
- 
+
        //determine if we should check or uncheck based on current input state
         if (clicked_input.prop('checked')) {
            unchecked_fields = true;
         } else if (!clicked_input.prop('checked')) {
           checked_fields = true;
         }
- 
+
        if ((checked_fields && unchecked_fields)) {
          checked_fields   = true;
          unchecked_fields = false;
@@ -538,22 +538,22 @@ jQuery(document).ready( function($) {
          checked_fields   = false;
          unchecked_fields = false;
        }
- 
- 
+
+
        if (!checked_fields && !unchecked_fields) {
          //perform X action if state is blank
          event.preventDefault();
          clicked_input.closest('td').find('a.neg-cap').click();
        }
- 
+
        clicked_input.addClass('interacted');
- 
+
        if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
          document.getSelection().empty();
        }
     });
 
-  
+
   if ($('.pp-capability-menus-wrapper.profile-features').length > 0) {
     /**
      * Make profile features sortable
@@ -585,7 +585,7 @@ jQuery(document).ready( function($) {
        $(this).closest('.ppc-sidebar-panel').toggleClass('closed');
      }
    });
- 
+
 
   // -------------------------------------------------------------
   //   Custom styles new entry
@@ -729,7 +729,7 @@ jQuery(document).ready( function($) {
               $('table.' + item_section + '-table .custom-item-toggle-row').addClass('hidden-element');
             }
           }
-          
+
         });
 
       }
@@ -748,7 +748,7 @@ jQuery(document).ready( function($) {
   // -------------------------------------------------------------
   $(document).on("click", ".edit-custom-item", function (event) {
     event.preventDefault();
-    
+
     var item          = $(this);
     var item_section  = item.attr('data-section');
     var item_id       = item.attr('data-id');
@@ -771,7 +771,7 @@ jQuery(document).ready( function($) {
     item_form.find('.submit-button').html(item_form.find('.submit-button').attr('data-edit'));
     item_form.find('.custom-edit-id').val(item_id);
 
-    
+
     if (item_section === 'frontendelements') {
       item.closest('.custom-item-row').find('.css-new-element-update').trigger("click");
       item_form.find('.' + item_section + '-form-element').val(item_selector);
@@ -844,7 +844,7 @@ jQuery(document).ready( function($) {
 
     item_form.find('.' + item_section + '-form-label').trigger('change');
   });
-  
+
   	// -------------------------------------------------------------
   	//   Lock Frontend Features 'Save changes' button if unsaved custom items exist
   	// -------------------------------------------------------------
@@ -864,18 +864,18 @@ jQuery(document).ready( function($) {
       	$(this).closest('form').find('input[type=submit]').attr('disabled', false);
     	}
     });
-      
+
     // -------------------------------------------------------------
     //   Settings sub tab change
     // -------------------------------------------------------------
     $(document).on('change', '.ppc-settings-role-subtab', function (e) {
       e.preventDefault();
-  
+
       var selectedOption = $(this).find(':selected');
       var current_content = selectedOption.data('content');
-  
+
       $('.ppc-settings-tab-content').addClass('hidden-element');
-  
+
       if (current_content) {
           $(current_content).removeClass('hidden-element');
       }
@@ -883,6 +883,12 @@ jQuery(document).ready( function($) {
 
 
   /* Start COPIED FROM PP BLOCKS */
+
+    $('.dashboard-settings-box--disabled, .slider--disabled').bind( 'click', function(e) {
+        e.preventDefault();
+        window.open( 'https://publishpress.com/links/capabilities-menu' );
+    });
+
     $(".dashboard-settings-control .slider").bind("click", function (e) {
       try {
           e.preventDefault();
@@ -922,7 +928,7 @@ jQuery(document).ready( function($) {
           console.error(e);
       }
     });
-  
+
   function ppcTimerStatus(type = "success") {
       setTimeout(function () {
           var uniqueClass = "ppc-floating-msg-" + Math.round(new Date().getTime() + Math.random() * 100);

@@ -32,10 +32,16 @@
                             if (!in_array($feature, ['capabilities', 'admin-notices'])) {
                                 $feature_capability .= '_' . str_replace('-', '_', $feature);
                             }
-
-                            if (current_user_can($feature_capability)) : ?>
-                            <div class="dashboard-settings-box">
-                                <h3><?php echo esc_html($option['label']); ?></h3>
+                            $promo_feature = !empty($option['promo']);
+                            $additional_class = $promo_feature ? ' dashboard-settings-box--disabled' : '';
+                            if ($promo_feature || current_user_can($feature_capability)) : ?>
+                            <div class="dashboard-settings-box <?php echo esc_attr($additional_class); ?>">
+                                <h3>
+                                    <?php
+                                        echo esc_html($option['label']);
+                                        echo $promo_feature ? ' <span>Pro</span>' : '';
+                                    ?>
+                                </h3>
                                 <div class="dashboard-settings-description"><?php echo esc_html($option['description']); ?></div>
                                 <div class="dashboard-settings-control">
                                     <div class="ppc-switch-button">
@@ -43,10 +49,17 @@
                                             <input
                                                 type="checkbox"
                                                 value="1"
-                                                data-feature="<?php echo esc_attr($feature); ?>"
-                                                <?php checked(pp_capabilities_feature_enabled($feature), true); ?>
+                                                <?php
+                                                if ($promo_feature) {
+                                                    echo ' disabled';
+                                                } else {
+                                                    echo 'data-feature="'. esc_attr($feature) .'"';
+                                                    checked(pp_capabilities_feature_enabled($feature), true);
+                                                }
+                                                ?>
                                             />
-                                            <span class="slider"></span>
+                                            <span class="slider<?php
+                                            echo ( $promo_feature ? ' slider--disabled' : '' ); ?>"></span>
                                         </label>
                                     </div>
                                 </div>
