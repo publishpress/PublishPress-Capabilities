@@ -16,20 +16,18 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-
-$sidebar_enabled = defined('PUBLISHPRESS_CAPS_PRO_VERSION') ? false : true;
 ?>
 
 <div class="wrap publishpress-caps-manage pressshack-admin-wrapper pp-capability-menus-wrapper capabilities-dashboard">
     <h2>
         <?php esc_html_e('Dashboard', 'capability-manager-enhanced'); ?>
     </h2>
-    <div class="pp-columns-wrapper <?php echo ($sidebar_enabled) ? 'pp-enable-sidebar' : ''; ?> clear">
+    <div class="pp-columns-wrapper clear">
         <div class="pp-column-left">
             <form id="ppc-capabilities-dashboard-form">
                 <div class="dashboard-settings-boxes">
                     <?php foreach (pp_capabilities_dashboard_options() as $feature => $option) : ?>
-                        <?php 
+                        <?php
                             $feature_capability = 'manage_capabilities';
                             if (!in_array($feature, ['capabilities', 'admin-notices'])) {
                                 $feature_capability .= '_' . str_replace('-', '_', $feature);
@@ -42,9 +40,9 @@ $sidebar_enabled = defined('PUBLISHPRESS_CAPS_PRO_VERSION') ? false : true;
                                 <div class="dashboard-settings-control">
                                     <div class="ppc-switch-button">
                                         <label class="switch">
-                                            <input 
+                                            <input
                                                 type="checkbox"
-                                                value="1" 
+                                                value="1"
                                                 data-feature="<?php echo esc_attr($feature); ?>"
                                                 <?php checked(pp_capabilities_feature_enabled($feature), true); ?>
                                             />
@@ -59,7 +57,6 @@ $sidebar_enabled = defined('PUBLISHPRESS_CAPS_PRO_VERSION') ? false : true;
             </form>
         </div><!-- .pp-column-left -->
         <div class="pp-column-right pp-capabilities-sidebar">
-            <?php pp_capabilities_pro_sidebox(); ?>
         </div><!-- .pp-column-right -->
     </div><!-- .pp-columns-wrapper -->
     <?php if (!defined('PUBLISHPRESS_CAPS_PRO_VERSION') || get_option('cme_display_branding')) {
