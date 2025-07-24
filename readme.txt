@@ -433,6 +433,7 @@ Fixed : Security issue. Please update.
 
 = 2.20.0 = - 25 July 2025 =
   * Fixed : Error Message on Admin Features Restrictions screen, #1415
+  * Update : Key links on Plugins screen, #1403
   * Update : Text changes for tooltips, #1408
   * Update : More space for Editor Features "Element IDs or Classes" box, #1398
   * Update : Update lib-status-capabilities to v1.1.2, #1412
