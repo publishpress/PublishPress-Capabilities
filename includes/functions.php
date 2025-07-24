@@ -296,12 +296,12 @@ function ppc_role_redirect_after_registration($user_id) {
     if (is_admin()) {
         return;
     }
-    
+
     $user = get_user_by('ID', $user_id);
-    
+
     if (pp_capabilities_feature_enabled('redirects') && is_object($user) && isset($user->roles) && is_array($user->roles)) {
         $role_redirects = !empty(get_option('capsman_role_redirects')) ? (array)get_option('capsman_role_redirects') : [];
-        
+
         foreach ($user->roles as $user_role) {
             //get role option
             $role_option = array_key_exists($user_role, $role_redirects) ? (array)$role_redirects[$user_role] : [];
@@ -331,7 +331,7 @@ function woocommerce_registration_redirect($redirect_to) {
 
     if (pp_capabilities_feature_enabled('redirects') && is_object($user) && isset($user->roles) && is_array($user->roles)) {
         $role_redirects = !empty(get_option('capsman_role_redirects')) ? (array)get_option('capsman_role_redirects') : [];
-        
+
         foreach ($user->roles as $user_role) {
             //get role option
             $role_option = array_key_exists($user_role, $role_redirects) ? (array)$role_redirects[$user_role] : [];
@@ -392,7 +392,7 @@ function ppc_roles_login_redirect($redirect_to, $request, $user) {
 
     return $redirect_to;
 }
-add_filter('login_redirect', 'ppc_roles_login_redirect', 10, 3);   
+add_filter('login_redirect', 'ppc_roles_login_redirect', 10, 3);
 
 
 /**
@@ -659,33 +659,6 @@ function pp_capabilities_pro_sidebox()
     );
     ?>
     <div class="ppc-advertisement-promo">
-        <div class="advertisement-box-content postbox">
-            <div class="postbox-header">
-                <h3 class="advertisement-box-header hndle is-non-sortable">
-                    <span><?php echo esc_html__('Upgrade to Capabilities Pro', 'capability-manager-enhanced'); ?></span>
-                </h3>
-            </div>
-
-            <div class="inside">
-                <p><?php echo esc_html__('Enhance the power of PublishPress Capabilities with the Pro version:', 'capability-manager-enhanced'); ?>
-                </p>
-                <ul>
-                    <li><?php echo esc_html__('Control Access to Custom Statuses', 'capability-manager-enhanced'); ?></li>
-                    <li><?php echo esc_html__('Control Access to Visibility Statuses', 'capability-manager-enhanced'); ?></li>
-                    <li><?php echo esc_html__('Admin Menu restrictions', 'capability-manager-enhanced'); ?></li>
-                    <li><?php echo esc_html__('Remove metaboxes on the editing screen', 'capability-manager-enhanced'); ?></li>
-                    <li><?php echo esc_html__('Remove anything on the editing screen', 'capability-manager-enhanced'); ?></li>
-                    <li><?php echo esc_html__('Remove anything in the WordPress admin', 'capability-manager-enhanced'); ?></li>
-                    <li><?php echo esc_html__('Block admin pages by URL', 'capability-manager-enhanced'); ?></li>
-                    <li><?php echo esc_html__('Target Frontend Features for specific pages', 'capability-manager-enhanced'); ?></li>
-                    <li><?php echo esc_html__('Fast, professional support', 'capability-manager-enhanced'); ?></li>
-                    <li><?php echo esc_html__('No ads inside the plugin', 'capability-manager-enhanced'); ?></li>
-                </ul>
-                <div class="upgrade-btn">
-                    <a href="https://publishpress.com/links/capabilities-menu" target="__blank"><?php echo esc_html__('Upgrade to Pro', 'capability-manager-enhanced'); ?></a>
-                </div>
-            </div>
-        </div>
         <div class="advertisement-box-content postbox">
             <div class="postbox-header">
                 <h3 class="advertisement-box-header hndle is-non-sortable">
